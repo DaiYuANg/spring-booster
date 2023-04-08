@@ -1,0 +1,6 @@
+rootProject.name = 'kop'
+include 'modules:collections'
+findProject(':modules:collections')?.name = 'collections'
+include 'utils:collections'
+findProject(':utils:collections')?.name = 'collections'
+

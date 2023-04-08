@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id "com.diffplug.spotless" version "${spotlessPluginVersion}"
+    id "me.champeau.jmh" version "${jmhPluginVersion}"
+}
+
+group 'org.daiyuang'
+version '1.0-SNAPSHOT'
+
+
+allprojects {
+    apply {
+        plugin("java-library")
+        plugin("me.champeau.jmh")
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.9.1')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+spotless {
+    java {
+        removeUnusedImports()
+        importOrder()
+        eclipse()
+        formatAnnotations()  // fixes formatting of type annotations, see below
+        //		licenseHeader '/* (C) $YEAR */'
+    }
+
+    groovyGradle {
+        target '*.gradle' // default target of groovyGradle
+        greclipse().configFile({
+            indentWithTabs(2)
+        })
+    }
+}
