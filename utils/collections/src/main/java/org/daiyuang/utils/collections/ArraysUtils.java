@@ -1,11 +1,26 @@
 package org.daiyuang.utils.collections;
 
+import jdk.jfr.Experimental;
+import lombok.experimental.UtilityClass;
+import lombok.extern.java.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class ArraysUtils {
+@Experimental
+@Log
+@UtilityClass
+public final class ArraysUtils {
+
+    private final int useParallelSize = Integer.parseInt(
+            System.getProperty("java.util.concurrent.ForkJoinPool.common.parallelism",
+                    String.valueOf(Runtime.getRuntime().availableProcessors())
+            )
+    ) * 100;
+
     public static int[] intersection(int[] listOfOne, int[] listOfAnother) {
         System.err.println(Arrays.toString(listOfAnother));
         System.err.println(Arrays.toString(listOfOne));
@@ -23,5 +38,12 @@ public class ArraysUtils {
 //        a.retainAll(b);
 //        System.err.println(new ArrayList<>(a));
         return null;
+    }
+
+    public static <T> Map<String, List<T>> grouping(List<T> l) {
+        if (l.size() >= useParallelSize) {
+            return l.parallelStream().collect(Collectors.groupingBy(T::toString));
+        }
+        return l.stream().collect(Collectors.groupingBy(T::toString));
     }
 }

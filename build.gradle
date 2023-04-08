@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id "com.diffplug.spotless" version "${spotlessPluginVersion}"
     id "me.champeau.jmh" version "${jmhPluginVersion}"
+    id "io.freefair.lombok" version "${lombokPluginVersion}"
 }
 
 group 'org.daiyuang'
@@ -12,6 +13,7 @@ allprojects {
     apply {
         plugin("java-library")
         plugin("me.champeau.jmh")
+        plugin("io.freefair.lombok")
     }
 
     repositories {
