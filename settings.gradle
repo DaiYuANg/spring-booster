@@ -1,6 +1,12 @@
 rootProject.name = 'kop'
-include 'modules:collections'
-findProject(':modules:collections')?.name = 'collections'
-include 'utils:collections'
-findProject(':utils:collections')?.name = 'collections'
+
+include 'libs:collections'
+findProject(':libs:collections')?.name = 'collections'
+include 'libs:utils'
+findProject(':libs:utils')?.name = 'utils'
+
+include 'database:server'
+findProject(':database:server')?.name = 'server'
+include 'database:core'
+findProject(':database:core')?.name = 'core'
 
