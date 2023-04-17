@@ -15,6 +15,7 @@
  */
 
 grammar YoSQL;
+@header { package org.daiyuang.yodb.parse; }
 
 @parser::members {
   /**
