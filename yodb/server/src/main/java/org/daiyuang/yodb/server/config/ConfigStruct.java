@@ -1,4 +1,4 @@
-package org.daiyuang.database.server.config;
+package org.daiyuang.yodb.server.config;
 
 import lombok.Data;
 import org.eclipse.microprofile.config.spi.ConfigSource;

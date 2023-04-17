@@ -5,8 +5,8 @@ findProject(':libs:collections')?.name = 'collections'
 include 'libs:utils'
 findProject(':libs:utils')?.name = 'utils'
 
-include 'database:server'
-findProject(':database:server')?.name = 'server'
-include 'database:core'
-findProject(':database:core')?.name = 'core'
+include 'yodb:server'
+findProject(':yodb:server')?.name = 'server'
+include 'yodb:core'
+findProject(':yodb:core')?.name = 'core'
 
