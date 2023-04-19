@@ -34,7 +34,7 @@ allprojects {
         runtimeOnly "org.aspectj:aspectjrt:${aspectjVersion}"
         implementation "org.aspectj:aspectjtools:${aspectjVersion}"
         runtimeOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
-
+        compileOnly("org.jetbrains:annotations:24.0.1")
     }
 
     test {

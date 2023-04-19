@@ -9,4 +9,6 @@ include 'yodb:server'
 findProject(':yodb:server')?.name = 'server'
 include 'yodb:core'
 findProject(':yodb:core')?.name = 'core'
+include 'libs:thready'
+findProject(':libs:thready')?.name = 'thready'
 
