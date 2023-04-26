@@ -1,60 +1,87 @@
 plugins {
-    id 'java'
-    id "com.diffplug.spotless" version "${spotlessPluginVersion}"
-    id "me.champeau.jmh" version "${jmhPluginVersion}"
-    id "io.freefair.lombok" version "${lombokPluginVersion}"
+	id 'java'
+	id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
+	id "com.diffplug.spotless" version "${spotlessPluginVersion}"
+	id "me.champeau.jmh" version "${jmhPluginVersion}"
+	id "io.freefair.lombok" version "${lombokPluginVersion}" apply(false)
+	id 'org.jreleaser' version "${jreleaserVersion}"
 }
 
 group 'org.daiyuang'
 version '1.0-SNAPSHOT'
 
 allprojects {
-    apply {
-        plugin("me.champeau.jmh")
-        plugin("io.freefair.lombok")
-    }
+	sourceCompatibility = '17'
+	targetCompatibility = '17'
+	apply {
+		plugin("me.champeau.jmh")
+		plugin("io.freefair.lombok")
+		plugin("org.jetbrains.kotlin.jvm")
+	}
 
-    repositories {
-        mavenLocal()
-        gradlePluginPortal()
-        mavenCentral()
-    }
+	repositories {
+		mavenLocal()
+		gradlePluginPortal()
+		mavenCentral()
+	}
 
-    dependencies {
-        implementation "com.google.code.gson:gson:${gsonVersion}"
-        implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-        annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-        implementation "org.slf4j:slf4j-api:${slf4jVersion}"
-        testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
-        implementation "io.reactivex.rxjava3:rxjava:${rxjavaVersion}"
-        testImplementation platform("org.junit:junit-bom:${junitVersion}")
-        testImplementation 'org.junit.jupiter:junit-jupiter'
-        testImplementation 'org.junit.jupiter:junit-jupiter-api'
-        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-        runtimeOnly "org.aspectj:aspectjrt:${aspectjVersion}"
-        implementation "org.aspectj:aspectjtools:${aspectjVersion}"
-        runtimeOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
-        compileOnly("org.jetbrains:annotations:24.0.1")
-    }
+	dependencies {
+		implementation "com.google.code.gson:gson:${gsonVersion}"
+		implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+		implementation "com.google.guava:guava:${guavaVersion}"
+		implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+		implementation "io.reactivex.rxjava3:rxjava:${rxjavaVersion}"
+		implementation "org.aspectj:aspectjtools:${aspectjVersion}"
 
-    test {
-        useJUnitPlatform()
-    }
+		annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+		runtimeOnly "org.aspectj:aspectjrt:${aspectjVersion}"
+		runtimeOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
+		compileOnly "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"
+		compileOnly "org.immutables:value:${immutablesVersion}"
+
+		testImplementation platform("org.junit:junit-bom:${junitVersion}")
+		testImplementation 'org.junit.jupiter:junit-jupiter'
+		testImplementation 'org.junit.jupiter:junit-jupiter-api'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+
+	tasks.withType(JavaCompile) {
+		options.encoding = 'UTF-8'
+	}
+
+	java {
+		toolchain {
+			languageVersion.set(JavaLanguageVersion.of("${jdkVersion}"))
+		}
+	}
 }
 
 spotless {
-    java {
-        removeUnusedImports()
-        importOrder()
-        eclipse()
-        formatAnnotations()  // fixes formatting of type annotations, see below
-        //		licenseHeader '/* (C) $YEAR */'
-    }
+	java {
+		removeUnusedImports()
+		importOrder()
+		eclipse()
+		formatAnnotations()
+		//		licenseHeader '/* (C) $YEAR */'
+	}
 
-    groovyGradle {
-        target '*.gradle' // default target of groovyGradle
-        greclipse().configFile({
-            indentWithTabs(2)
-        })
-    }
+	groovyGradle {
+		target '*.gradle'
+		greclipse().configFile({
+			indentWithTabs(2)
+		})
+	}
+
+	kotlin {
+		ktfmt()
+		ktlint()
+		diktat()
+		prettier()
+	}
 }
+
+compileJava.dependsOn(spotlessApply)

@@ -3,6 +3,7 @@ package org.daiyuang.utils.http;
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -13,7 +14,8 @@ import java.net.http.HttpResponse;
 @Experimental
 @Slf4j
 public final class HttpUtils {
-    public static void te(URI uri) {
+    public static void get(URI uri) {
+        var cl = new OkHttpClient();
         var c = HttpClient.newBuilder().build();
         var r = HttpRequest.newBuilder().uri(uri).build();
         c.sendAsync(r, HttpResponse.BodyHandlers.ofString())

@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "async.max.worker",
+      "type": "java.lang.Integer",
+      "description": "The async worker thread pool max size."
+    }
+  ]
+}

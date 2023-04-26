@@ -1,14 +1,28 @@
 rootProject.name = 'kop'
 
+//------------libs------------
 include 'libs:collections'
 findProject(':libs:collections')?.name = 'collections'
 include 'libs:utils'
 findProject(':libs:utils')?.name = 'utils'
-
-include 'yodb:server'
-findProject(':yodb:server')?.name = 'server'
-include 'yodb:core'
-findProject(':yodb:core')?.name = 'core'
 include 'libs:thready'
 findProject(':libs:thready')?.name = 'thready'
 
+//-------------modules------------
+//yodb
+include ':modules:yodb:server'
+findProject(':modules:yodb:server')?.name = 'server'
+include ':modules:yodb:core'
+findProject(':modules:yodb:core')?.name = 'core'
+
+//profiler
+include 'modules:profiler'
+findProject(':modules:profiler')?.name = 'profiler'
+
+//------------frameworks------------
+include ':frameworks:spring:spring-boot-starter-helpers'
+findProject(':frameworks:spring:spring-boot-starter-helpers')?.name = 'spring-boot-starter-helpers'
+
+//------------examples------------
+include ':examples:frameworks:spring:spring-boot-starter-helpers-examples'
+findProject(':examples:frameworks:spring:spring-boot-starter-helpers-examples')?.name = 'spring-boot-starter-helpers-examples'
