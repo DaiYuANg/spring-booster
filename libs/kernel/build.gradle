@@ -1,8 +1,4 @@
-plugins {
-    id 'java-library'
-}
-
-group = 'org.daiyuang.utils'
+group = 'org.daiyuang.kernel'
 version = '1.0-SNAPSHOT'
 
 repositories {

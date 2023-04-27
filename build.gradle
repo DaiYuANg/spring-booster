@@ -13,6 +13,7 @@ version '1.0-SNAPSHOT'
 allprojects {
 	sourceCompatibility = '17'
 	targetCompatibility = '17'
+
 	apply {
 		plugin("me.champeau.jmh")
 		plugin("io.freefair.lombok")
@@ -30,6 +31,7 @@ allprojects {
 		implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 		implementation "com.google.guava:guava:${guavaVersion}"
 		implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+		implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
 		implementation "io.reactivex.rxjava3:rxjava:${rxjavaVersion}"
 		implementation "org.aspectj:aspectjtools:${aspectjVersion}"
 
@@ -49,9 +51,9 @@ allprojects {
 		useJUnitPlatform()
 	}
 
-	tasks.withType(JavaCompile) {
-		options.encoding = 'UTF-8'
-	}
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
 
 	java {
 		toolchain {

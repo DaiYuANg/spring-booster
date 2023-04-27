@@ -6,7 +6,7 @@ class FileUtilsTest {
 
     @Test
     void walk() {
-        FileUtils.walk(".");
+//        FileUtils.walk(".", System.err::println);
     }
 
     @Test

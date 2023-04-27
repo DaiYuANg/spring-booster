@@ -3,8 +3,8 @@ rootProject.name = 'kop'
 //------------libs------------
 include 'libs:collections'
 findProject(':libs:collections')?.name = 'collections'
-include 'libs:utils'
-findProject(':libs:utils')?.name = 'utils'
+include 'libs:kernel'
+findProject(':libs:kernel')?.name = 'kernel'
 include 'libs:thready'
 findProject(':libs:thready')?.name = 'thready'
 
@@ -26,3 +26,6 @@ findProject(':frameworks:spring:spring-boot-starter-helpers')?.name = 'spring-bo
 //------------examples------------
 include ':examples:frameworks:spring:spring-boot-starter-helpers-examples'
 findProject(':examples:frameworks:spring:spring-boot-starter-helpers-examples')?.name = 'spring-boot-starter-helpers-examples'
+include 'libs:io'
+findProject(':libs:io')?.name = 'io'
+

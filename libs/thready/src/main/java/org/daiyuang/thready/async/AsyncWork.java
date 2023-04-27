@@ -11,20 +11,27 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Supplier;
 
 @Slf4j
-public class Workers {
+public class AsyncWork {
     ThreadPoolExecutor executor = new PoolCreator().creator();
 
     public CompletableFuture<Void> run(@NotNull Runnable action, @NotNull ThreadPoolExecutor executor) {
         return CompletableFuture.runAsync(action, executor).handle(this::handle);
     }
 
-
     /**
      * @param actions Runnable method
      * @return CompletableFuture
      */
-    public CompletableFuture<Void> parallelRunWaitForFinish(Runnable... actions) {
+    public CompletableFuture<Void> parallelRunWait(Runnable... actions) {
         return CompletableFuture.allOf(
+                Arrays.stream(actions)
+                        .map(this::run)
+                        .toArray(CompletableFuture[]::new)
+        ).toCompletableFuture();
+    }
+
+    public CompletableFuture<Object> parallelRunNoWait(Runnable... actions) {
+        return CompletableFuture.anyOf(
                 Arrays.stream(actions)
                         .map(this::run)
                         .toArray(CompletableFuture[]::new)
@@ -36,7 +43,7 @@ public class Workers {
     }
 
     @SafeVarargs
-    public final void parallelRunWaitForFinish(Class<?> source, CompletableFuture<Void>... actions) {
+    public final void parallelRunWaitForFinish(CompletableFuture<Void>... actions) {
         CompletableFuture.allOf(actions).handle(this::handle);
     }
 
