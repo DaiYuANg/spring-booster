@@ -1,5 +1,8 @@
 plugins {
 	id 'java'
+	id 'pmd'
+	id("se.solrike.sonarlint") version "1.0.0-beta.9"
+	id("com.github.spotbugs-base") version "5.0.14"
 	id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
 	id "com.diffplug.spotless" version "${spotlessPluginVersion}"
 	id "me.champeau.jmh" version "${jmhPluginVersion}"
@@ -10,57 +13,7 @@ plugins {
 group 'org.daiyuang'
 version '1.0-SNAPSHOT'
 
-allprojects {
-	sourceCompatibility = '17'
-	targetCompatibility = '17'
-
-	apply {
-		plugin("me.champeau.jmh")
-		plugin("io.freefair.lombok")
-		plugin("org.jetbrains.kotlin.jvm")
-	}
-
-	repositories {
-		mavenLocal()
-		gradlePluginPortal()
-		mavenCentral()
-	}
-
-	dependencies {
-		implementation "com.google.code.gson:gson:${gsonVersion}"
-		implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-		implementation "com.google.guava:guava:${guavaVersion}"
-		implementation "org.slf4j:slf4j-api:${slf4jVersion}"
-		implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
-		implementation "io.reactivex.rxjava3:rxjava:${rxjavaVersion}"
-		implementation "org.aspectj:aspectjtools:${aspectjVersion}"
-
-		annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-		runtimeOnly "org.aspectj:aspectjrt:${aspectjVersion}"
-		runtimeOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
-		compileOnly "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"
-		compileOnly "org.immutables:value:${immutablesVersion}"
-
-		testImplementation platform("org.junit:junit-bom:${junitVersion}")
-		testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
-		testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-		testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-	}
-
-	test {
-		useJUnitPlatform()
-	}
-
-    tasks.withType(JavaCompile).configureEach {
-        options.encoding = 'UTF-8'
-    }
-
-	java {
-		toolchain {
-			languageVersion.set(JavaLanguageVersion.of("${jdkVersion}"))
-		}
-	}
-}
+apply from: "scripts/allProjects.gradle"
 
 spotless {
 	java {

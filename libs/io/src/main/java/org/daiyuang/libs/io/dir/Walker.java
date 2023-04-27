@@ -1,11 +1,9 @@
 package org.daiyuang.libs.io.dir;
 
-import com.google.common.base.Stopwatch;
 import jdk.jfr.Experimental;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.daiyuang.thready.async.AsyncWork;
 import org.daiyuang.thready.pool.PoolCreator;
 
 import java.io.File;
@@ -19,17 +17,6 @@ import java.util.function.Consumer;
 @UtilityClass
 @Slf4j
 public class Walker {
-    private static final AsyncWork asyncWork = new AsyncWork();
-
-    public static void main(String[] args) {
-        var s = Stopwatch.createStarted();
-        walk(".", file -> {
-            log.info(file.getAbsolutePath());
-        });
-        s.stop();
-        log.info("spend time:{}", s.elapsed().getSeconds());
-    }
-
     @SneakyThrows
     public static void walk(File directory, Consumer<File> consumer) {
         if (Objects.isNull(directory)) throw new NullPointerException("File is null, check your file object?");

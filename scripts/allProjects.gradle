@@ -1,0 +1,55 @@
+allprojects {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
+    apply {
+        plugin("me.champeau.jmh")
+        plugin("io.freefair.lombok")
+        plugin("org.jetbrains.kotlin.jvm")
+    }
+
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation "com.google.code.gson:gson:${gsonVersion}"
+        implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+        implementation "com.google.guava:guava:${guavaVersion}"
+        implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+//
+        implementation "io.reactivex.rxjava3:rxjava:${rxjavaVersion}"
+        implementation "org.aspectj:aspectjtools:${aspectjVersion}"
+
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+        runtimeOnly "org.aspectj:aspectjrt:${aspectjVersion}"
+        runtimeOnly "org.aspectj:aspectjweaver:${aspectjVersion}"
+        compileOnly "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"
+        compileOnly "org.immutables:value:${immutablesVersion}"
+
+        testImplementation platform("org.junit:junit-bom:${junitVersion}")
+        testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of("${jdkVersion}"))
+        }
+    }
+
+    tasks.register('myJavadocs', Javadoc) {
+        source = sourceSets.main.allJava
+    }
+}
