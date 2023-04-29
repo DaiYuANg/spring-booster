@@ -1,4 +1,4 @@
-package org.daiyuang.utils.collections;
+package org.daiyuang.kernel.collections;
 
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;

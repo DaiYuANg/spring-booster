@@ -1,4 +1,4 @@
-package org.daiyuang.utils.collections;
+package org.daiyuang.kernel.collections;
 
 import org.daiyuang.collections.tree.TreeNode;
 import org.junit.jupiter.api.Test;

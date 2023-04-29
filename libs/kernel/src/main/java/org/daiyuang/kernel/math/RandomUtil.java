@@ -1,4 +1,4 @@
-package org.daiyuang.utils.math;
+package org.daiyuang.kernel.math;
 
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;

@@ -1,4 +1,4 @@
-package org.daiyuang.utils.thread;
+package org.daiyuang.kernel.thread;
 
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;

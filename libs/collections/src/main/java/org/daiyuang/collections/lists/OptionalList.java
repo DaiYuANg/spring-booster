@@ -13,7 +13,7 @@ public class OptionalList<E> extends AbstractList<E> implements List<E>, RandomA
     //    E[] elements = new Object;
     private static final int DEFAULT_CAPACITY = Runtime.getRuntime().availableProcessors();
 
-    private transient Object[] elements;
+    private final transient Object[] elements;
 
     private static final Object[] emptyElements = {};
     private int size;

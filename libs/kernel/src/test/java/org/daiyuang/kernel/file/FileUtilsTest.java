@@ -1,4 +1,4 @@
-package org.daiyuang.utils.file;
+package org.daiyuang.kernel.file;
 
 import org.junit.jupiter.api.Test;
 

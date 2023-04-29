@@ -1,4 +1,4 @@
-package org.daiyuang.utils.http;
+package org.daiyuang.kernel.http;
 
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;

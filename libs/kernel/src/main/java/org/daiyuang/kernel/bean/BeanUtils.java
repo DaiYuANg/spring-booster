@@ -1,4 +1,4 @@
-package org.daiyuang.utils.bean;
+package org.daiyuang.kernel.bean;
 
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;
