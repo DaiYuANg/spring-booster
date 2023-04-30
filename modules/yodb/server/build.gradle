@@ -1,31 +1,36 @@
 plugins {
     id 'java'
-    id 'org.graalvm.buildtools.native' version '0.9.20'
+    id 'org.graalvm.buildtools.native' version "${graalvmPluginVersion}"
 }
 
-group = 'org.daiyuang.db'
+group = 'org.kop.yodb.server'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+ext {
+    smallVersion = "3.2.1"
+    logbackVersion = "1.4.6"
+    picocliVersion = "4.7.3"
+    guiceVersion = "5.1.0"
+}
+
 dependencies {
-    // https://mvnrepository.com/artifact/io.smallrye.config/smallrye-config-core
-//    implementation platform("io.smallrye.config:3.2.1")
-    implementation 'io.smallrye.config:smallrye-config:3.2.1'
-//    implementation "io.smallrye.config:smallrye-config-core"
-//    implementation 'io.smallrye.config:smallrye-config-common'
-    implementation 'io.smallrye.config:smallrye-config-source-file-system:3.2.1'
-    implementation 'io.smallrye.config:smallrye-config-source-yaml:3.2.1'
-//    implementation 'io.smallrye.config:smallrye-config-validator'
-    // https://mvnrepository.com/artifact/ch.qos.logback/logback-core
-    implementation 'ch.qos.logback:logback-core:1.4.6'
-    implementation 'ch.qos.logback:logback-classic:1.4.6'
+    implementation(project(":modules:yodb:core"))
+    implementation "io.smallrye.config:smallrye-config:${smallVersion}"
+    implementation "io.smallrye.config:smallrye-config-core:${smallVersion}"
+    implementation "io.smallrye.config:smallrye-config-common:${smallVersion}"
+    implementation "io.smallrye.config:smallrye-config-source-file-system:${smallVersion}"
+    implementation "io.smallrye.config:smallrye-config-source-yaml:${smallVersion}"
+    implementation "io.smallrye.config:smallrye-config-validator:${smallVersion}"
+    implementation "ch.qos.logback:logback-core:${logbackVersion}"
+    implementation "ch.qos.logback:logback-classic:${logbackVersion}"
     implementation "io.netty:netty-all:4.1.91.Final"
-    implementation "com.google.inject:guice-parent:5.1.0"
-    implementation 'info.picocli:picocli:4.7.3'
-    annotationProcessor 'info.picocli:picocli-codegen:4.7.3'
+    implementation "com.google.inject:guice-parent:${guiceVersion}"
+    implementation "info.picocli:picocli:${picocliVersion}"
+    annotationProcessor "info.picocli:picocli-codegen:${picocliVersion}"
 }
 
 test {
@@ -35,7 +40,7 @@ test {
 graalvmNative {
     binaries {
         main {
-            mainClass = 'org.daiyuang.yodb.server.Main'
+            mainClass = 'org.kop.modules.yodb.server.Main'
         }
     }
 }

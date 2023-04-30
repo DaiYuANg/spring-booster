@@ -1,3 +1,5 @@
+import kotlin.jvm.internal.Intrinsics
+
 plugins {
     id 'antlr'
 }
@@ -17,4 +19,14 @@ test {
     useJUnitPlatform()
 }
 
-//kaptGenerateStubsKotlin.dependsOn(generateGrammarSource)
+tasks.compileKotlin {
+    dependsOn(generateGrammarSource)
+}
+
+tasks.compileTestKotlin{
+    dependsOn(generateTestGrammarSource)
+}
+
+tasks.generateTestGrammarSource{
+    dependsOn(delombok)
+}

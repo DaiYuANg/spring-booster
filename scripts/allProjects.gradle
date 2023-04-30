@@ -48,6 +48,9 @@ allprojects {
         options.encoding = 'UTF-8'
     }
 
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
+
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of("${jdkVersion}"))
