@@ -6,6 +6,10 @@ allprojects {
         plugin("me.champeau.jmh")
         plugin("io.freefair.lombok")
         plugin("org.jetbrains.kotlin.jvm")
+        plugin("org.jetbrains.kotlin.plugin.lombok")
+        plugin("org.jetbrains.kotlin.plugin.allopen")
+        plugin("org.jetbrains.kotlin.kapt")
+        plugin("org.jetbrains.kotlinx.benchmark")
     }
 
     repositories {
@@ -33,6 +37,7 @@ allprojects {
         testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
         testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        testImplementation 'org.jetbrains.kotlin:kotlin-test'
     }
 
     test {
@@ -49,7 +54,11 @@ allprojects {
         }
     }
 
-    tasks.register('myJavadocs', Javadoc) {
+    tasks.register('customDoc', Javadoc) {
         source = sourceSets.main.allJava
+    }
+
+    kapt {
+        keepJavacAnnotationProcessors = true
     }
 }

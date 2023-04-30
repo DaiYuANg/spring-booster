@@ -1,7 +1,3 @@
-plugins {
-    id 'java'
-}
-
 group = 'org.daiyuang.libs.io'
 version = '1.0-SNAPSHOT'
 

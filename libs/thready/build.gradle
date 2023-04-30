@@ -1,4 +1,4 @@
-group = 'org.daiyuang.thready'
+group = 'org.daiyuang.libs.thready'
 version = '1.0-SNAPSHOT'
 
 dependencies {

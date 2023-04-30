@@ -28,4 +28,6 @@ include ':examples:frameworks:spring:spring-boot-starter-helpers-examples'
 findProject(':examples:frameworks:spring:spring-boot-starter-helpers-examples')?.name = 'spring-boot-starter-helpers-examples'
 include 'libs:io'
 findProject(':libs:io')?.name = 'io'
+include 'libs:net'
+findProject(':libs:net')?.name = 'net'
 

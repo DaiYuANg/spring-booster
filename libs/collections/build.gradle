@@ -1,4 +1,4 @@
-group 'org.daiyuang.collection'
+group 'org.daiyuang.libs.collection'
 version '1.0-SNAPSHOT'
 
 dependencies {

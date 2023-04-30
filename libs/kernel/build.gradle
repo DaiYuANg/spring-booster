@@ -1,4 +1,4 @@
-group = 'org.daiyuang.kernel'
+group = 'org.daiyuang.libs.kernel'
 version = '1.0-SNAPSHOT'
 
 repositories {

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.daiyuang.thready.async.AsyncWork;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,8 +13,8 @@ import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 @Experimental
@@ -23,54 +22,54 @@ import java.util.function.Consumer;
 @Builder
 @ToString
 public class Walker {
-    private AsyncWork asyncWork;
-
     @SneakyThrows
-    public void walk(File directory, Consumer<File> consumer) {
-        if (Objects.isNull(directory)) throw new NullPointerException("File is null, check your file object?");
-        if (!directory.isDirectory())
+    public void walk(String path,
+                     BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer,
+                     BiFunction<Path, IOException, FileVisitResult> onFailed) {
+        if (Objects.isNull(path)) throw new NullPointerException("File is null, check your file object?");
+        var directory = Path.of(path);
+        if (!Files.isDirectory(directory))
             throw new RuntimeException("Path is not a directory, if not a directory how can I walk through");
-        var fileList = Objects.requireNonNull(directory.listFiles());
-        Files.walkFileTree(directory.toPath(), new FileVisitor<Path>() {
+
+        Files.walkFileTree(directory, new FileVisitor<>() {
             @Override
-            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-                return null;
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+                return consumer.apply(dir, attrs);
             }
 
             @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                return null;
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                return consumer.apply(file, attrs);
             }
 
             @Override
-            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                return null;
+            public FileVisitResult visitFileFailed(Path file, IOException exc) {
+                return onFailed.apply(file, exc);
             }
 
             @Override
-            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                return null;
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
+                return onFailed.apply(dir, exc);
             }
-        });
-//        Arrays.stream(fileList).parallel().forEach(r -> {
-//            if (Objects.nonNull(r.listFiles()) && Objects.requireNonNull(r.listFiles()).length > 0)
-//                asyncWork.run(() -> justWalk(r, consumer));
-//        });
-    }
-
-    private void justWalk(File path, Consumer<File> consumer) {
-        Arrays.stream(Objects.requireNonNull(path.listFiles())).forEach(r -> {
-            if (r.isDirectory()) asyncWork.run(() -> justWalk(r, consumer));
-            if (r.canRead()) consumer.accept(r);
         });
     }
 
-    public void walk(String path, Consumer<File> consumer) {
-        walk(new File(path), consumer);
+    public void walk(File path,
+                     BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer,
+                     BiFunction<Path, IOException, FileVisitResult> onFailed) {
+        walk(path.toPath().toString(), consumer, onFailed);
+    }
+
+    public void walk(Path path, BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer) {
+        walk(path.toString(), consumer, (path1, e) -> {
+            if (Objects.nonNull(e)) return FileVisitResult.TERMINATE;
+            return FileVisitResult.CONTINUE;
+        });
     }
 
     //    todo make concurrent with thread
-    public void concurrentWalk(String path, Consumer<File> consumer) {
+    public void concurrentWalk(String path, Consumer<Path> consumer) {
 //        walk(path);
+
     }
 }

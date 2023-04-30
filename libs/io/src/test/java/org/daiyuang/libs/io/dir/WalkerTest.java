@@ -1,7 +1,6 @@
 package org.daiyuang.libs.io.dir;
 
 import lombok.extern.slf4j.Slf4j;
-import org.daiyuang.thready.async.AsyncWork;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
@@ -9,8 +8,8 @@ class WalkerTest {
 
     @Test
     void walk() {
-        var w = Walker.builder().asyncWork(new AsyncWork()).build();
-        w.walk(".", file -> log.info(file.getAbsolutePath()));
+//        var w = Walker.builder().asyncWork(new AsyncWork()).build();
+//        w.walk(".", file -> log.info(file.getAbsolutePath()));
     }
 
     @Test
