@@ -1,11 +1,14 @@
 package org.kop.libs.kernel.collections;
 
+import com.google.common.base.Stopwatch;
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.kop.libs.collections.lists.OptionalList;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Experimental
 @Slf4j
@@ -13,13 +16,12 @@ import java.util.stream.Collectors;
 public final class ListHelper {
 
     public static <T> T[] intersection(T[] listOfOne, T[] listOfAnother) {
-        System.err.println(Arrays.toString(listOfAnother));
-        System.err.println(Arrays.toString(listOfOne));
-        var a = new ArrayList<>(List.of(listOfOne));
-        var b = new ArrayList<>(List.of(listOfAnother));
-        b.retainAll(a);
-        a.forEach(System.err::println);
-        System.err.println(Arrays.toString(a.toArray()));
+        var result = new Object[listOfOne.length];
+        for (T t : listOfOne) {
+            for (T t1 : listOfAnother) {
+                if (t.equals(t1)) result[1] = t;
+            }
+        }
         return null;
     }
 

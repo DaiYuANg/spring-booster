@@ -29,7 +29,7 @@ public class OptionalList<E> extends ArrayList<E> implements IOptionalList<E> {
      * @return optional object
      */
     @Override
-    public Optional<E> optionalGet(Object object) {
+    public Optional<E> optionalGet(E object) {
         return super.stream().filter(e -> Objects.equals(e, object)).findAny();
     }
 }

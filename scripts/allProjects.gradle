@@ -10,6 +10,8 @@ allprojects {
         plugin("org.jetbrains.kotlin.plugin.allopen")
         plugin("org.jetbrains.kotlin.kapt")
         plugin("org.jetbrains.kotlinx.benchmark")
+        plugin("maven-publish")
+        plugin("ivy-publish")
     }
 
     repositories {

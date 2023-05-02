@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+
+}
+
+group = 'org.daiyuang.plugins.check.versions'
+version = '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation localGroovy()
+    implementation gradleApi()
+}
+
+gradlePlugin {
+    plugins {
+        checkVersion{
+            id = 'org.kop.plugins.cv'
+            implementationClass = 'org.kop.plugins.cv.CheckVersions'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

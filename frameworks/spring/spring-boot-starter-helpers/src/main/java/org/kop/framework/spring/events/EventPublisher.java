@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class EventPublisher {
     @Resource
-    AsyncWorker asyncWorker;
+    private AsyncWorker asyncWorker;
     @Resource
     private ApplicationEventPublisher applicationEventPublisher;
 //    private final ScheduledThreadPoolExecutor = ThreadUtil.createDefaultScheduledThreadPoolExecutor(this.getClass());
@@ -28,14 +28,4 @@ public class EventPublisher {
     public <E extends AbstractEvent<T>, T> void asyncPublish(E event) {
         asyncWorker.run(() -> publish(event));
     }
-
-    //todo into database
-//    @SneakyThrows
-//    public <E extends EventOfSpring<T>, T, J extends Job> void persistenceDelayPublish(E event, J job, long delay, TimeUnit timeUnit) {
-//        scheduler.start();
-//        var detail = JobBuilder.newJob(job.getClass()).build();
-//        var scheduleBuilder = SimpleScheduleBuilder.simpleSchedule();
-//        var trigger = TriggerBuilder.newTrigger().withSchedule(scheduleBuilder).build();
-//        scheduler.scheduleJob(detail, trigger);
-//    }
 }
