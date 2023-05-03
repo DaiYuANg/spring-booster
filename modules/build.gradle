@@ -1,0 +1,22 @@
+subprojects {
+    ext {
+        smallVersion = "3.2.1"
+        logbackVersion = "1.4.6"
+        picocliVersion = "4.7.3"
+        guiceVersion = "6.0.0-rc1"
+    }
+
+    dependencies {
+        implementation "info.picocli:picocli:${picocliVersion}"
+        annotationProcessor "info.picocli:picocli-codegen:${picocliVersion}"
+        implementation "com.google.inject:guice:${guiceVersion}"
+        implementation "ch.qos.logback:logback-core:${logbackVersion}"
+        implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+        implementation "io.smallrye.config:smallrye-config:${smallVersion}"
+        implementation "io.smallrye.config:smallrye-config-core:${smallVersion}"
+        implementation "io.smallrye.config:smallrye-config-common:${smallVersion}"
+        implementation "io.smallrye.config:smallrye-config-source-file-system:${smallVersion}"
+        implementation "io.smallrye.config:smallrye-config-source-yaml:${smallVersion}"
+        implementation "io.smallrye.config:smallrye-config-validator:${smallVersion}"
+    }
+}

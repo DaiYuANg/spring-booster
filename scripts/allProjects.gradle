@@ -12,6 +12,8 @@ allprojects {
         plugin("org.jetbrains.kotlinx.benchmark")
         plugin("maven-publish")
         plugin("ivy-publish")
+        plugin("groovy")
+        plugin("scala")
     }
 
     repositories {

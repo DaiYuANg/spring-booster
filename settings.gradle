@@ -1,9 +1,9 @@
 pluginManagement {
-    repositories {
-        mavenLocal()
-        gradlePluginPortal()
-        mavenCentral()
-    }
+	repositories {
+		mavenLocal()
+		gradlePluginPortal()
+		mavenCentral()
+	}
 }
 rootProject.name = 'kop'
 //------------libs------------
@@ -41,5 +41,6 @@ findProject(':examples:frameworks:spring:spring-boot-starter-helpers-examples')?
 //------------plugins------------
 include ':plugins:cv'
 findProject(':plugins:cv')?.name = 'cv'
-
+include 'modules:docky'
+findProject(':modules:docky')?.name = 'docky'
 

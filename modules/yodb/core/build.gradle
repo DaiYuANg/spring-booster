@@ -30,3 +30,7 @@ tasks.compileTestKotlin{
 tasks.generateTestGrammarSource{
     dependsOn(delombok)
 }
+
+tasks.generateGrammarSource{
+    dependsOn(delombok)
+}
