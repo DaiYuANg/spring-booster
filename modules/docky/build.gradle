@@ -1,5 +1,6 @@
 plugins{
     id 'org.graalvm.buildtools.native' version "${graalvmPluginVersion}"
+    id("io.freefair.sass-java") version "${sassJavaVersion}"
 }
 
 group = 'org.kop.modules.docky'
@@ -14,6 +15,10 @@ dependencies {
     implementation 'org.apache.tomcat.embed:tomcat-embed-websocket:11.0.0-M5'
     implementation 'com.vladsch.flexmark:flexmark-all:0.64.4'
     implementation 'org.freemarker:freemarker:2.3.32'
+    implementation 'org.jsoup:jsoup:1.16.1'
+    implementation(project(":libs:io"))
+    implementation(project(":libs:thready"))
+    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
 }
 
 test {
@@ -23,7 +28,7 @@ test {
 graalvmNative {
     binaries {
         main {
-            mainClass = 'org.kop.modules.docky.Docky'
+            mainClass = 'org.kop.modules.docky.DockyMain'
         }
     }
 }

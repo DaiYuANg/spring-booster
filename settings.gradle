@@ -43,4 +43,6 @@ include ':plugins:cv'
 findProject(':plugins:cv')?.name = 'cv'
 include 'modules:docky'
 findProject(':modules:docky')?.name = 'docky'
+include 'examples:docky-exmaple'
+findProject(':examples:docky-exmaple')?.name = 'docky-exmaple'
 

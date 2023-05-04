@@ -6,7 +6,7 @@ plugins {
     id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'org.daiyuang.modules.profiler'
+group 'org.kop.modules.profiler'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -15,16 +15,18 @@ repositories {
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.26'
+    implementation 'io.github.palexdev:materialfx:11.16.1'
+    implementation "com.dlsc.preferencesfx:preferencesfx-core:11.8.0"
 }
 
 application {
-    mainModule = 'org.daiyuang.modules.profiler'
-    mainClass = 'org.daiyuang.modules.profiler.HelloApplication'
+    mainModule = 'org.kop.modules.profiler'
+    mainClass = 'org.kop.modules.profiler.HelloApplication'
 }
 
 javafx {
     version = '20.0.1'
-    modules = ['javafx.base','javafx.controls', 'javafx.fxml','javafx.graphics','javafx.swing']
+    modules = ['javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.swing']
 }
 
 test {

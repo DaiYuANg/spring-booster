@@ -1,8 +1,11 @@
 package org.kop.modules.docky.cli;
 
+import jakarta.inject.Inject;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.kop.modules.docky.cli.sub.BuildCommand;
 import org.kop.modules.docky.cli.sub.ServeCommand;
+import org.kop.modules.docky.core.Docky;
 import picocli.CommandLine;
 
 @CommandLine.Command(
@@ -13,14 +16,21 @@ import picocli.CommandLine;
         }
 )
 @Getter
+@Slf4j
 public class DockyCommand implements Runnable {
+    @Inject
+    Docky docky;
+
+    public DockyCommand(){
+    }
+
     public int executionStrategy(CommandLine.ParseResult result) {
         init();
         return new CommandLine.RunLast().execute(result);
     }
 
     private void init() {
-
+        log.info(docky.toString());
     }
 
     @Override
