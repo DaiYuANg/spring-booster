@@ -1,28 +1,9 @@
-plugins {
-    id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version '1.1.0'
-}
-
-group = 'org.daiyuang.framework.spring.examples'
+group = 'org.kop.framework.spring.starter.helpers'
 version = '1.0-SNAPSHOT'
 
 dependencies {
-    api(project(":libs:thready"))
-    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
 }
 
-test {
-    useJUnitPlatform()
-}
 
-bootJar {
-    enabled = false
-}
 
-jar {
-    enabled = true
-}
 
-compileJava.dependsOn(processResources)

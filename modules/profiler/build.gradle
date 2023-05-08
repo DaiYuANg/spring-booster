@@ -16,7 +16,7 @@ repositories {
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.26'
     implementation 'io.github.palexdev:materialfx:11.16.1'
-    implementation "com.dlsc.preferencesfx:preferencesfx-core:11.8.0"
+    implementation "com.dlsc.preferencesfx:preferencesfx-core:11.15.0"
 }
 
 application {

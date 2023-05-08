@@ -1,9 +1,9 @@
 pluginManagement {
-	repositories {
-		mavenLocal()
-		gradlePluginPortal()
-		mavenCentral()
-	}
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
 rootProject.name = 'kop'
 //------------libs------------
@@ -33,6 +33,12 @@ findProject(':modules:profiler')?.name = 'profiler'
 //------------frameworks------------
 include ':frameworks:spring:spring-boot-starter-helpers'
 findProject(':frameworks:spring:spring-boot-starter-helpers')?.name = 'spring-boot-starter-helpers'
+include 'frameworks:spring:spring-boot-starter-authentication'
+findProject(':frameworks:spring:spring-boot-starter-authentication')?.name = 'spring-boot-starter-authentication'
+include 'frameworks:spring:spring-boot-starter-core'
+findProject(':frameworks:spring:spring-boot-starter-core')?.name = 'spring-boot-starter-core'
+include 'frameworks:spring:spring-boot-starter-message'
+findProject(':frameworks:spring:spring-boot-starter-message')?.name = 'spring-boot-starter-message'
 
 //------------examples------------
 include ':examples:frameworks:spring:spring-boot-starter-helpers-examples'
@@ -43,6 +49,8 @@ include ':plugins:cv'
 findProject(':plugins:cv')?.name = 'cv'
 include 'modules:docky'
 findProject(':modules:docky')?.name = 'docky'
-include 'examples:docky-exmaple'
-findProject(':examples:docky-exmaple')?.name = 'docky-exmaple'
+include 'examples:docky-example'
+findProject(':examples:docky-example')?.name = 'docky-example'
+include 'examples:frameworks:spring:spring-boot-starter-authentication-example'
+findProject(':examples:frameworks:spring:spring-boot-starter-authentication-example')?.name = 'spring-boot-starter-authenticih-example'
 

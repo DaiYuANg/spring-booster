@@ -1,0 +1,14 @@
+subprojects {
+    apply {
+        plugin('java-gradle-plugin')
+    }
+
+    dependencies {
+        implementation localGroovy()
+        implementation gradleApi()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.kop.framework.spring.starter.authentication'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+//    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+//    implementation "com.h2database:h2"
+    implementation(project(":frameworks:spring:spring-boot-starter-core"))
+    implementation "org.springframework.boot:spring-boot-starter-mail"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+}
+
+test {
+    useJUnitPlatform()
+}

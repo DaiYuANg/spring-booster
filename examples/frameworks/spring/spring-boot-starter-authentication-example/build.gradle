@@ -1,0 +1,14 @@
+
+group = 'org.kop.examples.frameworks.spring.spring-boot-starter-helpers-authentication'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+test {
+    useJUnitPlatform()
+}
