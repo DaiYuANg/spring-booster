@@ -4,12 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import org.kop.framework.spring.starter.core.repos.BasicRepository;
+import org.kop.framework.spring.starter.core.repos.BasicEntity;
 
 @Entity
 @Getter
 @Setter
-public class GroupEntity extends BasicRepository {
+public class GroupEntity extends BasicEntity {
     @Column(unique = true)
     private int groupId;
 

@@ -39,8 +39,12 @@ public class AsyncWorker {
         );
     }
 
-    public <T> CompletableFuture<T> supply(Supplier<T> supplier) {
+    public <T> CompletableFuture<T> supply(Supplier<T> supplier, ThreadPoolExecutor executor) {
         return CompletableFuture.supplyAsync(supplier, executor);
+    }
+
+    public <T> CompletableFuture<T> supply(Supplier<T> supplier) {
+        return supply(supplier, executor);
     }
 
     @SafeVarargs

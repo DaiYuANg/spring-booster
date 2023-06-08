@@ -1,7 +1,6 @@
 package org.kop.framework.spring.starter.core.repos;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -13,10 +12,10 @@ import java.util.Date;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class BasicRepository implements Serializable {
+public class BasicEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false,unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Column

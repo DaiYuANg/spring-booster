@@ -10,8 +10,19 @@ subprojects {
 
     dependencies {
         api(project(":libs:thready"))
-        implementation "org.springframework.boot:spring-boot-starter"
-        testImplementation "org.springframework.boot:spring-boot-starter-test"
+        implementation("org.springframework.boot:spring-boot-starter") {
+            exclude module: "spring-boot-starter-logging"
+            exclude module: "logback-classic"
+        }
+        implementation("org.springframework.boot:spring-boot-starter-web") {
+            exclude module: "spring-boot-starter-tomcat"
+        }
+        testImplementation("org.springframework.boot:spring-boot-starter-test") {
+            exclude module: "spring-boot-starter-logging"
+            exclude module: "logback-classic"
+        }
+        api "org.springframework.boot:spring-boot-starter-undertow"
+        api "org.springframework.boot:spring-boot-starter-actuator"
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     }
 

@@ -1,5 +1,6 @@
 package org.kop.framework.spring.conf;
 
+import jakarta.annotation.Resource;
 import org.daiyuang.libs.thready.async.AsyncWorker;
 import org.daiyuang.libs.thready.pool.PoolCreator;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -12,9 +13,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 @EnableConfigurationProperties(AsyncWorkerConfiguration.class)
 public class AsyncWorkerAutoConfiguration {
+    @Resource
+    private AsyncWorkerConfiguration asyncWorkerConfiguration;
+
     @Bean
     protected AsyncWorker asyncWorker() {
-        return AsyncWorker.builder().executor(threadPoolExecutor()).build();
+        return AsyncWorker.builder()
+                .executor(threadPoolExecutor())
+                .build();
     }
 
     @Bean

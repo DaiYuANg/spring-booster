@@ -4,6 +4,8 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -18,12 +20,13 @@ public class PoolCreator implements ICreator {
     private static final String LOG_TEMPLATE = "which thread:{} id:{},exception:{}";
     private ThreadPoolExecutor executor;
 
-    private static String generatorNameFromClass(Class<?> clazz) {
+    private static String generatorNameFromClass(@NotNull Class<?> clazz) {
         var name = Arrays.asList(clazz.getName().split("\\."));
         return name.get(name.size() - 1);
     }
 
-    public static Thread.UncaughtExceptionHandler exceptionHandler() {
+    @Contract(pure = true)
+    public static Thread.@NotNull UncaughtExceptionHandler exceptionHandler() {
         return (t, e) -> log.info(LOG_TEMPLATE, t.getName(), t.getId(), e.getMessage());
     }
 

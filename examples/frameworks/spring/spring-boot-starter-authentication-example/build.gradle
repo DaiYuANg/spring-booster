@@ -1,4 +1,3 @@
-
 group = 'org.kop.examples.frameworks.spring.spring-boot-starter-helpers-authentication'
 version = '1.0-SNAPSHOT'
 
@@ -7,6 +6,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":frameworks:spring:spring-boot-starter-kernel"))
+    implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
 }
 
 test {

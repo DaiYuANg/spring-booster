@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MethodExecuted {
     @Resource
-    EventPublisher eventPublisher;
+    private EventPublisher eventPublisher;
 
     @Pointcut("@annotation(org.kop.framework.spring.annotations.MethodExecuted)")
     public void methodExecutedPointCut() {

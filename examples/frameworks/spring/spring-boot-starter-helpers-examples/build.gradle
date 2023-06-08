@@ -1,8 +1,6 @@
 group = 'org.kop.examples.frameworks.spring.spring-boot-starter-helpers-examples'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
-
 
 dependencies {
-    implementation rootProject.project(":frameworks:spring:spring-boot-starter-helpers")
+    implementation project(":frameworks:spring:spring-boot-starter-helpers")
 }

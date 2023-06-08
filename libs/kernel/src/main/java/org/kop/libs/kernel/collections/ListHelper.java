@@ -1,21 +1,22 @@
 package org.kop.libs.kernel.collections;
 
-import com.google.common.base.Stopwatch;
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.kop.libs.collections.lists.OptionalList;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Experimental
 @Slf4j
 @UtilityClass
 public final class ListHelper {
 
-    public static <T> T[] intersection(T[] listOfOne, T[] listOfAnother) {
+    @Contract(pure = true)
+    public static <T> T @Nullable [] intersection(T @NotNull [] listOfOne, T[] listOfAnother) {
         var result = new Object[listOfOne.length];
         for (T t : listOfOne) {
             for (T t1 : listOfAnother) {
@@ -25,7 +26,8 @@ public final class ListHelper {
         return null;
     }
 
-    public static <T> List<T> intersection(List<T> listOfOne, List<T> listOfAnother) {
+    @Contract(pure = true)
+    public static <T> @Nullable List<T> intersection(List<T> listOfOne, List<T> listOfAnother) {
 //        var a = new HashSet<>(listOfOne);
 //        var b = new HashSet<>(listOfAnother);
 //        a.retainAll(b);
@@ -33,7 +35,7 @@ public final class ListHelper {
         return null;
     }
 
-    public static <T> Map<String, List<T>> grouping(List<T> l) {
+    public static <T> Map<String, List<T>> grouping(@NotNull List<T> l) {
         log.info("l size:{}", l.size());
         return l.stream().collect(Collectors.groupingBy(T::toString));
     }
@@ -43,6 +45,15 @@ public final class ListHelper {
         var stream = Arrays.stream(lists).flatMap(Collection::stream);
         if (removeDuplicate) return stream.distinct().toList();
         return stream.collect(Collectors.toList());
+    }
+
+    public static <T> Optional<T> searchEq(@NotNull List<T> source, T target) {
+        if (!source.contains(target)) return Optional.empty();
+        return source.stream().filter(s -> s.equals(target)).findAny();
+    }
+
+    public static <T> T searchEqNullAble(@NotNull List<T> source, T target) {
+        return searchEq(source, target).orElse(null);
     }
 
     @SafeVarargs
