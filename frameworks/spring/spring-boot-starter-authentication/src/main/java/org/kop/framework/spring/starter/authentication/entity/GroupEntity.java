@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import org.kop.framework.spring.starter.core.repos.BasicEntity;
+import org.kop.framework.spring.starter.kernel.repos.BasicEntity;
 
 @Entity
 @Getter

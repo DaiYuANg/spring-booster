@@ -1,38 +1,35 @@
 pluginManagement {
-	repositories {
-		mavenLocal()
-		gradlePluginPortal()
-		mavenCentral()
-	}
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
 rootProject.name = 'kop'
 //------------libs------------
-include 'libs:collections'
-findProject(':libs:collections')?.name = 'collections'
-include 'libs:kernel'
-findProject(':libs:kernel')?.name = 'kernel'
+include 'libs:utils'
+findProject(':libs:kernel')?.name = 'utils'
 include 'libs:thready'
 findProject(':libs:thready')?.name = 'thready'
 include 'libs:io'
 findProject(':libs:io')?.name = 'io'
 
-include 'libs:net'
-findProject(':libs:net')?.name = 'net'
 
-//-------------modules------------
+//-------------apps------------
 //yodb
-include ':modules:yodb:server'
-findProject(':modules:yodb:server')?.name = 'server'
-include ':modules:yodb:core'
-findProject(':modules:yodb:core')?.name = 'core'
+include ':apps:yodb:server'
+findProject(':apps:yodb:server')?.name = 'server'
+include ':apps:yodb:core'
+findProject(':apps:yodb:core')?.name = 'core'
 
 //profiler
-include 'modules:profiler'
-findProject(':modules:profiler')?.name = 'profiler'
+include 'apps:profiler'
+findProject(':apps:profiler')?.name = 'profiler'
+
+include 'apps:docky'
+findProject(':apps:docky')?.name = 'docky'
 
 //------------frameworks------------
-include ':frameworks:spring:spring-boot-starter-helpers'
-findProject(':frameworks:spring:spring-boot-starter-helpers')?.name = 'spring-boot-starter-helpers'
 include 'frameworks:spring:spring-boot-starter-authentication'
 findProject(':frameworks:spring:spring-boot-starter-authentication')?.name = 'spring-boot-starter-authentication'
 include 'frameworks:spring:spring-boot-starter-kernel'
@@ -41,15 +38,5 @@ include 'frameworks:spring:spring-boot-starter-message'
 findProject(':frameworks:spring:spring-boot-starter-message')?.name = 'spring-boot-starter-message'
 
 //------------examples------------
-include ':examples:frameworks:spring:spring-boot-starter-helpers-examples'
-findProject(':examples:frameworks:spring:spring-boot-starter-helpers-examples')?.name = 'spring-boot-starter-helpers-examples'
-include 'examples:docky-example'
-findProject(':examples:docky-example')?.name = 'docky-example'
-include 'examples:frameworks:spring:spring-boot-starter-authentication-example'
-findProject(':examples:frameworks:spring:spring-boot-starter-authentication-example')?.name = 'spring-boot-starter-authentication-example'
-
-//------------plugins------------
-include ':plugins:cv'
-findProject(':plugins:cv')?.name = 'cv'
-include 'modules:docky'
-findProject(':modules:docky')?.name = 'docky'
+include 'examples:frameworks:spring:spring-boot-curd-example'
+findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'

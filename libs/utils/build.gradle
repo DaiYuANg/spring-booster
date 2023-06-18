@@ -1,4 +1,4 @@
-group = 'org.kop.libs.io'
+group = 'org.daiyuang.libs.kernel'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -6,7 +6,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":libs:thready"))
+    implementation 'net.bytebuddy:byte-buddy:1.14.4'
 }
 
 test {

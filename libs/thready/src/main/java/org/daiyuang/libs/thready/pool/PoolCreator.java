@@ -2,9 +2,7 @@ package org.daiyuang.libs.thready.pool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -15,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class PoolCreator implements ICreator {
+    public static int CPU_COUNT = Runtime.getRuntime().availableProcessors();
 
     public static final TimeUnit UNIT = TimeUnit.SECONDS;
     private static final String LOG_TEMPLATE = "which thread:{} id:{},exception:{}";
@@ -25,35 +24,33 @@ public class PoolCreator implements ICreator {
         return name.get(name.size() - 1);
     }
 
-    @Contract(pure = true)
-    public static Thread.@NotNull UncaughtExceptionHandler exceptionHandler() {
-        return (t, e) -> log.info(LOG_TEMPLATE, t.getName(), t.getId(), e.getMessage());
-    }
+//    @Contract(pure = true)
+//    public static Thread.@NotNull UncaughtExceptionHandler exceptionHandler() {
+////        return (t, e) -> log.info(LOG_TEMPLATE, t.getName(), t.getId(), e.getMessage());
+//    }
 
     @Override
     public ThreadPoolExecutor creator() {
         if (Objects.nonNull(executor)) return executor;
         return executor = new ThreadPoolExecutor(
-                PoolProperty.CPU_COUNTS.value + 1,
-                PoolProperty.CPU_COUNTS.value * 4,
-                PoolProperty.KEEP_ALIVE_TIME.value,
+                CPU_COUNT + 1,
+                CPU_COUNT * 4,
+                50,
                 UNIT,
-                new ArrayBlockingQueue<>(PoolProperty.QUEUE_CAPACITY.value),
+                new ArrayBlockingQueue<>(60),
                 new ThreadFactoryBuilder()
                         .setNameFormat(generatorNameFromClass(this.getClass()) + "-%d")
-                        .setUncaughtExceptionHandler(exceptionHandler())
+//                        .setUncaughtExceptionHandler(exceptionHandler())
                         .build(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }
 
     @AllArgsConstructor
     public enum PoolProperty {
-        CPU_COUNTS(Runtime.getRuntime().availableProcessors()),
-
-        QUEUE_CAPACITY(100),
-        KEEP_ALIVE_TIME(60);
-
-        @Getter
-        final int value;
+//        QUEUE_CAPACITY(100),
+//        KEEP_ALIVE_TIME(60);
+//
+//        @Getter
+//        final int value;
     }
 }

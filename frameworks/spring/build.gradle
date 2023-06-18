@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}" apply(false)
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}" apply(false)
@@ -8,8 +10,13 @@ subprojects {
         plugin("io.spring.dependency-management")
     }
 
+    dependencyManagement {
+        imports {
+            mavenBom SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
     dependencies {
-        api(project(":libs:thready"))
         implementation("org.springframework.boot:spring-boot-starter") {
             exclude module: "spring-boot-starter-logging"
             exclude module: "logback-classic"
@@ -31,6 +38,7 @@ subprojects {
     }
 
     jar {
+        archiveBaseName = 'processor-core'
         enabled = true
     }
 

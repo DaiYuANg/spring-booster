@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.kop.framework.spring.starter.core.repos.BasicEntity;
+import org.kop.framework.spring.starter.kernel.repos.BasicEntity;
 
 @ToString
 @Accessors(chain = true)
