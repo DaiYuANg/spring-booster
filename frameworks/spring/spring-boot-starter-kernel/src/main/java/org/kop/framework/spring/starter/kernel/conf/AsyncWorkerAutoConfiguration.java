@@ -1,8 +1,8 @@
 package org.kop.framework.spring.starter.kernel.conf;
 
 import jakarta.annotation.Resource;
-import org.daiyuang.libs.thready.async.AsyncWorker;
-import org.daiyuang.libs.thready.pool.PoolCreator;
+import org.kop.libs.thready.async.AsyncWorker;
+import org.kop.libs.thready.pool.PoolCreator;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

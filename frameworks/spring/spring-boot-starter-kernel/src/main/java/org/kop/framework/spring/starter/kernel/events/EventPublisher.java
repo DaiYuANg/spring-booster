@@ -2,7 +2,7 @@ package org.kop.framework.spring.starter.kernel.events;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.daiyuang.libs.thready.async.AsyncWorker;
+import org.kop.libs.thready.async.AsyncWorker;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 

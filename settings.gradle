@@ -40,3 +40,5 @@ findProject(':frameworks:spring:spring-boot-starter-message')?.name = 'spring-bo
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
 findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'
+include 'docs'
+
