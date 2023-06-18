@@ -1,6 +1,6 @@
-allprojects {
-	sourceCompatibility = '17'
-	targetCompatibility = '17'
+subprojects {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 
 	apply {
 		plugin("me.champeau.jmh")
@@ -74,6 +74,9 @@ allprojects {
 		source = sourceSets.main.allJava
 	}
 
+	lombok {
+		version = "1.18.20"
+	}
 	//    kapt {
 	//        keepJavacAnnotationProcessors = true
 	//    }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.function.Consumer;
 @Builder
 @ToString
 public class Walker {
+
     @SneakyThrows
     public void walk(String path,
                      BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer,
@@ -54,13 +56,13 @@ public class Walker {
         });
     }
 
-    public void walk(File path,
+    public void walk(@NotNull File path,
                      BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer,
                      BiFunction<Path, IOException, FileVisitResult> onFailed) {
         walk(path.toPath().toString(), consumer, onFailed);
     }
 
-    public void walk(Path path, BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer) {
+    public void walk(@NotNull Path path, BiFunction<Path, BasicFileAttributes, FileVisitResult> consumer) {
         walk(path.toString(), consumer, (path1, e) -> {
             if (Objects.nonNull(e)) return FileVisitResult.TERMINATE;
             return FileVisitResult.CONTINUE;
@@ -71,5 +73,9 @@ public class Walker {
     public void concurrentWalk(String path, Consumer<Path> consumer) {
 //        walk(path);
 
+    }
+
+    public static void main(String[] args) {
+        System.err.println(123);
     }
 }

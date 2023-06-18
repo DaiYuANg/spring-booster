@@ -61,4 +61,8 @@ public class AsyncWorker {
     public CompletableFuture<Void> run(Runnable action) {
         return run(action, executor);
     }
+
+    public static void main(String[] args) {
+        System.err.println(123);
+    }
 }
