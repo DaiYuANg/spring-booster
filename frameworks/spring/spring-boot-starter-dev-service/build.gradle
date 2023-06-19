@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.kop.framework.spring.starter.dev.service'
+version = '1.0-SNAPSHOT'
+
+
+dependencies {
+    implementation("com.github.docker-java:docker-java-transport-httpclient5:3.3.1")
+    implementation("com.github.docker-java:docker-java-core:3.3.1")
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+    implementation "org.springframework.boot:spring-boot-starter-tomcat"
+//    implementation("org.eclipse.jetty:jetty-server:jetty-webapp")
+    compileOnly("com.mysql:mysql-connector-j:8.0.33")
+
+}

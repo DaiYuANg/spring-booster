@@ -2,7 +2,9 @@ package org.kop.libs.thready.pool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -24,10 +26,10 @@ public class PoolCreator implements ICreator {
         return name.get(name.size() - 1);
     }
 
-//    @Contract(pure = true)
-//    public static Thread.@NotNull UncaughtExceptionHandler exceptionHandler() {
-////        return (t, e) -> log.info(LOG_TEMPLATE, t.getName(), t.getId(), e.getMessage());
-//    }
+    @Contract(pure = true)
+    public static Thread.@NotNull UncaughtExceptionHandler exceptionHandler() {
+        return (t, e) -> log.info(LOG_TEMPLATE, t.getName(), t.getId(), e.getMessage());
+    }
 
     @Override
     public ThreadPoolExecutor creator() {
@@ -40,17 +42,17 @@ public class PoolCreator implements ICreator {
                 new ArrayBlockingQueue<>(60),
                 new ThreadFactoryBuilder()
                         .setNameFormat(generatorNameFromClass(this.getClass()) + "-%d")
-//                        .setUncaughtExceptionHandler(exceptionHandler())
+                        .setUncaughtExceptionHandler(exceptionHandler())
                         .build(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }
 
     @AllArgsConstructor
     public enum PoolProperty {
-//        QUEUE_CAPACITY(100),
-//        KEEP_ALIVE_TIME(60);
-//
-//        @Getter
-//        final int value;
+        QUEUE_CAPACITY(100),
+        KEEP_ALIVE_TIME(60);
+
+        @Getter
+        final int value;
     }
 }

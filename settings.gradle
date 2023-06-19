@@ -25,7 +25,7 @@ findProject(':apps:yodb:core')?.name = 'core'
 //profiler
 include 'apps:profiler'
 findProject(':apps:profiler')?.name = 'profiler'
-
+//
 include 'apps:docky'
 findProject(':apps:docky')?.name = 'docky'
 
@@ -36,9 +36,13 @@ include 'frameworks:spring:spring-boot-starter-kernel'
 findProject(':frameworks:spring:spring-boot-starter-kernel')?.name = 'spring-boot-starter-kernel'
 include 'frameworks:spring:spring-boot-starter-message'
 findProject(':frameworks:spring:spring-boot-starter-message')?.name = 'spring-boot-starter-message'
+include 'frameworks:spring:spring-boot-starter-dev-service'
+findProject(':frameworks:spring:spring-boot-starter-dev-service')?.name = 'spring-boot-starter-dev-service'
+
 
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
 findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'
-include 'docs'
 
+include 'docs'
+findProject('docs')?.name = 'docs'

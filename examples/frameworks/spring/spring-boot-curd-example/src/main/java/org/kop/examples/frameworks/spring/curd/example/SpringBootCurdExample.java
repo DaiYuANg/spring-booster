@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication(scanBasePackages = "org.kop.framework.spring.starter.**.**")
+@SpringBootApplication
 public class SpringBootCurdExample extends SpringBootServletInitializer {
 
     @Override
@@ -15,6 +15,6 @@ public class SpringBootCurdExample extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        var application = SpringApplication.run(SpringBootCurdExample.class, args);
+        SpringApplication.run(SpringBootCurdExample.class, args);
     }
 }

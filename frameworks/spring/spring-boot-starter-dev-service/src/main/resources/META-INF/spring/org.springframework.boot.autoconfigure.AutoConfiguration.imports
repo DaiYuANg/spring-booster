@@ -1,0 +1,2 @@
+org.kop.framework.spring.starter.dev.service.config.DevServiceAutoConfiguration
+org.kop.framework.spring.starter.dev.service.config.containers.MysqlDevServiceAutoConfiguration

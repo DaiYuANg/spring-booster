@@ -16,6 +16,14 @@ plugins {
 	id 'org.jreleaser' version "${jreleaserVersion}"
 }
 
+repositories {
+	mavenLocal()
+	mavenCentral()
+	gradlePluginPortal()
+	google()
+}
+
+
 group 'org.kop'
 version '1.0-SNAPSHOT'
 

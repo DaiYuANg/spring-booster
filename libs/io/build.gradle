@@ -1,7 +1,3 @@
-plugins{
-    id "io.freefair.lombok" version "${lombokPluginVersion}"
-}
-
 group = 'org.kop.libs.io'
 version = '1.0-SNAPSHOT'
 

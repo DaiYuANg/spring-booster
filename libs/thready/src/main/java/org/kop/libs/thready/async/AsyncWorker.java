@@ -15,6 +15,10 @@ import java.util.function.Supplier;
 public class AsyncWorker {
     private ThreadPoolExecutor executor;
 
+    public void warm(){
+        executor.prestartAllCoreThreads();
+    }
+
     public CompletableFuture<Void> run(@NotNull Runnable action, @NotNull ThreadPoolExecutor executor) {
         return CompletableFuture.runAsync(action, executor).handle(this::handle);
     }
@@ -60,9 +64,5 @@ public class AsyncWorker {
 
     public CompletableFuture<Void> run(Runnable action) {
         return run(action, executor);
-    }
-
-    public static void main(String[] args) {
-        System.err.println(123);
     }
 }
