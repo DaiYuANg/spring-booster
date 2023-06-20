@@ -9,11 +9,11 @@ allprojects {
         plugin("org.jetbrains.kotlin.jvm")
         plugin("org.jetbrains.kotlin.plugin.lombok")
         plugin("org.jetbrains.kotlin.plugin.allopen")
-		plugin("org.jetbrains.kotlin.kapt")
+        plugin("org.jetbrains.kotlin.kapt")
         plugin("org.jetbrains.kotlinx.benchmark")
-		plugin("maven-publish")
-		plugin("groovy")
-		plugin("scala")
+        plugin("maven-publish")
+        plugin("groovy")
+        plugin("scala")
     }
 
     repositories {
@@ -33,8 +33,8 @@ allprojects {
         implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
         implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
         implementation("org.aspectj:aspectjtools:${aspectjVersion}")
-        implementation 'org.agrona:agrona:1.18.1'
-        implementation 'com.google.zxing:zxing-parent:3.5.1'
+        implementation ("org.agrona:agrona:${agronaVersion}")
+//        implementation 'com.google.zxing:zxing-parent:3.5.1'
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         runtimeOnly("org.aspectj:aspectjrt:${aspectjVersion}")
         runtimeOnly("org.aspectj:aspectjweaver:${aspectjVersion}")
@@ -48,8 +48,9 @@ allprojects {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.testcontainers:testcontainers:${testContainersVersion}")
         testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
-        testImplementation("org.assertj:assertj-core:3.11.1")
-        testImplementation("org.mockito:mockito-core:5.3.1")
+        testImplementation("org.assertj:assertj-core:${assertjVersion}")
+        testImplementation("org.mockito:mockito-core:${mockitoVersion}")
+        implementation("cn.hutool:hutool-all:${hutoolVersion}")
     }
 
     test {

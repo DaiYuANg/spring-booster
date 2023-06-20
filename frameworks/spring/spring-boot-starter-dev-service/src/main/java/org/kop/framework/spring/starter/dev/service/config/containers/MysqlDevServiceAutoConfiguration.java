@@ -14,14 +14,10 @@ import org.springframework.context.annotation.DependsOn;
 @ConditionalOnClass(Driver.class)
 @EnableConfigurationProperties
 public class MysqlDevServiceAutoConfiguration {
-    @Resource
-    private DockerConnector dockerConnector;
 
-    private static final String defaultMysqlImage = "mysql:latest";
 
     @Bean
     public MysqlDevService mysqlDevService() {
-        dockerConnector.pull(defaultMysqlImage);
         return new MysqlDevService();
     }
 }

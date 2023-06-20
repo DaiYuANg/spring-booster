@@ -1,0 +1,14 @@
+group = 'org.kop.standard.rbac'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(":standard:persistence"))
+}
+
+test {
+    useJUnitPlatform()
+}

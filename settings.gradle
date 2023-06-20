@@ -46,3 +46,8 @@ findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spr
 
 include 'docs'
 findProject('docs')?.name = 'docs'
+include 'standard:rbac'
+findProject(':standard:rbac')?.name = 'rbac'
+include 'standard:persistence'
+findProject(':standard:persistence')?.name = 'persistence'
+

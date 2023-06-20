@@ -6,7 +6,7 @@ plugins {
     id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'org.kop.modules.profiler'
+group 'org.kop.apps.profiler'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -20,8 +20,8 @@ dependencies {
 }
 
 application {
-    mainModule = 'org.kop.modules.profiler'
-    mainClass = 'org.kop.modules.profiler.HelloApplication'
+    mainModule = 'org.kop.apps.profiler'
+    mainClass = 'org.kop.apps.profiler.HelloApplication'
 }
 
 javafx {

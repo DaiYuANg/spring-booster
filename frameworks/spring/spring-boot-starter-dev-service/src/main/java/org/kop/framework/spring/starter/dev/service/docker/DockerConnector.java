@@ -39,15 +39,21 @@ public class DockerConnector {
                 .responseTimeout(Duration.ofSeconds(45))
                 .build();
         dockerClient = DockerClientImpl.getInstance(config, httpClient);
+        System.err.println(dockerClient.pingCmd().exec());
     }
 
     @SneakyThrows
     public void pull(String image, boolean async) {
-        ProgressHandler progressHandler = new ProgressHandler();
+        val progressHandler = new ProgressHandler();
         try (val pull = dockerClient.pullImageCmd(image).exec(new PullImageResultCallback() {
             @Override
             public void onNext(PullResponseItem item) {
                 progressHandler.handleProgress(item.getProgressDetail());
+            }
+
+            @Override
+            public void onStart(Closeable stream) {
+                log.info("start pull:{}", image);
             }
         })) {
             if (async) pull.awaitCompletion();
@@ -56,6 +62,10 @@ public class DockerConnector {
 
     public void pull(String image) {
         pull(image, true);
+    }
+
+    public void run() {
+//        dockerClient.createContainerCmd("mysql:latest").withport.exec();
     }
 
     static class ProgressHandler {
