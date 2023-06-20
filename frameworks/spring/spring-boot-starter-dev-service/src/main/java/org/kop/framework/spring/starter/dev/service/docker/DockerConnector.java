@@ -8,6 +8,7 @@ import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
 import jakarta.annotation.PreDestroy;
+import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -19,6 +20,7 @@ import java.util.Objects;
 
 @Slf4j
 @Component
+@Getter
 public class DockerConnector {
 
     private final DockerClient dockerClient;
@@ -38,16 +40,29 @@ public class DockerConnector {
 
     @SneakyThrows
     public void pull(String image, boolean async) {
-        val progressHandler = new ProgressHandler();
         try (val pull = dockerClient.pullImageCmd(image).exec(new PullImageResultCallback() {
             @Override
             public void onNext(PullResponseItem item) {
-                progressHandler.handleProgress(item.getProgressDetail());
+                val detail = item.getProgressDetail();
+                if (Objects.isNull(detail) ||
+                        Objects.isNull(detail.getTotal()) ||
+                        detail.getTotal() <= 0 ||
+                        Objects.isNull(detail.getCurrent())
+                ) {
+                    return;
+                }
+                int percentage = (int) ((detail.getCurrent() * 100) / detail.getTotal());
+                log.info("Pull :{} ,progress: {}%", image, percentage);
             }
 
             @Override
             public void onStart(Closeable stream) {
                 log.info("start pull:{}", image);
+            }
+
+            @Override
+            public void onComplete() {
+                log.info("finish for pull:{}", image);
             }
         })) {
             if (async) pull.awaitCompletion();
@@ -62,19 +77,8 @@ public class DockerConnector {
 //        dockerClient.createContainerCmd("mysql:latest").withport.exec();
     }
 
-    static class ProgressHandler {
-        void handleProgress(ResponseItem.ProgressDetail progressDetail) {
-            if (Objects.isNull(progressDetail) ||
-                    Objects.isNull(progressDetail.getTotal()) ||
-                    progressDetail.getTotal() <= 0 ||
-                    Objects.isNull(progressDetail.getCurrent())
-            ) {
-                return;
-            }
-            int percentage = (int) ((progressDetail.getCurrent() * 100) / progressDetail.getTotal());
-            System.err.print("\rProgress: " + percentage + "%");
-            System.out.flush();
-        }
+    void handleProgress(ResponseItem.ProgressDetail progressDetail) {
+
     }
 
     @SneakyThrows

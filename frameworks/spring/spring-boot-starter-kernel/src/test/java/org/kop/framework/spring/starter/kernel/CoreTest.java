@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.core;
+package org.kop.framework.spring.starter.kernel;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
