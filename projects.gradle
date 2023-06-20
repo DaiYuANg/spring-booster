@@ -17,6 +17,8 @@ allprojects {
     }
 
     repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url 'https://maven.aliyun.com/repository/spring/' }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
@@ -33,7 +35,7 @@ allprojects {
         implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
         implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
         implementation("org.aspectj:aspectjtools:${aspectjVersion}")
-        implementation ("org.agrona:agrona:${agronaVersion}")
+        implementation("org.agrona:agrona:${agronaVersion}")
 //        implementation 'com.google.zxing:zxing-parent:3.5.1'
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         runtimeOnly("org.aspectj:aspectjrt:${aspectjVersion}")

@@ -1,16 +1,16 @@
 package org.kop.framework.spring.starter.dev.service.bootstrap;
 
-import org.springframework.boot.context.event.ApplicationStartedEvent;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Async;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Startup {
-    @EventListener(ApplicationStartedEvent.class)
-    @Async
-    public void init(){
-        System.err.println("startUp");
+@Slf4j
+public class Startup implements ApplicationListener<ContextRefreshedEvent> {
+    @Override
+    public void onApplicationEvent(@NotNull ContextRefreshedEvent event) {
+        log.info("context refresh");
     }
 }

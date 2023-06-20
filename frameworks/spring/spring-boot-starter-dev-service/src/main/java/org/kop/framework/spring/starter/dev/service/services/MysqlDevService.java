@@ -2,7 +2,6 @@ package org.kop.framework.spring.starter.dev.service.services;
 
 import cn.hutool.core.util.RandomUtil;
 import jakarta.annotation.Resource;
-import org.apache.commons.lang3.RandomUtils;
 import org.kop.framework.spring.starter.dev.service.docker.DockerConnector;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -21,7 +20,8 @@ public class MysqlDevService implements ApplicationRunner {
     }
 
     public MysqlDevService() {
-        dockerConnector.pull(defaultMysqlImage);
+        System.err.println(dockerConnector);
+//        dockerConnector.pull(defaultMysqlImage);
         RandomUtil.randomInt(50000, 65535);
     }
 }

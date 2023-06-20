@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.26'
     implementation 'io.github.palexdev:materialfx:11.16.1'
     implementation "com.dlsc.preferencesfx:preferencesfx-core:11.15.0"
+    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
 }
 
 application {
@@ -27,10 +28,6 @@ application {
 javafx {
     version = '20.0.1'
     modules = ['javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.swing']
-}
-
-test {
-    useJUnitPlatform()
 }
 
 jlink {

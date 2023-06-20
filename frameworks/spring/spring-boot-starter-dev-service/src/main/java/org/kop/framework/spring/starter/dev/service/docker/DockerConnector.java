@@ -1,16 +1,12 @@
 package org.kop.framework.spring.starter.dev.service.docker;
 
 import com.github.dockerjava.api.DockerClient;
-import com.github.dockerjava.api.async.ResultCallback;
 import com.github.dockerjava.api.command.PullImageResultCallback;
 import com.github.dockerjava.api.model.PullResponseItem;
 import com.github.dockerjava.api.model.ResponseItem;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
-import com.github.dockerjava.core.DockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
-import com.github.dockerjava.transport.DockerHttpClient;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +14,6 @@ import lombok.val;
 import org.springframework.stereotype.Component;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -39,7 +34,6 @@ public class DockerConnector {
                 .responseTimeout(Duration.ofSeconds(45))
                 .build();
         dockerClient = DockerClientImpl.getInstance(config, httpClient);
-        System.err.println(dockerClient.pingCmd().exec());
     }
 
     @SneakyThrows

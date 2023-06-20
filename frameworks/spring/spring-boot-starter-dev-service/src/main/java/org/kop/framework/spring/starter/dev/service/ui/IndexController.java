@@ -4,11 +4,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@RestController(value = "/")
 public class IndexController {
-    @GetMapping("/")
-    public ModelAndView index(){
-
-        return null;
+    @GetMapping("/dev/service")
+    public ModelAndView index() {
+        System.err.println(123);
+        return new ModelAndView();
     }
 }
