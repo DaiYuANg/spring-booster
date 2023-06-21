@@ -4,7 +4,8 @@ version = '1.0-SNAPSHOT'
 dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-kernel"))
     implementation(project(":standard:rbac"))
-    api "org.springframework.boot:spring-boot-starter-mail"
+    implementation(project(":libs:helpers"))
+    implementation(project(":standard:persistence"))
     api "org.springframework.boot:spring-boot-starter-security"
     implementation "org.springframework.boot:spring-boot-starter-web"
 }

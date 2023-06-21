@@ -1,22 +1,20 @@
 package org.kop.libs.thready.pool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.kop.libs.thready.enums.PoolProperty;
 
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class PoolCreator implements ICreator {
-    public static int CPU_COUNT = Runtime.getRuntime().availableProcessors();
-
     public static final TimeUnit UNIT = TimeUnit.SECONDS;
     private static final String LOG_TEMPLATE = "which thread:{} id:{},exception:{}";
     private ThreadPoolExecutor executor;
@@ -35,24 +33,20 @@ public class PoolCreator implements ICreator {
     public ThreadPoolExecutor creator() {
         if (Objects.nonNull(executor)) return executor;
         return executor = new ThreadPoolExecutor(
-                CPU_COUNT + 1,
-                CPU_COUNT * 4,
+                PoolProperty.CPU_COUNT.getValue() + 1,
+                PoolProperty.CPU_COUNT.getValue() * 4,
                 50,
                 UNIT,
                 new ArrayBlockingQueue<>(60),
-                new ThreadFactoryBuilder()
-                        .setNameFormat(generatorNameFromClass(this.getClass()) + "-%d")
-                        .setUncaughtExceptionHandler(exceptionHandler())
-                        .build(),
+                threadFactory(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }
 
-    @AllArgsConstructor
-    public enum PoolProperty {
-        QUEUE_CAPACITY(100),
-        KEEP_ALIVE_TIME(60);
-
-        @Getter
-        final int value;
+    @Contract(" -> new")
+    private @NotNull ThreadFactory threadFactory() {
+        return new ThreadFactoryBuilder()
+                .setNameFormat(generatorNameFromClass(this.getClass()) + "-%d")
+                .setUncaughtExceptionHandler(exceptionHandler())
+                .build();
     }
 }

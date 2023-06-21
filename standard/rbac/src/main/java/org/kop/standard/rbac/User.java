@@ -1,9 +1,15 @@
 package org.kop.standard.rbac;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.MappedSuperclass;
-import org.kop.standard.persistence.WithAutoIncrement;
+import jakarta.persistence.*;
+import org.kop.standard.persistence.base.WithAutoIncrement;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "sys_user")
 public class User extends WithAutoIncrement {
+    @Column
+    private String username;
+
+    @Column
+    private String password;
 }

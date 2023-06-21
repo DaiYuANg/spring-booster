@@ -1,3 +1,9 @@
 logging:
   level:
     org.springframework.web: info
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop

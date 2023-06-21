@@ -1,0 +1,32 @@
+spotless {
+    java {
+        removeUnusedImports()
+        importOrder()
+        eclipse()
+        formatAnnotations()
+    }
+    groovy {
+        importOrder()
+        excludeJava()
+        greclipse().configFile({
+            indentWithTabs(2)
+        })
+    }
+    groovyGradle {
+        target '*.gradle'
+        greclipse().configFile({
+            indentWithTabs(2)
+        })
+    }
+
+    kotlin {
+        ktfmt()
+        ktlint()
+        diktat()
+        prettier()
+    }
+
+    scala {
+        scalafmt() // has its own section below
+    }
+}

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -15,7 +16,7 @@ import java.util.function.Supplier;
 public class AsyncWorker {
     private ThreadPoolExecutor executor;
 
-    public void warm(){
+    public void warm() {
         executor.prestartAllCoreThreads();
     }
 
@@ -27,7 +28,7 @@ public class AsyncWorker {
      * @param actions Runnable method
      * @return CompletableFuture
      */
-    public CompletableFuture<Void> parallelRunWait(Runnable... actions) {
+    public CompletableFuture<Void> parallelAny(Runnable... actions) {
         return CompletableFuture.allOf(
                 Arrays.stream(actions)
                         .map(this::run)
@@ -35,12 +36,16 @@ public class AsyncWorker {
         );
     }
 
-    public CompletableFuture<Object> parallelRunDoNotWait(Runnable... actions) {
+    public CompletableFuture<Object> parallelALL(Runnable... actions) {
         return CompletableFuture.anyOf(
                 Arrays.stream(actions)
                         .map(this::run)
                         .toArray(CompletableFuture[]::new)
         );
+    }
+
+    public CompletableFuture<Object> parallelALL(@NotNull List<Runnable> actions) {
+        return parallelALL(actions.toArray(Runnable[]::new));
     }
 
     public <T> CompletableFuture<T> supply(Supplier<T> supplier, ThreadPoolExecutor executor) {

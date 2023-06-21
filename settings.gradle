@@ -1,14 +1,22 @@
 pluginManagement {
-    repositories {
-        mavenLocal()
-        gradlePluginPortal()
-        mavenCentral()
-    }
+	repositories {
+		mavenLocal()
+		gradlePluginPortal()
+		mavenCentral()
+	}
 }
+plugins {
+	id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
+}
+gitHooks {
+	preCommit {
+	}
+}
+
 rootProject.name = 'kop'
 //------------libs------------
-include 'libs:utils'
-findProject(':libs:kernel')?.name = 'utils'
+include 'libs:helpers'
+findProject(':libs:helpers')?.name = 'helpers'
 include 'libs:thready'
 findProject(':libs:thready')?.name = 'thready'
 include 'libs:io'
@@ -44,10 +52,12 @@ findProject(':frameworks:spring:spring-boot-starter-dev-service')?.name = 'sprin
 include 'examples:frameworks:spring:spring-boot-curd-example'
 findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'
 
-include 'docs'
-findProject('docs')?.name = 'docs'
 include 'standard:rbac'
 findProject(':standard:rbac')?.name = 'rbac'
 include 'standard:persistence'
 findProject(':standard:persistence')?.name = 'persistence'
+include 'frameworks:spring:spring-boot-starter-notifications'
+findProject(':frameworks:spring:spring-boot-starter-notifications')?.name = 'spring-boot-starter-notifications'
+include 'standard:communication'
+findProject(':standard:communication')?.name = 'communication'
 

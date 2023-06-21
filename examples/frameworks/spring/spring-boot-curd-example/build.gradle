@@ -1,17 +1,14 @@
 group = 'org.kop.examples.frameworks.spring.spring-boot-curd-example'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-kernel"))
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation(project(":frameworks:spring:spring-boot-starter-dev-service"))
+    developmentOnly(project(":frameworks:spring:spring-boot-starter-dev-service"))
+    implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
     implementation("com.mysql:mysql-connector-j:8.0.33")
 }
 
-test {
-    useJUnitPlatform()
+springBoot {
+    mainClass = "org.kop.examples.frameworks.spring.curd.example.SpringBootCurdExample"
 }
