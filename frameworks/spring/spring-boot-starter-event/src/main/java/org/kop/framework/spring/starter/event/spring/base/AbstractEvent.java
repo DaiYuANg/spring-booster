@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.kernel.events;
+package org.kop.framework.spring.starter.event.spring.base;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -15,6 +15,6 @@ public abstract class AbstractEvent<T> extends ApplicationEvent {
     public AbstractEvent(Object source, T data) {
         super(source);
         this.transferData = data;
-//        log.debug(logTemplate, this.getClass().getName(), getTimestamp(), source);
+        log.debug(logTemplate, this.getClass().getName(), getTimestamp(), source);
     }
 }
