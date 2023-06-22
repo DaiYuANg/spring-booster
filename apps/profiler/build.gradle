@@ -6,13 +6,6 @@ plugins {
     id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'org.kop.apps.profiler'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.26'
     implementation 'io.github.palexdev:materialfx:11.16.1'

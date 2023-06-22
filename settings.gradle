@@ -24,12 +24,6 @@ findProject(':libs:io')?.name = 'io'
 
 
 //-------------apps------------
-//yodb
-include ':apps:yodb:server'
-findProject(':apps:yodb:server')?.name = 'server'
-include ':apps:yodb:core'
-findProject(':apps:yodb:core')?.name = 'core'
-
 //profiler
 include 'apps:profiler'
 findProject(':apps:profiler')?.name = 'profiler'

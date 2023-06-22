@@ -1,3 +1,14 @@
+tasks.publish {
+    enabled = false
+}
+
+tasks.jar {
+    enabled = false
+}
+
+tasks.publish {
+    enabled = false
+}
 subprojects {
     ext {
         smallVersion = "3.2.1"
@@ -19,5 +30,25 @@ subprojects {
         implementation "io.smallrye.config:smallrye-config-source-file-system:${smallVersion}"
         implementation "io.smallrye.config:smallrye-config-source-yaml:${smallVersion}"
         implementation "io.smallrye.config:smallrye-config-validator:${smallVersion}"
+    }
+
+    publishing {
+        publications {
+            library(MavenPublication) {
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                url "https://dev.daiyuang.cloud:83/api/v4/projects/10/packages/maven"
+                credentials(HttpHeaderCredentials) {
+                    name = "Deploy-Token"
+                    value = gitLabPrivateToken // the variable resides in $GRADLE_USER_HOME/gradle.properties
+                }
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
+            }
+        }
     }
 }

@@ -3,9 +3,6 @@ plugins{
     id("io.freefair.sass-java") version "${sassJavaVersion}"
 }
 
-group = 'org.kop.modules.docky'
-version = '1.0-SNAPSHOT'
-
 ext {
     picocliVersion = "4.7.3"
 }

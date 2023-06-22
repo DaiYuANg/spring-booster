@@ -1,6 +1,10 @@
 group = 'org.kop.examples.frameworks.spring.spring-boot-curd-example'
 version = '1.0-SNAPSHOT'
 
+tasks.publish {
+    enabled = false
+}
+
 dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-async"))
     implementation(project(":frameworks:spring:spring-boot-starter-event"))
@@ -12,6 +16,7 @@ dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
     implementation("com.mysql:mysql-connector-j:8.0.33")
     implementation("com.h2database:h2")
+    implementation("com.baomidou:mybatis-plus:3.5.3.1")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 

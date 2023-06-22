@@ -24,6 +24,9 @@ repositories {
 	google()
 }
 
+tasks.jar {
+	enabled = false
+}
 
 group 'org.kop'
 version '1.0-SNAPSHOT'

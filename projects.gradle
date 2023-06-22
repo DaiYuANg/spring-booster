@@ -1,4 +1,4 @@
-allprojects {
+subprojects {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
@@ -25,6 +25,17 @@ allprojects {
         mavenCentral()
         gradlePluginPortal()
         google()
+        maven {
+            url "https://dev.daiyuang.cloud:83/api/v4/groups/17/-/packages/maven"
+            name "GitLab"
+            credentials(HttpHeaderCredentials) {
+                name = 'gradle'
+                value = gitLabPrivateToken
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
     }
 
     dependencies {
@@ -84,4 +95,15 @@ allprojects {
     kapt {
         keepJavacAnnotationProcessors = true
     }
+
+//    details.lastTag
+//    details.commitDistance
+//    details.gitHash
+//    details.gitHashFull // full 40-character Git commit hash
+//    // is null if the repository in detached HEAD mode
+//    details.isCleanTag
+    group "org." + rootProject.name + "." + project.name
+    def details = versionDetails()
+    def vs = details.lastTag
+    version(vs)
 }

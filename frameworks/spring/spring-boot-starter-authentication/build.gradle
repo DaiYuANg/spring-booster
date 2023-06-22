@@ -1,6 +1,3 @@
-group = 'org.kop.framework.spring.starter.authentication'
-version = '1.0-SNAPSHOT'
-
 ext {
     jwtVersion = "4.4.0"
 }
