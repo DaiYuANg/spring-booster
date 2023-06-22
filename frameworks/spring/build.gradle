@@ -17,19 +17,11 @@ subprojects {
     }
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter") {
-            exclude module: "spring-boot-starter-logging"
-            exclude module: "logback-classic"
-        }
-        implementation("org.springframework.boot:spring-boot-starter-web") {
-            exclude module: "spring-boot-starter-tomcat"
-        }
-        testImplementation("org.springframework.boot:spring-boot-starter-test") {
-            exclude module: "spring-boot-starter-logging"
-            exclude module: "logback-classic"
-        }
-        api "org.springframework.boot:spring-boot-starter-undertow"
-        api "org.springframework.boot:spring-boot-starter-actuator"
+        compileOnly("org.springframework.boot:spring-boot-starter")
+        compileOnly("org.springframework.boot:spring-boot-starter-web")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+        compileOnly "org.springframework.boot:spring-boot-starter-actuator"
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     }
 
@@ -40,10 +32,7 @@ subprojects {
     jar {
         archiveBaseName = 'processor-core'
         enabled = true
-    }
-
-    test {
-        useJUnitPlatform()
+        duplicatesStrategy = duplicatesStrategy.INCLUDE
     }
 
     compileJava.dependsOn(processResources)

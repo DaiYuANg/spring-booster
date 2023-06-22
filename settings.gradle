@@ -1,16 +1,16 @@
 pluginManagement {
-	repositories {
-		mavenLocal()
-		gradlePluginPortal()
-		mavenCentral()
-	}
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
 plugins {
-	id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
 }
 gitHooks {
-	preCommit {
-	}
+    preCommit {
+    }
 }
 
 rootProject.name = 'kop'
@@ -40,24 +40,42 @@ findProject(':apps:docky')?.name = 'docky'
 //------------frameworks------------
 include 'frameworks:spring:spring-boot-starter-authentication'
 findProject(':frameworks:spring:spring-boot-starter-authentication')?.name = 'spring-boot-starter-authentication'
-include 'frameworks:spring:spring-boot-starter-kernel'
-findProject(':frameworks:spring:spring-boot-starter-kernel')?.name = 'spring-boot-starter-kernel'
 include 'frameworks:spring:spring-boot-starter-message'
 findProject(':frameworks:spring:spring-boot-starter-message')?.name = 'spring-boot-starter-message'
 include 'frameworks:spring:spring-boot-starter-dev-service'
 findProject(':frameworks:spring:spring-boot-starter-dev-service')?.name = 'spring-boot-starter-dev-service'
-
+include 'frameworks:spring:spring-boot-starter-io'
+findProject(':frameworks:spring:spring-boot-starter-io')?.name = 'spring-boot-starter-io'
+include 'frameworks:spring:spring-boot-starter-notifications'
+findProject(':frameworks:spring:spring-boot-starter-notifications')?.name = 'spring-boot-starter-notifications'
+include 'frameworks:spring:spring-boot-starter-async'
+findProject(':frameworks:spring:spring-boot-starter-async')?.name = 'spring-boot-starter-async'
+include 'frameworks:spring:spring-boot-starter-event'
+findProject(':frameworks:spring:spring-boot-starter-event')?.name = 'spring-boot-starter-event'
+include 'frameworks:spring:spring-boot-starter-groundwork'
+findProject(':frameworks:spring:spring-boot-starter-groundwork')?.name = 'spring-boot-starter-groundwork'
+include 'frameworks:spring:spring-boot-starter-scheduled'
+findProject(':frameworks:spring:spring-boot-starter-scheduled')?.name = 'spring-boot-starter-scheduled'
+include 'frameworks:spring:spring-boot-starter-i18n'
+findProject(':frameworks:spring:spring-boot-starter-i18n')?.name = 'spring-boot-starter-i18n'
+include 'frameworks:spring:spring-boot-starter-locker'
+findProject(':frameworks:spring:spring-boot-starter-locker')?.name = 'spring-boot-starter-locker'
+include 'frameworks:spring:spring-boot-starter-restful'
+findProject(':frameworks:spring:spring-boot-starter-restful')?.name = 'spring-boot-starter-restful'
 
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
 findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'
 
+//------------standard------------
 include 'standard:rbac'
 findProject(':standard:rbac')?.name = 'rbac'
 include 'standard:persistence'
 findProject(':standard:persistence')?.name = 'persistence'
-include 'frameworks:spring:spring-boot-starter-notifications'
-findProject(':frameworks:spring:spring-boot-starter-notifications')?.name = 'spring-boot-starter-notifications'
 include 'standard:communication'
 findProject(':standard:communication')?.name = 'communication'
 
+include 'standard:locker'
+findProject(':standard:locker')?.name = 'locker'
+include 'standard:restful'
+findProject(':standard:restful')?.name = 'restful'

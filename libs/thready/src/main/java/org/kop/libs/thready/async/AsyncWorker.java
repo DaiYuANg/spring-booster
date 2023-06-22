@@ -1,6 +1,6 @@
 package org.kop.libs.thready.async;
 
-import lombok.Builder;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,9 +12,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Supplier;
 
 @Slf4j
-@Builder
+@Setter
 public class AsyncWorker {
-    private ThreadPoolExecutor executor;
+    protected ThreadPoolExecutor executor;
 
     public void warm() {
         executor.prestartAllCoreThreads();

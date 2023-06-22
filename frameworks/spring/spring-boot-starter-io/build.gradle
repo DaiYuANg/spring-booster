@@ -1,0 +1,11 @@
+group = 'org.kop.framework.spring.starter.object.storage'
+version = '1.0-SNAPSHOT'
+
+ext {
+    minioVersion = "8.5.4"
+}
+
+dependencies {
+    api("io.minio:minio:${minioVersion}")
+    api(project(":libs:io"))
+}

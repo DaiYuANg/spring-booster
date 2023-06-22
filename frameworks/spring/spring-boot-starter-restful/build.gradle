@@ -1,0 +1,7 @@
+group = 'org.kop.framework.spring.boot.starter.restful'
+version = '1.0-SNAPSHOT'
+
+
+dependencies {
+    api(project(":standard:restful"))
+}

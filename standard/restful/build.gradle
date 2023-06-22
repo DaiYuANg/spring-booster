@@ -1,0 +1,10 @@
+group = 'org.kop.standard.restful'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    api("jakarta.ws.rs:jakarta.ws.rs-api:${jakartaWsRsVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -2,20 +2,20 @@ package org.kop.libs.helpers.collections;
 
 import jdk.jfr.Experimental;
 import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Experimental
-@Slf4j
 @UtilityClass
 public final class ListHelper {
-    public static <T, K> Map<K, List<T>> grouping(@NotNull List<T> l, Function<? super T, ? extends K> classifier) {
-        log.info("l size:{}", l.size());
+
+    public static <T, K> @Nullable Map<K, List<T>> grouping(@NotNull List<T> l, Function<? super T, ? extends K> classifier) {
+        if (l.isEmpty()) return null;
         return l.stream().collect(Collectors.groupingBy(classifier));
     }
 
@@ -36,7 +36,7 @@ public final class ListHelper {
     }
 
     public static <T> List<T> intersection(@NotNull List<T> list1, @NotNull List<T> list2) {
-        return list1.stream().filter(list2::contains).collect(Collectors.toList());
+        return list1.stream().filter(list2::contains).distinct().collect(Collectors.toList());
     }
 
     @Contract("_, _ -> new")

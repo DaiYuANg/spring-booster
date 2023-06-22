@@ -1,0 +1,7 @@
+group = 'org.kop.framework.spring.boot.starter.locker'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    implementation(project(":standard:locker"))
+}
+

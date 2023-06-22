@@ -1,6 +1,11 @@
 group = 'org.kop.libs.io'
 version = '1.0-SNAPSHOT'
 
+ext {
+    okhttpVersion = "4.9.1"
+}
+
 dependencies {
     implementation(project(":libs:thready"))
+    api("com.squareup.okhttp3:okhttp:${okhttpVersion}")
 }

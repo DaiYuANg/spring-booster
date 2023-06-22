@@ -3,8 +3,6 @@ version = '1.0-SNAPSHOT'
 
 dependencies {
 //    implementation(project(":frameworks:spring:spring-boot-starter-kernel"))
+    implementation("org.springframework.boot:spring-boot-starter-activemq")
 }
 
-test {
-    useJUnitPlatform()
-}

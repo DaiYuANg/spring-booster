@@ -9,4 +9,6 @@ import org.mapstruct.MappingConstants;
 public interface UserEntityMapper {
 
     UserPojo userEntityToUserPojo(UserEntity entity);
+
+    UserEntity userPojoToUserEntity(UserPojo pojo);
 }

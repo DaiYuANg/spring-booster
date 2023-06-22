@@ -7,3 +7,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+helpers:
+  async:
+    rejected-execution: java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy.class
+    pool-name-prefix: "spring-boot-curd-example"
+    preheat: true
