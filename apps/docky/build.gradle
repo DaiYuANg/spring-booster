@@ -14,11 +14,6 @@ dependencies {
     implementation 'org.freemarker:freemarker:2.3.32'
     implementation(project(":libs:io"))
     implementation(project(":libs:thready"))
-    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
-}
-
-test {
-    useJUnitPlatform()
 }
 
 graalvmNative {

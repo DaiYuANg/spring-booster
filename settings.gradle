@@ -73,3 +73,6 @@ include 'standard:locker'
 findProject(':standard:locker')?.name = 'locker'
 include 'standard:restful'
 findProject(':standard:restful')?.name = 'restful'
+include 'apps:cg'
+findProject(':apps:cg')?.name = 'cg'
+
