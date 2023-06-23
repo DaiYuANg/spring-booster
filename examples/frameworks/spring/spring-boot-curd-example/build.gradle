@@ -1,5 +1,6 @@
-group = 'org.kop.examples.frameworks.spring.spring-boot-curd-example'
-version = '1.0-SNAPSHOT'
+plugins {
+    id 'org.graalvm.buildtools.native' version "${graalvmPluginVersion}"
+}
 
 tasks.publish {
     enabled = false
@@ -21,5 +22,13 @@ dependencies {
 }
 
 springBoot {
+    mainClass = "org.kop.examples.frameworks.spring.curd.example.SpringBootCurdExample"
+}
+
+tasks.bootJar {
+    duplicatesStrategy = duplicatesStrategy.EXCLUDE
+}
+
+nativeBuild {
     mainClass = "org.kop.examples.frameworks.spring.curd.example.SpringBootCurdExample"
 }

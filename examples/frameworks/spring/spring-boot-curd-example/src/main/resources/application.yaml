@@ -2,6 +2,8 @@ logging:
   level:
     org.springframework.web: info
 spring:
+  aot:
+    enabled: true
   jpa:
     generate-ddl: true
     show-sql: true

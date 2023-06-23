@@ -50,6 +50,9 @@ subprojects {
         implementation("org.aspectj:aspectjtools:${aspectjVersion}")
         implementation("org.agrona:agrona:${agronaVersion}")
         implementation("org.jsoup:jsoup:1.16.1")
+        implementation("net.bytebuddy:byte-buddy:1.14.5")
+        // https://mvnrepository.com/artifact/org.apache.poi/poi
+        implementation 'org.apache.poi:poi:5.2.3'
         //        implementation 'com.google.zxing:zxing-parent:3.5.1'
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         implementation("org.aspectj:aspectjrt:${aspectjVersion}")

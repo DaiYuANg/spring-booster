@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.authentication.config;
+package org.kop.framework.spring.starter.authentication.configurations;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @AutoConfiguration
 @EnableConfigurationProperties(AuthenticationProperties.class)
-@ComponentScan("org.kop.framework.spring.starter.authentication.**.**")
+@ComponentScan("org.kop.framework.spring.starter.authentication.services.**")
 @EnableJpaRepositories("org.kop.framework.spring.starter.authentication.repos")
 @EntityScan({"org.kop.framework.spring.starter.authentication.entities", "org.kop.standard.rbac"})
 public class AuthenticationConfiguration {

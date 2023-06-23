@@ -30,7 +30,7 @@ subprojects {
     }
 
     jar {
-        archiveBaseName = 'processor-core'
+//        archiveBaseName = 'processor-core'
         enabled = true
         duplicatesStrategy = duplicatesStrategy.INCLUDE
     }

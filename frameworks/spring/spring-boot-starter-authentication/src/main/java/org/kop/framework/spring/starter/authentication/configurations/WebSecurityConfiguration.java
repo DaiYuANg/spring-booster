@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.authentication.config;
+package org.kop.framework.spring.starter.authentication.configurations;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

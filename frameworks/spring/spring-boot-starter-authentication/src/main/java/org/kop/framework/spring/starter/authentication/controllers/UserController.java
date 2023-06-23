@@ -1,6 +1,7 @@
 package org.kop.framework.spring.starter.authentication.controllers;
 
 import jakarta.annotation.Resource;
+import org.kop.framework.spring.starter.authentication.entities.UserEntity;
 import org.kop.framework.spring.starter.authentication.mapper.UserEntityMapper;
 import org.kop.framework.spring.starter.authentication.pojo.UserPojo;
 import org.kop.framework.spring.starter.authentication.services.IUserServices;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Resource
-    private IUserServices userServices;
+    private IUserServices<UserEntity> userServices;
 
 
     @Resource

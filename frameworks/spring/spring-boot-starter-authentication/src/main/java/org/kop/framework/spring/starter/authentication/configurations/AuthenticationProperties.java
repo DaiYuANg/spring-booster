@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.authentication.config;
+package org.kop.framework.spring.starter.authentication.configurations;
 
 import lombok.Data;
 import lombok.ToString;
