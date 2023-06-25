@@ -18,6 +18,11 @@ subprojects {
         plugin("scala")
     }
 
+    group "org." + rootProject.name + "." + project.name
+    def details = versionDetails()
+    def vs = details.lastTag
+    version(vs)
+
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url 'https://maven.aliyun.com/repository/spring/' }
@@ -25,15 +30,17 @@ subprojects {
         mavenCentral()
         gradlePluginPortal()
         google()
-        maven {
-            url "https://dev.daiyuang.cloud:83/api/v4/groups/17/-/packages/maven"
-            name "GitLab"
-            credentials(HttpHeaderCredentials) {
-                name = 'gradle'
-                value = gitLabPrivateToken
-            }
-            authentication {
-                header(HttpHeaderAuthentication)
+        if (rootProject.hasProperty("gitLabPrivateToken")) {
+            maven {
+                url "https://dev.daiyuang.cloud:83/api/v4/groups/17/-/packages/maven"
+                name "GitLab"
+                credentials(HttpHeaderCredentials) {
+                    name = 'gradle'
+                    value = gitLabPrivateToken
+                }
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
             }
         }
     }
@@ -100,14 +107,26 @@ subprojects {
         keepJavacAnnotationProcessors = true
     }
 
-//    details.lastTag
-//    details.commitDistance
-//    details.gitHash
-//    details.gitHashFull // full 40-character Git commit hash
-//    // is null if the repository in detached HEAD mode
-//    details.isCleanTag
-    group "org." + rootProject.name + "." + project.name
-    def details = versionDetails()
-    def vs = details.lastTag
-    version(vs)
+    if (project.subprojects.size() == 0 && project.publish.enabled &&
+            rootProject.hasProperty("gitLabPrivateToken")) {
+        publishing {
+            publications {
+                library(MavenPublication) {
+                    from components.java
+                }
+            }
+            repositories {
+                maven {
+                    url "https://dev.daiyuang.cloud:83/api/v4/projects/10/packages/maven"
+                    credentials(HttpHeaderCredentials) {
+                        name = "Deploy-Token"
+                        value = gitLabPrivateToken // the variable resides in $GRADLE_USER_HOME/gradle.properties
+                    }
+                    authentication {
+                        header(HttpHeaderAuthentication)
+                    }
+                }
+            }
+        }
+    }
 }

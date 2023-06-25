@@ -32,3 +32,7 @@ tasks.bootJar {
 nativeBuild {
     mainClass = "org.kop.examples.frameworks.spring.curd.example.SpringBootCurdExample"
 }
+
+tasks.publish {
+    enabled = false
+}

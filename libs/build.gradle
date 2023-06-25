@@ -17,23 +17,4 @@ subprojects {
 //        implementation("org.slf4j:slf4j-simple:${slf4jVersion}")
     }
 
-    publishing {
-        publications {
-            library(MavenPublication) {
-                from components.java
-            }
-        }
-        repositories {
-            maven {
-                url "https://dev.daiyuang.cloud:83/api/v4/projects/10/packages/maven"
-                credentials(HttpHeaderCredentials) {
-                    name = "Deploy-Token"
-                    value = gitLabPrivateToken // the variable resides in $GRADLE_USER_HOME/gradle.properties
-                }
-                authentication {
-                    header(HttpHeaderAuthentication)
-                }
-            }
-        }
-    }
 }
