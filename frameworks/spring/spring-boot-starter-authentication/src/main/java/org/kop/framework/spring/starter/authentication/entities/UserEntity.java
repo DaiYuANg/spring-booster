@@ -16,6 +16,18 @@ import org.kop.standard.rbac.User;
 @Entity
 public class UserEntity extends User {
     @Column
+    private String username;
+
+    @Column
+    private String password;
+
+    @Column
+    private int age;
+
+    @Column
+    private int sex;
+
+    @Column
     private String phone;
 
     @Lob

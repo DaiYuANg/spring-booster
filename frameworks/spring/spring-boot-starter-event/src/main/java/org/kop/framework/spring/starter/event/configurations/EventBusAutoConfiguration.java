@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Bean;
 @AutoConfiguration
 @ConditionalOnClass(EventBus.class)
 public class EventBusAutoConfiguration {
-
-
     @Bean
     @ConditionalOnMissingBean
     public EventBus eventBus() {

@@ -15,6 +15,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     developmentOnly(project(":frameworks:spring:spring-boot-starter-dev-service"))
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
+    implementation(project(":frameworks:spring:spring-boot-starter-groundwork"))
     implementation("com.mysql:mysql-connector-j:8.0.33")
     implementation("com.h2database:h2")
     implementation("com.baomidou:mybatis-plus:3.5.3.1")

@@ -14,7 +14,6 @@ dependencies {
     compileOnly("org.keycloak:keycloak-spring-boot-starter:21.1.1")
     api("org.springframework.boot:spring-boot-starter-security")
     compileOnly("org.springframework.security.oauth:spring-security-oauth2:2.5.2.RELEASE")
-
     api("com.auth0:java-jwt:${jwtVersion}")
 }
 

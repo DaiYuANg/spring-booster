@@ -17,4 +17,6 @@ public class AuthenticationProperties {
     private boolean enableAutoRefreshToken;
 
     private boolean autoNotification;
+
+
 }
