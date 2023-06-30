@@ -17,6 +17,10 @@ subprojects {
         daggerVersion = "2.46"
     }
 
+    tasks.publish {
+        enabled = false
+    }
+
     dependencies {
         implementation "info.picocli:picocli:${picocliVersion}"
         annotationProcessor "info.picocli:picocli-codegen:${picocliVersion}"
@@ -31,6 +35,4 @@ subprojects {
         implementation "io.smallrye.config:smallrye-config-source-yaml:${smallVersion}"
         implementation "io.smallrye.config:smallrye-config-validator:${smallVersion}"
     }
-
-
 }

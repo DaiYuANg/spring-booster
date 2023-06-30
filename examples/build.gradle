@@ -6,5 +6,4 @@ allprojects {
     tasks.publish {
         enabled = false
     }
-
 }

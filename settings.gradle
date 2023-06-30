@@ -75,4 +75,6 @@ include 'standard:restful'
 findProject(':standard:restful')?.name = 'restful'
 include 'apps:cg'
 findProject(':apps:cg')?.name = 'cg'
+include 'frameworks:spring:spring-boot-starter-recording'
+findProject(':frameworks:spring:spring-boot-starter-recording')?.name = 'spring-boot-starter-recording'
 

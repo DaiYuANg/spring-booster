@@ -1,11 +1,11 @@
-package org.kop.framework.spring.boot.starter.groundwork.log.annotation;
+package org.kop.framework.spring.boot.starter.recording.annotation;
 
 import java.lang.annotation.*;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Record {
+public @interface Recorder {
     String content() default "";
 
     String fail() default "";
