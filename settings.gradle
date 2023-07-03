@@ -74,6 +74,6 @@ include 'standard:locker'
 findProject(':standard:locker')?.name = 'locker'
 include 'standard:restful'
 findProject(':standard:restful')?.name = 'restful'
-include 'standard:rush'
-findProject(':standard:rush')?.name = 'rush'
+include 'standard:cache'
+findProject(':standard:cache')?.name = 'cache'
 

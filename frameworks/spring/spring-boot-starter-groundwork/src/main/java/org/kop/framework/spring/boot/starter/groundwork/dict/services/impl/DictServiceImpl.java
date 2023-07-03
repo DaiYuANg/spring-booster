@@ -13,7 +13,6 @@ import org.kop.framework.spring.boot.starter.groundwork.dict.annotation.DictTran
 import org.kop.framework.spring.boot.starter.groundwork.dict.configuration.DictConfigurationProperties;
 import org.kop.framework.spring.boot.starter.groundwork.dict.repos.DictRepository;
 import org.kop.framework.spring.boot.starter.groundwork.dict.services.IDictService;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -27,9 +26,6 @@ public class DictServiceImpl implements IDictService {
 
     @Resource
     private Cache<String, Optional<String>> cache;
-
-    @Resource
-    private CacheProperties cacheProperties;
 
     @Resource
     private DictConfigurationProperties dictConfigurationProperties;
@@ -57,11 +53,10 @@ public class DictServiceImpl implements IDictService {
                 .filter(fieldPredicate)
                 .toList();
         val others = needTranslates.stream().filter(otherTables).toList();
-        val async = asyncWorker.parallelALL(
+        asyncWorker.parallelALL(
                 () -> doDictTranslate(result, needTranslates),
                 () -> doOthersTables(result, others)
-        );
-        async.join();
+        ).join();
         return result;
     }
 
@@ -88,7 +83,6 @@ public class DictServiceImpl implements IDictService {
 //                q.setParameter("code", field.getAnnotation(DictTranslate.class).code());
 //
 //            })
-
         });
     }
 }

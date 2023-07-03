@@ -4,7 +4,7 @@ import jakarta.persistence.Cache;
 
 import java.time.Duration;
 
-public interface ICache<K, V> extends Cache {
+public interface ICache<K, V> extends Cache, Comparable<ICache<K, V>> {
     void put(K k, V v);
 
     void put(K k, V v, Duration d);
@@ -12,4 +12,6 @@ public interface ICache<K, V> extends Cache {
     V get(K k);
 
     void remove(K k);
+
+    void removeAll();
 }

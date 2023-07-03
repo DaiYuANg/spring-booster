@@ -4,4 +4,5 @@ dependencies {
     api(project(":frameworks:spring:spring-boot-starter-async"))
     api("org.springframework.boot:spring-boot-starter-cache")
     api(project(":standard:persistence"))
+    api(project(":standard:restful"))
 }

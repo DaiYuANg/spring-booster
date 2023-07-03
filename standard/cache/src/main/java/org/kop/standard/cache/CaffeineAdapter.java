@@ -2,6 +2,7 @@ package org.kop.standard.cache;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.jetbrains.annotations.NotNull;
 import org.kop.standard.cache.base.ICache;
 
 import java.time.Duration;
@@ -35,6 +36,11 @@ public class CaffeineAdapter<K, V> implements ICache<K, V> {
     }
 
     @Override
+    public void removeAll() {
+        cache.invalidateAll();
+    }
+
+    @Override
     public boolean contains(Class cls, Object primaryKey) {
         return false;
     }
@@ -57,5 +63,10 @@ public class CaffeineAdapter<K, V> implements ICache<K, V> {
     @Override
     public <T> T unwrap(Class<T> cls) {
         return null;
+    }
+
+    @Override
+    public int compareTo(@NotNull ICache<K, V> o) {
+        return 0;
     }
 }

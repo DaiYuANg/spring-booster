@@ -19,7 +19,7 @@ public class ResponseInterceptor implements ResponseBodyAdvice<Object> {
             @NotNull MethodParameter returnType,
             @NotNull Class<? extends HttpMessageConverter<?>> converterType
     ) {
-        return false;
+        return true;
     }
 
     @Override
