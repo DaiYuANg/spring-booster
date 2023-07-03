@@ -20,7 +20,6 @@ public class UserController {
     @Resource
     private IUserServices<UserEntity> userServices;
 
-
     @Resource
     UserEntityMapper userEntityMapper;
 

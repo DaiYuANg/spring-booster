@@ -1,7 +1,0 @@
-plugins {
-    id 'org.graalvm.buildtools.native' version "${graalvmPluginVersion}"
-}
-
-dependencies {
-    implementation 'com.squareup:javapoet:1.13.0'
-}

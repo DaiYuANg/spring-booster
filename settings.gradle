@@ -1,16 +1,16 @@
 pluginManagement {
-    repositories {
-        mavenLocal()
-        gradlePluginPortal()
-        mavenCentral()
-    }
+	repositories {
+		mavenLocal()
+		gradlePluginPortal()
+		mavenCentral()
+	}
 }
 plugins {
-    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
+	id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
 }
 gitHooks {
-    preCommit {
-    }
+	preCommit {
+	}
 }
 
 rootProject.name = 'kop'
@@ -56,6 +56,8 @@ include 'frameworks:spring:spring-boot-starter-locker'
 findProject(':frameworks:spring:spring-boot-starter-locker')?.name = 'spring-boot-starter-locker'
 include 'frameworks:spring:spring-boot-starter-restful'
 findProject(':frameworks:spring:spring-boot-starter-restful')?.name = 'spring-boot-starter-restful'
+include 'frameworks:spring:spring-boot-starter-recording'
+findProject(':frameworks:spring:spring-boot-starter-recording')?.name = 'spring-boot-starter-recording'
 
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
@@ -68,13 +70,10 @@ include 'standard:persistence'
 findProject(':standard:persistence')?.name = 'persistence'
 include 'standard:communication'
 findProject(':standard:communication')?.name = 'communication'
-
 include 'standard:locker'
 findProject(':standard:locker')?.name = 'locker'
 include 'standard:restful'
 findProject(':standard:restful')?.name = 'restful'
-include 'apps:cg'
-findProject(':apps:cg')?.name = 'cg'
-include 'frameworks:spring:spring-boot-starter-recording'
-findProject(':frameworks:spring:spring-boot-starter-recording')?.name = 'spring-boot-starter-recording'
+include 'standard:rush'
+findProject(':standard:rush')?.name = 'rush'
 

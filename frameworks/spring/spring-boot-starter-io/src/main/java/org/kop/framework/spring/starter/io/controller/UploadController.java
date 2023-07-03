@@ -14,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 
     @SneakyThrows
-    @RequestMapping(value = "/upload", method = {RequestMethod.POST, RequestMethod.PUT})
-    public void upload(@RequestParam("file") @NotNull MultipartFile file) {
-        file.getResource().getFile();
+    @RequestMapping(value = "/simpleUpload", method = {RequestMethod.POST, RequestMethod.PUT})
+    public String upload(@RequestParam("file") @NotNull MultipartFile file) {
+        return file.getResource().getFile().getAbsolutePath();
     }
 
     @SneakyThrows

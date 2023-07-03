@@ -38,7 +38,10 @@ public class AsyncWorkerAutoConfiguration {
 
     @SneakyThrows
     public @NotNull RejectedExecutionHandler rejectedExecutionHandler() {
-        return asyncWorkerProperties.getRejectedExecution().getDeclaredConstructor().newInstance();
+        return asyncWorkerProperties
+                .getRejectedExecution()
+                .getDeclaredConstructor()
+                .newInstance();
     }
 
     @Bean

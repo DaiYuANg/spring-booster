@@ -57,7 +57,7 @@ public class AsyncWorker {
     }
 
     @SafeVarargs
-    public final void parallelRunWaitForFinish(CompletableFuture<Void>... actions) {
+    public final void parallelALL(CompletableFuture<Void>... actions) {
         CompletableFuture.allOf(actions).handle(this::handle);
     }
 

@@ -6,7 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.kop.framework.spring.starter.authentication.configurations.AuthenticationProperties;
@@ -20,6 +20,7 @@ import java.security.interfaces.RSAPublicKey;
 
 @Component
 @Slf4j
+@Getter
 public class JwtSigner {
 
     private final PublicKey publicKey;
@@ -31,10 +32,9 @@ public class JwtSigner {
 
     private Algorithm algorithm;
 
-
     @PostConstruct
-    public void init(){
-      log.info("jwt signer init");
+    public void init() {
+        log.info("jwt signer init");
     }
 
     public JwtSigner() {
@@ -50,10 +50,9 @@ public class JwtSigner {
 
     public String sign(UserEntity user) {
         Algorithm algorithm = Algorithm.RSA256((RSAPublicKey) publicKey, (RSAPrivateKey) privateKey);
-        String token = JWT.create()
+        return JWT.create()
                 .withIssuer("auth0")
                 .sign(algorithm);
-        return token;
     }
 
     public boolean verify(String token) {

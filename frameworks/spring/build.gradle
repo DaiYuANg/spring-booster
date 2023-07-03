@@ -21,7 +21,7 @@ subprojects {
         compileOnly("org.springframework.boot:spring-boot-starter-web")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-        compileOnly "org.springframework.boot:spring-boot-starter-actuator"
+        api "org.springframework.boot:spring-boot-starter-actuator"
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     }
 

@@ -16,8 +16,6 @@ public class TestController {
     @GetMapping("/test")
     @MethodExecuted
     public void test() {
-        asyncWorker.run(() -> {
-            System.err.println(123);
-        });
+        asyncWorker.run(() -> System.err.println(123));
     }
 }

@@ -17,7 +17,6 @@ public class AsyncWorker extends org.kop.libs.thready.async.AsyncWorker {
         if (asyncWorkerProperties.isPreheat()) executor.prestartAllCoreThreads();
     }
 
-
     @PreDestroy
     public void onShutdown() {
         log.info("shutdown thread pool");

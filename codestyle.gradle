@@ -5,14 +5,14 @@ spotless {
         eclipse()
         formatAnnotations()
     }
-//    groovy {
-//        target '*.groovy'
-//        importOrder()
-//        excludeJava()
-//        greclipse().configFile({
-//            indentWithTabs(2)
-//        })
-//    }
+    //    groovy {
+    //        target '*.groovy'
+    //        importOrder()
+    //        excludeJava()
+    //        greclipse().configFile({
+    //            indentWithTabs(2)
+    //        })
+    //    }
     groovyGradle {
         target '*.gradle'
         greclipse().configFile({

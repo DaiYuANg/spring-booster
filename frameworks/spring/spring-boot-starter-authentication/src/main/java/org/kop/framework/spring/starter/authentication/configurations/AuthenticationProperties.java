@@ -18,5 +18,5 @@ public class AuthenticationProperties {
 
     private boolean autoNotification;
 
-
+    private int keyExpireTime = 36000;
 }
