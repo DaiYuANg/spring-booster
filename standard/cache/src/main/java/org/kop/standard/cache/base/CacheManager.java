@@ -1,6 +1,7 @@
 package org.kop.standard.cache.base;
 
 
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -11,6 +12,11 @@ public class CacheManager<K, V> {
 
     public CacheManager(@NotNull List<ICache<K, V>> caches) {
         caches.forEach(cacheQueue::offer);
+    }
+
+    @SneakyThrows
+    public ICache<K, V> createCache(@NotNull Class<ICache<K, V>> cache) {
+        return cache.getDeclaredConstructor().newInstance();
     }
 
     public CacheManager(ICache<K, V> cache) {

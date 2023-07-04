@@ -3,6 +3,7 @@ package org.kop.standard.cache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.jetbrains.annotations.NotNull;
+import org.kop.standard.cache.base.CacheConfig;
 import org.kop.standard.cache.base.ICache;
 
 import java.time.Duration;
@@ -10,7 +11,7 @@ import java.time.Duration;
 public class CaffeineAdapter<K, V> implements ICache<K, V> {
     private final Cache<K, V> cache;
 
-    public CaffeineAdapter() {
+    public CaffeineAdapter(CacheConfig config) {
         cache = Caffeine.newBuilder().build();
     }
 

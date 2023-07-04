@@ -3,10 +3,12 @@ package org.kop.framework.spring.starter.dev.service.services;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.kop.framework.spring.starter.dev.service.docker.DockerConnector;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class MysqlDevService {
     @Resource
     private DockerConnector dockerConnector;
@@ -16,6 +18,7 @@ public class MysqlDevService {
     @SneakyThrows
     @PostConstruct
     public void init() {
+        log.info("mysql dev servicce");
 //        PullImageResultCallback callback = new PullImageResultCallback();
 //        dockerConnector.getDockerClient().pullImageCmd("mariadb")
 //                .withTag("latest")
