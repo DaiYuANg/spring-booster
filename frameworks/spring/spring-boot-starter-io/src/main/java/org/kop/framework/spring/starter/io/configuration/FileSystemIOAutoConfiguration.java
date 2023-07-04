@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.io.fs;
+package org.kop.framework.spring.starter.io.configuration;
 
 import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

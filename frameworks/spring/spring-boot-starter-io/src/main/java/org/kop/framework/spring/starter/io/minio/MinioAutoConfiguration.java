@@ -3,7 +3,7 @@ package org.kop.framework.spring.starter.io.minio;
 import io.minio.MinioClient;
 import jakarta.annotation.Resource;
 import okhttp3.OkHttpClient;
-import org.kop.libs.io.net.HttpClient;
+import org.kop.libs.io.files.HttpClient;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -26,7 +26,6 @@ public class MinioAutoConfiguration {
     public HttpClient httpClient() {
         return new HttpClient(new OkHttpClient.Builder());
     }
-
 
     @Bean
     @ConditionalOnMissingBean

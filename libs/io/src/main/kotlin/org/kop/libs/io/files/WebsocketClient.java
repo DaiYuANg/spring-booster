@@ -1,4 +1,4 @@
-package org.kop.libs.io.net;
+package org.kop.libs.io.files;
 
 import jakarta.json.JsonObject;
 import jdk.jfr.Experimental;

@@ -1,8 +1,7 @@
 ext {
-    minioVersion = "8.5.4"
+
 }
 
 dependencies {
-    api("io.minio:minio:${minioVersion}")
     api(project(":libs:io"))
 }

@@ -1,8 +1,12 @@
 ext {
     okhttpVersion = "4.9.1"
+    jimfsVersion = "1.2"
+    minioVersion = "8.5.4"
 }
 
 dependencies {
     implementation(project(":libs:thready"))
+    api("io.minio:minio:${minioVersion}")
     api("com.squareup.okhttp3:okhttp:${okhttpVersion}")
+    api("com.google.jimfs:jimfs:${jimfsVersion}")
 }
