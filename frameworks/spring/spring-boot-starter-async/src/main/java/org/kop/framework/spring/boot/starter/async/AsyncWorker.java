@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class AsyncWorker extends org.kop.libs.thready.async.AsyncWorker {
+
     @Resource
     private AsyncWorkerProperties asyncWorkerProperties;
 

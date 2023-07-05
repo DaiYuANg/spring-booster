@@ -45,6 +45,7 @@ public class AsyncWorkerAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean
     public Executor executor() {
         return new ThreadPoolExecutor(
                 asyncWorkerProperties.getCoreWorker(),
