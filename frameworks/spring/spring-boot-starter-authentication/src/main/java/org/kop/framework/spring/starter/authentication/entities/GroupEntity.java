@@ -4,11 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.kop.standard.rbac.Group;
 
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 public class GroupEntity extends Group {
     @Column
     private String groupAliasName1;

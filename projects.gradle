@@ -1,134 +1,145 @@
 subprojects {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 
-	apply {
-		plugin("java")
-		plugin("me.champeau.jmh")
-		plugin("io.freefair.lombok")
-		plugin("org.jetbrains.kotlinx.benchmark")
-		plugin("org.jetbrains.kotlin.jvm")
-		plugin("org.jetbrains.kotlin.plugin.lombok")
-		plugin("org.jetbrains.kotlin.plugin.allopen")
-		plugin("org.jetbrains.kotlin.kapt")
-		plugin("org.jetbrains.kotlinx.benchmark")
-		plugin("maven-publish")
-		plugin("com.palantir.git-version")
-		plugin("groovy")
-		plugin("scala")
-	}
+    apply {
+        plugin("java")
+        plugin("me.champeau.jmh")
+        plugin("io.freefair.lombok")
+        plugin("org.jetbrains.kotlinx.benchmark")
+        plugin("org.jetbrains.kotlin.jvm")
+        plugin("org.jetbrains.kotlin.plugin.lombok")
+        plugin("org.jetbrains.kotlin.plugin.allopen")
+        plugin("org.jetbrains.kotlin.kapt")
+        plugin("org.jetbrains.kotlinx.benchmark")
+        plugin("maven-publish")
+        plugin("com.palantir.git-version")
+        plugin("groovy")
+        plugin("scala")
+    }
 
-	group "org." + rootProject.name + "." + project.name
-	def details = versionDetails()
-	def vs = details.lastTag
-	version(vs)
+    group "org." + rootProject.name + "." + project.name
+    def details = versionDetails()
+    def vs = details.lastTag
+    version(vs)
 
-	repositories {
-		maven { url "https://maven.aliyun.com/repository/public" }
-		maven { url 'https://maven.aliyun.com/repository/spring/' }
-		mavenLocal()
-		mavenCentral()
-		gradlePluginPortal()
-		google()
-		if (rootProject.hasProperty("gitLabPrivateToken")) {
-			maven {
-				url "https://dev.daiyuang.cloud:83/api/v4/groups/17/-/packages/maven"
-				name "GitLab"
-				credentials(HttpHeaderCredentials) {
-					name = 'gradle'
-					value = gitLabPrivateToken
-				}
-				authentication {
-					header(HttpHeaderAuthentication)
-				}
-			}
-		}
-	}
+    repositories {
+        maven { url "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url 'https://maven.aliyun.com/repository/spring/' }
+        maven { url "https://repo.huaweicloud.com/repository/maven/" }
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        google()
+        if (rootProject.hasProperty("gitLabPrivateToken")) {
+            maven {
+                url "https://dev.daiyuang.cloud:83/api/v4/groups/17/-/packages/maven"
+                name "GitLab"
+                credentials(HttpHeaderCredentials) {
+                    name = 'gradle'
+                    value = gitLabPrivateToken
+                }
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
+            }
+        }
+    }
 
-	dependencies {
-		implementation("com.google.code.gson:gson:${gsonVersion}")
-		implementation("org.mapstruct:mapstruct:${mapstructVersion}")
-		implementation("com.google.guava:guava:${guavaVersion}")
-		implementation("org.slf4j:slf4j-api:${slf4jVersion}")
-		implementation("com.github.ben-manes.caffeine:caffeine:${caffeineVersion}")
-		implementation("com.github.ben-manes.caffeine:guava:${caffeineVersion}")
-		implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
-		implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
-		implementation("org.aspectj:aspectjtools:${aspectjVersion}")
-		implementation("org.agrona:agrona:${agronaVersion}")
-		implementation("org.jsoup:jsoup:1.16.1")
-		implementation("net.bytebuddy:byte-buddy:1.14.5")
-		// https://mvnrepository.com/artifact/org.apache.poi/poi
-		implementation 'org.apache.poi:poi:5.2.3'
-		//        implementation 'com.google.zxing:zxing-parent:3.5.1'
-		annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-		implementation("org.aspectj:aspectjrt:${aspectjVersion}")
-		implementation("commons-io:commons-io:${commonIOVersion}")
-		implementation("org.aspectj:aspectjweaver:${aspectjVersion}")
-		implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
-		implementation("org.immutables:value:${immutablesVersion}")
-		implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
-		implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:${jakartaEnterpriseCdi}")
-		implementation("cn.hutool:hutool-all:${hutoolVersion}")
-		implementation("jakarta.json:jakarta.json-api:${jakartaJson}")
-		// https://mvnrepository.com/artifact/jakarta.data/jakarta-data-api
-		implementation 'jakarta.data:jakarta-data-api:1.0.0-b2'
-		testImplementation platform("org.junit:junit-bom:${junitVersion}")
-		testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
-		testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-		testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-		testImplementation("org.jetbrains.kotlin:kotlin-test")
-		testImplementation("org.testcontainers:testcontainers:${testContainersVersion}")
-		testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
-		testImplementation("org.assertj:assertj-core:${assertjVersion}")
-		testImplementation("org.mockito:mockito-core:${mockitoVersion}")
-	}
+    dependencies {
+        implementation("com.google.code.gson:gson:${gsonVersion}")
+        implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+        implementation("com.google.guava:guava:${guavaVersion}")
+        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+        implementation("com.github.ben-manes.caffeine:caffeine:${caffeineVersion}")
+        implementation("com.github.ben-manes.caffeine:guava:${caffeineVersion}")
+        implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
+        implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
+        implementation("org.aspectj:aspectjtools:${aspectjVersion}")
+        implementation("org.agrona:agrona:${agronaVersion}")
+        implementation("org.jsoup:jsoup:1.16.1")
+        implementation("net.bytebuddy:byte-buddy:1.14.5")
+        // https://mvnrepository.com/artifact/org.apache.poi/poi
+        implementation 'org.apache.poi:poi:5.2.3'
+        annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+        implementation("org.aspectj:aspectjrt:${aspectjVersion}")
+        implementation("commons-io:commons-io:${commonIOVersion}")
+        implementation("org.aspectj:aspectjweaver:${aspectjVersion}")
+        implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
+        implementation("org.immutables:value:${immutablesVersion}")
+        implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
+        implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:${jakartaEnterpriseCdi}")
+        implementation("cn.hutool:hutool-all:${hutoolVersion}")
+        implementation("jakarta.json:jakarta.json-api:${jakartaJson}")
+        // https://mvnrepository.com/artifact/jakarta.data/jakarta-data-api
+        implementation 'jakarta.data:jakarta-data-api:1.0.0-b2'
+        testImplementation platform("org.junit:junit-bom:${junitVersion}")
+        testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+        implementation platform("org.testcontainers:testcontainers-bom:${testContainersVersion}")
+        testImplementation("org.testcontainers:postgresql")
+        testImplementation("org.testcontainers:mysql")
+        testImplementation("org.testcontainers:rabbitmq")
+        testImplementation("org.testcontainers:elasticsearch")
+        testImplementation("org.testcontainers:mssqlserver")
+        testImplementation("org.testcontainers:mockserver")
+        testImplementation("org.testcontainers:selenium")
+        testImplementation("com.github.dasniko:testcontainers-keycloak:2.5.0")
+        testImplementation("com.redis.testcontainers:testcontainers-redis-junit:1.6.4")
+        testImplementation("org.seleniumhq.selenium:selenium-remote-driver:3.141.59")
+        testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
+        testImplementation("org.assertj:assertj-core:${assertjVersion}")
+        testImplementation("org.mockito:mockito-core:${mockitoVersion}")
+    }
 
-	test {
-		useJUnitPlatform()
-	}
+    test {
+        useJUnitPlatform()
+    }
 
-	tasks.withType(JavaCompile).configureEach {
-		options.encoding = 'UTF-8'
-	}
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
 
-	compileJava.options.encoding = "UTF-8"
-	compileTestJava.options.encoding = "UTF-8"
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
 
-	java {
-		toolchain {
-			languageVersion.set(JavaLanguageVersion.of("${jdkVersion}"))
-		}
-	}
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of("${jdkVersion}"))
+        }
+    }
 
-	tasks.register('customDoc', Javadoc) {
-		source = sourceSets.main.allJava
-	}
+    tasks.register('customDoc', Javadoc) {
+        source = sourceSets.main.allJava
+    }
 
-	kapt {
-		keepJavacAnnotationProcessors = true
-	}
+    kapt {
+        keepJavacAnnotationProcessors = true
+    }
 
-	if (project.subprojects.size() == 0 && project.publish.enabled &&
-			rootProject.hasProperty("gitLabPrivateToken")) {
-		publishing {
-			publications {
-				library(MavenPublication) {
-					from components.java
-				}
-			}
-			repositories {
-				maven {
-					url "https://dev.daiyuang.cloud:83/api/v4/projects/10/packages/maven"
-					credentials(HttpHeaderCredentials) {
-						name = "Deploy-Token"
-						value = gitLabPrivateToken // the variable resides in $GRADLE_USER_HOME/gradle.properties
-					}
-					authentication {
-						header(HttpHeaderAuthentication)
-					}
-				}
-			}
-		}
-	}
+    if (project.subprojects.size() == 0 && project.publish.enabled &&
+            rootProject.hasProperty("gitLabPrivateToken")) {
+        publishing {
+            publications {
+                library(MavenPublication) {
+                    from components.java
+                }
+            }
+            repositories {
+                maven {
+                    url "https://dev.daiyuang.cloud:83/api/v4/projects/10/packages/maven"
+                    credentials(HttpHeaderCredentials) {
+                        name = "Deploy-Token"
+                        value = gitLabPrivateToken // the variable resides in $GRADLE_USER_HOME/gradle.properties
+                    }
+                    authentication {
+                        header(HttpHeaderAuthentication)
+                    }
+                }
+            }
+        }
+    }
 }

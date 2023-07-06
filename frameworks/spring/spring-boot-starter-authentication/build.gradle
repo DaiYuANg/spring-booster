@@ -16,7 +16,3 @@ dependencies {
     compileOnly("org.springframework.security.oauth:spring-security-oauth2:2.5.2.RELEASE")
     api("com.auth0:java-jwt:${jwtVersion}")
 }
-
-test {
-    useJUnitPlatform()
-}

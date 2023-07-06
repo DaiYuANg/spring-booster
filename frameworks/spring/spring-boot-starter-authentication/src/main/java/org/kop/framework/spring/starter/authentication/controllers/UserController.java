@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RestController("/user")
+@RestController("/groundwork/user")
 public class UserController {
 
     @Resource
@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping("/list")
     public List<UserPojo> list(UserPojo user, @RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize) {
-        return userServices.queryListUser(userEntityMapper.userPojoToUserEntity(user), PageRequest.of(pageNo, pageSize)).stream().map(userEntityMapper::userEntityToUserPojo)
+        return userServices.queryPageableList(userEntityMapper.userPojoToUserEntity(user), PageRequest.of(pageNo, pageSize)).stream().map(userEntityMapper::userEntityToUserPojo)
                 .collect(Collectors.toList());
     }
 

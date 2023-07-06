@@ -1,6 +1,7 @@
 package org.kop.libs.thready.async;
 
 import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,6 +14,7 @@ import java.util.function.Supplier;
 
 @Slf4j
 @Setter
+@ToString
 public class AsyncWorker {
     protected ThreadPoolExecutor executor;
 
@@ -28,7 +30,8 @@ public class AsyncWorker {
      * @param actions Runnable method
      * @return CompletableFuture
      */
-    public CompletableFuture<Void> parallelAny(Runnable... actions) {
+    public CompletableFuture<Void> parallelAny(Runnable @NotNull ... actions) {
+        if (actions.length == 0) return new CompletableFuture<>();
         return CompletableFuture.allOf(
                 Arrays.stream(actions)
                         .map(this::run)
@@ -36,7 +39,8 @@ public class AsyncWorker {
         );
     }
 
-    public CompletableFuture<Object> parallelALL(Runnable... actions) {
+    public CompletableFuture<Object> parallelALL(Runnable @NotNull ... actions) {
+        if (actions.length == 0) return new CompletableFuture<>();
         return CompletableFuture.anyOf(
                 Arrays.stream(actions)
                         .map(this::run)
@@ -48,17 +52,18 @@ public class AsyncWorker {
         return parallelALL(actions.toArray(Runnable[]::new));
     }
 
-    public <T> CompletableFuture<T> supply(Supplier<T> supplier, ThreadPoolExecutor executor) {
+    public <T> CompletableFuture<T> supply(@NotNull Supplier<T> supplier, @NotNull ThreadPoolExecutor executor) {
         return CompletableFuture.supplyAsync(supplier, executor);
     }
 
-    public <T> CompletableFuture<T> supply(Supplier<T> supplier) {
+    public <T> CompletableFuture<T> supply(@NotNull Supplier<T> supplier) {
         return supply(supplier, executor);
     }
 
     @SafeVarargs
-    public final void parallelALL(CompletableFuture<Void>... actions) {
-        CompletableFuture.allOf(actions).handle(this::handle);
+    public final CompletableFuture<Void> parallelALL(CompletableFuture<Void> @NotNull ... actions) {
+        if (actions.length == 0) return new CompletableFuture<>();
+        return CompletableFuture.allOf(actions).handle(this::handle);
     }
 
     public Void handle(Void u, Throwable t) {
@@ -67,7 +72,7 @@ public class AsyncWorker {
         throw new RuntimeException(t);
     }
 
-    public CompletableFuture<Void> run(Runnable action) {
+    public CompletableFuture<Void> run(@NotNull Runnable action) {
         return run(action, executor);
     }
 }

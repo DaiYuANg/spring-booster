@@ -54,7 +54,7 @@ public class AsyncWorkerAutoConfiguration {
                 asyncWorkerProperties.getAliveTimeUnit(),
                 new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
                 new ThreadFactoryBuilder()
-                        .setNameFormat(new StringBuilder().append(asyncWorkerProperties.getPoolNamePrefix()).append("-%d").toString())
+                        .setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
                         .build(),
                 rejectedExecutionHandler()
         );
@@ -65,6 +65,7 @@ public class AsyncWorkerAutoConfiguration {
     public AsyncWorker asyncWorker() {
         val asyncWorker = new AsyncWorker();
         asyncWorker.setExecutor((ThreadPoolExecutor) executor());
+        if (asyncWorkerProperties.isPreheat()) asyncWorker.warm();
         log.info("configure async worker successful");
         return asyncWorker;
     }

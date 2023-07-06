@@ -3,6 +3,7 @@ package org.kop.framework.spring.starter.authentication.services.impl;
 import jakarta.annotation.Resource;
 import lombok.val;
 import org.kop.framework.spring.starter.authentication.entities.UserEntity;
+import org.kop.framework.spring.starter.authentication.entities.UserGroupEntity;
 import org.kop.framework.spring.starter.authentication.repos.UserEntityRepository;
 import org.kop.framework.spring.starter.authentication.repos.UserGroupEntityRepository;
 import org.kop.framework.spring.starter.authentication.services.IUserServices;
@@ -20,13 +21,14 @@ public class UserServicesImpl implements IUserServices<UserEntity> {
     private UserEntityRepository<UserEntity> userEntityRepository;
 
     @Resource
-    private UserGroupEntityRepository userGroupEntityRepository;
+    private UserGroupEntityRepository<UserGroupEntity> userGroupEntityRepository;
 
     @Override
-    public Page<UserEntity> queryListUser(UserEntity userEntity, Pageable pageable) {
-        return userEntityRepository.findAll(Example.of(userEntity), pageable);
+    public Page<UserEntity> queryPageableList(UserEntity entity, Pageable pageable) {
+        return userEntityRepository.findAll(Example.of(entity), pageable);
     }
 
+    @Override
     public List<UserEntity> queryListByGroup(Integer groupId) {
         val usersId = userGroupEntityRepository.findUsersByGroupId(groupId);
         return userEntityRepository.findAllById(usersId);

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.math.BigInteger;
 import java.util.List;
 
-public interface UserGroupEntityRepository extends JpaRepository<UserGroupEntity, BigInteger>, JpaSpecificationExecutor<UserGroupEntity> {
+public interface UserGroupEntityRepository<T extends UserGroupEntity> extends JpaRepository<T, BigInteger>, JpaSpecificationExecutor<T> {
     List<Integer> findUsersByGroupId(Integer groupId);
 }
