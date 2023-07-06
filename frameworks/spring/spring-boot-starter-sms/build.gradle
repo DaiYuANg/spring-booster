@@ -1,0 +1,7 @@
+dependencies {
+    implementation("com.aliyun:aliyun-java-sdk-core:4.6.3")
+    implementation("com.aliyun:dysmsapi20170525:2.0.23")
+    implementation("com.aliyun:tea:1.2.7")
+    implementation("com.aliyun:aliyun-java-sdk-dysmsapi:2.2.1")
+    implementation("com.aliyun:tea-openapi:0.2.9")
+}

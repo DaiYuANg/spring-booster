@@ -9,6 +9,6 @@ class DirTest {
     @Test
     void search() {
         System.err.println(System.getProperty("user.dir"));
-        new Dir(new File("/Users/daiyuang")).listFiles();
+        new Dir(new File(System.getProperty("user.dir"))).listFiles();
     }
 }

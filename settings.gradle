@@ -76,4 +76,6 @@ include 'standard:restful'
 findProject(':standard:restful')?.name = 'restful'
 include 'standard:cache'
 findProject(':standard:cache')?.name = 'cache'
+include 'frameworks:spring:spring-boot-starter-sms'
+findProject(':frameworks:spring:spring-boot-starter-sms')?.name = 'spring-boot-starter-sms'
 

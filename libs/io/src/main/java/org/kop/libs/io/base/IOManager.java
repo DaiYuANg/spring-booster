@@ -9,6 +9,7 @@ import java.util.PriorityQueue;
 @Builder
 @ToString
 public class IOManager {
+
     @Builder.Default
     private PriorityQueue<FS> fs = new PriorityQueue<>();
 
