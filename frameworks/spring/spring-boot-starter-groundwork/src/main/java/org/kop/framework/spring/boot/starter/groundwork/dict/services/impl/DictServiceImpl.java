@@ -8,7 +8,7 @@ import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.kop.framework.spring.boot.starter.async.AsyncWorker;
+import org.kop.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.kop.framework.spring.boot.starter.groundwork.dict.annotation.DictTranslate;
 import org.kop.framework.spring.boot.starter.groundwork.dict.configuration.DictConfigurationProperties;
 import org.kop.framework.spring.boot.starter.groundwork.dict.repos.DictRepository;

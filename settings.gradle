@@ -58,8 +58,7 @@ include 'frameworks:spring:spring-boot-starter-restful'
 findProject(':frameworks:spring:spring-boot-starter-restful')?.name = 'spring-boot-starter-restful'
 include 'frameworks:spring:spring-boot-starter-recording'
 findProject(':frameworks:spring:spring-boot-starter-recording')?.name = 'spring-boot-starter-recording'
-//include 'frameworks:spring:spring-boot-starter-sms'
-//findProject(':frameworks:spring:spring-boot-starter-sms')?.name = 'spring-boot-starter-sms'
+
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
 findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'

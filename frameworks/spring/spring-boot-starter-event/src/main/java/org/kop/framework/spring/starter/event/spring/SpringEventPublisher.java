@@ -3,7 +3,7 @@ package org.kop.framework.spring.starter.event.spring;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.kop.framework.spring.boot.starter.async.AsyncWorker;
+import org.kop.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.quartz.Scheduler;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;

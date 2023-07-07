@@ -1,4 +1,4 @@
-package org.kop.framework.spring.boot.starter.async;
+package org.kop.framework.spring.boot.starter.async.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.annotation.PostConstruct;
@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.kop.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

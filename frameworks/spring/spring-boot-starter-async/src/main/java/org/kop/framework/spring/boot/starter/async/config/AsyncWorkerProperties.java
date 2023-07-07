@@ -1,4 +1,4 @@
-package org.kop.framework.spring.boot.starter.async;
+package org.kop.framework.spring.boot.starter.async.config;
 
 import lombok.Data;
 import lombok.ToString;

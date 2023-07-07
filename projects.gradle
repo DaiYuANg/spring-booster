@@ -93,6 +93,7 @@ subprojects {
         testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
         testImplementation("org.assertj:assertj-core:${assertjVersion}")
         testImplementation("org.mockito:mockito-core:${mockitoVersion}")
+        testImplementation("org.postgresql:postgresql")
     }
 
     test {

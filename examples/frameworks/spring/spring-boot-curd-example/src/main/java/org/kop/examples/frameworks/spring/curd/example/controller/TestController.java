@@ -2,7 +2,7 @@ package org.kop.examples.frameworks.spring.curd.example.controller;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.kop.framework.spring.boot.starter.async.AsyncWorker;
+import org.kop.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.kop.framework.spring.starter.event.spring.annotations.MethodExecuted;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
