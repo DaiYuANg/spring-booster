@@ -1,33 +1,33 @@
 spotless {
-    java {
-        removeUnusedImports()
-        importOrder()
-        eclipse()
-        formatAnnotations()
-    }
-    //    groovy {
-    //        target '*.groovy'
-    //        importOrder()
-    //        excludeJava()
-    //        greclipse().configFile({
-    //            indentWithTabs(2)
-    //        })
-    //    }
-    groovyGradle {
-        target '*.gradle'
-        greclipse().configFile({
-            indentWithTabs(2)
-        })
-    }
+	java {
+		removeUnusedImports()
+		importOrder()
+		eclipse()
+		formatAnnotations()
+	}
+	//    groovy {
+	//        target '*.groovy'
+	//        importOrder()
+	//        excludeJava()
+	//        greclipse().configFile({
+	//            indentWithTabs(2)
+	//        })
+	//    }
+	groovyGradle {
+		target '*.gradle'
+		greclipse().configFile({
+			indentWithTabs(2)
+		})
+	}
 
-    kotlin {
-        ktfmt()
-        ktlint()
-        diktat()
-        prettier()
-    }
+	kotlin {
+		ktfmt()
+		ktlint()
+		diktat()
+		prettier()
+	}
 
-    scala {
-        scalafmt() // has its own section below
-    }
+	scala {
+		scalafmt() // has its own section below
+	}
 }
