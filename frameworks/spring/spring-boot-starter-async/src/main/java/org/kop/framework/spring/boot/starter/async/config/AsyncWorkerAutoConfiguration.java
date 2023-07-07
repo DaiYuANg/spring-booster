@@ -9,6 +9,7 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kop.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -46,7 +47,7 @@ public class AsyncWorkerAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnBean
     public Executor executor() {
         return new ThreadPoolExecutor(
                 asyncWorkerProperties.getCoreWorker(),
@@ -65,7 +66,7 @@ public class AsyncWorkerAutoConfiguration {
     @ConditionalOnMissingBean
     public AsyncWorker asyncWorker() {
         val asyncWorker = new AsyncWorker();
-        asyncWorker.setExecutor((ThreadPoolExecutor) executor());
+        asyncWorker.setExecutor((ThreadPoolExecutor) this.executor());
         if (asyncWorkerProperties.isPreheat()) asyncWorker.warm();
         log.info("configure async worker successful");
         return asyncWorker;
