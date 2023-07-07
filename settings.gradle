@@ -22,15 +22,6 @@ findProject(':libs:thready')?.name = 'thready'
 include 'libs:io'
 findProject(':libs:io')?.name = 'io'
 
-
-//-------------apps------------
-//profiler
-include 'apps:profiler'
-findProject(':apps:profiler')?.name = 'profiler'
-//
-include 'apps:docky'
-findProject(':apps:docky')?.name = 'docky'
-
 //------------frameworks------------
 include 'frameworks:spring:spring-boot-starter-authentication'
 findProject(':frameworks:spring:spring-boot-starter-authentication')?.name = 'spring-boot-starter-authentication'
