@@ -13,10 +13,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executor;
@@ -47,6 +51,12 @@ public class AsyncWorkerAutoConfiguration {
     }
 
     @Bean
+    public ServletRegistrationBean<DispatcherServlet> apiServlet(@NotNull DispatcherServlet dispatcherServlet) {
+        dispatcherServlet.setThreadContextInheritable(true);
+        return new ServletRegistrationBean<>(dispatcherServlet);
+    }
+
+    @Bean
     @ConditionalOnBean
     public Executor executor() {
         return new ThreadPoolExecutor(
@@ -63,6 +73,8 @@ public class AsyncWorkerAutoConfiguration {
     }
 
     @Bean
+    @DependsOn({"executor"})
+    @Order(0)
     @ConditionalOnMissingBean
     public AsyncWorker asyncWorker() {
         val asyncWorker = new AsyncWorker();

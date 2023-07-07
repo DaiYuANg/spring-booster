@@ -11,6 +11,11 @@ public class AsyncBeanFactory extends DefaultListableBeanFactory {
     }
 
     @Override
+    protected Object resolveBeforeInstantiation(String beanName, RootBeanDefinition mbd) {
+        return super.resolveBeforeInstantiation(beanName, mbd);
+    }
+
+    @Override
     protected void invokeInitMethods(@NotNull String beanName, @NotNull Object bean, RootBeanDefinition mbd) throws Throwable {
         boolean isInitializingBean = (bean instanceof InitializingBean);
         if ((!isInitializingBean || (mbd != null && mbd.isExternallyManagedInitMethod("afterPropertiesSet"))) && !(bean instanceof InitializingBean)) {

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 public class AsyncCommonAnnotationBeanPostProcessor extends CommonAnnotationBeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(@NotNull Object bean, @NotNull String beanName) throws BeansException {
+
         return super.postProcessBeforeInitialization(bean, beanName);
     }
 }

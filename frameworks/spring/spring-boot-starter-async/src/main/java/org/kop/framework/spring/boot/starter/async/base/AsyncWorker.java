@@ -8,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.kop.framework.spring.boot.starter.async.config.AsyncWorkerProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
-
 @Component
 @Slf4j
 @ToString
@@ -19,8 +17,7 @@ public class AsyncWorker extends org.kop.libs.thready.async.AsyncWorker {
     private AsyncWorkerProperties asyncWorkerProperties;
 
     @PostConstruct
-    public void init() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
+    public void init() {
         if (asyncWorkerProperties.isPreheat()) executor.prestartAllCoreThreads();
     }
 

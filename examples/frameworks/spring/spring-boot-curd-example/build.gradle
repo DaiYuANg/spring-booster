@@ -20,8 +20,8 @@ dependencies {
         exclude module: "spring-boot-starter-tomcat"
     }
     implementation("org.springframework.boot:spring-boot-starter-undertow")
-    implementation(project(":frameworks:spring:spring-boot-starter-dev-service"))
-//    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation(project(":frameworks:spring:spring-boot-starter-dev-admin"))
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
     implementation(project(":frameworks:spring:spring-boot-starter-groundwork"))
     implementation("com.mysql:mysql-connector-j:8.0.33")
