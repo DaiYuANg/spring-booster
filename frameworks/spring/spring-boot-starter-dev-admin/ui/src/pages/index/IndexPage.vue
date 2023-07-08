@@ -12,6 +12,7 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted} from "vue";
 import * as echarts from "echarts";
+import axios from "axios";
 
 const ws = new WebSocket("ws://localhost:8080/dev/admin/system/info")
 ws.onopen = function (){
