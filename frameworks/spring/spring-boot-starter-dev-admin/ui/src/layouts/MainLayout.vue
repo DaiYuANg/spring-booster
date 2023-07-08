@@ -8,7 +8,8 @@
 
     <MainLayoutSidebar
       @hover="hover"
-      v-model:leftDrawerOpen="leftDrawerOpen"
+      :model-value="leftDrawerOpen"
+      @update:model-value="leftDrawerOpen = $event"
     />
 
     <q-drawer v-model="rightDrawerOpen" side="right" bordered>
@@ -35,7 +36,9 @@ import MainLayoutSidebar from "layouts/MainLayoutSidebar.vue";
 api.get("/test").then(r => {
   console.log(r)
 })
+
 const leftDrawerOpen = ref(false)
+
 const rightDrawerOpen = ref(false)
 const leftDrawer = ref<QDrawer | null>(null)
 
