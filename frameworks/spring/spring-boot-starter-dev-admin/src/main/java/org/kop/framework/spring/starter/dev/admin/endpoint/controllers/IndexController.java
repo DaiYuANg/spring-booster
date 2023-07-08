@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.dev.admin.ui.controllers;
+package org.kop.framework.spring.starter.dev.admin.endpoint.controllers;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;

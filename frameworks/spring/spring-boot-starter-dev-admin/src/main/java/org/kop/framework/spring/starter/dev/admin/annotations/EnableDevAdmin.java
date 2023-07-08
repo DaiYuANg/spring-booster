@@ -1,7 +1,7 @@
 package org.kop.framework.spring.starter.dev.admin.annotations;
 
 import org.kop.framework.spring.starter.dev.admin.configuration.DevAdminAutoConfiguration;
-import org.kop.framework.spring.starter.dev.admin.configuration.ui.DevUIAutoConfiguration;
+import org.kop.framework.spring.starter.dev.admin.configuration.endpoint.DevUIAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

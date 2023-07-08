@@ -1,10 +1,8 @@
 package org.kop.framework.spring.starter.event.configurations;
 
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.kop.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration;
-import org.kop.framework.spring.boot.starter.async.config.AsyncWorkerProperties;
 import org.kop.framework.spring.boot.starter.scheduled.configuration.ScheduledAutoConfiguration;
 import org.kop.framework.spring.starter.event.spring.SpringEventPublisher;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -16,12 +14,6 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 @AutoConfigureAfter({AsyncWorkerAutoConfiguration.class, ScheduledAutoConfiguration.class})
 public class SpringEventAutoConfiguration {
-    @Resource
-    private AsyncWorkerProperties asyncWorkerProperties;
-
-    @Resource
-    private AsyncWorkerAutoConfiguration asyncWorkerAutoConfiguration;
-
     @Bean
     @ConditionalOnMissingBean
     public SpringEventPublisher eventPublisher() {

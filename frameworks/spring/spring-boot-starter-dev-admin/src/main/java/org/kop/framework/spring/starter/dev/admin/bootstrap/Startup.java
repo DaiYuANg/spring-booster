@@ -66,5 +66,8 @@ public class Startup {
         String path = env.getProperty("server.context-path","/");
         log.info("{}:Start up",context.getDisplayName());
         log.info("Access at: http://{}:{}{}",ip,port,path);
+//        new ProcBuilder("open")
+//                .withArg("http://localhost:8080/dev/admin/index")
+//                .run();
     }
 }
