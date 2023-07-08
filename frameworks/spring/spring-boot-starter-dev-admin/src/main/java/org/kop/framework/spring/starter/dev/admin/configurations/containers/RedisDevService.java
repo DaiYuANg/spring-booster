@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.dev.admin.configuration.containers;
+package org.kop.framework.spring.starter.dev.admin.configurations.containers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

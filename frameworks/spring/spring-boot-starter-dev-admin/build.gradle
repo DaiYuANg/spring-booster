@@ -1,8 +1,12 @@
+plugins {
+    id "com.github.node-gradle.node" version "${nodePluginVersion}"
+}
+
 ext {
-    dockerSDKVersion="3.3.1"
-    openapiVersion="2.0.2"
-    oshiVersion="6.4.4"
-    mysqlVersion="8.0.33"
+    dockerSDKVersion = "3.3.1"
+    openapiVersion = "2.0.2"
+    oshiVersion = "6.4.4"
+    mysqlVersion = "8.0.33"
 }
 
 dependencies {
@@ -14,7 +18,26 @@ dependencies {
     implementation(project(":standard:restful"))
     implementation(project(":frameworks:spring:spring-boot-starter-scheduled"))
     compileOnly("com.mysql:mysql-connector-j:${mysqlVersion}")
-    implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiVersion}")
-    implementation ("com.github.oshi:oshi-core:${oshiVersion}")
-    implementation ("org.buildobjects:jproc:2.8.2")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiVersion}")
+    implementation("com.github.oshi:oshi-core:${oshiVersion}")
+    implementation("org.buildobjects:jproc:2.8.2")
+}
+
+node {
+    download = true
+    distBaseUrl = "https://npmmirror.com/mirrors/node/"
+    version = "18.16.1"
+    nodeProjectDir = file("./ui")
+}
+
+tasks.register('devUI', YarnTask) {
+    args = ['dev']
+}
+
+tasks.register('buildUI', YarnTask) {
+    args = ['build']
+}
+
+tasks.register('copyDist',YarnTask){
+
 }

@@ -1,34 +1,27 @@
-<template>
-
-</template>
+<template></template>
 
 <script setup lang="ts">
 /**
  * @idName  Html id name
  */
-  import echarts from "boot/echarts";
-  import {EChartsOption} from "echarts";
+import echarts from 'boot/echarts';
+import { EChartsOption } from 'echarts';
 
-  const props = defineProps({
-  idName:{
+const props = defineProps({
+  idName: {
     type: String,
     required: true,
   },
-  title:{
-    type: Object
-  }
+  title: {
+    type: Object,
+  },
+});
 
-  });
+let charDom = document.getElementById(props.idName) as HTMLElement;
+let myChar = echarts.init(charDom);
+let option: EChartsOption;
 
-  let charDom = document.getElementById(props.idName) as HTMLElement;
-  let myChar = echarts.init(charDom);
-  let option : EChartsOption;
+option = {};
+</script>
 
-  option = {
-
-  }
-
-  </script>
-
-<style scoped>
-</style>
+<style scoped></style>

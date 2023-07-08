@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.dev.admin.configuration;
+package org.kop.framework.spring.starter.dev.admin.configurations;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

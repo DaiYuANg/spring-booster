@@ -3,17 +3,12 @@
     <q-toolbar>
       <q-toolbar-title>
         <q-btn icon="menu"></q-btn>
-        <q-avatar>
-        </q-avatar>
+        <q-avatar> </q-avatar>
       </q-toolbar-title>
     </q-toolbar>
   </q-footer>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

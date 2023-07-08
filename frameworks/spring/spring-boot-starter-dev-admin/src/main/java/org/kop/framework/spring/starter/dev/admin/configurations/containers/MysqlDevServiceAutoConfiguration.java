@@ -1,8 +1,8 @@
-package org.kop.framework.spring.starter.dev.admin.configuration.containers;
+package org.kop.framework.spring.starter.dev.admin.configurations.containers;
 
 import com.mysql.cj.jdbc.Driver;
 import jakarta.annotation.Resource;
-import org.kop.framework.spring.starter.dev.admin.configuration.DevAdminAutoConfiguration;
+import org.kop.framework.spring.starter.dev.admin.configurations.DevAdminAutoConfiguration;
 import org.kop.framework.spring.starter.dev.admin.docker.DockerConnector;
 import org.kop.framework.spring.starter.dev.admin.services.MysqlDevService;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;

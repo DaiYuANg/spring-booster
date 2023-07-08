@@ -1,35 +1,24 @@
+import type { ComposeOption } from 'echarts/core';
 import * as echarts from 'echarts/core';
+import type { BarSeriesOption, LineSeriesOption } from 'echarts/charts';
+import { BarChart, LineChart, PieChart } from 'echarts/charts';
+import type {
+  DatasetComponentOption,
+  GridComponentOption,
+  TitleComponentOption,
+  TooltipComponentOption,
+} from 'echarts/components';
 import {
-  BarChart,
-  LineChart, PieChart
-} from 'echarts/charts';
-import {
+  DatasetComponent,
+  GridComponent,
   TitleComponent,
   TooltipComponent,
-  GridComponent,
-  DatasetComponent,
-  TransformComponent
+  TransformComponent,
 } from 'echarts/components';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
-import type {
-  BarSeriesOption,
-  LineSeriesOption
-} from 'echarts/charts';
-
-import type {
-  TitleComponentOption,
-  TooltipComponentOption,
-  GridComponentOption,
-  DatasetComponentOption,
-} from 'echarts/components';
-
-import type {
-  ComposeOption,
-} from 'echarts/core';
-
-import {PieSeriesOption} from "echarts";
+import { PieSeriesOption } from 'echarts';
 
 type ECOption = ComposeOption<
   | BarSeriesOption
@@ -52,7 +41,7 @@ echarts.use([
   LabelLayout,
   UniversalTransition,
   CanvasRenderer,
-  PieChart
+  PieChart,
 ]);
 
 export default echarts;

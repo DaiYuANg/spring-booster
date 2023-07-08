@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.dev.admin.configuration;
+package org.kop.framework.spring.starter.dev.admin.configurations;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

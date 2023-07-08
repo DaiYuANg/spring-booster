@@ -10,7 +10,6 @@ import org.kop.framework.spring.starter.dev.admin.endpoint.services.ISystemInfoS
 import org.springframework.stereotype.Service;
 
 import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class SystemInfoServiceImpl implements ISystemInfoService {
 
     @Override
     public LiveMemoryDto getMemoryUsage() {
-        var memoryMXBean = ManagementFactory.getMemoryMXBean();
+        val memoryMXBean = ManagementFactory.getMemoryMXBean();
         return new LiveMemoryDto(memoryMXBean.getHeapMemoryUsage(),
                                   memoryMXBean.getNonHeapMemoryUsage());
     }
