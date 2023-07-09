@@ -19,7 +19,10 @@
       <router-view />
     </q-page-container>
 
+
     <MainLayoutFooter />
+
+      <PieEcharts id-name="demo"/>
   </q-layout>
 </template>
 
@@ -29,6 +32,7 @@ import { QDrawer } from 'quasar';
 import MainLayoutHeader from 'layouts/MainLayoutHeader.vue';
 import MainLayoutFooter from 'layouts/MainLayoutFooter.vue';
 import MainLayoutSidebar from 'layouts/MainLayoutSidebar.vue';
+import PieEcharts from "components/echarts/PieEcharts.vue";
 
 const leftDrawerOpen = ref(false);
 
