@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh lpR fFf">
+  <q-layout view="hHh lpR fFf">
     <q-ajax-bar />
     <MainLayoutHeader
       @setLeftDrawerOpen="setLeftDrawerOpen"
@@ -24,16 +24,11 @@
 </template>
 
 <script setup lang="ts">
-import { api } from 'boot/axios';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { QDrawer } from 'quasar';
 import MainLayoutHeader from 'layouts/MainLayoutHeader.vue';
 import MainLayoutFooter from 'layouts/MainLayoutFooter.vue';
 import MainLayoutSidebar from 'layouts/MainLayoutSidebar.vue';
-
-api.get('/test').then((r) => {
-  console.log(r);
-});
 
 const leftDrawerOpen = ref(false);
 
@@ -46,6 +41,10 @@ const setLeftDrawerOpen = () => {
 const setRightDrawerOpen = () => {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 };
+
+onMounted(() => {
+  console.log(123);
+});
 
 const hover = () => {
   console.log(123);

@@ -14,3 +14,23 @@ helpers:
     rejected-execution: java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy.class
     pool-name-prefix: "spring-boot-curd-example"
     preheat: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-headers: "*"
+        allowed-methods: "*"
+        allowed-origins: "*"
+    jmx:
+      exposure:
+        include: "*"
+  jmx:
+    metrics:
+      export:
+        enabled: true
+  appoptics:
+    metrics:
+      export:
+        enabled: true

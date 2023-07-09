@@ -8,6 +8,7 @@
     :model-value="leftDrawerOpen"
     side="left"
     bordered
+    mini
   >
     <q-scroll-area style="height: calc(100% - 150px)">
       <q-list padding>
@@ -19,7 +20,7 @@
           <q-item-section> Dashboard </q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple>
+        <q-item clickable v-ripple href="/swagger">
           <q-item-section avatar>
             <q-icon name="star" />
           </q-item-section>
@@ -27,7 +28,7 @@
           <q-item-section> Star </q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple>
+        <q-item clickable v-ripple href="/mappings">
           <q-item-section avatar>
             <q-icon name="send" />
           </q-item-section>

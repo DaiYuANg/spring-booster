@@ -2,7 +2,9 @@ package org.kop.framework.spring.starter.dev.admin.configurations.endpoint;
 
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
+import lombok.SneakyThrows;
 import lombok.val;
+import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -10,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,6 +24,8 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import java.net.InetAddress;
+
 @Configuration
 @ConditionalOnWebApplication
 @EnableWebMvc
@@ -29,6 +34,9 @@ public class DevUIAutoConfiguration implements WebMvcConfigurer {
 
     @Resource
     private ApplicationContext applicationContext;
+
+    @Resource
+    private Environment env;
 
     @Bean
     public ViewResolver templateResolver() {
@@ -57,13 +65,28 @@ public class DevUIAutoConfiguration implements WebMvcConfigurer {
 
     @Bean
     @ConditionalOnMissingBean
-    public ServerEndpointExporter serverEndpointExporter(){
+    public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public Gson gson(){
+    public Gson gson() {
         return new Gson();
+    }
+
+    @SneakyThrows
+    @Bean
+    public ServerBasicInfo serverAccessAddress(){
+        return ServerBasicInfo.builder()
+                .contextPath(env.getProperty("server.context-path","/"))
+                .port(env.getProperty("server.port", String.valueOf(8080)))
+                .host(InetAddress.getLocalHost().getHostAddress())
+                .build();
+    }
+
+    @Bean
+    public OkHttpClient okHttpClient(){
+        return new OkHttpClient();
     }
 }
