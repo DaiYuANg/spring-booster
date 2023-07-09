@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.dev.admin.configuration.endpoint;
+package org.kop.framework.spring.starter.dev.admin.configurations.endpoint;
 
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
