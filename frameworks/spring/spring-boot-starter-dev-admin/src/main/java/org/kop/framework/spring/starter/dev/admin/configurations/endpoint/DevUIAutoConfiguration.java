@@ -77,16 +77,16 @@ public class DevUIAutoConfiguration implements WebMvcConfigurer {
 
     @SneakyThrows
     @Bean
-    public ServerBasicInfo serverAccessAddress(){
+    public ServerBasicInfo serverAccessAddress() {
         return ServerBasicInfo.builder()
-                .contextPath(env.getProperty("server.context-path","/"))
+                .contextPath(env.getProperty("server.context-path", "/"))
                 .port(env.getProperty("server.port", String.valueOf(8080)))
                 .host(InetAddress.getLocalHost().getHostAddress())
                 .build();
     }
 
     @Bean
-    public OkHttpClient okHttpClient(){
+    public OkHttpClient okHttpClient() {
         return new OkHttpClient();
     }
 }

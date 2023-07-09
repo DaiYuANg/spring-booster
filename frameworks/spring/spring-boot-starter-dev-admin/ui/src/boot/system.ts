@@ -7,7 +7,7 @@ import { SessionStorage } from 'quasar';
 export default boot(async ({ router }) => {
   // something to do
   actuatorDetect().then((r) => {
-    const data = r._links;
+    const data = r.data._links;
     for (const rKey in data) {
       SessionStorage.set(rKey, data[rKey]);
     }

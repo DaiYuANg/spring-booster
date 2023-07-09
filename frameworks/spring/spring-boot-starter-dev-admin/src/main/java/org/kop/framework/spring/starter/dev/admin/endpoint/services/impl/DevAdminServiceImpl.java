@@ -28,7 +28,7 @@ public class DevAdminServiceImpl implements IDevAdminService {
 
     @SneakyThrows
     @Override
-    public String currentSystem() {
+    public String actuatorExport() {
         try (val r = okHttpClient.newCall(new Request.Builder()
                 .url(serverBasicInfo.fullAccessPath() +
                         env.getProperty("management.endpoints.web.base-path", Base.DEFAULT_ACTUATOR_PATH))

@@ -4,5 +4,5 @@ import lombok.SneakyThrows;
 
 public interface IDevAdminService {
     @SneakyThrows
-    String currentSystem();
+    String actuatorExport();
 }
