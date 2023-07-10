@@ -1,6 +1,5 @@
 package org.kop.framework.spring.boot.starter.async.config;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
@@ -15,18 +14,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executor;
 import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
 @ConditionalOnClass(AsyncWorker.class)
@@ -43,33 +36,21 @@ public class AsyncWorkerAutoConfiguration {
         log.info("async worker auto configuration");
     }
 
-    @Bean
-    @Primary
-    @ConditionalOnClass(AsyncWorker.class)
-    public ThreadPoolExecutor executor() {
-        return new ThreadPoolExecutor(
-                asyncWorkerProperties.getCoreWorker(),
-                asyncWorkerProperties.getQueueCapacity(),
-                asyncWorkerProperties.getAliveTime(),
-                asyncWorkerProperties.getAliveTimeUnit(),
-                new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
-                new ThreadFactoryBuilder()
-                        .setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
-                        .build(),
-                rejectedExecutionHandler()
-        );
-    }
-
-    @Bean
-    public Executor taskExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(2);
-        executor.setMaxPoolSize(2);
-        executor.setQueueCapacity(500);
-        executor.setThreadNamePrefix("GithubLookup-");
-        executor.initialize();
-        return executor;
-    }
+//    @Bean
+//    @Primary
+//    public ThreadPoolExecutor taskExecutor() {
+//        return new ThreadPoolExecutor(
+//                asyncWorkerProperties.getCoreWorker(),
+//                asyncWorkerProperties.getQueueCapacity(),
+//                asyncWorkerProperties.getAliveTime(),
+//                asyncWorkerProperties.getAliveTimeUnit(),
+//                new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
+//                new ThreadFactoryBuilder()
+//                        .setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
+//                        .build(),
+//                rejectedExecutionHandler()
+//        );
+//    }
 
     @SneakyThrows
     public @NotNull RejectedExecutionHandler rejectedExecutionHandler() {
@@ -87,7 +68,6 @@ public class AsyncWorkerAutoConfiguration {
 
 
     @Bean
-    @DependsOn({"executor"})
     @Order(0)
     @ConditionalOnMissingBean
     public AsyncWorker asyncWorker() {

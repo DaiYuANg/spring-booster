@@ -5,7 +5,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.kop.framework.spring.starter.dev.admin.configurations.endpoint.ServerBasicInfo;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.metrics.ApplicationStartup;
@@ -32,8 +32,10 @@ public class Startup {
     }
 
     @SneakyThrows
-    @EventListener(ApplicationStartedEvent.class)
-    public void onStarted(@NotNull ApplicationStartedEvent event) {
+    @EventListener(ApplicationReadyEvent.class)
+    @Async
+    public void onStarted(@NotNull ApplicationReadyEvent event) {
+        log.info("Application:{}",event.getSpringApplication().getMainApplicationClass().getName());
         log.info("Access at: {}",serverBasicInfo.fullAccessPath());
         log.info("Swagger at: {}",serverBasicInfo.swaggerUI());
     }

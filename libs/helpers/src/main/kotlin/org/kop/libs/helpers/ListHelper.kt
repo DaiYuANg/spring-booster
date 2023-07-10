@@ -1,6 +1,5 @@
 package org.kop.libs.helpers
 
-import org.jetbrains.annotations.Contract
 import java.util.*
 import java.util.function.Function
 import java.util.stream.Collectors
@@ -10,12 +9,6 @@ fun <T, K> grouping(l: List<T>, classifier: Function<in T, out K>?): Map<K, List
         .collect(
             Collectors.groupingBy(classifier)
         )
-}
-
-@SafeVarargs
-fun <T> merge(removeDuplicate: Boolean, vararg lists: List<T>): List<T> {
-    val stream = Arrays.stream(lists).flatMap { obj: List<T> -> obj.stream() }
-    return if (removeDuplicate) stream.distinct().toList() else stream.collect(Collectors.toList())
 }
 
 fun <T : Any> searchEq(source: List<T>, target: T): Optional<T> {
@@ -32,7 +25,6 @@ fun <T> intersection(list1: List<T>, list2: List<T>): List<T> {
     return list1.stream().filter { o: T -> list2.contains(o) }.distinct().collect(Collectors.toList())
 }
 
-@Contract("_, _ -> new")
 fun <T : CharSequence?> listToString(list: List<T>?, separator: CharSequence?): String {
     return java.lang.String.join(separator, list)
 }

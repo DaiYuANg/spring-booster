@@ -1,9 +1,12 @@
 package org.kop.examples.frameworks.spring.curd.example.dict;
 
-import org.kop.framework.spring.boot.starter.groundwork.dict.annotation.DictDefine;
 
-@DictDefine
+import lombok.Getter;
+import org.kop.framework.spring.boot.starter.dict.annotation.DictDefine;
+
+@Getter
 public enum TestDict2 {
+    @DictDefine
     TEST,
     TEST_STORE
 }
