@@ -16,6 +16,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-websocket")
     implementation(project(":frameworks:spring:spring-boot-starter-async"))
     implementation(project(":standard:restful"))
+    implementation("com.h2database:h2")
     implementation(project(":frameworks:spring:spring-boot-starter-scheduled"))
     compileOnly("com.mysql:mysql-connector-j:${mysqlVersion}")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiVersion}")

@@ -18,5 +18,8 @@ public class Dict extends WithAutoIncrement {
     private String dictCode;
 
     @Column
+    private String dictText;
+
+    @Column
     private boolean enable;
 }

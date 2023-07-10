@@ -89,4 +89,11 @@ public class DevUIAutoConfiguration implements WebMvcConfigurer {
     public OkHttpClient okHttpClient() {
         return new OkHttpClient();
     }
+
+//    @Bean
+//    public DataSource devAdminDataSource() {
+//        return DataSourceBuilder.create().driverClassName("org.h2.Driver").type(JdbcDataSource.class)
+//                .url("jdbc:h2:memory:default")
+//                .build();
+//    }
 }
