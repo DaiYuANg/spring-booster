@@ -14,7 +14,7 @@ import org.springframework.boot.context.metrics.buffering.BufferingApplicationSt
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.kop.examples.frameworks.spring.curd.example"})
 @EnableGroundworkDict
 @EnableGroundworkTag
 @EnableDevAdmin

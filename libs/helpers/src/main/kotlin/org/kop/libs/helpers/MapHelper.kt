@@ -5,11 +5,11 @@ import java.util.stream.Collectors
 
 
 fun <K, V> keyList(map: Map<K, V>): List<K> {
-    return map.keys.stream().toList()
+    return map.keys.toMutableList()
 }
 
 fun <K, V> valueList(map: Map<K, V>): List<V> {
-    return map.values.stream().toList()
+    return map.values.toMutableList()
 }
 
 fun <K, V> searchValueOptional(map: Map<K, V>, value: V): Optional<V> {
