@@ -1,7 +1,7 @@
 package org.kop.framework.spring.boot.starter.restful.interceptor;
 
 import org.jetbrains.annotations.NotNull;
-import org.kop.standard.restful.resp.RestfulResponse;
+import org.kop.standard.restful.resp.Response;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -31,7 +31,7 @@ public class ResponseInterceptor implements ResponseBodyAdvice<Object> {
             @NotNull ServerHttpRequest request,
             @NotNull ServerHttpResponse response
     ) {
-        if (body instanceof RestfulResponse) return body;
-        return Objects.nonNull(body) ? RestfulResponse.ok(body) : RestfulResponse.ok();
+        if (body instanceof Response) return body;
+        return Objects.nonNull(body) ? Response.ok(body) : Response.ok();
     }
 }

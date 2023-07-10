@@ -28,7 +28,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['i18n', 'axios', 'echarts'],
+    boot: ['i18n', 'axios', 'echarts', 'lang', 'system'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: [
@@ -55,7 +55,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node18',
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       vueDevtools: true,
       vueOptionsAPI: false,
@@ -98,7 +98,7 @@ module.exports = configure(function (/* ctx */) {
       open: true, // opens browser window automatically
       proxy: {
         '/api': {
-          target: 'http://localhost:8080/dev/admin',
+          target: 'http://localhost:8080/',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

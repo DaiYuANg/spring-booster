@@ -20,7 +20,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 
 import { PieSeriesOption } from 'echarts';
 
-type ECOption = ComposeOption<
+export type ECOption = ComposeOption<
   | BarSeriesOption
   | LineSeriesOption
   | TitleComponentOption

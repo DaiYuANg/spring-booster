@@ -16,11 +16,15 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-websocket")
     implementation(project(":frameworks:spring:spring-boot-starter-async"))
     implementation(project(":standard:restful"))
+    implementation("com.h2database:h2")
     implementation(project(":frameworks:spring:spring-boot-starter-scheduled"))
     compileOnly("com.mysql:mysql-connector-j:${mysqlVersion}")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiVersion}")
     implementation("com.github.oshi:oshi-core:${oshiVersion}")
     implementation("org.buildobjects:jproc:2.8.2")
+    implementation 'com.taobao.arthas:arthas-spring-boot-starter:3.6.9'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation("com.squareup.okhttp3:okhttp:${okhttpVersion}")
 }
 
 node {
@@ -38,6 +42,6 @@ tasks.register('buildUI', YarnTask) {
     args = ['build']
 }
 
-tasks.register('copyDist',YarnTask){
+tasks.register('copyDist', YarnTask) {
 
 }

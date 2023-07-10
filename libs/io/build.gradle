@@ -1,5 +1,5 @@
 ext {
-    okhttpVersion = "4.9.1"
+
     jimfsVersion = "1.2"
     minioVersion = "8.5.4"
 }
