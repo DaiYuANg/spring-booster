@@ -19,6 +19,24 @@ const api = axios.create({ baseURL: '/api' });
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
+  api.interceptors.response.use(
+    (resp) => {
+      return resp.data;
+    },
+    (e) => {
+      console.log(e);
+    }
+  );
+
+  api.interceptors.request.use(
+    (r) => {
+      return r;
+    },
+    (e) => {
+      console.log(e);
+    }
+  );
+
   app.config.globalProperties.$axios = axios;
   // ^ ^ ^ this will allow you to use this.$axios (for Vue Options API form)
   //       so you won't necessarily have to import axios in each vue file

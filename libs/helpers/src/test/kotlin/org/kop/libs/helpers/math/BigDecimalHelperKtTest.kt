@@ -8,7 +8,7 @@ class BigDecimalHelperKtTest {
     @Test
     fun gt() {
         kotlin.test.assertTrue {
-            (gt(BigDecimal.TEN, BigDecimal.ONE))
+            (org.kop.libs.helpers.gt(BigDecimal.TEN, BigDecimal.ONE))
         }
     }
 

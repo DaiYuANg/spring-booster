@@ -24,7 +24,7 @@ dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-dev-admin"))
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
-    implementation(project(":frameworks:spring:spring-boot-starter-groundwork"))
+    implementation(project(":frameworks:spring:spring-boot-starter-dict"))
     implementation("com.mysql:mysql-connector-j:8.0.33")
     implementation("com.h2database:h2")
     implementation("com.baomidou:mybatis-plus:3.5.3.1")

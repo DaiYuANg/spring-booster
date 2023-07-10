@@ -8,12 +8,26 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/index/IndexPage.vue') },
     ],
   },
-
   {
     path: '/dashboard',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/index/IndexPage.vue') },
+    ],
+  },
+  {
+    path: '/swagger',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/swagger/SwaggerPage.vue') },
+    ],
+  },
+
+  {
+    path: '/mappings',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/mappings/MappingsPage.vue') },
     ],
   },
 

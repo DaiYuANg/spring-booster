@@ -27,7 +27,7 @@ public class SystemController {
     @SneakyThrows
     @PostConstruct
     public void init(){
-        System.err.println(System.getProperties());
+//        System.err.println(System.getProperties());
     }
 
     @GetMapping("/memory")
