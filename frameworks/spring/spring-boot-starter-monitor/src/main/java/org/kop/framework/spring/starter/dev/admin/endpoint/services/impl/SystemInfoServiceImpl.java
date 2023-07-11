@@ -1,21 +1,18 @@
 package org.kop.framework.spring.starter.dev.admin.endpoint.services.impl;
 
 import jakarta.annotation.Resource;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.kop.framework.spring.starter.dev.admin.endpoint.dto.LiveMemoryDto;
 import org.kop.framework.spring.starter.dev.admin.endpoint.dto.LiveThreadDto;
 import org.kop.framework.spring.starter.dev.admin.endpoint.mappers.ThreadInfoMapper;
 import org.kop.framework.spring.starter.dev.admin.endpoint.services.ISystemInfoService;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryManagerMXBean;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -54,13 +51,5 @@ public class SystemInfoServiceImpl implements ISystemInfoService {
         }
         return new LiveMemoryDto(memoryMXBean.getHeapMemoryUsage(),
                 memoryMXBean.getNonHeapMemoryUsage());
-    }
-
-    @SneakyThrows
-    @Scheduled(fixedDelay = 5, timeUnit = TimeUnit.SECONDS)
-    private void test() {
-        for (int i = 0; i < 100000; i++) {
-            TimeUnit.SECONDS.sleep(1);
-        }
     }
 }

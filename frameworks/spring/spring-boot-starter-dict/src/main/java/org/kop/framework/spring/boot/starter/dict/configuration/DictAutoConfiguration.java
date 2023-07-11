@@ -5,10 +5,11 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.gson.Gson;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
+import org.kop.framework.spring.boot.starter.dict.store.DefaultDictScannerImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -26,10 +27,11 @@ public class DictAutoConfiguration {
     private DictConfigurationProperties dictConfigurationProperties;
 
     @Resource
-    ApplicationContext applicationContext;
+    ConfigurableApplicationContext context;
 
     @PostConstruct
     public void init(){
+        context.addApplicationListener(new DefaultDictScannerImpl());
     }
 
     @Bean
@@ -44,4 +46,8 @@ public class DictAutoConfiguration {
         return new Gson();
     }
 
+//    @Bean
+//    public DictScanner dictScanner(){
+//        return new DefaultDictScannerImpl();
+//    }
 }

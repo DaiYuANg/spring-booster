@@ -12,7 +12,7 @@ spring:
     database-platform: org.hibernate.community.dialect.SQLiteDialect
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:memory:test
+    url: jdbc:sqlite:memory
 helpers:
   async:
     rejected-execution: java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy.class

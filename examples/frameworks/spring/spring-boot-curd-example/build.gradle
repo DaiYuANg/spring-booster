@@ -23,7 +23,7 @@ dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
     implementation(project(":frameworks:spring:spring-boot-starter-dict"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation 'org.xerial:sqlite-jdbc'
+    implementation 'org.xerial:sqlite-jdbc:3.42.0.0'
     implementation("org.hibernate.orm:hibernate-community-dialects")
     implementation("com.baomidou:mybatis-plus:3.5.3.1")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
