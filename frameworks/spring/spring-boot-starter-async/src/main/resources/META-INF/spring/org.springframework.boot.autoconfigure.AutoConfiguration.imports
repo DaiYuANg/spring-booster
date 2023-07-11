@@ -1,2 +1,3 @@
 org.kop.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration
+org.kop.framework.spring.boot.starter.async.config.TaskExecutorConfig
 org.kop.framework.spring.boot.starter.async.bean.AsyncBeanRegister
