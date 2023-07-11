@@ -1,5 +1,6 @@
 package org.kop.framework.spring.boot.starter.async.config;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
@@ -16,17 +17,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
 @ConditionalOnClass(AsyncWorker.class)
 @AutoConfigureOrder(Ordered.LOWEST_PRECEDENCE)
 @EnableConfigurationProperties(AsyncWorkerProperties.class)
 @Slf4j
-@EnableAsync
 public class AsyncWorkerAutoConfiguration {
     @Resource
     private AsyncWorkerProperties asyncWorkerProperties;
@@ -36,21 +37,20 @@ public class AsyncWorkerAutoConfiguration {
         log.info("async worker auto configuration");
     }
 
-//    @Bean
-//    @Primary
-//    public ThreadPoolExecutor taskExecutor() {
-//        return new ThreadPoolExecutor(
-//                asyncWorkerProperties.getCoreWorker(),
-//                asyncWorkerProperties.getQueueCapacity(),
-//                asyncWorkerProperties.getAliveTime(),
-//                asyncWorkerProperties.getAliveTimeUnit(),
-//                new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
-//                new ThreadFactoryBuilder()
-//                        .setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
-//                        .build(),
-//                rejectedExecutionHandler()
-//        );
-//    }
+    @Bean
+    public ThreadPoolExecutor executor() {
+        return new ThreadPoolExecutor(
+                asyncWorkerProperties.getCoreWorker(),
+                asyncWorkerProperties.getQueueCapacity(),
+                asyncWorkerProperties.getAliveTime(),
+                asyncWorkerProperties.getAliveTimeUnit(),
+                new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
+                new ThreadFactoryBuilder()
+                        .setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
+                        .build(),
+                rejectedExecutionHandler()
+        );
+    }
 
     @SneakyThrows
     public @NotNull RejectedExecutionHandler rejectedExecutionHandler() {

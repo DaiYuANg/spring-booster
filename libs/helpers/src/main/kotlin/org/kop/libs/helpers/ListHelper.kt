@@ -3,16 +3,16 @@ package org.kop.libs.helpers
 import java.util.*
 import java.util.function.Function
 import java.util.stream.Collectors
+import kotlin.math.min
 
 fun <T, K> grouping(l: List<T>, classifier: Function<in T, out K>?): Map<K, List<T>>? {
-    return if (l.isEmpty()) null else l.stream()
-        .collect(
-            Collectors.groupingBy(classifier)
-        )
+    return if (l.isEmpty()) HashMap() else l.stream().collect(Collectors.groupingBy(classifier))
 }
 
 fun <T : Any> searchEq(source: List<T>, target: T): Optional<T> {
-    return if (!source.contains(target)) Optional.empty() else source.stream().filter { s: T -> s == target }
+    return if (!source.contains(target)) Optional.empty() else source.stream()
+        .filter { s: T -> Objects.nonNull(s) }
+        .filter { s: T -> s == target }
         .findAny()
 }
 
@@ -29,6 +29,8 @@ fun <T : CharSequence?> listToString(list: List<T>?, separator: CharSequence?): 
     return java.lang.String.join(separator, list)
 }
 
-//fun <T> merge(vararg lists: List<T>?): List<T> {
-//    merge(true,*lists)
-//}
+fun <T> pageList(list: List<T>, pageNo: Int, pageSize: Int): List<T> {
+    val start = (pageNo - 1) * pageSize
+    val end = pageNo * pageSize
+    return list.subList(start, min(end, list.size))
+}

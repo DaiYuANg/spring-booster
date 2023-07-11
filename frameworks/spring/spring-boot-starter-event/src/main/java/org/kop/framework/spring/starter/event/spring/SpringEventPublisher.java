@@ -7,9 +7,9 @@ import org.kop.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.quartz.Scheduler;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -25,7 +25,7 @@ public class SpringEventPublisher {
     private ApplicationEventPublisher applicationEventPublisher;
 
     @Resource
-    private ThreadPoolTaskScheduler scheduledThreadPoolExecutor;
+    private ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
 
     public <E extends ApplicationEvent> void publish(E event) {
         applicationEventPublisher.publishEvent(event);
@@ -33,14 +33,12 @@ public class SpringEventPublisher {
     }
 
     public <E extends ApplicationEvent> void simpleDelayPublish(E event, long delay, TimeUnit timeUnit) {
-        val task = scheduledThreadPoolExecutor
-                .getScheduledExecutor().
-                schedule(() -> publish(event), delay, timeUnit);
+        val task = scheduledThreadPoolExecutor.schedule(() -> publish(event), delay, timeUnit);
         if (task.isDone()) printLog(event);
     }
 
     public <E extends ApplicationEvent> void fixRatePublish(Runnable runnable, long rate, long p, TimeUnit timeUnit) {
-        scheduledThreadPoolExecutor.getScheduledExecutor().scheduleAtFixedRate(runnable, rate, p, timeUnit);
+        scheduledThreadPoolExecutor.scheduleAtFixedRate(runnable, rate, p, timeUnit);
     }
 
     public <E extends ApplicationEvent> void asyncPublish(E event) {

@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kop.libs.helpers.ListHelper;
+import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
@@ -25,7 +28,6 @@ public class DictStore {
     @Async
     public void init(@NotNull ApplicationStartedEvent context) {
         log.info("load cache");
-        System.err.println();
         val base = context.getSpringApplication().getMainApplicationClass().getAnnotation(SpringBootApplication.class).scanBasePackages();
         val packages = ListHelper.merge(Arrays.stream(base).toList(), Collections.singletonList(context.getSpringApplication().getMainApplicationClass().getPackageName()));
         scanPackages(packages);
@@ -34,18 +36,23 @@ public class DictStore {
     }
 
     private void scanPackages(@NotNull List<String> basePackages) {
-//        val allDefined = basePackages.stream().map(prefix ->
-//                        new Reflections(new ConfigurationBuilder()
-//                                .forPackage(prefix)
-//                                .setParallel(true)
-//                                .setScanners(Scanners.TypesAnnotated, Scanners.FieldsAnnotated)
-//                                .setExpandSuperTypes(true)
-//                        ))
-//                .flatMap(ref -> {
+        val allDefined = basePackages.stream().map(prefix ->
+                        new Reflections(new ConfigurationBuilder()
+                                .forPackage(prefix)
+                                .setParallel(true)
+                                .setScanners(Scanners.TypesAnnotated, Scanners.FieldsAnnotated, Scanners.SubTypes)
+                                .setExpandSuperTypes(true)
+                        ))
+                .flatMap(ref -> {
+                    return ref.getSubTypesOf(BindDict.class).stream();
 //                    return Stream.of(ref.ge(DictDefine.class).stream(),
 //                            ref.getTypesAnnotatedWith(DictDefine.class).stream(), ref.getSubTypesOf(Enum.class).stream());
-//                })
-//                .toList();
+                })
+                .filter(Class::isEnum)
+                .toList();
+        allDefined.forEach(c -> {
+
+        });
 //        allDefined.stream().forEach(c->{
 //            System.err.println(c.);
 //        });
