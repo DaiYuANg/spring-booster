@@ -13,7 +13,7 @@ gitHooks {
     }
 }
 
-rootProject.name = 'kop'
+rootProject.name = 'toolkit4j'
 //------------libs------------
 include 'libs:helpers'
 findProject(':libs:helpers')?.name = 'helpers'
@@ -21,6 +21,8 @@ include 'libs:thready'
 findProject(':libs:thready')?.name = 'thready'
 include 'libs:io'
 findProject(':libs:io')?.name = 'io'
+include 'libs:cache'
+findProject(':libs:cache')?.name = 'cache'
 
 //------------frameworks------------
 include 'frameworks:spring:spring-boot-starter-authentication'
@@ -39,18 +41,16 @@ include 'frameworks:spring:spring-boot-starter-event'
 findProject(':frameworks:spring:spring-boot-starter-event')?.name = 'spring-boot-starter-event'
 include 'frameworks:spring:spring-boot-starter-scheduled'
 findProject(':frameworks:spring:spring-boot-starter-scheduled')?.name = 'spring-boot-starter-scheduled'
-include 'frameworks:spring:spring-boot-starter-i18n'
-findProject(':frameworks:spring:spring-boot-starter-i18n')?.name = 'spring-boot-starter-i18n'
 include 'frameworks:spring:spring-boot-starter-locker'
 findProject(':frameworks:spring:spring-boot-starter-locker')?.name = 'spring-boot-starter-locker'
 include 'frameworks:spring:spring-boot-starter-restful'
 findProject(':frameworks:spring:spring-boot-starter-restful')?.name = 'spring-boot-starter-restful'
-include 'frameworks:spring:spring-boot-starter-recording'
-findProject(':frameworks:spring:spring-boot-starter-recording')?.name = 'spring-boot-starter-recording'
+include 'frameworks:spring:spring-boot-starter-recorder'
+findProject(':frameworks:spring:spring-boot-starter-recorder')?.name = 'spring-boot-starter-recorder'
 include 'frameworks:spring:spring-boot-starter-dict'
 findProject(':frameworks:spring:spring-boot-starter-dict')?.name = 'spring-boot-starter-dict'
-include 'frameworks:spring:spring-boot-starter-dev-funcational'
-findProject(':frameworks:spring:spring-boot-starter-dev-funcational')?.name = 'spring-boot-starter-dev-funcational'
+include 'frameworks:spring:spring-boot-starter-devtools'
+findProject(':frameworks:spring:spring-boot-starter-devtools')?.name = 'spring-boot-starter-devtools'
 
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
@@ -67,8 +67,6 @@ include 'standard:locker'
 findProject(':standard:locker')?.name = 'locker'
 include 'standard:restful'
 findProject(':standard:restful')?.name = 'restful'
-include 'standard:cache'
-findProject(':standard:cache')?.name = 'cache'
 
 include 'docs'
 findProject(':docs')?.name = 'docs'

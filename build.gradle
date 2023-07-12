@@ -28,7 +28,7 @@ tasks.jar {
 	enabled = false
 }
 
-group 'org.kop'
+group 'org.toolkit4j'
 version '1.0-SNAPSHOT'
 
 apply from: "projects.gradle"
