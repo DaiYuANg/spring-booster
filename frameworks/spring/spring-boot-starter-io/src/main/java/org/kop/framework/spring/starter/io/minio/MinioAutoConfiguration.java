@@ -11,8 +11,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 
-import java.util.Objects;
-
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)
 @AutoConfigureOrder(Ordered.LOWEST_PRECEDENCE)
@@ -30,9 +28,10 @@ public class MinioAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public MinioClient minioClient() {
-        return MinioClient.builder()
-                .endpoint(Objects.requireNonNull(minioConfigurationProperties.getUrl(), "Minio url not configure"))
-                .httpClient(httpClient().getClient())
-                .build();
+//        return MinioClient.builder()
+//                .endpoint(Objects.requireNonNull(minioConfigurationProperties.getUrl(), "Minio url not configure"))
+//                .httpClient(httpClient().getClient())
+//                .build();
+        return MinioClient.builder().build();
     }
 }

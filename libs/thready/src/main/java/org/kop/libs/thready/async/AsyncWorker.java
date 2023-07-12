@@ -36,7 +36,7 @@ public class AsyncWorker {
                 Arrays.stream(actions)
                         .map(this::run)
                         .toArray(CompletableFuture[]::new)
-        );
+        ).handle(this::handle);
     }
 
     public CompletableFuture<Object> parallelALL(Runnable @NotNull ... actions) {
@@ -45,15 +45,16 @@ public class AsyncWorker {
                 Arrays.stream(actions)
                         .map(this::run)
                         .toArray(CompletableFuture[]::new)
-        );
+        ).handle(this::handle);
     }
 
     public CompletableFuture<Object> parallelALL(@NotNull List<Runnable> actions) {
-        return parallelALL(actions.toArray(Runnable[]::new));
+        return parallelALL(actions.toArray(Runnable[]::new)).handle(this::handle);
     }
 
     public <T> CompletableFuture<T> supply(@NotNull Supplier<T> supplier, @NotNull ThreadPoolExecutor executor) {
-        return CompletableFuture.supplyAsync(supplier, executor);
+        return CompletableFuture.supplyAsync(supplier, executor)
+                .handle(this::handle);
     }
 
     public <T> CompletableFuture<T> supply(@NotNull Supplier<T> supplier) {
@@ -67,6 +68,12 @@ public class AsyncWorker {
     }
 
     public Void handle(Void u, Throwable t) {
+        if (Objects.isNull(t)) return u;
+        t.printStackTrace();
+        throw new RuntimeException(t);
+    }
+
+    public <T> T handle(T u, Throwable t) {
         if (Objects.isNull(t)) return u;
         t.printStackTrace();
         throw new RuntimeException(t);

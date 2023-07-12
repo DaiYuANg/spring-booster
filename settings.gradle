@@ -68,4 +68,8 @@ findProject(':standard:restful')?.name = 'restful'
 include 'standard:cache'
 findProject(':standard:cache')?.name = 'cache'
 
+include 'docs'
+findProject(':docs')?.name = 'docs'
+include 'frameworks:spring:spring-boot-starter-dev-funcational'
+findProject(':frameworks:spring:spring-boot-starter-dev-funcational')?.name = 'spring-boot-starter-dev-funcational'
 

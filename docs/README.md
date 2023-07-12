@@ -1,3 +1,0 @@
-# Kop Repository
-
-## Project Structure

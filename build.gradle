@@ -34,3 +34,5 @@ version '1.0-SNAPSHOT'
 apply from: "projects.gradle"
 apply from: "tasks.gradle"
 apply from: "codestyle.gradle"
+
+tasks.build.dependsOn(tasks.spotlessApply)

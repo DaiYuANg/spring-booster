@@ -3,9 +3,9 @@ package org.kop.framework.spring.boot.starter.dict.configuration;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.gson.Gson;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import org.kop.framework.spring.boot.starter.dict.store.DefaultDictScannerImpl;
+import org.kop.framework.spring.boot.starter.dict.scanner.DefaultDictScannerImpl;
+import org.kop.framework.spring.boot.starter.dict.scanner.DictScanner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -29,11 +29,6 @@ public class DictAutoConfiguration {
     @Resource
     ConfigurableApplicationContext context;
 
-    @PostConstruct
-    public void init(){
-        context.addApplicationListener(new DefaultDictScannerImpl());
-    }
-
     @Bean
     @ConditionalOnMissingBean(value = {Caffeine.class})
     public Cache<String, Optional<String>> cache() {
@@ -46,8 +41,8 @@ public class DictAutoConfiguration {
         return new Gson();
     }
 
-//    @Bean
-//    public DictScanner dictScanner(){
-//        return new DefaultDictScannerImpl();
-//    }
+    @Bean
+    public DictScanner dictScanner() {
+        return new DefaultDictScannerImpl();
+    }
 }

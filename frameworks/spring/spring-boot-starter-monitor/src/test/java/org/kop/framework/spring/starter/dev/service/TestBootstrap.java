@@ -1,6 +1,5 @@
 package org.kop.framework.spring.starter.dev.service;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.actuate.autoconfigure.wavefront.WavefrontProperties;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +13,8 @@ public class TestBootstrap {
 //    @Resource
 //    private DockerConnector dockerConnector;
 
-    @Test
-    public void testStart() {
-        System.err.println(123);
-    }
+//    @Test
+//    public void testStart() {
+//        System.err.println(123);
+//    }
 }

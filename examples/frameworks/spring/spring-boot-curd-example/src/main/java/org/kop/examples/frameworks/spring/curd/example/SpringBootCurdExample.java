@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.kop.framework.spring.boot.starter.dict.annotation.EnableDict;
-import org.kop.framework.spring.starter.dev.admin.annotations.EnableDevAdmin;
+import org.kop.framework.spring.starter.monitor.annotations.EnableDevAdmin;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
