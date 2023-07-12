@@ -76,6 +76,7 @@ subprojects {
         implementation("cn.hutool:hutool-all:${hutoolVersion}")
         implementation("jakarta.json:jakarta.json-api:${jakartaJson}")
         implementation 'jakarta.data:jakarta-data-api:1.0.0-b2'
+		implementation 'org.jetbrains.kotlin:kotlin-reflect'
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
         testImplementation platform("org.junit:junit-bom:${junitVersion}")
         testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
