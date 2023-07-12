@@ -6,10 +6,10 @@ import jakarta.annotation.Resource;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.kop.framework.spring.boot.starter.async.config.AsyncWorkerProperties;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Component
 @Slf4j
@@ -17,15 +17,15 @@ import java.util.Objects;
 public class AsyncWorker extends org.kop.libs.thready.async.AsyncWorker {
 
     @Resource
-    private ThreadPoolTaskExecutor threadPoolExecutor;
+    private ThreadPoolExecutor executor;
 
     @Resource
     private AsyncWorkerProperties asyncWorkerProperties;
 
     @PostConstruct
     public void init() {
-        setExecutor(threadPoolExecutor.getThreadPoolExecutor());
-        if (asyncWorkerProperties.isPreheat() && Objects.nonNull(threadPoolExecutor)) executor.prestartAllCoreThreads();
+        setExecutor(executor);
+        if (asyncWorkerProperties.isPreheat() && Objects.nonNull(executor)) executor.prestartAllCoreThreads();
     }
 
     @PreDestroy

@@ -9,6 +9,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    open-in-view: true
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:memory
 helpers:
   async:
     rejected-execution: java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy.class
