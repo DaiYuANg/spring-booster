@@ -1,16 +1,16 @@
 pluginManagement {
-	repositories {
-		mavenLocal()
-		gradlePluginPortal()
-		mavenCentral()
-	}
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
 plugins {
-	id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
 }
 gitHooks {
-	preCommit {
-	}
+    preCommit {
+    }
 }
 
 rootProject.name = 'kop'
@@ -49,6 +49,8 @@ include 'frameworks:spring:spring-boot-starter-recording'
 findProject(':frameworks:spring:spring-boot-starter-recording')?.name = 'spring-boot-starter-recording'
 include 'frameworks:spring:spring-boot-starter-dict'
 findProject(':frameworks:spring:spring-boot-starter-dict')?.name = 'spring-boot-starter-dict'
+include 'frameworks:spring:spring-boot-starter-dev-funcational'
+findProject(':frameworks:spring:spring-boot-starter-dev-funcational')?.name = 'spring-boot-starter-dev-funcational'
 
 //------------examples------------
 include 'examples:frameworks:spring:spring-boot-curd-example'
@@ -70,6 +72,7 @@ findProject(':standard:cache')?.name = 'cache'
 
 include 'docs'
 findProject(':docs')?.name = 'docs'
-include 'frameworks:spring:spring-boot-starter-dev-funcational'
-findProject(':frameworks:spring:spring-boot-starter-dev-funcational')?.name = 'spring-boot-starter-dev-funcational'
 
+
+include 'ui:monitor'
+findProject(':ui:monitor')?.name = 'monitor'

@@ -34,8 +34,8 @@ subprojects {
     jar {
 //        archiveBaseName = 'processor-core'
         enabled = true
-        duplicatesStrategy = duplicatesStrategy.INCLUDE
+//        duplicatesStrategy = duplicatesStrategy.INCLUDE
     }
 
-    compileJava.dependsOn(processResources)
+//    compileJava.dependsOn(processResources)
 }

@@ -10,6 +10,7 @@ import java.util.Date;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, imports = {Date.class})
 public interface DictDtoConverter {
 
+    @Mapping(target = "code", ignore = true)
     @Mapping(target = "text", ignore = true)
     @Mapping(target = "name", ignore = true)
     DictItem entityToPojo(DictItem dict);
