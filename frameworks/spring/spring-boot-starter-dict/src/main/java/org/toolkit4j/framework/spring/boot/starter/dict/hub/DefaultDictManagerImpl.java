@@ -53,7 +53,7 @@ public class DefaultDictManagerImpl implements DictManager {
     }
 
     private void syncLoad() {
-        storage.putAll(dictScanner.doScan());
+//        storage.putAll(dictScanner.doScan());
     }
 
     public Optional<DictFunctional> get(String code) {

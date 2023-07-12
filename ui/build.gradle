@@ -1,6 +1,6 @@
 plugins {
     id 'com.coditory.webjar' version "${webjarVersion}" apply(false)
-    id "com.github.node-gradle.node" version "${nodePluginVersion}"
+
 }
 //    https://www.webjars.org/
 subprojects {
