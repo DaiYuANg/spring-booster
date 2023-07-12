@@ -1,13 +1,16 @@
 package org.toolkit4j.framework.spring.boot.starter.dict.configuration;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
+import lombok.val;
+import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,25 +18,20 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.toolkit4j.framework.spring.boot.starter.dict.scanner.DefaultDictScannerImpl;
 import org.toolkit4j.framework.spring.boot.starter.dict.scanner.DictScanner;
 
-import java.util.Optional;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 @Configuration
-@ComponentScan("org.kop.framework.spring.boot.starter.dict.**.*")
-@EnableJpaRepositories("org.kop.framework.spring.boot.starter.dict.repos")
-@EntityScan({"org.kop.framework.spring.boot.starter.dict"})
+@ComponentScan("org.toolkit4j.framework.spring.boot.starter.dict.**.*")
+@EnableJpaRepositories("org.toolkit4j.framework.spring.boot.starter.dict.repos")
+@EntityScan({"org.toolkit4j.framework.spring.boot.starter.dict"})
 @EnableConfigurationProperties(DictConfigurationProperties.class)
 public class DictAutoConfiguration {
     @Resource
     private DictConfigurationProperties dictConfigurationProperties;
 
     @Resource
-    ConfigurableApplicationContext context;
-
-    @Bean
-    @ConditionalOnMissingBean(value = {Caffeine.class})
-    public Cache<String, Optional<String>> cache() {
-        return Caffeine.newBuilder().build();
-    }
+    private ApplicationContext context;
 
     @Bean
     @ConditionalOnMissingBean(value = {Gson.class})
@@ -44,5 +42,20 @@ public class DictAutoConfiguration {
     @Bean
     public DictScanner dictScanner() {
         return new DefaultDictScannerImpl();
+    }
+
+    @Bean
+    Reflections reflections() {
+        val apps = Arrays.stream(context.getBeanNamesForAnnotation(SpringBootApplication.class)).toList();
+        val defaultPackageName = apps.stream().map(a -> context.getBean(a).getClass().getPackageName());
+        val scan = apps.stream().flatMap(a ->
+                Arrays.stream(context.getBean(a).getClass()
+                        .getAnnotation(SpringBootApplication.class).scanBasePackages()));
+        val all = Stream.concat(defaultPackageName, scan).distinct().toArray(String[]::new);
+        return new Reflections(new ConfigurationBuilder()
+                .forPackages(all)
+                .setParallel(true)
+                .setScanners(Scanners.TypesAnnotated, Scanners.FieldsAnnotated, Scanners.SubTypes)
+                .setExpandSuperTypes(true));
     }
 }

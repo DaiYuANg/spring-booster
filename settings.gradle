@@ -21,8 +21,6 @@ include 'libs:thready'
 findProject(':libs:thready')?.name = 'thready'
 include 'libs:io'
 findProject(':libs:io')?.name = 'io'
-include 'libs:cache'
-findProject(':libs:cache')?.name = 'cache'
 
 //------------frameworks------------
 include 'frameworks:spring:spring-boot-starter-authentication'

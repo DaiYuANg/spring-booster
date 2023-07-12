@@ -38,10 +38,10 @@ public class DefaultDictManagerImpl implements DictManager {
     @PostConstruct
     public void init() {
         if (!dictConfigurationProperties.isLoadDictMetadata()) return;
-        if (dictConfigurationProperties.isAsync()) {
-            asyncLoad();
-            return;
-        }
+//        if (dictConfigurationProperties.isAsync()) {
+//            asyncLoad();
+//            return;
+//        }
         syncLoad();
     }
 
