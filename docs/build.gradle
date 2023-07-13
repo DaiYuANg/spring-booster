@@ -1,0 +1,16 @@
+plugins {
+    id("org.asciidoctor.jvm.convert") version "${asciidoctorVersion}"
+    id("org.asciidoctor.base") version "${asciidoctorVersion}"
+    id("org.asciidoctor.decktape") version "${asciidoctorVersion}"
+    id("org.asciidoctor.jvm.revealjs") version "${asciidoctorVersion}"
+    id("org.asciidoctor.decktape.base") version "${asciidoctorVersion}"
+    id("org.asciidoctor.jvm.epub") version "${asciidoctorVersion}"
+    id("org.asciidoctor.jvm.pdf") version "${asciidoctorVersion}"
+    id("org.asciidoctor.editorconfig") version "${asciidoctorVersion}"
+}
+
+asciidoctor {
+    languages 'en', 'zh'
+    sourceDir(".")
+    outputDir file('build/docs')
+}

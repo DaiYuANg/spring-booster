@@ -10,9 +10,10 @@ subprojects {
     }
 
     node {
-        download = false
+        download = true
         distBaseUrl = "https://npmmirror.com/mirrors/node/"
         version = "18.16.1"
+        npmInstallCommand = "install"
         nodeProjectDir = file("${project.projectDir}")
     }
 }

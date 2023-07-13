@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.toolkit4j.standard.rbac.User;
+import org.kop.standard.rbac.User;
 
 @ToString
 @Accessors(chain = true)
