@@ -16,8 +16,7 @@ configurations {
 dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-async"))
     implementation(project(":frameworks:spring:spring-boot-starter-event"))
-    implementation("org.springframework.boot:spring-boot-starter-web") {
-    }
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation(project(":frameworks:spring:spring-boot-starter-monitor"))
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))

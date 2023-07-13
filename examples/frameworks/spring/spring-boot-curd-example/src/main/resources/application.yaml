@@ -12,8 +12,8 @@ spring:
     database-platform: org.hibernate.community.dialect.SQLiteDialect
     open-in-view: true
   datasource:
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:memory
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:default
 helpers:
   async:
     rejected-execution: java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy.class

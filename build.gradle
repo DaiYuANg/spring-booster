@@ -15,6 +15,7 @@ plugins {
 	id "me.champeau.jmh" version "${jmhPluginVersion}" apply(false)
 	id "io.freefair.lombok" version "${lombokPluginVersion}" apply(true)
 	id 'org.jreleaser' version "${jreleaserVersion}"
+	id "com.github.node-gradle.node" version "${nodePluginVersion}"
 }
 
 repositories {
@@ -28,7 +29,7 @@ tasks.jar {
 	enabled = false
 }
 
-group 'org.kop'
+group 'org.toolkit4j'
 version '1.0-SNAPSHOT'
 
 apply from: "projects.gradle"

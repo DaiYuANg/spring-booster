@@ -3,12 +3,13 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}" apply(false)
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}" apply(false)
+//    id 'org.jetbrains.kotlin.plugin.spring' version "${kotlinVersion}" apply(false)
 }
+
 subprojects {
     apply {
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
-        plugin("org.jetbrains.kotlin.plugin.spring")
     }
 
     dependencyManagement {
@@ -37,5 +38,5 @@ subprojects {
         duplicatesStrategy = duplicatesStrategy.INCLUDE
     }
 
-    compileJava.dependsOn(processResources)
+//    compileJava.dependsOn(processResources)
 }
