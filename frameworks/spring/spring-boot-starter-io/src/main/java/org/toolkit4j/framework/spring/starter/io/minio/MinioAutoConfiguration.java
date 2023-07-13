@@ -5,11 +5,14 @@ import jakarta.annotation.Resource;
 import okhttp3.OkHttpClient;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.toolkit4j.libs.io.files.HttpClient;
+
+import java.util.Objects;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)
@@ -27,11 +30,10 @@ public class MinioAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    @ConditionalOnClass(MinioClient.class)
     public MinioClient minioClient() {
-//        return MinioClient.builder()
-//                .endpoint(Objects.requireNonNull(minioConfigurationProperties.getUrl(), "Minio url not configure"))
-//                .httpClient(httpClient().getClient())
-//                .build();
-        return MinioClient.builder().build();
+        return MinioClient.builder()
+                .endpoint(Objects.requireNonNull(minioConfigurationProperties.getUrl(), "Minio url not configure"))
+                .build();
     }
 }

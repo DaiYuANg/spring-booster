@@ -2,7 +2,7 @@ package org.toolkit4j.framework.spring.starter.monitor.endpoint.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import org.kop.standard.persistence.base.WithAutoIncrement;
+import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 import java.math.BigInteger;
 
