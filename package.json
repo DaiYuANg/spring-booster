@@ -1,9 +1,7 @@
 {
   "name": "kop",
   "version": "1.0.0",
-  "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "install": "pnpm i"
+  "dependencies": {
   },
   "devDependencies": {
     "rimraf": "^5.0.1"

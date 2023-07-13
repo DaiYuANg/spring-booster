@@ -61,6 +61,13 @@ public class AsyncWorkerAutoConfiguration {
     }
 
     @Bean
+    public ServletRegistrationBean<DispatcherServlet> apiServlet(@NotNull DispatcherServlet dispatcherServlet) {
+        dispatcherServlet.setThreadContextInheritable(true);
+        return new ServletRegistrationBean<>(dispatcherServlet);
+    }
+
+
+    @Bean
     @Order(0)
     @ConditionalOnMissingBean
     public AsyncWorker asyncWorker() {

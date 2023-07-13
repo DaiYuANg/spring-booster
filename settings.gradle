@@ -1,16 +1,16 @@
 pluginManagement {
-	repositories {
-		mavenLocal()
-		gradlePluginPortal()
-		mavenCentral()
-	}
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
 plugins {
-	id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
 }
 gitHooks {
-	preCommit {
-	}
+    preCommit {
+    }
 }
 
 rootProject.name = 'toolkit4j'
@@ -51,8 +51,8 @@ include 'frameworks:spring:spring-boot-starter-devtools'
 findProject(':frameworks:spring:spring-boot-starter-devtools')?.name = 'spring-boot-starter-devtools'
 
 //------------examples------------
-//include 'examples:frameworks:spring:spring-boot-curd-example'
-//findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'
+include 'examples:frameworks:spring:spring-boot-curd-example'
+findProject(':examples:frameworks:spring:spring-boot-curd-example')?.name = 'spring-boot-curd-example'
 
 //------------standard------------
 include 'standard:rbac'
@@ -70,5 +70,5 @@ include 'docs'
 findProject(':docs')?.name = 'docs'
 
 
-include 'ui:monitor-ui'
-findProject(':ui:monitor-ui')?.name = 'monitor-ui'
+include 'ui:monitor'
+findProject(':ui:monitor')?.name = 'monitor'

@@ -1,6 +1,5 @@
 package org.toolkit4j.framework.spring.boot.starter.dict.configuration;
 
-import com.google.common.cache.CacheBuilder;
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
 import lombok.val;
@@ -46,11 +45,12 @@ public class DictAutoConfiguration {
     }
 
     @Bean
-    public Reflections reflections() {
+    Reflections reflections() {
         val apps = Arrays.stream(context.getBeanNamesForAnnotation(SpringBootApplication.class)).toList();
         val defaultPackageName = apps.stream().map(a -> context.getBean(a).getClass().getPackageName());
-        val scan = apps.stream().flatMap(a -> Arrays.stream(context.getBean(a).getClass()
-                .getAnnotation(SpringBootApplication.class).scanBasePackages()));
+        val scan = apps.stream().flatMap(a ->
+                Arrays.stream(context.getBean(a).getClass()
+                        .getAnnotation(SpringBootApplication.class).scanBasePackages()));
         val all = Stream.concat(defaultPackageName, scan).distinct().toArray(String[]::new);
         return new Reflections(new ConfigurationBuilder()
                 .forPackages(all)

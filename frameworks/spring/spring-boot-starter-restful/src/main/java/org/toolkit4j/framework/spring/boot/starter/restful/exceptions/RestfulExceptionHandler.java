@@ -1,7 +1,7 @@
 package org.toolkit4j.framework.spring.boot.starter.restful.exceptions;
 
 import org.jetbrains.annotations.NotNull;
-import org.toolkit4j.standard.restful.resp.Response;
+import org.kop.standard.restful.resp.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
