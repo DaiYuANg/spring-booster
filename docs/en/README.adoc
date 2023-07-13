@@ -1,7 +1,9 @@
-= Document Title
-:reproducible:
+= Toolkit4j
 
-This is a basic AsciiDoc document by {author}.
+:author: Daiyuang
+:email: Dai_yuang@icloud.com
+
+This is a basic AsciiDoc document by {author}: {email}.
 
 This document contains two paragraphs.
 It also has a header that specifies the document title.
