@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import org.kop.standard.persistence.base.WithAutoIncrement;
+import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 @Entity
 @Getter
