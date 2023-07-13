@@ -1,4 +1,3 @@
 dependencies {
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-quartz
     api("org.springframework.boot:spring-boot-starter-quartz")
 }

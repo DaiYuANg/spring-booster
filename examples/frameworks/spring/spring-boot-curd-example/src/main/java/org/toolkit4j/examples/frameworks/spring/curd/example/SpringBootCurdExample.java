@@ -10,11 +10,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.toolkit4j.framework.spring.boot.starter.dict.annotation.EnableDict;
-import org.toolkit4j.framework.spring.starter.monitor.annotations.EnableDevAdmin;
+//import org.toolkit4j.framework.spring.starter.monitor.annotations.EnableDevAdmin;
 
-@SpringBootApplication(scanBasePackages = {"org.kop.examples.frameworks.spring.curd.example"})
+@SpringBootApplication(scanBasePackages = {"org.toolkit4j.examples.frameworks.spring.curd.example"})
 @EnableDict
-@EnableDevAdmin
+//@EnableDevAdmin
 @Slf4j
 public class SpringBootCurdExample extends SpringBootServletInitializer {
 

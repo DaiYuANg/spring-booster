@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.kop.standard.rbac.Group;
+import org.toolkit4j.standard.rbac.Group;
 
 @Entity
 @Getter

@@ -1,7 +1,7 @@
 package org.toolkit4j.framework.spring.boot.starter.restful.interceptor;
 
 import org.jetbrains.annotations.NotNull;
-import org.kop.standard.restful.resp.Response;
+import org.toolkit4j.standard.restful.resp.Response;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

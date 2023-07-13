@@ -3,6 +3,7 @@ package org.toolkit4j.libs.thready.async;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -13,7 +14,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Supplier;
 
 @Slf4j
-@Setter
 @ToString
 public class AsyncWorker {
     protected ThreadPoolExecutor executor;
@@ -81,5 +81,13 @@ public class AsyncWorker {
 
     public CompletableFuture<Void> run(@NotNull Runnable action) {
         return run(action, executor);
+    }
+
+    public void setExecutor(ThreadPoolExecutor executor) {
+        if (Objects.isNull(this.executor)) this.executor = executor;
+        if (this.executor.equals(executor)) return;
+        val oldExe = this.executor;
+        this.executor = executor;
+        this.executor.submit(oldExe::shutdown);
     }
 }

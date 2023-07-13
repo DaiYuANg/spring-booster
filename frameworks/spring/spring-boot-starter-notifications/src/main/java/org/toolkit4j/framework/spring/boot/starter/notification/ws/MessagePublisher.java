@@ -2,7 +2,7 @@ package org.toolkit4j.framework.spring.boot.starter.notification.ws;
 
 import jakarta.websocket.*;
 import lombok.extern.slf4j.Slf4j;
-import org.kop.standard.communication.Websocket;
+import org.toolkit4j.standard.communication.Websocket;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CopyOnWriteArrayList;
