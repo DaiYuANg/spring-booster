@@ -5,9 +5,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 
 public class AsyncCommonAnnotationBeanPostProcessor extends CommonAnnotationBeanPostProcessor {
-    @Override
-    public Object postProcessBeforeInitialization(@NotNull Object bean, @NotNull String beanName) throws BeansException {
+	@Override
+	public Object postProcessBeforeInitialization(@NotNull Object bean, @NotNull String beanName)
+			throws BeansException {
 
-        return super.postProcessBeforeInitialization(bean, beanName);
-    }
+		return super.postProcessBeforeInitialization(bean, beanName);
+	}
 }

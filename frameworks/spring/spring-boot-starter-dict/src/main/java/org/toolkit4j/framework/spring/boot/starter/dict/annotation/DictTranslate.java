@@ -6,9 +6,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DictTranslate {
-    String code();
+	String code();
 
-    String table() default "";
+	String table() default "";
 
-    String field() default "";
+	String field() default "";
 }

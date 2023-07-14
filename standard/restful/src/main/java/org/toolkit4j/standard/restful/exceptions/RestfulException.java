@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class RestfulException extends RuntimeException {
-    public RestfulException(String message) {
-        super(message);
-    }
+	public RestfulException(String message) {
+		super(message);
+	}
 }

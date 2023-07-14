@@ -5,7 +5,7 @@ import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 @Entity
 public class UserGroupEntity extends WithAutoIncrement {
-    private Integer userId;
+	private Integer userId;
 
-    private Integer groupId;
+	private Integer groupId;
 }

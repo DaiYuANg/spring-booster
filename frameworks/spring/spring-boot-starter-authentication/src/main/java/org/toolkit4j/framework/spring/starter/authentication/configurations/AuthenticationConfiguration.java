@@ -16,12 +16,11 @@ import org.toolkit4j.framework.spring.starter.authentication.funcational.JwtSign
 @EntityScan({"org.kop.framework.spring.starter.authentication.entities", "org.kop.standard.rbac"})
 public class AuthenticationConfiguration {
 
-    @PostConstruct
-    public void init() {
-    }
+	@PostConstruct
+	public void init() {}
 
-    @Bean
-    public JwtSigner signer(){
-        return new JwtSigner();
-    }
+	@Bean
+	public JwtSigner signer() {
+		return new JwtSigner();
+	}
 }

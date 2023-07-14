@@ -1,6 +1,7 @@
 package org.toolkit4j.framework.spring.starter.monitor.endpoint.services.impl;
 
 import jakarta.annotation.Resource;
+import java.util.Objects;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -12,28 +13,28 @@ import org.toolkit4j.framework.spring.starter.monitor.configurations.endpoint.Se
 import org.toolkit4j.framework.spring.starter.monitor.constants.Base;
 import org.toolkit4j.framework.spring.starter.monitor.endpoint.services.IDevAdminService;
 
-import java.util.Objects;
-
 @Service
 @Slf4j
 public class DevAdminServiceImpl implements IDevAdminService {
-    @Resource
-    private Environment env;
+	@Resource
+	private Environment env;
 
-    @Resource
-    private ServerBasicInfo serverBasicInfo;
+	@Resource
+	private ServerBasicInfo serverBasicInfo;
 
-    @Resource
-    private OkHttpClient okHttpClient;
+	@Resource
+	private OkHttpClient okHttpClient;
 
-    @SneakyThrows
-    @Override
-    public String actuatorExport() {
-        try (val r = okHttpClient.newCall(new Request.Builder()
-                .url(serverBasicInfo.fullAccessPath() +
-                        env.getProperty("management.endpoints.web.base-path", Base.DEFAULT_ACTUATOR_PATH))
-                .build()).execute()) {
-            return Objects.requireNonNull(r.body()).string();
-        }
-    }
+	@SneakyThrows
+	@Override
+	public String actuatorExport() {
+		try (val r = okHttpClient
+				.newCall(new Request.Builder()
+						.url(serverBasicInfo.fullAccessPath()
+								+ env.getProperty("management.endpoints.web.base-path", Base.DEFAULT_ACTUATOR_PATH))
+						.build())
+				.execute()) {
+			return Objects.requireNonNull(r.body()).string();
+		}
+	}
 }

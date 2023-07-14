@@ -14,19 +14,21 @@ import org.toolkit4j.framework.spring.starter.authentication.services.IGroupServ
 @Service
 public class GroupServiceImpl implements IGroupService<GroupEntity> {
 
-    @Resource
-    private GroupEntityRepository<GroupEntity> groupRepository;
+	@Resource
+	private GroupEntityRepository<GroupEntity> groupRepository;
 
-    @Override
-    public Page<GroupEntity> queryPageableList(GroupEntity entity, Pageable pageable) {
-        return null;
-    }
+	@Override
+	public Page<GroupEntity> queryPageableList(GroupEntity entity, Pageable pageable) {
+		return null;
+	}
 
-    public Tree<GroupEntity> queryGroupTree(GroupEntity entity) {
-        val groups = groupRepository.findAll(Example.of(entity));
-//        return TreeUtil.build(groups.stream()
-//                .map(g -> new TreeNode<Integer>(entity.getId().intValueExact(), entity.getParentGroupId(), entity.getGroupName(), (Comparable<GroupEntity>) Group::getParentGroupId))
-//                .toList(), entity.getParentGroupId());
-        return null;
-    }
+	public Tree<GroupEntity> queryGroupTree(GroupEntity entity) {
+		val groups = groupRepository.findAll(Example.of(entity));
+		// return TreeUtil.build(groups.stream()
+		// .map(g -> new TreeNode<Integer>(entity.getId().intValueExact(),
+		// entity.getParentGroupId(), entity.getGroupName(), (Comparable<GroupEntity>)
+		// Group::getParentGroupId))
+		// .toList(), entity.getParentGroupId());
+		return null;
+	}
 }

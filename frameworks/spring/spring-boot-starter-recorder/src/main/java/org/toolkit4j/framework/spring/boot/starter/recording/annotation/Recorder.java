@@ -6,13 +6,13 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Recorder {
-    String content() default "";
+	String content() default "";
 
-    String fail() default "";
+	String fail() default "";
 
-    String operator() default "";
+	String operator() default "";
 
-    String detail() default "";
+	String detail() default "";
 
-    String condition() default "";
+	String condition() default "";
 }

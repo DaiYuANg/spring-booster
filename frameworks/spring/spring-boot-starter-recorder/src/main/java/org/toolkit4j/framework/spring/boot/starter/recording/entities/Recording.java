@@ -4,5 +4,4 @@ import jakarta.persistence.Entity;
 import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 @Entity
-public class Recording extends WithAutoIncrement {
-}
+public class Recording extends WithAutoIncrement {}

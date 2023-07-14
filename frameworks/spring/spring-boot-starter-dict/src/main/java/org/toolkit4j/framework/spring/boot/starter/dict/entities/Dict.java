@@ -11,15 +11,15 @@ import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 @Setter
 public class Dict extends WithAutoIncrement {
 
-    @Column
-    private String dictName;
+	@Column
+	private String dictName;
 
-    @Column
-    private String dictCode;
+	@Column
+	private String dictCode;
 
-    @Column
-    private String dictText;
+	@Column
+	private String dictText;
 
-    @Column
-    private boolean enable;
+	@Column
+	private boolean enable;
 }

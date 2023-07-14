@@ -16,19 +16,18 @@ import org.springframework.util.StopWatch;
 @Slf4j
 @Component
 public class PerformanceRecording {
-    @Resource
-    private StopWatch watcher;
+	@Resource
+	private StopWatch watcher;
 
-    @Pointcut("@annotation(org.toolkit4j.framework.spring.boot.starter.recording.annotation.PerformanceRecorder)")
-    public void performance() {
-    }
+	@Pointcut("@annotation(org.toolkit4j.framework.spring.boot.starter.recording.annotation.PerformanceRecorder)")
+	public void performance() {}
 
-    @SneakyThrows
-    @Around("performance()")
-    public Object performance(@NotNull ProceedingJoinPoint pjp) {
-        watcher.start(pjp.getSignature().getName());
-        val obj = pjp.proceed();
-        watcher.stop();
-        return obj;
-    }
+	@SneakyThrows
+	@Around("performance()")
+	public Object performance(@NotNull ProceedingJoinPoint pjp) {
+		watcher.start(pjp.getSignature().getName());
+		val obj = pjp.proceed();
+		watcher.stop();
+		return obj;
+	}
 }

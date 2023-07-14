@@ -5,5 +5,4 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class RedisDevService {
-}
+public class RedisDevService {}

@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum CommonPath {
-    TEMPORARY_DIR(System.getProperty("java.io.tmp"));
+	TEMPORARY_DIR(System.getProperty("java.io.tmp"));
 
-    @Getter
-    private final String value;
+	@Getter
+	private final String value;
 }

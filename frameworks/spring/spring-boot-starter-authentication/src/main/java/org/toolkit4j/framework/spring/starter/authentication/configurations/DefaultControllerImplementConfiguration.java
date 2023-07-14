@@ -5,5 +5,4 @@ import org.springframework.context.annotation.ComponentScan;
 
 @AutoConfiguration
 @ComponentScan("org.kop.framework.spring.starter.authentication.controllers")
-public class DefaultControllerImplementConfiguration {
-}
+public class DefaultControllerImplementConfiguration {}

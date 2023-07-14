@@ -1,12 +1,11 @@
 package org.toolkit4j.standard.persistence.base;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
+import java.math.BigInteger;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.io.Serializable;
-import java.math.BigInteger;
 
 @MappedSuperclass
 @ToString
@@ -15,8 +14,8 @@ import java.math.BigInteger;
 @Setter
 public class WithAutoIncrement extends CommonField implements Serializable {
 
-    @Id
-    @GeneratedValue
-    @Column(unique = true, nullable = false)
-    private BigInteger id;
+	@Id
+	@GeneratedValue
+	@Column(unique = true, nullable = false)
+	private BigInteger id;
 }

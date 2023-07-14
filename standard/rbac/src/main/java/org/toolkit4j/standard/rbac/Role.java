@@ -9,9 +9,9 @@ import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Role extends WithAutoIncrement {
 
-    private String roleName;
+	private String roleName;
 
-    private String roleCode;
+	private String roleCode;
 
-    private String roleDesc;
+	private String roleDesc;
 }

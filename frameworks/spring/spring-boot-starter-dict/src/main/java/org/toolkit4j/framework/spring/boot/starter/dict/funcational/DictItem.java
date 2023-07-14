@@ -10,9 +10,9 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain = true, fluent = true)
 public class DictItem {
-    private String code;
+	private String code;
 
-    private String name;
+	private String name;
 
-    private String text;
+	private String text;
 }

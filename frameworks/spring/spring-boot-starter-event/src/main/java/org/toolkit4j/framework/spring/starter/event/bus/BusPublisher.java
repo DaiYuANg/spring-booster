@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class BusPublisher {
 
-    @Resource
-    private EventBus eventBus;
+	@Resource
+	private EventBus eventBus;
 
-    public void publish(Object ev) {
-        eventBus.post(ev);
-    }
+	public void publish(Object ev) {
+		eventBus.post(ev);
+	}
 }

@@ -11,18 +11,18 @@ import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 @Getter
 @Setter
 public class Group extends WithAutoIncrement {
-    @Column
-    private String groupName;
+	@Column
+	private String groupName;
 
-    @Column
-    private String groupSubName;
+	@Column
+	private String groupSubName;
 
-    @Column
-    private String groupCode;
+	@Column
+	private String groupCode;
 
-    @Column
-    private int groupLevel;
+	@Column
+	private int groupLevel;
 
-    @Column
-    private Integer parentGroupId = 0;
+	@Column
+	private Integer parentGroupId = 0;
 }

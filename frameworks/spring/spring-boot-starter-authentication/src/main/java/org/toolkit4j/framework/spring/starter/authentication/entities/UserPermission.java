@@ -5,13 +5,13 @@ import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 @Entity
 public class UserPermission extends WithAutoIncrement {
-    private Integer pid;
+	private Integer pid;
 
-    private String permission;
+	private String permission;
 
-    private String permissionName;
+	private String permissionName;
 
-    private String desc;
+	private String desc;
 
-    private String path;
+	private String path;
 }

@@ -15,22 +15,22 @@ import org.toolkit4j.standard.rbac.User;
 @Setter
 @Entity
 public class UserEntity extends User {
-    @Column
-    private String username;
+	@Column
+	private String username;
 
-    @Column
-    private String password;
+	@Column
+	private String password;
 
-    @Column
-    private int age;
+	@Column
+	private int age;
 
-    @Column
-    private int sex;
+	@Column
+	private int sex;
 
-    @Column
-    private String phone;
+	@Column
+	private String phone;
 
-    @Lob
-    @Column
-    private String avatar;
+	@Lob
+	@Column
+	private String avatar;
 }

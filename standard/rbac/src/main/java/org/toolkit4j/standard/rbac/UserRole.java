@@ -9,8 +9,8 @@ import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class UserRole extends WithAutoIncrement {
-    @Column
-    private Integer userId;
+	@Column
+	private Integer userId;
 
-    private Integer roleId;
+	private Integer roleId;
 }

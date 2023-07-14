@@ -1,4 +1,4 @@
 dependencies {
-    api(project(":standard:locker"))
+	api(project(":standard:locker"))
 }
 

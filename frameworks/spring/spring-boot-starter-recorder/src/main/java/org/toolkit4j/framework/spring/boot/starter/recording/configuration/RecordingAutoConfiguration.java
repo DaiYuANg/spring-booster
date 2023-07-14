@@ -20,27 +20,27 @@ import org.toolkit4j.framework.spring.boot.starter.recording.annotation.EnableRe
 @EntityScan({"org.kop.framework.spring.boot.stater.recording.entities"})
 public class RecordingAutoConfiguration {
 
-    @Resource
-    private LoggerConfiguration loggerConfiguration;
+	@Resource
+	private LoggerConfiguration loggerConfiguration;
 
-    @Resource
-    private RecordingConfigurationProperties recordingConfigurationProperties;
+	@Resource
+	private RecordingConfigurationProperties recordingConfigurationProperties;
 
-    @PostConstruct
-    public void init() {
-        // 获取注解参数的示例代码
-        Class<EnableRecording> annotatedClass = EnableRecording.class;
-        val r = annotatedClass.getAnnotation(EnableRecording.class);
-        System.err.println(r.packages());
-    }
+	@PostConstruct
+	public void init() {
+		// 获取注解参数的示例代码
+		Class<EnableRecording> annotatedClass = EnableRecording.class;
+		val r = annotatedClass.getAnnotation(EnableRecording.class);
+		System.err.println(r.packages());
+	}
 
-    @Bean
-    public Gson gson() {
-        return new Gson();
-    }
+	@Bean
+	public Gson gson() {
+		return new Gson();
+	}
 
-    @Bean
-    public StopWatch stopWatch() {
-        return new StopWatch(IdUtil.fastSimpleUUID());
-    }
+	@Bean
+	public StopWatch stopWatch() {
+		return new StopWatch(IdUtil.fastSimpleUUID());
+	}
 }

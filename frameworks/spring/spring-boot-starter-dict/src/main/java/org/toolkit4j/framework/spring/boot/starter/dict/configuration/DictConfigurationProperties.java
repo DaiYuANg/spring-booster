@@ -10,9 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 @ConfigurationProperties(prefix = "groundwork.dict")
 public class DictConfigurationProperties {
-    private String dictPreSuffix = "Dict";
+	private String dictPreSuffix = "Dict";
 
-    private boolean loadDictMetadata = true;
+	private boolean loadDictMetadata = true;
 
-    private boolean async = true;
+	private boolean async = true;
 }

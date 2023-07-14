@@ -18,11 +18,11 @@ import org.toolkit4j.framework.spring.starter.monitor.services.MysqlDevService;
 @AutoConfigureAfter(MonitorAutoConfiguration.class)
 @AutoConfigureOrder(1)
 public class MysqlDevServiceAutoConfiguration {
-    @Resource
-    private DockerConnector dockerConnector;
+	@Resource
+	private DockerConnector dockerConnector;
 
-    @Bean
-    public MysqlDevService mysqlDevService() {
-        return new MysqlDevService();
-    }
+	@Bean
+	public MysqlDevService mysqlDevService() {
+		return new MysqlDevService();
+	}
 }

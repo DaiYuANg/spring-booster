@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'pmd'
 	id 'idea'
+	id 'tasks'
 	id "org.jetbrains.kotlinx.benchmark" version "${kotlinxBenchmarkVersion}" apply(false)
 	id 'org.jetbrains.kotlin.plugin.lombok' version "${kotlinVersion}" apply(false)
 	id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinVersion}" apply(false)
@@ -29,11 +30,14 @@ tasks.jar {
 	enabled = false
 }
 
-group 'org.toolkit4j'
-version '1.0-SNAPSHOT'
+group "org.toolkit4j"
+version "1.0-SNAPSHOT"
 
 apply from: "gradle/projects.gradle"
-apply from: "gradle/tasks.gradle"
 apply from: "gradle/codestyle.gradle"
 
 tasks.build.dependsOn(tasks.spotlessApply)
+
+tasks.withType(AbstractCompile) {
+	options.incremental = true
+}

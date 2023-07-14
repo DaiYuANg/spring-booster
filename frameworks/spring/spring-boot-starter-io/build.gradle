@@ -1,7 +1,6 @@
 ext {
-
 }
 
 dependencies {
-    api(project(":libs:io"))
+	api(project(":libs:io"))
 }

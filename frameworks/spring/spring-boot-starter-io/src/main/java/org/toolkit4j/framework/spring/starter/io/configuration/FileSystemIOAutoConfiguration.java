@@ -11,6 +11,6 @@ import org.springframework.core.Ordered;
 @EnableConfigurationProperties(FileSystemIOConfigurationProperties.class)
 public class FileSystemIOAutoConfiguration {
 
-    @Resource
-    private FileSystemIOConfigurationProperties fileSystemIOConfigurationProperties;
+	@Resource
+	private FileSystemIOConfigurationProperties fileSystemIOConfigurationProperties;
 }

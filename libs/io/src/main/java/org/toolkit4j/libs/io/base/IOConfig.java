@@ -9,7 +9,7 @@ import org.toolkit4j.libs.io.constant.FileSystemType;
 @ToString
 @Builder
 public class IOConfig {
-    private FileSystemType type;
+	private FileSystemType type;
 
-    private String baseURL;
+	private String baseURL;
 }

@@ -1,4 +1,4 @@
 dependencies {
-    api(project(":standard:communication"))
-    api("org.springframework.boot:spring-boot-starter-websocket")
+	api(project(":standard:communication"))
+	api("org.springframework.boot:spring-boot-starter-websocket")
 }

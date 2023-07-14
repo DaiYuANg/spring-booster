@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DictMetadata {
-    String code();
+	String code();
 
-    String desc() default "";
+	String desc() default "";
 }

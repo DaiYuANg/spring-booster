@@ -9,12 +9,12 @@ import org.springframework.context.ApplicationEvent;
 @ToString
 @Slf4j
 public abstract class AbstractEvent<T> extends ApplicationEvent {
-    private static final String logTemplate = "event:{}, active at:{}, from :{}";
-    private final T transferData;
+	private static final String logTemplate = "event:{}, active at:{}, from :{}";
+	private final T transferData;
 
-    public AbstractEvent(Object source, T data) {
-        super(source);
-        this.transferData = data;
-        log.debug(logTemplate, this.getClass().getName(), getTimestamp(), source);
-    }
+	public AbstractEvent(Object source, T data) {
+		super(source);
+		this.transferData = data;
+		log.debug(logTemplate, this.getClass().getName(), getTimestamp(), source);
+	}
 }

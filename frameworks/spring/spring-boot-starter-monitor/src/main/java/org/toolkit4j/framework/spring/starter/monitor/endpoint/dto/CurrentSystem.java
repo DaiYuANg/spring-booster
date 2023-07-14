@@ -7,5 +7,4 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @Accessors(chain = true)
-public class CurrentSystem {
-}
+public class CurrentSystem {}

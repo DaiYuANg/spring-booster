@@ -8,5 +8,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ToString
 public class MinioConfigurationProperties {
-    private String url;
+	private String url;
 }

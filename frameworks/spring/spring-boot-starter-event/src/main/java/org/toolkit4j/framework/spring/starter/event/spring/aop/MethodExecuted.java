@@ -17,20 +17,18 @@ import org.toolkit4j.framework.spring.starter.event.spring.base.NormalEvent;
 @Aspect
 @Slf4j
 public class MethodExecuted {
-    @Resource
-    private SpringEventPublisher eventPublisher;
+	@Resource
+	private SpringEventPublisher eventPublisher;
 
-    @Pointcut("@annotation(org.toolkit4j.framework.spring.starter.event.spring.annotations.MethodExecuted)")
-    public void methodExecutedPointCut() {
-    }
+	@Pointcut("@annotation(org.toolkit4j.framework.spring.starter.event.spring.annotations.MethodExecuted)")
+	public void methodExecutedPointCut() {}
 
-    @SneakyThrows
-    @Around("methodExecutedPointCut()")
-    public Object around(@NotNull ProceedingJoinPoint pjp) {
-        var returned = pjp.proceed();
-        eventPublisher.publish(returned.equals(Void.TYPE) ?
-                new NormalEvent(this) :
-                new MethodExecutedEvent(this, returned));
-        return returned;
-    }
+	@SneakyThrows
+	@Around("methodExecutedPointCut()")
+	public Object around(@NotNull ProceedingJoinPoint pjp) {
+		var returned = pjp.proceed();
+		eventPublisher.publish(
+				returned.equals(Void.TYPE) ? new NormalEvent(this) : new MethodExecutedEvent(this, returned));
+		return returned;
+	}
 }

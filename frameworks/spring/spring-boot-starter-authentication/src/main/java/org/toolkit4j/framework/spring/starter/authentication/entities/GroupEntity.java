@@ -12,21 +12,21 @@ import org.toolkit4j.standard.rbac.Group;
 @Setter
 @Accessors(chain = true)
 public class GroupEntity extends Group {
-    @Column
-    private String groupAliasName1;
+	@Column
+	private String groupAliasName1;
 
-    @Column
-    private String groupAliasName2;
+	@Column
+	private String groupAliasName2;
 
-    @Column
-    private String groupAliasName3;
+	@Column
+	private String groupAliasName3;
 
-    @Column
-    private String groupDescription;
+	@Column
+	private String groupDescription;
 
-    @Column
-    private String groupConcatTelephone;
+	@Column
+	private String groupConcatTelephone;
 
-    @Column
-    private String groupAddress;
+	@Column
+	private String groupAddress;
 }

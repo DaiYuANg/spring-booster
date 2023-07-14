@@ -2,6 +2,7 @@ package org.toolkit4j.framework.spring.starter.monitor.configurations.endpoint;
 
 import com.google.gson.Gson;
 import jakarta.annotation.Resource;
+import java.net.InetAddress;
 import lombok.SneakyThrows;
 import lombok.val;
 import okhttp3.OkHttpClient;
@@ -25,78 +26,77 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import java.net.InetAddress;
-
 @Configuration
 @ConditionalOnWebApplication
 @EnableWebMvc
 @ComponentScan("org.toolkit4j.framework.spring.starter.monitor.**.*")
-//@EnableJpaRepositories("org.kop.framework.spring.starter.dev.admin.endpoint.repos")
+// @EnableJpaRepositories("org.kop.framework.spring.starter.dev.admin.endpoint.repos")
 @EntityScan({"org.kop.framework.spring.starter.dev.admin.endpoint.entities"})
 public class MonitorUIAutoConfiguration implements WebMvcConfigurer {
 
-    @Resource
-    private ApplicationContext applicationContext;
+	@Resource
+	private ApplicationContext applicationContext;
 
-    @Resource
-    private Environment env;
+	@Resource
+	private Environment env;
 
-    @Bean
-    public ViewResolver templateResolver() {
-        val viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine(htmlTemplateResolver()));
-        viewResolver.setContentType("text/html");
-        viewResolver.setCharacterEncoding("UTF-8");
-        viewResolver.setViewNames(new String[]{"*.html"});
-        return viewResolver;
-    }
+	@Bean
+	public ViewResolver templateResolver() {
+		val viewResolver = new ThymeleafViewResolver();
+		viewResolver.setTemplateEngine(templateEngine(htmlTemplateResolver()));
+		viewResolver.setContentType("text/html");
+		viewResolver.setCharacterEncoding("UTF-8");
+		viewResolver.setViewNames(new String[] {"*.html"});
+		return viewResolver;
+	}
 
-    private @NotNull ITemplateResolver htmlTemplateResolver() {
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("/templates/");
-        resolver.setCacheable(false);
-        resolver.setTemplateMode(TemplateMode.HTML);
-        return resolver;
-    }
+	private @NotNull ITemplateResolver htmlTemplateResolver() {
+		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+		resolver.setApplicationContext(applicationContext);
+		resolver.setPrefix("/templates/");
+		resolver.setCacheable(false);
+		resolver.setTemplateMode(TemplateMode.HTML);
+		return resolver;
+	}
 
-    private @NotNull ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.setTemplateResolver(templateResolver);
-        return engine;
-    }
+	private @NotNull ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
+		SpringTemplateEngine engine = new SpringTemplateEngine();
+		engine.setTemplateResolver(templateResolver);
+		return engine;
+	}
 
-    @Bean
-    @ConditionalOnMissingBean
-    public ServerEndpointExporter serverEndpointExporter() {
-        return new ServerEndpointExporter();
-    }
+	@Bean
+	@ConditionalOnMissingBean
+	public ServerEndpointExporter serverEndpointExporter() {
+		return new ServerEndpointExporter();
+	}
 
-    @Bean
-    @ConditionalOnMissingBean
-    public Gson gson() {
-        return new Gson();
-    }
+	@Bean
+	@ConditionalOnMissingBean
+	public Gson gson() {
+		return new Gson();
+	}
 
-    @SneakyThrows
-    @Bean
-    public ServerBasicInfo serverAccessAddress() {
-        return ServerBasicInfo.builder()
-                .contextPath(env.getProperty("server.context-path", "/"))
-                .port(env.getProperty("server.port", String.valueOf(8080)))
-                .host(InetAddress.getLocalHost().getHostAddress())
-                .build();
-    }
+	@SneakyThrows
+	@Bean
+	public ServerBasicInfo serverAccessAddress() {
+		return ServerBasicInfo.builder()
+				.contextPath(env.getProperty("server.context-path", "/"))
+				.port(env.getProperty("server.port", String.valueOf(8080)))
+				.host(InetAddress.getLocalHost().getHostAddress())
+				.build();
+	}
 
-    @Bean
-    public OkHttpClient okHttpClient() {
-        return new OkHttpClient();
-    }
+	@Bean
+	public OkHttpClient okHttpClient() {
+		return new OkHttpClient();
+	}
 
-//    @Bean
-//    public DataSource devAdminDataSource() {
-//        return DataSourceBuilder.create().driverClassName("org.h2.Driver").type(JdbcDataSource.class)
-//                .url("jdbc:h2:memory:default")
-//                .build();
-//    }
+	// @Bean
+	// public DataSource devAdminDataSource() {
+	// return
+	// DataSourceBuilder.create().driverClassName("org.h2.Driver").type(JdbcDataSource.class)
+	// .url("jdbc:h2:memory:default")
+	// .build();
+	// }
 }

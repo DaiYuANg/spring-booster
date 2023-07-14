@@ -8,15 +8,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ToString
 public class AuthenticationProperties {
-    private boolean enableGroup;
+	private boolean enableGroup;
 
-    private boolean enablePermission;
+	private boolean enablePermission;
 
-    private boolean enableMultiDevice;
+	private boolean enableMultiDevice;
 
-    private boolean enableAutoRefreshToken;
+	private boolean enableAutoRefreshToken;
 
-    private boolean autoNotification;
+	private boolean autoNotification;
 
-    private int keyExpireTime = 36000;
+	private int keyExpireTime = 36000;
 }

@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Test;
 
 class FileHelperTest {
 
-    @Test
-    void walk() {
-//        FileUtils.walk(".", System.err::println);
-    }
+	@Test
+	void walk() {
+		// FileUtils.walk(".", System.err::println);
+	}
 
-    @Test
-    void testWalk() {
-    }
+	@Test
+	void testWalk() {}
 }

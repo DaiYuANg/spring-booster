@@ -13,18 +13,18 @@ import org.toolkit4j.framework.spring.starter.event.spring.annotations.MethodExe
 @RestController
 @Slf4j
 public class TestController {
-    @Resource
-    private AsyncWorker asyncWorker;
+	@Resource
+	private AsyncWorker asyncWorker;
 
-    @EventListener(ApplicationStartedEvent.class)
-    @Async
-    public void test(ApplicationStartedEvent event) {
-        log.info("started");
-    }
+	@EventListener(ApplicationStartedEvent.class)
+	@Async
+	public void test(ApplicationStartedEvent event) {
+		log.info("started");
+	}
 
-    @GetMapping("/test")
-    @MethodExecuted
-    public void test() {
-        asyncWorker.run(() -> System.err.println(123));
-    }
+	@GetMapping("/test")
+	@MethodExecuted
+	public void test() {
+		asyncWorker.run(() -> System.err.println(123));
+	}
 }

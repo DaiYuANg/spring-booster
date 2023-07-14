@@ -12,17 +12,21 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class UploadController {
 
-    @SneakyThrows
-    @RequestMapping(value = "/simpleUpload", method = {RequestMethod.POST, RequestMethod.PUT})
-    public String upload(@RequestParam("file") @NotNull MultipartFile file) {
-        return file.getResource().getFile().getAbsolutePath();
-    }
+	@SneakyThrows
+	@RequestMapping(
+			value = "/simpleUpload",
+			method = {RequestMethod.POST, RequestMethod.PUT})
+	public String upload(@RequestParam("file") @NotNull MultipartFile file) {
+		return file.getResource().getFile().getAbsolutePath();
+	}
 
-    @SneakyThrows
-    @RequestMapping(value = "/base64Upload", method = {RequestMethod.POST, RequestMethod.PUT})
-    public String upload(@RequestParam("file") @NotNull String file) {
-        val targetPath = System.getProperty("java.io.tmpdir") + "file.png";
-//        Converter.base64ToFile(file, targetPath);
-        return targetPath;
-    }
+	@SneakyThrows
+	@RequestMapping(
+			value = "/base64Upload",
+			method = {RequestMethod.POST, RequestMethod.PUT})
+	public String upload(@RequestParam("file") @NotNull String file) {
+		val targetPath = System.getProperty("java.io.tmpdir") + "file.png";
+		// Converter.base64ToFile(file, targetPath);
+		return targetPath;
+	}
 }

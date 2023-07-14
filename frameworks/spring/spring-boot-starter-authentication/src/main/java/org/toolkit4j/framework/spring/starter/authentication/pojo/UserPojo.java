@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 
 public class UserPojo {
 
-    @NotBlank(message = "user name is blank")
-    private String name;
+	@NotBlank(message = "user name is blank")
+	private String name;
 
-    @Email(message = "email not validated")
-    private String email;
+	@Email(message = "email not validated")
+	private String email;
 }

@@ -8,9 +8,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ToString
 public class ScheduledConfigurationProperties {
-    private String defaultScheduledNamePrefix = "scheduled-%d";
+	private String defaultScheduledNamePrefix = "scheduled-%d";
 
-    private int coreSize = Runtime.getRuntime().availableProcessors();
+	private int coreSize = Runtime.getRuntime().availableProcessors();
 
-    private boolean preheat = false;
+	private boolean preheat = false;
 }
