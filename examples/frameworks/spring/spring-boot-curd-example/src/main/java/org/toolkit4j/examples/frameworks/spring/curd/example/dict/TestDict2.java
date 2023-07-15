@@ -1,4 +1,4 @@
-package org.toolkit4j.examples.frameworks.spring.curd.example.dict;
+package org.toolkit4J.examples.frameworks.spring.curd.example.dict;
 
 import lombok.Getter;
 

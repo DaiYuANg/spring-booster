@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.authentication.configurations;
+package org.toolkit4J.framework.spring.starter.authentication.configurations;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -7,13 +7,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.toolkit4j.framework.spring.starter.authentication.funcational.JwtSigner;
+import org.toolkit4J.framework.spring.starter.authentication.funcational.JwtSigner;
 
 @AutoConfiguration
 @EnableConfigurationProperties(AuthenticationProperties.class)
-@ComponentScan("org.kop.framework.spring.starter.authentication.services.**")
-@EnableJpaRepositories("org.kop.framework.spring.starter.authentication.repos")
-@EntityScan({"org.kop.framework.spring.starter.authentication.entities", "org.kop.standard.rbac"})
+@ComponentScan("org.toolkit4J.framework.spring.starter.authentication.services.**")
+@EnableJpaRepositories("org.toolkit4J.framework.spring.starter.authentication.repos")
+@EntityScan({"org.toolkit4J.framework.spring.starter.authentication.entities", "org.toolkit4j.standard.rbac"})
 public class AuthenticationConfiguration {
 
 	@PostConstruct

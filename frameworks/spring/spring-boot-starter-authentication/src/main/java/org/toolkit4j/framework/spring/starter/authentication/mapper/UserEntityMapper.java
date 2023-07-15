@@ -1,10 +1,10 @@
-package org.toolkit4j.framework.spring.starter.authentication.mapper;
+package org.toolkit4J.framework.spring.starter.authentication.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import org.toolkit4j.framework.spring.starter.authentication.entities.UserEntity;
-import org.toolkit4j.framework.spring.starter.authentication.pojo.UserPojo;
+import org.toolkit4J.framework.spring.starter.authentication.entities.UserEntity;
+import org.toolkit4J.framework.spring.starter.authentication.pojo.UserPojo;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserEntityMapper {

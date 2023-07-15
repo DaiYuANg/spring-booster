@@ -1,14 +1,14 @@
-package org.toolkit4j.framework.spring.starter.event.spring.base;
+package org.toolkit4J.framework.spring.starter.event.spring.base;
 
 import org.jetbrains.annotations.NotNull;
 
-public class CompareTimingEvent extends ComparableEvent<Object> {
-	public CompareTimingEvent(Object source, Object data) {
+public class CompareTimingEvent<T> extends ComparableEvent<T> {
+	public CompareTimingEvent(Object source, T data) {
 		super(source, data);
 	}
 
 	@Override
-	public int compareTo(@NotNull Object o) {
+	public int compareTo(@NotNull T o) {
 		return Math.toIntExact(this.getTimestamp());
 	}
 }

@@ -1,11 +1,11 @@
-package org.toolkit4j.framework.spring.starter.authentication.entities;
+package org.toolkit4J.framework.spring.starter.authentication.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.toolkit4j.standard.rbac.Group;
+import org.toolkit4J.standard.rbac.Group;
 
 @Entity
 @Getter

@@ -1,4 +1,4 @@
-package org.toolkit4j.examples.frameworks.spring.curd.example.controller;
+package org.toolkit4J.examples.frameworks.spring.curd.example.controller;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

@@ -1,15 +1,9 @@
 package org.toolkit4j.framework.spring.starter.monitor.endpoint.ws;
 
-import cn.hutool.core.date.DateUtil;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.websocket.*;
 import jakarta.websocket.server.ServerEndpoint;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.toolkit4j.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.toolkit4j.framework.spring.starter.monitor.endpoint.services.ISystemInfoService;
+
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 @ServerEndpoint("/dev/admin/system/info")
 @Component
@@ -31,7 +28,7 @@ public class SystemInfoEndpoint {
 
 	private static ISystemInfoService systemInfoService;
 
-	private static Gson gson;
+	private static ObjectMapper objectMapper;
 
 	private static AsyncWorker asyncWorker;
 
@@ -41,8 +38,8 @@ public class SystemInfoEndpoint {
 	}
 
 	@Autowired
-	public void setupGson(Gson gson) {
-		SystemInfoEndpoint.gson = gson;
+	public void setupObjectMapper(ObjectMapper gson) {
+		SystemInfoEndpoint.objectMapper = gson;
 	}
 
 	@Autowired
@@ -81,15 +78,15 @@ public class SystemInfoEndpoint {
 
 	@OnMessage
 	public void onMessage(String message) {
-		asyncWorker
-				.supply(() -> new HashMap<String, Object>() {
-					{
-						put("now", DateUtil.date().toString());
-						put("list", systemInfoService.getAllThreadOfCurrentJVM());
-					}
-				})
-				.thenApply(r -> gson.toJson(r, new TypeToken<Map<String, Object>>() {}.getType()))
-				.thenAccept(this::send);
+//		asyncWorker
+//				.supply(() -> new HashMap<String, Object>() {
+//					{
+//						put("now", DateUtil.date().toString());
+//						put("list", systemInfoService.getAllThreadOfCurrentJVM());
+//					}
+//				})
+//				.thenApply(r -> gson.toJson(r, new TypeToken<Map<String, Object>>() {}.getType()))
+//				.thenAccept(this::send);
 	}
 
 	@OnClose

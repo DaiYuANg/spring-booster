@@ -14,7 +14,7 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.toolkit4j.framework.spring.boot.starter.async.base.AsyncWorker;
-import org.toolkit4j.framework.spring.boot.starter.dict.annotation.DictTranslate;
+import org.toolkit4j.framework.spring.boot.starter.dict.annotations.DictTranslate;
 import org.toolkit4j.framework.spring.boot.starter.dict.configuration.DictConfigurationProperties;
 import org.toolkit4j.framework.spring.boot.starter.dict.repos.DictRepository;
 import org.toolkit4j.framework.spring.boot.starter.dict.services.IDictService;

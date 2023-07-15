@@ -1,11 +1,8 @@
-package org.toolkit4j.framework.spring.boot.starter.async.config;
+package org.toolkit4J.framework.spring.boot.starter.async.config;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -18,7 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.toolkit4j.framework.spring.boot.starter.async.base.AsyncWorker;
+import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
 @ConditionalOnClass(AsyncWorker.class)
@@ -63,5 +64,10 @@ public class AsyncWorkerAutoConfiguration {
 		val asyncWorker = new AsyncWorker();
 		log.info("configure async worker successful");
 		return asyncWorker;
+	}
+
+	@Bean
+	public AsyncAnnotationBeanPostProcessor asyncAnnotationBeanPostProcessor(){
+		return new AsyncAnnotationBeanPostProcessor();
 	}
 }

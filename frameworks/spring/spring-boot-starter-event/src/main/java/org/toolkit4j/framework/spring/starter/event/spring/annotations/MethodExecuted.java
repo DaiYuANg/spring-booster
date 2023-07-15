@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.event.spring.annotations;
+package org.toolkit4J.framework.spring.starter.event.spring.annotations;
 
 import java.lang.annotation.*;
 

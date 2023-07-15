@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.event.configurations;
+package org.toolkit4J.framework.spring.starter.event.configurations;
 
 import com.google.common.eventbus.EventBus;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

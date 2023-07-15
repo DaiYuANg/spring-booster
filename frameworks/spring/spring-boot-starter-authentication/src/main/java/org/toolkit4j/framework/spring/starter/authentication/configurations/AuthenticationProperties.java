@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.authentication.configurations;
+package org.toolkit4J.framework.spring.starter.authentication.configurations;
 
 import lombok.Data;
 import lombok.ToString;

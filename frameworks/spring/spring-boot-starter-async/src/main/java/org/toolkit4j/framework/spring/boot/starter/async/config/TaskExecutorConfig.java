@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.boot.starter.async.config;
+package org.toolkit4J.framework.spring.boot.starter.async.config;
 
 import jakarta.annotation.Resource;
 import java.util.concurrent.Executor;

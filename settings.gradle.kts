@@ -34,7 +34,7 @@ gradleEnterprise {
 //	}
 // }
 
-rootProject.name = "toolkit4j"
+rootProject.name = "toolkit4J"
 
 // ------------libs------------
 include("libs:helpers")
@@ -88,6 +88,9 @@ project(":frameworks:spring:spring-boot-starter-dict").name = "spring-boot-start
 include("frameworks:spring:spring-boot-starter-devtools")
 project(":frameworks:spring:spring-boot-starter-devtools").name = "spring-boot-starter-devtools"
 
+include("frameworks:spring:spring-boot-starter-cached")
+findProject(":frameworks:spring:spring-boot-starter-cached")?.name = "spring-boot-starter-cached"
+
 // ------------examples------------
 include("examples:frameworks:spring:spring-boot-curd-example")
 project(":examples:frameworks:spring:spring-boot-curd-example").name = "spring-boot-curd-example"
@@ -95,30 +98,26 @@ project(":examples:frameworks:spring:spring-boot-curd-example").name = "spring-b
 // ------------standard------------
 include("standard:rbac")
 project(":standard:rbac").name = "rbac"
+
 include("standard:persistence")
 project(":standard:persistence").name = "persistence"
-include("standard:communication")
 
+include("standard:communication")
 project(":standard:communication").name = "communication"
 
 include("standard:locker")
-
 project(":standard:locker").name = "locker"
 
 include("standard:restful")
-
 project(":standard:restful").name = "restful"
 
 include("docs")
-
 project(":docs").name = "docs"
 
 include("ui:monitor-ui")
-
 project(":ui:monitor-ui").name = "monitor-ui"
-include("libs:cache:cache-ehcache")
-findProject(":libs:cache:cache-ehcache")?.name = "cache-ehcache"
-include("standard:cache")
-findProject(":standard:cache")?.name = "cache"
+
 include("libs:cache:cache-simple")
 findProject(":libs:cache:cache-simple")?.name = "cache-simple"
+include("libs:cache:cache-redis-lettuce")
+findProject(":libs:cache:cache-redis-lettuce")?.name = "cache-redis-lettuce"

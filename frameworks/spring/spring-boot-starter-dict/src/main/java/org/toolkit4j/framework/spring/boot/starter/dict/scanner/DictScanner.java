@@ -1,10 +1,11 @@
 package org.toolkit4j.framework.spring.boot.starter.dict.scanner;
 
+import org.jetbrains.annotations.NotNull;
+import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictFunctional;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
-import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictFunctional;
 
 public interface DictScanner {
 	Map<String, Stream<Class<?>>> scannedClasspath = new HashMap<>();
@@ -12,7 +13,7 @@ public interface DictScanner {
 	default Map<String, DictFunctional> doScan() {
 		// return scanPackages()
 		// .flatMap(this::collectDict)
-		return null;
+		return new HashMap<>();
 		// .collect(toUnmodifiableMap(DictFunctional::getCode, this::toMap));
 	}
 

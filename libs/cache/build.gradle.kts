@@ -1,5 +1,5 @@
-subprojects {
-    dependencies {
-        implementation(project(":standard:cache"))
+subprojects{
+    dependencies{
+        implementation("javax.cache:cache-api:1.1.1")
     }
 }

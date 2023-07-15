@@ -1,1 +1,1 @@
-package org.toolkit4j.framework.spring.boot.dev.ui;
+package org.toolkit4J.framework.spring.boot.dev.ui;

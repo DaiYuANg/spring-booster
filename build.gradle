@@ -30,7 +30,7 @@ tasks.jar {
 	enabled = false
 }
 
-group "org.toolkit4j"
+group "org.toolkit4J"
 version "1.0-SNAPSHOT"
 
 apply from: "gradle/projects.gradle"
@@ -38,6 +38,6 @@ apply from: "gradle/codestyle.gradle"
 
 tasks.build.dependsOn(tasks.spotlessApply)
 
-tasks.withType(AbstractCompile) {
+tasks.withType(AbstractCompile).configureEach {
 	options.incremental = true
 }

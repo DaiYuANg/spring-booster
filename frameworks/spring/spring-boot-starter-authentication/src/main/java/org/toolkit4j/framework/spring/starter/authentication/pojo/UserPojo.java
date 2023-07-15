@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.authentication.pojo;
+package org.toolkit4J.framework.spring.starter.authentication.pojo;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
