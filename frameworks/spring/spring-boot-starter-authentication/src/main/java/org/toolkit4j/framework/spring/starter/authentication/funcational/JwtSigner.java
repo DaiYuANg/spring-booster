@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.authentication.funcational;
+package org.toolkit4J.framework.spring.starter.authentication.funcational;
 
 import cn.hutool.crypto.asymmetric.RSA;
 import com.auth0.jwt.JWT;
@@ -6,16 +6,17 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.stereotype.Component;
-import org.toolkit4j.framework.spring.starter.authentication.configurations.AuthenticationProperties;
-import org.toolkit4j.framework.spring.starter.authentication.entities.UserEntity;
+import org.toolkit4J.framework.spring.starter.authentication.configurations.AuthenticationProperties;
+import org.toolkit4J.framework.spring.starter.authentication.entities.UserEntity;
+
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 
 @Component
 @Slf4j

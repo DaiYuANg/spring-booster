@@ -1,14 +1,15 @@
-package org.toolkit4j.standard.communication;
+package org.toolkit4J.standard.communication;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.websocket.Session;
-import java.nio.ByteBuffer;
-import java.util.Collection;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+
+import java.nio.ByteBuffer;
+import java.util.Collection;
 
 public abstract class Websocket<WS extends Websocket<WS>> {
 	protected volatile Session session;

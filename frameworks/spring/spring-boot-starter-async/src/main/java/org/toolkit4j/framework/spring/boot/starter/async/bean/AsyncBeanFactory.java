@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.boot.starter.async.bean;
+package org.toolkit4J.framework.spring.boot.starter.async.bean;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.InitializingBean;

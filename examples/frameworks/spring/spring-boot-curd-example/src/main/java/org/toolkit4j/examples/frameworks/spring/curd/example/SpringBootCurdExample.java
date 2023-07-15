@@ -1,4 +1,4 @@
-package org.toolkit4j.examples.frameworks.spring.curd.example;
+package org.toolkit4J.examples.frameworks.spring.curd.example;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.toolkit4j.framework.spring.boot.starter.dict.annotation.EnableDict;
-
-import java.util.HashMap;
+import org.toolkit4j.framework.spring.boot.starter.dict.annotations.EnableDict;
 
 // import org.toolkit4j.framework.spring.starter.monitor.annotations.EnableDevAdmin;
 

@@ -1,13 +1,16 @@
 package org.toolkit4j.framework.spring.boot.starter.dict.scanner;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.reflections.Reflections;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictFunctional;
+
+import javax.cache.Cache;
+import java.util.stream.Stream;
 
 @Slf4j
 @Component
@@ -18,6 +21,17 @@ public class DefaultDictScannerImpl implements DictScanner {
 
 	@Resource
 	private Reflections reflections;
+
+
+
+	@PostConstruct
+	public void init(){
+//		Objects.requireNonNull(jCacheCacheManager.getCacheManager()).getCacheNames().forEach(r->{
+//			System.err.println(r);
+//		});
+//		jCacheCacheManager.getCache("dictCache").
+//		val cache = jc.getCache("dictCache");
+	}
 
 	@Override
 	public Stream<Class<?>> scanPackages() {

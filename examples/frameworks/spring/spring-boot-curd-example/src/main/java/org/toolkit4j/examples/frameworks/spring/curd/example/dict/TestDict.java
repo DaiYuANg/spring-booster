@@ -1,10 +1,10 @@
-package org.toolkit4j.examples.frameworks.spring.curd.example.dict;
+package org.toolkit4J.examples.frameworks.spring.curd.example.dict;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import org.toolkit4j.framework.spring.boot.starter.dict.annotation.DictMetadata;
-import org.toolkit4j.framework.spring.boot.starter.dict.annotation.DictValue;
+import org.toolkit4j.framework.spring.boot.starter.dict.annotations.DictMetadata;
+import org.toolkit4j.framework.spring.boot.starter.dict.annotations.DictValue;
 
 @ToString
 @Getter

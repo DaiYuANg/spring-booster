@@ -1,13 +1,15 @@
-// @ts-check
+// @ts-nocheck
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const title = "toolkit4J"
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'My Site',
-    tagline: 'Dinosaurs are cool',
+    title: title,
+    tagline: 'Developer Kit for JAVA/Kotlin',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
@@ -29,7 +31,7 @@ const config = {
     // to replace "en" with "zh-Hans".
     i18n: {
         defaultLocale: 'en',
-        locales: ['en'],
+        locales: ['en','zh'],
     },
 
     presets: [
@@ -64,11 +66,11 @@ const config = {
             // Replace with your project's social card
             image: 'img/docusaurus-social-card.jpg',
             navbar: {
-                title: 'My Site',
-                logo: {
-                    alt: 'My Site Logo',
-                    src: 'img/logo.svg',
-                },
+                title: title,
+                // logo: {
+                //     alt: 'My Site Logo',
+                //     src: 'img/logo.svg',
+                // },
                 items: [
                     {
                         type: 'docSidebar',
@@ -81,6 +83,10 @@ const config = {
                         href: 'https://github.com/facebook/docusaurus',
                         label: 'GitHub',
                         position: 'right',
+                    },
+                    {
+                        type: 'localeDropdown',
+                        position: 'left',
                     },
                 ],
             },

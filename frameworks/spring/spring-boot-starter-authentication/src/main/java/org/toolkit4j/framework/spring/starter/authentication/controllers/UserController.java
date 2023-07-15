@@ -1,19 +1,18 @@
-package org.toolkit4j.framework.spring.starter.authentication.controllers;
+package org.toolkit4J.framework.spring.starter.authentication.controllers;
 
 import jakarta.annotation.Resource;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.toolkit4j.framework.spring.starter.authentication.entities.UserEntity;
-import org.toolkit4j.framework.spring.starter.authentication.mapper.UserEntityMapper;
-import org.toolkit4j.framework.spring.starter.authentication.pojo.UserPojo;
-import org.toolkit4j.framework.spring.starter.authentication.services.IUserServices;
+import org.toolkit4J.framework.spring.starter.authentication.entities.UserEntity;
+import org.toolkit4J.framework.spring.starter.authentication.mapper.UserEntityMapper;
+import org.toolkit4J.framework.spring.starter.authentication.pojo.UserPojo;
+import org.toolkit4J.framework.spring.starter.authentication.services.IUserServices;
 
-@Controller
-@RestController("/groundwork/user")
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController("/authentication/default/impl/user")
 public class UserController {
 
 	@Resource

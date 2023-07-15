@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.event.bus;
+package org.toolkit4J.framework.spring.starter.event.bus;
 
 import com.google.common.eventbus.EventBus;
 import jakarta.annotation.Resource;

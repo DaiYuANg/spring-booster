@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.authentication.services.impl;
+package org.toolkit4J.framework.spring.starter.authentication.services.impl;
 
 import cn.hutool.core.lang.tree.Tree;
 import jakarta.annotation.Resource;
@@ -7,9 +7,9 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.toolkit4j.framework.spring.starter.authentication.entities.GroupEntity;
-import org.toolkit4j.framework.spring.starter.authentication.repos.GroupEntityRepository;
-import org.toolkit4j.framework.spring.starter.authentication.services.IGroupService;
+import org.toolkit4J.framework.spring.starter.authentication.entities.GroupEntity;
+import org.toolkit4J.framework.spring.starter.authentication.repos.GroupEntityRepository;
+import org.toolkit4J.framework.spring.starter.authentication.services.IGroupService;
 
 @Service
 public class GroupServiceImpl implements IGroupService<GroupEntity> {

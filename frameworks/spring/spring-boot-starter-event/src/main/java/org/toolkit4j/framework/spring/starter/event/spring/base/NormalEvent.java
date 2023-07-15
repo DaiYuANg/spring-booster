@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.starter.event.spring.base;
+package org.toolkit4J.framework.spring.starter.event.spring.base;
 
 import org.springframework.context.ApplicationEvent;
 

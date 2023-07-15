@@ -1,6 +1,5 @@
-package org.toolkit4j.framework.spring.boot.starter.async.bean;
+package org.toolkit4J.framework.spring.boot.starter.async.bean;
 
-import java.lang.reflect.Field;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -8,6 +7,8 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.Ordered;
+
+import java.lang.reflect.Field;
 
 public class AsyncBeanRegister implements ApplicationContextInitializer<ConfigurableApplicationContext>, Ordered {
 	@SneakyThrows

@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.boot.starter.async.config;
+package org.toolkit4J.framework.spring.boot.starter.async.config;
 
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;

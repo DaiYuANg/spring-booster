@@ -1,4 +1,4 @@
-package org.toolkit4j.standard.rbac;
+package org.toolkit4J.standard.rbac;
 
 import jakarta.persistence.*;
 import org.toolkit4j.standard.persistence.base.WithAutoIncrement;

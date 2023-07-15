@@ -1,158 +1,162 @@
 package org.toolkit4J.libs.cache.simple;
 
-import lombok.ToString;
-import lombok.val;
-import net.jodah.expiringmap.ExpirationPolicy;
 import net.jodah.expiringmap.ExpiringMap;
-import org.jetbrains.annotations.NotNull;
-import org.toolkit4J.standard.cache.base.Cache;
 
-import java.io.Serializable;
-import java.time.Duration;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.TimeUnit;
+import javax.cache.Cache;
+import javax.cache.CacheManager;
+import javax.cache.configuration.CacheEntryListenerConfiguration;
+import javax.cache.configuration.Configuration;
+import javax.cache.integration.CompletionListener;
+import javax.cache.processor.EntryProcessor;
+import javax.cache.processor.EntryProcessorException;
+import javax.cache.processor.EntryProcessorResult;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-@ToString
-public class SimpleCache<K extends Serializable & Comparable<K>, V extends Serializable> implements Cache<K, V> {
-    private final ExpiringMap<K, V> internal;
+public class SimpleCache<K, V> implements Cache<K, V> {
+    private final ExpiringMap<K, V> internal =
+            ExpiringMap.builder()
+                    .variableExpiration()
+                    .build();
 
-    SimpleCache() {
-        internal = ExpiringMap.builder()
-                .expirationPolicy(ExpirationPolicy.CREATED)
-                .variableExpiration()
-                .build();
+    @Override
+    public V get(K key) {
+        return internal.get(key);
     }
 
+    @Override
+    public Map<K, V> getAll(Set<? extends K> keys) {
+        return null;
+    }
+
+    @Override
+    public boolean containsKey(K key) {
+        return false;
+    }
+
+    @Override
+    public void loadAll(Set<? extends K> keys, boolean replaceExistingValues, CompletionListener completionListener) {
+
+    }
 
     @Override
     public void put(K key, V value) {
-        internal.put(key, value);
+
     }
 
     @Override
-    public void put(K key, V value, long duration, TimeUnit timeUnit) {
-        internal.put(key, value, duration, timeUnit);
+    public V getAndPut(K key, V value) {
+        return null;
     }
 
     @Override
-    public void put(K key, V value, @NotNull Duration duration) {
-        internal.put(key, value, duration.toNanos(), TimeUnit.NANOSECONDS);
+    public void putAll(Map<? extends K, ? extends V> map) {
+
     }
 
     @Override
     public boolean putIfAbsent(K key, V value) {
-        return Objects.isNull(internal.putIfAbsent(key, value));
+        return false;
     }
 
     @Override
-    public V getOrPut(K key, V value) {
-        val v = internal.get(key);
-        if (Objects.nonNull(v)) return v;
-        return internal.put(key, value);
+    public boolean remove(K key) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(K key, V oldValue) {
+        return false;
     }
 
     @Override
     public V getAndRemove(K key) {
-        val value = internal.get(key);
-        if (Objects.isNull(value)) return null;
-        internal.remove(key);
-        return value;
+        return null;
     }
 
     @Override
-    public boolean hasKey(K key) {
-        return internal.containsKey(key);
+    public boolean replace(K key, V oldValue, V newValue) {
+        return false;
     }
 
     @Override
-    public boolean hasValue(V value) {
-        return internal.containsKey(value);
+    public boolean replace(K key, V value) {
+        return false;
     }
 
     @Override
-    public Optional<V> get(K key) {
-        return Optional.of(internal.get(key));
+    public V getAndReplace(K key, V value) {
+        return null;
     }
 
     @Override
-    public @NotNull Set<K> getAllOfKey() {
-        return internal.keySet();
+    public void removeAll(Set<? extends K> keys) {
+
     }
 
     @Override
-    public @NotNull Collection<V> getAllOfValue() {
-        return internal.values();
-    }
+    public void removeAll() {
 
-    @Override
-    public void remove(K key) {
-        internal.remove(key);
-    }
-
-    @Override
-    public void removeAll(@NotNull List<K> keys) {
-        keys.stream().distinct().forEach(internal::remove);
-    }
-
-    @Override
-    public void removeAll(@NotNull Set<K> keys) {
-        keys.forEach(internal::remove);
-    }
-
-    @Override
-    public void removeAll(K[] keys) {
-        Arrays.stream(keys).forEach(internal::remove);
     }
 
     @Override
     public void clear() {
-        internal.clear();
+
     }
 
     @Override
-    public Optional<V> removeAndGet(K key) {
-        val value = internal.get(key);
-        internal.remove(key);
-        return Optional.of(value);
+    public <C extends Configuration<K, V>> C getConfiguration(Class<C> clazz) {
+        return null;
     }
 
     @Override
-    public void expire(K key, long t, TimeUnit unit) {
-        internal.setExpiration(key, t, unit);
+    public <T> T invoke(K key, EntryProcessor<K, V, T> entryProcessor, Object... arguments) throws EntryProcessorException {
+        return null;
     }
 
     @Override
-    public void expire(K key, @NotNull Duration duration) {
-        internal.setExpiration(key, duration.toNanos(), TimeUnit.NANOSECONDS);
+    public <T> Map<K, EntryProcessorResult<T>> invokeAll(Set<? extends K> keys, EntryProcessor<K, V, T> entryProcessor, Object... arguments) {
+        return null;
     }
 
     @Override
-    public int size() {
-        return internal.size();
+    public String getName() {
+        return null;
     }
 
     @Override
-    public int compareTo(@NotNull K o) {
-        return o.hashCode();
+    public CacheManager getCacheManager() {
+        return null;
     }
 
-    @NotNull
+    @Override
+    public void close() {
+
+    }
+
+    @Override
+    public boolean isClosed() {
+        return false;
+    }
+
+    @Override
+    public <T> T unwrap(Class<T> clazz) {
+        return null;
+    }
+
+    @Override
+    public void registerCacheEntryListener(CacheEntryListenerConfiguration<K, V> cacheEntryListenerConfiguration) {
+
+    }
+
+    @Override
+    public void deregisterCacheEntryListener(CacheEntryListenerConfiguration<K, V> cacheEntryListenerConfiguration) {
+
+    }
+
     @Override
     public Iterator<Entry<K, V>> iterator() {
-        return new Iterator<>() {
-            @Override
-            public boolean hasNext() {
-                return internal.keySet().iterator().hasNext();
-            }
-
-            @Override
-            public Entry<K, V> next() {
-//                return internal.get(internal.keySet().iterator().next());
-//                return iterator().next();
-                return null;
-            }
-        };
+        return null;
     }
 }
