@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt
 import java.net.URI
 
 plugins {
@@ -116,9 +115,9 @@ subprojects {
     }
 
     group = "org." + rootProject.name + "." + project.name
-//    def details = versionDetails()
-//    def vs = details.lastTag
-//            version(vs)
+    val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
+    val details = versionDetails()
+    version = details.lastTag
 
     dependencies {
         val gsonVersion: String by project
