@@ -1,8 +1,6 @@
 package org.toolkit4j.framework.spring.boot.starter.async;
 
 import jakarta.annotation.Resource;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.Test;
@@ -10,8 +8,11 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.toolkit4j.framework.spring.boot.starter.async.base.AsyncWorker;
-import org.toolkit4j.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration;
+import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
+import org.toolkit4J.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration;
+
+import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 @SpringBootTest(classes = {SpringBootApplication.class, AsyncWorkerAutoConfiguration.class})
 @RunWith(SpringRunner.class)

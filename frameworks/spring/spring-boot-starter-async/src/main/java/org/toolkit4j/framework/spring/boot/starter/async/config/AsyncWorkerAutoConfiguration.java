@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
+import org.toolkit4J.framework.spring.boot.starter.async.bean.AsyncAnnotationBeanPostProcessor;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
