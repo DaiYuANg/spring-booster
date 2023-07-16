@@ -24,6 +24,7 @@ subprojects {
     dependencies {
         compileOnly("org.springframework.boot:spring-boot-starter")
         compileOnly("org.springframework.boot:spring-boot-starter-web")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.springframework.boot:spring-boot-starter-web")
         testImplementation("org.springframework.boot:spring-boot-starter")

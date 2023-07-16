@@ -28,9 +28,10 @@ pluginManagement {
         id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
         id("org.springframework.boot") version springBootVersion
         id("io.spring.dependency-management") version springDependencyManagementVersion
-        kotlin("spring") version kotlinVersion
-//        kotlin("noarg") version kotlinVersion
+        kotlin("plugin.spring") version kotlinVersion
+        kotlin("noarg") version kotlinVersion
         kotlin("kapt") version kotlinVersion
+        kotlin("plugin.jpa") version kotlinVersion
         id("com.palantir.git-version") version gitPluginVersion
         id("org.jetbrains.kotlin.jvm") version kotlinVersion
         id("com.github.spotbugs-base") version spotbugsBaseVersion
@@ -83,9 +84,6 @@ project(":libs:io").name = "io"
 include("frameworks:spring:spring-boot-starter-authentication")
 project(":frameworks:spring:spring-boot-starter-authentication").name =
     "spring-boot-starter-authentication"
-
-include("frameworks:spring:spring-boot-starter-message")
-project(":frameworks:spring:spring-boot-starter-message").name = "spring-boot-starter-message"
 
 include("frameworks:spring:spring-boot-starter-monitor")
 project(":frameworks:spring:spring-boot-starter-monitor").name = "spring-boot-starter-monitor"
@@ -154,3 +152,9 @@ include("libs:cache:cache-simple")
 findProject(":libs:cache:cache-simple")?.name = "cache-simple"
 include("libs:cache:cache-redis-lettuce")
 findProject(":libs:cache:cache-redis-lettuce")?.name = "cache-redis-lettuce"
+include("frameworks:spring:spring-boot-starter-china-region")
+findProject(":frameworks:spring:spring-boot-starter-china-region")?.name = "spring-boot-starter-china-region"
+include("frameworks:spring:spring-boot-starter-office")
+findProject(":frameworks:spring:spring-boot-starter-office")?.name = "spring-boot-starter-office"
+include("libs:constant")
+findProject(":libs:constant")?.name = "constant"
