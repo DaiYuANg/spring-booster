@@ -20,7 +20,7 @@ public class MethodExecuted {
 	@Resource
 	private SpringEventPublisher eventPublisher;
 
-	@Pointcut("@annotation(org.toolkit4j.framework.spring.starter.event.spring.annotations.MethodExecuted)")
+	@Pointcut("@annotation(org.toolkit4J.framework.spring.starter.event.spring.annotations.MethodExecuted)")
 	public void methodExecutedPointCut() {}
 
 	@SneakyThrows

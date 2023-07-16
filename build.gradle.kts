@@ -154,8 +154,7 @@ subprojects {
         implementation("org.agrona:agrona:${agronaVersion}")
         implementation("org.jsoup:jsoup:1.16.1")
         implementation("net.bytebuddy:byte-buddy:1.14.5")
-        // https://mvnrepository.com/artifact/org.apache.poi/poi
-        implementation("org.apache.poi:poi:5.2.3")
+
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         implementation("org.aspectj:aspectjrt:${aspectjVersion}")
         implementation("commons-io:commons-io:${commonIOVersion}")
@@ -169,6 +168,7 @@ subprojects {
         implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
         implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:${jakartaEnterpriseCdi}")
         implementation("cn.hutool:hutool-all:${hutoolVersion}")
+        implementation("net.datafaker:datafaker:2.0.1")
         implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")
         implementation("jakarta.data:jakarta-data-api:1.0.0-b2")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -191,6 +191,7 @@ subprojects {
         testImplementation("com.redis.testcontainers:testcontainers-redis-junit:1.6.4")
         testImplementation("org.seleniumhq.selenium:selenium-remote-driver:3.141.59")
         testImplementation("org.jetbrains.kotlinx:lincheck:2.21")
+        testImplementation("net.datafaker:datafaker:2.0.1")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
         testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
         testImplementation("org.assertj:assertj-core:${assertjVersion}")
@@ -205,8 +206,7 @@ subprojects {
 
     tasks {
         withType<JavaCompile> {
-//            dependsOn("spotlessApply")
-            options.isIncremental = true
+//            options.isIncremental = true
             options.encoding = "UTF-8"
         }
         withType<Test> {
@@ -223,8 +223,3 @@ subprojects {
         }
     }
 }
-//
-//
-//tasks.withType<AbstractCompile> {
-//    dependsOn("spotlessApply")
-//}

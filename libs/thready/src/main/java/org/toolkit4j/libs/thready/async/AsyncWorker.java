@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Supplier;
+
+import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -13,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Slf4j
 @ToString
+@Getter
 public class AsyncWorker {
 	protected ThreadPoolExecutor executor;
 

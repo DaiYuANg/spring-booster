@@ -8,13 +8,6 @@ tasks {
     }
 }
 
-//configurations {
-//	create("developmentOnly")
-//	named("runtimeClasspath") {
-//		extendsFrom("developmentOnly")
-//	}
-//}
-
 dependencies {
     implementation(project(":frameworks:spring:spring-boot-starter-async"))
     implementation(project(":frameworks:spring:spring-boot-starter-event"))
@@ -24,6 +17,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-devtools")
     implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
     implementation(project(":frameworks:spring:spring-boot-starter-dict"))
+    implementation(project(":frameworks:spring:spring-boot-starter-china-region"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     // implementation("org.xerial:sqlite-jdbc:3.42.0.0")
     implementation("org.hibernate.orm:hibernate-community-dialects")
