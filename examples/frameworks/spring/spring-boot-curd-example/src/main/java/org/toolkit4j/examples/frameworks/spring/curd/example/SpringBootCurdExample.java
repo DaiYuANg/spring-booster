@@ -13,7 +13,7 @@ import org.toolkit4j.framework.spring.boot.starter.dict.annotations.EnableDict;
 
 // import org.toolkit4j.framework.spring.starter.monitor.annotations.EnableDevAdmin;
 
-@SpringBootApplication(scanBasePackages = {"org.toolkit4j.examples.frameworks.spring.curd.example"})
+@SpringBootApplication(scanBasePackages = {"org.toolkit4J.examples.frameworks.spring.curd.example"})
 @EnableDict
 // @EnableDevAdmin
 @Slf4j
@@ -21,7 +21,6 @@ public class SpringBootCurdExample extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(@NotNull SpringApplicationBuilder builder) {
-//		new HashMap<>().
 		return builder.sources(SpringBootCurdExample.class);
 	}
 

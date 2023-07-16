@@ -5,19 +5,20 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Service;
+import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
+import org.toolkit4j.framework.spring.boot.starter.dict.annotations.DictTranslate;
+import org.toolkit4j.framework.spring.boot.starter.dict.configuration.DictConfigurationProperties;
+import org.toolkit4j.framework.spring.boot.starter.dict.repos.DictRepository;
+import org.toolkit4j.framework.spring.boot.starter.dict.services.IDictService;
+
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import lombok.val;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.stereotype.Service;
-import org.toolkit4j.framework.spring.boot.starter.async.base.AsyncWorker;
-import org.toolkit4j.framework.spring.boot.starter.dict.annotations.DictTranslate;
-import org.toolkit4j.framework.spring.boot.starter.dict.configuration.DictConfigurationProperties;
-import org.toolkit4j.framework.spring.boot.starter.dict.repos.DictRepository;
-import org.toolkit4j.framework.spring.boot.starter.dict.services.IDictService;
 
 @Service
 public class DictServiceImpl implements IDictService {

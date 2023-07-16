@@ -1,4 +1,4 @@
-package org.toolkit4j.framework.spring.boot.starter.scheduled.configuration;
+package org.toolkit4J.framework.spring.boot.starter.scheduled.configuration;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import jakarta.annotation.Resource;

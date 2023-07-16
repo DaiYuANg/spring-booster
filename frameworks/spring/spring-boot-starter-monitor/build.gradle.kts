@@ -1,9 +1,9 @@
-ext {
-	dockerSDKVersion = "3.3.1"
-	openapiVersion = "2.0.2"
-	oshiVersion = "6.4.4"
-	mysqlVersion = "8.0.33"
-}
+
+val dockerSDKVersion = "3.3.1"
+val openapiVersion = "2.0.2"
+val oshiVersion = "6.4.4"
+val mysqlVersion = "8.0.33"
+val okhttpVersion: String by project
 
 dependencies {
 	api("com.github.docker-java:docker-java-transport-httpclient5:${dockerSDKVersion}")
