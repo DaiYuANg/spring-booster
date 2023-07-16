@@ -19,8 +19,8 @@ pluginManagement {
         val nodePluginVersion: String by settings
         val springBootVersion:String by settings
         val springDependencyManagementVersion:String by settings
+        val gradlePreCommitGitGooksVersion:String by settings
         id("org.jetbrains.kotlinx.benchmark") version kotlinxBenchmarkVersion
-        // version(org.toolkit4j.versions.VersionOfPlugins.kotlinxBenchmarkVersion)
         id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
         id("com.gradle.enterprise") version "3.13.4"
         id("org.jetbrains.kotlinx.benchmark") version kotlinxBenchmarkVersion
@@ -41,11 +41,13 @@ pluginManagement {
         id("io.freefair.lombok") version lombokPluginVersion
         id("org.jreleaser") version jreleaserVersion
         id("com.github.node-gradle.node") version nodePluginVersion
+        id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
     }
 }
 
 plugins {
     id("com.gradle.enterprise")
+    id("org.danilopianini.gradle-pre-commit-git-hooks")
 }
 
 buildCache {
@@ -62,6 +64,12 @@ gradleEnterprise {
     }
 }
 
+gitHooks {
+    preCommit {
+        logger.log(LogLevel.INFO,"pre commit")
+    }
+    createHooks()
+}
 // gitHooks {
 //	preCommit {
 //		 添加 pre-commit 钩子的逻辑
@@ -79,8 +87,17 @@ project(":libs:thready").name = "thready"
 
 include("libs:io")
 project(":libs:io").name = "io"
-//
-//// ------------frameworks------------
+
+include("libs:cache:cache-simple")
+findProject(":libs:cache:cache-simple")?.name = "cache-simple"
+
+include("libs:cache:cache-redis-lettuce")
+findProject(":libs:cache:cache-redis-lettuce")?.name = "cache-redis-lettuce"
+
+include("libs:constant")
+findProject(":libs:constant")?.name = "constant"
+
+// ------------frameworks------------
 include("frameworks:spring:spring-boot-starter-authentication")
 project(":frameworks:spring:spring-boot-starter-authentication").name =
     "spring-boot-starter-authentication"
@@ -122,6 +139,11 @@ project(":frameworks:spring:spring-boot-starter-devtools").name = "spring-boot-s
 include("frameworks:spring:spring-boot-starter-cached")
 findProject(":frameworks:spring:spring-boot-starter-cached")?.name = "spring-boot-starter-cached"
 
+include("frameworks:spring:spring-boot-starter-china-region")
+findProject(":frameworks:spring:spring-boot-starter-china-region")?.name = "spring-boot-starter-china-region"
+
+include("frameworks:spring:spring-boot-starter-office")
+findProject(":frameworks:spring:spring-boot-starter-office")?.name = "spring-boot-starter-office"
 // ------------examples------------
 include("examples:frameworks:spring:spring-boot-curd-example")
 project(":examples:frameworks:spring:spring-boot-curd-example").name = "spring-boot-curd-example"
@@ -145,16 +167,7 @@ project(":standard:restful").name = "restful"
 include("docs")
 project(":docs").name = "docs"
 
+// ------------ui------------
 include("ui:monitor-ui")
 project(":ui:monitor-ui").name = "monitor-ui"
 
-include("libs:cache:cache-simple")
-findProject(":libs:cache:cache-simple")?.name = "cache-simple"
-include("libs:cache:cache-redis-lettuce")
-findProject(":libs:cache:cache-redis-lettuce")?.name = "cache-redis-lettuce"
-include("frameworks:spring:spring-boot-starter-china-region")
-findProject(":frameworks:spring:spring-boot-starter-china-region")?.name = "spring-boot-starter-china-region"
-include("frameworks:spring:spring-boot-starter-office")
-findProject(":frameworks:spring:spring-boot-starter-office")?.name = "spring-boot-starter-office"
-include("libs:constant")
-findProject(":libs:constant")?.name = "constant"
