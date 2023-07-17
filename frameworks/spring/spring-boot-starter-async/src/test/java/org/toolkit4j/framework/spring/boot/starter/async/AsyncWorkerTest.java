@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
-import org.toolkit4J.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration;
+import org.toolkit4J.framework.spring.boot.starter.async.configuration.AsyncWorkerAutoConfiguration;
 
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;

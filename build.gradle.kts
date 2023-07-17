@@ -149,14 +149,13 @@ subprojects {
         implementation("com.github.ben-manes.caffeine:guava:${caffeineVersion}")
         implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
         implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
-        implementation("org.aspectj:aspectjtools:${aspectjVersion}")
+//        implementation("org.aspectj:aspectjtools:${aspectjVersion}")
         implementation("org.agrona:agrona:${agronaVersion}")
         implementation("org.jsoup:jsoup:1.16.1")
         implementation("net.bytebuddy:byte-buddy:1.14.5")
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-        implementation("org.aspectj:aspectjrt:${aspectjVersion}")
         implementation("commons-io:commons-io:${commonIOVersion}")
-        implementation("org.aspectj:aspectjweaver:${aspectjVersion}")
+//        implementation("org.aspectj:aspectjweaver:${aspectjVersion}")
         implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
         implementation("org.immutables:value:${immutablesVersion}")
         implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
@@ -204,7 +203,7 @@ subprojects {
 
     tasks {
         withType<JavaCompile> {
-//            options.isIncremental = true
+            options.isIncremental = true
             options.encoding = "UTF-8"
         }
         withType<Test> {

@@ -20,6 +20,7 @@ pluginManagement {
         val springBootVersion:String by settings
         val springDependencyManagementVersion:String by settings
         val gradlePreCommitGitGooksVersion:String by settings
+        val javafxPluginVersion:String by settings
         id("org.jetbrains.kotlinx.benchmark") version kotlinxBenchmarkVersion
         id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
         id("com.gradle.enterprise") version "3.13.4"
@@ -42,6 +43,7 @@ pluginManagement {
         id("org.jreleaser") version jreleaserVersion
         id("com.github.node-gradle.node") version nodePluginVersion
         id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
+        id("org.openjfx.javafxplugin") version javafxPluginVersion
     }
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -70,11 +72,6 @@ gitHooks {
     }
     createHooks()
 }
-// gitHooks {
-//	preCommit {
-//		 添加 pre-commit 钩子的逻辑
-//	}
-// }
 
 rootProject.name = "toolkit4J"
 
@@ -107,10 +104,6 @@ project(":frameworks:spring:spring-boot-starter-monitor").name = "spring-boot-st
 
 include("frameworks:spring:spring-boot-starter-io")
 project(":frameworks:spring:spring-boot-starter-io").name = "spring-boot-starter-io"
-
-include("frameworks:spring:spring-boot-starter-notifications")
-project(":frameworks:spring:spring-boot-starter-notifications").name =
-    "spring-boot-starter-notifications"
 
 include("frameworks:spring:spring-boot-starter-async")
 project(":frameworks:spring:spring-boot-starter-async").name = "spring-boot-starter-async"
@@ -152,12 +145,6 @@ project(":standard:rbac").name = "rbac"
 include("standard:persistence")
 project(":standard:persistence").name = "persistence"
 
-include("standard:communication")
-project(":standard:communication").name = "communication"
-
-include("standard:locker")
-project(":standard:locker").name = "locker"
-
 include("standard:restful")
 project(":standard:restful").name = "restful"
 
@@ -168,3 +155,5 @@ project(":docs").name = "docs"
 include("ui:monitor-ui")
 project(":ui:monitor-ui").name = "monitor-ui"
 
+include("tools:designer")
+project(":tools:designer").name = "designer"

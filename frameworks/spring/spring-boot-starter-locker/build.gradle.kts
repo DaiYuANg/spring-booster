@@ -1,4 +1,5 @@
+val aspectjVersion:String by project
 dependencies {
-	api(project(":standard:locker"))
+	implementation("org.aspectj:aspectjrt:${aspectjVersion}")
 }
 

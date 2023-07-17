@@ -1,3 +1,4 @@
+val aspectjVersion:String by project
 dependencies {
     api(projects.frameworks.spring.springBootStarterAsync)
     api(projects.frameworks.spring.springBootStarterScheduled)
@@ -9,4 +10,5 @@ dependencies {
 //	api("org.apache.activemq:activemq-broker")
 //	api("org.apache.activemq:activemq-pool")
     implementation("org.ehcache:ehcache:3.10.8")
+    implementation("org.aspectj:aspectjrt:${aspectjVersion}")
 }

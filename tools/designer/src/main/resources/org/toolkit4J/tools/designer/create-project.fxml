@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane cache="true" fx:id="splitPane" dividerPositions="0.25" opacity="0.49" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.toolkit4J.tools.designer.controllers.CreateProjectController">
+    <AnchorPane fx:id="leftPane" prefWidth="300">
+        <TreeView fx:id="menuTree" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                  AnchorPane.bottomAnchor="0.0">
+            <TreeItem value="New Project" expanded="true">
+                <children>
+                    <TreeItem value="Java Project"/>
+                    <TreeItem value="Maven Project"/>
+                    <TreeItem value="Gradle Project"/>
+                </children>
+            </TreeItem>
+        </TreeView>
+    </AnchorPane>
+    <AnchorPane fx:id="rightPane">
+        <!-- 右侧部分的内容 -->
+    </AnchorPane>
+</SplitPane>

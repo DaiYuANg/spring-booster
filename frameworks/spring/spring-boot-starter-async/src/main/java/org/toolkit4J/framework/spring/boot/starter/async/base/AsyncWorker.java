@@ -6,7 +6,7 @@ import jakarta.annotation.Resource;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.toolkit4J.framework.spring.boot.starter.async.config.AsyncWorkerProperties;
+import org.toolkit4J.framework.spring.boot.starter.async.configuration.AsyncWorkerProperties;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadPoolExecutor;

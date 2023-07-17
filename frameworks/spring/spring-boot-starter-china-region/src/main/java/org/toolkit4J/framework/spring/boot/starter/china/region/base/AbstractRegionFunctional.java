@@ -1,7 +1,7 @@
 package org.toolkit4J.framework.spring.boot.starter.china.region.base;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import org.springframework.core.annotation.Order;
