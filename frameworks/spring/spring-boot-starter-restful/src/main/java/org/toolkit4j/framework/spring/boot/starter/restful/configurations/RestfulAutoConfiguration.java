@@ -1,0 +1,13 @@
+package org.toolkit4j.framework.spring.boot.starter.restful.configurations;
+
+import cn.hutool.extra.spring.EnableSpringUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+@AutoConfiguration
+@Slf4j
+@EnableConfigurationProperties(RestfulConfigurationProperties.class)
+@EnableSpringUtil
+public class RestfulAutoConfiguration {
+}
