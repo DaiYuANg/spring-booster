@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
+import org.toolkit4J.framework.spring.boot.starter.china.region.functional.ProvincesFunctional;
 import org.toolkit4J.framework.spring.starter.event.spring.annotations.MethodExecuted;
 
 @RestController
@@ -15,6 +16,9 @@ import org.toolkit4J.framework.spring.starter.event.spring.annotations.MethodExe
 public class TestController {
 	@Resource
 	private AsyncWorker asyncWorker;
+
+	@Resource
+	private ProvincesFunctional provincesFunctional;
 
 	@EventListener(ApplicationStartedEvent.class)
 	@Async

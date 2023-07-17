@@ -1,12 +1,13 @@
 package org.toolkit4J.framework.spring.boot.starter.async.config;
 
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.toolkit4j.libs.thready.enums.PoolProperty;
+
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @ConfigurationProperties(prefix = "helpers.async", ignoreInvalidFields = true)
 @Data

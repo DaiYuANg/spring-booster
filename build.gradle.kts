@@ -153,7 +153,6 @@ subprojects {
         implementation("org.agrona:agrona:${agronaVersion}")
         implementation("org.jsoup:jsoup:1.16.1")
         implementation("net.bytebuddy:byte-buddy:1.14.5")
-
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         implementation("org.aspectj:aspectjrt:${aspectjVersion}")
         implementation("commons-io:commons-io:${commonIOVersion}")

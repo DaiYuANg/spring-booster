@@ -11,4 +11,7 @@ import org.toolkit4J.framework.spring.boot.starter.china.region.base.RegionPojo;
 @ToString
 @Accessors(chain = true)
 public class Area extends RegionPojo {
+    private Integer cityCode;
+
+    private Integer provinceCode;
 }

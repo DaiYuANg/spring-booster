@@ -44,7 +44,7 @@ pluginManagement {
         id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
     }
 }
-
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 plugins {
     id("com.gradle.enterprise")
     id("org.danilopianini.gradle-pre-commit-git-hooks")
@@ -132,9 +132,6 @@ project(":frameworks:spring:spring-boot-starter-recorder").name = "spring-boot-s
 
 include("frameworks:spring:spring-boot-starter-dict")
 project(":frameworks:spring:spring-boot-starter-dict").name = "spring-boot-starter-dict"
-
-include("frameworks:spring:spring-boot-starter-devtools")
-project(":frameworks:spring:spring-boot-starter-devtools").name = "spring-boot-starter-devtools"
 
 include("frameworks:spring:spring-boot-starter-cached")
 findProject(":frameworks:spring:spring-boot-starter-cached")?.name = "spring-boot-starter-cached"

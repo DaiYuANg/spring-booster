@@ -1,6 +1,5 @@
 package org.toolkit4J.framework.spring.boot.starter.china.region.base;
 
-import cn.hutool.core.io.FileUtil;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import jakarta.annotation.PostConstruct;
@@ -8,6 +7,7 @@ import lombok.SneakyThrows;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.Resource;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
@@ -36,7 +36,7 @@ public abstract class AbstractRegionFunctional<Region> {
 
     public Set<Region> searchAll(Predicate<Region> predicate) {
         return internalRegion.stream()
-                .filter(predicate).collect(Collectors.toUnmodifiableSet());
+                .filter(predicate).collect(Collectors.toSet());
     }
 
     public Set<Region> getAll() {
@@ -47,7 +47,8 @@ public abstract class AbstractRegionFunctional<Region> {
 
     @SneakyThrows
     protected Set<Region> parsed() {
-        return gson.fromJson(FileUtil.readUtf8String(parseFrom().getFile()), new TypeToken<Set<Region>>() {
-        }.getType());
+        return gson.fromJson(parseFrom().getContentAsString(StandardCharsets.UTF_8),
+                new TypeToken<Set<Region>>() {
+                }.getType());
     }
 }
