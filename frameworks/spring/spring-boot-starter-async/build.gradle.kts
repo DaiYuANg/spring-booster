@@ -1,4 +1,4 @@
 dependencies {
-	api(project(":libs:thready"))
+	api(projects.libs.thready)
 }
 

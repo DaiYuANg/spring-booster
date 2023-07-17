@@ -15,7 +15,6 @@ public class AsyncAnnotationBeanPostProcessor implements BeanPostProcessor {
 
     @PostConstruct
     public void init(){
-        System.err.println(":async");
     }
 
     @Override
@@ -26,7 +25,7 @@ public class AsyncAnnotationBeanPostProcessor implements BeanPostProcessor {
 
     @SneakyThrows
     @Async
-    public void invokePostConstructAsync(Object bean, Method postConstructMethod) {
+    public void invokePostConstructAsync(Object bean, @NotNull Method postConstructMethod) {
         postConstructMethod.invoke(bean);
     }
 }

@@ -1,5 +1,6 @@
-package org.toolkit4J.framework.spring.boot.starter.china.region.regions;
+package org.toolkit4J.framework.spring.boot.starter.china.region.functional;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -17,6 +18,10 @@ public class ProvincesFunctional extends AbstractRegionFunctional<Province> {
 
     @Value("classpath:provinces.json")
     private Resource provinces;
+
+    @PostConstruct
+    public void init(){
+    }
 
     @Override
     protected Resource parseFrom() {

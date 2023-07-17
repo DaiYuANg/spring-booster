@@ -7,4 +7,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface EventBusSubscriber {
     String bus() default "default";
+
+    String description() default "";
 }

@@ -7,17 +7,26 @@ tasks {
         enabled = false
     }
 }
+//configurations {
+//    create("developmentOnly") {
+//        extendsFrom(configurations.implementation.get())
+//    }
+//}
+
 
 dependencies {
-    implementation(project(":frameworks:spring:spring-boot-starter-async"))
-    implementation(project(":frameworks:spring:spring-boot-starter-event"))
-    implementation(project(":frameworks:spring:spring-boot-starter-cached"))
+    implementation(projects.frameworks.spring.springBootStarterAsync) {
+        because("For test async thread pool")
+    }
+    implementation(projects.frameworks.spring.springBootStarterEvent)
+    implementation(projects.frameworks.spring.springBootStarterCached)
+    implementation(projects.frameworks.spring.springBootStarterAuthentication)
+    implementation(projects.frameworks.spring.springBootStarterChinaRegion)
+    implementation(projects.frameworks.spring.springBootStarterDict)
     implementation("org.springframework.boot:spring-boot-starter-web")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+//    implementation("org.springframework.boot:spring-boot-docker-compose")
     // implementation(project(":frameworks:spring:spring-boot-starter-monitor"))
-    implementation("org.springframework.boot:spring-boot-devtools")
-    implementation(project(":frameworks:spring:spring-boot-starter-authentication"))
-    implementation(project(":frameworks:spring:spring-boot-starter-dict"))
-    implementation(project(":frameworks:spring:spring-boot-starter-china-region"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     // implementation("org.xerial:sqlite-jdbc:3.42.0.0")
     implementation("org.hibernate.orm:hibernate-community-dialects")

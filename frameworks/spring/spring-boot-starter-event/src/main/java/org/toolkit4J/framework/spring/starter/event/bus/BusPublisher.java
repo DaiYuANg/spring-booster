@@ -43,8 +43,8 @@ public class BusPublisher {
                 .values().stream().toList();
         registerEventBuses(subscribers);
         registerSubscribers(subscribers);
-        System.err.println(eventBuses);
         log.info("Event bus initialized");
+        log.info("Event Buses identifiers:{}",eventBuses.values());
     }
 
     private void registerEventBuses(@NotNull List<Object> subscribers) {

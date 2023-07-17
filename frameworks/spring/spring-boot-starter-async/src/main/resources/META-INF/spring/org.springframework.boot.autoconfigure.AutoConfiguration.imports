@@ -1,3 +1,3 @@
-org.toolkit4j.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration
-org.toolkit4j.framework.spring.boot.starter.async.bean.AsyncBeanRegister
-org.toolkit4j.framework.spring.boot.starter.async.config.TaskExecutorAutoConfiguration
+org.toolkit4J.framework.spring.boot.starter.async.config.AsyncWorkerAutoConfiguration
+org.toolkit4J.framework.spring.boot.starter.async.bean.AsyncBeanRegister
+org.toolkit4J.framework.spring.boot.starter.async.config.TaskExecutorAutoConfiguration

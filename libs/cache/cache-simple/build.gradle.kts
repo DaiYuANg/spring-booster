@@ -1,3 +1,4 @@
+val expiringmapVersion:String by project
 dependencies {
-    implementation("net.jodah:expiringmap:0.5.10")
+    implementation("net.jodah:expiringmap:$expiringmapVersion")
 }

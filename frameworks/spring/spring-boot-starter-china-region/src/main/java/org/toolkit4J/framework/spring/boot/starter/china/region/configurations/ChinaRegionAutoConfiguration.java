@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.toolkit4J.framework.spring.boot.starter.china.region.regions.AreasFunctional;
-import org.toolkit4J.framework.spring.boot.starter.china.region.regions.CitiesFunctional;
-import org.toolkit4J.framework.spring.boot.starter.china.region.regions.ProvincesFunctional;
+import org.toolkit4J.framework.spring.boot.starter.china.region.functional.AreasFunctional;
+import org.toolkit4J.framework.spring.boot.starter.china.region.functional.CitiesFunctional;
+import org.toolkit4J.framework.spring.boot.starter.china.region.functional.ProvincesFunctional;
 
 @AutoConfiguration
 @EnableConfigurationProperties(ChinaRegionConfigurationProperties.class)

@@ -1,4 +1,4 @@
-package org.toolkit4J.framework.spring.boot.starter.china.region.regions;
+package org.toolkit4J.framework.spring.boot.starter.china.region.functional;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,6 @@ public class CitiesFunctional extends AbstractRegionFunctional<City> {
     @Value("classpath:cities.json")
     private Resource cities;
 
-
     @PostConstruct
     public void init(){
         log.info("Cities initialized");
@@ -22,5 +21,4 @@ public class CitiesFunctional extends AbstractRegionFunctional<City> {
     protected Resource parseFrom() {
         return cities;
     }
-
 }
