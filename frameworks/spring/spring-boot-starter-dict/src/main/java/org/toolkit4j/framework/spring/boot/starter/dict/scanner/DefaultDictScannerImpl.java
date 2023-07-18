@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictFunctional;
 
-import javax.cache.Cache;
 import java.util.stream.Stream;
 
 @Slf4j

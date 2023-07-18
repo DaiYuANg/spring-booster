@@ -129,9 +129,6 @@ project(":frameworks:spring:spring-boot-starter-dict").name = "spring-boot-start
 include("frameworks:spring:spring-boot-starter-cached")
 findProject(":frameworks:spring:spring-boot-starter-cached")?.name = "spring-boot-starter-cached"
 
-include("frameworks:spring:spring-boot-starter-china-region")
-findProject(":frameworks:spring:spring-boot-starter-china-region")?.name = "spring-boot-starter-china-region"
-
 include("frameworks:spring:spring-boot-starter-office")
 findProject(":frameworks:spring:spring-boot-starter-office")?.name = "spring-boot-starter-office"
 // ------------examples------------

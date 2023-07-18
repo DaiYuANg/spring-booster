@@ -110,7 +110,6 @@ subprojects {
         plugin("org.jetbrains.kotlinx.benchmark")
         plugin("maven-publish")
         plugin("com.palantir.git-version")
-        plugin("groovy")
         plugin("scala")
     }
 
@@ -160,10 +159,9 @@ subprojects {
         implementation("org.immutables:value:${immutablesVersion}")
         implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
         implementation("com.squareup.okhttp3:okhttp")
-        implementation("org.jetbrains:annotations:24.0.1")
         implementation("com.squareup.okhttp3:logging-interceptor")
         implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
-        implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:${jakartaEnterpriseCdi}")
+//        implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:${jakartaEnterpriseCdi}")
         implementation("cn.hutool:hutool-all:${hutoolVersion}")
         implementation("net.datafaker:datafaker:2.0.1")
         implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")

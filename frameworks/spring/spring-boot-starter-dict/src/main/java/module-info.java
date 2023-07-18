@@ -16,4 +16,6 @@ module toolkit4J.frameworks.spring.spring.boot.starter.dict.main {
     requires spring.boot.autoconfigure;
     requires com.google.gson;
     requires org.reflections;
+    requires toolkit4J.standard.restful;
+    requires org.slf4j;
 }

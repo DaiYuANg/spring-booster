@@ -19,9 +19,8 @@ dependencies {
         because("For test async thread pool")
     }
     implementation(projects.frameworks.spring.springBootStarterEvent)
-    implementation(projects.frameworks.spring.springBootStarterCached)
+//    implementation(projects.frameworks.spring.springBootStarterCached)
     implementation(projects.frameworks.spring.springBootStarterAuthentication)
-    implementation(projects.frameworks.spring.springBootStarterChinaRegion)
     implementation(projects.frameworks.spring.springBootStarterDict)
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")

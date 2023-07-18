@@ -2,7 +2,6 @@ package org.toolkit4J.tools.designer.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.ZoomEvent;
@@ -26,7 +25,7 @@ public class CreateProjectController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         resize();
-        splitPane.getChildrenUnmodifiable().add(new Button("123"));
+//        splitPane.getChildrenUnmodifiable().add(new Button("123"));
     }
 
     public void resize() {
@@ -35,7 +34,6 @@ public class CreateProjectController implements Initializable {
                 splitPane.setDividerPositions(0.25);
             });
         });
-        System.err.println();
         splitPane.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.addEventFilter(ZoomEvent.ANY, event -> {

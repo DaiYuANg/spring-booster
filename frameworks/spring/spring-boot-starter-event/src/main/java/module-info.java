@@ -1,4 +1,5 @@
 module toolkit4J.frameworks.spring.spring.boot.starter.event {
+    exports org.toolkit4J.framework.spring.starter.event.spring.base;
     requires spring.boot;
     requires spring.jms;
     requires cn.hutool;
@@ -15,5 +16,4 @@ module toolkit4J.frameworks.spring.spring.boot.starter.event {
     requires org.slf4j;
     requires toolkit4J.frameworks.spring.spring.boot.starter.async;
     requires org.aspectj.runtime;
-    requires quartz;
 }

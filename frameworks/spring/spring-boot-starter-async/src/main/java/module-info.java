@@ -11,4 +11,5 @@ module toolkit4J.frameworks.spring.spring.boot.starter.async {
     requires spring.aop;
     requires org.slf4j;
     requires toolkit4J.libs.thready;
+    requires com.google.common;
 }

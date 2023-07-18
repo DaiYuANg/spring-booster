@@ -14,4 +14,6 @@ module toolkit4J.frameworks.spring.spring.boot.starter.authentication {
     requires jakarta.validation;
     requires spring.data.commons;
     requires org.slf4j;
+    requires toolkit4J.frameworks.spring.spring.boot.starter.event;
+    requires toolkit4J.standard.rbac;
 }

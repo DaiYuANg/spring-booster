@@ -30,11 +30,6 @@ public class DesignerApplication extends Application {
 
     @Override
     public void start(@NotNull Stage stage) throws IOException {
-        stage.setResizable(true);
-//        stage.widthProperty().addListener((observable, oldValue, newValue) -> {
-//            System.err.println(oldValue);
-//            System.err.println(newValue);
-//        });
         val fxmlLoader = new FXMLLoader(DesignerApplication
                 .class
                 .getResource("create-project.fxml"));
