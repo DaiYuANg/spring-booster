@@ -3,7 +3,6 @@ package org.toolkit4J.framework.spring.starter.event.spring;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.quartz.Scheduler;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -18,8 +17,8 @@ public class SpringEventPublisher {
 	@Resource
 	private AsyncWorker asyncWorker;
 
-	@Resource
-	private Scheduler scheduler;
+//	@Resource
+//	private Scheduler scheduler;
 
 	@Resource
 	private ApplicationEventPublisher applicationEventPublisher;

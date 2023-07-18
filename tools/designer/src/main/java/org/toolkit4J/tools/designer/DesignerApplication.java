@@ -3,13 +3,15 @@ package org.toolkit4J.tools.designer;
 import javafx.application.Application;
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.ZoomEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.reflections.Reflections;
+import org.reflections.util.ConfigurationBuilder;
 
 import java.io.IOException;
 
@@ -19,24 +21,35 @@ public class DesignerApplication extends Application {
     @Override
     public void init() {
         log.info("Designer init");
+        val re = new Reflections(new ConfigurationBuilder().forPackage(this.getClass().getPackageName()));
+        re.getStore().forEach((k, v) -> {
+            System.err.println(k);
+            System.err.println(v);
+        });
     }
 
     @Override
     public void start(@NotNull Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DesignerApplication
+        stage.setResizable(true);
+//        stage.widthProperty().addListener((observable, oldValue, newValue) -> {
+//            System.err.println(oldValue);
+//            System.err.println(newValue);
+//        });
+        val fxmlLoader = new FXMLLoader(DesignerApplication
                 .class
                 .getResource("create-project.fxml"));
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getBounds();
+        val screen = Screen.getPrimary();
+        val bounds = screen.getBounds();
         double widthRatio = bounds.getWidth() * 0.7;
         double heightRatio = bounds.getHeight() * 0.7;
         Scene scene = new Scene(fxmlLoader.load(), widthRatio, heightRatio);
-        stage.setTitle("Hello!");
+        fxmlLoader.getController();
+        stage.setTitle("Designer");
         log.info("test");
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
-        scene.addEventHandler(ZoomEvent.ZOOM,event -> {
+        scene.addEventHandler(ZoomEvent.ZOOM, event -> {
             System.err.println(event);
             log.info("123");
         });

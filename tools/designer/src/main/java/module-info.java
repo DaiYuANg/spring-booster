@@ -1,4 +1,5 @@
 module org.toolkit4J.tools.designer {
+//    requires java.base;
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
@@ -7,6 +8,7 @@ module org.toolkit4J.tools.designer {
     requires kotlin.stdlib;
     requires org.jetbrains.annotations;
     requires org.slf4j;
+    requires org.reflections;
 
     opens org.toolkit4J.tools.designer to javafx.fxml;
     exports org.toolkit4J.tools.designer;

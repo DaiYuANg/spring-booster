@@ -7,6 +7,6 @@ tasks.publish {
 }
 subprojects {
     dependencies {
-        implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
+        api("jakarta.annotation:jakarta.annotation-api:2.1.1")
     }
 }

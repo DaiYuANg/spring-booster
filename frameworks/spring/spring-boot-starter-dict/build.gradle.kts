@@ -7,6 +7,5 @@ dependencies {
     api(projects.libs.helpers)
     api(projects.standard.restful)
     implementation("org.reflections:reflections:0.10.2")
-
 }
 

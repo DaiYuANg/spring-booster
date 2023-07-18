@@ -2,14 +2,17 @@ package org.toolkit4J.tools.designer.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.AnchorPane;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+@Slf4j
 public class CreateProjectController implements Initializable {
     @FXML
     public SplitPane splitPane;
@@ -22,24 +25,25 @@ public class CreateProjectController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.err.println(splitPane.getScene());
+        resize();
+        splitPane.getChildrenUnmodifiable().add(new Button("123"));
+    }
+
+    public void resize() {
+        splitPane.sceneProperty().addListener((observable, oldValue, newValue) -> {
+            newValue.widthProperty().addListener((observable1, oldValue1, newValue1) -> {
+                splitPane.setDividerPositions(0.25);
+            });
+        });
+        System.err.println();
         splitPane.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.addEventFilter(ZoomEvent.ANY, event -> {
+                    log.info("123");
                     // 处理缩放事件
                     System.err.println(event);
                 });
             }
         });
-//        splitPane.getScene().addEventFilter(ZoomEvent.ANY,event -> {
-//            System.err.println(event);
-//        });
-//        TreeItem<String> rootItem = new TreeItem<>("New Project");
-//        TreeItem<String> javaProjectItem = new TreeItem<>("Java Project");
-//        TreeItem<String> mavenProjectItem = new TreeItem<>("Maven Project");
-//        TreeItem<String> gradleProjectItem = new TreeItem<>("Gradle Project");
-//
-//        rootItem.getChildren().addAll(javaProjectItem, mavenProjectItem, gradleProjectItem);
-//        menuTree.setRoot(rootItem);
     }
 }
