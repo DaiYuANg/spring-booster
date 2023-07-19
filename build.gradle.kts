@@ -125,7 +125,6 @@ subprojects {
         val slf4jVersion: String by project
         val caffeineVersion: String by project
         val rxjavaVersion: String by project
-        val aspectjVersion: String by project
         val agronaVersion: String by project
         val commonIOVersion: String by project
         val jetbrainsAnnotationsVersion: String by project
@@ -148,13 +147,11 @@ subprojects {
         implementation("com.github.ben-manes.caffeine:guava:${caffeineVersion}")
         implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
         implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
-//        implementation("org.aspectj:aspectjtools:${aspectjVersion}")
         implementation("org.agrona:agrona:${agronaVersion}")
         implementation("org.jsoup:jsoup:1.16.1")
         implementation("net.bytebuddy:byte-buddy:1.14.5")
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         implementation("commons-io:commons-io:${commonIOVersion}")
-//        implementation("org.aspectj:aspectjweaver:${aspectjVersion}")
         implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
         implementation("org.immutables:value:${immutablesVersion}")
         implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
@@ -173,6 +170,7 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+        testImplementation("org.slf4j:slf4j-simple:$slf4jVersion")
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         implementation(platform("org.testcontainers:testcontainers-bom:${testContainersVersion}"))
         testImplementation("org.testcontainers:postgresql")

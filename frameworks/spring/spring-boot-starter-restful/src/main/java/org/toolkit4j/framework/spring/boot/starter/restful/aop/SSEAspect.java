@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-import org.toolkit4j.framework.spring.boot.starter.restful.configurations.SSEConfigurationProperties;
+import org.toolkit4j.framework.spring.boot.starter.restful.configurations.sse.SSEConfigurationProperties;
 
 @Aspect
 @Slf4j

@@ -91,8 +91,8 @@ findProject(":libs:cache:cache-simple")?.name = "cache-simple"
 include("libs:cache:cache-redis-lettuce")
 findProject(":libs:cache:cache-redis-lettuce")?.name = "cache-redis-lettuce"
 
-include("libs:constant")
-findProject(":libs:constant")?.name = "constant"
+include("libs:property")
+findProject(":libs:property")?.name = "property"
 
 // ------------frameworks------------
 include("frameworks:spring:spring-boot-starter-authentication")
@@ -102,8 +102,8 @@ project(":frameworks:spring:spring-boot-starter-authentication").name =
 include("frameworks:spring:spring-boot-starter-monitor")
 project(":frameworks:spring:spring-boot-starter-monitor").name = "spring-boot-starter-monitor"
 
-include("frameworks:spring:spring-boot-starter-io")
-project(":frameworks:spring:spring-boot-starter-io").name = "spring-boot-starter-io"
+include("frameworks:spring:spring-boot-starter-minio")
+project(":frameworks:spring:spring-boot-starter-minio").name = "spring-boot-starter-minio"
 
 include("frameworks:spring:spring-boot-starter-async")
 project(":frameworks:spring:spring-boot-starter-async").name = "spring-boot-starter-async"
@@ -113,9 +113,6 @@ project(":frameworks:spring:spring-boot-starter-event").name = "spring-boot-star
 
 include("frameworks:spring:spring-boot-starter-scheduled")
 project(":frameworks:spring:spring-boot-starter-scheduled").name = "spring-boot-starter-scheduled"
-
-include("frameworks:spring:spring-boot-starter-locker")
-project(":frameworks:spring:spring-boot-starter-locker").name = "spring-boot-starter-locker"
 
 include("frameworks:spring:spring-boot-starter-restful")
 project(":frameworks:spring:spring-boot-starter-restful").name = "spring-boot-starter-restful"

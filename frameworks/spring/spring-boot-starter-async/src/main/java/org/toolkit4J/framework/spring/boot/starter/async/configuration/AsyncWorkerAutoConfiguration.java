@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.toolkit4J.framework.spring.boot.starter.async.bean.AsyncAnnotationBeanPostProcessor;
+import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
@@ -28,47 +28,47 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableConfigurationProperties(AsyncWorkerProperties.class)
 @Slf4j
 public class AsyncWorkerAutoConfiguration {
-	@Resource
-	private AsyncWorkerProperties asyncWorkerProperties;
+    @Resource
+    private AsyncWorkerProperties asyncWorkerProperties;
 
-	@PostConstruct
-	public void init() {
-		log.info("async worker auto configuration");
-	}
+    @PostConstruct
+    public void init() {
+        log.info("async worker auto configuration");
+    }
 
-	@Bean
-	public ThreadPoolExecutor executor() {
-		return new ThreadPoolExecutor(
-				asyncWorkerProperties.getCoreWorker(),
-				asyncWorkerProperties.getQueueCapacity(),
-				asyncWorkerProperties.getAliveTime(),
-				asyncWorkerProperties.getAliveTimeUnit(),
-				new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
-				new ThreadFactoryBuilder()
-						.setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
-						.build(),
-				rejectedExecutionHandler());
-	}
+    @Bean
+    public ThreadPoolExecutor executor() {
+        return new ThreadPoolExecutor(
+                asyncWorkerProperties.getCoreWorker(),
+                asyncWorkerProperties.getQueueCapacity(),
+                asyncWorkerProperties.getAliveTime(),
+                asyncWorkerProperties.getAliveTimeUnit(),
+                new ArrayBlockingQueue<>(asyncWorkerProperties.getQueueCapacity()),
+                new ThreadFactoryBuilder()
+                        .setNameFormat(asyncWorkerProperties.getPoolNamePrefix() + "-%d")
+                        .build(),
+                rejectedExecutionHandler());
+    }
 
-	@SneakyThrows
-	public @NotNull RejectedExecutionHandler rejectedExecutionHandler() {
-		return asyncWorkerProperties
-				.getRejectedExecution()
-				.getDeclaredConstructor()
-				.newInstance();
-	}
+    @SneakyThrows
+    public @NotNull RejectedExecutionHandler rejectedExecutionHandler() {
+        return asyncWorkerProperties
+                .getRejectedExecution()
+                .getDeclaredConstructor()
+                .newInstance();
+    }
 
-	@Bean
-	@Order(0)
-	@ConditionalOnMissingBean
-	public AsyncWorker asyncWorker() {
-		val asyncWorker = new AsyncWorker();
-		log.info("configure async worker successful");
-		return asyncWorker;
-	}
+    @Bean
+    @Order(0)
+    @ConditionalOnMissingBean
+    public AsyncWorker asyncWorker() {
+        val asyncWorker = AsyncWorker.builder().build();
+        log.info("configure async worker successful");
+        return asyncWorker;
+    }
 
-	@Bean
-	public AsyncAnnotationBeanPostProcessor asyncAnnotationBeanPostProcessor(){
-		return new AsyncAnnotationBeanPostProcessor();
-	}
+    @Bean
+    public AsyncAnnotationBeanPostProcessor asyncAnnotationBeanPostProcessor() {
+        return new AsyncAnnotationBeanPostProcessor();
+    }
 }

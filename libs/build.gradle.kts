@@ -13,6 +13,7 @@ subprojects {
 
 	//
 	dependencies {
+//		implementation(projects.libs.property)
 		//        testImplementation("org.slf4j:slf4j-simple:${slf4jVersion}")
 		//        implementation("org.slf4j:slf4j-simple:${slf4jVersion}")
 	}
