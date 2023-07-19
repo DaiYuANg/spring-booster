@@ -9,5 +9,12 @@ module toolkit4J.frameworks.spring.spring.boot.starter.io {
     requires toolkit4J.libs.io;
     requires spring.web;
     requires static lombok;
+    requires spring.boot.starter.web;
+    requires spring.webmvc;
+    requires cn.hutool;
+    requires expiringmap;
+    requires toolkit4J.libs.helpers;
+    requires toolkit4J.frameworks.spring.spring.boot.starter.async;
     requires org.jetbrains.annotations;
+    requires org.apache.tomcat.embed.core;
 }

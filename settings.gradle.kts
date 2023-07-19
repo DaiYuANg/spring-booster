@@ -152,5 +152,5 @@ project(":docs").name = "docs"
 include("ui:monitor-ui")
 project(":ui:monitor-ui").name = "monitor-ui"
 
-include("tools:designer")
-project(":tools:designer").name = "designer"
+//include("tools:designer")
+//project(":tools:designer").name = "designer"

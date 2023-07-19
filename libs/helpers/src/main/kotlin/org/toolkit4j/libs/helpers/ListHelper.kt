@@ -33,3 +33,12 @@ fun <T> pageList(list: List<T>, pageNo: Int, pageSize: Int): List<T> {
   val end = pageNo * pageSize
   return list.subList(start, min(end, list.size))
 }
+
+fun <T> merge(duplicate: Boolean, vararg lists: List<T>): List<T> {
+  val stream = lists.flatMap { it }
+  return if (duplicate) stream.distinct() else stream
+}
+
+fun <T> merge(vararg lists: List<T>): List<T> {
+  return merge(true, *lists)
+}
