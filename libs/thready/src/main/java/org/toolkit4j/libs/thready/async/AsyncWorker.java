@@ -18,10 +18,7 @@ import java.util.function.Supplier;
 @ToString
 @Getter
 public class AsyncWorker {
-    protected Executor executor;
-
-    private AsyncWorker() {
-    }
+    private final Executor executor;
 
     @Builder
     public AsyncWorker(

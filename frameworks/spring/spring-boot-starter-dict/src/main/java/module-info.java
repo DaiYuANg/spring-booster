@@ -18,4 +18,5 @@ module toolkit4J.frameworks.spring.spring.boot.starter.dict.main {
     requires org.reflections;
     requires toolkit4J.standard.restful;
     requires org.slf4j;
+    requires toolkit4J.libs.thready;
 }

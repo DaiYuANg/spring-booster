@@ -4,11 +4,11 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.toolkit4j.framework.spring.boot.starter.dict.configuration.DictConfigurationProperties;
 import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictFunctional;
 import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictItem;
 import org.toolkit4j.framework.spring.boot.starter.dict.scanner.DictScanner;
+import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;

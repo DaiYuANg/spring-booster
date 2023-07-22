@@ -59,6 +59,7 @@ public class CredentialsCentre {
         if (!encryptStore.containsKey(credential)) return false;
         IMinioTemplate template = SpringUtil.getBean(minioInstance);
         uniqueDevice(UserAgentParser.parse(request.getHeader("user-agent")), template);
+        if (randomUUID.contains(minioInstance)) return false;
         return true;
     }
 }

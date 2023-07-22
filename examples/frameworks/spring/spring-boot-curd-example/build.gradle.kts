@@ -25,7 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 //    implementation("org.springframework.boot:spring-boot-docker-compose")
-    // implementation(project(":frameworks:spring:spring-boot-starter-monitor"))
+     implementation(project(":frameworks:spring:spring-boot-starter-monitor"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     // implementation("org.xerial:sqlite-jdbc:3.42.0.0")
     implementation("org.hibernate.orm:hibernate-community-dialects")

@@ -9,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.toolkit4j.framework.spring.starter.monitor.endpoint.services.ISystemInfoService;
+import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledThreadPoolExecutor;

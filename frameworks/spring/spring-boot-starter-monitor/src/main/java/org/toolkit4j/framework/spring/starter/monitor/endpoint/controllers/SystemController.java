@@ -2,10 +2,6 @@ package org.toolkit4j.framework.spring.starter.monitor.endpoint.controllers;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +12,10 @@ import org.toolkit4j.framework.spring.starter.monitor.endpoint.dto.LiveThreadDto
 import org.toolkit4j.framework.spring.starter.monitor.endpoint.services.ISystemInfoService;
 import org.toolkit4j.standard.restful.resp.Response;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 @RestController
 @Slf4j
 @RequestMapping(Base.ROOT + "/system")
@@ -23,7 +23,6 @@ public class SystemController {
 	@Resource
 	private ISystemInfoService systemInfoService;
 
-	@SneakyThrows
 	@PostConstruct
 	public void init() {
 

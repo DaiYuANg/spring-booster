@@ -4,7 +4,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.toolkit4J.libs.property.SystemProperties;
 import org.toolkit4j.libs.thready.enums.PoolProperty;
 
 import java.util.Arrays;
@@ -44,7 +43,7 @@ public class AlternativeExecutors {
 
     public ThreadPoolExecutor newDefaultThreadPool() {
         return newDefaultThreadPool(ExecutorBuilder.builder()
-				.coreSize(SystemProperties.INSTANCE.getCPU_COUNT())
+				.coreSize(1)
 
                 .build());
     }

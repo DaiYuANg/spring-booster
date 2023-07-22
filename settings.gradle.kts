@@ -7,8 +7,6 @@ pluginManagement {
     }
 
     plugins {
-        val kotlinxBenchmarkVersion: String by settings
-        val kotlinVersion: String by settings
         val gitPluginVersion: String by settings
         val spotbugsBaseVersion: String by settings
         val spotlessPluginVersion: String by settings
@@ -20,21 +18,12 @@ pluginManagement {
         val springBootVersion:String by settings
         val springDependencyManagementVersion:String by settings
         val gradlePreCommitGitGooksVersion:String by settings
-        val javafxPluginVersion:String by settings
-        id("org.jetbrains.kotlinx.benchmark") version kotlinxBenchmarkVersion
+        val webjarVersion:String by settings
         id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
         id("com.gradle.enterprise") version "3.13.4"
-        id("org.jetbrains.kotlinx.benchmark") version kotlinxBenchmarkVersion
-        id("org.jetbrains.kotlin.plugin.lombok") version kotlinVersion
-        id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
         id("org.springframework.boot") version springBootVersion
         id("io.spring.dependency-management") version springDependencyManagementVersion
-        kotlin("plugin.spring") version kotlinVersion
-        kotlin("noarg") version kotlinVersion
-        kotlin("kapt") version kotlinVersion
-        kotlin("plugin.jpa") version kotlinVersion
         id("com.palantir.git-version") version gitPluginVersion
-        id("org.jetbrains.kotlin.jvm") version kotlinVersion
         id("com.github.spotbugs-base") version spotbugsBaseVersion
         id("com.diffplug.spotless") version spotlessPluginVersion
         id("org.owasp.dependencycheck") version dependencycheckVersion
@@ -42,8 +31,8 @@ pluginManagement {
         id("io.freefair.lombok") version lombokPluginVersion
         id("org.jreleaser") version jreleaserVersion
         id("com.github.node-gradle.node") version nodePluginVersion
+        id ("com.coditory.webjar") version webjarVersion
         id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
-        id("org.openjfx.javafxplugin") version javafxPluginVersion
     }
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -102,6 +91,9 @@ project(":frameworks:spring:spring-boot-starter-authentication").name =
 include("frameworks:spring:spring-boot-starter-monitor")
 project(":frameworks:spring:spring-boot-starter-monitor").name = "spring-boot-starter-monitor"
 
+include("frameworks:spring:spring-boot-starter-monitor-ui")
+project(":frameworks:spring:spring-boot-starter-monitor-ui").name = "spring-boot-starter-monitor-ui"
+
 include("frameworks:spring:spring-boot-starter-minio")
 project(":frameworks:spring:spring-boot-starter-minio").name = "spring-boot-starter-minio"
 
@@ -133,21 +125,16 @@ include("examples:frameworks:spring:spring-boot-curd-example")
 project(":examples:frameworks:spring:spring-boot-curd-example").name = "spring-boot-curd-example"
 
 // ------------standard------------
-include("standard:rbac")
-project(":standard:rbac").name = "rbac"
+include("libs:rbac")
+project(":libs:rbac").name = "rbac"
 
-include("standard:persistence")
-project(":standard:persistence").name = "persistence"
+include("libs:persistence")
+project(":libs:persistence").name = "persistence"
 
-include("standard:restful")
-project(":standard:restful").name = "restful"
+include("libs:restful")
+project(":libs:restful").name = "restful"
 
 include("docs")
 project(":docs").name = "docs"
 
 // ------------ui------------
-include("ui:monitor-ui")
-project(":ui:monitor-ui").name = "monitor-ui"
-
-//include("tools:designer")
-//project(":tools:designer").name = "designer"

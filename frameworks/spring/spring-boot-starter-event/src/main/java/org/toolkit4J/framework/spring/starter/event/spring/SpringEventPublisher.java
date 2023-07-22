@@ -6,7 +6,7 @@ import lombok.val;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
-import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
+import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;

@@ -7,8 +7,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.toolkit4J.framework.spring.boot.starter.async.base.AsyncWorker;
 import org.toolkit4J.framework.spring.starter.event.spring.annotations.MethodExecuted;
+import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 @RestController
 @Slf4j

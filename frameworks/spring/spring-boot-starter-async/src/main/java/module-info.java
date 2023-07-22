@@ -1,5 +1,5 @@
 module toolkit4J.frameworks.spring.spring.boot.starter.async {
-    exports org.toolkit4J.framework.spring.boot.starter.async.base;
+    exports org.toolkit4J.framework.spring.boot.starter.async.annotations;
     requires spring.context;
     requires static lombok;
     requires jakarta.annotation;
