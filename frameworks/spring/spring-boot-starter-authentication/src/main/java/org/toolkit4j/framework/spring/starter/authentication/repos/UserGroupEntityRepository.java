@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface UserGroupEntityRepository<T extends UserGroupEntity>
 		extends JpaRepository<T, BigInteger>, JpaSpecificationExecutor<T> {
-	List<Integer> findUsersByGroupId(Integer groupId);
+	List<UserGroupEntity> findUsersByGroupId(BigInteger groupId);
 }

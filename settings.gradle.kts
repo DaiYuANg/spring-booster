@@ -128,3 +128,5 @@ project(":modeling:rbac").name = "rbac"
 
 include("modeling:persistence")
 project(":modeling:persistence").name = "persistence"
+include("libs:office")
+findProject(":libs:office")?.name = "office"

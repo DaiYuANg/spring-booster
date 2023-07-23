@@ -12,6 +12,7 @@ import org.toolkit4J.framework.spring.starter.authentication.repos.UserEntityRep
 import org.toolkit4J.framework.spring.starter.authentication.repos.UserGroupEntityRepository;
 import org.toolkit4J.framework.spring.starter.authentication.services.IUserServices;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class UserServicesImpl implements IUserServices<UserEntity> {
 	}
 
 	@Override
-	public List<UserEntity> queryListByGroup(Integer groupId) {
+	public List<UserEntity> queryListByGroup(BigInteger groupId) {
 		val usersId = userGroupEntityRepository.findUsersByGroupId(groupId);
 		return userEntityRepository.findAllById(usersId);
 	}

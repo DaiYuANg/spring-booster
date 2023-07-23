@@ -133,15 +133,12 @@ subprojects {
         implementation("net.datafaker:datafaker:2.0.1")
         implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")
         implementation("jakarta.data:jakarta-data-api:1.0.0-b2")
-//        implementation("org.jetbrains.kotlin:kotlin-reflect")
-//        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
         testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
         testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
         testImplementation("org.slf4j:slf4j-simple:$slf4jVersion")
-//        testImplementation("org.jetbrains.kotlin:kotlin-test")
         implementation(platform("org.testcontainers:testcontainers-bom:${testContainersVersion}"))
         testImplementation("org.testcontainers:postgresql")
         testImplementation("org.testcontainers:mysql")
@@ -153,19 +150,11 @@ subprojects {
         testImplementation("com.github.dasniko:testcontainers-keycloak:2.5.0")
         testImplementation("com.redis.testcontainers:testcontainers-redis-junit:1.6.4")
         testImplementation("org.seleniumhq.selenium:selenium-remote-driver:3.141.59")
-//        testImplementation("org.jetbrains.kotlinx:lincheck:2.21")
         testImplementation("net.datafaker:datafaker:2.0.1")
-//        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
         testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
         testImplementation("org.assertj:assertj-core:${assertjVersion}")
         testImplementation("org.mockito:mockito-core:${mockitoVersion}")
     }
-
-//    kapt {
-//        useBuildCache = true
-//        keepJavacAnnotationProcessors = true
-//        showProcessorStats = true
-//    }
 
     tasks {
         withType<JavaCompile> {
