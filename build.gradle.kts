@@ -81,6 +81,7 @@ subprojects {
 
     apply {
         plugin("java")
+        plugin("java-library")
         plugin("me.champeau.jmh")
         plugin("io.freefair.lombok")
         plugin("maven-publish")

@@ -1,3 +1,3 @@
 dependencies {
-//    implementation(projects.standard.persistence)
+    implementation(projects.libs.persistence)
 }

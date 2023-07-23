@@ -6,5 +6,6 @@ module toolkit4J.libs.helpers {
     requires static lombok;
     requires com.cronutils;
     requires org.jetbrains.annotations;
-    exports org.toolkit4J.libs.helpers;
+    exports org.toolkit4J.libs.helpers.collections;
+    exports org.toolkit4J.libs.helpers.math;
 }
