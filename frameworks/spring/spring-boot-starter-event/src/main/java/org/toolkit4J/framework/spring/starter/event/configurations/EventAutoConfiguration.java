@@ -14,13 +14,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.jms.annotation.EnableJms;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.toolkit4J.framework.spring.starter.event.bus.BusPublisher;
-import org.toolkit4J.framework.spring.starter.event.spring.SpringEventPublisher;
+import org.toolkit4J.framework.spring.starter.event.spring.AsyncEventPublisher;
 
 @AutoConfiguration
 @EnableConfigurationProperties(EventConfigurationProperties.class)
 @EnableJms
 @EnableSpringUtil
+@EnableAsync
+@EnableScheduling
 public class EventAutoConfiguration {
     private final static String persistentName = "event";
 
@@ -28,10 +32,10 @@ public class EventAutoConfiguration {
     private TaskExecutor taskExecutor;
 
     @Bean
-    @ConditionalOnMissingBean(SpringEventPublisher.class)
+    @ConditionalOnMissingBean(AsyncEventPublisher.class)
 //    @ConditionalOnBean({AsyncWorker.class, Scheduler.class, ScheduledThreadPoolExecutor.class})
-    public SpringEventPublisher eventPublisher() {
-        return new SpringEventPublisher();
+    public AsyncEventPublisher eventPublisher() {
+        return new AsyncEventPublisher();
     }
 //
 //    @Bean

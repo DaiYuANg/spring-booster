@@ -1,7 +1,7 @@
 import java.net.URI
 
 plugins {
-    java
+    `java-library`
     pmd
     idea
     tasks
@@ -43,11 +43,6 @@ allprojects {
             }
         }
     }
-}
-
-
-tasks.jar {
-    enabled = false
 }
 
 group = "org.toolkit4J"

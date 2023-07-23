@@ -9,16 +9,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import org.toolkit4J.framework.spring.starter.event.spring.SpringEventPublisher;
-import org.toolkit4J.framework.spring.starter.event.spring.base.MethodExecutedEvent;
-import org.toolkit4J.framework.spring.starter.event.spring.base.NormalEvent;
+import org.toolkit4J.framework.spring.starter.event.spring.AsyncEventPublisher;
 
 @Component
 @Aspect
 @Slf4j
 public class MethodExecuted {
 	@Resource
-	private SpringEventPublisher eventPublisher;
+	private AsyncEventPublisher eventPublisher;
 
 	@Pointcut("@annotation(org.toolkit4J.framework.spring.starter.event.spring.annotations.MethodExecuted)")
 	public void methodExecutedPointCut() {}
@@ -27,8 +25,8 @@ public class MethodExecuted {
 	@Around("methodExecutedPointCut()")
 	public Object around(@NotNull ProceedingJoinPoint pjp) {
 		var returned = pjp.proceed();
-		eventPublisher.publish(
-				returned.equals(Void.TYPE) ? new NormalEvent(this) : new MethodExecutedEvent(this, returned));
+//		eventPublisher.publish(
+//				returned.equals(Void.TYPE) ? new NormalEvent(this) : new MethodExecutedEvent(this, returned));
 		return returned;
 	}
 }

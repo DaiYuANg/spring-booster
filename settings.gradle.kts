@@ -71,17 +71,14 @@ project(":libs:helpers").name = "helpers"
 include("libs:thready")
 project(":libs:thready").name = "thready"
 
-include("libs:io")
-project(":libs:io").name = "io"
-
 include("libs:cache:cache-simple")
 findProject(":libs:cache:cache-simple")?.name = "cache-simple"
 
 include("libs:cache:cache-redis-lettuce")
 findProject(":libs:cache:cache-redis-lettuce")?.name = "cache-redis-lettuce"
 
-include("libs:property")
-findProject(":libs:property")?.name = "property"
+include("libs:restful")
+project(":libs:restful").name = "restful"
 
 // ------------frameworks------------
 include("frameworks:spring:spring-boot-starter-authentication")
@@ -96,9 +93,6 @@ project(":frameworks:spring:spring-boot-starter-monitor-ui").name = "spring-boot
 
 include("frameworks:spring:spring-boot-starter-minio")
 project(":frameworks:spring:spring-boot-starter-minio").name = "spring-boot-starter-minio"
-
-include("frameworks:spring:spring-boot-starter-async")
-project(":frameworks:spring:spring-boot-starter-async").name = "spring-boot-starter-async"
 
 include("frameworks:spring:spring-boot-starter-event")
 project(":frameworks:spring:spring-boot-starter-event").name = "spring-boot-starter-event"
@@ -124,17 +118,13 @@ findProject(":frameworks:spring:spring-boot-starter-office")?.name = "spring-boo
 include("examples:frameworks:spring:spring-boot-curd-example")
 project(":examples:frameworks:spring:spring-boot-curd-example").name = "spring-boot-curd-example"
 
-// ------------standard------------
-include("libs:rbac")
-project(":libs:rbac").name = "rbac"
-
-include("libs:persistence")
-project(":libs:persistence").name = "persistence"
-
-include("libs:restful")
-project(":libs:restful").name = "restful"
 
 include("docs")
 project(":docs").name = "docs"
 
-// ------------ui------------
+// ------------modeling------------
+include("modeling:rbac")
+project(":modeling:rbac").name = "rbac"
+
+include("modeling:persistence")
+project(":modeling:persistence").name = "persistence"

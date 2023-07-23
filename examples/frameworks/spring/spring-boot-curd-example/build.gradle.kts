@@ -15,9 +15,6 @@ tasks {
 
 
 dependencies {
-    implementation(projects.frameworks.spring.springBootStarterAsync) {
-        because("For test async thread pool")
-    }
     implementation(projects.frameworks.spring.springBootStarterEvent)
 //    implementation(projects.frameworks.spring.springBootStarterCached)
     implementation(projects.frameworks.spring.springBootStarterAuthentication)

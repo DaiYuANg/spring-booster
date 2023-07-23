@@ -6,7 +6,6 @@ module toolkit4J.frameworks.spring.spring.boot.starter.io {
     requires spring.context;
     requires okhttp3.logging;
     requires minio;
-    requires toolkit4J.libs.io;
     requires spring.web;
     requires static lombok;
     requires spring.boot.starter.web;

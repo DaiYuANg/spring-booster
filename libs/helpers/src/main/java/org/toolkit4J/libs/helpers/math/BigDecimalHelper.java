@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @UtilityClass
 public class BigDecimalHelper {
@@ -26,48 +27,45 @@ public class BigDecimalHelper {
     public static boolean ge(@NotNull BigDecimal b1, BigDecimal b2) {
         return b1.compareTo(b2) >= 1;
     }
-//
-//    fun ge(b1: BigDecimal, b2: BigDecimal): Boolean {
-//        return b1.compareTo(b2) >= 1
-//    }
-//
-//    fun lt(b1: BigDecimal, b2: BigDecimal): Boolean {
-//        return b1 < b2
-//    }
-//
-//    fun le(b1: BigDecimal, b2: BigDecimal): Boolean {
-//        return b1 <= b2
-//    }
-//
-//    fun divideHalfUp(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.HALF_UP)
-//    }
-//
-//    fun divideHalfDown(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.HALF_DOWN)
-//    }
-//
-//    fun divideDown(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.DOWN)
-//    }
-//
-//    fun divideFloor(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.FLOOR)
-//    }
-//
-//    fun divideCeiling(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.CEILING)
-//    }
-//
-//    fun divideHalfEven(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.HALF_EVEN)
-//    }
-//
-//    fun divideUp(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.UP)
-//    }
-//
-//    fun divideUnnecessary(divisor: BigDecimal, dividend: BigDecimal): BigDecimal {
-//        return dividend.divide(divisor, RoundingMode.UNNECESSARY)
-//    }
+
+    public static boolean lt(@NotNull BigDecimal b1, BigDecimal b2) {
+        return b1.compareTo(b2) < 0;
+    }
+
+    public static boolean le(@NotNull BigDecimal b1, BigDecimal b2) {
+        return b1.compareTo(b2) <= 0;
+    }
+
+    @Contract(pure = true)
+    public static @NotNull BigDecimal divideHalfUp(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.HALF_UP);
+    }
+
+    public static @NotNull BigDecimal divideHalfDown(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.HALF_DOWN);
+    }
+
+    public static @NotNull BigDecimal divideDown(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.DOWN);
+    }
+
+    public static @NotNull BigDecimal divideFloor(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.FLOOR);
+    }
+
+    public static @NotNull BigDecimal divideCeiling(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.CEILING);
+    }
+
+    public static @NotNull BigDecimal divideHalfEven(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.HALF_EVEN);
+    }
+
+    public static @NotNull BigDecimal divideUp(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.UP);
+    }
+
+    public static @NotNull BigDecimal divideUnnecessary(@NotNull BigDecimal divisor, @NotNull BigDecimal dividend) {
+        return dividend.divide(divisor, RoundingMode.UNNECESSARY);
+    }
 }

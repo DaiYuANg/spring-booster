@@ -14,46 +14,51 @@ import java.math.BigInteger;
 @Accessors(chain = true)
 public class Response<T> implements Serializable {
 
-	private Integer status = jakarta.ws.rs.core.Response.Status.OK.getStatusCode();
+    private Integer status = jakarta.ws.rs.core.Response.Status.OK.getStatusCode();
 
-	private BigInteger code = BigInteger.valueOf(1);
+    private BigInteger code = BigInteger.valueOf(1);
 
-	private T data;
+    private T data;
 
-	private String message;
+    private String message;
 
-	private long timestamp = System.currentTimeMillis();
+    private String version;
 
-	private Response() {}
+    private long timestamp = System.currentTimeMillis();
 
-	public static <T> Response<T> response(T data, String message) {
-		return new Response<T>().setData(data).setMessage(message);
-	}
+    private Response() {
+    }
 
-	@Contract(" -> new")
-	public static @NotNull Response<?> ok() {
-		return new Response<>();
-	}
+    public static <T> Response<T> response(T data, String message) {
+        return new Response<T>().setData(data).setMessage(message);
+    }
 
-	public static <T> Response<T> ok(T data) {
-		return new Response<T>().setData(data);
-	}
+    @Contract(" -> new")
+    public static @NotNull Response<?> success() {
+        return new Response<>().setStatus(jakarta.ws.rs.core.Response.Status.OK.getStatusCode());
+    }
 
-	public static <T> Response<T> ok(T data, String message) {
-		return new Response<T>().setData(data).setMessage(message);
-	}
+    public static <T> Response<T> success(T data) {
+        return new Response<T>().setData(data);
+    }
 
-	public static Response<?> err() {
-		return new Response<>().setStatus(jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
-	}
+    public static <T> Response<T> success(T data, String message) {
+        return new Response<T>().setData(data).setMessage(message);
+    }
 
-	public static Response<?> err(String message) {
-		return new Response<>()
-				.setMessage(message)
-				.setStatus(jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
-	}
+    public static Response<?> error() {
+        return new Response<>()
+                .setStatus(jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+    }
 
-	public static Response<?> unAuth() {
-		return new Response<>().setStatus(jakarta.ws.rs.core.Response.Status.UNAUTHORIZED.getStatusCode());
-	}
+    public static Response<?> error(String message) {
+        return new Response<>()
+                .setMessage(message)
+                .setStatus(jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+    }
+
+    public static Response<?> unAuth() {
+        return new Response<>()
+                .setStatus(jakarta.ws.rs.core.Response.Status.UNAUTHORIZED.getStatusCode());
+    }
 }
