@@ -13,7 +13,6 @@ module toolkit4J.frameworks.spring.spring.boot.starter.io {
     requires cn.hutool;
     requires expiringmap;
     requires toolkit4J.libs.helpers;
-    requires toolkit4J.frameworks.spring.spring.boot.starter.async;
     requires org.jetbrains.annotations;
     requires org.apache.tomcat.embed.core;
     requires toolkit4J.libs.thready;

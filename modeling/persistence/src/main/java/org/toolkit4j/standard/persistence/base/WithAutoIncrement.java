@@ -15,8 +15,8 @@ import java.math.BigInteger;
 @Setter
 public class WithAutoIncrement extends CommonField implements Serializable {
 
-	@Id
-	@GeneratedValue
-	@Column(unique = true, nullable = false)
-	private BigInteger id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, nullable = false)
+    private BigInteger id;
 }

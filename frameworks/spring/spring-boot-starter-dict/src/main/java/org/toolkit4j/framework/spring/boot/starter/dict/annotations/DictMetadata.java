@@ -9,4 +9,6 @@ public @interface DictMetadata {
 	String code();
 
 	String desc() default "";
+
+	int order() default 0;
 }

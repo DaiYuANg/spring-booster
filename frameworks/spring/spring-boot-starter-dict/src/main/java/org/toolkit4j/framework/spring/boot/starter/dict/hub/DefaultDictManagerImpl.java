@@ -8,7 +8,6 @@ import org.toolkit4j.framework.spring.boot.starter.dict.configuration.DictConfig
 import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictFunctional;
 import org.toolkit4j.framework.spring.boot.starter.dict.funcational.DictItem;
 import org.toolkit4j.framework.spring.boot.starter.dict.scanner.DictScanner;
-import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
@@ -25,8 +24,8 @@ public class DefaultDictManagerImpl implements DictManager {
     @Resource
     private DictConfigurationProperties dictConfigurationProperties;
 
-    @Resource
-    private AsyncWorker asyncWorker;
+//    @Resource
+//    private AsyncWorker asyncWorker;
 
     private final ConcurrentMap<String, AtomicInteger> hit = new ConcurrentSkipListMap<>();
 
@@ -48,13 +47,13 @@ public class DefaultDictManagerImpl implements DictManager {
         syncLoad();
     }
 
-    private void asyncLoad() {
-        asyncWorker
-                .supply(dictScanner::doScan)
-                .thenAccept(storage::putAll)
-                .thenApply(r -> "Dict Scanner scanned:{} finish")
-                .thenAccept(r -> log.info(r, dictScanner.scannedClasspath.keySet()));
-    }
+//    private void asyncLoad() {
+//        asyncWorker
+//                .supply(dictScanner::doScan)
+//                .thenAccept(storage::putAll)
+//                .thenApply(r -> "Dict Scanner scanned:{} finish")
+//                .thenAccept(r -> log.info(r, dictScanner.scannedClasspath.keySet()));
+//    }
 
     private void syncLoad() {
         storage.putAll(dictScanner.doScan());

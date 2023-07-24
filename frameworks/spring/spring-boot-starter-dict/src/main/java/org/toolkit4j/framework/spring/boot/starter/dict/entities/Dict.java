@@ -4,11 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 public class Dict extends WithAutoIncrement {
 
 	@Column

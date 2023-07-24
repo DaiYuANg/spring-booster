@@ -106,9 +106,7 @@ subprojects {
         val jakartaJsonVersion: String by project
         val junitVersion: String by project
         val testContainersVersion: String by project
-        val restAssuredVersion: String by project
-        val assertjVersion: String by project
-        val mockitoVersion: String by project
+
         implementation("com.google.code.gson:gson:${gsonVersion}")
         implementation("org.mapstruct:mapstruct:${mapstructVersion}")
         implementation("com.google.guava:guava:${guavaVersion}")
@@ -138,22 +136,8 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-        testImplementation("org.slf4j:slf4j-simple:$slf4jVersion")
         implementation(platform("org.testcontainers:testcontainers-bom:${testContainersVersion}"))
-        testImplementation("org.testcontainers:postgresql")
-        testImplementation("org.testcontainers:mysql")
-        testImplementation("org.testcontainers:rabbitmq")
-        testImplementation("org.testcontainers:elasticsearch")
-        testImplementation("org.testcontainers:mssqlserver")
-        testImplementation("org.testcontainers:mockserver")
-        testImplementation("org.testcontainers:selenium")
-        testImplementation("com.github.dasniko:testcontainers-keycloak:2.5.0")
-        testImplementation("com.redis.testcontainers:testcontainers-redis-junit:1.6.4")
-        testImplementation("org.seleniumhq.selenium:selenium-remote-driver:3.141.59")
-        testImplementation("net.datafaker:datafaker:2.0.1")
-        testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
-        testImplementation("org.assertj:assertj-core:${assertjVersion}")
-        testImplementation("org.mockito:mockito-core:${mockitoVersion}")
+
     }
 
     tasks {

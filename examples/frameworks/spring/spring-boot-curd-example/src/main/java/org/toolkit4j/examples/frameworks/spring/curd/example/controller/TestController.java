@@ -13,8 +13,6 @@ import org.toolkit4j.libs.thready.async.AsyncWorker;
 @RestController
 @Slf4j
 public class TestController {
-	@Resource
-	private AsyncWorker asyncWorker;
 
 	@EventListener(ApplicationStartedEvent.class)
 	@Async
@@ -25,6 +23,5 @@ public class TestController {
 	@GetMapping("/test")
 	@MethodExecuted
 	public void test() {
-		asyncWorker.run(() -> System.err.println(123));
 	}
 }

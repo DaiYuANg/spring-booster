@@ -28,7 +28,7 @@ public class CommonField {
 
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
-	private BigInteger orderedByTimeStamp;
+	private BigInteger orderedByTimeStamp = BigInteger.valueOf(System.currentTimeMillis());
 
 	@Column
 	private int versioning;

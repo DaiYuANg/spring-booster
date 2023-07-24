@@ -12,7 +12,6 @@ import org.toolkit4j.framework.spring.boot.starter.dict.annotations.DictTranslat
 import org.toolkit4j.framework.spring.boot.starter.dict.configuration.DictConfigurationProperties;
 import org.toolkit4j.framework.spring.boot.starter.dict.repos.DictRepository;
 import org.toolkit4j.framework.spring.boot.starter.dict.services.IDictService;
-import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -31,8 +30,8 @@ public class DictServiceImpl implements IDictService {
 	@Resource
 	private EntityManager entityManager;
 
-	@Resource
-	private AsyncWorker asyncWorker;
+//	@Resource
+//	private AsyncWorker asyncWorker;
 
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -50,9 +49,9 @@ public class DictServiceImpl implements IDictService {
 				.filter(fieldPredicate)
 				.toList();
 		val others = needTranslates.stream().filter(otherTables).toList();
-		asyncWorker
-				.parallelALL(() -> doDictTranslate(result, needTranslates), () -> doOthersTables(result, others))
-				.join();
+//		asyncWorker
+//				.parallelALL(() -> doDictTranslate(result, needTranslates), () -> doOthersTables(result, others))
+//				.join();
 		return result;
 	}
 
