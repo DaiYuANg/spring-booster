@@ -32,6 +32,7 @@ public class UserServicesImpl implements IUserServices<UserEntity> {
 	@Override
 	public List<UserEntity> queryListByGroup(BigInteger groupId) {
 		val usersId = userGroupEntityRepository.findUsersByGroupId(groupId);
-		return userEntityRepository.findAllById(usersId);
+//		return userEntityRepository.findAllById(usersId::forEach);
+		return null;
 	}
 }

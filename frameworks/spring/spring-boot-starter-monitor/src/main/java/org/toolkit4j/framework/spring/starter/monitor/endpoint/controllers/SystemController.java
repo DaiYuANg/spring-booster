@@ -31,12 +31,12 @@ public class SystemController {
 
 	@GetMapping("/memoryAboutJvm")
 	public Response<LiveMemoryDto> getMemory() {
-		return Response.ok(systemInfoService.getMemoryUsage());
+		return Response.success(systemInfoService.getMemoryUsage());
 	}
 
 	@GetMapping("/threads")
 	public Response<List<LiveThreadDto>> getThreads() {
-		return Response.ok(systemInfoService.getAllThreadOfCurrentJVM());
+		return Response.success(systemInfoService.getAllThreadOfCurrentJVM());
 	}
 
 	@GetMapping("/env")

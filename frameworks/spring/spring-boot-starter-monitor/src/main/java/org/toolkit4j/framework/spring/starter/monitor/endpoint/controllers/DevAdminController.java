@@ -27,6 +27,6 @@ public class DevAdminController {
 	@GetMapping("/detect")
 	public Response<?> detect() {
 		val r = objectMapper.readValue(devAdminService.actuatorExport(), Map.class);
-		return Response.ok(r);
+		return Response.success(r);
 	}
 }

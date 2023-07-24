@@ -4,5 +4,4 @@ module toolkit4J.libs.thready {
     requires org.jetbrains.annotations;
     requires com.google.common;
     exports org.toolkit4j.libs.thready.async;
-    exports org.toolkit4j.libs.thready.enums;
 }

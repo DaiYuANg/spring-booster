@@ -56,10 +56,10 @@ gradleEnterprise {
 }
 
 gitHooks {
-    preCommit {
-        logger.log(LogLevel.INFO,"pre commit")
-    }
-    createHooks()
+//    preCommit {
+//        logger.log(LogLevel.INFO,"pre commit")
+//    }
+//    createHooks()
 }
 
 rootProject.name = "toolkit4J"

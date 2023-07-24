@@ -22,12 +22,12 @@ public class DictController {
 			method = {RequestMethod.PUT, RequestMethod.POST})
 	public Response<Object> add(@RequestBody Dict dict) {
 		dictRepository.save(dict);
-		return Response.ok(1);
+		return Response.success(1);
 	}
 
 	@GetMapping("list")
 	public Response<Page<Dict>> queryList(
 			@RequestParam Dict dict, @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
-		return Response.ok(dictRepository.findAll(Example.of(dict), PageRequest.of(pageNo, pageSize)));
+		return Response.success(dictRepository.findAll(Example.of(dict), PageRequest.of(pageNo, pageSize)));
 	}
 }

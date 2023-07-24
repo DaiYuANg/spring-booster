@@ -6,6 +6,7 @@ dependencies {
     api(projects.modeling.persistence)
     api(projects.libs.helpers)
     api(projects.libs.restful)
+    api(projects.libs.thready)
     implementation("org.reflections:reflections:0.10.2")
 }
 

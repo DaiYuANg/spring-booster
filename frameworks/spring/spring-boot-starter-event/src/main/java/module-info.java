@@ -14,6 +14,5 @@ module toolkit4J.frameworks.spring.spring.boot.starter.event {
     requires com.google.common;
     requires org.jetbrains.annotations;
     requires org.slf4j;
-    requires toolkit4J.frameworks.spring.spring.boot.starter.async;
     requires org.aspectj.runtime;
 }

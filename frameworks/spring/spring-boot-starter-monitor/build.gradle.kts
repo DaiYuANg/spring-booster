@@ -14,5 +14,6 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     api("org.springframework.boot:spring-boot-starter-actuator")
     api("com.squareup.okhttp3:okhttp:${okhttpVersion}")
+    api(projects.libs.thready)
     implementation(projects.frameworks.spring.springBootStarterMonitorUi)
 }

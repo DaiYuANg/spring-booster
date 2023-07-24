@@ -5,7 +5,6 @@ module toolkit4J.frameworks.spring.spring.boot.starter.dict.main {
     requires static lombok;
     requires jakarta.persistence;
     requires cn.hutool;
-    requires toolkit4J.frameworks.spring.spring.boot.starter.async;
     requires org.jetbrains.annotations;
     requires spring.data.jpa;
     requires toolkit4J.standard.persistence;
