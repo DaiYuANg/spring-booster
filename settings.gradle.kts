@@ -32,6 +32,7 @@ pluginManagement {
     id("org.jreleaser") version jreleaserVersion
     id("com.github.node-gradle.node") version nodePluginVersion
     id("com.coditory.webjar") version webjarVersion
+    id("com.github.ben-manes.versions") version "0.47.0"
     id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
   }
 }
@@ -87,10 +88,6 @@ include(":spring-boot-starter-event")
 
 project(":spring-boot-starter-event").name = "spring-boot-starter-event"
 
-include(":spring-boot-starter-scheduled")
-
-project(":spring-boot-starter-scheduled").name = "spring-boot-starter-scheduled"
-
 include(":spring-boot-starter-restful")
 
 project(":spring-boot-starter-restful").name = "spring-boot-starter-restful"
@@ -110,20 +107,16 @@ findProject(":spring-boot-starter-cached")?.name = "spring-boot-starter-cached"
 include(":spring-boot-starter-office")
 
 findProject(":spring-boot-starter-office")?.name = "spring-boot-starter-office"
+
+include("spring-boot-starter-persistence")
+
+findProject(":spring-boot-starter-persistence")?.name = "spring-boot-starter-persistence"
 // ------------examples------------
-include("examples:spring-boot-curd-example")
+include("examples:toolkit-example-all")
 
-project(":examples:spring-boot-curd-example").name = "spring-boot-curd-example"
+project(":examples:toolkit-example-all").name = "toolkit-example-all"
 
+// ------------docs------------
 include("docs")
 
 project(":docs").name = "docs"
-
-// ------------modeling------------
-include("modeling:rbac")
-
-project(":modeling:rbac").name = "rbac"
-
-include("modeling:persistence")
-
-project(":modeling:persistence").name = "persistence"

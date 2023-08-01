@@ -1,1 +1,1 @@
-org.toolkit4J.framework.spring.starter.event.configurations.EventAutoConfiguration
+org.toolkit.spring.boot.starter.event.configurations.EventAutoConfiguration

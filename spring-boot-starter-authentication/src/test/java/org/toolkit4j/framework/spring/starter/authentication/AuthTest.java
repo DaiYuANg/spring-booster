@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.toolkit4J.framework.spring.starter.authentication.configurations.AuthenticationConfiguration;
+import org.toolkit.spring.boot.authentication.configurations.AuthenticationConfiguration;
 
 @SpringBootTest(
 		classes = {SpringBootApplication.class, AuthenticationConfiguration.class, LocalSessionFactoryBean.class},

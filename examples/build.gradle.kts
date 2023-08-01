@@ -1,3 +1,1 @@
-tasks.jar { enabled = false }
-
-allprojects { tasks.publish { enabled = false } }
+subprojects { tasks.publish { enabled = false } }

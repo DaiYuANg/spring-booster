@@ -10,6 +10,7 @@ plugins {
   jacoco
   checkstyle
   commonProject
+  id("com.github.ben-manes.versions")
   id("com.palantir.git-version")
   id("com.github.spotbugs-base")
   id("com.diffplug.spotless")
@@ -17,7 +18,6 @@ plugins {
   id("me.champeau.jmh") apply false
   id("io.freefair.lombok") apply false
   id("org.jreleaser")
-  id("com.github.node-gradle.node") apply false
   id("org.springframework.boot") apply false
   id("io.spring.dependency-management") apply false
 }
@@ -33,19 +33,6 @@ allprojects {
     mavenCentral()
     gradlePluginPortal()
     google()
-    if (rootProject.hasProperty("gitLabPrivateToken")) {
-      maven {
-        url = URI("https://dev.daiyuang.cloud:83/api/v4/groups/17/-/packages/maven")
-        name = "GitLab"
-        //                credentials(HttpHeaderCredentials) {
-        //                    name = 'gradle'
-        //                    value = gitLabPrivateToken
-        //                }
-        //                authentication {
-        //                    header(HttpHeaderAuthentication)
-        //                }
-      }
-    }
   }
 }
 
@@ -120,7 +107,6 @@ subprojects {
     implementation("com.google.guava:guava:${guavaVersion}")
     implementation("org.slf4j:slf4j-api:${slf4jVersion}")
     compileOnly("org.springframework.boot:spring-boot-starter")
-    compileOnly("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-starter-web")
@@ -139,10 +125,10 @@ subprojects {
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
     implementation("cn.hutool:hutool-all:${hutoolVersion}")
-    implementation("net.datafaker:datafaker:2.0.1")
     implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")
     implementation("jakarta.data:jakarta-data-api:1.0.0-b2")
     testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
+    testImplementation("net.datafaker:datafaker:2.0.1")
     testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
