@@ -1,6 +1,7 @@
 package org.toolkit4J.standard.rbac;
 
 import jakarta.persistence.*;
+import java.util.List;
 import org.toolkit4j.standard.persistence.base.WithAutoIncrement;
 
 @Entity
@@ -12,4 +13,7 @@ public class User extends WithAutoIncrement {
 
 	@Column
 	private String password;
+
+	@OneToMany
+	List<UserRole> userRoles;
 }

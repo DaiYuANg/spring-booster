@@ -1,3 +1,1 @@
-dependencies {
-    api(projects.modeling.persistence)
-}
+dependencies { api(projects.modeling.persistence) }

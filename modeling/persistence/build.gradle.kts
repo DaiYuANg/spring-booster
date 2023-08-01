@@ -1,3 +1,3 @@
-dependencies{
-//    api("jakarta.annotation:jakarta.annotation-api:2.1.1")
+dependencies {
+  //    api("jakarta.annotation:jakarta.annotation-api:2.1.1")
 }

@@ -1,9 +1,3 @@
-tasks.jar {
-	enabled = false
-}
+tasks.jar { enabled = false }
 
-allprojects {
-	tasks.publish {
-		enabled = false
-	}
-}
+allprojects { tasks.publish { enabled = false } }

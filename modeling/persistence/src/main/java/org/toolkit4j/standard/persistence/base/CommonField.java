@@ -1,7 +1,6 @@
 package org.toolkit4j.standard.persistence.base;
 
 import jakarta.persistence.*;
-
 import java.math.BigInteger;
 import java.util.Date;
 
