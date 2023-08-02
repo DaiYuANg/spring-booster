@@ -2,17 +2,6 @@ package org.toolkit.spring.boot.starter.dict.scanner;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
-import org.toolkit.spring.boot.starter.dict.annotations.Dict;
-import org.toolkit.spring.boot.starter.dict.annotations.DictValue;
-import org.toolkit.spring.boot.starter.dict.funcational.DictFunctional;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 @Slf4j
 @Component
