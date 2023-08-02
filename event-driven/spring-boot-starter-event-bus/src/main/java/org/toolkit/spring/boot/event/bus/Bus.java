@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Bus {
 
-    @Resource
-    private EventBus eventBus;
+	@Resource
+	private EventBus eventBus;
 
-    public <T> void publish(String address, Message<T> carryData){
-    }
+	public <T> void publish(String address, Message<T> carryData) {}
 }

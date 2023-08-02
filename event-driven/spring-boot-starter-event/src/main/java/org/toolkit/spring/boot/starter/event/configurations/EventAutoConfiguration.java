@@ -67,7 +67,7 @@ public class EventAutoConfiguration {
 	}
 
 	@Bean
-	public Vertx vertx(){
+	public Vertx vertx() {
 		val vertx = Vertx.vertx();
 		vertx.deployVerticle(new AbstractVerticle() {
 
@@ -80,12 +80,12 @@ public class EventAutoConfiguration {
 	}
 
 	@Bean
-	public EventBus eventBus(){
+	public EventBus eventBus() {
 		return vertx().eventBus();
 	}
 
-//	@Bean
-//	public Cache<Long, Object> cache() {
-//		return Caffeine.newBuilder().build();
-//	}
+	//	@Bean
+	//	public Cache<Long, Object> cache() {
+	//		return Caffeine.newBuilder().build();
+	//	}
 }

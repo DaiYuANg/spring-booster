@@ -6,6 +6,6 @@ import org.toolkit.spring.boot.starter.dict.annotations.DictValue;
 @Dict
 public class T {
 
-    @DictValue(code = "test", text = "测试")
-    private String TT;
+	@DictValue(code = "test", text = "测试")
+	private String TT;
 }

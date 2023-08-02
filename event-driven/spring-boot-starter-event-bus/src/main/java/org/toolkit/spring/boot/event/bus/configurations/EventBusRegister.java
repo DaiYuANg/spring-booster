@@ -13,14 +13,14 @@ import org.toolkit.spring.boot.event.bus.annotations.Subscriber;
 @Slf4j
 public class EventBusRegister {
 
-    @Resource
-    private ApplicationContext context;
+	@Resource
+	private ApplicationContext context;
 
-    @Resource
-    private EventBus eventBus;
+	@Resource
+	private EventBus eventBus;
 
-    @PostConstruct
-    public void init(){
-        val subscribers = context.getBeansWithAnnotation(Subscriber.class);
-    }
+	@PostConstruct
+	public void init() {
+		val subscribers = context.getBeansWithAnnotation(Subscriber.class);
+	}
 }

@@ -10,5 +10,4 @@ import java.lang.annotation.Target;
 @Component
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Dict {
-}
+public @interface Dict {}

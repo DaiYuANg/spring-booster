@@ -113,8 +113,11 @@ include("spring-boot-starter-persistence")
 findProject(":spring-boot-starter-persistence")?.name = "spring-boot-starter-persistence"
 
 include("spring-boot-starter-ocr")
+
 findProject("spring-boot-starter-ocr")?.name = "spring-boot-starter-ocr"
+
 include("event-driven:spring-boot-starter-event-bus")
+
 findProject(":event-driven:spring-boot-starter-event-bus")?.name = "spring-boot-starter-event-bus"
 // ------------examples------------
 include("examples:toolkit-example-all")
@@ -125,4 +128,3 @@ project(":examples:toolkit-example-all").name = "toolkit-example-all"
 include("docs")
 
 project(":docs").name = "docs"
-

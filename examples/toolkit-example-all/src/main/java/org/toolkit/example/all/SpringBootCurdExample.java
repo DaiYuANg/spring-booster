@@ -10,7 +10,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-
 @SpringBootApplication(scanBasePackages = {"org.toolkit.example"})
 // @EnableDict
 // @EnableDevAdmin

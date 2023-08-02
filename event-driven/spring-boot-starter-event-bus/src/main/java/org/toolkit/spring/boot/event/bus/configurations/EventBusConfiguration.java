@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class EventBusConfiguration {
 
-    @Bean
-    public Vertx vertx() {
-        return Vertx.vertx();
-    }
+	@Bean
+	public Vertx vertx() {
+		return Vertx.vertx();
+	}
 
-    @Bean
-    public EventBus eventBus() {
-        return vertx().eventBus();
-    }
+	@Bean
+	public EventBus eventBus() {
+		return vertx().eventBus();
+	}
 }

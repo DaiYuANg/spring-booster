@@ -5,6 +5,4 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @AutoConfiguration
 @EnableConfigurationProperties(OCRConfigurationProperties.class)
-public class OCRAutoConfiguration {
-
-}
+public class OCRAutoConfiguration {}

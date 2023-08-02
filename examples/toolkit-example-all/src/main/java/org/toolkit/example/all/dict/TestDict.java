@@ -9,11 +9,11 @@ import lombok.ToString;
 // @DictMetadata(code = "test")
 @RequiredArgsConstructor
 public class TestDict {
-//    @DictValue(code = "test", text = "测试")
-    private String ty;
+	//    @DictValue(code = "test", text = "测试")
+	private String ty;
 
-    //	@DictValue(code = "test_store", text = "测试 存储")
-//    TEST_STORE("k2");
+	//	@DictValue(code = "test_store", text = "测试 存储")
+	//    TEST_STORE("k2");
 
-//	public final String value;
+	//	public final String value;
 }

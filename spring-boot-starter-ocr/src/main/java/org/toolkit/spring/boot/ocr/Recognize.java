@@ -5,5 +5,4 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class Recognize {
-}
+public class Recognize {}

@@ -16,8 +16,8 @@ public class AsyncEventPublisher {
 	private EventBus eventBus;
 
 	@PostConstruct
-	public void init(){
-		eventBus.publish("terst","das");
+	public void init() {
+		eventBus.publish("terst", "das");
 	}
 
 	@Resource

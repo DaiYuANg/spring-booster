@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SystemController {
 
-    @GetMapping("/querySystemInfo")
-    public void querySystemInfo(){
-
-    }
+	@GetMapping("/querySystemInfo")
+	public void querySystemInfo() {}
 }
