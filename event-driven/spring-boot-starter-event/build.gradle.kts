@@ -8,6 +8,5 @@ dependencies {
   api("org.apache.activemq:activemq-broker")
   api("org.apache.activemq:activemq-pool")
   implementation("org.ehcache:ehcache:3.10.8")
-  implementation("io.vertx:vertx-core:4.4.4")
   implementation("org.aspectj:aspectjrt:${aspectjVersion}")
 }

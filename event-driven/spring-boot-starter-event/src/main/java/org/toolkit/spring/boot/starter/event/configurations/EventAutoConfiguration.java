@@ -2,9 +2,6 @@ package org.toolkit.spring.boot.starter.event.configurations;
 
 import cn.hutool.extra.spring.EnableSpringUtil;
 import com.google.gson.Gson;
-import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.EventBus;
 import jakarta.annotation.Resource;
 import lombok.val;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -65,27 +62,4 @@ public class EventAutoConfiguration {
 	public Gson gson() {
 		return new Gson();
 	}
-
-	@Bean
-	public Vertx vertx() {
-		val vertx = Vertx.vertx();
-		vertx.deployVerticle(new AbstractVerticle() {
-
-			@Override
-			public void start() {
-				System.err.println(getVertx().eventBus());
-			}
-		});
-		return vertx;
-	}
-
-	@Bean
-	public EventBus eventBus() {
-		return vertx().eventBus();
-	}
-
-	//	@Bean
-	//	public Cache<Long, Object> cache() {
-	//		return Caffeine.newBuilder().build();
-	//	}
 }
