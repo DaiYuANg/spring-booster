@@ -4,6 +4,7 @@ tasks { named("publish") { enabled = false } }
 
 dependencies {
   implementation(projects.springBootStarterAuthentication)
+  implementation(projects.springBootStarterDict)
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("com.baomidou:mybatis-plus:3.5.3.1")

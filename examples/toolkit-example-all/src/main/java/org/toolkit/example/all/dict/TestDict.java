@@ -8,12 +8,12 @@ import lombok.ToString;
 @Getter
 // @DictMetadata(code = "test")
 @RequiredArgsConstructor
-public enum TestDict {
-	//	@DictValue(code = "test", text = "测试")
-	TEST("k"),
+public class TestDict {
+//    @DictValue(code = "test", text = "测试")
+    private String ty;
 
-	//	@DictValue(code = "test_store", text = "测试 存储")
-	TEST_STORE("k2");
+    //	@DictValue(code = "test_store", text = "测试 存储")
+//    TEST_STORE("k2");
 
-	public final String value;
+//	public final String value;
 }

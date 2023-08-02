@@ -10,9 +10,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-// import org.toolkit4j.framework.spring.starter.monitor.annotations.EnableDevAdmin;
 
-@SpringBootApplication(scanBasePackages = {"org.toolkit4J.curd.example"})
+@SpringBootApplication(scanBasePackages = {"org.toolkit.example"})
 // @EnableDict
 // @EnableDevAdmin
 @Slf4j

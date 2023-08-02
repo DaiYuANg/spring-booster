@@ -84,9 +84,9 @@ include(":spring-boot-starter-minio")
 
 project(":spring-boot-starter-minio").name = "spring-boot-starter-minio"
 
-include(":spring-boot-starter-event")
+include(":event-driven:spring-boot-starter-event")
 
-project(":spring-boot-starter-event").name = "spring-boot-starter-event"
+project(":event-driven:spring-boot-starter-event").name = "spring-boot-starter-event"
 
 include(":spring-boot-starter-restful")
 
@@ -111,6 +111,11 @@ findProject(":spring-boot-starter-office")?.name = "spring-boot-starter-office"
 include("spring-boot-starter-persistence")
 
 findProject(":spring-boot-starter-persistence")?.name = "spring-boot-starter-persistence"
+
+include("spring-boot-starter-ocr")
+findProject("spring-boot-starter-ocr")?.name = "spring-boot-starter-ocr"
+include("event-driven:spring-boot-starter-event-bus")
+findProject(":event-driven:spring-boot-starter-event-bus")?.name = "spring-boot-starter-event-bus"
 // ------------examples------------
 include("examples:toolkit-example-all")
 
@@ -120,3 +125,4 @@ project(":examples:toolkit-example-all").name = "toolkit-example-all"
 include("docs")
 
 project(":docs").name = "docs"
+

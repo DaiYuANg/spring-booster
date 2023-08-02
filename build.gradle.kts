@@ -36,7 +36,7 @@ allprojects {
   }
 }
 
-group = "org.toolkit4J"
+group = "org.toolkit"
 
 version = "1.0-SNAPSHOT"
 
@@ -91,7 +91,6 @@ subprojects {
     val mapstructVersion: String by project
     val guavaVersion: String by project
     val slf4jVersion: String by project
-    val caffeineVersion: String by project
     val rxjavaVersion: String by project
     val commonIOVersion: String by project
     val jetbrainsAnnotationsVersion: String by project
@@ -106,30 +105,28 @@ subprojects {
     implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     implementation("com.google.guava:guava:${guavaVersion}")
     implementation("org.slf4j:slf4j-api:${slf4jVersion}")
-    compileOnly("org.springframework.boot:spring-boot-starter")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-json")
+    implementation("org.springframework.boot:spring-boot-starter")
     testImplementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    implementation("com.github.ben-manes.caffeine:caffeine:${caffeineVersion}")
-    implementation("com.github.ben-manes.caffeine:guava:${caffeineVersion}")
-    implementation("com.github.ben-manes.caffeine:jcache:${caffeineVersion}")
     implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     implementation("commons-io:commons-io:${commonIOVersion}")
     implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
     implementation("org.immutables:value:${immutablesVersion}")
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
-    implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
     implementation("cn.hutool:hutool-all:${hutoolVersion}")
-    implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")
-    implementation("jakarta.data:jakarta-data-api:1.0.0-b2")
+//    implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
+//    implementation("com.squareup.okhttp3:okhttp")
+//    implementation("com.squareup.okhttp3:logging-interceptor")
+//    implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
+//    implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")
+//    implementation("jakarta.data:jakarta-data-api:1.0.0-b2")
     testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
     testImplementation("net.datafaker:datafaker:2.0.1")
     testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

@@ -11,6 +11,15 @@ public interface UserEntityMapper {
 
 	UserPojo userEntityToUserPojo(UserEntity entity);
 
+	@Mapping(target = "versioning", ignore = true)
+	@Mapping(target = "userRoleEntities", ignore = true)
+	@Mapping(target = "updateBy", ignore = true)
+	@Mapping(target = "updateAt", ignore = true)
+	@Mapping(target = "sort", ignore = true)
+	@Mapping(target = "remark", ignore = true)
+	@Mapping(target = "orderedByTimeStamp", ignore = true)
+	@Mapping(target = "createBy", ignore = true)
+	@Mapping(target = "createAt", ignore = true)
 	@Mapping(target = "username", ignore = true)
 	@Mapping(target = "sex", ignore = true)
 	@Mapping(target = "password", ignore = true)

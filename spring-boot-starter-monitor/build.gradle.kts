@@ -4,6 +4,7 @@ val okhttpVersion: String by project
 dependencies {
   api("org.springframework.boot:spring-boot-starter-thymeleaf")
   api("org.springframework.boot:spring-boot-starter-websocket")
+  implementation("org.springframework.boot:spring-boot-starter-web")
   api("com.h2database:h2")
   api("com.github.oshi:oshi-core:${oshiVersion}")
   api("org.buildobjects:jproc:2.8.2")
