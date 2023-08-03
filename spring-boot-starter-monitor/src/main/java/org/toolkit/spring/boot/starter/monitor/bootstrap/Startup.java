@@ -7,10 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
 import org.toolkit.spring.boot.starter.monitor.configurations.endpoint.ServerBasicInfo;
 
-@Component
 @Slf4j
 public class Startup {
 

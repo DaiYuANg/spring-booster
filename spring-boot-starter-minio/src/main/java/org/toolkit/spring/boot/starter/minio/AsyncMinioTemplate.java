@@ -4,19 +4,19 @@ import io.minio.MinioClient;
 import java.io.File;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
-import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 public class AsyncMinioTemplate implements IMinioTemplate {
-	private final AsyncWorker asyncWorker;
+	//	private final AsyncWorker asyncWorker;
 
 	private final MinioTemplate template;
 
 	public AsyncMinioTemplate(MinioClient minioClient, ThreadPoolExecutor threadPoolExecutor) {
 		this.template = new MinioTemplate(minioClient);
-		this.asyncWorker = AsyncWorker.builder().executor(threadPoolExecutor).build();
+		//		this.asyncWorker = AsyncWorker.builder().executor(threadPoolExecutor).build();
 	}
 
 	public CompletableFuture<String> upload(File file, String bucket) {
-		return asyncWorker.supply(() -> template.upload(file, bucket));
+		//		return asyncWorker.supply(() -> template.upload(file, bucket));
+		return null;
 	}
 }

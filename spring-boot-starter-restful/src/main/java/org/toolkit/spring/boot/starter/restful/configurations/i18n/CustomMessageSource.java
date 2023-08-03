@@ -29,7 +29,7 @@ public class CustomMessageSource extends AbstractMessageSource {
 	@PostConstruct
 	public void init() {
 		val i18n = ResourceUtils.getFile("i18n");
-		Arrays.stream(Objects.requireNonNull(i18n.listFiles())).forEach(this::load);
+		//		Arrays.stream(Objects.requireNonNull(i18n.listFiles())).forEach(this::load);
 	}
 
 	@Override

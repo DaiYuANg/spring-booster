@@ -3,10 +3,8 @@ package org.toolkit.spring.boot.starter.minio;
 import io.minio.MinioClient;
 import jakarta.annotation.Resource;
 import java.util.Map;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 import lombok.val;
-import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -17,8 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.ResourceResolver;
-import org.toolkit4j.libs.io.files.HttpClient;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)
@@ -27,14 +23,14 @@ public class MinioAutoConfiguration implements WebMvcConfigurer {
 	@Resource
 	private MinioConfigurationProperties minioConfigurationProperties;
 
-	@Resource
-	private ThreadPoolExecutor taskExecutor;
+	//	@Resource
+	//	private ThreadPoolExecutor taskExecutor;
 
-	@Bean
-	@ConditionalOnMissingBean
-	public HttpClient httpClient() {
-		return new HttpClient(new OkHttpClient.Builder());
-	}
+	//	@Bean
+	//	@ConditionalOnMissingBean
+	//	public HttpClient httpClient() {
+	//		return new HttpClient(new OkHttpClient.Builder());
+	//	}
 
 	@Bean
 	@ConditionalOnMissingBean
@@ -50,8 +46,7 @@ public class MinioAutoConfiguration implements WebMvcConfigurer {
 				.endpoint(config.getValue().getEndpoint())
 				.credentials(config.getValue().getAccessKey(), config.getValue().getSecretKey())
 				.build();
-		val template =
-				config.getValue().isAsync() ? new AsyncMinioTemplate(client, taskExecutor) : new MinioTemplate(client);
+		val template = config.getValue().isAsync() ? new AsyncMinioTemplate(client, null) : new MinioTemplate(client);
 		return new TemplateEntry(config.getKey(), template);
 	}
 
@@ -62,9 +57,9 @@ public class MinioAutoConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(@NotNull ResourceHandlerRegistry registry) {
-		registry.addResourceHandler(minioConfigurationProperties.getAccessPrefix())
-				.addResourceLocations("/")
-				.resourceChain(true)
-				.addResolver((ResourceResolver) minioResourceHandler());
+		//		registry.addResourceHandler(minioConfigurationProperties.getAccessPrefix())
+		//				.addResourceLocations("/")
+		//				.resourceChain(true)
+		//				.addResolver((ResourceResolver) minioResourceHandler());
 	}
 }

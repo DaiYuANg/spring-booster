@@ -4,10 +4,8 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.toolkit.spring.boot.starter.monitor.docker.DockerConnector;
 
-@Component
 @Slf4j
 public class MysqlDevService {
 	@Resource

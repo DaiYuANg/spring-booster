@@ -9,4 +9,4 @@ import org.toolkit.spring.boot.starter.monitor.configurations.endpoint.MonitorUI
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({MonitorAutoConfiguration.class, MonitorUIAutoConfiguration.class})
-public @interface EnableDevAdmin {}
+public @interface EnableMontorUI {}

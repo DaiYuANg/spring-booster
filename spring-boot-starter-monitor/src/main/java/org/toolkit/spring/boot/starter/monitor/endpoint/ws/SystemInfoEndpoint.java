@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.toolkit.spring.boot.starter.monitor.endpoint.services.ISystemInfoService;
-import org.toolkit4j.libs.thready.async.AsyncWorker;
 
 @ServerEndpoint("/dev/admin/system/info")
 @Component
@@ -29,7 +28,7 @@ public class SystemInfoEndpoint {
 
 	private static ObjectMapper objectMapper;
 
-	private static AsyncWorker asyncWorker;
+	//	private static AsyncWorker asyncWorker;
 
 	@Autowired
 	public void setupSystemInfoService(ISystemInfoService systemInfoService) {
@@ -39,11 +38,6 @@ public class SystemInfoEndpoint {
 	@Autowired
 	public void setupObjectMapper(ObjectMapper gson) {
 		SystemInfoEndpoint.objectMapper = gson;
-	}
-
-	@Autowired
-	public void setupAsyncWorker(AsyncWorker asyncWorker) {
-		SystemInfoEndpoint.asyncWorker = asyncWorker;
 	}
 
 	@PostConstruct

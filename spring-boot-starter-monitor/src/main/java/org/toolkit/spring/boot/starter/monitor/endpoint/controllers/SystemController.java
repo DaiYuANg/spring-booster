@@ -13,7 +13,6 @@ import org.toolkit.spring.boot.starter.monitor.constants.Base;
 import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveMemoryDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveThreadDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.services.ISystemInfoService;
-import org.toolkit4j.framework.spring.boot.starter.restful.resp.Response;
 
 @RestController
 @Slf4j
@@ -29,13 +28,15 @@ public class SystemController {
 	}
 
 	@GetMapping("/memoryAboutJvm")
-	public Response<LiveMemoryDto> getMemory() {
-		return Response.success(systemInfoService.getMemoryUsage());
+	public LiveMemoryDto getMemory() {
+		return null;
+		//		return Response.success(systemInfoService.getMemoryUsage());
 	}
 
 	@GetMapping("/threads")
-	public Response<List<LiveThreadDto>> getThreads() {
-		return Response.success(systemInfoService.getAllThreadOfCurrentJVM());
+	public List<LiveThreadDto> getThreads() {
+		//		return Response.success(systemInfoService.getAllThreadOfCurrentJVM());
+		return null;
 	}
 
 	@GetMapping("/env")

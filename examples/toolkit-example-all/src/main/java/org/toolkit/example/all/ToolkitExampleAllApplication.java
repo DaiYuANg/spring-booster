@@ -11,19 +11,17 @@ import org.springframework.boot.context.metrics.buffering.BufferingApplicationSt
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = {"org.toolkit.example"})
-// @EnableDict
-// @EnableDevAdmin
 @Slf4j
-public class SpringBootCurdExample extends SpringBootServletInitializer {
+public class ToolkitExampleAllApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(@NotNull SpringApplicationBuilder builder) {
-		return builder.sources(SpringBootCurdExample.class);
+		return builder.sources(ToolkitExampleAllApplication.class);
 	}
 
 	@SneakyThrows
 	public static void main(String[] args) {
-		val app = new SpringApplication(SpringBootCurdExample.class);
+		val app = new SpringApplication(ToolkitExampleAllApplication.class);
 		app.setApplicationStartup(new BufferingApplicationStartup(2048));
 		app.run(args);
 	}

@@ -1,6 +1,5 @@
 package org.toolkit.spring.boot.starter.restful.configurations.i18n;
 
-import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -9,11 +8,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @AutoConfiguration
 @EnableConfigurationProperties(I18nConfigurationProperties.class)
@@ -23,13 +20,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 	@PropertySource(name = "zh_CN", value = "classpath:i18n/zh_CN.properties")
 })
 public class I18nAutoConfiguration implements WebMvcConfigurer {
-
-	@Bean
-	public LocaleResolver localeResolver() {
-		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.US);
-		return slr;
-	}
 
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {

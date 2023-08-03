@@ -1,7 +1,6 @@
 val aspectjVersion: String by project
 
 dependencies {
-  api("org.springframework.boot:spring-boot-starter-activemq")
   api("org.springframework.boot:spring-boot-starter-artemis")
   implementation("org.apache.activemq:artemis-jms-server:2.29.0")
   api("org.apache.activemq:activemq-kahadb-store")

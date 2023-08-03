@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 @Accessors(chain = true)
 public class Response<T> implements Serializable {
 
-	private Integer status = jakarta.ws.rs.core.Response.Status.OK.getStatusCode();
+	private Integer status = 200;
 
 	private BigInteger code = BigInteger.valueOf(1);
 
@@ -33,7 +33,7 @@ public class Response<T> implements Serializable {
 
 	@Contract(" -> new")
 	public static @NotNull Response<?> success() {
-		return new Response<>().setStatus(jakarta.ws.rs.core.Response.Status.OK.getStatusCode());
+		return new Response<>();
 	}
 
 	public static <T> Response<T> success(T data) {
@@ -45,16 +45,14 @@ public class Response<T> implements Serializable {
 	}
 
 	public static Response<?> error() {
-		return new Response<>().setStatus(jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return new Response<>().setStatus(500);
 	}
 
 	public static Response<?> error(String message) {
-		return new Response<>()
-				.setMessage(message)
-				.setStatus(jakarta.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return new Response<>().setMessage(message).setStatus(500);
 	}
 
 	public static Response<?> unAuth() {
-		return new Response<>().setStatus(jakarta.ws.rs.core.Response.Status.UNAUTHORIZED.getStatusCode());
+		return new Response<>().setStatus(500);
 	}
 }

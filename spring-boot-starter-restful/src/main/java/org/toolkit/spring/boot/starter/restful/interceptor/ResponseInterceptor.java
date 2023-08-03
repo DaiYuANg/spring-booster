@@ -28,6 +28,6 @@ public class ResponseInterceptor implements ResponseBodyAdvice<Object> {
 			@NotNull ServerHttpRequest request,
 			@NotNull ServerHttpResponse response) {
 		if (body instanceof Response) return body;
-		return Objects.nonNull(body) ? Response.ok(body) : Response.ok();
+		return Objects.nonNull(body) ? Response.success(body) : Response.success();
 	}
 }

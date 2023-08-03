@@ -3,6 +3,18 @@ package org.toolkit.spring.boot.authentication.funcational;
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.core.util.RandomUtil;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import net.jodah.expiringmap.ExpirationPolicy;
+import net.jodah.expiringmap.ExpiringMap;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
@@ -27,5 +39,13 @@ public class CaptchaGenerator {
 						CaptchaUtil.createShearCaptcha(200, 100))
 				.skip(RandomUtil.randomInt(0, 4))
 				.findAny();
+	}
+
+	public boolean verifyCaptcha(UUID uuid) {
+		return true;
+	}
+
+	public boolean verifyCaptcha(String uuid) {
+		return verifyCaptcha(UUID.fromString(uuid));
 	}
 }

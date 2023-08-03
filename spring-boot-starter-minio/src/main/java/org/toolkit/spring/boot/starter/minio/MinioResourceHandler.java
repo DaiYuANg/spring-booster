@@ -8,11 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 @Slf4j
-@Component
 public class MinioResourceHandler extends ResourceHttpRequestHandler {
 	@jakarta.annotation.Resource
 	private MinioConfigurationProperties minioConfigurationProperties;
