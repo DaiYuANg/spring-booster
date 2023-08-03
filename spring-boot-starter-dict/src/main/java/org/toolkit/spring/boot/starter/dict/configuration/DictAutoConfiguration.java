@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@ComponentScan("org.toolkit.**.*")
-@EnableJpaRepositories("org.toolkit.**.*")
-@EntityScan({"org.toolkit.**.*"})
+@ComponentScan("org.toolkit.spring.boot.starter.dict.**.*")
+@EnableJpaRepositories("org.toolkit.spring.boot.starter.dict.**.*")
+@EntityScan({"org.toolkit.spring.boot.starter.dict.**.*"})
 @EnableConfigurationProperties(DictConfigurationProperties.class)
 public class DictAutoConfiguration {
 	@Resource

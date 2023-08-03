@@ -1,1 +1,2 @@
 org.toolkit.spring.boot.authentication.configurations.AuthenticationConfiguration
+org.toolkit.spring.boot.authentication.configurations.WebSecurityConfiguration

@@ -23,20 +23,19 @@ public class SystemController {
 
 	@PostConstruct
 	public void init() {
-
+		log.info("system info init");
 		// System.err.println(System.getProperties());
 	}
 
 	@GetMapping("/memoryAboutJvm")
 	public LiveMemoryDto getMemory() {
-		return null;
+		return systemInfoService.getMemoryUsage();
 		//		return Response.success(systemInfoService.getMemoryUsage());
 	}
 
 	@GetMapping("/threads")
 	public List<LiveThreadDto> getThreads() {
-		//		return Response.success(systemInfoService.getAllThreadOfCurrentJVM());
-		return null;
+		return systemInfoService.getAllThreadOfCurrentJVM();
 	}
 
 	@GetMapping("/env")

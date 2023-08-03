@@ -11,16 +11,17 @@ import org.toolkit.spring.boot.authentication.funcational.JwtSigner;
 
 @AutoConfiguration
 @EnableConfigurationProperties(AuthenticationProperties.class)
-@ComponentScan("org.toolkit4J.framework.spring.starter.authentication.services.**")
-@EnableJpaRepositories("org.toolkit4J.framework.spring.starter.authentication.repos")
-@EntityScan({"org.toolkit4J.framework.spring.starter.authentication.entities", "org.toolkit4j.standard.rbac"})
+@ComponentScan("org.toolkit.spring.boot.authentication.services.**.*")
+@EnableJpaRepositories("org.toolkit.spring.boot.authentication.repos")
+@EntityScan({"org.toolkit.spring.boot.authentication.**.*"})
 public class AuthenticationConfiguration {
 
-	@PostConstruct
-	public void init() {}
+    @PostConstruct
+    public void init() {
+    }
 
-	@Bean
-	public JwtSigner signer() {
-		return new JwtSigner();
-	}
+    @Bean
+    public JwtSigner signer() {
+        return new JwtSigner();
+    }
 }

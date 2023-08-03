@@ -24,16 +24,19 @@ const memoryPoll = ref<poll>({
 })
 
 onMounted(() => {
-  memoryPoll.value.pollTimer = setInterval(() => {
-    memory().then((r) => {
-      console.log(r);
-    });
-  }, 1000)
-  setInterval(() => {
-    threads().then(r => {
-      console.log(r)
-    })
-  }, 500)
+  memory().then((r) => {
+    console.log(r);
+  });
+  // memoryPoll.value.pollTimer = setInterval(() => {
+  //   memory().then((r) => {
+  //     console.log(r);
+  //   });
+  // }, 1000)
+  // setInterval(() => {
+  //   // threads().then(r => {
+  //   //   console.log(r)
+  //   // })
+  // }, 500)
   // let chart = echarts.init(
   //   document.getElementById('chart') as HTMLElement,
   //   'dark'

@@ -116,6 +116,7 @@ subprojects {
     implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
     implementation("org.immutables:value:${immutablesVersion}")
     implementation("cn.hutool:hutool-all:${hutoolVersion}")
+    implementation("net.bytebuddy:byte-buddy:1.14.5")
     //    implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
     //    implementation("com.squareup.okhttp3:okhttp")
     //    implementation("com.squareup.okhttp3:logging-interceptor")
