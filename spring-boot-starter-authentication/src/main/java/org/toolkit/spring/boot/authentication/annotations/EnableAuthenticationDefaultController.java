@@ -1,8 +1,9 @@
-package org.toolkit.spring.boot.authentication.annotation;
+package org.toolkit.spring.boot.authentication.annotations;
 
-import java.lang.annotation.*;
 import org.springframework.context.annotation.Import;
 import org.toolkit.spring.boot.authentication.configurations.DefaultControllerImplementConfiguration;
+
+import java.lang.annotation.*;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

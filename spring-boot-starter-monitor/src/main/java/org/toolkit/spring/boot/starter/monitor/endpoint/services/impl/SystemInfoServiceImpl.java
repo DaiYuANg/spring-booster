@@ -1,10 +1,6 @@
 package org.toolkit.spring.boot.starter.monitor.endpoint.services.impl;
 
 import jakarta.annotation.Resource;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryManagerMXBean;
-import java.util.Arrays;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.stereotype.Service;
@@ -12,6 +8,10 @@ import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveMemoryDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveThreadDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.mappers.ThreadInfoMapper;
 import org.toolkit.spring.boot.starter.monitor.endpoint.services.ISystemInfoService;
+
+import java.lang.management.ManagementFactory;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @Slf4j

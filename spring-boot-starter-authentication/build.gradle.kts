@@ -5,7 +5,6 @@ dependencies {
 
   api("org.springframework.boot:spring-boot-starter-validation")
   api("org.springframework.boot:spring-boot-starter-thymeleaf")
-  compileOnly("org.keycloak:keycloak-spring-boot-starter:21.1.1")
   api("org.springframework.boot:spring-boot-starter-security")
   implementation("net.jodah:expiringmap:$expiringmapVersion")
   api(projects.springBootStarterPersistence)

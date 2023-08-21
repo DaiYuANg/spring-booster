@@ -21,7 +21,6 @@ dependencies {
   implementation("com.baomidou:mybatis-plus:3.5.3.1")
   implementation("com.h2database:h2")
   implementation("org.ehcache:ehcache:3.10.8")
-  annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 tasks { named("publish") { enabled = false } }

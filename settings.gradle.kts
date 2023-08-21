@@ -128,3 +128,7 @@ project(":examples:toolkit-example-all").name = "toolkit-example-all"
 include("docs")
 
 project(":docs").name = "docs"
+
+include("examples:toolkit-example-monitor")
+
+findProject(":examples:toolkit-example-monitor")?.name = "toolkit-example-monitor"

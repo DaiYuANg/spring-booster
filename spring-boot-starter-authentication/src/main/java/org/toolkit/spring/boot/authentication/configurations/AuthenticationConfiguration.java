@@ -16,12 +16,11 @@ import org.toolkit.spring.boot.authentication.funcational.JwtSigner;
 @EntityScan({"org.toolkit.spring.boot.authentication.**.*"})
 public class AuthenticationConfiguration {
 
-    @PostConstruct
-    public void init() {
-    }
+	@PostConstruct
+	public void init() {}
 
-    @Bean
-    public JwtSigner signer() {
-        return new JwtSigner();
-    }
+	@Bean
+	public JwtSigner signer() {
+		return new JwtSigner();
+	}
 }

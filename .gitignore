@@ -395,3 +395,4 @@ next-env.d.ts
 dist/
 npm-debug.log
 yarn-error.log
+.fastRequest

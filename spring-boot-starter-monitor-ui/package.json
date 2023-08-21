@@ -7,11 +7,12 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue  --fix",
-    "format": "prettier --write \\\"**/*.{js,ts,vue,css,html,md,json}\\\" --ignore-path .gitignore",
+    "format": "prettier --write \\\"./**/*.{js,ts,vue,css,html,md,json}\\\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "dev:pwa": "quasar dev mode pwa",
-    "build": "quasar build"
+    "build": "quasar build",
+    "update": "quasar upgrade -i"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",

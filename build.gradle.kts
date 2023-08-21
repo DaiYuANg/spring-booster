@@ -1,6 +1,6 @@
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
-import java.net.URI
 import org.springframework.boot.gradle.tasks.bundling.BootJar
+import java.net.URI
 
 plugins {
   `java-library`
@@ -117,12 +117,6 @@ subprojects {
     implementation("org.immutables:value:${immutablesVersion}")
     implementation("cn.hutool:hutool-all:${hutoolVersion}")
     implementation("net.bytebuddy:byte-buddy:1.14.5")
-    //    implementation(platform("com.squareup.okhttp3:okhttp-bom:${okhttpVersion}"))
-    //    implementation("com.squareup.okhttp3:okhttp")
-    //    implementation("com.squareup.okhttp3:logging-interceptor")
-    //    implementation("jakarta.persistence:jakarta.persistence-api:${jakartaPersistenceVersion}")
-    //    implementation("jakarta.json:jakarta.json-api:${jakartaJsonVersion}")
-    //    implementation("jakarta.data:jakarta-data-api:1.0.0-b2")
     testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
     testImplementation("net.datafaker:datafaker:2.0.1")
     testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")

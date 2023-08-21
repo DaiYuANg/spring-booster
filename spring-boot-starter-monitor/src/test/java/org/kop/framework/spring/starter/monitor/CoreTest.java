@@ -1,4 +1,4 @@
-package org.kop.framework.spring.starter.dev.service;
+package org.kop.framework.spring.starter.monitor;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.actuate.autoconfigure.wavefront.WavefrontProperties;
@@ -11,12 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 		classes = WavefrontProperties.Application.class)
 @TestPropertySource("classpath:application.yaml")
 @RunWith(SpringRunner.class)
-public class TestBootstrap {
-	// @Resource
-	// private DockerConnector dockerConnector;
+public class CoreTest {
 
 	// @Test
-	// public void testStart() {
+	// public void testBoot() {
 	// System.err.println(123);
 	// }
 }

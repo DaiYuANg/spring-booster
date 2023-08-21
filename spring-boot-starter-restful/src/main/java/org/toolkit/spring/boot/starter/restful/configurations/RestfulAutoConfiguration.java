@@ -12,6 +12,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableConfigurationProperties(RestfulConfigurationProperties.class)
 @EnableSpringUtil
 @ComponentScan("org.toolkit.spring.boot.starter.restful.**.*")
-public class RestfulAutoConfiguration implements WebMvcConfigurer {
-
-}
+public class RestfulAutoConfiguration implements WebMvcConfigurer {}

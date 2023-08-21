@@ -21,15 +21,15 @@ public class WebSecurityConfiguration {
 	// .authorizeHttpRequests(req -> req.requestMatchers("/**").permitAll())
 	// .build();
 	// }
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(ignorePaths());
-    }
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> web.ignoring().requestMatchers(ignorePaths());
+	}
 
-    @Contract(" -> new")
-    private AntPathRequestMatcher @NotNull [] ignorePaths() {
-        return new AntPathRequestMatcher[]{
-                new AntPathRequestMatcher("/dev/admin/system/**"),
-        };
-    }
+	@Contract(" -> new")
+	private AntPathRequestMatcher @NotNull [] ignorePaths() {
+		return new AntPathRequestMatcher[] {
+			new AntPathRequestMatcher("/dev/admin/system/**"),
+		};
+	}
 }
