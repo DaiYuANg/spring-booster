@@ -13,6 +13,9 @@ import org.toolkit.spring.boot.starter.monitor.constants.Base;
 import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveMemoryDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveThreadDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.services.ISystemInfoService;
+import oshi.SystemInfo;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.software.os.OperatingSystem;
 
 @RestController
 @Slf4j
@@ -46,5 +49,18 @@ public class SystemController {
 	@GetMapping("/prop")
 	public Properties getRuntimeProperties() {
 		return System.getProperties();
+	}
+
+	@GetMapping("/operationSystem")
+	public OperatingSystem querySystemInfo(){
+		log.info("query system info");
+		systemInfoService.querySystemInfo().getOperatingSystem()
+		return systemInfoService.querySystemInfo().getOperatingSystem();
+	}
+
+	@GetMapping("/hardware")
+	public HardwareAbstractionLayer querySystemHardware(){
+		log.info("query system info");
+		return systemInfoService.querySystemInfo().getHardware();
 	}
 }

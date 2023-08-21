@@ -2,7 +2,7 @@ import {api} from 'boot/axios';
 import {SessionStorage} from 'quasar';
 
 export const actuatorDetect = () => {
-  return api.get('/dev/admin/detect');
+  return api.get('/detect');
 };
 
 export const mappings = () => {

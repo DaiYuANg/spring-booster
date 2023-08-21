@@ -8,6 +8,7 @@ import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveMemoryDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.dto.LiveThreadDto;
 import org.toolkit.spring.boot.starter.monitor.endpoint.mappers.ThreadInfoMapper;
 import org.toolkit.spring.boot.starter.monitor.endpoint.services.ISystemInfoService;
+import oshi.SystemInfo;
 
 import java.lang.management.ManagementFactory;
 import java.util.Arrays;
@@ -39,5 +40,10 @@ public class SystemInfoServiceImpl implements ISystemInfoService {
 		long usable = max - total + free;
 		val memoryMXBean = ManagementFactory.getMemoryMXBean();
 		return new LiveMemoryDto(memoryMXBean.getHeapMemoryUsage(), memoryMXBean.getNonHeapMemoryUsage());
+	}
+
+	@Override
+	public SystemInfo querySystemInfo(){
+        return new SystemInfo();
 	}
 }
