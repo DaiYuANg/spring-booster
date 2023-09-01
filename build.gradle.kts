@@ -1,6 +1,6 @@
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 import java.net.URI
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
   `java-library`
