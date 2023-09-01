@@ -72,14 +72,6 @@ include(":spring-boot-starter-authentication")
 
 project(":spring-boot-starter-authentication").name = "spring-boot-starter-authentication"
 
-include(":spring-boot-starter-monitor")
-
-project(":spring-boot-starter-monitor").name = "spring-boot-starter-monitor"
-
-include(":spring-boot-starter-monitor-ui")
-
-project(":spring-boot-starter-monitor-ui").name = "spring-boot-starter-monitor-ui"
-
 include(":spring-boot-starter-minio")
 
 project(":spring-boot-starter-minio").name = "spring-boot-starter-minio"
@@ -123,12 +115,3 @@ findProject(":event-driven:spring-boot-starter-event-bus")?.name = "spring-boot-
 include("examples:toolkit-example-all")
 
 project(":examples:toolkit-example-all").name = "toolkit-example-all"
-
-// ------------docs------------
-include("docs")
-
-project(":docs").name = "docs"
-
-include("examples:toolkit-example-monitor")
-
-findProject(":examples:toolkit-example-monitor")?.name = "toolkit-example-monitor"

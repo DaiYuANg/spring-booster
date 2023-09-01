@@ -9,7 +9,6 @@ dependencies {
   implementation(projects.springBootStarterDict)
   implementation(projects.eventDriven.springBootStarterEventBus)
   implementation(projects.springBootStarterRestful)
-  implementation(projects.springBootStarterMonitor)
   implementation(projects.springBootStarterMinio)
   implementation(projects.springBootStarterPersistence)
   implementation(projects.springBootStarterOffice)

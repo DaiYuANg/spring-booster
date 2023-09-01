@@ -1,13 +1,17 @@
 package org.toolkit.spring.boot.starter.minio;
 
 import io.minio.MinioClient;
+import jakarta.annotation.Resource;
+import org.springframework.core.task.TaskExecutor;
+
 import java.io.File;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class AsyncMinioTemplate implements IMinioTemplate {
-	//	private final AsyncWorker asyncWorker;
 
+	@Resource
+	private TaskExecutor taskExecutor;
 	private final MinioTemplate template;
 
 	public AsyncMinioTemplate(MinioClient minioClient, ThreadPoolExecutor threadPoolExecutor) {
