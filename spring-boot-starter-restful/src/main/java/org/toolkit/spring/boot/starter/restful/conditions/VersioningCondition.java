@@ -9,9 +9,10 @@ import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.toolkit.spring.boot.starter.restful.annotations.Version;
 
 @Slf4j
+@Getter
 @RequiredArgsConstructor
 public class VersioningCondition implements RequestCondition<VersioningCondition> {
-	@Getter
+
 	private final Version version;
 
 	@Override

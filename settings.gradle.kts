@@ -68,29 +68,13 @@ gitHooks {
 rootProject.name = "spring-boot-toolkit"
 
 // ------------frameworks------------
-include(":spring-boot-starter-authentication")
-
-project(":spring-boot-starter-authentication").name = "spring-boot-starter-authentication"
-
 include(":spring-boot-starter-minio")
 
 project(":spring-boot-starter-minio").name = "spring-boot-starter-minio"
 
-include(":event-driven:spring-boot-starter-event")
-
-project(":event-driven:spring-boot-starter-event").name = "spring-boot-starter-event"
-
 include(":spring-boot-starter-restful")
 
 project(":spring-boot-starter-restful").name = "spring-boot-starter-restful"
-
-include(":spring-boot-starter-recorder")
-
-project(":spring-boot-starter-recorder").name = "spring-boot-starter-recorder"
-
-include(":spring-boot-starter-dict")
-
-project(":spring-boot-starter-dict").name = "spring-boot-starter-dict"
 
 include(":spring-boot-starter-cached")
 
@@ -108,10 +92,7 @@ include("spring-boot-starter-ocr")
 
 findProject("spring-boot-starter-ocr")?.name = "spring-boot-starter-ocr"
 
-include("event-driven:spring-boot-starter-event-bus")
+include("spring-boot-starter-event-bus")
 
-findProject(":event-driven:spring-boot-starter-event-bus")?.name = "spring-boot-starter-event-bus"
-// ------------examples------------
-include("examples:toolkit-example-all")
-
-project(":examples:toolkit-example-all").name = "toolkit-example-all"
+findProject(":spring-boot-starter-event-bus")?.name =
+    "spring-boot-starter-event-bus" // ------------examples------------
