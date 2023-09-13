@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController("/io")
 public class UploadController {
+
 	@SneakyThrows
 	@RequestMapping(
 			value = "/simpleUpload",

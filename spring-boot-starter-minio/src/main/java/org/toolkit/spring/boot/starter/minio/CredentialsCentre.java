@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import net.jodah.expiringmap.ExpiringMap;
 import org.jetbrains.annotations.NotNull;
+import org.toolkit.spring.boot.starter.minio.configurations.MinioConfigurationProperties;
 
 @Slf4j
 public class CredentialsCentre {

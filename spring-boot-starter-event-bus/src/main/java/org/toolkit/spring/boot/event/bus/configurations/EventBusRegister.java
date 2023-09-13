@@ -1,7 +1,9 @@
 package org.toolkit.spring.boot.event.bus.configurations;
 
 import com.google.common.reflect.TypeToken;
+import io.netty.util.internal.ReflectionUtil;
 import io.vertx.core.Handler;
+import io.vertx.core.cli.impl.ReflectionUtils;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import jakarta.annotation.PostConstruct;
@@ -11,6 +13,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -28,49 +32,23 @@ public class EventBusRegister {
     private EventBus eventBus;
 
     @PostConstruct
+    @SuppressWarnings("unchecked")
     public void init() {
-        context.getBeansWithAnnotation(Subscriber.class).values()
-                .stream().filter(subscriber -> {
-                    return subscriber instanceof Handler<?> && isHandlerForMessageType(subscriber);
-                })
-                .map(s -> (Handler<Message<?>>) s)
-                .forEach(subscriber -> {
-                    System.err.println(subscriber.getClass().getTypeName());
-                    val sub = subscriber.getClass().getAnnotation(Subscriber.class);
-                    eventBus.consumer(sub.address());
+        context.getBeansWithAnnotation(Subscriber.class)
+                .values()
+                .stream()
+                .filter(obj -> obj instanceof Handler)
+                .map(o -> (Handler<Message<Object>>) o)
+                .forEach(messageHandler -> {
+                    System.err.println(messageHandler);
+                    val annotation = messageHandler.getClass().getAnnotation(Subscriber.class);
+                    if (Objects.isNull(annotation)) return;
+                    registerHandler(annotation.address(), messageHandler);
                 });
+        ;
     }
 
-    private boolean isHandlerForMessageType(@NotNull Object subscriber) {
-        Class<?> subscriberClass = subscriber.getClass();
-        Type[] interfaces = subscriberClass.getGenericInterfaces();
-        for (Type type : interfaces) {
-            if (!(type instanceof ParameterizedType parameterizedType)) {
-                continue;
-            }
-            Type[] typeArguments = parameterizedType.getActualTypeArguments();
-//            if (typeArguments.length > 0 && typeArguments[0] == messageType) {
-//                return true;
-//            }
-            for (Type typeArgument : typeArguments) {
-                if (typeArgument instanceof Message<?>) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private void registerEventSubscribeMethod(@NotNull Object r) {
-//		log.info("register subscriber:{}", r.getClass());
-//		Arrays.stream(r.getClass().getMethods())
-//				.filter(method -> method.isAnnotationPresent(Subscribe.class))
-//				.forEach(method -> deployVerticle(r, method));
-    }
-
-    private void deployVerticle(Object o, @NotNull Method method) {
-//		val sub = method.getAnnotation(Subscribe.class);
-//		vertx.deployVerticle(new EventVerticle(o, sub.address(), method));
+    private void registerHandler(String address, Handler<Message<Object>> handler) {
+        eventBus.consumer(address, handler);
     }
 }

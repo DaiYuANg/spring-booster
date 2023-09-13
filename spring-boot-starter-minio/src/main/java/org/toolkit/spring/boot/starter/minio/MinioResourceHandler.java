@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
+import org.toolkit.spring.boot.starter.minio.configurations.MinioConfigurationProperties;
 
 @Slf4j
 public class MinioResourceHandler extends ResourceHttpRequestHandler {

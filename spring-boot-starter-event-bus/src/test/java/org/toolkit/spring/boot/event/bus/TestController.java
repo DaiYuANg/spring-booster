@@ -12,7 +12,10 @@ public class TestController {
     private EventBus eventBus;
 
     @GetMapping
-    public void index(){
-        eventBus.request("test","dsad");
+    public void index() {
+        eventBus.request("test", "dsad")
+                .onComplete(event -> {
+                    System.err.println(event.result().body());
+                });
     }
 }

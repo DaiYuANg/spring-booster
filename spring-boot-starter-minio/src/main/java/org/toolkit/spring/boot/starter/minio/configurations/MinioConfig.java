@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.minio;
+package org.toolkit.spring.boot.starter.minio.configurations;
 
 import lombok.Data;
 import lombok.ToString;

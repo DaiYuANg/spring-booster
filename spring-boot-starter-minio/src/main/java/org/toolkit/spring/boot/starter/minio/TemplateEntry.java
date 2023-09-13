@@ -7,7 +7,7 @@ public class TemplateEntry implements Map.Entry<String, IMinioTemplate> {
 
 	private IMinioTemplate template;
 
-	TemplateEntry(String key, IMinioTemplate template) {
+	public TemplateEntry(String key, IMinioTemplate template) {
 		this.key = key;
 		this.template = template;
 	}
