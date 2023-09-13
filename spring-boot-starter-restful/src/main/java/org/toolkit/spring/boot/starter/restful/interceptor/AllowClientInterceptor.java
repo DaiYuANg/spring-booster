@@ -16,8 +16,7 @@ import org.toolkit.spring.boot.starter.restful.constant.ClientDevice;
 public class AllowClientInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(
-			@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler)
-			throws Exception {
+			@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
 		if (!(handler instanceof HandlerMethod handlerMethod)) {
 			return true;
 		}

@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.restful.configurations.i18n;
+package org.toolkit.spring.boot.starter.restful.configurations;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

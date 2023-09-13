@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.restful.configurations.i18n;
+package org.toolkit.spring.boot.starter.restful.configurations;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;

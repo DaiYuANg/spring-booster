@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.restful;
+package org.toolkit.spring.boot.starter.restful.i18n;
 
 import java.util.ResourceBundle;
 

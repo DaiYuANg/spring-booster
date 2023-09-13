@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.restful.resp;
+package org.toolkit.spring.boot.starter.restful.structure;
 
 import java.io.Serializable;
 import java.math.BigInteger;

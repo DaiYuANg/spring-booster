@@ -3,7 +3,7 @@ package org.toolkit.spring.boot.starter.restful.configurations;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.toolkit.spring.boot.starter.restful.resp.Response;
+import org.toolkit.spring.boot.starter.restful.structure.Response;
 
 @ConfigurationProperties(prefix = "restful")
 @Getter

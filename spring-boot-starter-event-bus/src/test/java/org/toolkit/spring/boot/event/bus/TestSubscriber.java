@@ -1,14 +1,12 @@
 package org.toolkit.spring.boot.event.bus;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-import org.toolkit.spring.boot.event.bus.annotations.Subscribe;
 import org.toolkit.spring.boot.event.bus.annotations.Subscriber;
 
-@Subscriber
-@Component
+@Subscriber(address = "test")
 public class TestSubscriber {
-	@Subscribe(address = "test")
-	public void sub(Object message) {
-		System.err.println(message);
+	@PostConstruct
+	public void test(){
 	}
 }

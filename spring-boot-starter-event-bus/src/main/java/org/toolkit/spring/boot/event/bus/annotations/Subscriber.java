@@ -13,4 +13,6 @@ import org.springframework.stereotype.Component;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Subscriber {}
+public @interface Subscriber {
+    String address();
+}
