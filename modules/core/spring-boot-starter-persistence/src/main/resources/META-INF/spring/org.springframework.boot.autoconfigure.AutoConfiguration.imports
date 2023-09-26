@@ -1,0 +1,2 @@
+org.toolkit.spring.boot.starter.persistence.configuration.PersistenceAutoConfiguration
+org.toolkit.spring.boot.starter.persistence.configuration.GeneratorAutoConfiguration

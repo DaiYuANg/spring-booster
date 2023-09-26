@@ -1,0 +1,18 @@
+{
+  "name": "@toolkit/root",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,ts,tsx,jsx,scss,html,yaml,md,mdx,json,properties}\" --ignore-path .gitignore",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "husky": "^8.0.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "prettier-plugin-packagejson": "^2.4.5",
+    "prettier-plugin-properties": "^0.2.0",
+    "rimraf": "^5.0.4"
+  }
+}

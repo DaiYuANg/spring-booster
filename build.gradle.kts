@@ -1,4 +1,3 @@
-import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import java.net.URI
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -77,10 +76,6 @@ subprojects {
     plugin("io.spring.dependency-management")
   }
 
-  the<DependencyManagementExtension>().apply {
-    imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
-  }
-
   group = "org." + rootProject.name + "." + project.name
   val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
   val details = versionDetails()
@@ -96,7 +91,7 @@ subprojects {
     val jetbrainsAnnotationsVersion: String by project
     val immutablesVersion: String by project
     val okhttpVersion: String by project
-    val jakartaPersistenceVersion: String by project
+
     val hutoolVersion: String by project
     val jakartaJsonVersion: String by project
     val junitVersion: String by project
@@ -124,6 +119,8 @@ subprojects {
     testImplementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.testcontainers:testcontainers:1.19.0")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     implementation(platform("org.testcontainers:testcontainers-bom:${testContainersVersion}"))
   }

@@ -273,7 +273,6 @@ publish/
 PublishScripts/
 *.nupkg
 *.snupkg
-**/[Pp]ackages/*
 !**/[Pp]ackages/build/
 *.nuget.props
 *.nuget.targets
@@ -396,3 +395,4 @@ dist/
 npm-debug.log
 yarn-error.log
 .fastRequest
+.jpb

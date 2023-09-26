@@ -65,34 +65,38 @@ gitHooks {
   //    createHooks()
 }
 
-rootProject.name = "spring-boot-toolkit"
+rootProject.name = "Toolkit"
 
 // ------------frameworks------------
-include(":spring-boot-starter-minio")
 
-project(":spring-boot-starter-minio").name = "spring-boot-starter-minio"
+// ------------core----------
+include("modules:core:spring-boot-starter-restful")
 
-include(":spring-boot-starter-restful")
+include("modules:core:spring-boot-starter-persistence")
 
-project(":spring-boot-starter-restful").name = "spring-boot-starter-restful"
+include("modules:core:spring-boot-starter-i18n")
 
-include(":spring-boot-starter-cached")
+// ------------components ----------
+include("modules:components:spring-boot-starter-minio")
 
-findProject(":spring-boot-starter-cached")?.name = "spring-boot-starter-cached"
+include("modules:components:spring-boot-starter-office")
 
-include(":spring-boot-starter-office")
+include("modules:components:spring-boot-starter-persistence")
 
-findProject(":spring-boot-starter-office")?.name = "spring-boot-starter-office"
+include("modules:components:spring-boot-starter-ocr")
 
-include("spring-boot-starter-persistence")
+include("modules:components:spring-boot-starter-recorder")
 
-findProject(":spring-boot-starter-persistence")?.name = "spring-boot-starter-persistence"
+include("modules:components:spring-boot-starter-auth")
 
-include("spring-boot-starter-ocr")
+// ---------- helpful---------
+include("modules:helpful:spring-boot-starter-event-bus")
 
-findProject("spring-boot-starter-ocr")?.name = "spring-boot-starter-ocr"
+include("modules:helpful:spring-boot-starter-cached")
 
-include("spring-boot-starter-event-bus")
+// ------------helpful------------
+include("helpful:spring-boot-starter-verification")
 
-findProject(":spring-boot-starter-event-bus")?.name =
-    "spring-boot-starter-event-bus" // ------------examples------------
+findProject(":helpful:spring-boot-starter-verification")?.name = "spring-boot-starter-verification"
+
+include("modules:examples:backend-minimal-example")
