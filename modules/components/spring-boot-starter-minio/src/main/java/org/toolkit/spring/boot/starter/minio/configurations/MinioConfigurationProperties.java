@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.NestedConfigurationProperty;
-import org.toolkit.spring.boot.starter.minio.functional.CredentialsCentre;
 
-@ConfigurationProperties(prefix = "io.minio", ignoreInvalidFields = true)
+@ConfigurationProperties(prefix = "toolkit.minio", ignoreInvalidFields = true)
 @ToString
 @Getter
 @Setter
 public class MinioConfigurationProperties {
-	private String accessPrefix = "/minio";
+	private String previewPattern = "/minio/preview/**";
 
 	private long credentialExpire = 1;
 
@@ -26,14 +24,6 @@ public class MinioConfigurationProperties {
 	private String secretKey;
 
 	private String defaultBucket;
-	//	@NestedConfigurationProperty
-	//	private MinioConfig minioConfig;
-
-	//	@NestedConfigurationProperty
-	//	private Map<String, MinioConfig> minioInstances = new HashMap<>();
-
-	@NestedConfigurationProperty
-	private CredentialsCentre credentialsCentre;
 
 	private String instancePublicAccessUrl;
 }

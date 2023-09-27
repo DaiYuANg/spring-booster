@@ -1,6 +1,7 @@
 {
   "name": "@toolkit/root",
   "scripts": {
+    "clean": "rimraf node_modules **/*/node_modules",
     "format": "prettier --write \"**/*.{js,ts,tsx,jsx,scss,html,yaml,md,mdx,json,properties}\" --ignore-path .gitignore",
     "prepare": "husky install"
   },

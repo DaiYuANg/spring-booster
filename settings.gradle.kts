@@ -81,8 +81,6 @@ include("modules:components:spring-boot-starter-minio")
 
 include("modules:components:spring-boot-starter-office")
 
-include("modules:components:spring-boot-starter-persistence")
-
 include("modules:components:spring-boot-starter-ocr")
 
 include("modules:components:spring-boot-starter-recorder")
@@ -94,9 +92,9 @@ include("modules:helpful:spring-boot-starter-event-bus")
 
 include("modules:helpful:spring-boot-starter-cached")
 
-// ------------helpful------------
-include("helpful:spring-boot-starter-verification")
+include("modules:helpful:spring-boot-starter-verification")
 
-findProject(":helpful:spring-boot-starter-verification")?.name = "spring-boot-starter-verification"
-
+// -----------examples-------------
 include("modules:examples:backend-minimal-example")
+include("modules:components:spring-boot-starter-mapped")
+findProject(":modules:components:spring-boot-starter-mapped")?.name = "spring-boot-starter-mapped"

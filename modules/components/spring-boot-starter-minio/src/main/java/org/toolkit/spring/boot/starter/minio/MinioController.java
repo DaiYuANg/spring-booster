@@ -1,14 +1,8 @@
 package org.toolkit.spring.boot.starter.minio;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
+import lombok.extern.slf4j.Slf4j;
 
-public class MinioController extends AbstractController {
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		return null;
-	}
+@Slf4j
+public class MinioController {
+	public void test() {}
 }

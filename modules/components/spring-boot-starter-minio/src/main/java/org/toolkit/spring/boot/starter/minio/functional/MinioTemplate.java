@@ -1,12 +1,10 @@
 package org.toolkit.spring.boot.starter.minio.functional;
 
-import io.minio.BucketExistsArgs;
-import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +17,9 @@ public class MinioTemplate implements IMinioTemplate {
 
 	private final MinioClient minioClient;
 
-	public MinioTemplate(MinioClient minioClient) {
+	public MinioTemplate(@NotNull MinioClient minioClient) {
 		this.minioClient = minioClient;
+		minioClient.traceOn(System.err);
 	}
 
 	@SneakyThrows
@@ -55,5 +54,17 @@ public class MinioTemplate implements IMinioTemplate {
 	private void autoCreateBucket(String bucket) {
 		if (minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucket).build())) return;
 		minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
+	}
+
+	@SneakyThrows
+	public InputStream getObject(String object) {
+		return minioClient.getObject(GetObjectArgs.builder().object(object).build());
+	}
+
+	@SneakyThrows
+	public File download(String object, String targetPath, String bucket) {
+		minioClient.downloadObject(
+				DownloadObjectArgs.builder().bucket(bucket).filename(targetPath).build());
+		return new File(targetPath);
 	}
 }

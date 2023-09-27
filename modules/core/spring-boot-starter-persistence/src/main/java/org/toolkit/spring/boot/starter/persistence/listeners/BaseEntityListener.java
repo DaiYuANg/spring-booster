@@ -13,8 +13,11 @@ public class BaseEntityListener {
 	@PrePersist
 	public void prePersist(@NotNull BaseEntity baseEntity) {
 		baseEntity.setId(IdUtil.randomUUID());
+		baseEntity.setVersion(String.valueOf(baseEntity.hashCode()));
 	}
 
 	@PreUpdate
-	public void preUpdate(BaseEntity baseEntity) {}
+	public void preUpdate(@NotNull BaseEntity baseEntity) {
+		baseEntity.setVersion(String.valueOf(baseEntity.hashCode()));
+	}
 }

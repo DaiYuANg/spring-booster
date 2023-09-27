@@ -39,5 +39,8 @@ public class BaseEntity implements Serializable {
 	private Date updateAt;
 
 	@Column
+	private String version;
+
+	@Column
 	String ext;
 }
