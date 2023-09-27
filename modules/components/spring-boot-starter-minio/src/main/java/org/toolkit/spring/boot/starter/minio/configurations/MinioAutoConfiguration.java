@@ -14,14 +14,18 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)
 @Slf4j
-@EntityScan("org.toolkit.spring.boot.starter.minio.entities.*")
+@ComponentScan("org.toolkit.spring.boot.starter.minio.**")
+@EntityScan("org.toolkit.spring.boot.starter.minio.entities.**")
 @EnableJpaRepositories("org.toolkit.spring.boot.starter.minio.repositories")
+@EnableAsync
 public class MinioAutoConfiguration implements WebMvcConfigurer {
 
 	@Resource

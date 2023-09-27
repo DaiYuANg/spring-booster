@@ -20,3 +20,6 @@ toolkit:
 logging:
   level:
     org.toolkit.**.*: debug
+myapp:
+  controller:
+    prefix: /testminio

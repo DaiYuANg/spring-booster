@@ -1,60 +1,64 @@
 package org.toolkit.spring.boot.starter.minio.configurations;
 
 import static org.springframework.web.servlet.function.RequestPredicates.accept;
+import static org.springframework.web.servlet.function.RouterFunctions.resources;
 import static org.springframework.web.servlet.function.RouterFunctions.route;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import lombok.val;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.Ordered;
 import org.springframework.http.MediaType;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.function.*;
-import org.toolkit.spring.boot.starter.minio.MinioController;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.toolkit.spring.boot.starter.minio.handlers.MinioHandler;
 import org.toolkit.spring.boot.starter.minio.functional.MinioTemplate;
-import org.toolkit.spring.boot.starter.minio.interceptor.PreviewInterceptor;
 import org.toolkit.spring.boot.starter.minio.repositories.MinioResourceAccessEntityRepository;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @AutoConfiguration
 @Slf4j
 public class MinioWebConfiguration implements WebMvcConfigurer {
 
-	private static final RequestPredicate ACCEPT_JSON = accept(MediaType.APPLICATION_JSON);
+    private static final RequestPredicate ACCEPT_JSON = accept(MediaType.APPLICATION_JSON);
 
-	@Resource
-	private MinioConfigurationProperties minioConfigurationProperties;
+    @Resource
+    private MinioConfigurationProperties minioConfigurationProperties;
 
-	@Resource
-	private MinioResourceAccessEntityRepository minioResourceAccessEntityRepository;
+    @Resource
+    private MinioResourceAccessEntityRepository minioResourceAccessEntityRepository;
 
-	@Resource
-	private MinioTemplate minioTemplate;
+    @Resource
+    private MinioTemplate minioTemplate;
 
-	@PostConstruct
-	public void init() {
-		log.atDebug().log("Minio Web config executing");
-	}
+    @Resource
+    private MinioHandler myHandler;
 
-	@Override
-	public void addInterceptors(@NotNull InterceptorRegistry registry) {
-		registry.addInterceptor(new PreviewInterceptor(minioTemplate, minioResourceAccessEntityRepository))
-				.addPathPatterns(minioConfigurationProperties.getPreviewPattern());
-	}
+    @PostConstruct
+    public void init() {
+        System.err.println(minioResourceAccessEntityRepository.findAll());
+        log.atDebug().log("Minio Web config executing");
+    }
 
-	@Bean
-	public MinioController minioController() {
-		return new MinioController();
-	}
+    @Bean
+    public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
+        val handlerMapping = new SimpleUrlHandlerMapping();
+        // Create a map to map URL paths to handler beans
+        Map<String, Object> urlMap = new HashMap<>();
+        urlMap.put("/my-handler", myHandler);
 
-	@Bean
-	public RouterFunction<ServerResponse> routerFunction(MinioController minioController) {
-		return route().GET("/{user}", ACCEPT_JSON, request -> {
-					System.err.println(request);
-					return null;
-				})
-				.build();
-	}
+        // Set the URL map in the handler mapping
+        handlerMapping.setUrlMap(urlMap);
+
+        // Set order if needed
+         handlerMapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
+
+        return handlerMapping;
+    }
 }

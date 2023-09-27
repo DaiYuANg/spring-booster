@@ -11,6 +11,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 public class MinioConfigurationProperties {
+	private String context = "/minio";
+
 	private String previewPattern = "/minio/preview/**";
 
 	private long credentialExpire = 1;
