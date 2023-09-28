@@ -96,5 +96,7 @@ include("modules:helpful:spring-boot-starter-verification")
 
 // -----------examples-------------
 include("modules:examples:backend-minimal-example")
+
 include("modules:components:spring-boot-starter-mapped")
+
 findProject(":modules:components:spring-boot-starter-mapped")?.name = "spring-boot-starter-mapped"

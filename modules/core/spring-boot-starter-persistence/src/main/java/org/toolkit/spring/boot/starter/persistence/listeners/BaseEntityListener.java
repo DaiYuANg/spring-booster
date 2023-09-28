@@ -3,7 +3,9 @@ package org.toolkit.spring.boot.starter.persistence.listeners;
 import cn.hutool.core.util.IdUtil;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.toolkit.spring.boot.starter.persistence.base.BaseEntity;
 
@@ -16,6 +18,7 @@ public class BaseEntityListener {
 		baseEntity.setVersion(String.valueOf(baseEntity.hashCode()));
 	}
 
+	@SneakyThrows
 	@PreUpdate
 	public void preUpdate(@NotNull BaseEntity baseEntity) {
 		baseEntity.setVersion(String.valueOf(baseEntity.hashCode()));

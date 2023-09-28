@@ -19,7 +19,6 @@ public class MinioTemplate implements IMinioTemplate {
 
 	public MinioTemplate(@NotNull MinioClient minioClient) {
 		this.minioClient = minioClient;
-		minioClient.traceOn(System.err);
 	}
 
 	@SneakyThrows
