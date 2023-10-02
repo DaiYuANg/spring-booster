@@ -17,7 +17,7 @@ class MinioTemplateTest {
 
 	@Container // 标记为 Testcontainers 容器
 	private static final GenericContainer<?> minioContainer = new GenericContainer<>(
-					"minio/minio:RELEASE.2021-07-02T02-33-10Z")
+					"minio/minio")
 			.withExposedPorts(9000)
 			.withEnv("MINIO_ROOT_USER", "testuser")
 			.withEnv("MINIO_ROOT_PASSWORD", "testpassword");

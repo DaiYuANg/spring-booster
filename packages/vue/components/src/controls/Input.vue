@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useAttrs} from "vue";
+import {ref, useAttrs} from "vue";
 
 const props = withDefaults(defineProps<{
   /**
@@ -23,8 +23,9 @@ const props = withDefaults(defineProps<{
 console.log(props)
 const attrs = useAttrs()
 console.log(attrs)
+const value = ref()
 </script>
 
 <template>
-  <q-input autofocus v-bind="$attrs" label="test"></q-input>
+  <q-input v-model="value" autofocus v-bind="$attrs" label="test"></q-input>
 </template>

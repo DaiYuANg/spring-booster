@@ -22,9 +22,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)
 @Slf4j
-@ComponentScan("org.toolkit.spring.boot.starter.minio.**")
+//@ComponentScan("org.toolkit.spring.boot.starter.minio.**")
 @EntityScan("org.toolkit.spring.boot.starter.minio.entities.**")
-@EnableJpaRepositories("org.toolkit.spring.boot.starter.minio.repositories")
+//@EnableJpaRepositories("org.toolkit.spring.boot.starter.minio.repositories")
 @EnableAsync
 public class MinioAutoConfiguration implements WebMvcConfigurer {
 
