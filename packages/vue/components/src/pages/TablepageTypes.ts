@@ -1,8 +1,7 @@
-import {QTableProps} from "quasar";
+import { QTableProps } from 'quasar';
 
 export interface TablePageProps {
-    tableProp?:QTableProps
+  tableProp?: QTableProps;
 }
 
-export interface TablePageSlots{
-}
+export interface TablePageSlots {}
