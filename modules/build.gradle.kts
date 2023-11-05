@@ -9,4 +9,8 @@ subprojects {
   the<DependencyManagementExtension>().apply {
     imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
   }
+
+  dependencies{
+    testImplementation("com.h2database:h2")
+  }
 }

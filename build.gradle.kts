@@ -91,7 +91,6 @@ subprojects {
     val jetbrainsAnnotationsVersion: String by project
     val immutablesVersion: String by project
     val okhttpVersion: String by project
-
     val hutoolVersion: String by project
     val jakartaJsonVersion: String by project
     val junitVersion: String by project
@@ -107,7 +106,7 @@ subprojects {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-    implementation("commons-io:commons-io:${commonIOVersion}")
+    api("commons-io:commons-io:${commonIOVersion}")
     implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
     implementation("org.immutables:value:${immutablesVersion}")
     implementation("cn.hutool:hutool-all:${hutoolVersion}")

@@ -138,13 +138,13 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      colorMode:{
+      colorMode: {
         defaultMode: 'light',
         disableSwitch: false,
         respectPrefersColorScheme: false,
       },
       mermaid: {
-        theme: {light: 'neutral', dark: 'dark'},
+        theme: { light: 'neutral', dark: 'dark' },
       },
     }),
   markdown: {

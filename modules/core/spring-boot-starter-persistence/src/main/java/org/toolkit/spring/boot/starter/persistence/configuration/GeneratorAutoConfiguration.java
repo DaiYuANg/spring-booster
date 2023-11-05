@@ -9,22 +9,16 @@ import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfig
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.toolkit.spring.boot.starter.persistence.base.IGenerator;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @AutoConfiguration
 @Slf4j
 @EnableConfigurationProperties(GeneratorConfigurationProperties.class)
+@EnableTransactionManagement
 @AutoConfigureBefore({HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class})
 public class GeneratorAutoConfiguration {
 	@PostConstruct
 	public void init() {
 		log.info("Persistence Generator Auto config executing");
-	}
-
-	@Bean
-	@ConditionalOnBean()
-	public IGenerator iGenerator() {
-
-		return null;
 	}
 }

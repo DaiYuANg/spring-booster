@@ -1,11 +1,13 @@
 package org.toolkit.spring.boot.starter.persistence.generators;
 
-import org.toolkit.spring.boot.starter.persistence.base.IGenerator;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
-public class UUIDGenerator implements IGenerator {
+public class UUIDGenerator extends SequenceStyleGenerator {
 
 	@Override
-	public String generate() {
-		return null;
+	public Object generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
+		return super.generate(session, object);
 	}
 }

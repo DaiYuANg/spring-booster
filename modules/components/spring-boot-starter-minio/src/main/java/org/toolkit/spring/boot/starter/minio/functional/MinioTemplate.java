@@ -1,76 +1,116 @@
 package org.toolkit.spring.boot.starter.minio.functional;
 
 import io.minio.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.nio.file.Path;
+import java.util.Optional;
+
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
-public class MinioTemplate implements IMinioTemplate {
+public class MinioTemplate {
 
-	private final MinioClient minioClient;
+    private final MinioClient minioClient;
 
-	public MinioTemplate(@NotNull MinioClient minioClient) {
-		this.minioClient = minioClient;
-	}
+    private final String defaultBucket;
 
-	@SneakyThrows
-	@Override
-	public String upload(@NotNull MultipartFile multipartFile, String bucket) {
-		return upload(multipartFile.getResource().getFile(), bucket);
-	}
+    private static final String defaultContentType = "application/octet-stream";
 
-	@SneakyThrows
-	@Override
-	public String upload(@NotNull Path path, String bucket) {
-		val file = path.toFile();
-		if (!file.exists()) throw new FileNotFoundException();
-		return upload(file, bucket);
-	}
+    public MinioTemplate(@NotNull MinioClient minioClient, String defaultBucket) {
+        this.minioClient = minioClient;
+        this.defaultBucket = defaultBucket;
+        validMinioConnect();
+    }
 
-	@SneakyThrows
-	@Override
-	public String upload(String path, String bucket) {
-		return upload(Path.of(path), bucket);
-	}
+    @SneakyThrows
+    public void validMinioConnect() {
+        val bucketExistsArgs = BucketExistsArgs.builder().bucket(defaultBucket).build();
+        val exists = minioClient.bucketExists(bucketExistsArgs);
+        log.atInfo().log("bucket:{} exists:{}", defaultBucket, exists);
+        if (!exists) {
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket(defaultBucket).build());
+        }
+    }
 
-	@SneakyThrows
-	@Override
-	public String upload(File file, String bucket) {
-		autoCreateBucket(bucket);
-		try (val stream = new FileInputStream(file)) {
-			val up = PutObjectArgs.builder().stream(stream, stream.available(), -1)
-					.build();
-			val r = minioClient.putObject(up);
-			return r.bucket();
-		}
-	}
+    @SneakyThrows
+    public void upload(
+            File file, String targetName, String bucketName, String contentType
+    ) {
+        upload(FileUtils.readFileToByteArray(file), targetName, bucketName, contentType);
+    }
 
-	@SneakyThrows
-	@Override
-	public void autoCreateBucket(String bucket) {
-		if (minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucket).build())) return;
-		minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
-	}
+    @SneakyThrows
+    public void upload(@NotNull MultipartFile multipartFile, String targetName, String bucketName, String contentType) {
+        upload(multipartFile.getResource().getFile(), targetName, bucketName, contentType);
+    }
 
-	@SneakyThrows
-	@Override
-	public InputStream getObject(String object) {
-		return minioClient.getObject(GetObjectArgs.builder().object(object).build());
-	}
+    public void upload( MultipartFile multipartFile, String targetName, String contentType){
+        upload(multipartFile,targetName,defaultBucket,contentType);
+    }
 
-	@SneakyThrows
-	@Override
-	public File download(String object, String targetPath, String bucket) {
-		minioClient.downloadObject(
-				DownloadObjectArgs.builder().bucket(bucket).filename(targetPath).build());
-		return new File(targetPath);
-	}
+    public void upload(File file, String targetName, String contentType) {
+        upload(file, targetName, defaultBucket, contentType);
+    }
+
+    @SneakyThrows
+    public void upload(@NotNull Path path, String targetName, String bucketName, String contentType) {
+        val file = path.toFile();
+        upload(file, targetName, bucketName, contentType);
+    }
+
+    @SneakyThrows
+    public void upload(byte[] fileBytes, String bucketName, String targetName, String contentType) {
+        autoCreateBucket(bucketName);
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(fileBytes)) {
+            PutObjectArgs putObjectArgs = PutObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(targetName)
+                    .stream(inputStream, inputStream.available(), -1)
+                    .contentType(contentTypeWithDefault(contentType))
+                    .build();
+            minioClient.putObject(putObjectArgs);
+        }
+    }
+
+    private String contentTypeWithDefault(String contentType) {
+        return Optional.ofNullable(contentType).orElse(defaultContentType);
+    }
+
+    @SneakyThrows
+    public void autoCreateBucket(String bucket) {
+        if (minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucket).build())) return;
+        minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
+    }
+
+    @SneakyThrows
+    public InputStream getObject(String object) {
+        return getObject(defaultBucket, object);
+    }
+
+    @SneakyThrows
+    public InputStream getObject(String bucket, String object) {
+        return minioClient.getObject(GetObjectArgs.builder()
+                .bucket(bucket)
+                .object(object)
+                .build());
+    }
+
+    @SneakyThrows
+    public void downloadAsFile(String object, String bucketName, String filename) {
+        minioClient.downloadObject(DownloadObjectArgs.builder()
+                .object(object)
+                .bucket(bucketName)
+                .filename(filename)
+                .build());
+    }
+
+    public void downloadAsFile(String object, String filename) {
+        downloadAsFile(object, defaultBucket, filename);
+    }
 }

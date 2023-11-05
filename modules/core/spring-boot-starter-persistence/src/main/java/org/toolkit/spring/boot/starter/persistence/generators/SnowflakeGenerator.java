@@ -1,12 +1,13 @@
 package org.toolkit.spring.boot.starter.persistence.generators;
 
 import cn.hutool.core.util.IdUtil;
-import org.toolkit.spring.boot.starter.persistence.base.IGenerator;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.enhanced.SequenceStyleGenerator;
 
-public class SnowflakeGenerator implements IGenerator {
+public class SnowflakeGenerator extends SequenceStyleGenerator{
 	@Override
-	public String generate() {
-		IdUtil.getSnowflake();
-		return null;
+	public Object generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
+		return IdUtil.getSnowflake().nextId();
 	}
 }

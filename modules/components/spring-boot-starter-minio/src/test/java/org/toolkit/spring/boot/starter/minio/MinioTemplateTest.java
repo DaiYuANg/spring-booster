@@ -28,10 +28,10 @@ class MinioTemplateTest {
 		String minioIpAddress = minioContainer.getHost();
 		int minioPort = minioContainer.getMappedPort(9000);
 
-		minioTemplate = new MinioTemplate(MinioClient.builder()
-				.endpoint("localhost:" + minioPort)
-				.credentials("testuser", "testpassword")
-				.build());
+//		minioTemplate = new MinioTemplate(MinioClient.builder()
+//				.endpoint("localhost:" + minioPort)
+//				.credentials("testuser", "testpassword")
+//				.build());
 	}
 
 	@Test

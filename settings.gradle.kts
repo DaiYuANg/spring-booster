@@ -100,3 +100,5 @@ include("modules:examples:backend-minimal-example")
 include("modules:components:spring-boot-starter-mapped")
 
 findProject(":modules:components:spring-boot-starter-mapped")?.name = "spring-boot-starter-mapped"
+include("modules:components:spring-boot-starter-vertx")
+findProject(":modules:components:spring-boot-starter-vertx")?.name = "spring-boot-starter-vertx"

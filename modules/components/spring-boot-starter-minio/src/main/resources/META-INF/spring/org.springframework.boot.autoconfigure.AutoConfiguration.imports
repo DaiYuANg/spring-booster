@@ -1,3 +1,5 @@
 org.toolkit.spring.boot.starter.minio.configurations.MinioAutoConfiguration
 org.toolkit.spring.boot.starter.minio.configurations.MinioWebConfiguration
 org.toolkit.spring.boot.starter.minio.configurations.TemplateAutoConfiguration
+org.toolkit.spring.boot.starter.minio.configurations.MineTypeAutoConfiguration
+#org.toolkit.spring.boot.starter.minio.configurations.MinioDatasourceAutoConfiguration

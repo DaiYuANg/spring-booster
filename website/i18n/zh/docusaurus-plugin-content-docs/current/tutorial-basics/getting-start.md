@@ -2,7 +2,6 @@
 sidebar_position: 1
 ---
 
-
 # Getting Start
 
 Add **Markdown or React** files to `src/pages` to create a **standalone page**:
@@ -14,6 +13,7 @@ Add **Markdown or React** files to `src/pages` to create a **standalone page**:
 ### 前置知识
 
 #### 后端
+
 - [Spring Boot](https://spring.io/projects/spring-boot): 工具包中大部分后端组件 基于`Spring Boot` 以封装Starter形式提供
 - ORM: 工具包中的`Starter` 以 `Spring Jpa` 作为ORM库
 - 构建工具
@@ -21,6 +21,7 @@ Add **Markdown or React** files to `src/pages` to create a **standalone page**:
   - Gradle:
 
 #### 前端
+
 - [Vue3](https://vuejs.org): 工具包中的前端选型为 Vue3
   - [Quasar](https://quasar.dev): 使用 Quasar 作为基础组件库
   - [Pinia](https://pinia.vuejs.org/): 状态管理
