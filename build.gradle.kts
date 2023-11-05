@@ -115,7 +115,6 @@ subprojects {
     testImplementation("net.datafaker:datafaker:2.0.1")
     testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testImplementation("org.testcontainers:testcontainers:1.19.0")

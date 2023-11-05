@@ -6,11 +6,12 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.toolkit.spring.boot.starter.minio.service.IMinioPreviewService;
+import org.toolkit.spring.boot.starter.restful.annotations.IgnoreResponseAdvice;
 
 @RestController
 @RequestMapping("${toolkit.minio.preview-pattern:/minio/preview}")
+@IgnoreResponseAdvice
 public class MinioPreviewController {
-
     @Resource
     private IMinioPreviewService previewService;
 

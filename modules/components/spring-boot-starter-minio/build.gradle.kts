@@ -3,6 +3,7 @@ dependencies {
     val testContainersVersion: String by project
     api("io.minio:minio:8.5.6")
     implementation(projects.modules.core.springBootStarterPersistence)
+    implementation(projects.modules.core.springBootStarterRestful)
     api("org.apache.tika:tika-core:2.9.1")
     api("org.apache.tika:tika-parsers:2.9.1")
     testImplementation("io.minio:minio:8.5.6")

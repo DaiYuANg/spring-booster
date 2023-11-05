@@ -23,15 +23,18 @@ public class VertxAutoConfiguration {
     @Resource
     private Optional<ClusterManager> clusterManager;
 
+    @Resource
+    private VertxOptions vertxOptions;
+
     @Bean
     public Vertx vertx() {
         return clusterManager.map(cm -> clusterVertx(cm).join()).orElseGet(Vertx::vertx);
     }
 
     @NotNull
-    private static CompletableFuture<Vertx> clusterVertx(ClusterManager cm) {
+    private CompletableFuture<Vertx> clusterVertx(ClusterManager cm) {
         val vertxFuture = new CompletableFuture<Vertx>();
-        Vertx.clusteredVertx(new VertxOptions().setClusterManager(cm), result -> {
+        Vertx.clusteredVertx(vertxOptions.setClusterManager(cm), result -> {
             if (result.succeeded()) {
                 vertxFuture.complete(result.result());
             } else {
@@ -39,9 +42,5 @@ public class VertxAutoConfiguration {
             }
         });
         return vertxFuture;
-    }
-
-    private @NotNull VertxOptions vertxOptions(){
-        return new VertxOptions();
     }
 }

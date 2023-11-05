@@ -25,11 +25,12 @@ public class HttpAutoConfiguration {
     public Router rootRouter() {
         val router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
+        router.route().handler(corsHandler());
         return router;
     }
 
-    public void corsHandler() {
-        CorsHandler.create()
+    public CorsHandler corsHandler() {
+        return CorsHandler.create()
                 .addRelativeOrigin("vertx\\.io")
                 .allowedMethod(HttpMethod.GET);
     }

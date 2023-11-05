@@ -6,7 +6,7 @@ import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.toolkit.spring.boot.starter.vertx.base.BaseConfigurationProperties;
 
-@ConfigurationProperties(prefix = "vertx.http")
+@ConfigurationProperties(prefix = "toolkit.vertx.http")
 @Setter
 @Getter
 @ToString

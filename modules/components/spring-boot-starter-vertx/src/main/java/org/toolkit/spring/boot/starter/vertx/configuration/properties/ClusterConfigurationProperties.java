@@ -6,7 +6,7 @@ import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.toolkit.spring.boot.starter.vertx.base.BaseConfigurationProperties;
 
-@ConfigurationProperties(prefix = "vertx.cluster")
+@ConfigurationProperties(prefix = "toolkit.vertx.cluster")
 @Setter
 @Getter
 @ToString

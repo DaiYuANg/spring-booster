@@ -88,8 +88,6 @@ include("modules:components:spring-boot-starter-recorder")
 include("modules:components:spring-boot-starter-auth")
 
 // ---------- helpful---------
-include("modules:helpful:spring-boot-starter-event-bus")
-
 include("modules:helpful:spring-boot-starter-cached")
 
 include("modules:helpful:spring-boot-starter-verification")
@@ -102,3 +100,5 @@ include("modules:components:spring-boot-starter-mapped")
 findProject(":modules:components:spring-boot-starter-mapped")?.name = "spring-boot-starter-mapped"
 include("modules:components:spring-boot-starter-vertx")
 findProject(":modules:components:spring-boot-starter-vertx")?.name = "spring-boot-starter-vertx"
+include("modules:toolkit-cli")
+findProject(":modules:toolkit-cli")?.name = "toolkit-cli"

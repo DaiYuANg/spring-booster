@@ -140,6 +140,8 @@ importers:
         specifier: ^0.34.6
         version: 0.34.6(@vitest/ui@0.34.6)
 
+  packages/toolkit-cli: {}
+
   packages/vue/components:
     dependencies:
       rxjs:

@@ -49,6 +49,6 @@ public class HttpHandlerRegister {
         val route = method.map(m -> router.route(m, ann.path()))
                 .orElseGet(() -> router.route(ann.path()));
         route.handler(handler);
-        log.atDebug().log("register method:{},on path:{}", route.methods(), route.getPath());
+        log.atInfo().log("register method:{},on path:{}", route.methods(), route.getPath());
     }
 }

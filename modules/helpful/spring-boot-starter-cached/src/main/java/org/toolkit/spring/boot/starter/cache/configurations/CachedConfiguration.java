@@ -12,4 +12,5 @@ public class CachedConfiguration {
 	MultiLevelCacheManager multiLevelCacheManager() {
 		return new MultiLevelCacheManager();
 	}
+
 }
