@@ -6,6 +6,6 @@ public enum I18nHttpStatusCode {
 	STATUS_CODE;
 
 	I18nHttpStatusCode() {
-		ResourceBundle.getBundle("en_US.properties");
+//		ResourceBundle.getBundle("en_US.properties");
 	}
 }

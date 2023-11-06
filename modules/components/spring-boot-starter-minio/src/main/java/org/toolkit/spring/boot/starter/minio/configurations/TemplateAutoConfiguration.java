@@ -15,6 +15,8 @@ import org.toolkit.spring.boot.starter.minio.configurations.properties.MinioConf
 import org.toolkit.spring.boot.starter.minio.functional.MinioTemplate;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @AutoConfiguration
 public class TemplateAutoConfiguration {
@@ -25,9 +27,8 @@ public class TemplateAutoConfiguration {
     private MinioConfigurationProperties minioConfigurationProperties;
 
     @Bean
-    public Map<String, MinioTemplate> templateMap() {
-        return templates().toMap(Map.Entry::getKey, Map.Entry::getValue)
-                .blockingGet();
+    public ConcurrentMap<String, MinioTemplate> templateMap() {
+        return new ConcurrentHashMap<>(templates().toMap(Map.Entry::getKey, Map.Entry::getValue).blockingGet());
     }
 
     public Observable<Map.Entry<String, MinioTemplate>> templates() {

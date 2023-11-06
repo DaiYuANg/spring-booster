@@ -1,3 +1,3 @@
-import TablePage from "./TablePage.vue";
-import Page from './Page.vue'
-export {TablePage,Page}
+import Page from './Page.vue';
+import TablePage from './TablePage.vue';
+export { Page, TablePage };

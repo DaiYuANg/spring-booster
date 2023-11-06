@@ -12,10 +12,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(OfficeConfigurationProperties.class)
 public class OfficeAutoConfiguration {
 	public void test() {
-		//		try (val s = new XSSFWorkbook()) {
-		//			Sheet sheet = s.createSheet();
-		//		} catch (IOException e) {
-		//			throw new RuntimeException(e);
-		//		}
+
 	}
 }

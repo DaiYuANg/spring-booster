@@ -10,9 +10,11 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.toolkit.spring.boot.starter.restful.annotations.AllowClient;
+import org.toolkit.spring.boot.starter.restful.annotations.Interceptor;
 import org.toolkit.spring.boot.starter.restful.constant.ClientDevice;
 
 @Slf4j
+@Interceptor
 public class AllowClientInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(

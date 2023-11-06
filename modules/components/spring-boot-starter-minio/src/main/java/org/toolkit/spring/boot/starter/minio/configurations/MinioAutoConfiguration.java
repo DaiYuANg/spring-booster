@@ -2,6 +2,7 @@ package org.toolkit.spring.boot.starter.minio.configurations;
 
 import io.minio.MinioClient;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +18,8 @@ import org.toolkit.spring.boot.starter.minio.configurations.properties.MinioClie
 import org.toolkit.spring.boot.starter.minio.configurations.properties.MinioConfigurationProperties;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)
@@ -35,32 +37,24 @@ public class MinioAutoConfiguration {
 
     @NotNull
     @Bean
-    public Map<String, MinioClient> buildMinioClientMap() {
+    public ConcurrentMap<String, MinioClient> buildMinioClientMap() {
         return Observable.fromIterable(minioConfigurationProperties.getMinioClients().entrySet())
-                .flatMap(clientConfigEntry -> Observable.just(clientConfigEntry)
+                .flatMap(clientConfigEntry -> Single.fromCallable(() -> clientConfigEntry)
                         .subscribeOn(Schedulers.io())
                         .map(this::buildClientEntry)
+                        .toObservable()
                 )
                 .toMap(Map.Entry::getKey, Map.Entry::getValue)
-                .blockingGet(); // 等待结果并返回
+                .map(clientConfigMap -> (ConcurrentMap<String, MinioClient>) new ConcurrentHashMap<>(clientConfigMap))
+                .blockingGet();
     }
 
     @SneakyThrows
     private Map.@NotNull @Unmodifiable Entry<String, MinioClient> buildClientEntry(Map.@NotNull Entry<String, MinioClientConfigurationProperties> clientConfig) {
-//        val bucketName = clientConfig.getValue().getDefaultBucket();
         val client = MinioClient.builder()
                 .credentials(clientConfig.getValue().getAccessKey(), clientConfig.getValue().getSecretKey())
                 .endpoint(clientConfig.getValue().getEndpoint())
                 .build();
-//        val defaultBucketExists = client.bucketExists(BucketExistsArgs.builder()
-//                .bucket(bucketName)
-//                .build());
-//        log.atInfo().log("client:{},default bucket:{} exists:{}", clientConfig.getKey(), bucketName, defaultBucketExists);
-//        if (!defaultBucketExists) {
-//            client.makeBucket(MakeBucketArgs.builder()
-//                    .bucket(bucketName)
-//                    .build());
-//        }
         return Map.entry(clientConfig.getKey(), client);
     }
 }

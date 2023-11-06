@@ -1,5 +1,7 @@
 package org.toolkit.spring.boot.starter.minio.service.impl;
 
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
@@ -18,9 +20,9 @@ import org.toolkit.spring.boot.starter.minio.repository.MinioResourceEntityRepos
 import org.toolkit.spring.boot.starter.minio.service.IMinioPreviewService;
 import org.toolkit.spring.boot.starter.minio.vo.PreviewVo;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
 
 @Service
@@ -28,7 +30,7 @@ import java.util.concurrent.Executor;
 public class MinioPreviewService implements IMinioPreviewService {
 
     @Resource
-    private Map<String, MinioTemplate> clients;
+    private ConcurrentMap<String, MinioTemplate> templates;
 
     @Resource
     private MinioResourceEntityRepository repository;
@@ -48,15 +50,18 @@ public class MinioPreviewService implements IMinioPreviewService {
     @Override
     @SneakyThrows
     public PreviewVo previewObject(String clientInstance, String bucket, String objectId) {
-        val resource = repository.findById(objectId).orElseThrow();
-        val template = Optional.ofNullable(clients.get(clientInstance)).orElseThrow();
-        val stream = template.getObject(bucket, resource.getPath());
-        val result = PreviewVo.builder()
-                .resource(new ByteArrayResource(IOUtils.toByteArray(stream)))
-                .mediaType(MediaType.parseMediaType(resource.getContentType()))
-                .build();
-        CompletableFuture.runAsync(() -> saveAccessLogAndPublishEvent(objectId), executor);
-        return result;
+        return Single.fromCallable(() -> {
+                    val resource = repository.findById(objectId).orElseThrow();
+                    val template = Optional.ofNullable(templates.get(clientInstance)).orElseThrow();
+                    val stream = template.getObject(bucket, resource.getPath());
+                    return PreviewVo.builder()
+                            .resource(new ByteArrayResource(IOUtils.toByteArray(stream)))
+                            .mediaType(MediaType.parseMediaType(resource.getContentType()))
+                            .build();
+                })
+                .subscribeOn(Schedulers.io())
+                .doOnSuccess(result -> CompletableFuture.runAsync(() -> saveAccessLogAndPublishEvent(objectId), executor))
+                .blockingGet();
     }
 
     private void saveAccessLogAndPublishEvent(String resourceId) {

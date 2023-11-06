@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/vue3';
-import CentralLayout from "./CentralLayout.vue";
+import CentralLayout from './CentralLayout.vue';
 
 const meta = {
   title: 'Layout/CentralLayout',
@@ -10,7 +10,7 @@ const meta = {
     size: { control: 'select', options: ['small', 'medium', 'large'] },
     backgroundColor: { control: 'color' },
   },
-  args: { }, // default value
+  args: {}, // default value
 } satisfies Meta<typeof CentralLayout>;
 
 export default meta;

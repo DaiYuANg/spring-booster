@@ -1,1 +1,4 @@
-dependencies { implementation("org.apache.poi:poi:5.2.3") }
+dependencies {
+    implementation("com.alibaba:easyexcel:3.3.2")
+    api(projects.modules.components.springBootStarterMapped)
+}

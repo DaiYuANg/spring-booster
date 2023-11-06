@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,8 +51,8 @@ public class MinioTemplate {
         upload(multipartFile.getResource().getFile(), targetName, bucketName, contentType);
     }
 
-    public void upload( MultipartFile multipartFile, String targetName, String contentType){
-        upload(multipartFile,targetName,defaultBucket,contentType);
+    public void upload(MultipartFile multipartFile, String targetName, String contentType) {
+        upload(multipartFile, targetName, defaultBucket, contentType);
     }
 
     public void upload(File file, String targetName, String contentType) {
@@ -60,8 +61,7 @@ public class MinioTemplate {
 
     @SneakyThrows
     public void upload(@NotNull Path path, String targetName, String bucketName, String contentType) {
-        val file = path.toFile();
-        upload(file, targetName, bucketName, contentType);
+        upload(path.toFile(), targetName, bucketName, contentType);
     }
 
     @SneakyThrows
@@ -95,11 +95,22 @@ public class MinioTemplate {
 
     @SneakyThrows
     public InputStream getObject(String bucket, String object) {
+        minioClient.composeObject(ComposeObjectArgs.builder().build());
         return minioClient.getObject(GetObjectArgs.builder()
                 .bucket(bucket)
                 .object(object)
                 .build());
     }
+
+    @SneakyThrows
+    public byte[] getObjectBytes(String bucket, String object) {
+        return IOUtils.toByteArray(getObject(bucket, object));
+    }
+
+    public byte[] getObjectBytes(String object) {
+        return getObjectBytes(defaultBucket, object);
+    }
+
 
     @SneakyThrows
     public void downloadAsFile(String object, String bucketName, String filename) {

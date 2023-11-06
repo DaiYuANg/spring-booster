@@ -3,6 +3,8 @@ package org.toolkit.spring.boot.starter.minio.service.impl;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.crypto.digest.DigestUtil;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +26,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.Base64;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
 
 @Service
@@ -43,38 +44,45 @@ public class MinioUploadUploadService implements IMinioUploadService {
     private MinioResourceEntityRepository repository;
 
     @Resource
-    private Map<String, MinioTemplate> clients;
+    private ConcurrentMap<String, MinioTemplate> templates;
 
     @Override
     @SneakyThrows
     @NotNull
     public UploadResultVo upload(@NotNull UploadParams arguments) {
-        val md5 = DigestUtil.md5Hex(FileUtil.readUtf8String(arguments.getFile().getResource().getFile()));
-        val entity = repository.findByMd5(md5).orElseGet(() -> uploadToMinio(arguments, md5));
-        return new UploadResultVo() {{
-            setId(entity.getId());
-        }};
+        return Single.fromCallable(() -> {
+                    val md5 = DigestUtil.md5Hex(FileUtil.readUtf8String(arguments.getFile().getResource().getFile()));
+                    return repository.findByMd5(md5)
+                            .orElseGet(() -> uploadToMinio(arguments, md5));
+                })
+                .subscribeOn(Schedulers.io()) // 在IO线程执行耗时操作
+                .map(entity -> new UploadResultVo() {{
+                    setId(entity.getId());
+                }}).blockingGet();
     }
 
-    private MinioResourceEntity uploadToMinio(@NotNull UploadParams arguments, String md5) {
-        val template = Optional.ofNullable(clients.get(arguments.getClientInstance())).orElseThrow(MinioInstanceNotFound::new);
-        val contentType = arguments.getFile().getContentType();
-        val targetName = nameBuilder(md5);
-        val entity = new MinioResourceEntity() {{
-            setPath(targetName);
-            setAnonymous(arguments.isAnonymous());
-            setContentType(contentType);
-            setMd5(md5);
-            setInstance(arguments.getClientInstance());
-        }};
-        val async = CompletableFuture
-                .runAsync(() -> template.upload(arguments.getFile(), targetName, contentType), executor)
-                .thenCompose((Void) -> CompletableFuture.supplyAsync(() -> repository.save(entity), executor))
-                .thenApply(resourceEntity -> {
-                    eventPublisher.publishEvent(new UploadedEvent(this, entity.getId()));
-                    return resourceEntity;
-                });
-        return async.join();
+    private @NotNull MinioResourceEntity uploadToMinio(@NotNull UploadParams arguments, String md5) {
+        val template = Optional.ofNullable(templates.get(arguments.getClientInstance())).orElseThrow(MinioInstanceNotFound::new);
+        return Single.fromCallable(() -> {
+                    val contentType = arguments.getFile().getContentType();
+                    val targetName = nameBuilder(md5);
+
+                    return new MinioResourceEntity() {{
+                        setPath(targetName);
+                        setAnonymous(arguments.isAnonymous());
+                        setContentType(contentType);
+                        setMd5(md5);
+                        setInstance(arguments.getClientInstance());
+                    }};
+                })
+                .subscribeOn(Schedulers.from(executor)) // 在IO线程执行上传到Minio的操作
+                .flatMap(entity -> Single.fromCallable(() -> {
+                            template.upload(arguments.getFile(), entity.getPath(), entity.getContentType());
+                            return repository.save(entity);
+                        })
+                        .subscribeOn(Schedulers.io()))
+                .doOnSuccess(resourceEntity -> eventPublisher.publishEvent(new UploadedEvent(this, resourceEntity.getId())))
+                .blockingGet();
     }
 
     private String nameBuilder(String md5) {
