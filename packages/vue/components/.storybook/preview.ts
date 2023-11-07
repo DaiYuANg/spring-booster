@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/vue3';
 // Import icon libraries
 import '@quasar/extras/material-icons/material-icons.css';
+import '../src/index.scss';
 // Import Quasar css
 import { setup } from '@storybook/vue3';
 import { Quasar } from 'quasar';
