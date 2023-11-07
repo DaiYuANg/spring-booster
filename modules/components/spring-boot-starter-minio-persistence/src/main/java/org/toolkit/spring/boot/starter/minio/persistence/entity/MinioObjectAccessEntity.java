@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.minio.entity;
+package org.toolkit.spring.boot.starter.minio.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,8 +8,8 @@ import org.toolkit.spring.boot.starter.persistence.base.BaseEntity;
 @Entity
 @Getter
 @Setter
-@Table
-public class MinioResourceAccessRecord extends BaseEntity {
+@Table(name = "toolkit_minio_object_access")
+public class MinioObjectAccessEntity extends BaseEntity {
 
     @Column
     private String userAgent;
@@ -21,6 +21,6 @@ public class MinioResourceAccessRecord extends BaseEntity {
     private String resourceId;
 
     @OneToOne
-    @JoinColumn(name = "id",referencedColumnName = "resource_id")
-    private MinioResourceEntity resource;
+    @JoinColumn(name = "id", referencedColumnName = "resource_id")
+    private MinioObjectEntity resource;
 }

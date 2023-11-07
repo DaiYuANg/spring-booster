@@ -2,6 +2,7 @@ package org.toolkit.spring.boot.starter.minio.endpoint;
 
 import jakarta.annotation.Resource;
 import lombok.val;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +14,7 @@ import org.toolkit.spring.boot.starter.minio.service.IMinioPreviewService;
 import org.toolkit.spring.boot.starter.restful.annotations.IgnoreResponseAdvice;
 
 @RestController
+@ConditionalOnProperty("toolkit.minio")
 @RequestMapping("${toolkit.minio.preview-pattern:/minio/preview}")
 @IgnoreResponseAdvice
 public class MinioObjectController {

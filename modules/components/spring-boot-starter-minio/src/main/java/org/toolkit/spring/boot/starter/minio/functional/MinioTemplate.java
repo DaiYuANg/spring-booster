@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -17,26 +18,20 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class MinioTemplate {
 
+    @Getter
+    private final String selfKey;
+
     private final MinioClient minioClient;
 
     private final String defaultBucket;
 
     private static final String defaultContentType = "application/octet-stream";
 
-    public MinioTemplate(@NotNull MinioClient minioClient, String defaultBucket) {
+    public MinioTemplate(@NotNull MinioClient minioClient, String defaultBucket, String selfKey) {
         this.minioClient = minioClient;
         this.defaultBucket = defaultBucket;
-        validMinioConnect();
-    }
-
-    @SneakyThrows
-    public void validMinioConnect() {
-        val bucketExistsArgs = BucketExistsArgs.builder().bucket(defaultBucket).build();
-        val exists = minioClient.bucketExists(bucketExistsArgs);
-        log.atInfo().log("bucket:{} exists:{}", defaultBucket, exists);
-        if (!exists) {
-            minioClient.makeBucket(MakeBucketArgs.builder().bucket(defaultBucket).build());
-        }
+        this.selfKey = selfKey;
+        autoCreateBucket(defaultBucket);
     }
 
     @SneakyThrows
@@ -76,6 +71,10 @@ public class MinioTemplate {
                     .build();
             minioClient.putObject(putObjectArgs);
         }
+    }
+
+    public void upload(byte[] fileBytes, String targetName, String contentType) {
+        upload(fileBytes, defaultBucket, targetName, contentType);
     }
 
     private String contentTypeWithDefault(String contentType) {
@@ -123,5 +122,14 @@ public class MinioTemplate {
 
     public void downloadAsFile(String object, String filename) {
         downloadAsFile(object, defaultBucket, filename);
+    }
+
+    @SneakyThrows
+    public StatObjectResponse stat(String bucket, String object) {
+        return minioClient.statObject(StatObjectArgs.builder().build());
+    }
+
+    public StatObjectResponse stat(String object) {
+        return stat(defaultBucket, object);
     }
 }

@@ -12,17 +12,11 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.toolkit.spring.boot.starter.minio.entity.MinioResourceAccessRecord;
-import org.toolkit.spring.boot.starter.minio.events.ResourceAccessedEvent;
-import org.toolkit.spring.boot.starter.minio.functional.MinioTemplate;
-import org.toolkit.spring.boot.starter.minio.repository.MinioResourceAccessRecordRepository;
-import org.toolkit.spring.boot.starter.minio.repository.MinioResourceEntityRepository;
+import org.toolkit.spring.boot.starter.minio.events.ObjectAccessEvent;
 import org.toolkit.spring.boot.starter.minio.service.IMinioPreviewService;
+import org.toolkit.spring.boot.starter.minio.service.IMinioTemplateService;
 import org.toolkit.spring.boot.starter.minio.vo.PreviewVo;
 
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
 
 @Service
@@ -30,47 +24,47 @@ import java.util.concurrent.Executor;
 public class MinioPreviewService implements IMinioPreviewService {
 
     @Resource
-    private ConcurrentMap<String, MinioTemplate> templates;
+    private IMinioTemplateService templateService;
 
     @Resource
-    private MinioResourceEntityRepository repository;
+    private Executor executor;
 
     @Resource
     private ApplicationEventPublisher eventPublisher;
 
     @Resource
-    private MinioResourceAccessRecordRepository accessRecordRepository;
+    private HttpServletRequest request;
 
-    @Resource
-    private HttpServletRequest currentRequest;
 
-    @Resource
-    private Executor executor;
-
+    /**
+     * @param clientInstance minio config key
+     * @param bucket         preview object storage bucket
+     * @param objectPath     object path
+     * @return
+     */
     @Override
     @SneakyThrows
-    public PreviewVo previewObject(String clientInstance, String bucket, String objectId) {
-        return Single.fromCallable(() -> {
-                    val resource = repository.findById(objectId).orElseThrow();
-                    val template = Optional.ofNullable(templates.get(clientInstance)).orElseThrow();
-                    val stream = template.getObject(bucket, resource.getPath());
-                    return PreviewVo.builder()
-                            .resource(new ByteArrayResource(IOUtils.toByteArray(stream)))
-                            .mediaType(MediaType.parseMediaType(resource.getContentType()))
-                            .build();
-                })
-                .subscribeOn(Schedulers.io())
-                .doOnSuccess(result -> CompletableFuture.runAsync(() -> saveAccessLogAndPublishEvent(objectId), executor))
-                .blockingGet();
+    public PreviewVo previewObject(String clientInstance, String bucket, String objectPath) {
+        val getObjectSingle = Single
+                .fromCallable(() -> IOUtils.toByteArray(templateService.findTemplate(clientInstance).getObject(bucket, objectPath)))
+                .subscribeOn(Schedulers.from(executor));
+
+        val statSingle = Single
+                .fromCallable(() -> templateService.findTemplate(clientInstance).stat(bucket, objectPath).contentType())
+                .subscribeOn(Schedulers.from(executor));
+
+        val resultSingle = Single.zip(getObjectSingle, statSingle, this::previewBuilder)
+                .doFinally(() -> eventPublisher.publishEvent(new ObjectAccessEvent(this, objectPath, request)))
+                .doOnError(throwable -> {
+                    throw throwable;
+                });
+        return resultSingle.blockingGet();
     }
 
-    private void saveAccessLogAndPublishEvent(String resourceId) {
-        val entity = new MinioResourceAccessRecord() {{
-            setIpAddress(currentRequest.getRemoteHost());
-            setId(resourceId);
-            setUserAgent(currentRequest.getHeader("User-Agent"));
-        }};
-        accessRecordRepository.save(entity);
-        eventPublisher.publishEvent(new ResourceAccessedEvent(this, resourceId));
+    private PreviewVo previewBuilder(byte[] objectData, String contentType) {
+        return PreviewVo.builder()
+                .resource(new ByteArrayResource(objectData))
+                .mediaType(MediaType.parseMediaType(contentType))
+                .build();
     }
 }

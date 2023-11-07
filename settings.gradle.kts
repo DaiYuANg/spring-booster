@@ -102,3 +102,7 @@ include("modules:components:spring-boot-starter-vertx")
 findProject(":modules:components:spring-boot-starter-vertx")?.name = "spring-boot-starter-vertx"
 include("modules:toolkit-cli")
 findProject(":modules:toolkit-cli")?.name = "toolkit-cli"
+include("modules:components:spring-boot-starter-minio-persistence")
+findProject(":modules:components:spring-boot-starter-minio-persistence")?.name = "spring-boot-starter-minio-persistence"
+include("modules:spring-boot-stater-utils")
+findProject(":modules:spring-boot-stater-utils")?.name = "spring-boot-stater-utils"

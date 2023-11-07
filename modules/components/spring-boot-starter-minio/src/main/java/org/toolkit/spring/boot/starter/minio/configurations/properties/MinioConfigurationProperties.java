@@ -21,4 +21,6 @@ public class MinioConfigurationProperties {
     private String previewIdParameter = "id";
 
     private String instancePublicAccessUrl;
+
+    private String clientTracePath;
 }

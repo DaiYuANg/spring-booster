@@ -13,6 +13,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+import org.toolkit.spring.boot.starter.mapped.annotations.Mapped;
 import org.toolkit.spring.boot.starter.mapped.annotations.Mapping;
 
 import java.lang.reflect.Field;
@@ -26,13 +27,13 @@ public class MappedResponseHandler implements ResponseBodyAdvice<Object> {
             @NotNull MethodParameter returnType,
             @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
         val clazz = returnType.getParameterType();
-        // 使用反射获取类中的字段
+        val isPresentMapped = clazz.isAnnotationPresent(Mapped.class);
         val fields = Arrays
                 .stream(clazz.getDeclaredFields())
                 .peek(field -> field.setAccessible(true))
                 .filter(field -> field.isAnnotationPresent(Mapping.class))
                 .toList();
-        return CollUtil.isNotEmpty(fields);
+        return CollUtil.isNotEmpty(fields) && isPresentMapped;
     }
 
     @Override

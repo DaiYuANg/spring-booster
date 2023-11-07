@@ -1,13 +1,9 @@
-package org.toolkit.spring.boot.starter.minio.configurations;
+package org.toolkit.spring.boot.starter.minio.persistence.configuration;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
@@ -17,14 +13,13 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.toolkit.spring.boot.starter.minio.configurations.properties.MinioDataSourceConfigurationProperties;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
 
 @AutoConfiguration
 @Slf4j
-@EnableConfigurationProperties(MinioDataSourceConfigurationProperties.class)
+@EnableConfigurationProperties({MinioDataSourceConfigurationProperties.class, MinioPersistenceConfigurationProperties.class})
 @EnableJpaRepositories(
         basePackages = "org.toolkit.spring.boot.starter.minio",
         entityManagerFactoryRef = "minioEntityManager",
@@ -41,11 +36,11 @@ public class MinioDatasourceAutoConfiguration {
     public DataSource minioDatasource() {
         DriverManagerDataSource dataSource
                 = new DriverManagerDataSource();
-        dataSource.setDriverClassName(
-                minioDataSourceConfigurationProperties.getDriverClassName());
-        dataSource.setUrl(minioDataSourceConfigurationProperties.getUrl());
-        dataSource.setUsername(minioDataSourceConfigurationProperties.getUsername());
-        dataSource.setPassword(minioDataSourceConfigurationProperties.getPassword());
+//        dataSource.setDriverClassName(
+//                minioDataSourceConfigurationProperties.getDriverClassName());
+//        dataSource.setUrl(minioDataSourceConfigurationProperties.getUrl());
+//        dataSource.setUsername(minioDataSourceConfigurationProperties.getUsername());
+//        dataSource.setPassword(minioDataSourceConfigurationProperties.getPassword());
         return dataSource;
     }
 

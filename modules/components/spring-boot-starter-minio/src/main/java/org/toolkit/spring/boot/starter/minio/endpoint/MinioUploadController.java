@@ -34,13 +34,13 @@ public class MinioUploadController {
             @RequestParam("file") MultipartFile file,
             @RequestParam(value = "anonymousAccess", required = false, defaultValue = "false") boolean anonymous
     ) {
-        return new UploadResultVo();
+        return new UploadResultVo(null);
     }
 
     @RequestMapping(value = "/uploadBase64", method = {RequestMethod.POST, RequestMethod.PUT})
     public UploadResultVo uploadBase64(
             @RequestBody @NotNull Base64UploadParam param
     ) {
-        return new UploadResultVo();
+        return new UploadResultVo(null);
     }
 }
