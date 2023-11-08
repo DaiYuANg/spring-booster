@@ -82,7 +82,7 @@ subprojects {
     version = details.lastTag
 
     dependencies {
-        val gsonVersion: String by project
+//        val gsonVersion: String by project
         val mapstructVersion: String by project
         val guavaVersion: String by project
         val slf4jVersion: String by project
@@ -95,7 +95,7 @@ subprojects {
         val jakartaJsonVersion: String by project
         val junitVersion: String by project
         val testContainersVersion: String by project
-        api("com.google.code.gson:gson:${gsonVersion}")
+//        api("com.google.code.gson:gson:${gsonVersion}")
         api("org.mapstruct:mapstruct:${mapstructVersion}")
         api("com.google.guava:guava:${guavaVersion}")
         api("org.slf4j:slf4j-api:${slf4jVersion}")

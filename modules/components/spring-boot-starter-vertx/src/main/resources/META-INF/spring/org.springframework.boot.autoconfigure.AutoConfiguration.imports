@@ -1,6 +1,0 @@
-org.toolkit.spring.boot.starter.vertx.configuration.ClusterAutoConfiguration
-org.toolkit.spring.boot.starter.vertx.configuration.VertxAutoConfiguration
-org.toolkit.spring.boot.starter.vertx.configuration.EventBusAutoConfiguration
-org.toolkit.spring.boot.starter.vertx.configuration.HttpAutoConfiguration
-org.toolkit.spring.boot.starter.vertx.configuration.builder.EventBusConfigBuilder
-org.toolkit.spring.boot.starter.vertx.configuration.builder.VertxConfigBuilder
