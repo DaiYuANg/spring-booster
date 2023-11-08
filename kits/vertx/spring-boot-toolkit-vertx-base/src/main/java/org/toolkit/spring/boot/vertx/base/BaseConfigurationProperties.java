@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public abstract class BaseConfigurationProperties {
 
-    private boolean enable;
+	private boolean enable;
 
-    private int idleTimeout;
+	private int idleTimeout;
 }

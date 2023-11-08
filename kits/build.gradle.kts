@@ -11,13 +11,18 @@ subprojects {
     imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
   }
 
-  dependencies{
+  dependencies {
+    val okhttpVersion: String by project
+    val hutoolVersion: String by project
     api("org.springframework.boot:spring-boot-starter-json")
     api("org.springframework.boot:spring-boot-starter")
     api("org.springframework.boot:spring-boot-starter")
     api("org.springframework.boot:spring-boot-starter-aop")
+    implementation("cn.hutool:hutool-all:${hutoolVersion}")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("net.datafaker:datafaker:2.0.1")
+    testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
     testImplementation("com.h2database:h2")
   }
 }

@@ -5,5 +5,4 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @AutoConfiguration
 @EnableConfigurationProperties(MappedConfigurationProperties.class)
-public class MappedAutoConfiguration {
-}
+public class MappedAutoConfiguration {}

@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Bean;
 @EnableConfigurationProperties(EventBusConfigurationProperties.class)
 public class EventBusAutoConfiguration {
 
-    @Resource
-    private Vertx vertx;
+	@Resource
+	private Vertx vertx;
 
-    @Bean
-    public EventBus eventBus(){
-        return vertx.eventBus();
-    }
+	@Bean
+	public EventBus eventBus() {
+		return vertx.eventBus();
+	}
 }

@@ -18,20 +18,18 @@ import org.toolkit.spring.boot.vertx.configuration.properties.HttpConfigurationP
 @EnableConfigurationProperties(HttpConfigurationProperties.class)
 public class HttpAutoConfiguration {
 
-    @Resource
-    private Vertx vertx;
+	@Resource
+	private Vertx vertx;
 
-    @Bean
-    public Router rootRouter() {
-        val router = Router.router(vertx);
-        router.route().handler(BodyHandler.create());
-        router.route().handler(corsHandler());
-        return router;
-    }
+	@Bean
+	public Router rootRouter() {
+		val router = Router.router(vertx);
+		router.route().handler(BodyHandler.create());
+		router.route().handler(corsHandler());
+		return router;
+	}
 
-    public CorsHandler corsHandler() {
-        return CorsHandler.create()
-                .addRelativeOrigin("vertx\\.io")
-                .allowedMethod(HttpMethod.GET);
-    }
+	public CorsHandler corsHandler() {
+		return CorsHandler.create().addRelativeOrigin("vertx\\.io").allowedMethod(HttpMethod.GET);
+	}
 }

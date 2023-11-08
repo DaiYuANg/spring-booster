@@ -11,11 +11,11 @@ import org.toolkit.spring.boot.starter.vertx.base.BaseConfigurationProperties;
 @Getter
 @ToString
 public class VertxConfigurationProperties extends BaseConfigurationProperties {
-    private Integer workerPoolSize;
+	private Integer workerPoolSize;
 
-    private Integer quorumSize;
+	private Integer quorumSize;
 
-    private Integer eventLoopPoolSize;
+	private Integer eventLoopPoolSize;
 
-    private Integer internalBlockingPoolSize;
+	private Integer internalBlockingPoolSize;
 }

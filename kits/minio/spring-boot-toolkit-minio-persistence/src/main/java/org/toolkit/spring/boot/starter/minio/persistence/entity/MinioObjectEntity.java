@@ -13,15 +13,15 @@ import org.toolkit.spring.boot.starter.persistence.base.BaseEntity;
 @Table(name = "toolkit_minio_object")
 public class MinioObjectEntity extends BaseEntity {
 
-    @Column
-    private String instance;
+	@Column
+	private String instance;
 
-    @Column(unique = true)
-    private String object;
+	@Column(unique = true)
+	private String object;
 
-    @Column(unique = true)
-    private String md5;
+	@Column(unique = true)
+	private String md5;
 
-    @Column
-    private String contentType;
+	@Column
+	private String contentType;
 }

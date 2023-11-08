@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CommonUploadParams {
-    private boolean anonymous;
+	private boolean anonymous;
 
-    private String clientInstance;
+	private String clientInstance;
 }

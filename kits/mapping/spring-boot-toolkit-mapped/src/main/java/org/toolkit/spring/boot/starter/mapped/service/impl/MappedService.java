@@ -6,5 +6,4 @@ import org.toolkit.spring.boot.starter.mapped.service.IMappedService;
 
 @Service
 @Slf4j
-public class MappedService implements IMappedService {
-}
+public class MappedService implements IMappedService {}

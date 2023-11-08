@@ -1,6 +1,7 @@
 package org.toolkit.spring.boot.starter.persistence.configuration;
 
 import jakarta.annotation.PostConstruct;
+import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -12,8 +13,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-
-import javax.sql.DataSource;
 
 @AutoConfiguration
 @EnableConfigurationProperties(PersistenceConfigurationProperties.class)
@@ -29,7 +28,7 @@ public class PersistenceAutoConfiguration {
 
 	@Primary
 	@Bean
-	@ConfigurationProperties(prefix="spring.datasource")
+	@ConfigurationProperties(prefix = "spring.datasource")
 	public DataSource userDataSource() {
 		return DataSourceBuilder.create().build();
 	}

@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class VerticleRegister {
 
-    @Resource
-    private ApplicationContext context;
+	@Resource
+	private ApplicationContext context;
 
-    @Resource
-    private Vertx vertx;
+	@Resource
+	private Vertx vertx;
 
-    @PostConstruct
-    public void init() {
-        context.getBeansOfType(AbstractVerticle.class).values().forEach(vertx::deployVerticle);
-    }
+	@PostConstruct
+	public void init() {
+		context.getBeansOfType(AbstractVerticle.class).values().forEach(vertx::deployVerticle);
+	}
 }

@@ -15,21 +15,23 @@ import org.toolkit.spring.boot.starter.minio.shared.events.ObjectUploadedEvent;
 @Slf4j
 public class ObjectUploadedListener implements ApplicationListener<ObjectUploadedEvent> {
 
-    @Resource
-    private MinioResourceEntityRepository minioResourceEntityRepository;
+	@Resource
+	private MinioResourceEntityRepository minioResourceEntityRepository;
 
-    @Override
-    @Async
-    public void onApplicationEvent(@NotNull ObjectUploadedEvent event) {
-        val template = event.getTemplate();
-        val stat = template.stat(event.getObject());
-        val entity = new MinioObjectEntity() {{
-            setObject(event.getObject());
-            setMd5(event.getMd5());
-            setInstance(template.getSelfKey());
-            setContentType(stat.contentType());
-        }};
-        minioResourceEntityRepository.save(entity);
-        log.atInfo().log("save object:{}", event);
-    }
+	@Override
+	@Async
+	public void onApplicationEvent(@NotNull ObjectUploadedEvent event) {
+		val template = event.getTemplate();
+		val stat = template.stat(event.getObject());
+		val entity = new MinioObjectEntity() {
+			{
+				setObject(event.getObject());
+				setMd5(event.getMd5());
+				setInstance(template.getSelfKey());
+				setContentType(stat.contentType());
+			}
+		};
+		minioResourceEntityRepository.save(entity);
+		log.atInfo().log("save object:{}", event);
+	}
 }

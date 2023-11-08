@@ -14,21 +14,21 @@ import org.toolkit.spring.boot.starter.minio.interceptor.PreviewInterceptor;
 @Slf4j
 public class MinioWebConfiguration implements WebMvcConfigurer {
 
-    @Resource
-    private MinioConfigurationProperties minioConfigurationProperties;
+	@Resource
+	private MinioConfigurationProperties minioConfigurationProperties;
 
-    @Resource
-    private PreviewInterceptor previewInterceptor;
+	@Resource
+	private PreviewInterceptor previewInterceptor;
 
-    @PostConstruct
-    public void init() {
-        log.atInfo().log("Minio Web config executing");
-    }
+	@PostConstruct
+	public void init() {
+		log.atInfo().log("Minio Web config executing");
+	}
 
-    @Override
-    public void addInterceptors(@NotNull InterceptorRegistry registry) {
-        registry.addInterceptor(previewInterceptor)
-                .order(0)
-                .addPathPatterns(minioConfigurationProperties.getPreviewPattern());
-    }
+	@Override
+	public void addInterceptors(@NotNull InterceptorRegistry registry) {
+		registry.addInterceptor(previewInterceptor)
+				.order(0)
+				.addPathPatterns(minioConfigurationProperties.getPreviewPattern());
+	}
 }

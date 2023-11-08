@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class MineTypeAutoConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean(Tika.class)
-    public Tika tika() {
-        return new Tika();
-    }
+	@Bean
+	@ConditionalOnMissingBean(Tika.class)
+	public Tika tika() {
+		return new Tika();
+	}
 }

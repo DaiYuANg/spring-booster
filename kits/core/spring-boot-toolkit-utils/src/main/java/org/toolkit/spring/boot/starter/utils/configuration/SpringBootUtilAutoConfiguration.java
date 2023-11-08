@@ -7,5 +7,4 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 @AutoConfiguration
 @Slf4j
 @EnableSpringUtil
-public class SpringBootUtilAutoConfiguration {
-}
+public class SpringBootUtilAutoConfiguration {}

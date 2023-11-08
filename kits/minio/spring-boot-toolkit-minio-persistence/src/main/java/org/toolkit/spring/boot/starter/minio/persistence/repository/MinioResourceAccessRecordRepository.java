@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 import org.toolkit.spring.boot.starter.minio.persistence.entity.MinioObjectAccessEntity;
 
 @Repository
-public interface MinioResourceAccessRecordRepository extends JpaRepository<MinioObjectAccessEntity, String> {
-}
+public interface MinioResourceAccessRecordRepository extends JpaRepository<MinioObjectAccessEntity, String> {}

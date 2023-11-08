@@ -5,10 +5,10 @@ import com.google.inject.Injector;
 import lombok.Getter;
 
 public enum DIContainer {
-    INSTANCE;
+	INSTANCE;
 
-    private final ConfigModule configModule = new ConfigModule();
+	private final ConfigModule configModule = new ConfigModule();
 
-    @Getter
-    private final Injector injector = Guice.createInjector(configModule);
+	@Getter
+	private final Injector injector = Guice.createInjector(configModule);
 }

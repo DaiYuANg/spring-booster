@@ -1,5 +1,3 @@
 package org.toolkit.cli.service;
 
-public class ConfigService implements IConfigService{
-
-}
+public class ConfigService implements IConfigService {}

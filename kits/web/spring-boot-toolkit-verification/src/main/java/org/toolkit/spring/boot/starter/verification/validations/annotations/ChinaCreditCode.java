@@ -1,10 +1,9 @@
 package org.toolkit.spring.boot.starter.verification.validations.annotations;
 
 import jakarta.validation.Constraint;
-import java.lang.annotation.*;
-
 import jakarta.validation.Payload;
 import jakarta.validation.constraints.NotBlank;
+import java.lang.annotation.*;
 import org.toolkit.spring.boot.starter.verification.validations.validators.ChinaCreditCodeValidator;
 
 @Documented
@@ -13,9 +12,9 @@ import org.toolkit.spring.boot.starter.verification.validations.validators.China
 @Retention(RetentionPolicy.RUNTIME)
 @NotBlank
 public @interface ChinaCreditCode {
-    String message() default "{jakarta.validation.constraints.NotBlank.message}";
+	String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
-    Class<?>[] groups() default { };
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+	Class<? extends Payload>[] payload() default {};
 }

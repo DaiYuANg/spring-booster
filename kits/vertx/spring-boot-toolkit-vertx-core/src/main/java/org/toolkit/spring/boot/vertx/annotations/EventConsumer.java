@@ -1,8 +1,7 @@
 package org.toolkit.spring.boot.vertx.annotations;
 
-import org.springframework.stereotype.Component;
-
 import java.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
 @Documented
 @Target(ElementType.TYPE)
@@ -10,5 +9,5 @@ import java.lang.annotation.*;
 @Component
 public @interface EventConsumer {
 
-    String address();
+	String address();
 }

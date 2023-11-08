@@ -13,34 +13,33 @@ import org.toolkit.spring.boot.starter.minio.vo.UploadResultVo;
 @RestController
 @RequestMapping("${toolkit.minio.context:/minio}")
 public class MinioUploadController {
-    @Value("${toolkit.minio.context:/minio}")
-    private String controllerPrefix;
+	@Value("${toolkit.minio.context:/minio}")
+	private String controllerPrefix;
 
-    @PostConstruct
-    public void init() {
-        log.info("Minio Controller Prefix:{}", controllerPrefix);
-    }
+	@PostConstruct
+	public void init() {
+		log.info("Minio Controller Prefix:{}", controllerPrefix);
+	}
 
-    @GetMapping("/test")
-    public String test(){
-        return "";
-    }
+	@GetMapping("/test")
+	public String test() {
+		return "";
+	}
 
-    @RequestMapping(
-            value = "${toolkit.minio.context:/minio}/upload",
-            method = {RequestMethod.POST, RequestMethod.PUT})
-    @ResponseBody
-    public UploadResultVo upload(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam(value = "anonymousAccess", required = false, defaultValue = "false") boolean anonymous
-    ) {
-        return new UploadResultVo(null);
-    }
+	@RequestMapping(
+			value = "${toolkit.minio.context:/minio}/upload",
+			method = {RequestMethod.POST, RequestMethod.PUT})
+	@ResponseBody
+	public UploadResultVo upload(
+			@RequestParam("file") MultipartFile file,
+			@RequestParam(value = "anonymousAccess", required = false, defaultValue = "false") boolean anonymous) {
+		return new UploadResultVo(null);
+	}
 
-    @RequestMapping(value = "/uploadBase64", method = {RequestMethod.POST, RequestMethod.PUT})
-    public UploadResultVo uploadBase64(
-            @RequestBody @NotNull Base64UploadParam param
-    ) {
-        return new UploadResultVo(null);
-    }
+	@RequestMapping(
+			value = "/uploadBase64",
+			method = {RequestMethod.POST, RequestMethod.PUT})
+	public UploadResultVo uploadBase64(@RequestBody @NotNull Base64UploadParam param) {
+		return new UploadResultVo(null);
+	}
 }

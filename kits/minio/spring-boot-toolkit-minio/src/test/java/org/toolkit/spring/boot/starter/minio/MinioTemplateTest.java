@@ -1,6 +1,5 @@
 package org.toolkit.spring.boot.starter.minio;
 
-import io.minio.MinioClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,8 +15,7 @@ class MinioTemplateTest {
 	private MinioTemplate minioTemplate;
 
 	@Container // 标记为 Testcontainers 容器
-	private static final GenericContainer<?> minioContainer = new GenericContainer<>(
-					"minio/minio")
+	private static final GenericContainer<?> minioContainer = new GenericContainer<>("minio/minio")
 			.withExposedPorts(9000)
 			.withEnv("MINIO_ROOT_USER", "testuser")
 			.withEnv("MINIO_ROOT_PASSWORD", "testpassword");
@@ -28,10 +26,10 @@ class MinioTemplateTest {
 		String minioIpAddress = minioContainer.getHost();
 		int minioPort = minioContainer.getMappedPort(9000);
 
-//		minioTemplate = new MinioTemplate(MinioClient.builder()
-//				.endpoint("localhost:" + minioPort)
-//				.credentials("testuser", "testpassword")
-//				.build());
+		//		minioTemplate = new MinioTemplate(MinioClient.builder()
+		//				.endpoint("localhost:" + minioPort)
+		//				.credentials("testuser", "testpassword")
+		//				.build());
 	}
 
 	@Test

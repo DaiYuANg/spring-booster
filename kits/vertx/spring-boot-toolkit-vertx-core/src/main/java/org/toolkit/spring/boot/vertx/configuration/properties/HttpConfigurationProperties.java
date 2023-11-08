@@ -11,6 +11,6 @@ import org.toolkit.spring.boot.starter.vertx.base.BaseConfigurationProperties;
 @Getter
 @ToString
 public class HttpConfigurationProperties extends BaseConfigurationProperties {
-    private boolean enable = false;
-    private Integer port = 8081;
+	private boolean enable = false;
+	private Integer port = 8081;
 }

@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @Accessors(chain = true)
-public class Base64UploadParam extends CommonUploadParams{
+public class Base64UploadParam extends CommonUploadParams {
 
-    private String base64;
+	private String base64;
 }

@@ -11,10 +11,9 @@ import org.toolkit.spring.boot.starter.minio.shared.events.ObjectAccessEvent;
 @Component
 @Slf4j
 public class ObjectAccessListener implements ApplicationListener<ObjectAccessEvent> {
-    @Resource
-    private MinioResourceAccessRecordRepository repository;
+	@Resource
+	private MinioResourceAccessRecordRepository repository;
 
-    @Override
-    public void onApplicationEvent(@NotNull ObjectAccessEvent event) {
-    }
+	@Override
+	public void onApplicationEvent(@NotNull ObjectAccessEvent event) {}
 }

@@ -7,5 +7,5 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Repeatable(Mapped.class)
 public @interface Mapping {
-    String value();
+	String value();
 }

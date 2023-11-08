@@ -12,9 +12,9 @@ import org.toolkit.spring.boot.vertx.base.BaseConfigurationProperties;
 @ToString
 public class EventBusConfigurationProperties extends BaseConfigurationProperties {
 
-    private Integer acceptBacklog;
+	private Integer acceptBacklog;
 
-    private String host;
+	private String host;
 
-    private boolean logActivity;
+	private boolean logActivity;
 }

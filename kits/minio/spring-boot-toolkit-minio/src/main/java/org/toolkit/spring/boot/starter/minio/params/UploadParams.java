@@ -13,5 +13,5 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @Accessors(chain = true)
 public class UploadParams extends CommonUploadParams {
-    private MultipartFile file;
+	private MultipartFile file;
 }

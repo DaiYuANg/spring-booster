@@ -10,5 +10,4 @@ import org.toolkit.spring.boot.starter.vertx.base.BaseConfigurationProperties;
 @Setter
 @Getter
 @ToString
-public class ClusterConfigurationProperties extends BaseConfigurationProperties {
-}
+public class ClusterConfigurationProperties extends BaseConfigurationProperties {}

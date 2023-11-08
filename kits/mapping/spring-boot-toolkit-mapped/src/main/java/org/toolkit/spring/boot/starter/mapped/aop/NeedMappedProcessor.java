@@ -16,16 +16,15 @@ import org.toolkit.spring.boot.starter.mapped.utils.MappedUtil;
 @Slf4j
 public class NeedMappedProcessor {
 
-    @Pointcut("@annotation(org.toolkit.spring.boot.starter.mapped.annotations.NeedMapped)")
-    public void needMappedPointCut() {
-    }
+	@Pointcut("@annotation(org.toolkit.spring.boot.starter.mapped.annotations.NeedMapped)")
+	public void needMappedPointCut() {}
 
-    @SneakyThrows
-    @Around("needMappedPointCut()")
-    public Object process(@NotNull ProceedingJoinPoint pjp) {
-        val object = pjp.proceed();
-        if (MappedUtil.isMappedTarget(object.getClass())) return object;
-        log.info("something");
-        return object;
-    }
+	@SneakyThrows
+	@Around("needMappedPointCut()")
+	public Object process(@NotNull ProceedingJoinPoint pjp) {
+		val object = pjp.proceed();
+		if (MappedUtil.isMappedTarget(object.getClass())) return object;
+		log.info("something");
+		return object;
+	}
 }

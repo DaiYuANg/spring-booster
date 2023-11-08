@@ -15,17 +15,17 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Slf4j
 public class RedisConfiguration {
 
-    @Resource
-    private ObjectMapper objectMapper;
+	@Resource
+	private ObjectMapper objectMapper;
 
-    @Bean
-    @ConditionalOnBean(name = "localLettuceConnectionFactory")
-    public RedisTemplate<String, String> localRedisTemplate(LettuceConnectionFactory localLettuceConnectionFactory) {
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(localLettuceConnectionFactory);
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer(objectMapper));
-        redisTemplate.afterPropertiesSet();
-        return redisTemplate;
-    }
+	@Bean
+	@ConditionalOnBean(name = "localLettuceConnectionFactory")
+	public RedisTemplate<String, String> localRedisTemplate(LettuceConnectionFactory localLettuceConnectionFactory) {
+		RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+		redisTemplate.setConnectionFactory(localLettuceConnectionFactory);
+		redisTemplate.setKeySerializer(new StringRedisSerializer());
+		redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer(objectMapper));
+		redisTemplate.afterPropertiesSet();
+		return redisTemplate;
+	}
 }

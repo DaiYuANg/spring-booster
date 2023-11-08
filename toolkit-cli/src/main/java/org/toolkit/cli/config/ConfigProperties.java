@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 public class ConfigProperties {
 
-    private String whichPackage;
+	private String whichPackage;
 }

@@ -13,12 +13,12 @@ import org.toolkit.spring.boot.vertx.configuration.properties.ClusterConfigurati
 @AutoConfiguration
 @EnableConfigurationProperties(ClusterConfigurationProperties.class)
 @Slf4j
-@ConditionalOnProperty(name = "vertx.cluster",havingValue = "true")
+@ConditionalOnProperty(name = "vertx.cluster", havingValue = "true")
 public class ClusterAutoConfiguration {
 
-    @Bean
-    @ConditionalOnClass(HazelcastClusterManager.class)
-    public ClusterManager clusterManager() {
-        return new HazelcastClusterManager();
-    }
+	@Bean
+	@ConditionalOnClass(HazelcastClusterManager.class)
+	public ClusterManager clusterManager() {
+		return new HazelcastClusterManager();
+	}
 }

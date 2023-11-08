@@ -11,7 +11,5 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @ConditionalOnClass({Workbook.class})
 @EnableConfigurationProperties(OfficeConfigurationProperties.class)
 public class OfficeAutoConfiguration {
-	public void test() {
-
-	}
+	public void test() {}
 }

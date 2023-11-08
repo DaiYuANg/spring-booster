@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class EventBusConfigBuilder {
 
-    @Resource
-    private EventBusConfigurationProperties eventBusConfigurationProperties;
+	@Resource
+	private EventBusConfigurationProperties eventBusConfigurationProperties;
 
-    @Bean
-    public EventBusOptions eventBusOptions() {
-        val options = new EventBusOptions();
-        return options;
-    }
+	@Bean
+	public EventBusOptions eventBusOptions() {
+		val options = new EventBusOptions();
+		return options;
+	}
 }

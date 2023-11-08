@@ -1,5 +1,3 @@
 package org.toolkit.spring.boot.starter.minio.shared;
 
-public class Main {
-
-}
+public class Main {}
