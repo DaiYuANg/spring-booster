@@ -1,6 +1,5 @@
 import { QInput } from 'quasar';
-import { defineComponent, onMounted, ref } from 'vue';
-
+import {defineComponent, onMounted, ref} from 'vue';
 const Input = defineComponent({
   setup: () => {
     onMounted(() => {
@@ -11,7 +10,7 @@ const Input = defineComponent({
     const value = ref<string | number | null | undefined>();
     return (
       <>
-        <div className={['w-full', 'bg-amber-400', 'h-5'].join(' ')}></div>
+        <div class={['w-full', 'bg-amber-400', 'h-5'].join(' ')}></div>
         <QInput modelValue={value.value} />
       </>
     );
