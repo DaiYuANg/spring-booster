@@ -1,15 +1,8 @@
 package org.toolkit.cli.command;
 
-import com.google.inject.Guice;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.toolkit.cli.module.RootModule;
 import picocli.CommandLine;
-
-import java.io.File;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.security.MessageDigest;
 
 @CommandLine.Command(name = "Toolkit", version = "0.1",
         mixinStandardHelpOptions = true, // add --help and --version options
@@ -24,7 +17,6 @@ public class RootCommand implements Runnable {
     @SneakyThrows
     @Override
     public void run() {
-        Guice.createInjector(new RootModule());
         log.info("run");
         spec.commandLine().usage(System.out);
     }

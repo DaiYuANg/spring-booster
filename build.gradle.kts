@@ -2,7 +2,7 @@ import java.net.URI
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    `java-library`
+    java
     pmd
     idea
     tasks
@@ -72,8 +72,7 @@ subprojects {
         plugin("io.freefair.lombok")
         plugin("maven-publish")
         plugin("com.palantir.git-version")
-        plugin("org.springframework.boot")
-        plugin("io.spring.dependency-management")
+
     }
 
     group = "org." + rootProject.name + "." + project.name
@@ -96,25 +95,19 @@ subprojects {
         val junitVersion: String by project
         val testContainersVersion: String by project
 //        api("com.google.code.gson:gson:${gsonVersion}")
-        api("org.mapstruct:mapstruct:${mapstructVersion}")
-        api("com.google.guava:guava:${guavaVersion}")
-        api("org.slf4j:slf4j-api:${slf4jVersion}")
-        api("org.springframework.boot:spring-boot-starter-json")
-        api("org.springframework.boot:spring-boot-starter")
-        api("org.springframework.boot:spring-boot-starter")
-        api("org.springframework.boot:spring-boot-starter-aop")
-        api("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
-        api("commons-io:commons-io:${commonIOVersion}")
-        api("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
-        api("org.immutables:value:${immutablesVersion}")
-        api("cn.hutool:hutool-all:${hutoolVersion}")
-        api("net.bytebuddy:byte-buddy:1.14.5")
-        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+        implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+        implementation("com.google.guava:guava:${guavaVersion}")
+        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+        implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
+        implementation("commons-io:commons-io:${commonIOVersion}")
+        implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
+        implementation("org.immutables:value:${immutablesVersion}")
+        implementation("cn.hutool:hutool-all:${hutoolVersion}")
+        implementation("net.bytebuddy:byte-buddy:1.14.5")
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
         testImplementation("net.datafaker:datafaker:2.0.1")
         testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
         testImplementation("org.testcontainers:testcontainers:1.19.0")
