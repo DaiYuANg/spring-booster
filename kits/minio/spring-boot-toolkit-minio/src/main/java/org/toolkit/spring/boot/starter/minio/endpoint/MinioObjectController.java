@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.toolkit.spring.boot.starter.minio.service.IMinioDownloadService;
 import org.toolkit.spring.boot.starter.minio.service.IMinioPreviewService;
-import org.toolkit.spring.boot.starter.restful.annotations.IgnoreResponseAdvice;
+import org.toolkit.spring.boot.web.annotation.IgnoreResponseAdvice;
 
 @RestController
 @ConditionalOnProperty("toolkit.minio")

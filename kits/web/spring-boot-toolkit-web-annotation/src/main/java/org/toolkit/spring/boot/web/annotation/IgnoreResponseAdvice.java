@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.starter.restful.annotations;
+package org.toolkit.spring.boot.web.annotation;
 
 import java.lang.annotation.*;
 

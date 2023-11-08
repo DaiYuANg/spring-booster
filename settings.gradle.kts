@@ -94,3 +94,5 @@ include("toolkit-cli")
 include("examples:backend-minimal-example")
 include("kits:vertx:spring-boot-toolkit-vertx-base")
 findProject(":kits:vertx:spring-boot-toolkit-vertx-base")?.name = "spring-boot-toolkit-vertx-base"
+include("kits:web:spring-boot-toolkit-web-annotation")
+findProject(":kits:web:spring-boot-toolkit-web-annotation")?.name = "spring-boot-toolkit-web-annotation"
