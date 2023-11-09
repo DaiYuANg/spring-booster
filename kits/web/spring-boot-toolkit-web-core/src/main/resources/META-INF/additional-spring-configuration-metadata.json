@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "dev.service.enable",
+      "type": "java.lang.Boolean",
+      "description": "Is enable dev service."
+    }
+  ]
+}

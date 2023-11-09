@@ -19,10 +19,10 @@ subprojects {
     api("org.springframework.boot:spring-boot-starter")
     api("org.springframework.boot:spring-boot-starter-aop")
     implementation("cn.hutool:hutool-all:${hutoolVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("net.datafaker:datafaker:2.0.1")
+    testImplementation("net.datafaker:datafaker:2.0.2")
     testImplementation("com.squareup.okhttp3:mockwebserver:${okhttpVersion}")
-    testImplementation("com.h2database:h2")
   }
 }

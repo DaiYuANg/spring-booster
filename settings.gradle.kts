@@ -81,11 +81,11 @@ include("kits:minio:spring-boot-toolkit-minio")
 
 include("kits:minio:spring-boot-toolkit-minio-persistence")
 
-include("kits:web:spring-boot-toolkit-auth")
+include("kits:web:spring-boot-toolkit-authentication")
 
 include("kits:web:spring-boot-toolkit-i18n")
 
-include("kits:web:spring-boot-toolkit-restful")
+include("kits:web:spring-boot-toolkit-web-core")
 
 include("kits:web:spring-boot-toolkit-verification")
 
@@ -101,13 +101,18 @@ include("kits:mapping:spring-boot-toolkit-mapped")
 
 include("toolkit-cli")
 
-include("examples:backend-minimal-example")
-
-include("kits:vertx:spring-boot-toolkit-vertx-base")
-
-findProject(":kits:vertx:spring-boot-toolkit-vertx-base")?.name = "spring-boot-toolkit-vertx-base"
+include("examples:example-application")
 
 include("kits:web:spring-boot-toolkit-web-annotation")
 
 findProject(":kits:web:spring-boot-toolkit-web-annotation")?.name =
     "spring-boot-toolkit-web-annotation"
+
+include("kits:vertx:spring-boot-toolkit-vertx-web")
+
+findProject(":kits:vertx:spring-boot-toolkit-vertx-web")?.name = "spring-boot-toolkit-vertx-web"
+
+include("kits:vertx:spring-boot-toolkit-vertx-clustering")
+
+findProject(":kits:vertx:spring-boot-toolkit-vertx-clustering")?.name =
+    "spring-boot-toolkit-vertx-clustering"

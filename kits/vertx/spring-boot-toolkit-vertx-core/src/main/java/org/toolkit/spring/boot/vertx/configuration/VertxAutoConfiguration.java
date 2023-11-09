@@ -27,7 +27,7 @@ public class VertxAutoConfiguration {
 
 	@Bean
 	public Vertx vertx() {
-		return clusterManager.map(cm -> clusterVertx(cm).join()).orElseGet(Vertx::vertx);
+		return clusterManager.map(cm -> clusterVertx(cm).join()).orElseGet(() -> Vertx.vertx(vertxOptions));
 	}
 
 	@NotNull private CompletableFuture<Vertx> clusterVertx(ClusterManager cm) {

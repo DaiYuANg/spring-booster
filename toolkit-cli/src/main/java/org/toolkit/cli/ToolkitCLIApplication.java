@@ -6,12 +6,12 @@ import org.toolkit.cli.factory.GuiceFactory;
 import picocli.CommandLine;
 
 public class ToolkitCLIApplication {
-    static {
-        AnsiConsole.systemInstall();
-    }
+	static {
+		AnsiConsole.systemInstall();
+	}
 
-    public static void main(String[] args) {
-        int exitCode = new CommandLine(new RootCommand(), new GuiceFactory()).execute(args);
-        System.exit(exitCode);
-    }
+	public static void main(String[] args) {
+		int exitCode = new CommandLine(new RootCommand(), new GuiceFactory()).execute(args);
+		System.exit(exitCode);
+	}
 }

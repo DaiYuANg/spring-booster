@@ -1,0 +1,3 @@
+org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfiguration
+org.toolkit.spring.boot.authentication.configuration.PermitAutoConfiguration
+org.toolkit.spring.boot.authentication.configuration.PasswordEncodeAutoConfiguration

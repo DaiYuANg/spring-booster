@@ -5,10 +5,11 @@ import io.vertx.core.Vertx;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import org.toolkit.spring.boot.utils.bean.BeanUtil;
 
-@Component
+@AutoConfiguration
 @Slf4j
 public class VerticleRegister {
 
@@ -18,8 +19,11 @@ public class VerticleRegister {
 	@Resource
 	private Vertx vertx;
 
+	@Resource
+	private BeanUtil beanUtil;
+
 	@PostConstruct
 	public void init() {
-		context.getBeansOfType(AbstractVerticle.class).values().forEach(vertx::deployVerticle);
+		beanUtil.getBeansOfType(AbstractVerticle.class).forEach(vertx::deployVerticle);
 	}
 }

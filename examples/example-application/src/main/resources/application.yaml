@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10000
+        dialect: org.hibernate.dialect.MySQLDialect
+server:
+  port: 18008
+toolkit:
+  minio:
+    endpoint: http://localhost:9000
+    access-key: root
+    secret-key: password
+    default-bucket: test
+logging:
+  level:
+    org.toolkit.**.*: debug
+myapp:
+  controller:
+    prefix: /testminio
