@@ -17,6 +17,13 @@ dependencies {
   implementation("org.freemarker:freemarker:2.3.32")
   implementation("com.squareup:javapoet:1.13.0")
   implementation("org.fusesource.jansi:jansi:2.4.1")
+  implementation("commons-dbutils:commons-dbutils:1.8.1")
+  implementation("com.mysql:mysql-connector-j:8.2.0")
+  implementation("com.github.gestalt-config:gestalt-core:0.23.3")
+  implementation("com.github.gestalt-config:gestalt-toml:0.23.3")
+  implementation("com.github.gestalt-config:gestalt-yaml:0.23.3")
+  implementation("com.github.gestalt-config:gestalt-json:0.23.3")
+  implementation("com.github.gestalt-config:gestalt-git:0.23.3")
   annotationProcessor("info.picocli:picocli-codegen:4.7.5")
 }
 
