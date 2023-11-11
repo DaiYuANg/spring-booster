@@ -99,20 +99,16 @@ include("kits:biz:spring-boot-toolkit-recorder")
 
 include("kits:mapping:spring-boot-toolkit-mapped")
 
-include("toolkit-cli")
+include("apps:cli-application")
 
-include("examples:example-application")
+include("apps:example-application")
 
 include("kits:web:spring-boot-toolkit-web-annotation")
 
-findProject(":kits:web:spring-boot-toolkit-web-annotation")?.name =
-    "spring-boot-toolkit-web-annotation"
-
 include("kits:vertx:spring-boot-toolkit-vertx-web")
-
-findProject(":kits:vertx:spring-boot-toolkit-vertx-web")?.name = "spring-boot-toolkit-vertx-web"
 
 include("kits:vertx:spring-boot-toolkit-vertx-clustering")
 
-findProject(":kits:vertx:spring-boot-toolkit-vertx-clustering")?.name =
-    "spring-boot-toolkit-vertx-clustering"
+include("kits:biz:spring-boot-toolkit-route")
+
+findProject(":kits:biz:spring-boot-toolkit-route")?.name = "spring-boot-toolkit-route"

@@ -3,7 +3,7 @@ package org.toolkit.spring.boot.minio.persistence.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.toolkit.spring.boot.starter.persistence.base.BaseEntity;
+import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
 @Entity
 @Getter

@@ -1,3 +1,4 @@
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import java.net.URI
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -72,6 +73,12 @@ subprojects {
     plugin("io.freefair.lombok")
     plugin("maven-publish")
     plugin("com.palantir.git-version")
+    plugin("org.springframework.boot")
+    plugin("io.spring.dependency-management")
+  }
+
+  the<DependencyManagementExtension>().apply {
+    imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
   }
 
   group = "org." + rootProject.name + "." + project.name
@@ -92,6 +99,7 @@ subprojects {
     val junitVersion: String by project
     val testContainersVersion: String by project
     //        api("com.google.code.gson:gson:${gsonVersion}")
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     implementation("com.google.guava:guava:${guavaVersion}")
     implementation("org.slf4j:slf4j-api:${slf4jVersion}")
@@ -99,12 +107,14 @@ subprojects {
     implementation("commons-io:commons-io:${commonIOVersion}")
     implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
     testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testImplementation("org.testcontainers:testcontainers:1.19.0")
     testImplementation("org.testcontainers:junit-jupiter:1.19.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(platform("org.testcontainers:testcontainers-bom:${testContainersVersion}"))
   }
 

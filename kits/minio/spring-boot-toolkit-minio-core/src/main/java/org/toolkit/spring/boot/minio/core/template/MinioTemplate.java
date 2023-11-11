@@ -5,9 +5,7 @@ import io.minio.errors.ErrorResponseException;
 import java.io.*;
 import java.nio.file.Path;
 import java.util.Optional;
-import lombok.Getter;
 import lombok.SneakyThrows;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -15,9 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 import org.toolkit.spring.boot.minio.core.exception.ObjectNotExistsException;
 
-@Getter
 @Slf4j
-@ToString
 public record MinioTemplate(MinioClient minioClient, String defaultBucket) {
 
 	private static final String defaultContentType = "application/octet-stream";

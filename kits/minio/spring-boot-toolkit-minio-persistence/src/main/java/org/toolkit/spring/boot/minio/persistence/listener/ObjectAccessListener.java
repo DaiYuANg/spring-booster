@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.toolkit.spring.boot.minio.core.event.ObjectAccessEvent;
 import org.toolkit.spring.boot.minio.persistence.repository.MinioResourceAccessRecordRepository;
-import org.toolkit.spring.boot.starter.minio.shared.event.ObjectAccessEvent;
 
 @Component
 @Slf4j

@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.toolkit.spring.boot.minio.core.event.ObjectUploadedEvent;
 import org.toolkit.spring.boot.minio.persistence.entity.MinioObjectEntity;
 import org.toolkit.spring.boot.minio.persistence.repository.MinioResourceEntityRepository;
-import org.toolkit.spring.boot.starter.minio.shared.event.ObjectUploadedEvent;
 
 @Component
 @Slf4j
@@ -27,7 +27,7 @@ public class ObjectUploadedListener implements ApplicationListener<ObjectUploade
 			{
 				setObject(event.getObject());
 				setMd5(event.getMd5());
-				setInstance(template.getSelfKey());
+				//				setInstance(template.getSelfKey());
 				setContentType(stat.contentType());
 			}
 		};

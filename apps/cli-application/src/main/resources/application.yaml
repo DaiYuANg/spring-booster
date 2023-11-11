@@ -1,0 +1,8 @@
+logging:
+  level:
+    org.springframework.core.env: debug
+    org.springframework.jdbc.**.*: debug
+spring:
+  shell:
+    history:
+      enable: true

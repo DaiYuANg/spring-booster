@@ -1,11 +1,10 @@
 package org.toolkit.spring.boot.utils.condition;
 
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
-
-import java.util.Objects;
 
 public class NoClassDefFoundErrorCondition implements Condition {
 

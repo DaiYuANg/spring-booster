@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.toolkit.spring.boot.starter.persistence.base.BaseEntity;
+import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
 @Entity
 @Setter

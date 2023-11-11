@@ -13,7 +13,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import org.toolkit.spring.boot.starter.restful.annotations.IgnoreResponseAdvice;
+import org.toolkit.spring.boot.web.annotation.IgnoreResponseAdvice;
 import org.toolkit.spring.boot.web.core.structure.Response;
 
 @ControllerAdvice
