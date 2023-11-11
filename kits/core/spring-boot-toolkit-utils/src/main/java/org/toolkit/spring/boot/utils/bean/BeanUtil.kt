@@ -1,52 +1,43 @@
-package org.toolkit.spring.boot.utils.bean;
+package org.toolkit.spring.boot.utils.bean
 
-import java.lang.annotation.Annotation;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.ResolvableType;
-import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j
+import org.jetbrains.annotations.Contract
+import org.jetbrains.annotations.NotNull
+import org.springframework.beans.factory.support.DefaultListableBeanFactory
+import org.springframework.context.ApplicationContext
+import org.springframework.core.ResolvableType
+import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 @Slf4j
-public class BeanUtil {
-	private final ApplicationContext context;
+class BeanUtil(private val context: ApplicationContext, private val beanFactory: DefaultListableBeanFactory) {
+    fun <T> findBeans(clazz: Class<T>): List<T> {
+        return context.getBeansOfType(clazz).values.stream().toList()
+    }
 
-	private final DefaultListableBeanFactory beanFactory;
+    @Contract("_, _, _ -> new")
+    fun <T> getBeansWithAnnotationAndGenericType(
+        clazz: Class<*>?, annotation: Class<out Annotation?>?, vararg genericTypes: Class<*>?
+    ): Map<String, T> {
+        val type = clazz?.let { ResolvableType.forClassWithGenerics(it, *genericTypes) }
+        annotation?.let { context.getBeansWithAnnotation(it) }
+        return HashMap()
+    }
 
-	public BeanUtil(ApplicationContext context, DefaultListableBeanFactory factory) {
-		this.context = context;
-		this.beanFactory = factory;
-	}
+    @SafeVarargs
+    fun <T> getBeansWithGenericType(clazz: Class<T>?, vararg genericTypes: Class<T>?): Optional<T> {
+        val type = clazz?.let { ResolvableType.forClassWithGenerics(it, *genericTypes) }
+        return Optional.ofNullable<T & Any>(type?.let { context.getBeanProvider<T>(it).getIfAvailable() })
+    }
 
-	public <T> List<T> findBeans(Class<T> clazz) {
-		return context.getBeansOfType(clazz).values().stream().toList();
-	}
+    fun <T> getBeansOfType(tClass: Class<T>): List<T> {
+        return context.getBeansOfType(tClass).values.stream().toList()
+    }
 
-	@Contract("_, _, _ -> new")
-	public final <T> @NotNull Map<String, T> getBeansWithAnnotationAndGenericType(
-			Class<?> clazz, Class<? extends Annotation> annotation, Class<?>... genericTypes) {
-		val type = ResolvableType.forClassWithGenerics(clazz, genericTypes);
-		context.getBeansWithAnnotation(annotation);
-		return new HashMap<>();
-	}
-
-	@SafeVarargs
-	public final <T> Optional<T> getBeansWithGenericType(Class<T> clazz, Class<T>... genericTypes) {
-		val type = ResolvableType.forClassWithGenerics(clazz, genericTypes);
-		return Optional.ofNullable(context.<T>getBeanProvider(type).getIfAvailable());
-	}
-
-	public final <T> List<T> getBeansOfType(Class<T> tClass) {
-		return context.getBeansOfType(tClass).values().stream().toList();
-	}
-
-	public final <T> void putAllAsSingleton(Map<String, T> beans) {}
+    fun <T> putAllAsSingleton(@NotNull beans: Map<String?, T>) {
+        beans.forEach { (key, value) ->
+            key?.let { beanFactory.registerSingleton(it, value!!) }
+        }
+    }
 }

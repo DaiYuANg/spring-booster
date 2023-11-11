@@ -1,5 +1,6 @@
 package org.toolkit.cli.command;
 
+import org.toolkit.cli.adapter.MysqlJDBCMappingService;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,6 @@ import org.springframework.shell.component.support.SelectorItem;
 import org.springframework.shell.standard.AbstractShellComponent;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.toolkit.cli.adapter.MysqlJDBCMappingService;
 
 @ShellComponent
 @Slf4j

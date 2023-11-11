@@ -2,6 +2,7 @@ package org.toolkit.cli.database;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.toolkit.cli.dto.MysqlTableColumn;
 
 public interface JDBCMappingService {

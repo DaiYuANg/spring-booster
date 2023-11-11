@@ -19,6 +19,7 @@ pluginManagement {
     val springDependencyManagementVersion: String by settings
     val gradlePreCommitGitGooksVersion: String by settings
     val webjarVersion: String by settings
+    val kotlinVersion:String by settings
     id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
     id("com.gradle.enterprise") version "3.13.4"
     id("org.springframework.boot") version springBootVersion
@@ -33,6 +34,12 @@ pluginManagement {
     id("com.github.node-gradle.node") version nodePluginVersion
     id("com.coditory.webjar") version webjarVersion
     id("com.github.ben-manes.versions") version "0.47.0"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("plugin.lombok") version kotlinVersion
+    kotlin("plugin.lombok") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
     id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
   }
 }
