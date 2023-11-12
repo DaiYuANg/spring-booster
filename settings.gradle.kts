@@ -1,5 +1,8 @@
 pluginManagement {
   repositories {
+    maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+    maven { setUrl("https://repo.spring.io/snapshot") }
+    maven { setUrl("https://repo.spring.io/milestone") }
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
@@ -19,7 +22,7 @@ pluginManagement {
     val springDependencyManagementVersion: String by settings
     val gradlePreCommitGitGooksVersion: String by settings
     val webjarVersion: String by settings
-    val kotlinVersion:String by settings
+    val kotlinVersion: String by settings
     id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.9"
     id("com.gradle.enterprise") version "3.13.4"
     id("org.springframework.boot") version springBootVersion
@@ -35,11 +38,6 @@ pluginManagement {
     id("com.coditory.webjar") version webjarVersion
     id("com.github.ben-manes.versions") version "0.47.0"
     kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
-    kotlin("plugin.jpa") version kotlinVersion
-    kotlin("plugin.lombok") version kotlinVersion
-    kotlin("plugin.lombok") version kotlinVersion
-    kotlin("plugin.allopen") version kotlinVersion
     id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
   }
 }
@@ -78,16 +76,6 @@ include("kits:core:spring-boot-toolkit-persistence")
 
 include("kits:core:spring-boot-toolkit-utils")
 
-include("kits:vertx:spring-boot-toolkit-vertx-core")
-
-include("kits:vertx:spring-boot-toolkit-vertx-event-bus")
-
-include("kits:minio:spring-boot-toolkit-minio-core")
-
-include("kits:minio:spring-boot-toolkit-minio")
-
-include("kits:minio:spring-boot-toolkit-minio-persistence")
-
 include("kits:web:spring-boot-toolkit-authentication")
 
 include("kits:web:spring-boot-toolkit-i18n")
@@ -112,10 +100,22 @@ include("apps:example-application")
 
 include("kits:web:spring-boot-toolkit-web-annotation")
 
-include("kits:vertx:spring-boot-toolkit-vertx-web")
+include("integration:vertx:spring-boot-toolkit-vertx-web")
 
-include("kits:vertx:spring-boot-toolkit-vertx-clustering")
+include("integration:vertx:spring-boot-toolkit-vertx-clustering")
 
 include("kits:biz:spring-boot-toolkit-route")
 
-findProject(":kits:biz:spring-boot-toolkit-route")?.name = "spring-boot-toolkit-route"
+include("kits:biz:spring-boot-toolkit-email")
+
+include("integration:spring-boot-toolkit-tika")
+
+include("integration:minio:spring-boot-toolkit-minio-core")
+
+include("integration:minio:spring-boot-toolkit-minio")
+
+include("integration:minio:spring-boot-toolkit-minio-persistence")
+
+include("integration:vertx:spring-boot-toolkit-vertx-core")
+
+include("integration:vertx:spring-boot-toolkit-vertx-event-bus")

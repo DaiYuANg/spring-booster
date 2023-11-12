@@ -6,17 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-import java.sql.SQLException;
-
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @Slf4j
 public class ToolkitCLIApplication {
 
-    public static void main(String[] args) {
-        try {
-            SpringApplication.run(ToolkitCLIApplication.class, args);
-        } catch (BeanCreationException beanCreationException) {
-            log.error("{}", beanCreationException.getBeanName());
-        }
-    }
+	public static void main(String[] args) {
+		try {
+			SpringApplication.run(ToolkitCLIApplication.class, args);
+		} catch (BeanCreationException beanCreationException) {
+			log.error("{}", beanCreationException.getBeanName());
+		}
+	}
 }

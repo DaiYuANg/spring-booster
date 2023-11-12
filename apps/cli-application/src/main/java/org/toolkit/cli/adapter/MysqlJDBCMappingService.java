@@ -1,6 +1,5 @@
 package org.toolkit.cli.adapter;
 
-import org.toolkit.cli.dto.MysqlTableColumn;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import java.net.URI;
@@ -13,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.toolkit.cli.database.JDBCMappingService;
+import org.toolkit.cli.dto.MysqlTableColumn;
 
 @Service
 @Slf4j
