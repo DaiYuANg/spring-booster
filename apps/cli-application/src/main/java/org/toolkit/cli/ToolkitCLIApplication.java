@@ -6,8 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-import java.util.concurrent.Executors;
-
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @Slf4j
 public class ToolkitCLIApplication {

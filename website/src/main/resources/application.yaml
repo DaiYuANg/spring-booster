@@ -1,0 +1,10 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+server:
+  compression:
+    enabled: true
+  tomcat:
+    accesslog:
+      enabled: true

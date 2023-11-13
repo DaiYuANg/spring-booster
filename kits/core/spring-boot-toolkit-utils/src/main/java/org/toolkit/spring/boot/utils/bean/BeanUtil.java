@@ -2,7 +2,6 @@ package org.toolkit.spring.boot.utils.bean;
 
 import java.lang.annotation.Annotation;
 import java.util.*;
-
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -14,29 +13,29 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class BeanUtil {
 
-    private final ApplicationContext context;
-    private final DefaultListableBeanFactory factory;
+	private final ApplicationContext context;
+	private final DefaultListableBeanFactory factory;
 
-    public BeanUtil(ApplicationContext context, DefaultListableBeanFactory factory) {
-        this.context = context;
-        this.factory = factory;
-    }
+	public BeanUtil(ApplicationContext context, DefaultListableBeanFactory factory) {
+		this.context = context;
+		this.factory = factory;
+	}
 
-    public <T> List<T> getBeansOfType(Class<T> clazz) {
-        return context.getBeansOfType(clazz).values().stream().toList();
-    }
+	public <T> List<T> getBeansOfType(Class<T> clazz) {
+		return context.getBeansOfType(clazz).values().stream().toList();
+	}
 
-    public <T> List<T> findBeans(Class<T> clazz) {
-        return context.getBeansOfType(clazz).values().stream().toList();
-    }
+	public <T> List<T> findBeans(Class<T> clazz) {
+		return context.getBeansOfType(clazz).values().stream().toList();
+	}
 
-    public <T> T getBeansWithAnnotationAndGenericType(Class<T> clazz, Annotation ann, Class<T>... genericType) {
-        ResolvableType.forClassWithGenerics(clazz, genericType);
-        context.getBeansOfType(clazz);
-        return null;
-    }
+	public <T> T getBeansWithAnnotationAndGenericType(Class<T> clazz, Annotation ann, Class<T>... genericType) {
+		ResolvableType.forClassWithGenerics(clazz, genericType);
+		context.getBeansOfType(clazz);
+		return null;
+	}
 
-    public <T> void putAllAsSingleton(@NotNull Map<String, T> beans) {
-        beans.forEach(factory::registerSingleton);
-    }
+	public <T> void putAllAsSingleton(@NotNull Map<String, T> beans) {
+		beans.forEach(factory::registerSingleton);
+	}
 }

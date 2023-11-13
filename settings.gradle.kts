@@ -37,7 +37,7 @@ pluginManagement {
     id("com.github.node-gradle.node") version nodePluginVersion
     id("com.coditory.webjar") version webjarVersion
     id("com.github.ben-manes.versions") version "0.47.0"
-    id ("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
     id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
   }
 }
@@ -92,7 +92,7 @@ include("kits:biz:spring-boot-toolkit-office")
 
 include("kits:biz:spring-boot-toolkit-recorder")
 
-include("kits:mapping:spring-boot-toolkit-mapped")
+include("kits:mapping:spring-boot-toolkit-mapping-core")
 
 include("apps:cli-application")
 
@@ -119,3 +119,17 @@ include("integration:minio:spring-boot-toolkit-minio-persistence")
 include("integration:vertx:spring-boot-toolkit-vertx-core")
 
 include("integration:vertx:spring-boot-toolkit-vertx-event-bus")
+
+include("kits:mapping:spring-boot-toolkit-mapping-source-code")
+
+include("kits:mapping:spring-boot-toolkit-mapping-source-database")
+
+findProject(":kits:mapping:spring-boot-toolkit-mapping-source-database")?.name =
+    "spring-boot-toolkit-mapping-source-database"
+
+include("kits:mapping:spring-boot-toolkit-mapping-web")
+
+findProject(":kits:mapping:spring-boot-toolkit-mapping-web")?.name =
+    "spring-boot-toolkit-mapping-web"
+
+include("website")
