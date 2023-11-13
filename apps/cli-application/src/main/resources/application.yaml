@@ -6,3 +6,6 @@ spring:
   shell:
     history:
       enable: true
+  threads:
+    virtual:
+      enabled: true

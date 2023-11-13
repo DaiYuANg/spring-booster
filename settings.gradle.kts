@@ -37,7 +37,7 @@ pluginManagement {
     id("com.github.node-gradle.node") version nodePluginVersion
     id("com.coditory.webjar") version webjarVersion
     id("com.github.ben-manes.versions") version "0.47.0"
-    kotlin("jvm") version kotlinVersion
+    id ("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
     id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
   }
 }
