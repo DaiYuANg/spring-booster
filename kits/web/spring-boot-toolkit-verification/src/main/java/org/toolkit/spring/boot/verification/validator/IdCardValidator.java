@@ -1,10 +1,10 @@
-package org.toolkit.spring.boot.verification.validation.validator;
+package org.toolkit.spring.boot.verification.validator;
 
 import cn.hutool.core.lang.Validator;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.extern.slf4j.Slf4j;
-import org.toolkit.spring.boot.verification.validation.annotation.IdCard;
+import org.toolkit.spring.boot.verification.annotation.IdCard;
 
 @Slf4j
 public class IdCardValidator implements ConstraintValidator<IdCard, String> {

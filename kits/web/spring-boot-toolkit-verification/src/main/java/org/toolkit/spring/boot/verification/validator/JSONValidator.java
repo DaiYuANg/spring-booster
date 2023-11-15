@@ -1,10 +1,10 @@
-package org.toolkit.spring.boot.verification.validation.validator;
+package org.toolkit.spring.boot.verification.validator;
 
 import cn.hutool.json.JSONUtil;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.extern.slf4j.Slf4j;
-import org.toolkit.spring.boot.verification.validation.annotation.JSON;
+import org.toolkit.spring.boot.verification.annotation.JSON;
 
 @Slf4j
 public class JSONValidator implements ConstraintValidator<JSON, String> {

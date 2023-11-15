@@ -11,18 +11,18 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Slf4j
 public class LanguageInterceptor implements HandlerInterceptor {
 
-    @Override
-    public boolean preHandle(
-            @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler)
-            throws Exception {
-        String language = request.getHeader("Accept-Language");
-        log.info("language:{}", language);
-        if (language != null && language.startsWith("en")) {
-            response.sendRedirect("/en/index.html");
-        } else if (language != null && language.startsWith("es")) {
-            response.sendRedirect("/zh/index.html");
-        }
+	@Override
+	public boolean preHandle(
+			@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler)
+			throws Exception {
+		String language = request.getHeader("Accept-Language");
+		log.info("language:{}", language);
+		if (language != null && language.startsWith("en")) {
+			response.sendRedirect("/en/index.html");
+		} else if (language != null && language.startsWith("es")) {
+			response.sendRedirect("/zh/index.html");
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

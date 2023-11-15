@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import org.toolkit.spring.boot.mapping.core.utils.MappedUtil;
 
 @ControllerAdvice
-@Order(0)
+@Order(10000)
 public class MappedResponseHandler implements ResponseBodyAdvice<Object> {
 	@Override
 	public boolean supports(
@@ -28,7 +28,6 @@ public class MappedResponseHandler implements ResponseBodyAdvice<Object> {
 			@NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType,
 			@NotNull ServerHttpRequest request,
 			@NotNull ServerHttpResponse response) {
-
 		return null;
 	}
 }

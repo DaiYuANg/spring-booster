@@ -1,15 +1,15 @@
-package org.toolkit.spring.boot.verification.validation.annotation;
+package org.toolkit.spring.boot.verification.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
-import org.toolkit.spring.boot.verification.validation.validator.ChineseValidator;
+import org.toolkit.spring.boot.verification.validator.PhoneNumberValidator;
 
 @Documented
-@Constraint(validatedBy = ChineseValidator.class)
+@Constraint(validatedBy = PhoneNumberValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Chinese {
+public @interface PhoneNumber {
 	String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
 	Class<?>[] groups() default {};

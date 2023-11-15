@@ -1,2 +1,0 @@
-= spring-boot-toolkit
-A suit of toolkit based on spring boot

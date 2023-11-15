@@ -145,7 +145,7 @@ subprojects {
       duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 
-    withType<JavaCompile> { dependsOn("processResources") }
+    withType<JavaCompile> { dependsOn(project.tasks.processResources) }
     java {
       sourceCompatibility = JavaVersion.toVersion(jdkVersion)
       targetCompatibility = JavaVersion.toVersion(jdkVersion)

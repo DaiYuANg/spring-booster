@@ -1,17 +1,15 @@
-package org.toolkit.spring.boot.verification.validation.annotation;
+package org.toolkit.spring.boot.verification.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import jakarta.validation.constraints.NotBlank;
 import java.lang.annotation.*;
-import org.toolkit.spring.boot.verification.validation.validator.ChinaCreditCodeValidator;
+import org.toolkit.spring.boot.verification.validator.ChineseValidator;
 
 @Documented
-@Constraint(validatedBy = ChinaCreditCodeValidator.class)
+@Constraint(validatedBy = ChineseValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@NotBlank
-public @interface ChinaCreditCode {
+public @interface NotChinese {
 	String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
 	Class<?>[] groups() default {};

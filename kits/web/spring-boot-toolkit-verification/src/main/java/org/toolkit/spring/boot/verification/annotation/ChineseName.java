@@ -1,15 +1,15 @@
-package org.toolkit.spring.boot.verification.validation.annotation;
+package org.toolkit.spring.boot.verification.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
-import org.toolkit.spring.boot.verification.validation.validator.ChineseValidator;
+import org.toolkit.spring.boot.verification.validator.ChineseNameValidator;
 
 @Documented
-@Constraint(validatedBy = ChineseValidator.class)
+@Constraint(validatedBy = ChineseNameValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NotChinese {
+public @interface ChineseName {
 	String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
 	Class<?>[] groups() default {};

@@ -397,3 +397,5 @@ yarn-error.log
 .fastRequest
 .jpb
 toolkit-cli.yaml
+website/site
+website/static

@@ -127,5 +127,4 @@ include("kits:mapping:spring-boot-toolkit-mapping-database-source")
 
 include("kits:mapping:spring-boot-toolkit-mapping-web")
 
-
 include("website")

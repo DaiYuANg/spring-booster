@@ -1,15 +1,19 @@
-package org.toolkit.spring.boot.verification.validation.validator;
+package org.toolkit.spring.boot.verification.validator;
 
+import jakarta.annotation.Resource;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.toolkit.spring.boot.verification.validation.annotation.SomethingExistsInDatabase;
+import org.toolkit.spring.boot.verification.annotation.SomethingExistsInDatabase;
 
+@Slf4j
 public class SomethingExistsInDatabaseValidator implements ConstraintValidator<SomethingExistsInDatabase, String> {
 
+	@Resource
 	private JdbcTemplate jdbcTemplate;
 
 	private String table;

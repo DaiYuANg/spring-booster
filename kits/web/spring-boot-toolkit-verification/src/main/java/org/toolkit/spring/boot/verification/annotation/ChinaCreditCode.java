@@ -1,15 +1,17 @@
-package org.toolkit.spring.boot.verification.validation.annotation;
+package org.toolkit.spring.boot.verification.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import jakarta.validation.constraints.NotBlank;
 import java.lang.annotation.*;
-import org.toolkit.spring.boot.verification.validation.validator.PhoneNumberValidator;
+import org.toolkit.spring.boot.verification.validator.ChinaCreditCodeValidator;
 
 @Documented
-@Constraint(validatedBy = PhoneNumberValidator.class)
+@Constraint(validatedBy = ChinaCreditCodeValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PhoneNumber {
+@NotBlank
+public @interface ChinaCreditCode {
 	String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
 	Class<?>[] groups() default {};

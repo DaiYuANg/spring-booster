@@ -1,9 +1,9 @@
-package org.toolkit.spring.boot.verification.validation.annotation;
+package org.toolkit.spring.boot.verification.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
-import org.toolkit.spring.boot.verification.validation.validator.HasChineseValidator;
+import org.toolkit.spring.boot.verification.validator.HasChineseValidator;
 
 @Documented
 @Constraint(validatedBy = HasChineseValidator.class)

@@ -1,16 +1,16 @@
-package org.toolkit.spring.boot.verification.validation.annotation;
+package org.toolkit.spring.boot.verification.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
-import org.toolkit.spring.boot.verification.validation.validator.IdCardValidator;
+import org.toolkit.spring.boot.verification.validator.ChineseValidator;
 
 @Documented
-@Constraint(validatedBy = IdCardValidator.class)
+@Constraint(validatedBy = ChineseValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IdCard {
-	String message() default "Invalid value";
+public @interface Chinese {
+	String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
 	Class<?>[] groups() default {};
 
