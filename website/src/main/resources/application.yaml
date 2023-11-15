@@ -8,3 +8,4 @@ server:
   tomcat:
     accesslog:
       enabled: true
+  port: 19998

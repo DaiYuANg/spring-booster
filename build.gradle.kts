@@ -31,6 +31,7 @@ allprojects {
     maven { url = URI("https://repo.huaweicloud.com/repository/maven/") }
     maven { setUrl("https://repo.spring.io/snapshot") }
     maven { setUrl("https://repo.spring.io/milestone") }
+    maven { setUrl("https://jitpack.io") }
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()

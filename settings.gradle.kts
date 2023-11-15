@@ -3,6 +3,7 @@ pluginManagement {
     maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
     maven { setUrl("https://repo.spring.io/snapshot") }
     maven { setUrl("https://repo.spring.io/milestone") }
+    maven { setUrl("https://jitpack.io") }
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
@@ -120,16 +121,11 @@ include("integration:vertx:spring-boot-toolkit-vertx-core")
 
 include("integration:vertx:spring-boot-toolkit-vertx-event-bus")
 
-include("kits:mapping:spring-boot-toolkit-mapping-source-code")
+include("kits:mapping:spring-boot-toolkit-mapping-code-source")
 
-include("kits:mapping:spring-boot-toolkit-mapping-source-database")
-
-findProject(":kits:mapping:spring-boot-toolkit-mapping-source-database")?.name =
-    "spring-boot-toolkit-mapping-source-database"
+include("kits:mapping:spring-boot-toolkit-mapping-database-source")
 
 include("kits:mapping:spring-boot-toolkit-mapping-web")
 
-findProject(":kits:mapping:spring-boot-toolkit-mapping-web")?.name =
-    "spring-boot-toolkit-mapping-web"
 
 include("website")

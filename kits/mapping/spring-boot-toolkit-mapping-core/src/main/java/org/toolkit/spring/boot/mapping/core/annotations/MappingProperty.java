@@ -5,4 +5,6 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface NeedMapped {}
+public @interface MappingProperty {
+	Mapping[] value();
+}
