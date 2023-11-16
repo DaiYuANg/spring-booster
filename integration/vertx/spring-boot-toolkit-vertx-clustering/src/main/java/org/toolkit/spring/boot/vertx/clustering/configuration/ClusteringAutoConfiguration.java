@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 @AutoConfiguration
 @EnableConfigurationProperties(ClusteringConfigurationProperties.class)
 @Slf4j
-@ConditionalOnProperty(name = "vertx.cluster", havingValue = "true")
+@ConditionalOnProperty(name = "toolkit.vertx.cluster", havingValue = "true")
 public class ClusteringAutoConfiguration {
 
 	@Bean

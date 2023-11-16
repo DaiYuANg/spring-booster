@@ -7,4 +7,5 @@ dependencies {
   implementation(projects.kits.core.springBootToolkitUtils)
   testImplementation("io.vertx:vertx-core:$vertxVersion")
   testImplementation("io.vertx:vertx-hazelcast:$vertxVersion")
+  testImplementation(projects.kits.core.springBootToolkitUtils)
 }

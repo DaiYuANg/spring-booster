@@ -14,9 +14,6 @@ import org.toolkit.spring.boot.utils.bean.BeanUtil;
 public class VerticleRegister {
 
 	@Resource
-	private ApplicationContext context;
-
-	@Resource
 	private Vertx vertx;
 
 	@Resource

@@ -12,7 +12,7 @@ import org.toolkit.spring.boot.utils.bean.BeanUtil;
 @AutoConfiguration
 @Slf4j
 @EnableSpringUtil
-class SpringBootUtilAutoConfiguration {
+public class SpringBootUtilAutoConfiguration {
 	@Resource
 	private ApplicationContext context;
 
