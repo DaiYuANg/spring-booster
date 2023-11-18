@@ -1,4 +1,4 @@
 #org.kop.framework.spring.starter.dev.admin.configuration.DevAdminAutoConfiguration
 #org.kop.framework.spring.starter.dev.admin.configuration.containers.MysqlDevServiceAutoConfiguration
 #org.kop.framework.spring.starter.dev.admin.configuration.ui.DevUIAutoConfiguration
-org.toolkit.spring.boot.web.core.configurations.RestfulAutoConfiguration
+org.toolkit.spring.boot.web.core.configurations.WebCoreAutoConfiguration

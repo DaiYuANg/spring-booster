@@ -1,13 +1,16 @@
 plugins {
-  `kotlin-dsl`
-  `kotlin-dsl-precompiled-script-plugins`
+    `kotlin-dsl`
+    `kotlin-dsl-precompiled-script-plugins`
 }
 
 repositories {
-  mavenLocal()
-  mavenCentral()
-  gradlePluginPortal()
-  google()
+    mavenLocal()
+    mavenCentral()
+    gradlePluginPortal()
+    google()
 }
 
-dependencies {}
+dependencies {
+    val springBootVersion:String by project
+    implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+}

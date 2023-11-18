@@ -1,16 +1,21 @@
 package org.toolkit.spring.boot.route.entity;
 
+import jakarta.persistence.Access;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
 @Entity
-@Table(name = "toolkit_menu")
+@Table(name = "system_menu")
 @Setter
 @Getter
+@ToString(callSuper = true)
+@Accessors(chain = true)
 public class RouteEntity extends BaseEntity {
 
 	@Column

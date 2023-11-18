@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "toolkit.minio.thread-pool")
+@ConfigurationProperties(prefix = "spring.minio.thread-pool")
 @Getter
 @Setter
 @ToString

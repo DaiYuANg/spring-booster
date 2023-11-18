@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.web.core.annotations;
+package org.toolkit.spring.boot.web.annotation;
 
 import java.lang.annotation.*;
 import org.springframework.stereotype.Component;

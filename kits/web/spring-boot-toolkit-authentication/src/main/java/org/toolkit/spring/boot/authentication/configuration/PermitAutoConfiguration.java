@@ -32,7 +32,7 @@ public class PermitAutoConfiguration {
 
 	@PostConstruct
 	private void init() {
-		log.atDebug().log("permit config executing");
+		log.atInfo().log("permit config executing");
 	}
 
 	@Bean

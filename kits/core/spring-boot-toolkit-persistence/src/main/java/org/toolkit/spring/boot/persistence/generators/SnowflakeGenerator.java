@@ -8,6 +8,6 @@ import org.hibernate.id.enhanced.SequenceStyleGenerator;
 public class SnowflakeGenerator extends SequenceStyleGenerator {
 	@Override
 	public Object generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
-		return IdUtil.getSnowflake().nextId();
+		return String.valueOf(IdUtil.getSnowflake().nextId());
 	}
 }

@@ -5,9 +5,12 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.toolkit.spring.boot.web.core.structure.Response;
 
-@ConfigurationProperties(prefix = "restful")
+@ConfigurationProperties(prefix = "spring")
 @Getter
 @Setter
-public class RestfulConfigurationProperties {
+public class WebCoreConfigurationProperties {
+	/**
+	 * Global return value struct
+	 */
 	private Class<?> returnResult = Response.class;
 }

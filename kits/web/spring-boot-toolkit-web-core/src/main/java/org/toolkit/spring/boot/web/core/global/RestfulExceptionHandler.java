@@ -17,7 +17,7 @@ public class RestfulExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public Response<?> r(@NotNull Exception e) {
-		log.error(e.fillInStackTrace().getMessage(), e.fillInStackTrace());
+		log.error(e.fillInStackTrace().getMessage(), e);
 		return Response.error(e.getLocalizedMessage());
 	}
 

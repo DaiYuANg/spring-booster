@@ -6,12 +6,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.toolkit.spring.boot.web.core.configurations.RestfulConfigurationProperties;
+import org.toolkit.spring.boot.web.core.configurations.WebCoreConfigurationProperties;
 
 @Slf4j
 public class LimitSubmissionInterceptor implements HandlerInterceptor {
 	@Resource
-	private RestfulConfigurationProperties restfulConfigurationProperties;
+	private WebCoreConfigurationProperties webCoreConfigurationProperties;
 
 	@Override
 	public boolean preHandle(

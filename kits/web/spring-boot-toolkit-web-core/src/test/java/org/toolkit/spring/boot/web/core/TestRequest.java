@@ -5,11 +5,11 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.toolkit.spring.boot.web.core.configurations.RestfulAutoConfiguration;
+import org.toolkit.spring.boot.web.core.configurations.WebCoreAutoConfiguration;
 
 @SpringBootTest(
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-		classes = {SpringBootApplication.class, RestfulAutoConfiguration.class})
+		classes = {SpringBootApplication.class, WebCoreAutoConfiguration.class})
 @RunWith(SpringRunner.class)
 public class TestRequest {
 

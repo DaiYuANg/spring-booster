@@ -3,7 +3,7 @@ tasks { bootJar { enabled = false } }
 subprojects {
   apply { plugin("java-library") }
 
-  tasks { bootJar { enabled = false } }
+//  tasks { bootJar { enabled = false } }
 
   dependencies {
     val okhttpVersion: String by project

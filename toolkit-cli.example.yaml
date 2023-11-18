@@ -1,0 +1,7 @@
+toolkit:
+  package-name: org.toolkit
+  datasource:
+    url: jdbc:mysql://localhost:3306/toolkit
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver

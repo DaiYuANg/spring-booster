@@ -18,14 +18,14 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.toolkit.spring.boot.web.core.annotations.Interceptor;
+import org.toolkit.spring.boot.web.annotation.Interceptor;
 
 @AutoConfiguration
 @Slf4j
-@EnableConfigurationProperties(RestfulConfigurationProperties.class)
+@EnableConfigurationProperties(WebCoreConfigurationProperties.class)
 @EnableSpringUtil
-@ComponentScan("org.toolkit.spring.boot.starter.restful.**.*")
-public class RestfulAutoConfiguration implements WebMvcConfigurer {
+@ComponentScan("org.toolkit.spring.boot.web.core.**.*")
+public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
 	@Resource
 	private ApplicationContext context;

@@ -9,9 +9,9 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.toolkit.spring.boot.web.core.annotations.AllowClient;
-import org.toolkit.spring.boot.web.core.annotations.Interceptor;
-import org.toolkit.spring.boot.web.core.constant.ClientDevice;
+import org.toolkit.spring.boot.web.annotation.AllowClient;
+import org.toolkit.spring.boot.web.annotation.Interceptor;
+import org.toolkit.spring.boot.web.annotation.ClientDevice;
 
 @Slf4j
 @Interceptor

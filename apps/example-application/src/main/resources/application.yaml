@@ -8,18 +8,41 @@ spring:
       hibernate:
         jdbc:
           batch_size: 10000
-        dialect: org.hibernate.dialect.MySQLDialect
-server:
-  port: 18008
-toolkit:
+        dialect: org.hibernate.dialect.H2Dialect
+  datasource:
+    driver-class-name: org.h2.Driver
+    jdbc-url: jdbc:h2:mem:default
+    username: sa
+    password: sa
+  h2:
+    console:
+      enabled: true
   minio:
-    endpoint: http://localhost:9000
-    access-key: root
-    secret-key: password
-    default-bucket: test
+    client:
+server:
+  port: 8080
+#toolkit:
+#  minio:
+#    endpoint: http://localhost:9000
+#    access-key: root
+#    secret-key: password
+#    default-bucket: test
 logging:
   level:
     org.toolkit.**.*: debug
-myapp:
-  controller:
-    prefix: /testminio
+#myapp:
+#  controller:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+toolkit:
+  auth:
+    permit:
+      - pattern: /toolkit/route/route
+        method:
+          - POST
+          - GET
+
+#    prefix: /testminio

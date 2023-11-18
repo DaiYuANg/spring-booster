@@ -2,15 +2,20 @@ package org.toolkit.spring.boot.web.core.structure;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+
+import com.google.common.base.Objects;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @ToString
 @Accessors(chain = true)
+@EqualsAndHashCode
 public class Response<T> implements Serializable {
 
 	private Integer status = 200;
@@ -21,8 +26,9 @@ public class Response<T> implements Serializable {
 
 	private String message;
 
-	private String version;
+	private Integer version;
 
+	@EqualsAndHashCode.Exclude
 	private long timestamp = System.currentTimeMillis();
 
 	private Response() {}

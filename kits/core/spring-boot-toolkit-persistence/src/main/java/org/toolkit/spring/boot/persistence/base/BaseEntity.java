@@ -1,8 +1,10 @@
 package org.toolkit.spring.boot.persistence.base;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,32 +24,32 @@ import org.toolkit.spring.boot.persistence.listeners.BaseEntityListener;
 @EntityListeners({AuditingEntityListener.class, BaseEntityListener.class})
 public class BaseEntity implements Serializable {
 
-	@Id
-	@GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SnowflakeGenerator")
-	@Column(updatable = false, nullable = false)
-	private String id;
+    @Id
+    @GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)
+    @GeneratedValue(generator = "SnowflakeGenerator")
+    @Column(updatable = false, nullable = false)
+    private String id;
 
-	@Column(nullable = false)
-	@CreatedDate
-	private Date createAt;
+    @Column(nullable = false)
+    @CreatedDate
+    private Date createAt;
 
-	@Column
-	private String createBy;
+    @Column
+    private String createBy;
 
-	@Column
-	@LastModifiedDate
-	private String updateBy;
+    @Column
+    @LastModifiedDate
+    private String updateBy;
 
-	@Column
-	private Date updateAt;
+    @Column
+    private Date updateAt;
 
-	@Column
-	private String version;
+    @Column
+    private String version;
 
-	@Column
-	private String sort;
+    @Column
+    private String sort;
 
-	@Column
-	String ext;
+    @Column
+    String ext;
 }

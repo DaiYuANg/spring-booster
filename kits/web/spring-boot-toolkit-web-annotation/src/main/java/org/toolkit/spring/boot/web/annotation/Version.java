@@ -1,9 +1,8 @@
-package org.toolkit.spring.boot.web.core.annotations;
+package org.toolkit.spring.boot.web.annotation;
 
 import java.lang.annotation.*;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.Mapping;
-import org.toolkit.spring.boot.web.core.constant.ClientDevice;
 
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

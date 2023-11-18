@@ -9,7 +9,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
-import org.toolkit.spring.boot.web.core.annotations.Version;
+import org.toolkit.spring.boot.web.annotation.Version;
 import org.toolkit.spring.boot.web.core.conditions.VersioningCondition;
 
 @Slf4j

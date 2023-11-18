@@ -1,9 +1,9 @@
 {
   "properties": [
     {
-      "name": "dev.service.enable",
-      "type": "java.lang.Boolean",
-      "description": "Is enable dev service."
+      "name": "spring.return-result",
+      "type": "java.lang.Class",
+      "description": "Global Web return structure."
     }
   ]
 }

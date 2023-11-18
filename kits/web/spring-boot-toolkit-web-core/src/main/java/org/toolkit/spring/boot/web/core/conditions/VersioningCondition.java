@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
-import org.toolkit.spring.boot.web.core.annotations.Version;
+import org.toolkit.spring.boot.web.annotation.Version;
 
 @Slf4j
 @Getter
