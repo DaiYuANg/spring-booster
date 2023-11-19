@@ -1,13 +1,5 @@
-plugins {
-  id("org.springframework.boot")
-  id("io.spring.dependency-management")
-}
+plugins { `spring-boot-project` }
 
 tasks { bootJar { enabled = false } }
 
-subprojects {
-  apply {
-    plugin("org.springframework.boot")
-    plugin("io.spring.dependency-management")
-  }
-}
+subprojects { apply<SpringBootProjectPlugin>() }

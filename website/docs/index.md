@@ -25,3 +25,9 @@
 * `mkdocs help` - Print this help message.
 
 # spring boot
+```mermaid
+graph LR
+    hello --> world
+    world --> again
+    again --> hello
+```

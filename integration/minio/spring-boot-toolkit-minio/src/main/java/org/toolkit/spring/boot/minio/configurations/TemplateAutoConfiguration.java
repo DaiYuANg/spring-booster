@@ -43,6 +43,7 @@ public class TemplateAutoConfiguration {
 		val properties = clientConfigs.get(entry.getKey());
 		val client = entry.getValue();
 		val key = entry.getKey();
-		return Map.entry(key + MinioTemplate.class.getName(), new MinioTemplate(client, properties.getDefaultBucket()));
+		return Map.entry(
+				key + MinioTemplate.class.getName(), new MinioTemplate(client, properties.getDefaultBucket(), key));
 	}
 }

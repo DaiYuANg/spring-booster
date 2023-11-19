@@ -11,12 +11,11 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class VertxCoreFeatureConfiguration {
 
-    @Resource
-    private Vertx vertx;
+	@Resource
+	private Vertx vertx;
 
-    @Bean
-    public FileSystem fileSystem(){
-        return vertx.fileSystem();
-    }
-
+	@Bean
+	public FileSystem fileSystem() {
+		return vertx.fileSystem();
+	}
 }

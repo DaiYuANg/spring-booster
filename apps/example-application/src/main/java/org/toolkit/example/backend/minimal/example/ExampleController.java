@@ -6,7 +6,6 @@ import lombok.val;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.toolkit.spring.boot.authentication.annotation.IgnoreAuthentication;
-//import org.toolkit.spring.boot.authentication.annotation.IgnoreAuthentication;
 
 @RestController
 @Slf4j

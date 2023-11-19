@@ -1,8 +1,8 @@
-site_name: website
+site_name: spring-boot-toolkit-website
 
 # Meta tags (placed in header)
 site_description: 
-#site_author: Your Name
+site_author: DaiYuANg
 site_url: # https://you.github.io/website
 
 # Repository (add link to repository on each page)
@@ -30,13 +30,17 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.instant
+#    - navigation.instant
     - navigation.tracking
     - navigation.top
     - navigation.path
     - navigation.indexes
     - toc.follow
     - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+  language: en
 
 plugins:
   - search
@@ -45,14 +49,20 @@ plugins:
   - mermaid2
 #  - print-site
   - git-authors
-
+  - offline
+  - tags
+  - glightbox
+  - blog:
+      blog_dir: blog
+      blog_toc: true
+#  - optimize
 #extra:
 #  palette:
 #    primary: 'indigo'
 #    accent: 'indigo'
 
-#  version:
-#    provider: mike
+#version:
+#  provider: mike
 
 #  social:
 #    - icon: fontawesome/brands/github
@@ -76,7 +86,8 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
-
+      toc_depth: 10
+  - tables
   # Python Markdown Extensions
   - pymdownx.arithmatex:
       generic: true
@@ -92,7 +103,11 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -105,3 +120,23 @@ nav:
       - Installation: guide/installation.md
   - About:
       - Release notes: core/history.md
+  - Blog: blog
+
+extra:
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: Chinese
+      link: /zh/
+      lang: zh
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    actions:
+      - accept
+      - manage

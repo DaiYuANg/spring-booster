@@ -3,11 +3,11 @@ package org.toolkit.spring.boot.minio.core.event;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.context.ApplicationEvent;
+import org.toolkit.spring.boot.utils.struct.LoggingEvent;
 
 @ToString
 @Getter
-public class ObjectAccessEvent extends ApplicationEvent {
+public class ObjectAccessEvent extends LoggingEvent {
 	private final String path;
 
 	private final HttpServletRequest request;

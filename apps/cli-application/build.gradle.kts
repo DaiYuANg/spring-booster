@@ -20,7 +20,7 @@ dependencies {
   implementation("org.springframework.shell:spring-shell-starter")
   implementation("me.paulschwarz:spring-dotenv:4.0.0")
   implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-  implementation("org.springframework.boot:spring-boot-docker-compose")
+  //  developmentOnly("org.springframework.boot:spring-boot-docker-compose")
   implementation("com.mysql:mysql-connector-j")
   implementation("com.squareup:javapoet:1.13.0")
   implementation("jakarta.persistence:jakarta.persistence-api")

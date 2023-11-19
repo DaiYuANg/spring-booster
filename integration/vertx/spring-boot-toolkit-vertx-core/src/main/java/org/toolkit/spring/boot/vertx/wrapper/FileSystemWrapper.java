@@ -1,6 +1,5 @@
 package org.toolkit.spring.boot.vertx.wrapper;
 
-import io.vertx.core.Vertx;
 import io.vertx.core.file.FileSystem;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -11,14 +10,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class FileSystemWrapper {
 
-    @Resource
-    private FileSystem fileSystem;
+	@Resource
+	private FileSystem fileSystem;
 
-    @PostConstruct
-    public void init() {
+	@PostConstruct
+	public void init() {}
 
-    }
-
-    public void read(){
-    }
+	public void read() {}
 }

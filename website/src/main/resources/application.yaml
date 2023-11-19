@@ -1,6 +1,33 @@
 spring:
-  threads:
-    virtual:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10000
+        dialect: org.hibernate.dialect.H2Dialect
+  datasource:
+    driver-class-name: org.h2.Driver
+    jdbc-url: jdbc:h2:mem:default
+    username: sa
+    password: sa
+  boot:
+    admin:
+      context-path: /admin
+      client:
+        instance:
+          service-url: http://localhost:19998/admin/client
+          service-base-url: /admin/client
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
       enabled: true
 server:
   compression:
@@ -9,3 +36,5 @@ server:
     accesslog:
       enabled: true
   port: 19998
+  servlet:
+    context-path: /

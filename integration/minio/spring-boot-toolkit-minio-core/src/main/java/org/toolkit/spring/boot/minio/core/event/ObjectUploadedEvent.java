@@ -2,12 +2,12 @@ package org.toolkit.spring.boot.minio.core.event;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.context.ApplicationEvent;
 import org.toolkit.spring.boot.minio.core.template.MinioTemplate;
+import org.toolkit.spring.boot.utils.struct.LoggingEvent;
 
 @Getter
 @ToString
-public class ObjectUploadedEvent extends ApplicationEvent {
+public class ObjectUploadedEvent extends LoggingEvent {
 
 	private final String object;
 

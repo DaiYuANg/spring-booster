@@ -1,7 +1,5 @@
 package org.toolkit.spring.boot.vertx.annotation;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface VertxSchedule {
-    long delay();
+	long delay();
 
-    TimeUnit unit();
+	TimeUnit unit();
 }
