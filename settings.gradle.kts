@@ -2,7 +2,7 @@ pluginManagement {
   repositories {
     maven { setUrl("https://repo.spring.io/snapshot") }
     maven { setUrl("https://repo.spring.io/milestone") }
-    maven { setUrl("https://jitpack.io") }
+//    maven { setUrl("https://jitpack.io") }
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
@@ -122,4 +122,7 @@ include("kits:mapping:spring-boot-toolkit-mapping-web")
 include("website")
 
 include("kits:core:spring-boot-toolkit-devservice")
-findProject(":kits:core:spring-boot-toolkit-devservice")?.name = "spring-boot-toolkit-devservice"
+
+include("codegen:spring-boot-toolkit-codegen")
+
+include("codegen:spring-boot-toolkit-codegen-annotation")

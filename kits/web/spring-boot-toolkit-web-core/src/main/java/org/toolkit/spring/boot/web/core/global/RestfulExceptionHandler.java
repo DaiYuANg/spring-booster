@@ -8,16 +8,18 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.toolkit.spring.boot.web.annotation.IgnoreResponseAdvice;
 import org.toolkit.spring.boot.web.core.exceptions.RestfulException;
 import org.toolkit.spring.boot.web.core.structure.Response;
 
 @RestControllerAdvice
 @Slf4j
+@IgnoreResponseAdvice
 public class RestfulExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public Response<?> r(@NotNull Exception e) {
-		log.error(e.fillInStackTrace().getMessage(), e);
+		log.error(e.getMessage(), e.fillInStackTrace());
 		return Response.error(e.getLocalizedMessage());
 	}
 

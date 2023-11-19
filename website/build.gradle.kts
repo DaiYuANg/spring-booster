@@ -51,6 +51,7 @@ tasks.withType<JavaCompile> {
 
 val copyDocs =
     tasks.register("copyDocs", Copy::class) {
+      dependsOn(tasks.spotlessJava)
       dependsOn(tasks.processResources.name)
       dependsOn(buildDocs)
       from("build/docs")

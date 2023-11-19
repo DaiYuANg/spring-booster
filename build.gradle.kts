@@ -1,9 +1,6 @@
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 import me.champeau.jmh.JMHPlugin
-import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
-import java.net.URI
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     java
@@ -22,7 +19,7 @@ allprojects {
     repositories {
         maven { setUrl("https://repo.spring.io/snapshot") }
         maven { setUrl("https://repo.spring.io/milestone") }
-        maven { setUrl("https://jitpack.io") }
+//        maven { setUrl("https://jitpack.io") }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
@@ -64,7 +61,6 @@ subprojects {
         val testContainersVersion: String by project
         val hutoolVersion: String by project
         implementation("com.google.code.gson:gson:${gsonVersion}")
-        implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.mapstruct:mapstruct:${mapstructVersion}")
         implementation("com.google.guava:guava:${guavaVersion}")
         implementation("org.slf4j:slf4j-api:${slf4jVersion}")
@@ -94,9 +90,9 @@ subprojects {
         withType<JavaCompile> {
             options.isIncremental = true
             options.encoding = "UTF-8"
+            options.compilerArgs.add("-Xlint:all")
         }
         withType<Test> { useJUnitPlatform() }
-        withType<BootJar> { enabled = false }
 
         withType<Jar> {
             enabled = true

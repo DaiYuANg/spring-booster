@@ -6,13 +6,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.EnableAspectJAutoProxy
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
+import org.toolkit.spring.boot.utils.kotlin.annotation.KotlinSlf4j
+import org.toolkit.spring.boot.utils.kotlin.annotation.KotlinSlf4j.Companion.log
 
 @SpringBootApplication
 @EnableScheduling
 @EnableAdminServer
 @EnableAsync
 @EnableAspectJAutoProxy
+@KotlinSlf4j
 class WebsiteApplication
+
 
 fun main(args: Array<String>) {
     SpringApplication.run(WebsiteApplication::class.java, *args)

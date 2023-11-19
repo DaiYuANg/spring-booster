@@ -1,12 +1,12 @@
-plugins { `spring-boot-project` }
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
-tasks { bootJar { enabled = false } }
+plugins { `spring-boot-project` }
 
 subprojects {
   apply { plugin("java-library") }
   apply<SpringBootProjectPlugin>()
-  //  tasks { bootJar { enabled = false } }
 
+  tasks.withType<BootJar> { enabled = false }
   dependencies {
     val okhttpVersion: String by project
 

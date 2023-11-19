@@ -6,9 +6,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "toolkit.auth")
+@ConfigurationProperties(prefix = "spring.authentication")
 @Setter
 @Getter
 public class AuthenticationConfigurationProperties {
+
+	private boolean debug = false;
 	private Set<PermitConfigProperties> permit = new HashSet<>();
 }

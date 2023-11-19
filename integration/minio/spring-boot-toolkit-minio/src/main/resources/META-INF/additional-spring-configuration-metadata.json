@@ -1,12 +1,12 @@
 {
   "properties": [
     {
-      "name": "toolkit.minio.poolNamePrefix",
+      "name": "spring.minio.poolNamePrefix",
       "type": "java.lang.String",
       "description": "The async worker thread name prefix."
     },
     {
-      "name": "helpers.async.rejectedExecution",
+      "name": "spring.async.rejectedExecution",
       "type": "java.lang.Class",
       "description": "The async worker thread pool rejectedExecution."
     }

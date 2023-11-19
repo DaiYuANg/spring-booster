@@ -22,13 +22,12 @@ public class MysqlServiceAdapter implements ServiceAdapter {
 		try {
 			val driver = Class.forName("com.mysql.cj.jdbc.Driver");
 			createService();
-		} catch (ClassNotFoundException e) {
-		}
+		} catch (ClassNotFoundException ignored) {
+        }
 	}
 
 	@SneakyThrows
 	public void createService() {
-		//        CountDownLatch pullLatch = new CountDownLatch(1);
 		client.pullImageCmd("mysql:latest")
 				.exec(new PullImageResultCallback() {
 
@@ -41,22 +40,13 @@ public class MysqlServiceAdapter implements ServiceAdapter {
 					public void onComplete() {
 						super.onComplete();
 						System.out.println("pull finished");
-						//                pullLatch.countDown();
 					}
 				})
 				.awaitCompletion();
-		//        try {
-		//            pullLatch.await(); // Wait for image pull to complete
-		//        } catch (InterruptedException e) {
-		//            Thread.currentThread().interrupt();
-		//            throw new RuntimeException("Image pull interrupted", e);
-		//        }
 		val container = client.createContainerCmd("mysql:latest")
 				.withExposedPorts(ExposedPort.tcp(3306))
 				.withEnv("MYSQL_RANDOM_ROOT_PASSWORD=true")
 				.exec();
 		client.startContainerCmd(container.getId()).exec();
-		System.err.println(client.inspectContainerCmd(container.getId()).exec());
-		System.err.println(container.getRawValues());
 	}
 }
