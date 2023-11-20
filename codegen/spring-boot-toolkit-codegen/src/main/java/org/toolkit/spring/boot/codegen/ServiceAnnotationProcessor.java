@@ -10,7 +10,7 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 import java.util.Set;
 
-@SupportedAnnotationTypes({"CodeGenService"})
+@SupportedAnnotationTypes({"*"})
 @SupportedSourceVersion(SourceVersion.RELEASE_17)
 @AutoService(Processor.class)
 public class ServiceAnnotationProcessor extends AbstractProcessor {
@@ -20,7 +20,6 @@ public class ServiceAnnotationProcessor extends AbstractProcessor {
         processingEnv
                 .getMessager()
                 .printMessage(Diagnostic.Kind.ERROR, "Your log message");
-        throw new RuntimeException("test");
-//        return true;
+        return true;
     }
 }

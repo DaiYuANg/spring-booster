@@ -6,7 +6,7 @@ authors = ["DaiYuANg"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 mkdocs-material = {extras = ["optimize"], version = "^9.4.9"}
 mkdocs-markdownextradata-plugin = "^0.2.5"
 mkdocs-mermaid2-plugin = "^1.1.1"

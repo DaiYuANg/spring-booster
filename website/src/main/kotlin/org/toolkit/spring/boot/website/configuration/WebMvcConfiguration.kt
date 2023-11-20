@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import org.toolkit.spring.boot.utils.kotlin.annotation.KotlinSlf4j.Companion.log
+import log
 import org.toolkit.spring.boot.website.interceptor.AccessInterceptor
 import org.toolkit.spring.boot.website.interceptor.LanguageInterceptor
 import org.toolkit.spring.boot.website.resolver.IndexFallbackResolver

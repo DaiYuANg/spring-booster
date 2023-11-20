@@ -8,7 +8,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import java.util.Set;
 
-@SupportedAnnotationTypes({"CodeGenRepository"})
+@SupportedAnnotationTypes({"*"})
 @SupportedSourceVersion(SourceVersion.RELEASE_17)
 @AutoService(Processor.class)
 public class RepositoryAnnotationProcessor extends AbstractProcessor {

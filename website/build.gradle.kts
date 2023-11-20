@@ -45,6 +45,7 @@ tasks.getByName<Jar>("jar") {
 }
 
 tasks.withType<JavaCompile> {
+  dependsOn("poetryInstall")
   options.encoding = Charsets.UTF_8.name()
   dependsOn("copyDocs")
 }
@@ -58,6 +59,9 @@ val copyDocs =
       into("src/main/resources/static")
     }
 
+val poetryInstall = task<Exec>("poetryInstall"){
+  commandLine("poetry","lock")
+}
 val serveDocs =
     task<Exec>("serveMkdocs") {
       commandLine("poetry", "run", "mkdocs", "serve", "-a", "localhost:9000")

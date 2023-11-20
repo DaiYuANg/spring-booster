@@ -6,6 +6,8 @@ spring:
   shell:
     history:
       enable: true
+  main:
+    allow-bean-definition-overriding: true
   threads:
     virtual:
       enabled: true

@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.ResolvableType;
@@ -21,21 +22,22 @@ public class BeanUtil {
 		this.factory = factory;
 	}
 
-	public <T> List<T> getBeansOfType(Class<T> clazz) {
+	public final  <T> List<T> getBeansOfType(Class<T> clazz) {
 		return context.getBeansOfType(clazz).values().stream().toList();
 	}
 
-	public <T> List<T> findBeans(Class<T> clazz) {
+	public final  <T> List<T> findBeans(Class<T> clazz) {
 		return context.getBeansOfType(clazz).values().stream().toList();
 	}
 
-	public <T> T getBeansWithAnnotationAndGenericType(Class<T> clazz, Annotation ann, Class<T>... genericType) {
+	@SafeVarargs
+	public final <T> @Nullable T getBeansWithAnnotationAndGenericType(Class<T> clazz, Annotation ann, Class<T>... genericType) {
 		ResolvableType.forClassWithGenerics(clazz, genericType);
 		context.getBeansOfType(clazz);
 		return null;
 	}
 
-	public <T> void putAllAsSingleton(@NotNull Map<String, T> beans) {
+	public final  <T> void putAllAsSingleton(@NotNull Map<String, T> beans) {
 		beans.forEach(factory::registerSingleton);
 	}
 }

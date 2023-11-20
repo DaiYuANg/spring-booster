@@ -1,6 +1,7 @@
 import com.palantir.gradle.gitversion.GitVersionPlugin
-import io.freefair.gradle.plugins.lombok.LombokPlugin
+//import io.freefair.gradle.plugins.lombok.LombokPlugin
 import me.champeau.jmh.JMHPlugin
+import name.remal.gradle_plugins.lombok.LombokPlugin
 
 plugins {
     java
@@ -10,7 +11,8 @@ plugins {
     id("com.palantir.git-version")
     id("org.owasp.dependencycheck")
     id("me.champeau.jmh") apply false
-    id("io.freefair.lombok") apply false
+//    id("io.freefair.lombok") apply false
+    id("name.remal.lombok") version "2.2.4" apply false
     id("org.jreleaser")
 }
 
@@ -19,7 +21,6 @@ allprojects {
     repositories {
         maven { setUrl("https://repo.spring.io/snapshot") }
         maven { setUrl("https://repo.spring.io/milestone") }
-//        maven { setUrl("https://jitpack.io") }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
@@ -39,6 +40,7 @@ subprojects {
     apply<JavaLibraryPlugin>()
     apply<JMHPlugin>()
     apply<LombokPlugin>()
+//    apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatPlugin>()
 

@@ -4,6 +4,8 @@ plugins {
 }
 
 repositories {
+    maven { setUrl("https://repo.spring.io/snapshot") }
+    maven { setUrl("https://repo.spring.io/milestone") }
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
@@ -13,8 +15,9 @@ repositories {
 dependencies {
     val springBootVersion:String by project
     val kotlinVersion : String by project
+    val springDependencyManagementVersion:String by project
     implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    implementation("io.spring.gradle:dependency-management-plugin:1.1.4")
+    implementation("io.spring.gradle:dependency-management-plugin:$springDependencyManagementVersion")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-lombok:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")

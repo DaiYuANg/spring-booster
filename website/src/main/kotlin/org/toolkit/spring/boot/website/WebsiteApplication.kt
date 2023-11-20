@@ -7,7 +7,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.toolkit.spring.boot.utils.kotlin.annotation.KotlinSlf4j
-import org.toolkit.spring.boot.utils.kotlin.annotation.KotlinSlf4j.Companion.log
 
 @SpringBootApplication
 @EnableScheduling

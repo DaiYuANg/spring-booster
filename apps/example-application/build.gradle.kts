@@ -1,3 +1,6 @@
+plugins{
+}
+
 group = "org.toolkit.example.backend.minimal.example"
 
 version = "1.0-SNAPSHOT"
@@ -17,4 +20,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation(projects.codegen.springBootToolkitCodegenAnnotation)
     annotationProcessor(projects.codegen.springBootToolkitCodegen)
+}
+
+tasks.withType<JavaCompile>{
+    doFirst{
+        options.annotationProcessorPath?.files?.stream()?.forEach { println(it) }
+    }
 }
