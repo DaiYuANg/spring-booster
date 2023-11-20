@@ -27,15 +27,16 @@ public class MysqlServiceAdapter implements ServiceAdapter {
 
     @SneakyThrows
     public CreateContainerResponse createService() {
-        try(val pullCallback = new PullImageProcessBar()){
-            val exec = client.pullImageCmd(image)
-                    .exec(pullCallback).awaitCompletion();
-            val container = client.createContainerCmd(image)
-                    .withExposedPorts(ExposedPort.tcp(3306))
-                    .withEnv("MYSQL_RANDOM_ROOT_PASSWORD=true")
-                    .exec();
-            log.info("create container:{}", container.getRawValues());
-            return container;
-        }
+        val pullCallback = new PullImageProcessBar();
+        client.pullImageCmd(image)
+                .exec(pullCallback);
+        pullCallback.awaitCompletion();
+        val container = client.createContainerCmd(image)
+                .withExposedPorts(ExposedPort.tcp(3306))
+                .withEnv("MYSQL_RANDOM_ROOT_PASSWORD=true")
+                .exec();
+        log.info("create container:{}", container.getRawValues());
+        client.createContainerCmd(image).exec();
+        return container;
     }
 }
