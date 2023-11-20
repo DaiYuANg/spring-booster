@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.toolkit.spring.boot.utils.configuration.SpringBootUtilAutoConfiguration;
+import org.toolkit.spring.boot.utils.autoconfigure.SpringBootUtilAutoConfiguration;
 import org.toolkit.spring.boot.vertx.configuration.VertxAutoConfiguration;
 import org.toolkit.spring.boot.vertx.configuration.builder.VertxConfigBuilder;
 import org.toolkit.spring.boot.vertx.lifecycle.VerticleRegister;

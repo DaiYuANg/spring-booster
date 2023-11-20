@@ -22,6 +22,7 @@ class AccessInterceptor : HandlerInterceptor {
         handler: Any,
         ex: Exception?,
     ) {
+        if (ex!=null) return
         val userAnent = request.getHeader("User-Agent")
         val ipAddress = request.remoteHost
         val port = request.remotePort

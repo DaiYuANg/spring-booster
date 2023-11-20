@@ -14,7 +14,7 @@ dependencies {
     implementation("org.springframework.data:spring-data-rest-hal-explorer")
     implementation(projects.integration.minio.springBootToolkitMinio)
     implementation("net.datafaker:datafaker:2.0.2")
-//    implementation(projects.kits.core.springBootToolkitDevservice)
+    implementation(projects.kits.core.springBootToolkitDevService)
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.mysql:mysql-connector-j")
     implementation("org.springframework.boot:spring-boot-starter-web")
