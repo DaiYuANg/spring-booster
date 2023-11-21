@@ -22,22 +22,23 @@ public class BeanUtil {
 		this.factory = factory;
 	}
 
-	public final  <T> List<T> getBeansOfType(Class<T> clazz) {
+	public final <T> List<T> getBeansOfType(Class<T> clazz) {
 		return context.getBeansOfType(clazz).values().stream().toList();
 	}
 
-	public final  <T> List<T> findBeans(Class<T> clazz) {
+	public final <T> List<T> findBeans(Class<T> clazz) {
 		return context.getBeansOfType(clazz).values().stream().toList();
 	}
 
 	@SafeVarargs
-	public final <T> @Nullable T getBeansWithAnnotationAndGenericType(Class<T> clazz, Annotation ann, Class<T>... genericType) {
+	public final <T> @Nullable T getBeansWithAnnotationAndGenericType(
+			Class<T> clazz, Annotation ann, Class<T>... genericType) {
 		ResolvableType.forClassWithGenerics(clazz, genericType);
 		context.getBeansOfType(clazz);
 		return null;
 	}
 
-	public final  <T> void putAllAsSingleton(@NotNull Map<String, T> beans) {
+	public final <T> void putAllAsSingleton(@NotNull Map<String, T> beans) {
 		beans.forEach(factory::registerSingleton);
 	}
 }

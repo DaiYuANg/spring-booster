@@ -10,9 +10,7 @@ version = "1.0"
 
 val toolingApiVersion = "8.4"
 
-repositories{
-  maven { url = uri("https://repo.gradle.org/gradle/libs-releases") }
-}
+repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases") } }
 
 val mainClass = "org.toolkit.cli.ToolkitCLIApplication"
 
@@ -36,8 +34,8 @@ dependencies {
 }
 
 application {
-    mainModule = "org.toolkit.cli"
-    mainClass = "org.toolkit.cli.ToolkitCLIApplication"
+  mainModule = "org.toolkit.cli"
+  mainClass = "org.toolkit.cli.ToolkitCLIApplication"
 }
 
 graalvmNative {

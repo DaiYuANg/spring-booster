@@ -2,7 +2,6 @@ package org.toolkit.spring.boot.persistence.autoconfigure;
 
 import jakarta.annotation.PostConstruct;
 import javax.sql.DataSource;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

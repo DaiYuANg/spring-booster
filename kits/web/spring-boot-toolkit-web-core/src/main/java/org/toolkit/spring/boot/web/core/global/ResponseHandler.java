@@ -34,10 +34,8 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
 	@Override
 	public boolean supports(
 			@NotNull MethodParameter returnType, @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
-		val isMethodIgnore = Objects
-				.isNull(returnType.getMethodAnnotation(IgnoreResponseAdvice.class));
-		val isControllerIgnore = !returnType.getDeclaringClass()
-				.isAnnotationPresent(IgnoreResponseAdvice.class);
+		val isMethodIgnore = Objects.isNull(returnType.getMethodAnnotation(IgnoreResponseAdvice.class));
+		val isControllerIgnore = !returnType.getDeclaringClass().isAnnotationPresent(IgnoreResponseAdvice.class);
 		val isResponse = returnType.getDeclaringClass() != configurationProperties.getReturnResult();
 		return isControllerIgnore && isMethodIgnore && isResponse;
 	}

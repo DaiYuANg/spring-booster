@@ -4,11 +4,9 @@ import cn.hutool.core.util.StrUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.PermitAll;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -27,79 +25,70 @@ import org.toolkit.spring.boot.utils.bean.BeanUtil;
 @Slf4j
 public class PermitAutoConfiguration {
 
-    @Resource
-    private BeanUtil beanUtil;
+	@Resource
+	private BeanUtil beanUtil;
 
-    @Resource
-    private AuthenticationConfigurationProperties configurationProperties;
+	@Resource
+	private AuthenticationConfigurationProperties configurationProperties;
 
-    @PostConstruct
-    private void init() {
-        log.atInfo().log("permit config executing");
-    }
+	@PostConstruct
+	private void init() {
+		log.atInfo().log("permit config executing");
+	}
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        val permitAllMatchers = Stream.concat(
-                        Arrays.stream(buildAntPathRequestMatcherFromAnnotation()),
-                        Arrays.stream(buildAntPathRequestMatcherFromConfig()))
-                .distinct()
-                .toArray(AntPathRequestMatcher[]::new);
-        log.atDebug().log("permit route:{}",
-                Arrays.stream(permitAllMatchers)
-                        .collect(Collectors.groupingBy(
-                                AntPathRequestMatcher::getPattern
-                        ))
-        );
-        return (web) -> web.ignoring().requestMatchers(permitAllMatchers);
-    }
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		val permitAllMatchers = Stream.concat(
+						Arrays.stream(buildAntPathRequestMatcherFromAnnotation()),
+						Arrays.stream(buildAntPathRequestMatcherFromConfig()))
+				.distinct()
+				.toArray(AntPathRequestMatcher[]::new);
+		log.atDebug().log(
+				"permit route:{}",
+				Arrays.stream(permitAllMatchers).collect(Collectors.groupingBy(AntPathRequestMatcher::getPattern)));
+		return (web) -> web.ignoring().requestMatchers(permitAllMatchers);
+	}
 
-    private AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromAnnotation() {
-        return beanUtil.getBeansOfType(RequestMappingHandlerMapping.class).stream()
-                .map(RequestMappingHandlerMapping::getHandlerMethods)
-                .flatMap(method -> method.entrySet().stream())
-                .filter(this::checkHasAnnotation)
-                .flatMap(this::internalBuild)
-                .distinct()
-                .toArray(AntPathRequestMatcher[]::new);
-    }
+	private AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromAnnotation() {
+		return beanUtil.getBeansOfType(RequestMappingHandlerMapping.class).stream()
+				.map(RequestMappingHandlerMapping::getHandlerMethods)
+				.flatMap(method -> method.entrySet().stream())
+				.filter(this::checkHasAnnotation)
+				.flatMap(this::internalBuild)
+				.distinct()
+				.toArray(AntPathRequestMatcher[]::new);
+	}
 
-    private boolean checkHasAnnotation(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> method) {
-        return method.getValue().hasMethodAnnotation(IgnoreAuthentication.class)
-                || method.getValue().hasMethodAnnotation(PermitAll.class);
-    }
+	private boolean checkHasAnnotation(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> method) {
+		return method.getValue().hasMethodAnnotation(IgnoreAuthentication.class)
+				|| method.getValue().hasMethodAnnotation(PermitAll.class);
+	}
 
-    @NotNull
-    private Stream<AntPathRequestMatcher> internalBuild(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry) {
-        return entry.getKey().getDirectPaths().stream()
-                .filter(StrUtil::isNotBlank)
-                .flatMap(path -> buildAntPathByAnnotation(entry, path));
-    }
+	@NotNull private Stream<AntPathRequestMatcher> internalBuild(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry) {
+		return entry.getKey().getDirectPaths().stream()
+				.filter(StrUtil::isNotBlank)
+				.flatMap(path -> buildAntPathByAnnotation(entry, path));
+	}
 
-    @NotNull
-    private Stream<AntPathRequestMatcher> buildAntPathByAnnotation(
-            Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry, String path) {
-        val ann = entry.getValue().getMethodAnnotation(IgnoreAuthentication.class);
-        if (Objects.isNull(ann)) {
-            return entry.getValue().hasMethodAnnotation(PermitAll.class)
-                    ? Stream.of(new AntPathRequestMatcher(path))
-                    : Stream.empty();
-        }
-        return Arrays.stream(ann.ignoreOnMethod())
-                .distinct()
-                .map(a -> new AntPathRequestMatcher(path, a.asHttpMethod().name()));
-    }
+	@NotNull private Stream<AntPathRequestMatcher> buildAntPathByAnnotation(
+			Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry, String path) {
+		val ann = entry.getValue().getMethodAnnotation(IgnoreAuthentication.class);
+		if (Objects.isNull(ann)) {
+			return entry.getValue().hasMethodAnnotation(PermitAll.class)
+					? Stream.of(new AntPathRequestMatcher(path))
+					: Stream.empty();
+		}
+		return Arrays.stream(ann.ignoreOnMethod())
+				.distinct()
+				.map(a -> new AntPathRequestMatcher(path, a.asHttpMethod().name()));
+	}
 
-    private AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromConfig() {
-        return configurationProperties.getPermit().stream()
-                .distinct()
-                .flatMap(permit -> permit.getMethod().stream()
-                        .map(method ->
-                                new AntPathRequestMatcher(
-                                        permit.getPattern(),
-                                        method.asHttpMethod().name()
-                                ))
-                )
-                .toArray(AntPathRequestMatcher[]::new);
-    }
+	private AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromConfig() {
+		return configurationProperties.getPermit().stream()
+				.distinct()
+				.flatMap(permit -> permit.getMethod().stream()
+						.map(method -> new AntPathRequestMatcher(
+								permit.getPattern(), method.asHttpMethod().name())))
+				.toArray(AntPathRequestMatcher[]::new);
+	}
 }

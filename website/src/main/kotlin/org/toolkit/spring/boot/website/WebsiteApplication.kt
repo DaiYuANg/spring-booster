@@ -16,7 +16,6 @@ import org.toolkit.spring.boot.utils.kotlin.annotation.KotlinSlf4j
 @KotlinSlf4j
 class WebsiteApplication
 
-
 fun main(args: Array<String>) {
     SpringApplication.run(WebsiteApplication::class.java, *args)
 }

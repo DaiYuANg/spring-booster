@@ -2,41 +2,39 @@ package org.toolkit.spring.boot.dev.service.connection.mysql;
 
 import org.springframework.boot.autoconfigure.jdbc.JdbcConnectionDetails;
 import org.springframework.boot.autoconfigure.service.connection.ConnectionDetailsFactory;
-import org.springframework.util.ClassUtils;
 
-public class MysqlJdbcConnectionFactory implements ConnectionDetailsFactory<String,JdbcConnectionDetails> {
+public class MysqlJdbcConnectionFactory implements ConnectionDetailsFactory<String, JdbcConnectionDetails> {
 
-    public MysqlJdbcConnectionFactory(){
-    }
+	public MysqlJdbcConnectionFactory() {}
 
-    @Override
-    public JdbcConnectionDetails getConnectionDetails(String source) {
-        new JdbcConnectionDetails(){
-            @Override
-            public String getUsername() {
-                return null;
-            }
+	@Override
+	public JdbcConnectionDetails getConnectionDetails(String source) {
+		new JdbcConnectionDetails() {
+			@Override
+			public String getUsername() {
+				return null;
+			}
 
-            @Override
-            public String getPassword() {
-                return null;
-            }
+			@Override
+			public String getPassword() {
+				return null;
+			}
 
-            @Override
-            public String getJdbcUrl() {
-                return null;
-            }
+			@Override
+			public String getJdbcUrl() {
+				return null;
+			}
 
-            @Override
-            public String getDriverClassName() {
-                return JdbcConnectionDetails.super.getDriverClassName();
-            }
+			@Override
+			public String getDriverClassName() {
+				return JdbcConnectionDetails.super.getDriverClassName();
+			}
 
-            @Override
-            public String getXaDataSourceClassName() {
-                return JdbcConnectionDetails.super.getXaDataSourceClassName();
-            }
-        };
-        return null;
-    }
+			@Override
+			public String getXaDataSourceClassName() {
+				return JdbcConnectionDetails.super.getXaDataSourceClassName();
+			}
+		};
+		return null;
+	}
 }

@@ -59,9 +59,7 @@ val copyDocs =
       into("src/main/resources/static")
     }
 
-val poetryInstall = task<Exec>("poetryInstall"){
-  commandLine("poetry","lock")
-}
+val poetryInstall = task<Exec>("poetryInstall") { commandLine("poetry", "lock") }
 val serveDocs =
     task<Exec>("serveMkdocs") {
       commandLine("poetry", "run", "mkdocs", "serve", "-a", "localhost:9000")

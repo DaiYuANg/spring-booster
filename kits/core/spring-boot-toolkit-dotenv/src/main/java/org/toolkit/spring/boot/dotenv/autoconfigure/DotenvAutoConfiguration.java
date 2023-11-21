@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class DotenvAutoConfiguration {
 
-    @PostConstruct
-    public void init() {
-        log.info("dotenv auto configuration");
-    }
+	@PostConstruct
+	public void init() {
+		log.info("dotenv auto configuration");
+	}
 
-    @Bean
-    public Dotenv dotenv() {
-        return Dotenv.configure().ignoreIfMalformed().load();
-    }
+	@Bean
+	public Dotenv dotenv() {
+		return Dotenv.configure().ignoreIfMalformed().load();
+	}
 }

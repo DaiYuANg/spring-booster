@@ -8,8 +8,8 @@ import org.springframework.core.io.support.PropertySourceFactory;
 
 @Slf4j
 public class DotenvPropertySourceFactory implements PropertySourceFactory {
-    @Override
-    public @NotNull PropertySource<?> createPropertySource(String name, @NotNull EncodedResource resource) {
-        return null;
-    }
+	@Override
+	public @NotNull PropertySource<?> createPropertySource(String name, @NotNull EncodedResource resource) {
+		return null;
+	}
 }

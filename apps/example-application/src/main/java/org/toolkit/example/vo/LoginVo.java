@@ -11,5 +11,5 @@ import lombok.experimental.Accessors;
 @Builder
 public class LoginVo {
 
-    private String token;
+	private String token;
 }
