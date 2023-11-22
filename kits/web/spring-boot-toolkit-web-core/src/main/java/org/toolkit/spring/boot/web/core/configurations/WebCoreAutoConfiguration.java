@@ -42,7 +42,7 @@ public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(@NotNull InterceptorRegistry registry) {
-		Flowable.fromIterable(context.getBeansWithAnnotation(Interceptor.class).values())
+		var unused = Flowable.fromIterable(context.getBeansWithAnnotation(Interceptor.class).values())
 				.filter(interceptor -> interceptor instanceof HandlerInterceptor)
 				.map(interceptor -> (HandlerInterceptor) interceptor)
 				.subscribe(interceptor -> {

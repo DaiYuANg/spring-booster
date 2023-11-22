@@ -9,7 +9,7 @@ public class MysqlJdbcConnectionFactory implements ConnectionDetailsFactory<Stri
 
 	@Override
 	public JdbcConnectionDetails getConnectionDetails(String source) {
-		new JdbcConnectionDetails() {
+		return new JdbcConnectionDetails() {
 			@Override
 			public String getUsername() {
 				return null;
@@ -35,6 +35,5 @@ public class MysqlJdbcConnectionFactory implements ConnectionDetailsFactory<Stri
 				return JdbcConnectionDetails.super.getXaDataSourceClassName();
 			}
 		};
-		return null;
 	}
 }

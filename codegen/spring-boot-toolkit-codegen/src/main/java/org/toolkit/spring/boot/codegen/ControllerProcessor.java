@@ -19,8 +19,6 @@ public class ControllerProcessor extends AbstractProcessor {
 	}
 
 	protected void log(String msg) {
-		//        if (processingEnv.getOptions().containsKey("debug")) {
 		processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, msg);
-		//        }
 	}
 }

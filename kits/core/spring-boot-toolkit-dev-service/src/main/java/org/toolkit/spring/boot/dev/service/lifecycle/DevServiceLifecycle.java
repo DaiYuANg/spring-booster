@@ -3,11 +3,14 @@ package org.toolkit.spring.boot.dev.service.lifecycle;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -25,71 +28,80 @@ import org.toolkit.spring.boot.dev.service.core.DevServiceReadyEvent;
 @Slf4j
 public class DevServiceLifecycle {
 
-	private final ApplicationContext context;
+    private final ApplicationContext context;
 
-	private final Binder binder;
+    private final Binder binder;
 
-	private final DevServiceConfigurationProperties devServiceConfigurationProperties;
+    private final DevServiceConfigurationProperties devServiceConfigurationProperties;
 
-	private final ClassLoader classLoader;
+    private final ClassLoader classLoader;
 
-	private final Set<ApplicationListener<?>> eventListeners;
+    private final Set<ApplicationListener<?>> eventListeners;
 
-	private final Executor executor;
+    private final Executor executor;
 
-	private final Set<ContainerService> availableService;
+    private final Set<ContainerService> availableService;
 
-	private final Observable<ContainerService> observable;
+    private final Observable<ContainerService> observable;
 
-	public DevServiceLifecycle(
-			@NotNull ApplicationContext context, @NotNull Binder binder, Set<ApplicationListener<?>> eventListeners) {
-		this.context = context;
-		this.binder = binder;
-		this.devServiceConfigurationProperties = DevServiceConfigurationProperties.get(binder);
-		this.classLoader = context.getClassLoader();
-		this.eventListeners = eventListeners;
-		this.availableService = Arrays.stream(SupportServiceStore.values())
-				.filter(supportService -> ClassUtils.isPresent(supportService.getClazz(), this.classLoader))
-				.map(SupportServiceStore::getContainerService)
-				.collect(Collectors.toUnmodifiableSet());
-		val threadFactory =
-				new ThreadFactoryBuilder().setNameFormat("DevService-%s").build();
-		this.observable = Observable.fromIterable(availableService);
-		this.executor = Executors.newFixedThreadPool(availableService.size(), threadFactory);
-	}
+    public DevServiceLifecycle(
+            @NotNull ApplicationContext context,
+            @NotNull Binder binder,
+            @NotNull Set<ApplicationListener<?>> eventListeners
+    ) {
+        this.context = context;
+        this.binder = binder;
+        this.devServiceConfigurationProperties = DevServiceConfigurationProperties.get(binder);
+        this.classLoader = context.getClassLoader();
+        this.eventListeners = eventListeners;
+        this.availableService = Arrays.stream(SupportServiceStore.values())
+                .filter(this::checkIsAvailable)
+                .map(SupportServiceStore::getContainerService)
+                .collect(Collectors.toUnmodifiableSet());
+        val threadFactory =
+                new ThreadFactoryBuilder().setNameFormat("DevService-%s").build();
+        this.observable = Observable.fromIterable(availableService);
+        this.executor = Executors.newFixedThreadPool(availableService.size(), threadFactory);
+    }
 
-	void start() {
-		if (Boolean.getBoolean("spring.aot.processing") || AotDetector.useGeneratedArtifacts()) {
-			log.trace("Dev service support disabled with AOT and native images");
-			return;
-		}
-		if (devServiceConfigurationProperties.getEnable().equals(Boolean.FALSE)) {
-			log.trace("Dev service is not enable");
-			return;
-		}
-		if (DevServiceSkipCheck.shouldSkip(this.classLoader)) {
-			log.trace("Dev service skipped");
-			return;
-		}
-		if (availableService.isEmpty()) {
-			log.trace("Available service is empty");
-			return;
-		}
-		val serviceContainerIds = observable
-				.flatMap(service -> Observable.just(service)
-						.subscribeOn(Schedulers.from(executor))
-						.map(ContainerService::startContainer))
-				.toList(availableService.size())
-				.blockingGet();
-	}
+    private boolean checkIsAvailable(@NotNull SupportServiceStore supportService) {
+        val isAvailable = supportService.getClazz().stream().allMatch(clazz -> ClassUtils.isPresent(clazz, classLoader));
+        log.atInfo().log("Support service :{}", supportService.getClazz());
+        return isAvailable;
+    }
 
-	void stop() {
-		//     todo  check need stop container
-	}
+    void start() {
+        if (Boolean.getBoolean("spring.aot.processing") || AotDetector.useGeneratedArtifacts()) {
+            log.trace("Dev service support disabled with AOT and native images");
+            return;
+        }
+        if (devServiceConfigurationProperties.getEnable().equals(Boolean.FALSE)) {
+            log.trace("Dev service is not enable");
+            return;
+        }
+        if (DevServiceSkipCheck.shouldSkip(this.classLoader)) {
+            log.trace("Dev service skipped");
+            return;
+        }
+        if (availableService.isEmpty()) {
+            log.trace("Available service is empty");
+            return;
+        }
+        val serviceContainerIds = observable
+                .flatMap(service -> Observable.just(service)
+                        .subscribeOn(Schedulers.from(executor))
+                        .map(ContainerService::createService))
+                .toList(availableService.size())
+                .blockingGet();
+    }
 
-	private void publishEvent(DevServiceReadyEvent event) {
-		val multicaster = new SimpleApplicationEventMulticaster();
-		eventListeners.forEach(multicaster::addApplicationListener);
-		multicaster.multicastEvent(event);
-	}
+    void stop() {
+        //     todo  check need stop container
+    }
+
+    private void publishEvent(DevServiceReadyEvent event) {
+        val multicaster = new SimpleApplicationEventMulticaster();
+        eventListeners.forEach(multicaster::addApplicationListener);
+        multicaster.multicastEvent(event);
+    }
 }
