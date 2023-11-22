@@ -2,9 +2,9 @@ import com.palantir.gradle.gitversion.GitVersionPlugin
 //import io.freefair.gradle.plugins.lombok.LombokPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
-import net.ltgt.gradle.errorprone.CheckSeverity
-import net.ltgt.gradle.errorprone.ErrorPronePlugin
-import net.ltgt.gradle.errorprone.errorprone
+//import net.ltgt.gradle.errorprone.CheckSeverity
+//import net.ltgt.gradle.errorprone.ErrorPronePlugin
+//import net.ltgt.gradle.errorprone.errorprone
 import java.util.*
 
 plugins {
@@ -17,7 +17,7 @@ plugins {
     id("me.champeau.jmh") apply false
     id("name.remal.lombok") version "2.2.4" apply false
     id("org.jreleaser")
-    id("net.ltgt.errorprone") version "3.1.0"
+//    id("net.ltgt.errorprone") version "3.1.0"
 }
 
 allprojects {
@@ -46,7 +46,7 @@ subprojects {
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatPlugin>()
-    apply<ErrorPronePlugin>()
+//    apply<ErrorPronePlugin>()
 
     group = "org." + rootProject.name + "." + project.name
     val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
@@ -79,10 +79,10 @@ subprojects {
         implementation("org.eclipse.collections:eclipse-collections-api:11.1.0")
         implementation("org.eclipse.collections:eclipse-collections:11.1.0")
         implementation("org.agrona:Agrona:0.9.1")
-        errorprone("com.uber.nullaway:nullaway:0.10.17")
-        errorprone("com.google.errorprone:error_prone_core:2.23.0")
-        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
-        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
+//        errorprone("com.uber.nullaway:nullaway:0.10.17")
+//        errorprone("com.google.errorprone:error_prone_core:2.23.0")
+//        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
+//        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
         annotationProcessor("io.soabase.record-builder:record-builder-processor:37")
         annotationProcessor("com.google.auto.factory:auto-factory:1.1.0")
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
@@ -113,10 +113,10 @@ subprojects {
         withType<JavaCompile> {
             dependsOn(project.tasks.processResources)
             if (!name.lowercase(Locale.getDefault()).contains("test")) {
-                options.errorprone {
-                    check("NullAway", CheckSeverity.ERROR)
-                    option("NullAway:AnnotatedPackages", "com.uber")
-                }
+//                options.errorprone {
+//                    check("NullAway", CheckSeverity.ERROR)
+//                    option("NullAway:AnnotatedPackages", "com.uber")
+//                }
             }
         }
         java {

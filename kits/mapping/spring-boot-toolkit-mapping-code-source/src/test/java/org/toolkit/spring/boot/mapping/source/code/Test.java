@@ -3,29 +3,33 @@ package org.toolkit.spring.boot.mapping.source.code;
 import org.jetbrains.annotations.NotNull;
 import org.toolkit.spring.boot.mapping.core.structure.MappingItem;
 import org.toolkit.spring.boot.mapping.source.code.annotation.EnumMapping;
+import org.toolkit.spring.boot.mapping.source.code.annotation.StaticField;
 
 @EnumMapping
-public enum Test implements MappingItem {
-	A("texxt", "dsa"),
+public enum Test implements MappingItem<String> {
+    A("texxt", "dsa"),
 
-	B("1aa", "11");
+    B("1aa", "11");
 
-	Test(String texxt, String dsa) {
-		this.text = texxt;
-		this.value = dsa;
-	}
+    @StaticField("test_field")
+    static final String test = "test";
 
-	private final String value;
+    Test(String texxt, String dsa) {
+        this.text = texxt;
+        this.value = dsa;
+    }
 
-	private final String text;
+    private final String value;
 
-	@Override
-	public @NotNull String value() {
-		return this.value;
-	}
+    private final String text;
 
-	@Override
-	public @NotNull String text() {
-		return this.text;
-	}
+    @Override
+    public @NotNull String value() {
+        return this.value;
+    }
+
+    @Override
+    public @NotNull String text() {
+        return this.text;
+    }
 }

@@ -2,9 +2,9 @@ package org.toolkit.spring.boot.mapping.core.structure;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface MappingItem {
+public interface MappingItem<T> {
 
-	@NotNull String value();
+	@NotNull T value();
 
 	@NotNull String text();
 }

@@ -6,5 +6,5 @@ public interface MappingSource {
 
 	String getMappingKey();
 
-	List<MappingItem> getMappingItems();
+	List<MappingItem<?>> getMappingItems();
 }

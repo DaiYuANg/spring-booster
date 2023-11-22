@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import org.toolkit.spring.boot.mapping.core.utils.MappedUtil;
 
 @ControllerAdvice
-@Order()
+@Order
 public class MappedResponseHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(
