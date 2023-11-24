@@ -11,13 +11,14 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
-    username: root
-    password: root
+#    jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+#    username: root
+#    password: root
     hikari:
-      jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
       driver-class-name: com.mysql.cj.jdbc.Driver
+  #      jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+#      driver-class-name: com.mysql.cj.jdbc.Driver
   authentication:
     debug: true
 #  authentication:
@@ -30,6 +31,7 @@ server:
 logging:
   level:
     org.toolkit.**.*: debug
+    org.springframework.security: TRACE
 management:
   endpoints:
     web:

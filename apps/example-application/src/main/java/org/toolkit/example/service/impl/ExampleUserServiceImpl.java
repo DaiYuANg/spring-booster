@@ -2,17 +2,18 @@ package org.toolkit.example.service.impl;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import net.datafaker.Faker;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 import org.toolkit.example.dto.LoginDto;
 import org.toolkit.example.eneity.ExampleUserEntity;
@@ -20,6 +21,8 @@ import org.toolkit.example.repository.ExampleUserEntityRepository;
 import org.toolkit.example.service.IExampleUserService;
 import org.toolkit.example.vo.LoginVo;
 import org.toolkit.spring.boot.authentication.service.IJwtService;
+
+import static java.util.stream.LongStream.range;
 
 @Service
 @Slf4j
@@ -36,21 +39,18 @@ public class ExampleUserServiceImpl implements IExampleUserService {
 	@Resource
 	private PasswordEncoder passwordEncoder;
 
-	@Resource
-	private SecurityFilterChain securityFilterChain;
-
 	@PostConstruct
 	public void init() {
-		//        val fakeData = new java.util.ArrayList<>(IntStream.range(1, 100).mapToObj(r -> {
-		//                    val username = faker.name().firstName() + faker.name().lastName();
-		//                    val password = passwordEncoder.encode(faker.internet().password());
-		//                    return new ExampleUserEntity()
-		//                            .setUsername(username)
-		//                            .setPassword(Base64.encode(password));
-		//                })
-		//                .toList());
-		val test = new ExampleUserEntity().setUsername("test").setPassword(passwordEncoder.encode("test"));
+		val faker = new Faker();
+		val a = range(0,50000)
+				.mapToObj(i-> new ExampleUserEntity().setPassword(faker.internet().username())
+				.setPassword(faker.internet().password()))
+				.toList();
+		val test = new ExampleUserEntity()
+				.setUsername("test")
+				.setPassword(passwordEncoder.encode("test"));
 		exampleUserEntityRepository.saveAndFlush(test);
+		exampleUserEntityRepository.saveAllAndFlush(a);
 	}
 
 	@EventListener(ApplicationStartedEvent.class)
@@ -72,7 +72,7 @@ public class ExampleUserServiceImpl implements IExampleUserService {
 	}
 
 	@Override
-	public List<ExampleUserEntity> queryList() {
-		return exampleUserEntityRepository.findAll();
+	public Page<ExampleUserEntity> queryList() {
+		return exampleUserEntityRepository.findAll(Pageable.ofSize(20));
 	}
 }

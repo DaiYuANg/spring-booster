@@ -26,10 +26,10 @@ public class PersistenceAutoConfiguration {
 		log.info("Persistence auto config executing");
 	}
 
-	@Primary
-	@Bean
-	@ConfigurationProperties(prefix = "spring.datasource")
-	public DataSource userDataSource() {
-		return DataSourceBuilder.create().build();
-	}
+//	@Primary
+//	@Bean
+//	@ConfigurationProperties(prefix = "spring.datasource")
+//	public DataSource userDataSource() {
+//		return DataSourceBuilder.create().build();
+//	}
 }

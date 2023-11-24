@@ -7,21 +7,26 @@ import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointR
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties;
 import org.toolkit.spring.boot.authentication.configuration.properties.JwtConfigProperties;
 import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
+import org.toolkit.spring.boot.authentication.service.IJwtService;
 
 @AutoConfiguration
 @EnableWebSecurity
@@ -31,50 +36,53 @@ import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
 @ComponentScan("org.toolkit.spring.boot.authentication.**.*")
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 
-	@Resource
-	private AuthenticationConfigurationProperties authenticationConfigurationProperties;
+    @Resource
+    private AuthenticationConfigurationProperties authenticationConfigurationProperties;
 
-	@Resource
-	@Lazy
-	private AuthenticationManager authenticationManager;
+    @Resource
+    @Lazy
+    private AuthenticationManager authenticationManager;
 
-	@Resource
-	private AuthenticationProvider authenticationProvider;
+    @Resource
+    private AuthenticationProvider authenticationProvider;
 
-	@Resource
-	private JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Resource
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http, MvcRequestMatcher.Builder mvc)
-			throws Exception {
-		//        http.authorizeHttpRequests(req->{
-		//            req.requestMatchers(mvc.pattern("/actuator")).permitAll();
-		//        });
-		http.cors(AbstractHttpConfigurer::disable);
-		http.authorizeHttpRequests(req -> {
-			req.anyRequest().permitAll();
-		});
-		http.securityMatcher(EndpointRequest.toAnyEndpoint());
-		http.logout(AbstractHttpConfigurer::disable);
-		//        http.authorizeHttpRequests((requests) -> requests.anyRequest().permitAll());
-		////        http.csrf(AbstractHttpConfigurer::disable);
-		////        http.cors(AbstractHttpConfigurer::disable);
-		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		http.authenticationManager(authenticationManager);
-		http.authenticationProvider(authenticationProvider);
-		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-		//        http.logout(AbstractHttpConfigurer::disable);
-		return http.build();
-	}
 
-	@Scope("prototype")
-	@Bean
-	MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
-		return new MvcRequestMatcher.Builder(introspector);
-	}
+    @Bean
+    public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http, MvcRequestMatcher.Builder mvc)
+            throws Exception {
+        //        http.authorizeHttpRequests(req->{
+        //            req.requestMatchers(mvc.pattern("/actuator")).permitAll();
+        //        });
+        http.cors(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.authorizeHttpRequests(req -> {
+            req.requestMatchers(new AntPathRequestMatcher("/example/login")).permitAll();
+        });
+        http.httpBasic(AbstractHttpConfigurer::disable);
+        http.securityMatcher(EndpointRequest.toAnyEndpoint());
+        http.logout(AbstractHttpConfigurer::disable);
+        //        http.authorizeHttpRequests((requests) -> requests.anyRequest().permitAll());
+        ////        http.csrf(AbstractHttpConfigurer::disable);
+        ////        http.cors(AbstractHttpConfigurer::disable);
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.authenticationManager(authenticationManager);
+        http.authenticationProvider(authenticationProvider);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        //        http.logout(AbstractHttpConfigurer::disable);
+        return http.build();
+    }
 
-	@Override
-	public void customize(@NotNull WebSecurity web) {
-		web.debug(authenticationConfigurationProperties.isDebug());
-	}
+    @Scope("prototype")
+    @Bean
+    MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspector) {
+        return new MvcRequestMatcher.Builder(introspector);
+    }
+
+    @Override
+    public void customize(@NotNull WebSecurity web) {
+        web.debug(authenticationConfigurationProperties.isDebug());
+    }
 }

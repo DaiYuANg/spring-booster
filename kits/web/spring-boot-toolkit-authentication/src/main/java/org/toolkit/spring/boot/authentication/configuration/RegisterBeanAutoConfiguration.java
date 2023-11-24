@@ -49,8 +49,5 @@ public class RegisterBeanAutoConfiguration {
 		return authProvider;
 	}
 
-	@Bean
-	public JwtAuthenticationFilter jwtAuthenticationFilter() {
-		return new JwtAuthenticationFilter(jwtService());
-	}
+
 }

@@ -1,8 +1,8 @@
 package org.toolkit.example.service;
 
-import java.util.List;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Page;
 import org.springframework.scheduling.annotation.Async;
 import org.toolkit.example.dto.LoginDto;
 import org.toolkit.example.eneity.ExampleUserEntity;
@@ -15,5 +15,5 @@ public interface IExampleUserService {
 
 	LoginVo login(LoginDto dto);
 
-	List<ExampleUserEntity> queryList();
+	Page<ExampleUserEntity> queryList();
 }
