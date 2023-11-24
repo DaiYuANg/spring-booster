@@ -1,6 +1,5 @@
 package org.toolkit.example.service.impl;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -39,10 +38,12 @@ public class ExampleUserServiceImpl implements IExampleUserService {
 	@Resource
 	private PasswordEncoder passwordEncoder;
 
-	@PostConstruct
-	public void init() {
+	@EventListener(ApplicationStartedEvent.class)
+	@Async
+	@Override
+	public void listen() {
 		val faker = new Faker();
-		val a = range(0,50000)
+		val a = range(0,50)
 				.mapToObj(i-> new ExampleUserEntity().setPassword(faker.internet().username())
 				.setPassword(faker.internet().password()))
 				.toList();

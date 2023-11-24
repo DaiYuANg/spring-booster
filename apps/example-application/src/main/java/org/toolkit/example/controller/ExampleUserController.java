@@ -20,7 +20,7 @@ public class ExampleUserController {
 	private IExampleUserService exampleUserService;
 
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-//	@IgnoreAuthentication
+	@IgnoreAuthentication
 	public LoginVo test(@RequestBody LoginDto loginDto) {
 		return exampleUserService.login(loginDto);
 	}
@@ -31,7 +31,6 @@ public class ExampleUserController {
 	}
 
 	@GetMapping("/queryList")
-	@IgnoreAuthentication
 	public Page<ExampleUserEntity> queryList() {
 		return exampleUserService.queryList();
 	}

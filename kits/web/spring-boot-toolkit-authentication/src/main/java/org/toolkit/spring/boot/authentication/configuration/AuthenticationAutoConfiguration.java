@@ -47,31 +47,27 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
     private AuthenticationProvider authenticationProvider;
 
     @Resource
+    @Lazy
     private JwtAuthenticationFilter jwtAuthenticationFilter;
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http, MvcRequestMatcher.Builder mvc)
             throws Exception {
-        //        http.authorizeHttpRequests(req->{
-        //            req.requestMatchers(mvc.pattern("/actuator")).permitAll();
-        //        });
         http.cors(AbstractHttpConfigurer::disable);
         http.csrf(AbstractHttpConfigurer::disable);
-        http.authorizeHttpRequests(req -> {
-            req.requestMatchers(new AntPathRequestMatcher("/example/login")).permitAll();
-        });
+        http.authorizeHttpRequests(req -> req
+                .requestMatchers("/example/login")
+                .permitAll()
+                .anyRequest().authenticated()
+        );
         http.httpBasic(AbstractHttpConfigurer::disable);
         http.securityMatcher(EndpointRequest.toAnyEndpoint());
         http.logout(AbstractHttpConfigurer::disable);
-        //        http.authorizeHttpRequests((requests) -> requests.anyRequest().permitAll());
-        ////        http.csrf(AbstractHttpConfigurer::disable);
-        ////        http.cors(AbstractHttpConfigurer::disable);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authenticationManager(authenticationManager);
         http.authenticationProvider(authenticationProvider);
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        //        http.logout(AbstractHttpConfigurer::disable);
+        http.addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);
+        log.info("build SecurityFilterChain");
         return http.build();
     }
 

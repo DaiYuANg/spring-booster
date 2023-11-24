@@ -48,6 +48,4 @@ public class RegisterBeanAutoConfiguration {
 		authProvider.setPasswordEncoder(passwordEncoder);
 		return authProvider;
 	}
-
-
 }

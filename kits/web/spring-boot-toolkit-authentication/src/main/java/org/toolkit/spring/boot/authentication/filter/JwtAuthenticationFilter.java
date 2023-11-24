@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			@NotNull HttpServletResponse response,
 			@NotNull FilterChain filterChain)
 			throws ServletException, IOException {
-		val authHeader = request.getHeader("Authorization");
+ 		val authHeader = request.getHeader("Authorization");
 		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 			filterChain.doFilter(request, response);
 			return;

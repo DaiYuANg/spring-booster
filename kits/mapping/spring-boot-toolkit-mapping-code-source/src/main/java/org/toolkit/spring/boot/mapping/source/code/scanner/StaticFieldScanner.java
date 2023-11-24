@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.toolkit.spring.boot.mapping.source.code.annotation.StaticField;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,7 +44,7 @@ public class StaticFieldScanner {
     private Map.@NotNull @Unmodifiable Entry<String, Object> processField(@NotNull FieldInfo field) {
         val jvmField = field.loadClassAndGetField();
         jvmField.setAccessible(true);
-        val value = jvmField.get(null);
+        var value = jvmField.get(null);
         log.info("field:{}", field);
         log.info("value:{}", value);
         val ann = jvmField.getAnnotation(StaticField.class);

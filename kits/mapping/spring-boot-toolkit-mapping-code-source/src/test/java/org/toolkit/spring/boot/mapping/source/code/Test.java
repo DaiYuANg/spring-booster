@@ -5,31 +5,13 @@ import org.toolkit.spring.boot.mapping.core.structure.MappingItem;
 import org.toolkit.spring.boot.mapping.source.code.annotation.EnumMapping;
 import org.toolkit.spring.boot.mapping.source.code.annotation.StaticField;
 
-@EnumMapping
-public enum Test implements MappingItem<String> {
-    A("texxt", "dsa"),
+import java.math.BigDecimal;
 
-    B("1aa", "11");
+public class Test {
 
     @StaticField("test_field")
-    static final String test = "test";
+    private static final String test = "test";
 
-    Test(String texxt, String dsa) {
-        this.text = texxt;
-        this.value = dsa;
-    }
-
-    private final String value;
-
-    private final String text;
-
-    @Override
-    public @NotNull String value() {
-        return this.value;
-    }
-
-    @Override
-    public @NotNull String text() {
-        return this.text;
-    }
+    @StaticField("test_field_big_decimal")
+    private static final BigDecimal test1 = BigDecimal.ZERO;
 }

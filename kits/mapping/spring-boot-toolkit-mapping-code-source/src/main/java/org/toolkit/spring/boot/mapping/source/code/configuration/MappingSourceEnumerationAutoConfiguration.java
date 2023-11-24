@@ -34,35 +34,6 @@ public class MappingSourceEnumerationAutoConfiguration {
 				});
 			});
 		}
-		;
-		// Scan com.xyz and subpackages (omit to scan all packages);
-		//        context.getBeansWithAnnotation(ComponentScan.class).forEach((name, instance) -> {
-		//            Set<ComponentScan> scans =
-		// AnnotatedElementUtils.getMergedRepeatableAnnotations(instance.getClass(), ComponentScan.class);
-		//            for (ComponentScan scan : scans) {
-		//                System.out.println(Arrays.toString(scan.basePackageClasses()));
-		//                System.out.println(Arrays.toString(scan.basePackages()));
-		//            }
-		//        });
-		//        System.err.println(context.getClass().getName());
-		//        context.getBeansWithAnnotation(SpringBootApplication.class).values();
-		//        String pkg = "com.xyz";
-		//        try (ScanResult scanResult =
-		//                     new ClassGraph()
-		//                             .verbose()               // Log to stderr
-		//                             .enableAllInfo()         // Scan classes, methods, fields, annotations
-		//                             .acceptPackages(pkg)     // Scan com.xyz and subpackages (omit to scan all
-		// packages)
-		//                             .scan(Runtime.getRuntime().availableProcessors())) {               // Start the
-		// scan
-		//            // @com.xyz.Route has one required parameter
-		//            scanResult.getClassesWithAnnotation(EnumMapping.class).forEach(routeClassInfo -> {
-		//                AnnotationInfo routeAnnotationInfo = routeClassInfo.getAnnotationInfo(EnumMapping.class);
-		//                List<AnnotationParameterValue> routeParamVals = routeAnnotationInfo.getParameterValues();
-		//                String route = (String) routeParamVals.get(0).getValue();
-		//                System.out.println(routeClassInfo.getName() + " is annotated with route " + route);
-		//            });
-		//        }
 	}
 
 	private List<String> getBasepackages() {
