@@ -41,6 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			filterChain.doFilter(request, response);
 			return;
 		}
+		log.atInfo().log("auth header:{}",authHeader);
 		val jwt = authHeader.substring(7);
 		val username = jwtService.extractUsername(jwt);
 		val authentication = SecurityContextHolder.getContext().getAuthentication();

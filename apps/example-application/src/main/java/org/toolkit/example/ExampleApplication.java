@@ -7,6 +7,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+import java.util.concurrent.Executors;
+
 @SpringBootApplication(scanBasePackages = "org.toolkit.example.**.*")
 @EnableAsync
 @EnableJpaRepositories("org.toolkit.example.**.*")

@@ -11,4 +11,5 @@ dependencies {
   runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.3")
   implementation(projects.kits.core.springBootToolkitUtils)
   testImplementation("org.springframework.boot:spring-boot-starter-web")
+  testImplementation("org.springframework.security:spring-security-test")
 }

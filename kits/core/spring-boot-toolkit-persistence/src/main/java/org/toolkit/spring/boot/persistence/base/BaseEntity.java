@@ -23,7 +23,7 @@ import org.toolkit.spring.boot.persistence.listeners.BaseEntityListener;
 @EntityListeners({AuditingEntityListener.class, BaseEntityListener.class})
 public class BaseEntity implements Serializable {
 	@Serial
-	private static final long serialVersionUID = 3043752130587211932L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)

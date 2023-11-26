@@ -7,4 +7,6 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 public @interface StaticField {
     String value();
+
+    int order() default Integer.MIN_VALUE;
 }

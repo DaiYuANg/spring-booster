@@ -2,9 +2,9 @@ package org.toolkit.spring.boot.mapping.core.structure;
 
 import java.util.List;
 
-public interface MappingSource {
+public interface MappingSource<T> {
 
-	String getMappingKey();
+    Mapping<T> mapping();
 
-	List<MappingItem<?>> getMappingItems();
+    List<MappingItem<T>> mappingItems();
 }

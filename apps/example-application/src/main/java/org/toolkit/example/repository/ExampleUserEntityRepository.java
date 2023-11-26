@@ -8,5 +8,5 @@ import org.toolkit.example.eneity.ExampleUserEntity;
 
 @Repository
 public interface ExampleUserEntityRepository extends JpaRepository<ExampleUserEntity, String> {
-	@NonNull Optional<ExampleUserEntity> findByUsername(@NonNull Object unknownAttr1);
+	@NonNull Optional<ExampleUserEntity> findByUsername(@NonNull String unknownAttr1);
 }

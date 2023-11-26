@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
@@ -21,12 +24,17 @@ import org.toolkit.spring.boot.persistence.base.BaseEntity;
 @Table(name = "example_user")
 @ToString
 public class ExampleUserEntity extends BaseEntity implements UserDetails {
+	@Serial
+	private static final long serialVersionUID = 1L;
 
 	@Column
 	private String username;
 
 	@Column
 	private String password;
+
+	@Column
+	private long latestLogin;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

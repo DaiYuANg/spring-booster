@@ -5,6 +5,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
@@ -13,8 +14,9 @@ public class BaseEntityListener {
 
 	@PrePersist
 	public void prePersist(@NotNull BaseEntity baseEntity) {
-		baseEntity.setId(IdUtil.randomUUID());
-		baseEntity.setVersion(String.valueOf(baseEntity.hashCode()));
+//		baseEntity.setId(IdUtil.randomUUID());
+		val version = Math.abs(baseEntity.hashCode());
+		baseEntity.setVersion(String.valueOf(version));
 	}
 
 	@SneakyThrows

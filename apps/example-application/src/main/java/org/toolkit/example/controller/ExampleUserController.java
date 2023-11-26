@@ -25,7 +25,7 @@ public class ExampleUserController {
 		return exampleUserService.login(loginDto);
 	}
 
-	@PostMapping("/error")
+	@GetMapping("/error")
 	public void error(){
 		System.err.println("errr");
 	}

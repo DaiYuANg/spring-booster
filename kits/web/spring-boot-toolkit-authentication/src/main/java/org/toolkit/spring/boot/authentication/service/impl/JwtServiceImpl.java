@@ -49,7 +49,6 @@ public class JwtServiceImpl implements IJwtService {
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(DateUtil.endOfDay(new Date()))
                 .signWith(key)
-//				.encryptWith(getSigningKey(), enc)
                 .compact();
     }
 
@@ -61,13 +60,6 @@ public class JwtServiceImpl implements IJwtService {
     @Override
     public Claims extractAllClaims(String token) {
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
-//		return Jwts.parser()
-//				.unsecured()
-//				.verifyWith(getSigningKey())
-////				.decryptWith(getSigningKey())
-//				.build()
-//				.parseSignedClaims(token)
-//				.getPayload();
     }
 
     @Override
@@ -78,22 +70,5 @@ public class JwtServiceImpl implements IJwtService {
     @Override
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
-    }
-
-    private @NotNull SecretKey getSigningKey() {
-        //        System.err.println(secretKey);
-        //        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        //        return Keys.hmacShaKeyFor(keyBytes);
-//        return .build();
-        return null;
-    }
-
-    public static void main(String[] args) {
-        SecretKey key = Jwts.SIG.HS256.key().build();
-
-        String token = Jwts.builder().claims(new HashMap<>()).subject("test")
-                .issuedAt(new Date(System.currentTimeMillis())).signWith(key).compact();
-        System.err.println(token);
-        Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
     }
 }

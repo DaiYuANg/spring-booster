@@ -21,6 +21,8 @@ import org.toolkit.example.service.IExampleUserService;
 import org.toolkit.example.vo.LoginVo;
 import org.toolkit.spring.boot.authentication.service.IJwtService;
 
+import java.util.Date;
+
 import static java.util.stream.LongStream.range;
 
 @Service
@@ -69,6 +71,8 @@ public class ExampleUserServiceImpl implements IExampleUserService {
 				new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
 		val user = exampleUserEntityRepository.findByUsername(dto.getUsername()).orElseThrow();
 		val token = jwtService.generateToken(user);
+		user.setLatestLogin(new Date().getTime());
+		exampleUserEntityRepository.save(user);
 		return LoginVo.builder().token(token).build();
 	}
 

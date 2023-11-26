@@ -21,6 +21,9 @@ spring:
 #      driver-class-name: com.mysql.cj.jdbc.Driver
   authentication:
     debug: true
+    permit:
+      - pattern: "/actuator/**"
+#      - pattern: "/toolkit/route/route"
 #  authentication:
 #    permit:
 #      - pattern: /actuator
