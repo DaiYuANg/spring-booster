@@ -13,7 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.method.HandlerMethod;
@@ -26,6 +28,7 @@ import org.toolkit.spring.boot.utils.bean.BeanUtil;
 
 @AutoConfiguration
 @Slf4j
+@AutoConfigureBefore(AuthenticationAutoConfiguration.class)
 public class PermitAutoConfiguration {
 
     @Resource

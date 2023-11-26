@@ -2,6 +2,7 @@ package org.toolkit.spring.boot.authentication.configuration.properties;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,6 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 public class AuthenticationConfigurationProperties {
 
-	private boolean debug = false;
-	private Set<PermitConfigProperties> permit = new HashSet<>();
+    private Boolean debug = false;
+
+    private Set<PermitConfigProperties> permit = new HashSet<>();
 }

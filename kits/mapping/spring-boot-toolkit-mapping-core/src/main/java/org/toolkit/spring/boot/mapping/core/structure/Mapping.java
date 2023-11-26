@@ -10,7 +10,7 @@ public interface Mapping<T> {
 
     String getDescription();
 
-    boolean isDel();
+    boolean getDelete();
 
     String getType();
 

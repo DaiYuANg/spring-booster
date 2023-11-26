@@ -4,9 +4,6 @@ import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.shell.command.CommandHandlingResult;
-import org.springframework.shell.command.annotation.ExceptionResolver;
 import org.springframework.shell.component.MultiItemSelector;
 import org.springframework.shell.component.support.Itemable;
 import org.springframework.shell.component.support.SelectorItem;
@@ -42,9 +39,9 @@ public class GenerateCommand extends AbstractShellComponent {
 		return "Hello world ";
 	}
 
-	@ExceptionResolver({RuntimeException.class})
-	CommandHandlingResult errorHandler(@NotNull Exception e) {
-		log.error(e.getMessage());
-		return CommandHandlingResult.of("Hi, handled exception\n", 42);
-	}
+//	@ExceptionResolver({RuntimeException.class})
+//	CommandHandlingResult errorHandler(@NotNull Exception e) {
+//		log.error(e.getMessage());
+//		return CommandHandlingResult.of("Hi, handled exception\n", 42);
+//	}
 }

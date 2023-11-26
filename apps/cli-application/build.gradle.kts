@@ -29,6 +29,7 @@ dependencies {
   implementation("jakarta.persistence:jakarta.persistence-api")
   implementation("org.springframework.boot:spring-boot-starter-validation")
   developmentOnly("org.springframework.boot:spring-boot-devtools")
+  developmentOnly("org.springframework.boot:spring-boot-docker-compose")
   implementation("org.gradle:gradle-tooling-api:$toolingApiVersion")
   implementation("org.apache.maven:maven-embedder:4.0.0-alpha-8")
 }

@@ -20,10 +20,19 @@ spring:
   #      jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
 #      driver-class-name: com.mysql.cj.jdbc.Driver
   authentication:
-    debug: true
+    debug: false
     permit:
       - pattern: "/actuator/**"
-#      - pattern: "/toolkit/route/route"
+      - pattern: "/instances"
+      - pattern: "/applications"
+  threads:
+    virtual:
+      enabled: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+
 #  authentication:
 #    permit:
 #      - pattern: /actuator
@@ -39,4 +48,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0
+  info:
+    env:
+      enabled: true

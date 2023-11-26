@@ -1,9 +1,9 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-  `spring-boot-project`
-  `kotlin-support`
-  application
+    `spring-boot-project`
+    `kotlin-support`
+    application
 }
 
 val mainClass = "org.toolkit.spring.boot.website.WebsiteApplication"
@@ -15,57 +15,57 @@ version = "1.0-SNAPSHOT"
 val springBootAdminVersion = "3.1.8"
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-web")
-  implementation(projects.kits.core.springBootToolkitUtils)
-  implementation(projects.kits.core.springBootToolkitPersistence)
-  implementation("de.codecentric:spring-boot-admin-starter-server:$springBootAdminVersion")
-  implementation("de.codecentric:spring-boot-admin-starter-client:$springBootAdminVersion")
-  implementation("me.paulschwarz:spring-dotenv:4.0.0")
-  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-mail")
-  implementation("com.h2database:h2")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation(projects.kits.core.springBootToolkitUtils)
+    implementation(projects.kits.core.springBootToolkitPersistence)
+    implementation("de.codecentric:spring-boot-admin-starter-server:$springBootAdminVersion")
+    implementation("de.codecentric:spring-boot-admin-starter-client:$springBootAdminVersion")
+    implementation("me.paulschwarz:spring-dotenv:4.0.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+    implementation("com.h2database:h2")
 }
 
 resources.delegateClosureOf<CopySpec> {
-  from("src/resources/images") {
-    include("images/**/*.png")
-    exclude("images/**/notThisOne.png")
-  }
+    from("src/resources/images") {
+        include("images/**/*.png")
+        exclude("images/**/notThisOne.png")
+    }
 
-  from("${layout.buildDirectory}/downloads") { include("deck.js/**") }
+    from("${layout.buildDirectory}/downloads") { include("deck.js/**") }
 
-  into("./images")
+    into("./images")
 }
 
 tasks.getByName<BootJar>("bootJar") { doFirst { copyDocs } }
 
 tasks.getByName<Jar>("jar") {
-  dependsOn("buildMkdocs")
-  from("build/docs") { into("static") }
+    dependsOn("buildMkdocs")
+    from("build/docs") { into("static") }
 }
 
 tasks.withType<JavaCompile> {
-  dependsOn("poetryInstall")
-  options.encoding = Charsets.UTF_8.name()
-  dependsOn("copyDocs")
+    dependsOn("poetryInstall")
+    options.encoding = Charsets.UTF_8.name()
+    dependsOn("copyDocs")
 }
 
 val copyDocs =
     tasks.register("copyDocs", Copy::class) {
-      dependsOn(tasks.spotlessJava)
-      dependsOn(tasks.processResources.name)
-      dependsOn(buildDocs)
-      from("build/docs")
-      into("src/main/resources/static")
+        dependsOn(tasks.spotlessJava)
+        dependsOn(tasks.processResources.name)
+        dependsOn(buildDocs)
+        from("build/docs")
+        into("src/main/resources/static")
     }
 
 val poetryInstall = task<Exec>("poetryInstall") { commandLine("poetry", "lock") }
 val serveDocs =
     task<Exec>("serveMkdocs") {
-      commandLine("poetry", "run", "mkdocs", "serve", "-a", "localhost:9000")
+        commandLine("poetry", "run", "mkdocs", "serve", "-a", "localhost:9000")
     }
 
 val buildDocs =
     task<Exec>("buildMkdocs") {
-      commandLine("poetry", "run", "mkdocs", "build", "-d", "build/docs")
+        commandLine("poetry", "run", "mkdocs", "build", "-d", "build/docs")
     }

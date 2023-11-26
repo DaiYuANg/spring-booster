@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface MappingItem<T> {
 
-	@NotNull T value();
+	@NotNull T getValue();
 
-	@NotNull String text();
+	@NotNull String getText();
 }

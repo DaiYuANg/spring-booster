@@ -4,9 +4,10 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
 import org.toolkit.spring.boot.verification.validator.JSONValidator;
+import org.toolkit.spring.boot.verification.validator.SomethingExistsInDatabaseValidator;
 
 @Documented
-@Constraint(validatedBy = JSONValidator.class)
+@Constraint(validatedBy = SomethingExistsInDatabaseValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SomethingExistsInDatabase {

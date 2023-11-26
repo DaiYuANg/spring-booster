@@ -3,6 +3,7 @@ package org.toolkit.example.configuration;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -32,5 +33,10 @@ public class AuthConfiguration {
 	@Bean
 	public AuditorAware<String> auditorAware() {
 		return new ApplicationAuditAware();
+	}
+
+	@Bean
+	public InMemoryHttpExchangeRepository createTraceRepository() {
+		return new InMemoryHttpExchangeRepository();
 	}
 }

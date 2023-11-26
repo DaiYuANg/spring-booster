@@ -89,6 +89,6 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer{
 
     @Override
     public void customize(@NotNull WebSecurity web) {
-        web.debug(authenticationConfigurationProperties.isDebug());
+        web.debug(authenticationConfigurationProperties.getDebug());
     }
 }
