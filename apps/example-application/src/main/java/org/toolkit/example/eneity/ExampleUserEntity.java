@@ -3,9 +3,6 @@ package org.toolkit.example.eneity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import java.io.Serial;
-import java.util.ArrayList;
-import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +10,10 @@ import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
+
+import java.io.Serial;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Accessors(chain = true)
@@ -24,7 +25,7 @@ public class ExampleUserEntity extends BaseEntity implements UserDetails {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
-	@Column
+	@Column(unique = true)
 	private String username;
 
 	@Column

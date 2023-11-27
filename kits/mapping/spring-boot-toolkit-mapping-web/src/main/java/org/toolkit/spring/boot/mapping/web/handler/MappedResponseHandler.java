@@ -1,40 +1,60 @@
 package org.toolkit.spring.boot.mapping.web.handler;
 
+import jakarta.annotation.Resource;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.dynamic.DynamicType;
+import net.bytebuddy.implementation.FixedValue;
+import net.bytebuddy.matcher.ElementMatchers;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.server.ServerHttpRequest;
-import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.util.ReflectionUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import org.toolkit.spring.boot.mapping.core.utils.MappedUtil;
-
-import java.util.Objects;
+import org.toolkit.spring.boot.mapping.web.util.ObjectUtil;
 
 @ControllerAdvice
 @Order
-public class MappedResponseHandler implements ResponseBodyAdvice<Object> {
-    @Override
-    public boolean supports(
-            @NotNull MethodParameter returnType, @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
-        return MappedUtil.isMappedTarget(returnType.getParameterType());
-    }
+@Aspect
+@Slf4j
+public class MappedResponseHandler {
 
-    @Override
-    public Object beforeBodyWrite(
-            Object body,
-            @NotNull MethodParameter returnType,
-            @NotNull MediaType selectedContentType,
-            @NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType,
-            @NotNull ServerHttpRequest request,
-            @NotNull ServerHttpResponse response) {
-        if (Objects.isNull(body)) return null;
-        ReflectionUtils.doWithFields(body.getClass(), field -> {
-            field.setAccessible(true);
-        });
-        return null;
-    }
+	@Resource
+	private ByteBuddy byteBuddy;
+
+	@Pointcut("@annotation(org.toolkit.spring.boot.mapping.core.annotations.MappingTarget)")
+	public void annotationPoint() {}
+
+	@SneakyThrows
+	@Around("annotationPoint()")
+	public Object before(@NotNull ProceedingJoinPoint joinPoint) {
+		val returnValue = joinPoint.proceed();
+		processNestedType(returnValue);
+		return returnValue;
+	}
+
+	@SneakyThrows
+	@Contract(pure = true)
+	private void processNestedType(@NotNull Object returnValue) {
+		returnValue.getClass().getNestMembers();
+		val clazz = returnValue.getClass();
+		if (returnValue instanceof Page<?> v) {
+			v.getContent().forEach(item -> ObjectUtil.walkObject(item, 10));
+		}
+		try (DynamicType.Unloaded<?> dynamicType = byteBuddy
+				.subclass(Object.class)
+				.method(ElementMatchers.named("toString"))
+				.intercept(FixedValue.value("Hello World!"))
+				.make()) {
+			val newClazz = dynamicType.load(getClass().getClassLoader()).getLoaded();
+			val newObject = newClazz.getDeclaredConstructor().newInstance();
+			System.err.println(newObject);
+		}
+	}
 }

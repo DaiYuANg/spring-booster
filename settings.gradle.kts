@@ -128,3 +128,6 @@ include("codegen:spring-boot-toolkit-codegen")
 include("codegen:spring-boot-toolkit-codegen-annotation")
 
 include("kits:core:spring-boot-toolkit-dotenv")
+
+include("kits:core:spring-boot-toolkit-scanner")
+

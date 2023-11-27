@@ -9,7 +9,4 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ToString
 @ConfigurationProperties(prefix = "spring.mapping.source.code")
-public class MappingCodeSourceConfigurationProperties {
-
-	private Boolean debug = false;
-}
+public class MappingCodeSourceConfigurationProperties {}

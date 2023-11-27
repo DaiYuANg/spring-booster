@@ -10,6 +10,7 @@ import org.toolkit.example.eneity.ExampleUserEntity;
 import org.toolkit.example.service.IExampleUserService;
 import org.toolkit.example.vo.LoginVo;
 import org.toolkit.spring.boot.authentication.annotation.IgnoreAuthentication;
+import org.toolkit.spring.boot.mapping.core.annotations.MappingTarget;
 
 @RestController
 @RequestMapping("/example")
@@ -31,6 +32,7 @@ public class ExampleUserController {
 	}
 
 	@GetMapping("/queryList")
+	@MappingTarget
 	public Page<ExampleUserEntity> queryList() {
 		return exampleUserService.queryList();
 	}

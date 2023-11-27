@@ -1,7 +1,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     open-in-view: true
     show-sql: true
     properties:
@@ -10,14 +10,14 @@ spring:
           batch_size: 10000
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
-#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
-#    username: root
-#    password: root
+    #    jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+    #    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+    #    username: root
+    #    password: root
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
   #      jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+  #      driver-class-name: com.mysql.cj.jdbc.Driver
   authentication:
     debug: false
     permit:
@@ -27,10 +27,6 @@ spring:
   threads:
     virtual:
       enabled: true
-  mapping:
-    source:
-      code:
-        debug: true
 #  authentication:
 #    permit:
 #      - pattern: /actuator

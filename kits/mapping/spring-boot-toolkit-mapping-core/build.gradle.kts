@@ -3,6 +3,6 @@ group = "org.toolkit.spring.boot.starter.mapped"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-  //    api(projects.modules.core.springBootStarterRestful)
+  implementation(projects.kits.core.springBootToolkitUtils)
   api("org.springframework.boot:spring-boot-starter-web")
 }

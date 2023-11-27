@@ -12,14 +12,11 @@ group = "org.toolkit.spring.boot.website"
 
 version = "1.0-SNAPSHOT"
 
-val springBootAdminVersion = "3.1.8"
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation(projects.kits.core.springBootToolkitUtils)
   implementation(projects.kits.core.springBootToolkitPersistence)
-  implementation("de.codecentric:spring-boot-admin-starter-server:$springBootAdminVersion")
-  implementation("de.codecentric:spring-boot-admin-starter-client:$springBootAdminVersion")
   implementation("me.paulschwarz:spring-dotenv:4.0.0")
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.boot:spring-boot-starter-mail")

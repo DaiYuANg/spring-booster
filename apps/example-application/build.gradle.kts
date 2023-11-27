@@ -22,6 +22,7 @@ dependencies {
   implementation(projects.kits.mapping.springBootToolkitMappingCore)
   implementation(projects.kits.mapping.springBootToolkitMappingCodeSource)
   implementation(projects.kits.mapping.springBootToolkitMappingDatabaseSource)
+  implementation(projects.kits.mapping.springBootToolkitMappingWeb)
   annotationProcessor(projects.codegen.springBootToolkitCodegen)
 }
 

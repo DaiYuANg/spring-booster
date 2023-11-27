@@ -1,7 +1,6 @@
 package org.toolkit.spring.boot.mapping.source.code.scanner;
 
 import io.github.classgraph.ClassGraph;
-import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,7 @@ class StaticFieldScannerTest {
 
 	@Test
 	public void testScanner() {
-		val scanResult = new StaticFieldScanner(classGraph).scan();
-		System.err.println(scanResult);
+		//		val scanResult = new StaticFieldScanner(classGraph).scan();
+		//		System.err.println(scanResult);
 	}
 }

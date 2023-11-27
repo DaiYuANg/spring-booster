@@ -1,31 +1,27 @@
 package org.toolkit.spring.boot.mapping.source.code.scanner;
 
-import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.FieldInfo;
+import io.github.classgraph.ScanResult;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.toolkit.spring.boot.mapping.source.code.annotation.StaticField;
+import org.toolkit.spring.boot.scanner.base.ScannerResultProcessor;
 
 @Slf4j
-@RequiredArgsConstructor
-public class StaticFieldScanner {
+public class StaticFieldScanner implements ScannerResultProcessor {
 
-	private final ClassGraph classGraph;
-
-	public Map<String, Object> scan() {
-		try (val result = classGraph.scan(Runtime.getRuntime().availableProcessors())) {
-			return result.getAllClasses().stream()
-					.flatMap(this::processClasses)
-					.collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
-		}
+	public void process(@NotNull ScanResult result) {
+		log.atInfo().log("static field processor");
+		val r = result.getAllClasses().stream()
+				.flatMap(this::processClasses)
+				.collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	@NotNull private Stream<Map.Entry<String, Object>> processClasses(@NotNull ClassInfo classInfo) {
