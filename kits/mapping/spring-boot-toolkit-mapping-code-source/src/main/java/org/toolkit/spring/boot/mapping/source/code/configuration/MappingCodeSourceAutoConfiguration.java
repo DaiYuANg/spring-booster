@@ -25,22 +25,6 @@ public class MappingCodeSourceAutoConfiguration {
 	@Resource
 	private MappingCodeSourceConfigurationProperties codeSourceConfigurationProperties;
 
-	@PostConstruct
-	public void init() {
-		//        val pkg = getBasePackages().toArray(String[]::new);
-		//        val classGraph = new ClassGraph().verbose().enableAllInfo().acceptPackages(pkg);
-		//        try (val result = classGraph.scan(Runtime.getRuntime().availableProcessors())) {
-		//            val infos = result.getClassesWithAnnotation(EnumMapping.class);
-		//            infos.getEnums().forEach(System.err::println);
-		//            infos.getStandardClasses().forEach(info -> {
-		//                info.getFieldInfo().forEach(fieldInfo -> {
-		//                    System.err.println(fieldInfo.getName());
-		//                    System.err.println(fieldInfo.isStatic());
-		//                });
-		//            });
-		//        }
-	}
-
 	@Bean
 	public ClassGraph classGraph() {
 		val pkg = getBasePackages().toArray(String[]::new);
