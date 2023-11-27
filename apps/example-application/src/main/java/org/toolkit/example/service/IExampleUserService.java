@@ -9,11 +9,11 @@ import org.toolkit.example.eneity.ExampleUserEntity;
 import org.toolkit.example.vo.LoginVo;
 
 public interface IExampleUserService {
-    @EventListener(ApplicationStartedEvent.class)
-    @Async
-    void listen();
+	@EventListener(ApplicationStartedEvent.class)
+	@Async
+	void listen();
 
-    @EventListener(ApplicationStartedEvent.class)
+	@EventListener(ApplicationStartedEvent.class)
 	@Async
 	void started();
 

@@ -3,7 +3,6 @@ package org.toolkit.spring.boot.route.service.impl;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import java.util.List;
 import lombok.val;
@@ -11,7 +10,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.toolkit.spring.boot.route.converter.RouteEntityConverter;
 import org.toolkit.spring.boot.route.dto.RouteEntityDto;
-import org.toolkit.spring.boot.route.entity.RouteEntity;
 import org.toolkit.spring.boot.route.event.RouteAddEvent;
 import org.toolkit.spring.boot.route.repository.RouteEntityRepository;
 import org.toolkit.spring.boot.route.service.IRouteService;
@@ -27,22 +25,6 @@ public class RouteService implements IRouteService {
 
 	@Resource
 	private ApplicationEventPublisher eventPublisher;
-
-	@PostConstruct
-	public void init() {
-		val entity = new RouteEntity()
-				.setUrl("/test")
-				.setParentId(String.valueOf(0))
-				.setTitle("测试")
-				.setExternal(false);
-		routeEntityRepository.save(entity);
-		val two =
-				new RouteEntity().setParentId(entity.getId()).setTitle("ces11").setUrl("test/aaa");
-		val three =
-				new RouteEntity().setParentId(entity.getId()).setTitle("ces12").setUrl("test/bbb");
-		routeEntityRepository.save(two);
-		routeEntityRepository.save(three);
-	}
 
 	@Override
 	public void addRoute(RouteEntityDto dto) {

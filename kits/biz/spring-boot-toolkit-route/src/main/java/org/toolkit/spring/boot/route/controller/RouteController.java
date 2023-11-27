@@ -3,10 +3,8 @@ package org.toolkit.spring.boot.route.controller;
 import cn.hutool.core.lang.tree.Tree;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import jakarta.annotation.security.PermitAll;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +19,7 @@ public class RouteController {
 	private IRouteService routeService;
 
 	@PostConstruct
-	public void init(){
+	public void init() {
 		log.info("router controller");
 	}
 

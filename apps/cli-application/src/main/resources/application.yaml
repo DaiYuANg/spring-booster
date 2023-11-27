@@ -11,3 +11,6 @@ spring:
   threads:
     virtual:
       enabled: true
+  datasource:
+    hikari:
+      maximum-pool-size: 10

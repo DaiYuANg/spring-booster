@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface StaticField {
-    String value();
+	String value();
 
-    int order() default Integer.MIN_VALUE;
+	int order() default Integer.MIN_VALUE;
 }

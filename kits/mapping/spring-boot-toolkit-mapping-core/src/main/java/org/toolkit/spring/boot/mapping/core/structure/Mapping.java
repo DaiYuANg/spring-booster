@@ -1,18 +1,17 @@
 package org.toolkit.spring.boot.mapping.core.structure;
 
-import java.util.List;
 import java.util.Set;
 
 public interface Mapping<T> {
-    String getNaming();
+	String getNaming();
 
-    String getCode();
+	String getCode();
 
-    String getDescription();
+	String getDescription();
 
-    boolean getDelete();
+	boolean getDelete();
 
-    String getType();
+	String getType();
 
-    Set<MappingItem<T>> getItems();
+	Set<MappingItem<T>> getItems();
 }

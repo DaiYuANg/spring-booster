@@ -2,4 +2,3 @@ org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfigura
 org.toolkit.spring.boot.authentication.configuration.PermitAutoConfiguration
 org.toolkit.spring.boot.authentication.configuration.PasswordEncodeAutoConfiguration
 org.toolkit.spring.boot.authentication.configuration.RegisterBeanAutoConfiguration
-org.toolkit.spring.boot.authentication.configuration.RegisterFilter

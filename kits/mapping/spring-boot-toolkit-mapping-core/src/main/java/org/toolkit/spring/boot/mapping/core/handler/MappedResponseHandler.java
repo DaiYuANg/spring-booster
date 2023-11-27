@@ -14,20 +14,20 @@ import org.toolkit.spring.boot.mapping.core.utils.MappedUtil;
 @ControllerAdvice
 @Order
 public class MappedResponseHandler implements ResponseBodyAdvice<Object> {
-    @Override
-    public boolean supports(
-            @NotNull MethodParameter returnType, @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
-        return MappedUtil.isMappedTarget(returnType.getParameterType());
-    }
+	@Override
+	public boolean supports(
+			@NotNull MethodParameter returnType, @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
+		return MappedUtil.isMappedTarget(returnType.getParameterType());
+	}
 
-    @Override
-    public Object beforeBodyWrite(
-            Object body,
-            @NotNull MethodParameter returnType,
-            @NotNull MediaType selectedContentType,
-            @NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType,
-            @NotNull ServerHttpRequest request,
-            @NotNull ServerHttpResponse response) {
-        return null;
-    }
+	@Override
+	public Object beforeBodyWrite(
+			Object body,
+			@NotNull MethodParameter returnType,
+			@NotNull MediaType selectedContentType,
+			@NotNull Class<? extends HttpMessageConverter<?>> selectedConverterType,
+			@NotNull ServerHttpRequest request,
+			@NotNull ServerHttpResponse response) {
+		return null;
+	}
 }

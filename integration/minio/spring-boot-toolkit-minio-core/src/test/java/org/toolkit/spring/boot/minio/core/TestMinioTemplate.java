@@ -1,5 +1,7 @@
 package org.toolkit.spring.boot.minio.core;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import io.minio.MinioClient;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,7 +9,6 @@ import lombok.SneakyThrows;
 import lombok.val;
 import org.junit.Rule;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
@@ -47,12 +48,12 @@ public class TestMinioTemplate {
 	@Test
 	public void testCreateBucket() {
 		val template = new MinioTemplate(client, bucket);
-		template.createBucket(bucket);
+		assertDoesNotThrow(() -> template.createBucket(bucket));
 	}
 
 	@Test
 	public void testInit() {
-		Assertions.assertDoesNotThrow(() -> {
+		assertDoesNotThrow(() -> {
 			new MinioTemplate(client, bucket);
 		});
 	}
@@ -62,7 +63,7 @@ public class TestMinioTemplate {
 	public void testUpload() {
 		val template = new MinioTemplate(client, bucket);
 		template.upload(testFile, "text", "text/plain");
-		Assertions.assertDoesNotThrow(() -> {
+		assertDoesNotThrow(() -> {
 			template.stat("text");
 		});
 	}
@@ -70,14 +71,14 @@ public class TestMinioTemplate {
 	@Test
 	public void testObjectDoesNotExists() {
 		val template = new MinioTemplate(client, bucket);
-		Assertions.assertFalse(template.objectExists("test"));
+		assertFalse(template.objectExists("test"));
 	}
 
 	@Test
 	public void testObjectExists() {
 		val template = new MinioTemplate(client, bucket);
 		template.upload(testFile, "test", "text/plain");
-		Assertions.assertTrue(template.objectExists("test"));
+		assertTrue(template.objectExists("test"));
 	}
 
 	@AfterEach

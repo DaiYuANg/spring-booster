@@ -5,8 +5,8 @@ import lombok.SneakyThrows;
 
 public interface ContainerService {
 
-    @SneakyThrows
-    CreateContainerResponse createService();
+	@SneakyThrows
+	CreateContainerResponse createService();
 
-    String startContainer();
+	String startContainer();
 }

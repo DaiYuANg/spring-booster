@@ -2,8 +2,4 @@ group = "org.toolkit.spring.boot.mapping.web"
 
 version = "1.0-SNAPSHOT"
 
-
-dependencies {
-  implementation(projects.kits.mapping.springBootToolkitMappingCore)
-}
-
+dependencies { implementation(projects.kits.mapping.springBootToolkitMappingCore) }

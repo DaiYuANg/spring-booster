@@ -19,6 +19,9 @@ dependencies {
   implementation("com.mysql:mysql-connector-j")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation(projects.codegen.springBootToolkitCodegenAnnotation)
+  implementation(projects.kits.mapping.springBootToolkitMappingCore)
+  implementation(projects.kits.mapping.springBootToolkitMappingCodeSource)
+  implementation(projects.kits.mapping.springBootToolkitMappingDatabaseSource)
   annotationProcessor(projects.codegen.springBootToolkitCodegen)
 }
 

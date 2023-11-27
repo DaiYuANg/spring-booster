@@ -1,36 +1,35 @@
 package org.toolkit.spring.boot.mapping.database.source.entity;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
-import org.toolkit.spring.boot.mapping.core.structure.Mapping;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
-import java.util.List;
-
 @Entity
-@Table(name = "mapping", indexes = {
-        @Index(name = "idx_mappingentity_naming", columnList = "naming"),
-        @Index(name = "idx_mappingentity_code", columnList = "code")
-})
+@Table
 @Getter
-public class MappingEntity extends BaseEntity implements Mapping<String> {
+@Setter
+@Accessors(chain = true)
+public class MappingEntity extends BaseEntity {
 
-    @Column
-    private String naming;
+	@Column
+	private String naming;
 
-    @Column
-    private String code;
+	@Column
+	private String code;
 
-    @Column
-    private String description;
+	@Column
+	private String description;
 
-    @Column
-    private Boolean delete;
+	@Column
+	private Boolean isDelete;
 
-    @Column
-    private String type;
+	@Column
+	private String type;
 
-    @Column
-    @OneToMany
-    private List<MappingItemEntity> items;
+	@JoinColumn(name = "id")
+	@OneToMany
+	private Set<MappingItemEntity> items;
 }

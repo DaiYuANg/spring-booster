@@ -12,7 +12,7 @@ import org.toolkit.cli.factory.YamlPropertySourceFactory;
 @Slf4j
 @EnableConfigurationProperties(ToolkitConfigurationProperties.class)
 @PropertySource(
-		value = "file:${PWD}/toolkit-cli.yaml",
+		value = "file:./toolkit-cli.yaml",
 		factory = YamlPropertySourceFactory.class,
 		encoding = "UTF-8",
 		ignoreResourceNotFound = true)

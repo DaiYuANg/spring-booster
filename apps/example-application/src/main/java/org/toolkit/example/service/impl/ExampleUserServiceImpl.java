@@ -1,6 +1,9 @@
 package org.toolkit.example.service.impl;
 
+import static java.util.stream.LongStream.range;
+
 import jakarta.annotation.Resource;
+import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import net.datafaker.Faker;
@@ -20,10 +23,6 @@ import org.toolkit.example.repository.ExampleUserEntityRepository;
 import org.toolkit.example.service.IExampleUserService;
 import org.toolkit.example.vo.LoginVo;
 import org.toolkit.spring.boot.authentication.service.IJwtService;
-
-import java.util.Date;
-
-import static java.util.stream.LongStream.range;
 
 @Service
 @Slf4j
@@ -45,13 +44,12 @@ public class ExampleUserServiceImpl implements IExampleUserService {
 	@Override
 	public void listen() {
 		val faker = new Faker();
-		val a = range(0,50)
-				.mapToObj(i-> new ExampleUserEntity().setPassword(faker.internet().username())
-				.setPassword(faker.internet().password()))
+		val a = range(0, 50)
+				.mapToObj(i -> new ExampleUserEntity()
+						.setPassword(faker.internet().username())
+						.setPassword(faker.internet().password()))
 				.toList();
-		val test = new ExampleUserEntity()
-				.setUsername("test")
-				.setPassword(passwordEncoder.encode("test"));
+		val test = new ExampleUserEntity().setUsername("test").setPassword(passwordEncoder.encode("test"));
 		exampleUserEntityRepository.saveAndFlush(test);
 		exampleUserEntityRepository.saveAllAndFlush(a);
 	}

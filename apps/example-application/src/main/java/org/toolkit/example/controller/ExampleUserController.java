@@ -26,7 +26,7 @@ public class ExampleUserController {
 	}
 
 	@GetMapping("/error")
-	public void error(){
+	public void error() {
 		System.err.println("errr");
 	}
 

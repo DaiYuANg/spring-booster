@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.toolkit.spring.boot.authentication.configuration.properties.JwtConfigProperties;
-import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
 import org.toolkit.spring.boot.authentication.service.IJwtService;
 import org.toolkit.spring.boot.authentication.service.impl.JwtServiceImpl;
 

@@ -1,14 +1,13 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     open-in-view: true
     show-sql: true
     properties:
       hibernate:
         jdbc:
           batch_size: 10000
-        dialect: org.hibernate.dialect.MySQLDialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
@@ -28,11 +27,10 @@ spring:
   threads:
     virtual:
       enabled: true
-  boot:
-    admin:
-      client:
-        url: http://localhost:8080
-
+  mapping:
+    source:
+      code:
+        debug: true
 #  authentication:
 #    permit:
 #      - pattern: /actuator

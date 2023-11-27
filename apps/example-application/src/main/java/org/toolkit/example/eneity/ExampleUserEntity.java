@@ -1,10 +1,8 @@
 package org.toolkit.example.eneity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;

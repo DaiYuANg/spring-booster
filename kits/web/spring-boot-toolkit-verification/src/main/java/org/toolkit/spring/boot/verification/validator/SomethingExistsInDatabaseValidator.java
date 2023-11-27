@@ -1,6 +1,6 @@
 package org.toolkit.spring.boot.verification.validator;
 
-import jakarta.annotation.Resource;
+import cn.hutool.extra.spring.SpringUtil;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.Objects;
@@ -13,8 +13,7 @@ import org.toolkit.spring.boot.verification.annotation.SomethingExistsInDatabase
 @Slf4j
 public class SomethingExistsInDatabaseValidator implements ConstraintValidator<SomethingExistsInDatabase, String> {
 
-	@Resource
-	private JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
 
 	private String table;
 
