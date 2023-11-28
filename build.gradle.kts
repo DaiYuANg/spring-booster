@@ -105,6 +105,10 @@ subprojects {
         }
         withType<Test> { useJUnitPlatform() }
 
+        withType<Test>().configureEach {
+            maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+        }
+
         withType<Jar> {
             enabled = true
             duplicatesStrategy = DuplicatesStrategy.INCLUDE

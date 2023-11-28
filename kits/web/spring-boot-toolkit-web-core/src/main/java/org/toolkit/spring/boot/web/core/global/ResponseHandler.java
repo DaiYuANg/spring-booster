@@ -4,10 +4,14 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import java.time.Instant;
 import java.util.Objects;
+
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.boot.actuate.autoconfigure.web.ManagementContextConfiguration;
+import org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpoint;
 import org.springframework.core.MethodParameter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.MediaType;
@@ -26,6 +30,9 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
 	@Resource
 	private WebCoreConfigurationProperties configurationProperties;
 
+	@Resource
+	private HttpServletRequest request;
+
 	@PostConstruct
 	public void init() {
 		log.info("init response handler");
@@ -34,6 +41,7 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
 	@Override
 	public boolean supports(
 			@NotNull MethodParameter returnType, @NotNull Class<? extends HttpMessageConverter<?>> converterType) {
+		if (request.getRequestURI().startsWith("/actuator")) return false;
 		val isMethodIgnore = Objects.isNull(returnType.getMethodAnnotation(IgnoreResponseAdvice.class));
 		val isControllerIgnore = !returnType.getDeclaringClass().isAnnotationPresent(IgnoreResponseAdvice.class);
 		val isResponse = returnType.getDeclaringClass() != configurationProperties.getReturnResult();

@@ -20,6 +20,7 @@ dependencies {
   implementation("me.paulschwarz:spring-dotenv:4.0.0")
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.boot:spring-boot-starter-mail")
+  developmentOnly("org.springframework.boot:spring-boot-docker-compose")
   implementation("com.h2database:h2")
 }
 

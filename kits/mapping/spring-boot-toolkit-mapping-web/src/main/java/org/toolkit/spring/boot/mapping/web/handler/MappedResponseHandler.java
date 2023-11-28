@@ -54,7 +54,6 @@ public class MappedResponseHandler {
 				.make()) {
 			val newClazz = dynamicType.load(getClass().getClassLoader()).getLoaded();
 			val newObject = newClazz.getDeclaredConstructor().newInstance();
-			System.err.println(newObject);
 		}
 	}
 }
