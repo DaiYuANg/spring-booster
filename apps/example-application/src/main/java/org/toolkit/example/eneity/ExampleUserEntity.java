@@ -9,6 +9,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.toolkit.spring.boot.mapping.core.annotations.MappedObject;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
 import java.io.Serial;
@@ -21,6 +22,7 @@ import java.util.Collection;
 @Setter
 @Table(name = "example_user")
 @ToString
+@MappedObject
 public class ExampleUserEntity extends BaseEntity implements UserDetails {
 	@Serial
 	private static final long serialVersionUID = 1L;

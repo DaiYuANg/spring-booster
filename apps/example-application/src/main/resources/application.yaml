@@ -24,6 +24,7 @@ spring:
       - pattern: "/actuator/**"
       - pattern: "/instances"
       - pattern: "/applications"
+      - pattern: "/startup-report"
   threads:
     virtual:
       enabled: true
@@ -38,6 +39,7 @@ logging:
   level:
     org.toolkit.**.*: debug
     org.springframework.security: TRACE
+    root: info
 management:
   endpoints:
     web:
