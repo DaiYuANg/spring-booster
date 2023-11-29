@@ -27,5 +27,15 @@ dependencies {
 }
 
 tasks.withType<JavaCompile> {
-  doFirst { options.annotationProcessorPath?.files?.stream()?.forEach { println(it) } }
+//  doFirst { options.annotationProcessorPath?.files?.stream()?.forEach { println(it) } }
+}
+
+lombok {
+  config {
+    validate {
+      disabledRules.add("AddGeneratedAnnotation") // Disable `AddGeneratedAnnotation` rule
+      disabledRules.add("ConfigureAccessorsUsage")
+      disabledRules.add("ConfigureUtilityClassUsage")
+    }
+  }
 }

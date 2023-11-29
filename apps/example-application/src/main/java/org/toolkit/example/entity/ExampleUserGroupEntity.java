@@ -1,6 +1,6 @@
-package org.toolkit.example.eneity;
+package org.toolkit.example.entity;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -19,7 +19,9 @@ import org.toolkit.spring.boot.persistence.base.BaseEntity;
 @MappedObject
 public class ExampleUserGroupEntity extends BaseEntity {
 
-    private String groupName;
+	@Column
+	private String groupName;
 
-    private String groupDesc;
+	@Column(columnDefinition = "TEXT")
+	private String groupDesc;
 }

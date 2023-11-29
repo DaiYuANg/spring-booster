@@ -4,11 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.PermitAll;
-
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +18,13 @@ import org.toolkit.spring.boot.authentication.annotation.IgnoreAuthentication;
 import org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties;
 import org.toolkit.spring.boot.authentication.constant.Method;
 import org.toolkit.spring.boot.utils.bean.BeanUtil;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @AutoConfiguration
 @Slf4j

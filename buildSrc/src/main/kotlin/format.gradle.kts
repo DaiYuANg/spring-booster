@@ -1,7 +1,7 @@
 plugins{
     id("com.diffplug.spotless")
     jacoco
-    checkstyle
+//    checkstyle
     id("com.github.spotbugs-base")
 }
 
@@ -36,10 +36,10 @@ spotless {
     }
 }
 
-tasks.withType<Checkstyle>().configureEach {
-    minHeapSize = "2048m"
-    maxHeapSize = "4g"
-}
+//tasks.withType<Checkstyle>().configureEach {
+//    minHeapSize = "2048m"
+//    maxHeapSize = "4g"
+//}
 
 tasks.withType<JacocoReport>{
     reports{

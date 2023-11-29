@@ -4,8 +4,6 @@ import cn.hutool.extra.spring.EnableSpringUtil;
 import io.reactivex.rxjava3.core.Flowable;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import java.util.Arrays;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -15,10 +13,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.toolkit.spring.boot.web.annotation.Interceptor;
+import org.toolkit.spring.boot.web.core.resolver.UserAgentResolver;
+
+import java.util.Arrays;
+import java.util.List;
 
 @AutoConfiguration
 @Slf4j
@@ -56,5 +59,10 @@ public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 							.excludePathPatterns(exclude)
 							.addPathPatterns(path);
 				});
+	}
+
+	@Override
+	public void addArgumentResolvers(@NotNull List<HandlerMethodArgumentResolver> resolvers) {
+		resolvers.add(new UserAgentResolver());
 	}
 }

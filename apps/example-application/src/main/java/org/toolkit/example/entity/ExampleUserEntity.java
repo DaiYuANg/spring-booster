@@ -1,8 +1,6 @@
-package org.toolkit.example.eneity;
+package org.toolkit.example.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,6 +33,10 @@ public class ExampleUserEntity extends BaseEntity implements UserDetails {
 
 	@Column
 	private long latestLogin;
+
+	@OneToOne
+	@JoinColumn
+	private ExampleUserGroupEntity userGroup;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
