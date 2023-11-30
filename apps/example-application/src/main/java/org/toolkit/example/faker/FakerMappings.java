@@ -52,20 +52,20 @@ public class FakerMappings {
 	@Transactional
 	public void listen() {
 		val faker = new Faker();
-		val groups = range(0, 1000)
-				.mapToObj(i -> new ExampleUserGroupEntity()
-						.setGroupName(faker.dog().name())
-						.setGroupDesc(faker.restaurant().description()))
-				.toList();
-		exampleUserGroupEntityRepository.saveAllAndFlush(groups);
+//		val groups = range(0, 1000)
+//				.mapToObj(i -> new ExampleUserGroupEntity()
+//						.setGroupName(faker.dog().name())
+//						.setGroupDesc(faker.restaurant().description()))
+//				.toList();
+//		exampleUserGroupEntityRepository.saveAllAndFlush(groups);
 		val a = range(0, 50)
 				.mapToObj(i -> new ExampleUserEntity()
 						.setPassword(faker.internet().username())
 						.setPassword(faker.internet().password())
-						.setUserGroup(groups.get(RandomUtil.randomInt(0, groups.size() - 1))))
+//						.setUserGroup(groups.get(RandomUtil.randomInt(0, groups.size() - 1)))
+				)
 				.toList();
 		val test = new ExampleUserEntity().setUsername("test").setPassword(passwordEncoder.encode("test"));
-		System.err.println(a);
 		exampleUserEntityRepository.saveAndFlush(test);
 		exampleUserEntityRepository.saveAllAndFlush(a);
 	}

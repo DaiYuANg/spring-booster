@@ -23,8 +23,7 @@ public class ScanMetaData implements ScannerResultProcessor {
     public void process(@NotNull ScanResult result) {
         log.atInfo().log("mapping scan meta data");
         val index = result.getClassesWithAnnotation(MappedObject.class).stream()
-                .collect(Collectors.toConcurrentMap(classInfo -> classInfo.getPackageName() + "." + classInfo.getName(), c -> c));
-        System.err.println(index);
-//        beanUtil.putAsSingleton("index", index);
+                .collect(Collectors.toMap(classInfo -> classInfo.getPackageName() + "." + classInfo.getName(), c -> c));
+        log.atDebug().log("At index:{}",index);
     }
 }

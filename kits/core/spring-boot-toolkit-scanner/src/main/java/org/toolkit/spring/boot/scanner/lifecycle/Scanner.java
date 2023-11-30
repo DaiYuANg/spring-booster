@@ -25,15 +25,16 @@ public class Scanner {
     public void scan() {
         val processors = beanUtil.getBeansOfType(ScannerResultProcessor.class);
         log.atInfo().log("Scanners:{}", processors);
-        val executor = Executors.newFixedThreadPool(
+        try (val executor = Executors.newFixedThreadPool(
                 processors.size(),
-                new ThreadFactoryBuilder().setNameFormat("Scanner-%s").build());
-        try (val result = classGraph.scan(Runtime.getRuntime().availableProcessors())) {
-            Observable.fromIterable(processors)
-                    .flatMap(processor -> Observable.fromRunnable(() -> processor.process(result))
-                            .subscribeOn(Schedulers.from(executor)))
-                    .blockingSubscribe(); // Wait for all tasks to complete
-            executor.shutdown();
+                new ThreadFactoryBuilder().setNameFormat("Scanner-%s").build())) {
+            try (val result = classGraph.scan(Runtime.getRuntime().availableProcessors())) {
+                Observable.fromIterable(processors)
+                        .flatMap(processor -> Observable.fromRunnable(() -> processor.process(result))
+                                .subscribeOn(Schedulers.from(executor)))
+                        .blockingSubscribe(); // Wait for all tasks to complete
+                executor.shutdown();
+            }
         }
     }
 }

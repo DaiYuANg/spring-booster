@@ -23,6 +23,7 @@ dependencies {
   implementation(projects.kits.mapping.springBootToolkitMappingCodeSource)
   implementation(projects.kits.mapping.springBootToolkitMappingDatabaseSource)
   implementation(projects.kits.mapping.springBootToolkitMappingWeb)
+  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
   annotationProcessor(projects.codegen.springBootToolkitCodegen)
 }
 

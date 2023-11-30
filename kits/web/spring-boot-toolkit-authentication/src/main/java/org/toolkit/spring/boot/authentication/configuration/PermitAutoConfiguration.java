@@ -57,11 +57,11 @@ public class PermitAutoConfiguration {
 
     private AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromAnnotation() {
         return beanUtil.getBeansOfType(RequestMappingHandlerMapping.class).stream()
+                .distinct()
                 .map(RequestMappingHandlerMapping::getHandlerMethods)
                 .flatMap(method -> method.entrySet().stream())
                 .filter(this::checkHasAnnotation)
                 .flatMap(this::internalBuild)
-                .distinct()
                 .toArray(AntPathRequestMatcher[]::new);
     }
 
