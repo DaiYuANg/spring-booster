@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-public class ScanMetaData implements ScannerResultProcessor {
+public class ScanObjectMetaData implements ScannerResultProcessor {
 
     @Resource
     private BeanUtil beanUtil;

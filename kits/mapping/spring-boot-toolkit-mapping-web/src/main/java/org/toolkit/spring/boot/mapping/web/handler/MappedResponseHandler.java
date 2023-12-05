@@ -17,12 +17,15 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.core.GenericTypeResolver;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.toolkit.spring.boot.mapping.web.util.ObjectUtil;
 
 import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @ControllerAdvice
 @Order
@@ -33,6 +36,8 @@ public class MappedResponseHandler {
     @Resource
     private ByteBuddy byteBuddy;
 
+    private static final ConcurrentMap<String, Thread> async = new ConcurrentHashMap<>();
+
     @Pointcut("@annotation(org.toolkit.spring.boot.mapping.core.annotations.MappingTarget)")
     public void annotationPoint() {
     }
@@ -42,7 +47,12 @@ public class MappedResponseHandler {
         val signature = (MethodSignature) joinPoint.getSignature();
         val method = signature.getMethod();
         val returnClass = method.getReturnType();
-        System.err.println(Arrays.toString(joinPoint.getArgs()));
+        val task = Thread.ofVirtual().start(() -> {
+            System.err.println(Arrays.toString(method.getReturnType().getNestMembers()));
+            System.err.println(GenericTypeResolver.resolveReturnTypeArgument(method,joinPoint.getTarget().getClass()));
+            System.err.println(Arrays.toString(returnClass.getGenericInterfaces()));
+            System.err.println(returnClass.getGenericSuperclass());
+        });
     }
 
     @SneakyThrows
