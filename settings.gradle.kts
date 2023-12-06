@@ -130,3 +130,5 @@ include("codegen:spring-boot-toolkit-codegen-annotation")
 include("kits:core:spring-boot-toolkit-dotenv")
 
 include("kits:core:spring-boot-toolkit-scanner")
+include("kits:supervisor:spring-boot-supervisor")
+include("kits:supervisor:spring-boot-supervisor-ui")
