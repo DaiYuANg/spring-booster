@@ -26,13 +26,9 @@ public class ExampleUserController {
 		return exampleUserService.login(loginDto);
 	}
 
-	@GetMapping("/error")
-	public void error() {
-		System.err.println("errr");
-	}
 
 	@GetMapping("/queryList")
-	@MappingTarget
+	@MappingTarget(pretreatment = ExampleUserEntity.class)
 	public Page<ExampleUserEntity> queryList() {
 		return exampleUserService.queryList();
 	}

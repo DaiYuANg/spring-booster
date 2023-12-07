@@ -17,13 +17,15 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.core.GenericTypeResolver;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.toolkit.spring.boot.mapping.core.annotations.MappingTarget;
+import org.toolkit.spring.boot.mapping.core.service.impl.IMappingService;
 import org.toolkit.spring.boot.mapping.web.util.ObjectUtil;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -36,6 +38,9 @@ public class MappedResponseHandler {
     @Resource
     private ByteBuddy byteBuddy;
 
+    @Resource
+    private IMappingService mappingService;
+
     private static final ConcurrentMap<String, Thread> async = new ConcurrentHashMap<>();
 
     @Pointcut("@annotation(org.toolkit.spring.boot.mapping.core.annotations.MappingTarget)")
@@ -46,38 +51,43 @@ public class MappedResponseHandler {
     public void before(@NotNull JoinPoint joinPoint) {
         val signature = (MethodSignature) joinPoint.getSignature();
         val method = signature.getMethod();
-        val returnClass = method.getReturnType();
-        val task = Thread.ofVirtual().start(() -> {
-            System.err.println(Arrays.toString(method.getReturnType().getNestMembers()));
-            System.err.println(GenericTypeResolver.resolveReturnTypeArgument(method,joinPoint.getTarget().getClass()));
-            System.err.println(Arrays.toString(returnClass.getGenericInterfaces()));
-            System.err.println(returnClass.getGenericSuperclass());
+        val mappingTargetAnnotation = method.getAnnotation(MappingTarget.class);
+        val pretreatment = mappingTargetAnnotation.pretreatment();
+        if (pretreatment.equals(MappingTarget.class)) return;
+
+        Arrays.stream(pretreatment.getDeclaredFields()).forEach(field->{
+            field.setAccessible(true);
+            System.err.println(field);
         });
+        System.err.println(Arrays.stream(pretreatment.getNestMembers()).toList());
+//        val returnClass = method.getReturnType();
+//        val typeToken = new TypeToken<>(returnClass){};
     }
 
     @SneakyThrows
     @Around("annotationPoint()")
     public Object around(@NotNull ProceedingJoinPoint joinPoint) {
         val returnValue = joinPoint.proceed();
-        processNestedType(returnValue);
+//        processNestedType(returnValue);
         return returnValue;
     }
 
     @SneakyThrows
     @Contract(pure = true)
     private void processNestedType(@NotNull Object returnValue) {
-        returnValue.getClass().getNestMembers();
-        val clazz = returnValue.getClass();
-        if (returnValue instanceof Page<?> v) {
-            v.getContent().forEach(item -> ObjectUtil.walkObject(item, 10));
-        }
-        try (DynamicType.Unloaded<?> dynamicType = byteBuddy
-                .subclass(Object.class)
-                .method(ElementMatchers.named("toString"))
-                .intercept(FixedValue.value("Hello World!"))
-                .make()) {
-            val newClazz = dynamicType.load(getClass().getClassLoader()).getLoaded();
-            val newObject = newClazz.getDeclaredConstructor().newInstance();
-        }
+
+//        returnValue.getClass().getNestMembers();
+//        val clazz = returnValue.getClass();
+//        if (returnValue instanceof Page<?> v) {
+//            v.getContent().forEach(item -> ObjectUtil.walkObject(item, 10));
+//        }
+//        try (DynamicType.Unloaded<?> dynamicType = byteBuddy
+//                .subclass(Object.class)
+//                .method(ElementMatchers.named("toString"))
+//                .intercept(FixedValue.value("Hello World!"))
+//                .make()) {
+//            val newClazz = dynamicType.load(getClass().getClassLoader()).getLoaded();
+//            val newObject = newClazz.getDeclaredConstructor().newInstance();
+//        }
     }
 }

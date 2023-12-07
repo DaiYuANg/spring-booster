@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.toolkit.spring.boot.mapping.core.annotations.MappedObject;
+import org.toolkit.spring.boot.mapping.core.annotations.Mapping;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
 
 import java.io.Serial;
@@ -33,6 +34,9 @@ public class ExampleUserEntity extends BaseEntity implements UserDetails {
 
 	@Column
 	private long latestLogin;
+
+	@Mapping(key = "user_type_internal")
+	private String userType;
 
 	@OneToOne
 	@JoinColumn
