@@ -25,6 +25,7 @@ spring:
       - pattern: "/instances"
       - pattern: "/applications"
       - pattern: "/startup-report"
+      - pattern: "/overview"
   threads:
     virtual:
       enabled: true
