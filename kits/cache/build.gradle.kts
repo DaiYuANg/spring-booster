@@ -1,1 +1,7 @@
-subprojects { dependencies { implementation("javax.cache:cache-api:1.1.1") } }
+plugins {
+    `spring-boot-project` apply false
+}
+subprojects {
+    apply<SpringBootProjectPlugin>()
+    dependencies { }
+}

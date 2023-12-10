@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.cache.api.configurations;
+package org.toolkit.spring.boot.cache.caffine.autoconfigure;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
-public class CaffineConfiguration {
+public class CaffineAutoConfiguration {
 	@Bean
 	@ConditionalOnClass(com.github.benmanes.caffeine.cache.Cache.class)
 	public Cache<String, Object> caffeineCache() {
