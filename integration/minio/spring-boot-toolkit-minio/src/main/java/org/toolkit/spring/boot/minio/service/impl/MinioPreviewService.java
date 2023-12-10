@@ -3,7 +3,6 @@ package org.toolkit.spring.boot.minio.service.impl;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -13,7 +12,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
-import org.toolkit.spring.boot.minio.core.event.ObjectAccessEvent;
+import org.toolkit.spring.boot.minio.event.ObjectAccessEvent;
 import org.toolkit.spring.boot.minio.service.IMinioPreviewService;
 import org.toolkit.spring.boot.minio.service.IMinioTemplateService;
 import org.toolkit.spring.boot.minio.vo.PreviewVo;
@@ -30,9 +29,6 @@ public class MinioPreviewService implements IMinioPreviewService {
 
 	@Resource
 	private ApplicationEventPublisher eventPublisher;
-
-	@Resource
-	private HttpServletRequest request;
 
 	/**
 	 * @param clientInstance minio config key
@@ -54,7 +50,7 @@ public class MinioPreviewService implements IMinioPreviewService {
 				.subscribeOn(Schedulers.from(executor));
 
 		val resultSingle = Single.zip(getObjectSingle, statSingle, this::previewBuilder)
-				.doFinally(() -> eventPublisher.publishEvent(new ObjectAccessEvent(this, objectPath, request)))
+				.doFinally(() -> eventPublisher.publishEvent(new ObjectAccessEvent(this, objectPath)))
 				.doOnError(throwable -> {
 					throw throwable;
 				});

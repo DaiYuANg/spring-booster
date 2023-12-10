@@ -6,7 +6,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface StaticField {
-	String value();
+	String key();
 
-	int order() default Integer.MIN_VALUE;
+	String text() default "";
+
+	String description() default "";
 }

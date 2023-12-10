@@ -7,14 +7,14 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import lombok.val;
+import org.apache.tika.Tika;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.toolkit.spring.boot.minio.configurations.properties.MinioClientConfigurationProperties;
 import org.toolkit.spring.boot.minio.configurations.properties.MinioConfigurationProperties;
-import org.toolkit.spring.boot.minio.core.template.MinioTemplate;
+import org.toolkit.spring.boot.minio.template.MinioTemplate;
 
 @AutoConfiguration
 public class TemplateAutoConfiguration {
@@ -23,6 +23,9 @@ public class TemplateAutoConfiguration {
 
 	@Resource
 	private MinioConfigurationProperties minioConfigurationProperties;
+
+	@Resource
+	private Tika tika;
 
 	@Bean
 	public ConcurrentMap<String, MinioTemplate> templateMap() {
@@ -34,16 +37,18 @@ public class TemplateAutoConfiguration {
 		val clientConfigs = minioConfigurationProperties.getMinioClients();
 		val clients = context.getBeansOfType(MinioClient.class);
 		return Observable.fromIterable(clients.entrySet())
-				.flatMap(clientEntry -> Observable.just(clientEntry).map(entry -> buildTemplate(entry, clientConfigs)));
+				.flatMap(clientEntry -> Observable.just(clientEntry).map(this::buildTemplate));
 	}
 
 	@NotNull private Map.@Unmodifiable Entry<String, MinioTemplate> buildTemplate(
-			Map.@NotNull Entry<String, MinioClient> entry,
-			@NotNull Map<String, MinioClientConfigurationProperties> clientConfigs) {
-		val properties = clientConfigs.get(entry.getKey());
+			Map.@NotNull Entry<String, MinioClient> entry) {
 		val client = entry.getValue();
 		val key = entry.getKey();
-		return Map.entry(
-				key + MinioTemplate.class.getName(), new MinioTemplate(client, properties.getDefaultBucket(), key));
+		val template = MinioTemplate.builder()
+				.client(client)
+				.defaultBucket(key)
+				.tika(tika)
+				.build();
+		return Map.entry(key + MinioTemplate.class.getName(), template);
 	}
 }

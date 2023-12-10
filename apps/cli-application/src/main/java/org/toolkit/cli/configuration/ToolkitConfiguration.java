@@ -6,16 +6,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.toolkit.cli.factory.YamlPropertySourceFactory;
 
 @Configuration(proxyBeanMethods = false)
 @Slf4j
 @EnableConfigurationProperties(ToolkitConfigurationProperties.class)
-@PropertySource(
-		value = "file:./toolkit-cli.yaml",
-		factory = YamlPropertySourceFactory.class,
-		encoding = "UTF-8",
-		ignoreResourceNotFound = true)
+@PropertySources(
+		value = {
+			@PropertySource(
+					value = "file:./toolkit-cli.yaml",
+					factory = YamlPropertySourceFactory.class,
+					encoding = "UTF-8",
+					ignoreResourceNotFound = true),
+			@PropertySource(
+					value = "file:./toolkit-cli.example.yaml",
+					factory = YamlPropertySourceFactory.class,
+					encoding = "UTF-8",
+					ignoreResourceNotFound = true)
+		})
 public class ToolkitConfiguration {
 	@Resource
 	private DatasourceConfigurationProperties datasourceConfigurationProperties;

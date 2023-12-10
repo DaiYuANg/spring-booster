@@ -15,15 +15,19 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 @Slf4j
 public class UserAgentResolver implements HandlerMethodArgumentResolver {
-    @Override
-    public boolean supportsParameter(@NotNull MethodParameter parameter) {
-        return UserAgent.class.isAssignableFrom(parameter.getParameterType());
-    }
+	@Override
+	public boolean supportsParameter(@NotNull MethodParameter parameter) {
+		return UserAgent.class.isAssignableFrom(parameter.getParameterType());
+	}
 
-    @Override
-    public Object resolveArgument(@NotNull MethodParameter parameter, ModelAndViewContainer mavContainer, @NotNull NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
-        val request = (HttpServletRequest) webRequest.getNativeRequest();
-        val userAgentString = request.getHeader(HttpHeaders.USER_AGENT);
-        return UserAgentParser.parse(userAgentString);
-    }
+	@Override
+	public Object resolveArgument(
+			@NotNull MethodParameter parameter,
+			ModelAndViewContainer mavContainer,
+			@NotNull NativeWebRequest webRequest,
+			WebDataBinderFactory binderFactory) {
+		val request = (HttpServletRequest) webRequest.getNativeRequest();
+		val userAgentString = request.getHeader(HttpHeaders.USER_AGENT);
+		return UserAgentParser.parse(userAgentString);
+	}
 }

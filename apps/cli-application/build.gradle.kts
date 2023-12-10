@@ -8,7 +8,7 @@ group = "org.toolkit.cli"
 
 version = "1.0"
 
-val toolingApiVersion = "8.4"
+val toolingApiVersion = "8.5"
 
 repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases") } }
 
@@ -31,8 +31,7 @@ dependencies {
   developmentOnly("org.springframework.boot:spring-boot-devtools")
   developmentOnly("org.springframework.boot:spring-boot-docker-compose")
   implementation("org.gradle:gradle-tooling-api:$toolingApiVersion")
-  implementation(
-      "org.apache.maven:maven-embedder:4.0.0-alpha-8") // https://mvnrepository.com/artifact/org.jline/jline-terminal-jna
+  implementation("org.apache.maven:maven-embedder:4.0.0-alpha-8")
   implementation("org.jline:jline-terminal-jna:3.24.1")
 }
 

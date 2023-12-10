@@ -12,7 +12,6 @@ group = "org.toolkit.spring.boot.website"
 
 version = "1.0-SNAPSHOT"
 
-
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation(projects.kits.core.springBootToolkitUtils)

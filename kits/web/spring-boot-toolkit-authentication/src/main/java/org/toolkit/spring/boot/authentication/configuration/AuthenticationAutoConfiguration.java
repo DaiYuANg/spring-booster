@@ -1,9 +1,7 @@
 package org.toolkit.spring.boot.authentication.configuration;
 
 import jakarta.annotation.Resource;
-
 import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -34,9 +32,9 @@ import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
 @AutoConfiguration
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @AutoConfigureAfter({
-        DispatcherServletAutoConfiguration.class,
-        TaskExecutionAutoConfiguration.class,
-        ValidationAutoConfiguration.class
+	DispatcherServletAutoConfiguration.class,
+	TaskExecutionAutoConfiguration.class,
+	ValidationAutoConfiguration.class
 })
 @EnableWebSecurity
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class, JwtConfigProperties.class})
@@ -45,44 +43,44 @@ import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
 @ComponentScan("org.toolkit.spring.boot.authentication.**.*")
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 
-    @Resource
-    @Lazy
-    private AuthenticationConfigurationProperties authenticationConfigurationProperties;
+	@Resource
+	@Lazy
+	private AuthenticationConfigurationProperties authenticationConfigurationProperties;
 
-    @Resource
-    @Lazy
-    private AuthenticationManager authenticationManager;
-    //
-    @Resource
-    private AuthenticationProvider authenticationProvider;
-    //
-    @Resource
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+	@Resource
+	@Lazy
+	private AuthenticationManager authenticationManager;
+	//
+	@Resource
+	private AuthenticationProvider authenticationProvider;
+	//
+	@Resource
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Resource(name = "PermitAllRequestMather")
-    private List<AntPathRequestMatcher> permitAll;
+	@Resource(name = "PermitAllRequestMather")
+	private List<AntPathRequestMatcher> permitAll;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
-        http.cors(AbstractHttpConfigurer::disable);
-        http.csrf(AbstractHttpConfigurer::disable);
-        http.authorizeHttpRequests(req -> {
-            permitAll.stream()
-                    .map(req::requestMatchers)
-                    .forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
-            req.anyRequest().authenticated();
-        });
-//		http.logout(AbstractHttpConfigurer::disable);
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.authenticationManager(authenticationManager);
-        http.authenticationProvider(authenticationProvider);
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        log.info("build SecurityFilterChain");
-        return http.build();
-    }
+	@Bean
+	public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
+		http.cors(AbstractHttpConfigurer::disable);
+		http.csrf(AbstractHttpConfigurer::disable);
+		http.authorizeHttpRequests(req -> {
+			permitAll.stream()
+					.map(req::requestMatchers)
+					.forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
+			req.anyRequest().authenticated();
+		});
+		//		http.logout(AbstractHttpConfigurer::disable);
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		http.authenticationManager(authenticationManager);
+		http.authenticationProvider(authenticationProvider);
+		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		log.info("build SecurityFilterChain");
+		return http.build();
+	}
 
-    @Override
-    public void customize(@NotNull WebSecurity web) {
-        web.debug(authenticationConfigurationProperties.getDebug());
-    }
+	@Override
+	public void customize(@NotNull WebSecurity web) {
+		web.debug(authenticationConfigurationProperties.getDebug());
+	}
 }

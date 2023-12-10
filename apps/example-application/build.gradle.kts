@@ -24,11 +24,12 @@ dependencies {
   implementation(projects.kits.mapping.springBootToolkitMappingDatabaseSource)
   implementation(projects.kits.mapping.springBootToolkitMappingWeb)
   implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
-  annotationProcessor(projects.codegen.springBootToolkitCodegen)
+  annotationProcessor(projects.codegen.springBootMappingIndexer)
+  //  annotationProcessor(projects.codegen.springBootToolkitCodegen)
 }
 
 tasks.withType<JavaCompile> {
-//  doFirst { options.annotationProcessorPath?.files?.stream()?.forEach { println(it) } }
+  //  doFirst { options.annotationProcessorPath?.files?.stream()?.forEach { println(it) } }
 }
 
 lombok {

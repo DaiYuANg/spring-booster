@@ -5,10 +5,7 @@ import cn.hutool.crypto.SecureUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.PostConstruct;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +37,7 @@ public class JwtServiceImpl implements IJwtService {
 		val enc = Optional.ofNullable(jwtConfigProperties.getEncryptArithmetic())
 				.map(a -> Jwts.ENC.get().forKey(a))
 				.orElse(Jwts.ENC.A256GCM);
+		System.err.println(Arrays.toString(key.getEncoded()));
 		return Jwts.builder()
 				.claims(extraClaims)
 				.subject(userDetails.getUsername())

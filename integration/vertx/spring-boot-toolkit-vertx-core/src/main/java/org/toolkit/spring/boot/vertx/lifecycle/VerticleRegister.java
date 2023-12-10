@@ -6,7 +6,6 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.toolkit.spring.boot.utils.bean.BeanUtil;
 
 @AutoConfiguration
 @Slf4j

@@ -8,4 +8,5 @@ dependencies {
   implementation(projects.kits.mapping.springBootToolkitMappingCore)
   compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("net.bytebuddy:byte-buddy:1.14.10")
+  api(projects.kits.mapping.springBootMappingBase)
 }

@@ -2,16 +2,13 @@ package org.toolkit.spring.boot.web.core.global;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.util.Objects;
-
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.boot.actuate.autoconfigure.web.ManagementContextConfiguration;
-import org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpoint;
 import org.springframework.core.MethodParameter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.MediaType;

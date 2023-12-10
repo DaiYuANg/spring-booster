@@ -5,8 +5,8 @@ import java.util.Arrays;
 import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.toolkit.spring.boot.mapping.core.annotations.Mapping;
-import org.toolkit.spring.boot.mapping.core.annotations.MappingProperty;
+import org.toolkit.spring.boot.mapping.base.annotation.Mapping;
+import org.toolkit.spring.boot.mapping.base.annotation.MappingProperty;
 
 @UtilityClass
 public class MappedUtil {

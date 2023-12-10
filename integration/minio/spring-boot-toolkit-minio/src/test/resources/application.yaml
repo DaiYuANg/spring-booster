@@ -1,4 +1,13 @@
 spring:
+  minio:
+    minio-clients:
+      test:
+        endpoint: http://localhost:9000
+        access-key: root
+        secret-key: password
+        default-bucket: test
+      a:
+        endpoint: http://localhost:9001
   jpa:
     show-sql: true
     hibernate:
@@ -13,14 +22,6 @@ spring:
 logging:
   level:
     root: info
-toolkit:
-  minio:
-    minio-clients:
-      test:
-        endpoint: http://localhost:9000
-        access-key: root
-        secret-key: password
-        default-bucket: test
     datasource:
       driver-class-name: org.h2.Driver
       url: jdbc:h2:mem:minio

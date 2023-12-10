@@ -1,19 +1,18 @@
 package org.toolkit.example.entity;
 
 import jakarta.persistence.*;
+import java.io.Serial;
+import java.util.ArrayList;
+import java.util.Collection;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.toolkit.spring.boot.mapping.core.annotations.MappedObject;
-import org.toolkit.spring.boot.mapping.core.annotations.Mapping;
+import org.toolkit.spring.boot.mapping.base.annotation.MappedObject;
+import org.toolkit.spring.boot.mapping.base.annotation.Mapping;
 import org.toolkit.spring.boot.persistence.base.BaseEntity;
-
-import java.io.Serial;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 @Accessors(chain = true)

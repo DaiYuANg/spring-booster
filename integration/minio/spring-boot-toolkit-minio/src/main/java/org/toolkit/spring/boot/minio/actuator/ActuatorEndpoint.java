@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import org.springframework.boot.actuate.endpoint.annotation.*;
 import org.springframework.stereotype.Component;
-import org.toolkit.spring.boot.minio.core.template.MinioTemplate;
+import org.toolkit.spring.boot.minio.template.MinioTemplate;
 
 @Component
 @Endpoint(id = "features")

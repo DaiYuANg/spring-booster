@@ -79,9 +79,7 @@ include("kits:web:spring-boot-toolkit-web-core")
 
 include("kits:web:spring-boot-toolkit-verification")
 
-include("kits:cache:spring-boot-toolkit-cache")
-
-include("kits:biz:spring-boot-toolkit-ocr")
+include("kits:cache:spring-boot-toolkit-cache-api")
 
 include("kits:biz:spring-boot-toolkit-office")
 
@@ -102,10 +100,6 @@ include("integration:vertx:spring-boot-toolkit-vertx-clustering")
 include("kits:biz:spring-boot-toolkit-route")
 
 include("kits:biz:spring-boot-toolkit-email")
-
-include("integration:spring-boot-toolkit-tika")
-
-include("integration:minio:spring-boot-toolkit-minio-core")
 
 include("integration:minio:spring-boot-toolkit-minio")
 
@@ -130,3 +124,11 @@ include("codegen:spring-boot-toolkit-codegen-annotation")
 include("kits:core:spring-boot-toolkit-dotenv")
 
 include("kits:core:spring-boot-toolkit-scanner")
+
+include("kits:web:spring-boot-toolkit-web-version")
+
+include("codegen:spring-boot-mapping-indexer")
+
+include("kits:mapping:spring-boot-mapping-base")
+include("kits:cache:spring-boot-toolkit-cache-redis")
+include("kits:cache:spring-boot-toolkit-cache-annotation")

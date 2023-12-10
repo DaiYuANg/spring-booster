@@ -6,8 +6,8 @@ import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 
-@SupportedAnnotationTypes({"*"})
-@SupportedSourceVersion(SourceVersion.RELEASE_17)
+@SupportedAnnotationTypes("*")
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 @AutoService(Processor.class)
 public class RepositoryAnnotationProcessor extends AbstractProcessor {
 

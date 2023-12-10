@@ -4,6 +4,9 @@ import org.toolkit.spring.boot.mapping.source.code.annotation.StaticField;
 
 public final class UserType {
 
-	@StaticField("user_type_internal")
+	@StaticField(key = "user_type_internal")
 	public static final int INTERNAL = 1;
+
+	@StaticField(key = "user_type_internal")
+	public static final int OUTSIDE = 2;
 }

@@ -1,6 +1,5 @@
 package org.toolkit.spring.boot.minio.endpoint;
 
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,20 +10,10 @@ import org.toolkit.spring.boot.minio.vo.UploadResultVo;
 
 @Slf4j
 @RestController
-@RequestMapping("${toolkit.minio.context:/minio}")
+@RequestMapping("${spring.minio.context:/minio}")
 public class MinioUploadController {
-	@Value("${toolkit.minio.context:/minio}")
+	@Value("${spring.minio.context:/minio}")
 	private String controllerPrefix;
-
-	@PostConstruct
-	public void init() {
-		log.info("Minio Controller Prefix:{}", controllerPrefix);
-	}
-
-	@GetMapping("/test")
-	public String test() {
-		return "";
-	}
 
 	@RequestMapping(
 			value = "${toolkit.minio.context:/minio}/upload",

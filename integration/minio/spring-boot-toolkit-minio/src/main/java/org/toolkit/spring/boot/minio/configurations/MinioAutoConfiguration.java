@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentMap;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.apache.tika.Tika;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -57,5 +58,10 @@ public class MinioAutoConfiguration {
 				.endpoint(clientConfig.getValue().getEndpoint())
 				.build();
 		return Map.entry(clientConfig.getKey(), client);
+	}
+
+	@Bean
+	public Tika tika() {
+		return new Tika();
 	}
 }

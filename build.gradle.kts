@@ -78,15 +78,17 @@ subprojects {
         implementation("cn.hutool:hutool-all:${hutoolVersion}")
         implementation("org.eclipse.collections:eclipse-collections-api:11.1.0")
         implementation("org.eclipse.collections:eclipse-collections:11.1.0")
+        implementation("org.immutables:value:$immutablesVersion")
+        implementation("javax.annotation:javax.annotation-api:1.3.2")
+        annotationProcessor("org.immutables:value:$immutablesVersion")
 //        implementation("org.agrona:Agrona:0.9.1")
-//        errorprone("com.uber.nullaway:nullaway:0.10.17")
+//        errorprone("com.uber.nullaway:nullaway:0.10.18")
 //        errorprone("com.google.errorprone:error_prone_core:2.23.0")
 //        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
 //        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
         annotationProcessor("io.soabase.record-builder:record-builder-processor:37")
         annotationProcessor("com.google.auto.factory:auto-factory:1.1.0")
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-        annotationProcessor("org.inferred:freebuilder:2.8.0")
         testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
         testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
@@ -102,6 +104,7 @@ subprojects {
             options.isIncremental = true
             options.encoding = "UTF-8"
             options.compilerArgs.add("-Xlint:all")
+            options.compilerArgs.add("-g")
         }
         withType<Test> { useJUnitPlatform() }
 

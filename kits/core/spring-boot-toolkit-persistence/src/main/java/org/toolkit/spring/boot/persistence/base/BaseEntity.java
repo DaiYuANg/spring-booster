@@ -46,7 +46,8 @@ public class BaseEntity implements Serializable {
 	private Date updateAt;
 
 	@Column
-	private String version;
+	@Version
+	private Integer version;
 
 	@Column
 	private String sort;

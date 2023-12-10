@@ -34,13 +34,14 @@ theme:
     - navigation.tracking
     - navigation.top
     - navigation.path
+    - navigation.instant
     - navigation.indexes
     - toc.follow
     - toc.integrate
     - search.suggest
     - search.highlight
     - search.share
-  language: en
+  language: zh
 
 plugins:
   - search
@@ -118,16 +119,16 @@ nav:
   - Home: index.md
   - User guide:
       - Installation: guide/installation.md
-  - About:
-      - Release notes: core/history.md
-  - Blog: blog
+#  - About:
+#      - Release notes: core/history.md
+#  - Blog: blog
 
 extra:
   alternate:
     - name: English
       link: /en/
       lang: en
-    - name: Chinese
+    - name: 中文
       link: /zh/
       lang: zh
   consent:

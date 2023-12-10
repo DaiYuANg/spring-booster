@@ -20,12 +20,12 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.toolkit.spring.boot.minio.checker.BeforeUploadCheckMd5Exists;
-import org.toolkit.spring.boot.minio.core.event.ObjectUploadedEvent;
-import org.toolkit.spring.boot.minio.core.template.MinioTemplate;
+import org.toolkit.spring.boot.minio.event.ObjectUploadedEvent;
 import org.toolkit.spring.boot.minio.params.Base64UploadParam;
 import org.toolkit.spring.boot.minio.params.UploadParams;
 import org.toolkit.spring.boot.minio.service.IMinioTemplateService;
 import org.toolkit.spring.boot.minio.service.IMinioUploadService;
+import org.toolkit.spring.boot.minio.template.MinioTemplate;
 import org.toolkit.spring.boot.minio.vo.UploadResultVo;
 
 @Service

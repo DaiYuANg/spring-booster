@@ -7,14 +7,14 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
-@SupportedAnnotationTypes({"*"})
-@SupportedSourceVersion(SourceVersion.RELEASE_17)
+@SupportedAnnotationTypes("*")
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 @AutoService(Processor.class)
 public class ServiceAnnotationProcessor extends AbstractProcessor {
 
 	@Override
 	public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
 		processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Your log message");
-		return true;
+		return false;
 	}
 }

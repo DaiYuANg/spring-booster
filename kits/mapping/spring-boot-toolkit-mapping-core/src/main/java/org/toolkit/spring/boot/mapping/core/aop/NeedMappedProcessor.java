@@ -16,7 +16,7 @@ import org.toolkit.spring.boot.mapping.core.utils.MappedUtil;
 @Slf4j
 public class NeedMappedProcessor {
 
-	@Pointcut("@annotation(org.toolkit.spring.boot.mapping.core.annotations.NestMapping)")
+	@Pointcut("@annotation(org.toolkit.spring.boot.mapping.base.NestMapping)")
 	public void needMappedPointCut() {}
 
 	@SneakyThrows

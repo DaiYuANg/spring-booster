@@ -1,4 +1,6 @@
 spring:
+  scanner:
+    debug: false
   jpa:
     hibernate:
       ddl-auto: create-drop

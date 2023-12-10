@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.toolkit.spring.boot.minio.core.template.MinioTemplate;
+import org.toolkit.spring.boot.minio.template.MinioTemplate;
 
 @SpringBootTest
 @Testcontainers
