@@ -58,26 +58,18 @@ subprojects {
         val mapstructVersion: String by project
         val guavaVersion: String by project
         val slf4jVersion: String by project
-        val rxjavaVersion: String by project
         val commonIOVersion: String by project
         val jetbrainsAnnotationsVersion: String by project
         val immutablesVersion: String by project
         val jakartaJsonVersion: String by project
         val junitVersion: String by project
         val testContainersVersion: String by project
-        val hutoolVersion: String by project
-        implementation("com.google.code.gson:gson:${gsonVersion}")
         implementation("org.mapstruct:mapstruct:${mapstructVersion}")
         implementation("com.google.guava:guava:${guavaVersion}")
         implementation("org.slf4j:slf4j-api:${slf4jVersion}")
-        implementation("io.reactivex.rxjava3:rxjava:${rxjavaVersion}")
         implementation("commons-io:commons-io:${commonIOVersion}")
         implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
-        implementation("io.soabase.record-builder:record-builder-core:37")
-        implementation("org.inferred:freebuilder:2.8.0")
-        implementation("cn.hutool:hutool-all:${hutoolVersion}")
-        implementation("org.eclipse.collections:eclipse-collections-api:11.1.0")
-        implementation("org.eclipse.collections:eclipse-collections:11.1.0")
+
         implementation("org.immutables:value:$immutablesVersion")
         implementation("javax.annotation:javax.annotation-api:1.3.2")
         annotationProcessor("org.immutables:value:$immutablesVersion")
@@ -86,7 +78,6 @@ subprojects {
 //        errorprone("com.google.errorprone:error_prone_core:2.23.0")
 //        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
 //        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
-        annotationProcessor("io.soabase.record-builder:record-builder-processor:37")
         annotationProcessor("com.google.auto.factory:auto-factory:1.1.0")
         annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         testImplementation(platform("org.junit:junit-bom:${junitVersion}"))

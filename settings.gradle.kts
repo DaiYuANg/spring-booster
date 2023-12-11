@@ -65,79 +65,69 @@ gitHooks {
     //    createHooks()
 }
 
-rootProject.name = "spring-boot-toolkit"
+rootProject.name = "Toolkit"
 
-include("kits:core:spring-boot-toolkit-persistence")
+include("framework:spring-boot:spring-boot-persistence")
 
-include("kits:core:spring-boot-toolkit-utils")
+include("framework:spring-boot:spring-boot-utils")
 
-include("kits:web:spring-boot-toolkit-authentication")
+include("framework:spring-boot:spring-boot-authentication")
+include("framework:spring-boot:spring-boot-i18n")
+include("framework:spring-boot:spring-boot-web-core")
+include("framework:spring-boot:spring-boot-verification")
+include("framework:spring-boot:spring-boot-office")
+include("framework:spring-boot:spring-boot-recorder")
+include("framework:spring-boot:spring-boot-mapping-core")
+include("framework:spring-boot:spring-boot-mapping-base")
 
-include("kits:web:spring-boot-toolkit-i18n")
+include("apps:springboot-application")
 
-include("kits:web:spring-boot-toolkit-web-core")
+include("framework:spring-boot:spring-boot-web-annotation")
 
-include("kits:web:spring-boot-toolkit-verification")
+include("framework:spring-boot:spring-boot-vertx-web")
 
-include("kits:cache:spring-boot-toolkit-cache-api")
+include("framework:spring-boot:spring-boot-vertx-clustering")
 
-include("kits:biz:spring-boot-toolkit-office")
+include("framework:spring-boot:spring-boot-route")
 
-include("kits:biz:spring-boot-toolkit-recorder")
+include("framework:spring-boot:spring-boot-email")
 
-include("kits:mapping:spring-boot-toolkit-mapping-core")
-//
-include("apps:cli-application")
+include("framework:spring-boot:spring-boot-minio")
+include("framework:spring-boot:spring-boot-vertx-core")
 
-include("apps:example-application")
+include("framework:spring-boot:spring-boot-vertx-event-bus")
 
-include("kits:web:spring-boot-toolkit-web-annotation")
+include("framework:spring-boot:spring-boot-mapping-code-source")
+include("framework:spring-boot:spring-boot-mapping-database-source")
+include("framework:spring-boot:spring-boot-mapping-web")
+include("framework:spring-boot:spring-boot-dev-service")
+include("framework:spring-boot:spring-boot-dotenv")
 
-include("integration:vertx:spring-boot-toolkit-vertx-web")
+include("framework:spring-boot:spring-boot-scanner")
 
-include("integration:vertx:spring-boot-toolkit-vertx-clustering")
+include("framework:spring-boot:spring-boot-cache")
 
-include("kits:biz:spring-boot-toolkit-route")
+include("framework:spring-boot:spring-boot-web-version")
 
-include("kits:biz:spring-boot-toolkit-email")
+include("framework:spring-boot:spring-boot-base")
 
-include("integration:minio:spring-boot-toolkit-minio")
+include("kits:cache-api")
 
-include("integration:vertx:spring-boot-toolkit-vertx-core")
+include("kits:cache-redis")
 
-include("integration:vertx:spring-boot-toolkit-vertx-event-bus")
+include("kits:cache-annotation")
 
-include("kits:mapping:spring-boot-toolkit-mapping-code-source")
+include("kits:cache-hazelcast")
 
-include("kits:mapping:spring-boot-toolkit-mapping-database-source")
+include("kits:cache-caffine")
 
-include("kits:mapping:spring-boot-toolkit-mapping-web")
+include("kits:cache-immutable")
+
+include("kits:codegen-annotation")
 
 include("website")
 
-include("kits:core:spring-boot-toolkit-dev-service")
-
-include("codegen:spring-boot-toolkit-codegen")
-
-include("codegen:spring-boot-toolkit-codegen-annotation")
-
-include("kits:core:spring-boot-toolkit-dotenv")
-
-include("kits:core:spring-boot-toolkit-scanner")
-
-include("kits:web:spring-boot-toolkit-web-version")
-
-include("codegen:spring-boot-mapping-indexer")
-
-include("kits:mapping:spring-boot-mapping-base")
-include("kits:cache:spring-boot-toolkit-cache-redis")
-
-include("kits:cache:spring-boot-toolkit-cache-annotation")
-
-include("kits:cache:spring-boot-toolkit-cache-hazelcast")
-
-include("kits:cache:spring-boot-toolkit-cache-caffine")
-
-include("kits:cache:spring-boot-toolkit-cache-immutable")
-
-include("kits:cache:spring-boot-toolkit-cache")
+include("tools:cli")
+include("kits:minio-wrapper")
+include("kits:collections")
+findProject(":kits:collections")?.name = "collections"
