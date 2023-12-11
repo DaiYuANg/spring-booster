@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.cache.api.annotation;
+package org.toolkit.spring.boot.cache.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

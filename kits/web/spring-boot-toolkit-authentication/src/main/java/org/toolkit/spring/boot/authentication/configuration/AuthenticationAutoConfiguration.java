@@ -39,7 +39,6 @@ import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
 @EnableWebSecurity
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class, JwtConfigProperties.class})
 @Slf4j
-@EnableAspectJAutoProxy(proxyTargetClass = true)
 @ComponentScan("org.toolkit.spring.boot.authentication.**.*")
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 

@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.cache.api.base;
+package org.toolkit.spring.boot.cache.api;
 
 import java.util.concurrent.CopyOnWriteArraySet;
 import lombok.ToString;
@@ -6,7 +6,7 @@ import lombok.ToString;
 @ToString
 public class MultiLevelCacheManager {
 
-	private final CopyOnWriteArraySet<TCacheManager> cacheManagers = new CopyOnWriteArraySet<>();
+	private final CopyOnWriteArraySet<CacheManager> cacheManagers = new CopyOnWriteArraySet<>();
 
 	public MultiLevelCacheManager() {
 //		Caching.getCachingProviders().forEach(cachingProvider -> cacheManagers.add(cachingProvider.getCacheManager()));

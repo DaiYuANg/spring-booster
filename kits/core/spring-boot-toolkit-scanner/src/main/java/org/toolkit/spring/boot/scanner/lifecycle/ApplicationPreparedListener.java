@@ -1,5 +1,6 @@
 package org.toolkit.spring.boot.scanner.lifecycle;
 
+import cn.hutool.core.util.ServiceLoaderUtil;
 import io.github.classgraph.ClassGraph;
 import java.util.ServiceLoader;
 import java.util.function.Function;

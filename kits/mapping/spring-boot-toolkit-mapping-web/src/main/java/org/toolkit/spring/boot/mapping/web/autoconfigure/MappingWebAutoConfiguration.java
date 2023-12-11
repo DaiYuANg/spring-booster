@@ -11,7 +11,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @AutoConfiguration
 @Slf4j
 @EnableConfigurationProperties(MappingWebConfigurationProperties.class)
-@EnableAspectJAutoProxy
 @ComponentScan("org.toolkit.spring.boot.mapping.web.**.*")
 public class MappingWebAutoConfiguration {
 

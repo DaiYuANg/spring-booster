@@ -131,9 +131,13 @@ include("codegen:spring-boot-mapping-indexer")
 
 include("kits:mapping:spring-boot-mapping-base")
 include("kits:cache:spring-boot-toolkit-cache-redis")
+
 include("kits:cache:spring-boot-toolkit-cache-annotation")
+
 include("kits:cache:spring-boot-toolkit-cache-hazelcast")
+
 include("kits:cache:spring-boot-toolkit-cache-caffine")
-findProject(":kits:cache:spring-boot-toolkit-cache-caffine")?.name = "spring-boot-toolkit-cache-caffine"
+
 include("kits:cache:spring-boot-toolkit-cache-immutable")
-findProject(":kits:cache:spring-boot-toolkit-cache-immutable")?.name = "spring-boot-toolkit-cache-immutable"
+
+include("kits:cache:spring-boot-toolkit-cache")

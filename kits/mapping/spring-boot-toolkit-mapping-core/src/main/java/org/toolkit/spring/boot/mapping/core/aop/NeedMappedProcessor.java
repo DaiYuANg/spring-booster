@@ -8,15 +8,17 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 import org.toolkit.spring.boot.mapping.core.utils.MappedUtil;
 
 @Aspect
 @Component
 @Slf4j
+
 public class NeedMappedProcessor {
 
-	@Pointcut("@annotation(org.toolkit.spring.boot.mapping.base.NestMapping)")
+	@Pointcut("@annotation(org.toolkit.spring.boot.mapping.base.annotation.NestMapping)")
 	public void needMappedPointCut() {}
 
 	@SneakyThrows

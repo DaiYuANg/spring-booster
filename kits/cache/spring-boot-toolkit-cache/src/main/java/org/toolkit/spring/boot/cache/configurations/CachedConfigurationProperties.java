@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.cache.api.configurations;
+package org.toolkit.spring.boot.cache.configurations;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

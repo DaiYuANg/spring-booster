@@ -1,4 +1,4 @@
-package org.toolkit.spring.boot.cache.api.base;
+package org.toolkit.spring.boot.cache.api;
 
 import lombok.NonNull;
 import org.jetbrains.annotations.NotNull;
@@ -7,14 +7,12 @@ import org.jetbrains.annotations.Nullable;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
-public interface Cache<K, V> extends Stream<Cache<K, V>> {
+public interface Cache<K, V> extends Iterable<Cache<K, V>> {
 
     void put(@NotNull @NonNull K k, V v);
 
@@ -75,6 +73,8 @@ public interface Cache<K, V> extends Stream<Cache<K, V>> {
     boolean replace(@NotNull @NonNull K k, V v);
 
     @Nullable V get(@NotNull @NonNull K k);
+
+    @NonNull @NotNull Map<? extends K, ? extends V> getAll();
 
     default Optional<V> getOptional(@NotNull @NonNull K k) {
         return Optional.ofNullable(get(k));
