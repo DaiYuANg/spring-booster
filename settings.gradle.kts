@@ -65,7 +65,7 @@ gitHooks {
     //    createHooks()
 }
 
-rootProject.name = "Toolkit"
+rootProject.name = "JToolkit"
 
 include("framework:spring-boot:spring-boot-persistence")
 
@@ -128,6 +128,13 @@ include("kits:codegen-annotation")
 include("website")
 
 include("tools:cli")
+
 include("kits:minio-wrapper")
+
 include("kits:collections")
-findProject(":kits:collections")?.name = "collections"
+
+include("tools:site-gen")
+
+include("kits:visualvm-web")
+
+include("kits:visualvm-web-ui")

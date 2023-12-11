@@ -3,7 +3,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 plugins{
     id("org.springframework.boot")
     id("io.spring.dependency-management")
-    java
+    `java-library`
 }
 the<DependencyManagementExtension>().apply {
     imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
