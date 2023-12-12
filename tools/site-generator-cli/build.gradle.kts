@@ -1,7 +1,4 @@
-plugins {
-    cli
-}
-
+apply<PicoCliProjectPlugin>()
 group = "org.toolkit.site.generator.cli"
 version = "1.0-SNAPSHOT"
 

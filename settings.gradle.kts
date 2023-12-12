@@ -65,7 +65,7 @@ gitHooks {
     //    createHooks()
 }
 
-rootProject.name = "JToolkit"
+rootProject.name = "Nectar"
 
 include("framework:spring-boot:spring-boot-persistence")
 
@@ -127,7 +127,7 @@ include("kits:codegen-annotation")
 
 include("website")
 
-include("tools:code-generator-cli")
+include("tools:toolkit-cli")
 
 include("kits:minio-wrapper")
 
@@ -138,5 +138,7 @@ include("tools:site-generator-core")
 include("kits:visualvm-web")
 
 include("kits:visualvm-web-ui")
+
 include("tools:site-generator-cli")
-findProject(":tools:site-generator-cli")?.name = "site-generator-cli"
+include("kits:refined")
+findProject(":kits:refined")?.name = "refined"

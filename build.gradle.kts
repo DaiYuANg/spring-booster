@@ -1,11 +1,8 @@
-import com.palantir.gradle.gitversion.GitVersionPlugin
 //import io.freefair.gradle.plugins.lombok.LombokPlugin
+import com.palantir.gradle.gitversion.GitVersionPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
-//import net.ltgt.gradle.errorprone.CheckSeverity
-//import net.ltgt.gradle.errorprone.ErrorPronePlugin
-//import net.ltgt.gradle.errorprone.errorprone
-import java.util.*
+import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
     java
@@ -18,10 +15,10 @@ plugins {
     id("name.remal.lombok") version "2.2.4" apply false
     id("org.jreleaser")
 //    id("net.ltgt.errorprone") version "3.1.0"
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 allprojects {
-    apply<TreePlugin>()
     repositories {
         maven { setUrl("https://repo.spring.io/snapshot") }
         maven { setUrl("https://repo.spring.io/milestone") }
@@ -40,13 +37,13 @@ true.also { gradle.startParameter.isBuildCacheEnabled = it }
 
 subprojects {
     val jdkVersion: String by project
-    apply<JavaPlugin>()
     apply<JavaLibraryPlugin>()
     apply<JMHPlugin>()
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
-    apply<FormatPlugin>()
+    apply<FormatterPlugin>()
 //    apply<ErrorPronePlugin>()
+    apply<DokkaPlugin>()
 
     group = "org." + rootProject.name + "." + project.name
     val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
@@ -72,6 +69,8 @@ subprojects {
         implementation("org.immutables:value:$immutablesVersion")
         implementation("javax.annotation:javax.annotation-api:1.3.2")
         annotationProcessor("org.immutables:value:$immutablesVersion")
+        // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
+        implementation("jakarta.annotation:jakarta.annotation-api:3.0.0-M1")
 //        implementation("org.agrona:Agrona:0.9.1")
 //        errorprone("com.uber.nullaway:nullaway:0.10.18")
 //        errorprone("com.google.errorprone:error_prone_core:2.23.0")
@@ -109,12 +108,6 @@ subprojects {
 
         withType<JavaCompile> {
             dependsOn(project.tasks.processResources)
-            if (!name.lowercase(Locale.getDefault()).contains("test")) {
-//                options.errorprone {
-//                    check("NullAway", CheckSeverity.ERROR)
-//                    option("NullAway:AnnotatedPackages", "com.uber")
-//                }
-            }
         }
         java {
             sourceCompatibility = JavaVersion.toVersion(jdkVersion)
