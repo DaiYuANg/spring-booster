@@ -127,14 +127,16 @@ include("kits:codegen-annotation")
 
 include("website")
 
-include("tools:cli")
+include("tools:code-generator-cli")
 
 include("kits:minio-wrapper")
 
 include("kits:collections")
 
-include("tools:site-gen")
+include("tools:site-generator-core")
 
 include("kits:visualvm-web")
 
 include("kits:visualvm-web-ui")
+include("tools:site-generator-cli")
+findProject(":tools:site-generator-cli")?.name = "site-generator-cli"

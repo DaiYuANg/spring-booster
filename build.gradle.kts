@@ -69,7 +69,6 @@ subprojects {
         implementation("org.slf4j:slf4j-api:${slf4jVersion}")
         implementation("commons-io:commons-io:${commonIOVersion}")
         implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
-
         implementation("org.immutables:value:$immutablesVersion")
         implementation("javax.annotation:javax.annotation-api:1.3.2")
         annotationProcessor("org.immutables:value:$immutablesVersion")

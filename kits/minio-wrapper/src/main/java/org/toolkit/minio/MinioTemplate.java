@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import org.toolkit.minio.exceptions.ObjectNotExistsException;
 
 @Getter
-@Slf4j
 @Builder
 public class MinioTemplate {
 
@@ -134,7 +133,6 @@ public class MinioTemplate {
 					StatObjectArgs.builder().bucket(bucket).object(object).build());
 			return true;
 		} catch (ErrorResponseException e) {
-			log.atDebug().log("object not exists");
 			return false;
 		}
 	}
@@ -147,7 +145,6 @@ public class MinioTemplate {
 	public void createBucket(String bucket) {
 		val existsArg = BucketExistsArgs.builder().bucket(bucket).build();
 		if (client.bucketExists(existsArg)) {
-			log.atDebug().log("bucket :{} existed!", bucket);
 			return;
 		}
 		client.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());

@@ -1,7 +1,8 @@
 plugins {
   application
-  id("org.graalvm.buildtools.native") version "0.9.27"
-  id("org.panteleyev.jpackageplugin") version "1.5.2"
+  cli
+  id("org.graalvm.buildtools.native") version "0.9.28"
+  id("org.panteleyev.jpackageplugin") version "1.6.0"
 }
 
 group = "org.toolkit.cli"
@@ -15,10 +16,8 @@ repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases")
 val mainClass = "org.toolkit.cli.ToolkitCLIApplication"
 
 dependencies {
-  val picocliVersion: String by project
   val slf4jVersion: String by project
-  implementation("info.picocli:picocli:$picocliVersion")
-  implementation("info.picocli:picocli-shell-jline3:$picocliVersion")
+  val gestaltVersion = "0.24.1"
   implementation("com.google.inject:guice:7.0.0")
   implementation("com.mysql:mysql-connector-j:8.2.0")
   implementation("com.squareup:javapoet:1.13.0")
@@ -28,9 +27,8 @@ dependencies {
   implementation("commons-dbutils:commons-dbutils:1.8.1")
   implementation("org.slf4j:slf4j-simple:$slf4jVersion")
   implementation("org.fusesource.jansi:jansi:2.4.1")
-  implementation("org.apache.commons:commons-dbcp2:2.11.0")
-  implementation("io.smallrye.config:smallrye-config:3.4.2-SNAPSHOT")
-  annotationProcessor("info.picocli:picocli-codegen:$picocliVersion")
+  implementation("com.github.gestalt-config:gestalt-core:$gestaltVersion")
+  implementation("com.github.gestalt-config:gestalt-kotlin:$gestaltVersion")
 }
 
 application {

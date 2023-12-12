@@ -23,6 +23,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
-    implementation("com.diffplug.spotless:spotless-plugin-gradle:6.22.0")
-    implementation("com.github.spotbugs.snom:spotbugs-gradle-plugin:6.0.0-rc.2")
+    implementation("com.diffplug.spotless:spotless-plugin-gradle:6.23.3")
+    implementation("com.github.spotbugs.snom:spotbugs-gradle-plugin:6.0.2")
 }
