@@ -8,4 +8,5 @@ dependencies {
   implementation("org.asciidoctor:asciidoctorj-pdf:2.3.9")
   implementation("org.asciidoctor:asciidoctorj-diagram:2.2.13")
   implementation("org.freemarker:freemarker:2.3.32")
+  implementation("org.jsoup:jsoup:1.17.1")
 }

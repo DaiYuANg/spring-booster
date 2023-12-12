@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.example.faker;
 
 import static java.util.stream.IntStream.range;

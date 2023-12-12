@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.example.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

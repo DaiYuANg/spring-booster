@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.example.constant;
 
 import org.toolkit.spring.boot.mapping.source.code.annotation.StaticField;

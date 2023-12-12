@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.example.configuration;
 
 import jakarta.annotation.Resource;

@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.cache.caffine.autoconfigure;
 
 import com.github.benmanes.caffeine.cache.Cache;

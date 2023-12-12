@@ -1,4 +1,5 @@
-package org.toolkit.site.generator;
+/* (C)2023*/
+package org.nectar.nova.cli.config;
 
 import java.io.File;
 import lombok.Data;
@@ -8,9 +9,7 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @Accessors(chain = true)
-public class ProcessorBuilder {
+public class SiteConfig {
 
-	private File docsRoot;
-
-	private File styleRoot;
+	private File source;
 }

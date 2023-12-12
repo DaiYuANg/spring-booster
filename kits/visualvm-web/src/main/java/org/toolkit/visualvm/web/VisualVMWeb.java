@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.visualvm.web;
 
 import io.activej.http.AsyncServlet;
@@ -9,16 +10,14 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class VisualVMWeb extends HttpServerLauncher {
-    @Contract(pure = true)
+	@Contract(pure = true)
 	@Provides
-    private @NotNull AsyncServlet servlet() {
-        return request -> HttpResponse.ok200()
-                .withPlainText("Hello World")
-                .toPromise();
-    }
+	private @NotNull AsyncServlet servlet() {
+		return request -> HttpResponse.ok200().withPlainText("Hello World").toPromise();
+	}
 
-    public static void main(String[] args) throws Exception {
-        Launcher launcher = new VisualVMWeb();
-        launcher.launch(args);
-    }
+	public static void main(String[] args) throws Exception {
+		Launcher launcher = new VisualVMWeb();
+		launcher.launch(args);
+	}
 }

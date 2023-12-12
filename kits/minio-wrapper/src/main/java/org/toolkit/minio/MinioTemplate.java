@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.minio;
 
 import io.minio.*;
@@ -8,7 +9,6 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Optional;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.Tika;

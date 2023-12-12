@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.minio.exceptions;
 
 import java.io.Serial;

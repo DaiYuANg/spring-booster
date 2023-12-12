@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.cache.redis.cache;
 
 import com.google.auto.factory.AutoFactory;

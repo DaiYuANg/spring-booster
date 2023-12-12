@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.collections.api;
 
 import com.google.errorprone.annotations.CompatibleWith;

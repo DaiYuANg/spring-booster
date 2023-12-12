@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.example.vo;
 
 import lombok.Builder;

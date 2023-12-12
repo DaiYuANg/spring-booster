@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.collections.api;
 
 import javax.annotation.Nonnull;

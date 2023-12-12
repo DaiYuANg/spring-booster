@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.minio;
 
 import org.junit.jupiter.api.BeforeEach;

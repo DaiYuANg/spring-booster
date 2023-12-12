@@ -133,12 +133,11 @@ include("kits:minio-wrapper")
 
 include("kits:collections")
 
-include("tools:site-generator-core")
+include("tools:nova-core")
 
 include("kits:visualvm-web")
 
 include("kits:visualvm-web-ui")
 
-include("tools:site-generator-cli")
+include("tools:nova-cli")
 include("kits:refined")
-findProject(":kits:refined")?.name = "refined"
