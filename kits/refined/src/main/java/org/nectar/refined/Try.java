@@ -2,7 +2,6 @@
 package org.nectar.refined;
 
 import java.util.Objects;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.SneakyThrows;

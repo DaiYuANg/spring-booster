@@ -1,20 +1,21 @@
 /* (C)2023*/
 package org.nectar.nova.core;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
+import com.adelean.inject.resources.junit.jupiter.GivenTextResource;
+import com.adelean.inject.resources.junit.jupiter.TestWithResources;
+import lombok.val;
 import org.junit.jupiter.api.Test;
+import org.nectar.nova.core.document.MarkdownDocumentProcessor;
 
+@TestWithResources
 class MarkdownDocumentProcessorTest {
+
+	@GivenTextResource("TestMarkdownDocumentProcessor.md")
+	String instanceField;
 
 	@Test
 	void processor() {
-		String path = "src/test/resources/TestMarkdownDocumentProcessor.md";
-
-		File file = new File(path);
-		String absolutePath = file.getAbsolutePath();
-
-		System.out.println(absolutePath);
+		val html = new MarkdownDocumentProcessor().processor(instanceField);
+		System.err.println(html.data());
 	}
 }

@@ -5,7 +5,7 @@ import name.remal.gradle_plugins.lombok.LombokPlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
-    java
+    `java-library`
     pmd
     idea
     id("com.github.ben-manes.versions")
@@ -36,6 +36,8 @@ version = "1.0-SNAPSHOT"
 
 true.also { gradle.startParameter.isBuildCacheEnabled = it }
 
+val jdkVersion = libs.versions.jdkVersion.get()
+
 subprojects {
     val jdkVersion: String by project
 //    apply<JavaLibraryPlugin>()
@@ -64,13 +66,13 @@ subprojects {
         val testContainersVersion: String by project
 //        implementation("org.mapstruct:mapstruct:${mapstructVersion}")
 //        implementation("com.google.guava:guava:${guavaVersion}")
-//        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
 //        implementation("commons-io:commons-io:${commonIOVersion}")
 //        implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
 //        implementation("org.immutables:value:$immutablesVersion")
 //        annotationProcessor("org.immutables:value:$immutablesVersion")
         // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
-//        implementation("jakarta.annotation:jakarta.annotation-api:3.0.0-M1")
+        implementation("jakarta.annotation:jakarta.annotation-api:3.0.0-M1")
 //        implementation("org.agrona:Agrona:0.9.1")
 //        errorprone("com.uber.nullaway:nullaway:0.10.18")
 //        errorprone("com.google.errorprone:error_prone_core:2.23.0")
