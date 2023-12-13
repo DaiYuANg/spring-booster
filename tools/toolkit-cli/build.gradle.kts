@@ -2,6 +2,7 @@ plugins {
   application
   id("org.graalvm.buildtools.native") version "0.9.28"
   id("org.panteleyev.jpackageplugin") version "1.6.0"
+  kotlin("jvm")
 }
 
 apply<PicoCliProjectPlugin>()
@@ -28,6 +29,8 @@ dependencies {
   implementation("commons-dbutils:commons-dbutils:1.8.1")
   implementation("org.slf4j:slf4j-simple:$slf4jVersion")
   implementation("org.fusesource.jansi:jansi:2.4.1")
+  annotationProcessor("com.google.auto.service:auto-service:1.1.1")
+  implementation(projects.kits.refined)
   implementation("com.github.gestalt-config:gestalt-core:$gestaltVersion")
   implementation("com.github.gestalt-config:gestalt-guice:$gestaltVersion")
   implementation("com.github.gestalt-config:gestalt-yaml:$gestaltVersion")
