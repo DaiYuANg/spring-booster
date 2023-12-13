@@ -104,6 +104,11 @@ subprojects {
         withType<Jar> {
             enabled = true
             duplicatesStrategy = DuplicatesStrategy.INCLUDE
+            manifest{
+                attributes(
+                    "Git-Hash" to details.gitHash
+                )
+            }
         }
 
         withType<JavaCompile> {

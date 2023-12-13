@@ -1,3 +1,6 @@
+plugins{
+  kotlin("jvm")
+}
 group = "org.toolkit.collections"
 
 version = "1.0-SNAPSHOT"

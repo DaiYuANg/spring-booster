@@ -7,12 +7,12 @@ import com.vladsch.flexmark.util.data.MutableDataSet;
 
 public class MarkdownDocumentProcessor implements DocumentProcessor {
 
-	{
+	static {
 		MutableDataSet options = new MutableDataSet();
 		Parser parser = Parser.builder(options).build();
 		HtmlRenderer renderer = HtmlRenderer.builder(options).build();
 	}
 
 	@Override
-	public void processor() {}
+	public void processor(String source) {}
 }

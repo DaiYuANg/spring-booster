@@ -1,6 +1,7 @@
 /* (C)2023*/
 package org.toolkit.cli;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.fusesource.jansi.AnsiConsole;
@@ -15,6 +16,7 @@ public class ToolkitCLIApplication {
 		AnsiConsole.systemInstall();
 	}
 
+	@SneakyThrows
 	public static void main(String[] args) {
 		val command = new CommandLine(new RootCommand(), new GuiceFactory());
 		val exec = command.execute(args);

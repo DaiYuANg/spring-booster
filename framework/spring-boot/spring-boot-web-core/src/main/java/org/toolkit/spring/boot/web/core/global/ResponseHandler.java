@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -65,7 +66,7 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
 		if (body instanceof Instant) {
 			return body;
 		}
-		var response = Response.success();
+		var response = ResponseEntity.success();
 		if (Objects.nonNull(body)) {
 			response = Response.success(body);
 		}

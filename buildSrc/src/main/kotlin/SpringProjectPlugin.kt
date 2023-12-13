@@ -19,15 +19,12 @@ class SpringProjectPlugin : Plugin<Project> {
     )
 
     override fun apply(project: Project) {
-        // 应用 Spring Boot 插件
         project.pluginManager.apply(SpringBootPlugin::class.java)
 
-        // 应用 Dependency Management 插件
         project.extensions.configure(DependencyManagementExtension::class.java) {
             imports { mavenBom(SpringBootPlugin.BOM_COORDINATES) }
         }
 
-        // 配置 compileOnly 配置
         project.configurations.create("compileOnly")
         project.configurations.getByName("compileOnly")
             .extendsFrom(project.configurations.getByName("annotationProcessor"))

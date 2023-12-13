@@ -12,7 +12,6 @@ class FormatterPlugin : Plugin<Project> {
     private val pluginList = listOf(
         SpotlessPlugin::class.java,
         JacocoPlugin::class.java,
-        CheckstylePlugin::class.java,
         SpotlessPlugin::class.java
     )
 

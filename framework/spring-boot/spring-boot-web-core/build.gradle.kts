@@ -5,5 +5,6 @@ dependencies {
   implementation("org.aspectj:aspectjrt:${aspectjVersion}")
   api("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.hateoas:spring-hateoas")
+  implementation(projects.framework.springBoot.springBootWebAnnotation)
   //  implementation(projects.kits.web.springBootToolkitWebAnnotation)
 }

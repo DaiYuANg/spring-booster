@@ -1,11 +1,11 @@
+/* (C)2023*/
 package org.nectar.nova.core;
 
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 @Data
 @ToString
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class SiteInfo {
 
-    private String siteTitle;
+	private String siteTitle;
 
-    private List<MetaInfo> metaInfos;
+	private List<MetaInfo> metaInfos;
 }

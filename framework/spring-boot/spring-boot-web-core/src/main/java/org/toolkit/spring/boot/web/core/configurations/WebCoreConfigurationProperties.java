@@ -3,6 +3,7 @@ package org.toolkit.spring.boot.web.core.configurations;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.http.ResponseEntity;
 import org.toolkit.spring.boot.web.core.structure.Response;
 
 @ConfigurationProperties(prefix = "spring")
@@ -12,5 +13,5 @@ public class WebCoreConfigurationProperties {
 	/**
 	 * Global return value struct
 	 */
-	private Class<?> returnResult = Response.class;
+	private Class<?> returnResult = ResponseEntity.class;
 }

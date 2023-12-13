@@ -1,4 +1,4 @@
-group = "org.toolkit.docs.gen"
+group = "org.toolkit.nova.core"
 
 version = "1.0-SNAPSHOT"
 

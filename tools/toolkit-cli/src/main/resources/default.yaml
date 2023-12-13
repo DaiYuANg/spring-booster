@@ -1,3 +1,4 @@
+test: ttt
 logging:
   level:
     org.springframework.core.env: debug

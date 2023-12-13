@@ -29,7 +29,10 @@ dependencies {
   implementation("org.slf4j:slf4j-simple:$slf4jVersion")
   implementation("org.fusesource.jansi:jansi:2.4.1")
   implementation("com.github.gestalt-config:gestalt-core:$gestaltVersion")
-  implementation("com.github.gestalt-config:gestalt-kotlin:$gestaltVersion")
+  implementation("com.github.gestalt-config:gestalt-guice:$gestaltVersion")
+  implementation("com.github.gestalt-config:gestalt-yaml:$gestaltVersion")
+  implementation("com.github.gestalt-config:gestalt-json:$gestaltVersion")
+  implementation("com.github.gestalt-config:gestalt-toml:$gestaltVersion")
 }
 
 application {
@@ -47,6 +50,8 @@ graalvmNative {
   }
 }
 
+sourceSets { create("java9") { java.srcDirs("java9") } }
+
 // tasks.bootBuildImage { builder.set("paketobuildpacks/builder-jammy-tiny:latest") }
 
 task("copyDependencies", Copy::class) {
@@ -61,7 +66,7 @@ tasks.jpackage {
   input = "${layout.buildDirectory}/jars"
   destination = "${layout.buildDirectory}/dist"
 
-  appName = "Non-Modular Application"
+  appName = "ToolkitCLI"
   vendor = "app.org"
 
   mainJar = tasks.jar.get().archiveFileName.get()

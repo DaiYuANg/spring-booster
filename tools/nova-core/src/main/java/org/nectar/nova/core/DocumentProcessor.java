@@ -3,5 +3,5 @@ package org.nectar.nova.core;
 
 public interface DocumentProcessor {
 
-	void processor();
+	void processor(String source);
 }

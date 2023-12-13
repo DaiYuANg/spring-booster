@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.nectar.nova.core;
 
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Builder
 public class MetaInfo {
-    private String name;
+	private String name;
 
-    private String content;
+	private String content;
 }

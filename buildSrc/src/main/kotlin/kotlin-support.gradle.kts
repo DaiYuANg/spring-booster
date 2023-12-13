@@ -21,6 +21,8 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+//print(DependenciesDeclaration.IMPLEMENTATION)
+
 allOpen {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.Embeddable")
