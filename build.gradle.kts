@@ -88,6 +88,8 @@ subprojects {
         testImplementation("org.testcontainers:testcontainers:$testContainersVersion")
         testImplementation("org.testcontainers:testcontainers")
         testImplementation("org.testcontainers:junit-jupiter")
+        testImplementation("org.mockito:mockito-core:5.8.0")
+        testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
     }
 
     tasks {

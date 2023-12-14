@@ -1,7 +1,6 @@
 /* (C)2023*/
-package org.nectar.refined;
+package org.nectar.refined.error;
 
-import jakarta.annotation.Nonnull;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -15,9 +14,8 @@ import org.jetbrains.annotations.Nullable;
 @SuperBuilder(toBuilder = true, builderMethodName = "b")
 public class TryOr<T, E extends Exception> extends Try<E> {
 
-	@Nullable @jakarta.annotation.Nullable private final T result;
+	@Nullable private final T result;
 
-	@Nonnull
 	public static <T, E extends Exception> @NotNull TryOr<T, E> attempt(Supplier<T> supplier) {
 		val builder = TryOr.<T, E>b();
 		try {

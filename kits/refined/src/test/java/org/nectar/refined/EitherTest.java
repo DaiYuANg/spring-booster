@@ -1,10 +1,9 @@
 /* (C)2023*/
 package org.nectar.refined;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import lombok.val;
 import org.junit.jupiter.api.Test;
+import org.nectar.refined.container.Either;
 
 class EitherTest {
 

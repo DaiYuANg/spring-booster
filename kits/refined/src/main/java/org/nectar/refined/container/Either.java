@@ -1,5 +1,5 @@
 /* (C)2023*/
-package org.nectar.refined;
+package org.nectar.refined.container;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-class Either<L, R> {
+public class Either<L, R> {
 	private final L left;
 	private final R right;
 	private final boolean isLeft;

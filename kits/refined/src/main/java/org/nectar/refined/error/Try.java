@@ -1,5 +1,5 @@
 /* (C)2023*/
-package org.nectar.refined;
+package org.nectar.refined.error;
 
 import java.util.Objects;
 import lombok.AccessLevel;
