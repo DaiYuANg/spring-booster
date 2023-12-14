@@ -137,8 +137,6 @@ include("tools:nova-core")
 
 include("kits:visualvm-web")
 
-include("kits:visualvm-web-ui")
-
 include("tools:nova-cli")
 include("kits:refined")
 include("tools:nova-gradle-plugin")

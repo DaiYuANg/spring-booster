@@ -6,6 +6,7 @@ ktlintGradle = "12.0.3"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 classGraph = "4.8.165"
+guice = "7.0.0"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
@@ -16,4 +17,4 @@ versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionChe
 
 [libraries]
 junit = "junit:junit:4.13.2"
-classgraph = { group = "io.github.classgraph",name="classgraph", version.ref = "classGraph" }
+classgraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }

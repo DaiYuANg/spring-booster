@@ -2,6 +2,8 @@
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
+import net.ltgt.gradle.errorprone.ErrorPronePlugin
+import org.gradle.api.publish.maven.internal.publisher.MavenLocalPublisher
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
@@ -14,15 +16,13 @@ plugins {
     id("me.champeau.jmh") apply false
     id("name.remal.lombok") version "2.2.4" apply false
     id("org.jreleaser")
-    id("org.jetbrains.gradle.plugin.idea-ext") version "1.1.7"
-//    id("net.ltgt.errorprone") version "3.1.0"
+    id("net.ltgt.errorprone") version "3.1.0"
     id("org.jetbrains.dokka") version "1.9.10"
+    `maven-publish`
 }
 
 allprojects {
     repositories {
-        maven { setUrl("https://repo.spring.io/snapshot") }
-        maven { setUrl("https://repo.spring.io/milestone") }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
@@ -45,7 +45,9 @@ subprojects {
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatterPlugin>()
-//    apply<ErrorPronePlugin>()
+    apply<ErrorPronePlugin>()
+    apply<JMHPlugin>()
+    apply<MavenPublishPlugin>()
     apply<DokkaPlugin>()
 
     group = "org." + rootProject.name + "." + project.name
@@ -72,12 +74,10 @@ subprojects {
 //        implementation("org.immutables:value:$immutablesVersion")
 //        annotationProcessor("org.immutables:value:$immutablesVersion")
         // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
-        implementation("jakarta.annotation:jakarta.annotation-api:3.0.0-M1")
-//        implementation("org.agrona:Agrona:0.9.1")
-//        errorprone("com.uber.nullaway:nullaway:0.10.18")
-//        errorprone("com.google.errorprone:error_prone_core:2.23.0")
-//        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
-//        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
+//        implementation("jakarta.annotation:jakarta.annotation-api:3.0.0-M1")
+        errorprone("com.google.errorprone:error_prone_core:2.23.0")
+        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
+        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
 //        annotationProcessor("com.google.auto.factory:auto-factory:1.1.0")
 //        annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
         testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
@@ -106,7 +106,7 @@ subprojects {
         withType<Jar> {
             enabled = true
             duplicatesStrategy = DuplicatesStrategy.INCLUDE
-            manifest{
+            manifest {
                 attributes(
                     "Git-Hash" to details.gitHash
                 )
@@ -122,5 +122,6 @@ subprojects {
             toolchain { languageVersion.set(JavaLanguageVersion.of(jdkVersion)) }
         }
     }
+
     tasks.test { useJUnitPlatform() }
 }

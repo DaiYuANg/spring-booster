@@ -8,7 +8,9 @@
     <title>${.template_name}</title>
 </head>
 <body>
+    <div class="btn">
 
+    </div>
 </body>
 </html>
 
