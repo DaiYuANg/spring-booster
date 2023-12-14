@@ -1,50 +1,63 @@
 /* (C)2023*/
 package org.nectar.refined.container;
 
+import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import lombok.NonNull;
 import org.nectar.refined.base.Streamable;
 import org.nectar.refined.exception.MethodNotImplemented;
 
-public interface Container<Type, Implement extends Container<Type, Implement>> extends Streamable<Type> {
-	void ifPresent(Consumer<Type> action);
+public interface Container<Type, Implement extends Container<Type, Implement>>
+		extends Streamable<Type>, Serializable, Comparator<Type> {
 
-	Type orElse(Type other);
+	void ifPresent(@NonNull Consumer<Type> action);
 
-	Type orElseGet(Supplier<Type> supplier);
+	Type orElse(@NonNull Type other);
 
-	void ifPresentOrElse(Consumer<Type> action, Runnable emptyAction);
+	Type orElseGet(@NonNull Supplier<Type> supplier);
 
-	boolean isEmpty();
+	void ifPresentOrElse(@NonNull Consumer<Type> action, Runnable emptyAction);
 
-	Implement filter(Predicate<Type> predicate);
+	boolean isValid();
 
-	<U extends Container<Type, ?>> Implement map(Function<? super Type, U> mapper);
+	Implement filter(@NonNull Predicate<Type> predicate);
 
-	default <U> Implement flatMap(Function<? super Type, ? extends Container<Type, ? extends U>> mapper) {
+	<U extends Container<Type, ?>> Implement map(@NonNull Function<? super Type, U> mapper);
+
+	default <U> Implement flatMap(@NonNull Function<? super Type, ? extends Container<Type, ? extends U>> mapper) {
 		throw new MethodNotImplemented();
 	}
 
-	Type orElse(Supplier<Type> supplier);
+	Type orElse(@NonNull Supplier<Type> supplier);
 
 	Type orElseThrow();
 
 	Type get();
 
-	Implement or(Supplier<Implement> supplier);
+	Implement or(@NonNull Supplier<Implement> supplier);
 
-	<ErrorException extends Exception> Type orElseThrow(Class<ErrorException> exceptionClass);
+	<ErrorException extends Exception> Type orElseThrow(@NonNull Class<ErrorException> exceptionClass);
 
-	<ErrorException extends Exception> Type orElseThrow(Supplier<? extends ErrorException> exceptionSupplier)
+	<ErrorException extends Exception> Type orElseThrow(@NonNull Supplier<? extends ErrorException> exceptionSupplier)
 			throws ErrorException;
 
-	<ErrorException extends Exception> Type orElseThrow(ErrorException exception) throws ErrorException;
+	<ErrorException extends Exception> Type orElseThrow(@NonNull ErrorException exception) throws ErrorException;
 
 	Optional<Type> toOptional();
 
 	CompletableFuture<Type> toCompletableFuture();
+
+	void ifEquals(Object o, @NonNull Consumer<Type> action);
+
+	boolean isNull();
+
+	Class<Type> getInternalClass();
+
+	int compare(Type other);
 }

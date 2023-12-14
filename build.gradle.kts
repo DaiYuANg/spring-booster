@@ -125,5 +125,10 @@ subprojects {
         }
     }
 
-    tasks.test { useJUnitPlatform() }
+    tasks.test {
+        useJUnitPlatform()
+        systemProperties["junit.jupiter.execution.parallel.enabled"] = true
+        systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
+        maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
+    }
 }

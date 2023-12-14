@@ -4,14 +4,12 @@ package org.nectar.refined.container;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import lombok.EqualsAndHashCode;
 import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nectar.refined.exception.StringEmptyOrBlank;
 
-@EqualsAndHashCode(callSuper = true)
 public class StringContainer extends BasicContainer<String, StringContainer> {
 
 	protected StringContainer(String value) {
@@ -19,18 +17,19 @@ public class StringContainer extends BasicContainer<String, StringContainer> {
 	}
 
 	@Override
-	public StringContainer filter(Predicate<String> predicate) {
-		return isEmpty() ? this : predicate.test(value) ? this : empty();
+	public StringContainer filter(@NotNull Predicate<String> predicate) {
+		return isValid() ? this : predicate.test(value) ? this : empty();
 	}
 
 	@Override
-	public <U extends Container<String, ?>> StringContainer map(Function<? super String, U> mapper) {
-		return isEmpty() ? empty() : (StringContainer) mapper.apply(value);
+	public <U extends Container<String, ?>> StringContainer map(@NotNull Function<? super String, U> mapper) {
+		return isValid() ? empty() : (StringContainer) mapper.apply(value);
 	}
 
 	@Override
-	public <U> StringContainer flatMap(Function<? super String, ? extends Container<String, ? extends U>> mapper) {
-		if (isEmpty()) {
+	public <U> StringContainer flatMap(
+			@NotNull Function<? super String, ? extends Container<String, ? extends U>> mapper) {
+		if (isValid()) {
 			return empty();
 		} else {
 			val r = mapper.apply(value);
@@ -39,8 +38,8 @@ public class StringContainer extends BasicContainer<String, StringContainer> {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return super.isEmpty() && value.isEmpty() && value.isBlank();
+	public boolean isValid() {
+		return super.isValid() && value.isEmpty() && value.isBlank();
 	}
 
 	@NotNull @Contract(" -> new")
@@ -50,7 +49,7 @@ public class StringContainer extends BasicContainer<String, StringContainer> {
 
 	@Override
 	public String orElseThrow() {
-		if (isEmpty()) throw new StringEmptyOrBlank();
+		if (isValid()) throw new StringEmptyOrBlank();
 		return value;
 	}
 
@@ -62,8 +61,8 @@ public class StringContainer extends BasicContainer<String, StringContainer> {
 	}
 
 	@Override
-	public StringContainer or(Supplier<StringContainer> supplier) {
-		return isEmpty() ? supplier.get() : this;
+	public StringContainer or(@NotNull Supplier<StringContainer> supplier) {
+		return isValid() ? supplier.get() : this;
 	}
 
 	@Contract("_ -> new")

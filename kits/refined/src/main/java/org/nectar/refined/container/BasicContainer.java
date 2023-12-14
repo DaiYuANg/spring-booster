@@ -1,20 +1,27 @@
 /* (C)2023*/
 package org.nectar.refined.container;
 
-import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Stream.of;
 
-import java.util.Optional;
+import java.io.Serial;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.SneakyThrows;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
 
-@EqualsAndHashCode
 public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implements Container<T, I> {
+
+	@Serial
+	private static final long serialVersionUID = 1L;
 
 	protected final T value;
 
@@ -34,8 +41,8 @@ public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implemen
 
 	@SuppressWarnings("IsNull")
 	@Override
-	public boolean isEmpty() {
-		return isNull(value);
+	public boolean isValid() {
+		return Objects.isNull(value);
 	}
 
 	@Override
@@ -45,47 +52,118 @@ public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implemen
 
 	@Override
 	@SneakyThrows
-	public <ErrorException extends Exception> T orElseThrow(Class<ErrorException> errorExceptionClass) {
-		if (isEmpty()) throw errorExceptionClass.getDeclaredConstructor().newInstance();
+	public <ErrorException extends Exception> T orElseThrow(@NotNull Class<ErrorException> errorExceptionClass) {
+		if (isValid()) throw errorExceptionClass.getDeclaredConstructor().newInstance();
 		return value;
 	}
 
 	@Override
-	public <ErrorException extends Exception> T orElseThrow(Supplier<? extends ErrorException> exceptionSupplier)
-			throws ErrorException {
-		if (isEmpty()) throw exceptionSupplier.get();
+	public <ErrorException extends Exception> T orElseThrow(
+			@NotNull Supplier<? extends ErrorException> exceptionSupplier) throws ErrorException {
+		if (isValid()) throw exceptionSupplier.get();
 		return value;
 	}
 
 	@Override
-	public <ErrorException extends Exception> T orElseThrow(ErrorException exception) throws ErrorException {
-		if (isEmpty()) throw exception;
+	public <ErrorException extends Exception> T orElseThrow(@NotNull ErrorException exception) throws ErrorException {
+		if (isValid()) throw exception;
 		return value;
 	}
 
 	@Override
-	public T orElse(T other) {
-		return isEmpty() ? other : value;
+	public T orElse(@NotNull T other) {
+		return isValid() ? other : value;
 	}
 
 	@Override
-	public T orElseGet(Supplier<T> supplier) {
-		return isEmpty() ? supplier.get() : value;
+	public T orElseGet(@NotNull Supplier<T> supplier) {
+		return isValid() ? supplier.get() : value;
 	}
 
 	@Override
-	public void ifPresentOrElse(Consumer<T> action, Runnable emptyAction) {
+	public void ifPresentOrElse(@NotNull Consumer<T> action, Runnable emptyAction) {
 		Runnable runnableAction = () -> action.accept(value);
-		(isEmpty() ? runnableAction : emptyAction).run();
+		(isValid() ? runnableAction : emptyAction).run();
 	}
 
 	@Override
-	public T orElse(Supplier<T> supplier) {
-		return isEmpty() ? supplier.get() : value;
+	public T orElse(@NotNull Supplier<T> supplier) {
+		return isValid() ? supplier.get() : value;
 	}
 
 	@Override
-	public void ifPresent(Consumer<T> action) {
-		if (!isEmpty()) action.accept(value);
+	public void ifPresent(@NotNull Consumer<T> action) {
+		if (!isValid()) action.accept(value);
+	}
+
+	@Override
+	public boolean equals(@NonNull Object o) {
+		if (value == o) return true;
+		return value.equals(o);
+	}
+
+	@Override
+	public int hashCode() {
+		return value.hashCode();
+	}
+
+	@Override
+	public void ifEquals(Object o, @NotNull Consumer<T> action) {
+		if (equals(o)) action.accept(value);
+	}
+
+	@Override
+	public boolean isNull() {
+		return Objects.isNull(value);
+	}
+
+	@Override
+	public String toString() {
+		return value.toString();
+	}
+
+	@Override
+	public Class<T> getInternalClass() {
+		@SuppressWarnings("unchecked")
+		val clazz = (Class<T>) value.getClass();
+		return clazz;
+	}
+
+	@Override
+	public int compare(T other) {
+		if (other == null) {
+			return 1; // Non-null objects are considered greater than null
+		}
+
+		// Use the natural ordering of the encapsulated values for comparison
+		if (value instanceof Comparable) {
+			@SuppressWarnings("unchecked")
+			Comparable<T> comparableValue = (Comparable<T>) value;
+			return comparableValue.compareTo(other);
+		}
+
+		if (equals(other)) {
+			return 1;
+		}
+		// If the encapsulated value is not comparable, you may want to provide a custom comparison logic
+		// or throw an exception depending on your requirements.
+		throw new UnsupportedOperationException("Comparison not supported for non-comparable types");
+	}
+
+	@Override
+	public int compare(T o1, T o2) {
+		return 0;
+	}
+
+	public Set<Field> fields() {
+		return Arrays.stream(value.getClass().getDeclaredFields()).collect(Collectors.toUnmodifiableSet());
+	}
+
+	public boolean isAnnotationPresent(@NonNull Class<? extends Annotation> annotationClass) {
+		return value.getClass().isAnnotationPresent(annotationClass);
+	}
+
+	public <A extends Annotation> A getAnnotation(@NonNull Class<A> annotationClass) {
+		return value.getClass().getAnnotation(annotationClass);
 	}
 }

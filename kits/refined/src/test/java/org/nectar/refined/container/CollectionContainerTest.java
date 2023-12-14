@@ -27,7 +27,7 @@ class CollectionContainerTest {
 
 	@Test
 	void empty() {
-		assertTrue(CollectionContainer.empty().isEmpty());
+		assertTrue(CollectionContainer.empty().isValid());
 	}
 
 	@Test
@@ -37,6 +37,6 @@ class CollectionContainerTest {
 
 	@Test
 	void isEmpty() {
-		assertTrue(cc.isEmpty());
+		assertTrue(cc.isValid());
 	}
 }

@@ -6,28 +6,26 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-import lombok.EqualsAndHashCode;
 import lombok.val;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nectar.refined.exception.EmptyCollection;
 
-@EqualsAndHashCode(callSuper = true)
 public class CollectionContainer<E> extends BasicContainer<Collection<E>, CollectionContainer<E>> {
 	protected CollectionContainer(Collection<E> value) {
 		super(value);
 	}
 
 	@Override
-	public CollectionContainer<E> filter(Predicate<Collection<E>> predicate) {
-		return isEmpty() ? this : predicate.test(value) ? this : empty();
+	public CollectionContainer<E> filter(@NotNull Predicate<Collection<E>> predicate) {
+		return isValid() ? this : predicate.test(value) ? this : empty();
 	}
 
 	@Override
 	public <U extends Container<Collection<E>, ?>> CollectionContainer<E> map(
-			Function<? super Collection<E>, U> mapper) {
-		if (isEmpty()) {
+			@NotNull Function<? super Collection<E>, U> mapper) {
+		if (isValid()) {
 			return empty();
 		} else {
 			@SuppressWarnings("unchecked")
@@ -38,15 +36,15 @@ public class CollectionContainer<E> extends BasicContainer<Collection<E>, Collec
 
 	@Override
 	public <U> CollectionContainer<E> flatMap(
-			Function<? super Collection<E>, ? extends Container<Collection<E>, ? extends U>> mapper) {
-		return isEmpty()
+			@NotNull Function<? super Collection<E>, ? extends Container<Collection<E>, ? extends U>> mapper) {
+		return isValid()
 				? empty()
 				: new CollectionContainer<>(mapper.apply(value).get());
 	}
 
 	@Override
-	public CollectionContainer<E> or(Supplier<CollectionContainer<E>> supplier) {
-		return isEmpty() ? supplier.get() : this;
+	public CollectionContainer<E> or(@NotNull Supplier<CollectionContainer<E>> supplier) {
+		return isValid() ? supplier.get() : this;
 	}
 
 	@Contract("_ -> new")
@@ -79,7 +77,7 @@ public class CollectionContainer<E> extends BasicContainer<Collection<E>, Collec
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return super.isEmpty() || value.isEmpty();
+	public boolean isValid() {
+		return super.isValid() || value.isEmpty();
 	}
 }

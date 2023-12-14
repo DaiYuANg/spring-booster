@@ -24,41 +24,13 @@ class StringContainerTest {
 
 	@Test
 	void isEmpty() {
-		assertFalse(sc.isEmpty());
+		assertFalse(sc.isValid());
 	}
 
 	@Test
-	void filter() {}
-
-	@Test
-	void map() {}
-
-	@Test
-	void flatMap() {}
-
-	@Test
-	void testOrElse() {}
-
-	@Test
-	void empty() {}
-
-	@Test
-	void orElseThrow() {}
-
-	@Test
-	void get() {}
-
-	@Test
-	void or() {}
-
-	@Test
-	void testOrElseThrow() {}
-
-	@Test
-	void testOrElseThrow1() {}
-
-	@Test
-	void testOrElseThrow2() {}
+	void compare() {
+		System.err.println(sc.compare("test"));
+	}
 
 	@Test
 	void of() {
