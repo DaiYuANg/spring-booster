@@ -1,24 +1,28 @@
 /* (C)2023*/
 package org.nectar.refined.container;
 
-import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Stream.of;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.SneakyThrows;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+@Getter
 @EqualsAndHashCode
 public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implements Container<T, I> {
 
-	protected final T value;
+	@Nullable protected final T value;
 
-	protected BasicContainer(T value) {
+	protected BasicContainer(@Nullable T value) {
 		this.value = value;
 	}
 
@@ -35,7 +39,7 @@ public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implemen
 	@SuppressWarnings("IsNull")
 	@Override
 	public boolean isEmpty() {
-		return isNull(value);
+		return Objects.isNull(value);
 	}
 
 	@Override
@@ -65,12 +69,12 @@ public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implemen
 
 	@Override
 	public T orElse(T other) {
-		return isEmpty() ? other : value;
+		return Objects.requireNonNullElse(value, other);
 	}
 
 	@Override
 	public T orElseGet(Supplier<T> supplier) {
-		return isEmpty() ? supplier.get() : value;
+		return Objects.requireNonNullElseGet(value, supplier);
 	}
 
 	@Override
@@ -80,12 +84,22 @@ public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implemen
 	}
 
 	@Override
-	public T orElse(Supplier<T> supplier) {
-		return isEmpty() ? supplier.get() : value;
+	public T orElse(@NotNull Supplier<T> supplier) {
+		return Objects.requireNonNullElse(value, supplier.get());
 	}
 
 	@Override
 	public void ifPresent(Consumer<T> action) {
 		if (!isEmpty()) action.accept(value);
+	}
+
+	@Override
+	public boolean eq(Object o) {
+		return Objects.equals(value, o);
+	}
+
+	@Override
+	@NotNull public T nonNullable() {
+		return Objects.requireNonNull(value);
 	}
 }

@@ -2,6 +2,7 @@
 package org.nectar.refined.container;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -55,11 +56,11 @@ public class CollectionContainer<E> extends BasicContainer<Collection<E>, Collec
 	}
 
 	public Stream<E> elementStream() {
-		return value.stream();
+		return Objects.requireNonNull(value).stream();
 	}
 
 	public Stream<E> elementParallelStream() {
-		return value.parallelStream();
+		return Objects.requireNonNull(value).parallelStream();
 	}
 
 	@NotNull @Contract(" -> new")

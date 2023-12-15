@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class StringContainerTest {
 
-	private final StringContainer sc = spy(StringContainer.of("test"));
+	private final String test = "test";
+
+	private final StringContainer sc = spy(StringContainer.of(test));
 
 	@Test
 	void ifPresent() {
@@ -28,40 +31,17 @@ class StringContainerTest {
 	}
 
 	@Test
-	void filter() {}
-
-	@Test
-	void map() {}
-
-	@Test
-	void flatMap() {}
-
-	@Test
-	void testOrElse() {}
-
-	@Test
-	void empty() {}
-
-	@Test
-	void orElseThrow() {}
-
-	@Test
-	void get() {}
-
-	@Test
-	void or() {}
-
-	@Test
-	void testOrElseThrow() {}
-
-	@Test
-	void testOrElseThrow1() {}
-
-	@Test
-	void testOrElseThrow2() {}
+	void equal() {
+		assertTrue(sc.eq(test));
+	}
 
 	@Test
 	void of() {
 		assertNotNull(sc);
+	}
+
+	@Test
+	void toArray() {
+		System.err.println(Arrays.toString(sc.toArray()));
 	}
 }
