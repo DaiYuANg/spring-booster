@@ -11,5 +11,5 @@ public enum DIContainer {
 	private final RootModule rootModule = new RootModule();
 
 	@Getter
-	private final Injector injector = Guice.createInjector(rootModule);
+	final Injector injector = Guice.createInjector(rootModule);
 }

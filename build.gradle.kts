@@ -40,7 +40,6 @@ val jdkVersion = libs.versions.jdkVersion.get()
 
 subprojects {
     val jdkVersion: String by project
-//    apply<JavaLibraryPlugin>()
     apply<JMHPlugin>()
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
@@ -68,7 +67,7 @@ subprojects {
         val testContainersVersion: String by project
 //        implementation("org.mapstruct:mapstruct:${mapstructVersion}")
 //        implementation("com.google.guava:guava:${guavaVersion}")
-        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+//        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
 //        implementation("commons-io:commons-io:${commonIOVersion}")
 //        implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
 //        implementation("org.immutables:value:$immutablesVersion")

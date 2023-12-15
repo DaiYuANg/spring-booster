@@ -15,13 +15,13 @@ public class AnyContainer<T extends Containerizeable> extends BasicContainer<T, 
 	}
 
 	@Override
-	public AnyContainer<T> filter(@NotNull Predicate<T> predicate) {
-		return isValid() ? this : predicate.test(value) ? this : empty();
+	public AnyContainer<T> filter(Predicate<T> predicate) {
+		return isEmpty() ? this : predicate.test(value) ? this : empty();
 	}
 
 	@Override
-	public <U extends Container<T, ?>> AnyContainer<T> map(@NotNull Function<? super T, U> mapper) {
-		if (isValid()) {
+	public <U extends Container<T, ?>> AnyContainer<T> map(Function<? super T, U> mapper) {
+		if (isEmpty()) {
 			return empty();
 		} else {
 			@SuppressWarnings("unchecked")
@@ -31,8 +31,8 @@ public class AnyContainer<T extends Containerizeable> extends BasicContainer<T, 
 	}
 
 	@Override
-	public <U> AnyContainer<T> flatMap(@NotNull Function<? super T, ? extends Container<T, ? extends U>> mapper) {
-		if (isValid()) {
+	public <U> AnyContainer<T> flatMap(Function<? super T, ? extends Container<T, ? extends U>> mapper) {
+		if (isEmpty()) {
 			return empty();
 		} else {
 			@SuppressWarnings("unchecked")
@@ -44,7 +44,7 @@ public class AnyContainer<T extends Containerizeable> extends BasicContainer<T, 
 	@SneakyThrows
 	@Override
 	public T orElseThrow() {
-		throw value.exception();
+		throw nonNullable().defaultThrow();
 	}
 
 	@Override
@@ -52,14 +52,13 @@ public class AnyContainer<T extends Containerizeable> extends BasicContainer<T, 
 		return value;
 	}
 
-	@Override
-	public AnyContainer<T> or(@NotNull Supplier<AnyContainer<T>> supplier) {
-		return isValid() ? supplier.get() : this;
+	public boolean isValid() {
+		return nonNullable().isValid();
 	}
 
 	@Override
-	public boolean isValid() {
-		return super.isValid() && value.isValid();
+	public AnyContainer<T> or(Supplier<AnyContainer<T>> supplier) {
+		return isEmpty() ? supplier.get() : this;
 	}
 
 	@NotNull @Contract("_ -> new")

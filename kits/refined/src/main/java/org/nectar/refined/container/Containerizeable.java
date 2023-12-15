@@ -2,11 +2,7 @@
 package org.nectar.refined.container;
 
 public interface Containerizeable {
-	default Exception exception() {
-		return new RuntimeException();
-	}
+	Exception defaultThrow();
 
-	default boolean isValid() {
-		return true;
-	}
+	boolean isValid();
 }
