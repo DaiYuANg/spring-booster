@@ -3,20 +3,20 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue'
-import { date, QChip } from 'quasar'
+import { onBeforeUnmount, ref } from 'vue';
+import { date, QChip } from 'quasar';
 
 const currentDate = (): string => {
-  return date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss')
-}
+  return date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss');
+};
 
-let current = ref<string>(currentDate())
+let current = ref<string>(currentDate());
 
 const timeOut = setInterval(() => {
-  current.value = currentDate()
-}, 1000)
+  current.value = currentDate();
+}, 1000);
 
 onBeforeUnmount(() => {
-  clearInterval(timeOut)
-})
+  clearInterval(timeOut);
+});
 </script>

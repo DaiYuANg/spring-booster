@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import WelcomeItem from './WelcomeItem.vue'
-import EcosystemIcon from './LayoutFooter.vue'
+import WelcomeItem from './WelcomeItem.vue';
+import EcosystemIcon from '../layout/LayoutFooter.vue';
 </script>
 
 <template>
   <WelcomeItem>
     <template #icon>
-<!--      <DocumentationIcon />-->
+      <!--      <DocumentationIcon />-->
     </template>
     <template #heading>Documentation</template>
 
@@ -55,7 +55,7 @@ import EcosystemIcon from './LayoutFooter.vue'
 
   <WelcomeItem>
     <template #icon>
-<!--      <CommunityIcon />-->
+      <!--      <CommunityIcon />-->
     </template>
     <template #heading>Community</template>
 

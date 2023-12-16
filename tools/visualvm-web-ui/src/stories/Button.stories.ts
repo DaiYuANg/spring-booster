@@ -11,9 +11,9 @@ const meta = {
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large'] },
     backgroundColor: { control: 'color' },
-    onClick: { action: 'clicked' },
+    onClick: { action: 'clicked' }
   },
-  args: { primary: false }, // default value
+  args: { primary: false } // default value
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -26,27 +26,27 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     primary: true,
-    label: 'Button',
-  },
+    label: 'Button'
+  }
 };
 
 export const Secondary: Story = {
   args: {
     primary: false,
-    label: 'Button',
-  },
+    label: 'Button'
+  }
 };
 
 export const Large: Story = {
   args: {
     label: 'Button',
-    size: 'large',
-  },
+    size: 'large'
+  }
 };
 
 export const Small: Story = {
   args: {
     label: 'Button',
-    size: 'small',
-  },
+    size: 'small'
+  }
 };
