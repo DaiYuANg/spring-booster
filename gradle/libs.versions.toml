@@ -7,6 +7,7 @@ pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 classGraph = "4.8.165"
 guice = "7.0.0"
+koin="3.5.2-RC1"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
