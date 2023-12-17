@@ -135,12 +135,9 @@ include("kits:collections")
 
 include("tools:nova-core")
 
-include("tools:visualvm-web")
-
 include("tools:nova-cli")
 include("kits:refined")
 include("tools:nova-gradle-plugin")
 
 include("codegen:curd-codegen")
 include("codegen:mapping-indexer-codegen")
-include("tools:visualvm-web-ui")

@@ -1,9 +1,6 @@
-//import io.freefair.gradle.plugins.lombok.LombokPlugin
 import com.palantir.gradle.gitversion.GitVersionPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
-//import net.ltgt.gradle.errorprone.ErrorPronePlugin
-//import org.gradle.api.publish.maven.internal.publisher.MavenLocalPublisher
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
