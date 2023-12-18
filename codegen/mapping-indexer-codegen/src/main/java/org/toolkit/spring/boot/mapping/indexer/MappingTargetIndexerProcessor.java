@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.mapping.indexer;
 
 import com.google.auto.service.AutoService;

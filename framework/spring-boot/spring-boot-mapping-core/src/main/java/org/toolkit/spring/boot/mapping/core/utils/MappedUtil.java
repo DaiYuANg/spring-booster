@@ -1,6 +1,8 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.mapping.core.utils;
 
-import cn.hutool.core.collection.CollUtil;
+// import cn.hutool.core.collection.CollUtil;
+
 import java.util.Arrays;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -16,6 +18,7 @@ public class MappedUtil {
 				.peek(field -> field.setAccessible(true))
 				.filter(field -> field.isAnnotationPresent(Mapping.class))
 				.toList();
-		return CollUtil.isNotEmpty(fields) && isPresentMapped;
+		//		return CollUtil.isNotEmpty(fields) && isPresentMapped;
+		return isPresentMapped;
 	}
 }

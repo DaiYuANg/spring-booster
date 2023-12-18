@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.mapping.source.code.scanner;
 
 import static java.util.function.Predicate.not;

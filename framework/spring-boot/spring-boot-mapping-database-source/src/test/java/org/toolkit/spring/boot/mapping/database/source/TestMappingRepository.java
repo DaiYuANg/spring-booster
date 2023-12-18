@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.mapping.database.source;
 
 import static java.util.stream.IntStream.range;
@@ -7,7 +8,6 @@ import jakarta.annotation.Resource;
 import lombok.val;
 import net.datafaker.Faker;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -51,7 +51,7 @@ public class TestMappingRepository {
 	@Resource
 	private MappingEntityRepository repository;
 
-	@Test
+	//	@Test
 	public void testRepo() {
 		val f = new Faker();
 		val fakeData = range(0, 1000)

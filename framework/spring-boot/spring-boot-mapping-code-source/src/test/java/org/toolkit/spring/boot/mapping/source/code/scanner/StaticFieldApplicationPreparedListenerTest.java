@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.mapping.source.code.scanner;
 
 import io.github.classgraph.ClassGraph;

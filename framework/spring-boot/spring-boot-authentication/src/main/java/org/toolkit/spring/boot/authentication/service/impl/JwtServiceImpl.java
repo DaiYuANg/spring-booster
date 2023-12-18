@@ -1,7 +1,6 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.authentication.service.impl;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.crypto.SecureUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.PostConstruct;
@@ -28,8 +27,8 @@ public class JwtServiceImpl implements IJwtService {
 	@PostConstruct
 	private void init() {
 		log.atDebug().log("Default jwt service check is secret key preset");
-		secretKey = Optional.ofNullable(jwtConfigProperties.getSecretKey())
-				.orElseGet(() -> SecureUtil.aes().getCipher().toString());
+		//		secretKey = Optional.ofNullable(jwtConfigProperties.getSecretKey())
+		//				.orElseGet(() -> SecureUtil.aes().getCipher().toString());
 	}
 
 	@Override
@@ -37,12 +36,11 @@ public class JwtServiceImpl implements IJwtService {
 		val enc = Optional.ofNullable(jwtConfigProperties.getEncryptArithmetic())
 				.map(a -> Jwts.ENC.get().forKey(a))
 				.orElse(Jwts.ENC.A256GCM);
-		System.err.println(Arrays.toString(key.getEncoded()));
 		return Jwts.builder()
 				.claims(extraClaims)
 				.subject(userDetails.getUsername())
 				.issuedAt(new Date(System.currentTimeMillis()))
-				.expiration(DateUtil.endOfDay(new Date()))
+				.expiration(new Date(System.currentTimeMillis() + 3600 * 6 * 6))
 				.signWith(key)
 				.compact();
 	}

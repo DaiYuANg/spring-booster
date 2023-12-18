@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.authentication;
 
 import jakarta.annotation.security.PermitAll;

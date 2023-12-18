@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.starter.i18n;
 
 public enum I18nHttpStatusCode {

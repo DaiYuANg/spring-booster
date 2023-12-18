@@ -1,7 +1,8 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.utils.struct;
 
-import cn.hutool.core.date.DateUtil;
 import java.io.Serial;
+import java.text.DateFormat;
 import java.time.Clock;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +16,17 @@ public abstract class LoggingEvent extends ApplicationEvent {
 
 	public LoggingEvent(Object source) {
 		super(source);
-		log.atDebug().log("event source:{} at:{}", super.getSource(), DateUtil.date(this.getTimestamp()));
+		log.atDebug().log(
+				"event source:{} at:{}",
+				super.getSource(),
+				DateFormat.getDateTimeInstance().format(getTimestamp()));
 	}
 
 	public LoggingEvent(Object source, Clock clock) {
 		super(source, clock);
-		log.atDebug().log("event source:{} at:{}", super.getSource(), DateUtil.date(clock.millis()));
+		log.atDebug().log(
+				"event source:{} at:{}",
+				super.getSource(),
+				DateFormat.getDateTimeInstance().format(getTimestamp()));
 	}
 }

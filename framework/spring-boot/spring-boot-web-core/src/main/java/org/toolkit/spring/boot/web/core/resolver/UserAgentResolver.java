@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.web.core.resolver;
 
 import cn.hutool.http.useragent.UserAgent;

@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.recorder.entities;
 
 import jakarta.persistence.Entity;

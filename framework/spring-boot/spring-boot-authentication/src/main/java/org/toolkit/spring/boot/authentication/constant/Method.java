@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.authentication.constant;
 
 import lombok.experimental.UtilityClass;

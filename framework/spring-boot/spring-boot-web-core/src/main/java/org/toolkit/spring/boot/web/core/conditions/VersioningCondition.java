@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.web.core.conditions;
 
 import jakarta.servlet.http.HttpServletRequest;

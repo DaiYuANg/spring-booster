@@ -32,7 +32,7 @@ tasks.withType<JavaCompile> {
   //  doFirst { options.annotationProcessorPath?.files?.stream()?.forEach { println(it) } }
 }
 
-//lombok {
+// lombok {
 //  config {
 //    validate {
 //      disabledRules.add("AddGeneratedAnnotation") // Disable `AddGeneratedAnnotation` rule
@@ -40,4 +40,4 @@ tasks.withType<JavaCompile> {
 //      disabledRules.add("ConfigureUtilityClassUsage")
 //    }
 //  }
-//}
+// }

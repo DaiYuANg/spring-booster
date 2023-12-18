@@ -6,8 +6,8 @@ dependencies {
   val minioClientVersion: String by project
   val tikaVersion: String by project
   val testContainersVersion: String by project
-//  api("org.apache.tika:tika-core:$tikaVersion")
-//  api("org.apache.tika:tika-parsers:$tikaVersion")
-//  implementation("io.minio:minio:$minioClientVersion")
-//  testImplementation("org.testcontainers:minio:$testContainersVersion")
+  api("org.apache.tika:tika-core:$tikaVersion")
+  api("org.apache.tika:tika-parsers:$tikaVersion")
+  api("io.minio:minio:$minioClientVersion")
+  testImplementation("org.testcontainers:minio:$testContainersVersion")
 }

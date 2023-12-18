@@ -1,8 +1,9 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.minio.event;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.toolkit.spring.boot.minio.template.MinioTemplate;
+import org.toolkit.minio.MinioTemplate;
 import org.toolkit.spring.boot.utils.struct.LoggingEvent;
 
 @Getter

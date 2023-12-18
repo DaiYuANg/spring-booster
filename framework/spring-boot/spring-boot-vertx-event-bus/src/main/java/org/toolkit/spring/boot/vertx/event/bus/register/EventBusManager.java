@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.vertx.event.bus.register;
 
 import io.vertx.core.eventbus.EventBus;

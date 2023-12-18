@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.mapping.core.configuration;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;

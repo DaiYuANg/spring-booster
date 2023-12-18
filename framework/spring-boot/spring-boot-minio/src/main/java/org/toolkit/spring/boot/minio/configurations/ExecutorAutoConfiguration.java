@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.minio.configurations;
 
 import jakarta.annotation.Resource;

@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.minio.vo;
 
 import lombok.Builder;

@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.minio.actuator;
 
 import jakarta.annotation.Resource;
@@ -5,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import org.springframework.boot.actuate.endpoint.annotation.*;
 import org.springframework.stereotype.Component;
-import org.toolkit.spring.boot.minio.template.MinioTemplate;
+import org.toolkit.minio.MinioTemplate;
 
 @Component
 @Endpoint(id = "features")

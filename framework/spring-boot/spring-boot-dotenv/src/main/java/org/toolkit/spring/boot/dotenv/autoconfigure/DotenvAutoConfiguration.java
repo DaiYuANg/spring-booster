@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.dotenv.autoconfigure;
 
 import io.github.cdimascio.dotenv.Dotenv;

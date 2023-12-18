@@ -1,7 +1,6 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.authentication.configuration;
 
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.spring.SpringUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.PermitAll;
@@ -16,6 +15,7 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.method.HandlerMethod;
@@ -32,6 +32,9 @@ public class PermitAutoConfiguration {
 
 	@Resource
 	private AuthenticationConfigurationProperties configurationProperties;
+
+	@Resource
+	private ApplicationContext context;
 
 	@PostConstruct
 	private void init() {
@@ -52,7 +55,7 @@ public class PermitAutoConfiguration {
 	}
 
 	private AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromAnnotation() {
-		return SpringUtil.getBeansOfType(RequestMappingHandlerMapping.class).values().stream()
+		return context.getBeansOfType(RequestMappingHandlerMapping.class).values().stream()
 				.distinct()
 				.map(RequestMappingHandlerMapping::getHandlerMethods)
 				.flatMap(method -> method.entrySet().stream())
@@ -68,7 +71,7 @@ public class PermitAutoConfiguration {
 
 	@NotNull private Stream<AntPathRequestMatcher> internalBuild(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry) {
 		return entry.getKey().getDirectPaths().stream()
-				.filter(StrUtil::isNotBlank)
+				.filter(path -> !path.isBlank())
 				.flatMap(path -> buildAntPathByAnnotation(entry, path));
 	}
 

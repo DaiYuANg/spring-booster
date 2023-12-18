@@ -119,8 +119,6 @@ include("framework:spring-boot:spring-boot-cache")
 
 include("framework:spring-boot:spring-boot-web-version")
 
-include("framework:spring-boot:spring-boot-base")
-
 include("kits:cache-api")
 
 include("kits:cache-redis")

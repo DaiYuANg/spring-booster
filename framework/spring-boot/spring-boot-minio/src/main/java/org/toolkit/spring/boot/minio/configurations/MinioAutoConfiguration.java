@@ -1,14 +1,10 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.minio.configurations;
 
 import io.minio.MinioClient;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -35,18 +31,18 @@ public class MinioAutoConfiguration {
 		log.atInfo().log(minioConfigurationProperties.toString());
 	}
 
-	@NotNull @Bean
-	public ConcurrentMap<String, MinioClient> buildMinioClientMap() {
-		return Observable.fromIterable(
-						minioConfigurationProperties.getMinioClients().entrySet())
-				.flatMap(clientConfigEntry -> Single.fromCallable(() -> clientConfigEntry)
-						.subscribeOn(Schedulers.io())
-						.map(this::buildClientEntry)
-						.toObservable())
-				.toMap(Map.Entry::getKey, Map.Entry::getValue)
-				.map(clientConfigMap -> (ConcurrentMap<String, MinioClient>) new ConcurrentHashMap<>(clientConfigMap))
-				.blockingGet();
-	}
+	//	@NotNull @Bean
+	//	public ConcurrentMap<String, MinioClient> buildMinioClientMap() {
+	//		return Observable.fromIterable(
+	//						minioConfigurationProperties.getMinioClients().entrySet())
+	//				.flatMap(clientConfigEntry -> Single.fromCallable(() -> clientConfigEntry)
+	//						.subscribeOn(Schedulers.io())
+	//						.map(this::buildClientEntry)
+	//						.toObservable())
+	//				.toMap(Map.Entry::getKey, Map.Entry::getValue)
+	//				.map(clientConfigMap -> (ConcurrentMap<String, MinioClient>) new ConcurrentHashMap<>(clientConfigMap))
+	//				.blockingGet();
+	//	}
 
 	@SneakyThrows
 	private Map.@NotNull @Unmodifiable Entry<String, MinioClient> buildClientEntry(

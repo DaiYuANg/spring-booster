@@ -79,6 +79,9 @@ public class CollectionContainer<E> extends BasicContainer<Collection<E>, Collec
 
 	@Override
 	public boolean isValid() {
-		return super.isValid() || value.isEmpty();
+		if (value != null) {
+			return value.isEmpty();
+		}
+		return false;
 	}
 }

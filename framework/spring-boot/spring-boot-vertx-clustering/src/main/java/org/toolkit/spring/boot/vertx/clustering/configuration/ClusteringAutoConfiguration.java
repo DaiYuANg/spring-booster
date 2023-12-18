@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.vertx.clustering.configuration;
 
 import io.vertx.core.spi.cluster.ClusterManager;

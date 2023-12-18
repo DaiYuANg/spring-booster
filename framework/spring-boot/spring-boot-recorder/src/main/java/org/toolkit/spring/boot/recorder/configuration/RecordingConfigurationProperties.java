@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.recorder.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,8 +1,7 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.dev.service.lifecycle;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.Executor;
@@ -39,7 +38,7 @@ public class DevServiceLifecycle {
 
 	private final Set<ContainerService> availableService;
 
-	private final Observable<ContainerService> observable;
+	//	private final Observable<ContainerService> observable;
 
 	public DevServiceLifecycle(
 			@NotNull ApplicationContext context,
@@ -56,7 +55,7 @@ public class DevServiceLifecycle {
 				.collect(Collectors.toUnmodifiableSet());
 		val threadFactory =
 				new ThreadFactoryBuilder().setNameFormat("DevService-%s").build();
-		this.observable = Observable.fromIterable(availableService);
+		//		this.observable = Observable.fromIterable(availableService);
 		this.executor = Executors.newFixedThreadPool(availableService.size(), threadFactory);
 	}
 
@@ -84,12 +83,12 @@ public class DevServiceLifecycle {
 			log.trace("Available service is empty");
 			return;
 		}
-		val serviceContainerIds = observable
-				.flatMap(service -> Observable.just(service)
-						.subscribeOn(Schedulers.from(executor))
-						.map(ContainerService::createService))
-				.toList(availableService.size())
-				.blockingGet();
+		//		val serviceContainerIds = observable
+		//				.flatMap(service -> Observable.just(service)
+		//						.subscribeOn(Schedulers.from(executor))
+		//						.map(ContainerService::createService))
+		//				.toList(availableService.size())
+		//				.blockingGet();
 	}
 
 	void stop() {

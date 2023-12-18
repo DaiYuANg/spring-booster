@@ -102,4 +102,8 @@ public abstract class BasicContainer<T, I extends BasicContainer<T, I>> implemen
 	@NotNull public T nonNullable() {
 		return Objects.requireNonNull(value);
 	}
+
+	public boolean isValid() {
+		return true;
+	}
 }

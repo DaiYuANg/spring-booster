@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.scanner.autoconfigure;
 
 import java.util.HashSet;

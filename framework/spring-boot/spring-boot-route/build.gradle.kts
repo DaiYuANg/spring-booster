@@ -5,6 +5,6 @@ version = "1.0-SNAPSHOT"
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-validation")
   implementation("org.springframework.boot:spring-boot-starter-data-rest")
-  //  implementation(projects.kits.web.springBootToolkitWebAnnotation)
-  //  implementation(projects.kits.core.springBootToolkitPersistence)
+  implementation(projects.framework.springBoot.springBootPersistence)
+  implementation(projects.framework.springBoot.springBootWebAnnotation)
 }

@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.utils.struct;
 
 import lombok.Getter;

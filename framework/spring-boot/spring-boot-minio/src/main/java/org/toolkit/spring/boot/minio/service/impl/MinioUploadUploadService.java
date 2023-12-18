@@ -1,15 +1,13 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.minio.service.impl;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.crypto.digest.DigestUtil;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.Base64;
+import java.util.Date;
 import java.util.Optional;
 import java.util.function.Supplier;
 import lombok.SneakyThrows;
@@ -18,14 +16,11 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.toolkit.spring.boot.minio.checker.BeforeUploadCheckMd5Exists;
-import org.toolkit.spring.boot.minio.event.ObjectUploadedEvent;
 import org.toolkit.spring.boot.minio.params.Base64UploadParam;
 import org.toolkit.spring.boot.minio.params.UploadParams;
 import org.toolkit.spring.boot.minio.service.IMinioTemplateService;
 import org.toolkit.spring.boot.minio.service.IMinioUploadService;
-import org.toolkit.spring.boot.minio.template.MinioTemplate;
 import org.toolkit.spring.boot.minio.vo.UploadResultVo;
 
 @Service
@@ -57,31 +52,34 @@ public class MinioUploadUploadService implements IMinioUploadService {
 	@Override
 	@SneakyThrows
 	@NotNull public UploadResultVo upload(@NotNull UploadParams arguments) {
-		val md5 = DigestUtil.md5Hex(
-				FileUtil.readUtf8String(arguments.getFile().getResource().getFile()));
-		return checkMd5OrUpload(md5, () -> uploadToMinio(arguments, md5));
+		//		val md5 = DigestUtil.md5Hex(
+		//				FileUtil.readUtf8String(arguments.getFile().getResource().getFile()));
+		//		return checkMd5OrUpload(md5, () -> uploadToMinio(arguments, md5));
+		return new UploadResultVo(null);
 	}
 
 	@Override
 	public UploadResultVo upload(@NotNull Base64UploadParam base64UploadParam) {
-		val md5 = DigestUtil.md5Hex(base64UploadParam.getBase64());
-		return checkMd5OrUpload(md5, () -> base64Upload(base64UploadParam, md5));
+		//		val md5 = DigestUtil.md5Hex(base64UploadParam.getBase64());
+		//		return checkMd5OrUpload(md5, () -> base64Upload(base64UploadParam, md5));
+		return new UploadResultVo(null);
 	}
 
 	@SneakyThrows
 	private @NotNull String uploadToMinio(@NotNull UploadParams arguments, String md5) {
-		val template = minioTemplateService.findTemplate(arguments.getClientInstance());
-		val contentType = Optional.ofNullable(arguments.getFile())
-				.map(MultipartFile::getContentType)
-				.orElseThrow(FileNotFoundException::new);
-		val targetName = nameBuilder(md5);
-		template.upload(arguments.getFile(), targetName, contentType);
-		publishEvent(targetName, md5, template);
-		return targetName;
+		//		val template = minioTemplateService.findTemplate(arguments.getClientInstance());
+		//		val contentType = Optional.ofNullable(arguments.getFile())
+		//				.map(MultipartFile::getContentType)
+		//				.orElseThrow(FileNotFoundException::new);
+		//		val targetName = nameBuilder(md5);
+		//		template.upload(arguments.getFile(), targetName, contentType);
+		//		publishEvent(targetName, md5, template);
+		//		return targetName;
+		return "";
 	}
 
 	private String nameBuilder(String md5) {
-		return String.format("%s/%s", DateUtil.today(), md5);
+		return String.format("%s/%s", new Date(), md5);
 	}
 
 	@SneakyThrows
@@ -92,11 +90,11 @@ public class MinioUploadUploadService implements IMinioUploadService {
 		String contentType = URLConnection.guessContentTypeFromStream(inputStream);
 		val targetName = nameBuilder(md5);
 		template.upload(data, targetName, contentType);
-		publishEvent(targetName, md5, template);
+		//		publishEvent(targetName, md5, template);
 		return targetName;
 	}
 
-	private void publishEvent(String path, String md5, MinioTemplate template) {
-		eventPublisher.publishEvent(new ObjectUploadedEvent(this, path, md5, template));
-	}
+	//	private void publishEvent(String path, String md5, MinioTemplate template) {
+	//		eventPublisher.publishEvent(new ObjectUploadedEvent(this, path, md5, template));
+	//	}
 }

@@ -55,7 +55,6 @@ subprojects {
         val gsonVersion: String by project
         val mapstructVersion: String by project
         val guavaVersion: String by project
-        val slf4jVersion: String by project
         val commonIOVersion: String by project
         val jetbrainsAnnotationsVersion: String by project
         val immutablesVersion: String by project
@@ -64,9 +63,8 @@ subprojects {
         val testContainersVersion: String by project
 //        implementation("org.mapstruct:mapstruct:${mapstructVersion}")
 //        implementation("com.google.guava:guava:${guavaVersion}")
-//        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
 //        implementation("commons-io:commons-io:${commonIOVersion}")
-        implementation("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
+        compileOnly("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
 //        implementation("org.immutables:value:$immutablesVersion")
 //        annotationProcessor("org.immutables:value:$immutablesVersion")
         // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api

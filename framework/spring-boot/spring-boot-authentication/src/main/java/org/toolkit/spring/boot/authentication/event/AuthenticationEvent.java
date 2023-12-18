@@ -1,3 +1,4 @@
+/* (C)2023*/
 package org.toolkit.spring.boot.authentication.event;
 
 import java.io.Serial;
