@@ -1,20 +1,24 @@
 import com.palantir.gradle.gitversion.GitVersionPlugin
+import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
+import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
+import net.ltgt.gradle.errorprone.ErrorPronePlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
     `java-library`
-    pmd
+    `version-catalog`
     idea
     id("com.github.ben-manes.versions")
     id("com.palantir.git-version")
     id("org.owasp.dependencycheck")
     id("me.champeau.jmh") apply false
-    id("name.remal.lombok") version "2.2.4" apply false
+    alias(libs.plugins.lombok) apply false
     id("org.jreleaser")
-//    id("net.ltgt.errorprone") version "3.1.0"
-    id("org.jetbrains.dokka") version "1.9.10"
+    alias(libs.plugins.plantuml)
+    alias(libs.plugins.errorprone)
+    alias(libs.plugins.dokka)
     `maven-publish`
 }
 
@@ -27,21 +31,17 @@ allprojects {
     }
 }
 
-group = "org.toolkit"
-
-version = "1.0-SNAPSHOT"
-
 true.also { gradle.startParameter.isBuildCacheEnabled = it }
 
 val jdkVersion = libs.versions.jdkVersion.get()
 
 subprojects {
-    val jdkVersion: String by project
     apply<JMHPlugin>()
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatterPlugin>()
-//    apply<ErrorPronePlugin>()
+    apply<ErrorPronePlugin>()
+    apply<PlantUmlPlugin>()
     apply<JMHPlugin>()
     apply<MavenPublishPlugin>()
     apply<DokkaPlugin>()
@@ -52,38 +52,17 @@ subprojects {
     version = details.lastTag
 
     dependencies {
-        val gsonVersion: String by project
-        val mapstructVersion: String by project
-        val guavaVersion: String by project
-        val commonIOVersion: String by project
-        val jetbrainsAnnotationsVersion: String by project
-        val immutablesVersion: String by project
-        val jakartaJsonVersion: String by project
-        val junitVersion: String by project
-        val testContainersVersion: String by project
-//        implementation("org.mapstruct:mapstruct:${mapstructVersion}")
-//        implementation("com.google.guava:guava:${guavaVersion}")
-//        implementation("commons-io:commons-io:${commonIOVersion}")
-        compileOnly("org.jetbrains:annotations:${jetbrainsAnnotationsVersion}")
-//        implementation("org.immutables:value:$immutablesVersion")
-//        annotationProcessor("org.immutables:value:$immutablesVersion")
-        // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
-//        implementation("jakarta.annotation:jakarta.annotation-api:3.0.0-M1")
-//        errorprone("com.google.errorprone:error_prone_core:2.23.0")
-//        errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
-//        errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
-//        annotationProcessor("com.google.auto.factory:auto-factory:1.1.0")
-//        annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-        testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
-        testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-        testImplementation(platform("org.testcontainers:testcontainers-bom:${testContainersVersion}"))
-        testImplementation("org.testcontainers:testcontainers:$testContainersVersion")
-        testImplementation("org.testcontainers:testcontainers")
-        testImplementation("org.testcontainers:junit-jupiter")
-        testImplementation("org.mockito:mockito-core:5.8.0")
-        testImplementation("org.mockito:mockito-junit-jupiter:5.8.0")
+        compileOnly(rootProject.libs.jetbrainsAnnotation)
+        errorprone(rootProject.libs.errorproneCore)
+        testImplementation(platform(rootProject.libs.junitBom))
+        testImplementation(rootProject.libs.junitJuiter)
+        testImplementation(rootProject.libs.junitApi)
+        testRuntimeOnly(rootProject.libs.junitEngine)
+        testImplementation(platform(rootProject.libs.testcontainersBom))
+        testImplementation(rootProject.libs.testcontainers)
+        testImplementation(rootProject.libs.testcontainersJunit)
+        testImplementation(rootProject.libs.mockitoCore)
+        testImplementation(rootProject.libs.mockitoJunit)
     }
 
     tasks {
@@ -93,8 +72,6 @@ subprojects {
             options.compilerArgs.add("-Xlint:all")
             options.compilerArgs.add("-g")
         }
-        withType<Test> { useJUnitPlatform() }
-
         withType<Test>().configureEach {
             maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
         }
@@ -124,5 +101,14 @@ subprojects {
         systemProperties["junit.jupiter.execution.parallel.enabled"] = true
         systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
         maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
+    }
+
+
+    classDiagrams {
+        @Suppress("UNCHECKED_CAST")
+        diagram("default", closureOf<ClassDiagramsExtension.ClassDiagram> {
+            include(packages().recursive())
+            writeTo(file(project.layout.buildDirectory.file("cli.puml")))
+        } as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>)
     }
 }

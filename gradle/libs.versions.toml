@@ -6,8 +6,19 @@ ktlintGradle = "12.0.3"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 classGraph = "4.8.165"
+jerbrainsAnnotation = "24.0.1"
 guice = "7.0.0"
-koin="3.5.2-RC1"
+koin = "3.5.2-RC1"
+errorproneCore = "2.23.0"
+junit = "5.9.3"
+testcontainers = "1.19.3"
+mockito = "5.8.0"
+lombok = "2.2.4"
+plantuml = "2.1.3"
+errorpronePlugin = "3.1.0"
+dokka = "1.9.10"
+caffine = "3.1.8"
+
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
@@ -15,7 +26,24 @@ kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
 versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionCheck" }
+lombok = { id = "name.remal.lombok", version.ref = "lombok" }
+plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
+errorprone = { id = "net.ltgt.errorprone",version.ref="errorpronePlugin"}
+dokka = {id="org.jetbrains.dokka",version.ref="dokka"}
 
 [libraries]
-junit = "junit:junit:4.13.2"
+junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
+testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
+testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+testcontainersMinio = { group = "org.testcontainers", name = "minio", version.ref = "testcontainers" }
+testcontainersMysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
 classgraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }
+jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version.ref = "jerbrainsAnnotation" }
+errorproneCore = { group = "com.google.errorprone", name = "error_prone_core", version.ref = "errorproneCore" }
+mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+caffine = {group="com.github.ben-manes.caffeine",name="caffeine",version.ref="caffine"}

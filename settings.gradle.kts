@@ -29,7 +29,6 @@ pluginManagement {
         id("me.champeau.jmh") version jmhPluginVersion
         id("io.freefair.lombok") version lombokPluginVersion
         id("org.jreleaser") version jreleaserVersion
-        id("com.github.node-gradle.node") version nodePluginVersion
         id("com.github.ben-manes.versions") version "0.47.0"
         id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
         id("org.danilopianini.gradle-pre-commit-git-hooks") version gradlePreCommitGitGooksVersion
@@ -72,8 +71,6 @@ include("framework:spring-boot:spring-boot-utils")
 
 include("framework:spring-boot:spring-boot-authentication")
 
-include("framework:spring-boot:spring-boot-i18n")
-
 include("framework:spring-boot:spring-boot-web-core")
 
 include("framework:spring-boot:spring-boot-verification")
@@ -94,11 +91,8 @@ include("framework:spring-boot:spring-boot-vertx-web")
 
 include("framework:spring-boot:spring-boot-vertx-clustering")
 
-include("framework:spring-boot:spring-boot-route")
-
-include("framework:spring-boot:spring-boot-email")
-
 include("framework:spring-boot:spring-boot-minio")
+
 include("framework:spring-boot:spring-boot-vertx-core")
 
 include("framework:spring-boot:spring-boot-vertx-event-bus")
