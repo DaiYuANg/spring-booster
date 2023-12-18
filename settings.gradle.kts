@@ -2,7 +2,6 @@ pluginManagement {
     repositories {
         maven { setUrl("https://repo.spring.io/snapshot") }
         maven { setUrl("https://repo.spring.io/milestone") }
-//    maven { setUrl("https://jitpack.io") }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
@@ -72,12 +71,19 @@ include("framework:spring-boot:spring-boot-persistence")
 include("framework:spring-boot:spring-boot-utils")
 
 include("framework:spring-boot:spring-boot-authentication")
+
 include("framework:spring-boot:spring-boot-i18n")
+
 include("framework:spring-boot:spring-boot-web-core")
+
 include("framework:spring-boot:spring-boot-verification")
+
 include("framework:spring-boot:spring-boot-office")
+
 include("framework:spring-boot:spring-boot-recorder")
+
 include("framework:spring-boot:spring-boot-mapping-core")
+
 include("framework:spring-boot:spring-boot-mapping-base")
 
 include("apps:springboot-application")
@@ -98,9 +104,13 @@ include("framework:spring-boot:spring-boot-vertx-core")
 include("framework:spring-boot:spring-boot-vertx-event-bus")
 
 include("framework:spring-boot:spring-boot-mapping-code-source")
+
 include("framework:spring-boot:spring-boot-mapping-database-source")
+
 include("framework:spring-boot:spring-boot-mapping-web")
+
 include("framework:spring-boot:spring-boot-dev-service")
+
 include("framework:spring-boot:spring-boot-dotenv")
 
 include("framework:spring-boot:spring-boot-scanner")
@@ -125,19 +135,12 @@ include("kits:cache-immutable")
 
 include("kits:codegen-annotation")
 
-include("website")
-
 include("tools:toolkit-cli")
 
 include("kits:minio-wrapper")
 
 include("kits:collections")
 
-include("tools:nova-core")
-
-include("tools:nova-cli")
 include("kits:refined")
-include("tools:nova-gradle-plugin")
 
-include("codegen:curd-codegen")
 include("codegen:mapping-indexer-codegen")

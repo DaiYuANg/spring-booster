@@ -30,10 +30,10 @@ public class GenerateCommand implements Runnable {
 	@SneakyThrows
 	@Override
 	public void run() {
-//		configFile.ifPresent(file -> {
-//			System.err.println(file.getAbsolutePath());
-//		});
-//		System.err.println(configFile);
+		//		configFile.ifPresent(file -> {
+		//			System.err.println(file.getAbsolutePath());
+		//		});
+		//		System.err.println(configFile);
 		//        Supplier<Path> workDir = () -> Paths.get(System.getProperty("user.dir"));
 		//        // set up JLine built-in commands
 		//        Builtins builtins = new Builtins(workDir, new ConfigurationPath(workDir.get(), workDir.get()), null);
