@@ -6,16 +6,18 @@ import name.remal.gradle_plugins.lombok.LombokPlugin
 import net.ltgt.gradle.errorprone.ErrorPronePlugin
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
+
+
 plugins {
     `java-library`
     `version-catalog`
     idea
-    id("com.github.ben-manes.versions")
-    id("com.palantir.git-version")
-    id("org.owasp.dependencycheck")
-    id("me.champeau.jmh") apply false
+    alias(libs.plugins.versionCheck)
+    alias(libs.plugins.gitVersion)
+    alias(libs.plugins.dependencycheck)
+    alias(libs.plugins.jmh)
     alias(libs.plugins.lombok) apply false
-    id("org.jreleaser")
+    alias(libs.plugins.jreleaser)
     alias(libs.plugins.plantuml)
     alias(libs.plugins.errorprone)
     alias(libs.plugins.dokka)
@@ -42,7 +44,6 @@ subprojects {
     apply<FormatterPlugin>()
     apply<ErrorPronePlugin>()
     apply<PlantUmlPlugin>()
-    apply<JMHPlugin>()
     apply<MavenPublishPlugin>()
     apply<DokkaPlugin>()
 

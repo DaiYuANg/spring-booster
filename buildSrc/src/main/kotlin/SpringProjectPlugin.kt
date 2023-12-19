@@ -10,10 +10,10 @@ class SpringProjectPlugin : Plugin<Project> {
     private val springBootGroup = "org.springframework.boot"
 
     private val springBootDependencies = mapOf(
-        DependenciesDeclaration.IMPLEMENTATION to "spring-boot-starter",
-        DependenciesDeclaration.IMPLEMENTATION to "spring-boot-starter-json",
-        DependenciesDeclaration.IMPLEMENTATION to "spring-boot-starter-aop",
-        DependenciesDeclaration.IMPLEMENTATION to "spring-boot-starter-actuator",
+        DependenciesDeclaration.COMPILE_ONLY to "spring-boot-starter",
+        DependenciesDeclaration.COMPILE_ONLY to "spring-boot-starter-json",
+        DependenciesDeclaration.COMPILE_ONLY to "spring-boot-starter-aop",
+        DependenciesDeclaration.COMPILE_ONLY to "spring-boot-starter-actuator",
         DependenciesDeclaration.ANNOTATION_PROCESSOR to "spring-boot-configuration-processor",
         DependenciesDeclaration.TEST_IMPLEMENTATION to "spring-boot-starter-test"
     )

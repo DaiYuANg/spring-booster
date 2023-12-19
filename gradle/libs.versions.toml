@@ -1,8 +1,6 @@
 [versions]
 jdkVersion = "21"
-detekt = "1.23.4"
 kotlin = "1.9.21"
-ktlintGradle = "12.0.3"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 classGraph = "4.8.165"
@@ -18,18 +16,43 @@ plantuml = "2.1.3"
 errorpronePlugin = "3.1.0"
 dokka = "1.9.10"
 caffine = "3.1.8"
-
+gitVersion = "3.0.0"
+dependencycheck = "9.0.7"
+jmh = "0.7.2"
+jreleaser = "1.9.0"
+preCommit = "1.1.16"
+slf4j = "2.0.9"
+jakartaPersistence = "3.2.0-M1"
+aspectjRt = "1.9.21"
+jakartavalidation = "3.1.0-M1"
+vertx = "4.5.1"
+minio = "8.5.7"
+tika = "3.0.0-BETA"
+semver4j = "5.2.2"
+hazelcast = "5.3.6"
+autoFactory = "1.1.0"
+lettuce = "6.3.0.RELEASE"
+jsonwebtoken = "0.12.3"
+progressbar = "0.10.0"
+javaDockerClientCore = "3.3.4"
+apacheHttpClient = "5.2.1"
+dotenvJava = "3.0.0"
+apacheCommonLang3="3.14.0"
+bytebuddy="1.14.10"
 
 [plugins]
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
 versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionCheck" }
 lombok = { id = "name.remal.lombok", version.ref = "lombok" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
-errorprone = { id = "net.ltgt.errorprone",version.ref="errorpronePlugin"}
-dokka = {id="org.jetbrains.dokka",version.ref="dokka"}
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+gitVersion = { id = "com.palantir.git-version", version.ref = "gitVersion" }
+dependencycheck = { id = "org.owasp.dependencycheck", version.ref = "dependencycheck" }
+jmh = { id = "me.champeau.jmh", version.ref = "jmh" }
+jreleaser = { id = "org.jreleaser", version.ref = "jreleaser" }
+preCommit = { id = "org.danilopianini.gradle-pre-commit-git-hooks", version.ref = "preCommit" }
 
 [libraries]
 junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
@@ -41,9 +64,34 @@ testcontainers = { group = "org.testcontainers", name = "testcontainers", versio
 testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
 testcontainersMinio = { group = "org.testcontainers", name = "minio", version.ref = "testcontainers" }
 testcontainersMysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
-classgraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }
 jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version.ref = "jerbrainsAnnotation" }
 errorproneCore = { group = "com.google.errorprone", name = "error_prone_core", version.ref = "errorproneCore" }
 mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
-caffine = {group="com.github.ben-manes.caffeine",name="caffeine",version.ref="caffine"}
+caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version.ref = "caffine" }
+slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version.ref = "jakartaPersistence" }
+aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
+jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version.ref = "jakartavalidation" }
+vertxCore = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
+vertxWeb = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
+vertxWebClient = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
+vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
+classGraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }
+minio = { group = "io.minio", name = "minio", version.ref = "minio" }
+tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
+tikaParsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
+semver4j = { group = "org.semver4j", name = "semver4j", version.ref = "semver4j" }
+hazelcast = { group = "com.hazelcast", name = "hazelcast", version.ref = "hazelcast" }
+autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version.ref = "autoFactory" }
+lettuceCore = { group = "io.lettuce", name = "lettuce-core", version.ref = "lettuce" }
+jsonwebtokenApi = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jsonwebtoken" }
+jsonwebtokenImpl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jsonwebtoken" }
+jsonwebtokenJackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jsonwebtoken" }
+progressbar = { group = "me.tongfei", name = "progressbar", version.ref = "progressbar" }
+javaDockerClientCore = { group = "com.github.docker-java", name = "docker-java", version.ref = "javaDockerClientCore" }
+javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-java-transport-httpclient5", version.ref = "javaDockerClientCore" }
+apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version.ref = "apacheHttpClient" }
+dotenvJava = {group="io.github.cdimascio",name="dotenv-java",version.ref="dotenvJava"}
+apacheCommonLang3 = {group="org.apache.commons",name="commons-lang3",version.ref="apacheCommonLang3"}
+bytebuddy={group="net.bytebuddy",name="byte-buddy",version.ref="bytebuddy"}

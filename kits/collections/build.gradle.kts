@@ -7,4 +7,4 @@ group = "org.toolkit.collections"
 
 version = "1.0-SNAPSHOT"
 
-dependencies { implementation("org.eclipse.collections:eclipse-collections-api:11.1.0") }
+dependencies { api("org.eclipse.collections:eclipse-collections-api:11.1.0") }

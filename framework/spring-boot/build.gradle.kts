@@ -13,7 +13,6 @@ subprojects {
     maven { setUrl("https://repo.spring.io/milestone") }
   }
   dependencies {
-    val slf4jVersion: String by project
-    implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+    implementation(rootProject.libs.slf4j)
   }
 }

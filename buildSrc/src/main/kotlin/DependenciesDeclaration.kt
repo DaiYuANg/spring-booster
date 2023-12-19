@@ -4,4 +4,6 @@ object DependenciesDeclaration {
     const val ANNOTATION_PROCESSOR = "annotationProcessor"
 
     const val TEST_IMPLEMENTATION = "testImplementation"
+
+    const val COMPILE_ONLY ="compileOnly"
 }
