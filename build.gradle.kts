@@ -4,6 +4,7 @@ import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
 import net.ltgt.gradle.errorprone.ErrorPronePlugin
+import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
 
@@ -72,6 +73,7 @@ subprojects {
             options.encoding = "UTF-8"
             options.compilerArgs.add("-Xlint:all")
             options.compilerArgs.add("-g")
+            options.errorprone.isEnabled.set(true)
         }
         withType<Test>().configureEach {
             maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)

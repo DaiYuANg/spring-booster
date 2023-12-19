@@ -1,16 +1,18 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.dotenv.source;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.env.PropertySource;
 
-public class DotenvPropertySource extends PropertySource<String> {
-	public DotenvPropertySource(String name, String source) {
+public class DotenvPropertySource extends PropertySource<Dotenv> {
+
+	public DotenvPropertySource(String name, Dotenv source) {
 		super(name, source);
 	}
 
 	@Override
 	public Object getProperty(@NotNull String name) {
-		return null;
+		return this.source.get(name);
 	}
 }
