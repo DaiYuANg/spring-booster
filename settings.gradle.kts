@@ -8,6 +8,9 @@ pluginManagement {
         google()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+}
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -91,3 +94,5 @@ include("kits:collections")
 include("kits:refined")
 
 include("codegen:mapping-indexer-codegen")
+include("kits:qrcode")
+findProject(":kits:qrcode")?.name = "qrcode"

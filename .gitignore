@@ -400,3 +400,4 @@ toolkit-cli.yaml
 website/site
 website/static
 .env.**
+*.png

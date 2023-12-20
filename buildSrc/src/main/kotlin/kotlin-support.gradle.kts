@@ -11,7 +11,7 @@ plugins {
 
 dependencies{
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
     testImplementation(kotlin("test"))
 }
 
