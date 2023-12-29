@@ -89,7 +89,7 @@ include("tools:toolkit-cli")
 
 include("kits:minio-wrapper")
 
-include("kits:collections")
+include("kits:collection")
 
 include("kits:refined")
 

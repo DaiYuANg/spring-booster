@@ -1,8 +1,9 @@
 import com.palantir.gradle.gitversion.GitVersionPlugin
+import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import me.champeau.jmh.JMHPlugin
-import name.remal.gradle_plugins.lombok.LombokPlugin
+//import name.remal.gradle_plugins.lombok.LombokPlugin
 //import net.ltgt.gradle.errorprone.ErrorPronePlugin
 //import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
@@ -16,8 +17,9 @@ plugins {
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.dependencycheck)
     alias(libs.plugins.jmh)
-    alias(libs.plugins.lombok) apply false
+//    alias(libs.plugins.lombok) apply false
     alias(libs.plugins.jreleaser)
+    id("io.freefair.lombok") version "8.4"
     alias(libs.plugins.plantuml)
 //    alias(libs.plugins.errorprone)
     alias(libs.plugins.dokka)
@@ -38,8 +40,9 @@ true.also { gradle.startParameter.isBuildCacheEnabled = it }
 val jdkVersion = libs.versions.jdkVersion.get()
 
 subprojects {
-    apply<JMHPlugin>()
     apply<LombokPlugin>()
+    apply<JMHPlugin>()
+//    apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatterPlugin>()
 //    apply<ErrorPronePlugin>()
@@ -54,6 +57,9 @@ subprojects {
 
     dependencies {
         compileOnly(rootProject.libs.jetbrainsAnnotation)
+//        implementation("org.projectlombok:lombok:1.18.30")
+//        compileOnly("org.projectlombok:lombok:1.18.30")
+//        annotationProcessor("org.projectlombok:lombok:1.18.30")
 //        errorprone(rootProject.libs.errorproneCore)
         testImplementation(platform(rootProject.libs.junitBom))
         testImplementation(rootProject.libs.junitJuiter)
