@@ -39,6 +39,7 @@ apacheHttpClient = "5.2.1"
 dotenvJava = "3.0.0"
 apacheCommonLang3="3.14.0"
 bytebuddy="1.14.10"
+datafaker = "2.0.2"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -95,3 +96,4 @@ apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpcl
 dotenvJava = {group="io.github.cdimascio",name="dotenv-java",version.ref="dotenvJava"}
 apacheCommonLang3 = {group="org.apache.commons",name="commons-lang3",version.ref="apacheCommonLang3"}
 bytebuddy={group="net.bytebuddy",name="byte-buddy",version.ref="bytebuddy"}
+dataFaker={group="net.datafaker",name="datafaker",version.ref="datafaker"}

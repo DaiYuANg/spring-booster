@@ -3,10 +3,9 @@ import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import me.champeau.jmh.JMHPlugin
 import name.remal.gradle_plugins.lombok.LombokPlugin
-import net.ltgt.gradle.errorprone.ErrorPronePlugin
-import net.ltgt.gradle.errorprone.errorprone
+//import net.ltgt.gradle.errorprone.ErrorPronePlugin
+//import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
-
 
 
 plugins {
@@ -20,7 +19,7 @@ plugins {
     alias(libs.plugins.lombok) apply false
     alias(libs.plugins.jreleaser)
     alias(libs.plugins.plantuml)
-    alias(libs.plugins.errorprone)
+//    alias(libs.plugins.errorprone)
     alias(libs.plugins.dokka)
     `maven-publish`
 }
@@ -43,7 +42,7 @@ subprojects {
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatterPlugin>()
-    apply<ErrorPronePlugin>()
+//    apply<ErrorPronePlugin>()
     apply<PlantUmlPlugin>()
     apply<MavenPublishPlugin>()
     apply<DokkaPlugin>()
@@ -55,7 +54,7 @@ subprojects {
 
     dependencies {
         compileOnly(rootProject.libs.jetbrainsAnnotation)
-        errorprone(rootProject.libs.errorproneCore)
+//        errorprone(rootProject.libs.errorproneCore)
         testImplementation(platform(rootProject.libs.junitBom))
         testImplementation(rootProject.libs.junitJuiter)
         testImplementation(rootProject.libs.junitApi)
@@ -65,6 +64,7 @@ subprojects {
         testImplementation(rootProject.libs.testcontainersJunit)
         testImplementation(rootProject.libs.mockitoCore)
         testImplementation(rootProject.libs.mockitoJunit)
+        testImplementation(rootProject.libs.dataFaker)
     }
 
     tasks {
@@ -73,7 +73,7 @@ subprojects {
             options.encoding = "UTF-8"
             options.compilerArgs.add("-Xlint:all")
             options.compilerArgs.add("-g")
-            options.errorprone.isEnabled.set(true)
+//            options.errorprone.isEnabled.set(true)
         }
         withType<Test>().configureEach {
             maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
@@ -101,8 +101,12 @@ subprojects {
 
     tasks.test {
         useJUnitPlatform()
+        minHeapSize = "4g"
+        maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
+        maxHeapSize = "8g"
         systemProperties["junit.jupiter.execution.parallel.enabled"] = true
         systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
+        jvmArgs("-XX:+EnableDynamicAgentLoading")
         maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
     }
 

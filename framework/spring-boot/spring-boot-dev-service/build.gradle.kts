@@ -9,4 +9,5 @@ dependencies {
   implementation(libs.javaDockerClientCore)
   implementation(libs.javaDockerClientHttpClient)
   implementation(libs.apacheHttpClient)
+  testImplementation("com.mysql:mysql-connector-j")
 }

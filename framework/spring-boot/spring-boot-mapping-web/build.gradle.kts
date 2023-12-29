@@ -1,5 +1,3 @@
-plugins { `kotlin-support` }
-
 dependencies {
   implementation(projects.framework.springBoot.springBootMappingCore)
   implementation(projects.framework.springBoot.springBootMappingBase)

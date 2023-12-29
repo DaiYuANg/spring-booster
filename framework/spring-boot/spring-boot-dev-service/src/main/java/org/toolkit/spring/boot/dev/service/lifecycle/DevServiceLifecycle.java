@@ -1,11 +1,8 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.dev.service.lifecycle;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.Arrays;
 import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -34,8 +31,6 @@ public class DevServiceLifecycle {
 
 	private final Set<ApplicationListener<?>> eventListeners;
 
-	private final Executor executor;
-
 	private final Set<ContainerService> availableService;
 
 	//	private final Observable<ContainerService> observable;
@@ -53,15 +48,13 @@ public class DevServiceLifecycle {
 				.filter(this::checkIsAvailable)
 				.map(SupportServiceStore::getContainerService)
 				.collect(Collectors.toUnmodifiableSet());
-		val threadFactory =
-				new ThreadFactoryBuilder().setNameFormat("DevService-%s").build();
-		//		this.observable = Observable.fromIterable(availableService);
-		this.executor = Executors.newFixedThreadPool(availableService.size(), threadFactory);
+		System.err.println(availableService);
 	}
 
 	private boolean checkIsAvailable(@NotNull SupportServiceStore supportService) {
 		val isAvailable =
 				supportService.getClazz().stream().allMatch(clazz -> ClassUtils.isPresent(clazz, classLoader));
+		System.err.println(isAvailable);
 		log.atInfo().log("Support service :{}", supportService.getClazz());
 		return isAvailable;
 	}

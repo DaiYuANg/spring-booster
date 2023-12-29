@@ -24,6 +24,7 @@ public class MysqlContainerContainerService implements ContainerService {
 	@SneakyThrows
 	@Override
 	public CreateContainerResponse createService() {
+		System.err.println(client);
 		val pullCallback = new PullImageProcessBar();
 		client.pullImageCmd(image).exec(pullCallback);
 		pullCallback.awaitCompletion();
