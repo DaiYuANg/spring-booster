@@ -7,6 +7,7 @@ import me.champeau.jmh.JMHPlugin
 //import net.ltgt.gradle.errorprone.ErrorPronePlugin
 //import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 
 plugins {
@@ -28,6 +29,8 @@ plugins {
 
 allprojects {
     repositories {
+        maven { setUrl("https://repo.spring.io/snapshot") }
+        maven { setUrl("https://repo.spring.io/milestone") }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
@@ -42,13 +45,18 @@ val jdkVersion = libs.versions.jdkVersion.get()
 subprojects {
     apply<LombokPlugin>()
     apply<JMHPlugin>()
-//    apply<LombokPlugin>()
+    apply<SpringBootProjectPlugin>()
+    apply<JavaLibraryPlugin>()
+    apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatterPlugin>()
 //    apply<ErrorPronePlugin>()
     apply<PlantUmlPlugin>()
     apply<MavenPublishPlugin>()
     apply<DokkaPlugin>()
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "org.jetbrains.kotlin.plugin.lombok")
 
     group = "org." + rootProject.name + "." + project.name
     val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
@@ -57,9 +65,6 @@ subprojects {
 
     dependencies {
         compileOnly(rootProject.libs.jetbrainsAnnotation)
-//        implementation("org.projectlombok:lombok:1.18.30")
-//        compileOnly("org.projectlombok:lombok:1.18.30")
-//        annotationProcessor("org.projectlombok:lombok:1.18.30")
 //        errorprone(rootProject.libs.errorproneCore)
         testImplementation(platform(rootProject.libs.junitBom))
         testImplementation(rootProject.libs.junitJuiter)
@@ -71,7 +76,9 @@ subprojects {
         testImplementation(rootProject.libs.mockitoCore)
         testImplementation(rootProject.libs.mockitoJunit)
         testImplementation(rootProject.libs.dataFaker)
+        implementation(rootProject.libs.slf4j)
     }
+    tasks.withType<BootJar> { enabled = false }
 
     tasks {
         withType<JavaCompile> {

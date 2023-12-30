@@ -23,78 +23,51 @@ buildCache {
 
 rootProject.name = "spring-boost"
 
-include("framework:spring-boot:spring-boot-persistence")
+include("spring-boost-persistence")
 
-include("framework:spring-boot:spring-boot-utils")
+include("spring-boost-utils")
 
-include("framework:spring-boot:spring-boot-authentication")
+include("spring-boost-authentication")
 
-include("framework:spring-boot:spring-boot-web-core")
+include("spring-boost-web-core")
 
-include("framework:spring-boot:spring-boot-verification")
+include("spring-boost-verification")
 
-include("framework:spring-boot:spring-boot-office")
+include("spring-boost-office")
 
-include("framework:spring-boot:spring-boot-recorder")
+include("spring-boost-recorder")
 
-include("framework:spring-boot:spring-boot-mapping-core")
+include("spring-boost-mapping-core")
 
-include("framework:spring-boot:spring-boot-mapping-base")
+include("spring-boost-mapping-base")
 
-include("apps:springboot-application")
+include("spring-boost-web-annotation")
 
-include("framework:spring-boot:spring-boot-web-annotation")
+include("spring-boost-vertx-web")
 
-include("framework:spring-boot:spring-boot-vertx-web")
+include("spring-boost-vertx-clustering")
 
-include("framework:spring-boot:spring-boot-vertx-clustering")
+include("spring-boost-minio")
 
-include("framework:spring-boot:spring-boot-minio")
+include("spring-boost-vertx-core")
 
-include("framework:spring-boot:spring-boot-vertx-core")
+include("spring-boost-vertx-event-bus")
 
-include("framework:spring-boot:spring-boot-vertx-event-bus")
+include("spring-boost-mapping-code-source")
 
-include("framework:spring-boot:spring-boot-mapping-code-source")
+include("spring-boost-mapping-database-source")
 
-include("framework:spring-boot:spring-boot-mapping-database-source")
+include("spring-boost-mapping-web")
 
-include("framework:spring-boot:spring-boot-mapping-web")
+include("spring-boost-dev-service")
 
-include("framework:spring-boot:spring-boot-dev-service")
+include("spring-boost-dotenv")
 
-include("framework:spring-boot:spring-boot-dotenv")
+include("spring-boost-scanner")
 
-include("framework:spring-boot:spring-boot-scanner")
+include("spring-boost-cache")
 
-include("framework:spring-boot:spring-boot-cache")
+include("spring-boost-web-version")
 
-include("framework:spring-boot:spring-boot-web-version")
+include("spring-boost-cli")
 
-//include("kits:cache-api")
-//
-//include("kits:cache-redis")
-//
-//include("kits:cache-annotation")
-//
-//include("kits:cache-hazelcast")
-//
-//include("kits:cache-caffine")
-//
-//include("kits:cache-immutable")
-//
-//include("kits:codegen-annotation")
-//
-include("tools:toolkit-cli")
-//
-//include("kits:minio-wrapper")
-//
-//include("kits:collection")
-//
-//include("kits:refined")
-
-include("codegen:mapping-indexer-codegen")
-//include("kits:qrcode")
-//findProject(":kits:qrcode")?.name = "qrcode"
-//include("kits:dispatcher")
-//findProject(":kits:dispatcher")?.name = "dispatcher"
