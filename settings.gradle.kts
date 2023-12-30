@@ -21,7 +21,7 @@ buildCache {
     }
 }
 
-rootProject.name = "Nectar"
+rootProject.name = "spring-boost"
 
 include("framework:spring-boot:spring-boot-persistence")
 
@@ -71,28 +71,30 @@ include("framework:spring-boot:spring-boot-cache")
 
 include("framework:spring-boot:spring-boot-web-version")
 
-include("kits:cache-api")
-
-include("kits:cache-redis")
-
-include("kits:cache-annotation")
-
-include("kits:cache-hazelcast")
-
-include("kits:cache-caffine")
-
-include("kits:cache-immutable")
-
-include("kits:codegen-annotation")
-
+//include("kits:cache-api")
+//
+//include("kits:cache-redis")
+//
+//include("kits:cache-annotation")
+//
+//include("kits:cache-hazelcast")
+//
+//include("kits:cache-caffine")
+//
+//include("kits:cache-immutable")
+//
+//include("kits:codegen-annotation")
+//
 include("tools:toolkit-cli")
-
-include("kits:minio-wrapper")
-
-include("kits:collection")
-
-include("kits:refined")
+//
+//include("kits:minio-wrapper")
+//
+//include("kits:collection")
+//
+//include("kits:refined")
 
 include("codegen:mapping-indexer-codegen")
-include("kits:qrcode")
-findProject(":kits:qrcode")?.name = "qrcode"
+//include("kits:qrcode")
+//findProject(":kits:qrcode")?.name = "qrcode"
+//include("kits:dispatcher")
+//findProject(":kits:dispatcher")?.name = "dispatcher"
