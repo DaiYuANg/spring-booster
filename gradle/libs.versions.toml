@@ -40,6 +40,7 @@ dotenvJava = "3.0.0"
 apacheCommonLang3="3.14.0"
 bytebuddy="1.14.10"
 datafaker = "2.0.2"
+commonIO = "2.15.1"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -80,6 +81,7 @@ vertxWebClient = { group = "io.vertx", name = "vertx-web-client", version.ref = 
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
 classGraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
+minioAdmin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
 tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
 tikaParsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
 semver4j = { group = "org.semver4j", name = "semver4j", version.ref = "semver4j" }
@@ -97,3 +99,4 @@ dotenvJava = {group="io.github.cdimascio",name="dotenv-java",version.ref="dotenv
 apacheCommonLang3 = {group="org.apache.commons",name="commons-lang3",version.ref="apacheCommonLang3"}
 bytebuddy={group="net.bytebuddy",name="byte-buddy",version.ref="bytebuddy"}
 dataFaker={group="net.datafaker",name="datafaker",version.ref="datafaker"}
+apacheCommonIO={group="commons-io",name="commons-io",version.ref="commonIO"}
