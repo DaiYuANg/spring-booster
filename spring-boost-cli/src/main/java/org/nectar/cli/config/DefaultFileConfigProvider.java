@@ -11,7 +11,7 @@ import org.github.gestalt.config.source.ConfigSourcePackage;
 @Getter
 public class DefaultFileConfigProvider implements ConfigFileProvider {
 
-	private final String configFileName = "default.yaml";
+	private final String configFileName = "application.yaml";
 
 	private final File file;
 

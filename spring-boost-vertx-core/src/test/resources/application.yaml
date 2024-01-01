@@ -1,4 +1,0 @@
-toolkit:
-  vertx:
-    http:
-      enable: true

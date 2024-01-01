@@ -27,6 +27,7 @@ dependencies {
     implementation("jakarta.persistence:jakarta.persistence-api:3.2.0-M1")
     implementation("commons-dbutils:commons-dbutils:1.8.1")
     implementation("org.fusesource.jansi:jansi:2.4.1")
+    implementation("org.jline:jline-native:3.25.0")
     implementation("org.springframework.shell:spring-shell-starter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

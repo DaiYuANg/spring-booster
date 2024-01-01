@@ -43,15 +43,7 @@ include("spring-boost-mapping-base")
 
 include("spring-boost-web-annotation")
 
-include("spring-boost-vertx-web")
-
-include("spring-boost-vertx-clustering")
-
 include("spring-boost-minio")
-
-include("spring-boost-vertx-core")
-
-include("spring-boost-vertx-event-bus")
 
 include("spring-boost-mapping-code-source")
 
@@ -70,4 +62,4 @@ include("spring-boost-cache")
 include("spring-boost-web-version")
 
 include("spring-boost-cli")
-
+include("spring-boost-channel")

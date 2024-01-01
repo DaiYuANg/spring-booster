@@ -1,3 +1,0 @@
-org.toolkit.spring.boot.vertx.configuration.builder.VertxConfigBuilder
-org.toolkit.spring.boot.vertx.lifecycle.VerticleRegister
-org.toolkit.spring.boot.vertx.configuration.VertxAutoConfiguration
