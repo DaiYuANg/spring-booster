@@ -1,0 +1,19 @@
+spring:
+  boost:
+    clients:
+      client1:
+        endpoint: "your_endpoint1"
+        accessKey: "your_access_key1"
+        secretKey: "your_secret_key1"
+        bucket: "your_default_bucket1"
+      client2:
+        endpoint: "your_endpoint2"
+        accessKey: "your_access_key2"
+        secretKey: "your_secret_key2"
+        bucket: "your_default_bucket2"
+  threads:
+    virtual:
+      enabled: true
+logging:
+  level:
+    root: debug

@@ -8,7 +8,7 @@ jerbrainsAnnotation = "24.0.1"
 guice = "7.0.0"
 koin = "3.5.2-RC1"
 errorproneCore = "2.23.0"
-junit = "5.9.3"
+junit = "5.10.1"
 testcontainers = "1.19.3"
 mockito = "5.8.0"
 lombok = "2.2.4"
@@ -37,10 +37,11 @@ progressbar = "0.10.0"
 javaDockerClientCore = "3.3.4"
 apacheHttpClient = "5.2.1"
 dotenvJava = "3.0.0"
-apacheCommonLang3="3.14.0"
-bytebuddy="1.14.10"
+apacheCommonLang3 = "3.14.0"
+bytebuddy = "1.14.10"
 datafaker = "2.0.2"
 commonIO = "2.15.1"
+guava = "33.0.0-jre"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -95,8 +96,9 @@ progressbar = { group = "me.tongfei", name = "progressbar", version.ref = "progr
 javaDockerClientCore = { group = "com.github.docker-java", name = "docker-java", version.ref = "javaDockerClientCore" }
 javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-java-transport-httpclient5", version.ref = "javaDockerClientCore" }
 apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version.ref = "apacheHttpClient" }
-dotenvJava = {group="io.github.cdimascio",name="dotenv-java",version.ref="dotenvJava"}
-apacheCommonLang3 = {group="org.apache.commons",name="commons-lang3",version.ref="apacheCommonLang3"}
-bytebuddy={group="net.bytebuddy",name="byte-buddy",version.ref="bytebuddy"}
-dataFaker={group="net.datafaker",name="datafaker",version.ref="datafaker"}
-apacheCommonIO={group="commons-io",name="commons-io",version.ref="commonIO"}
+dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version.ref = "dotenvJava" }
+apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "apacheCommonLang3" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version.ref = "bytebuddy" }
+dataFaker = { group = "net.datafaker", name = "datafaker", version.ref = "datafaker" }
+apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "commonIO" }
+guava = { group = "com.google.guava", name = "guava",version.ref="guava" }

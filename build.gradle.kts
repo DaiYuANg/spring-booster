@@ -50,13 +50,9 @@ subprojects {
     apply<LombokPlugin>()
     apply<GitVersionPlugin>()
     apply<FormatterPlugin>()
-//    apply<ErrorPronePlugin>()
     apply<PlantUmlPlugin>()
     apply<MavenPublishPlugin>()
     apply<DokkaPlugin>()
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-    apply(plugin = "org.jetbrains.kotlin.plugin.lombok")
 
     group = "org." + rootProject.name + "." + project.name
     val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
@@ -65,6 +61,7 @@ subprojects {
 
     dependencies {
         compileOnly(rootProject.libs.jetbrainsAnnotation)
+        implementation(rootProject.libs.guava)
 //        errorprone(rootProject.libs.errorproneCore)
         testImplementation(platform(rootProject.libs.junitBom))
         testImplementation(rootProject.libs.junitJuiter)

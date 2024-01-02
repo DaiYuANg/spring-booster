@@ -62,4 +62,3 @@ include("spring-boost-cache")
 include("spring-boost-web-version")
 
 include("spring-boost-cli")
-include("spring-boost-channel")
