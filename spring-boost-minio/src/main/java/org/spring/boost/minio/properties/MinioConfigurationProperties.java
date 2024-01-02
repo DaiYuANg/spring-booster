@@ -8,10 +8,13 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("spring.boost")
+@ConfigurationProperties(MinioConfigurationProperties.prefix)
 @Getter
 @Setter
 @ToString
 public class MinioConfigurationProperties {
+
+	public static final String prefix = "spring.boost.minio";
+
 	private Map<String, MinioClientConfig> clients = new HashMap<>();
 }

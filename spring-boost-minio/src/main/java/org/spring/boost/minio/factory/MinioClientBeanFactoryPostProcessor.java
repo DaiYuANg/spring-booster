@@ -11,15 +11,15 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class MinioClientBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
-	private final MinioConfigurationProperties minioConfigurationProperties;
+	private final MinioConfigurationProperties properties;
 
 	@Override
 	public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		minioConfigurationProperties.getClients().forEach((key, value) -> {
+		properties.getClients().forEach((key, value) -> {
 			val client = MinioClient.builder()
 					.endpoint(value.getEndpoint())
 					.credentials(value.getAccessKey(), value.getSecretKey())

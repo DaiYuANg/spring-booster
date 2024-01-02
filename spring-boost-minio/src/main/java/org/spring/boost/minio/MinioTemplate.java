@@ -4,14 +4,13 @@ package org.spring.boost.minio;
 import com.google.common.collect.ImmutableSet;
 import io.minio.MinioClient;
 import io.minio.admin.MinioAdminClient;
-import lombok.Builder;
-import lombok.NonNull;
-import lombok.Singular;
+import lombok.*;
 import org.apache.tika.Tika;
 import org.spring.boost.minio.hook.MinioHook;
 import org.springframework.context.ApplicationEventPublisher;
 
 @Builder
+@ToString
 public class MinioTemplate {
 
 	@NonNull private final MinioClient client;
