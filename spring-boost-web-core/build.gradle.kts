@@ -1,7 +1,9 @@
 val aspectjVersion: String by project
 
 dependencies {
-  implementation(libs.aspectjRt)
+  api(libs.aspectjRt)
+  api(projects.springBoostCommon)
+  api(projects.springBoostWebAnnotation)
   api("org.springframework.boot:spring-boot-starter-web")
-  implementation("org.springframework.hateoas:spring-hateoas")
+  api("org.springframework.hateoas:spring-hateoas")
 }

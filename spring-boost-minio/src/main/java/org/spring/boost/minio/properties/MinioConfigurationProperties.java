@@ -17,4 +17,6 @@ public class MinioConfigurationProperties {
 	public static final String prefix = "spring.boost.minio";
 
 	private Map<String, MinioClientConfig> clients = new HashMap<>();
+
+	private boolean checkDuplicate = false;
 }

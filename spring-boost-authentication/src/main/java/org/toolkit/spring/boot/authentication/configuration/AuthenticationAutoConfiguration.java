@@ -1,10 +1,12 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.authentication.configuration;
 
-import jakarta.annotation.Resource;
-import java.util.List;
+import jakarta.servlet.Filter;
+import java.util.Set;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.spring.boost.common.api.BeanRegistry;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -26,6 +28,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.toolkit.spring.boot.authentication.annotation.AuthenticationAfterFilter;
+import org.toolkit.spring.boot.authentication.annotation.AuthenticationAtFilter;
+import org.toolkit.spring.boot.authentication.annotation.AuthenticationBeforeFilter;
+import org.toolkit.spring.boot.authentication.annotation.AuthenticationFilter;
 import org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties;
 import org.toolkit.spring.boot.authentication.configuration.properties.JwtConfigProperties;
 import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
@@ -41,36 +47,42 @@ import org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter;
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class, JwtConfigProperties.class})
 @Slf4j
 @ComponentScan("org.toolkit.spring.boot.authentication.**.*")
+@RequiredArgsConstructor
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 
-	@Resource
-	@Lazy
-	private AuthenticationConfigurationProperties authenticationConfigurationProperties;
+	private final AuthenticationConfigurationProperties authenticationConfigurationProperties;
 
-	@Resource
-	@Lazy
-	private AuthenticationManager authenticationManager;
-	//
-	@Resource
-	private AuthenticationProvider authenticationProvider;
-	//
-	@Resource
-	private JwtAuthenticationFilter jwtAuthenticationFilter;
+	private final AuthenticationProvider authenticationProvider;
 
-	@Resource(name = "PermitAllRequestMather")
-	private List<AntPathRequestMatcher> permitAll;
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+	private final Set<AntPathRequestMatcher> PermitAllRequestMather;
+
+	private final BeanRegistry beanRegistry;
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(
+			@NotNull HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
+		beanRegistry
+				.getBeanWithAnnotationMap(AuthenticationAfterFilter.class, Filter.class)
+				.forEach((a, f) -> http.addFilterAfter(f, a.value()));
+		beanRegistry
+				.getBeanWithAnnotationMap(AuthenticationBeforeFilter.class, Filter.class)
+				.forEach((a, f) -> http.addFilterBefore(f, a.value()));
+		beanRegistry
+				.getBeanWithAnnotationMap(AuthenticationFilter.class, Filter.class)
+				.forEach((a, f) -> http.addFilter(f));
+		beanRegistry
+				.getBeanWithAnnotationMap(AuthenticationAtFilter.class, Filter.class)
+				.forEach((a, f) -> http.addFilterAt(f, a.value()));
 		http.cors(AbstractHttpConfigurer::disable);
 		http.csrf(AbstractHttpConfigurer::disable);
 		http.authorizeHttpRequests(req -> {
-			permitAll.stream()
+			PermitAllRequestMather.stream()
 					.map(req::requestMatchers)
 					.forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
 			req.anyRequest().authenticated();
 		});
-		//		http.logout(AbstractHttpConfigurer::disable);
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		http.authenticationManager(authenticationManager);
 		http.authenticationProvider(authenticationProvider);

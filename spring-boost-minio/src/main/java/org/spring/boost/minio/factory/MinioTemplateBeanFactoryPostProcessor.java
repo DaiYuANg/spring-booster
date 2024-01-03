@@ -9,14 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.tika.Tika;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.minio.BeanNaming;
-import org.spring.boost.minio.MinioTemplate;
 import org.spring.boost.minio.hook.MinioHook;
 import org.spring.boost.minio.properties.MinioConfigurationProperties;
+import org.spring.boost.minio.template.MinioCreateTemplate;
+import org.spring.boost.minio.template.MinioGetTemplate;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.context.ApplicationEventPublisher;
 
 @Builder
 @Slf4j
@@ -26,8 +25,6 @@ public class MinioTemplateBeanFactoryPostProcessor implements BeanFactoryPostPro
 
 	private final Tika tika;
 
-	private final ApplicationEventPublisher eventPublisher;
-
 	@Override
 	public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		val hooks =
@@ -35,19 +32,27 @@ public class MinioTemplateBeanFactoryPostProcessor implements BeanFactoryPostPro
 		properties.getClients().forEach((k, v) -> {
 			val client = beanFactory.getBean(k, MinioClient.class);
 			val adminClient = beanFactory.getBean(k + BeanNaming.ADMIN.getNaming(), MinioAdminClient.class);
-			val template = MinioTemplate.builder()
+			val getTemplate = MinioGetTemplate.builder()
 					.adminClient(adminClient)
 					.client(client)
 					.bucket(v.getBucket())
-					.applicationEventPublisher(eventPublisher)
 					.tika(tika)
 					.hooks(hooks)
+					.checkDuplicate(properties.isCheckDuplicate())
 					.build();
-			val key = k + BeanNaming.TEMPLATE.getNaming();
-			log.atTrace().log("Register MinioTemplate:{}:{}", key, template);
-			beanFactory.registerSingleton(key, template);
+			val createTemplate = MinioCreateTemplate.builder()
+					.adminClient(adminClient)
+					.client(client)
+					.bucket(v.getBucket())
+					.tika(tika)
+					.hooks(hooks)
+					.checkDuplicate(properties.isCheckDuplicate())
+					.build();
+			val createTemplateBeanKey = k + BeanNaming.CREATE_TEMPLATE.getNaming();
+			val getTemplateBeanKey = k + BeanNaming.GET_TEMPLATE.getNaming();
+			log.atTrace().log("Register MinioTemplate:{}:{}", createTemplateBeanKey, createTemplate);
+			beanFactory.registerSingleton(createTemplateBeanKey, createTemplate);
+			beanFactory.registerSingleton(getTemplateBeanKey, getTemplateBeanKey);
 		});
-
-		eventPublisher.publishEvent("test");
 	}
 }

@@ -9,5 +9,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ToString
-@ConfigurationProperties(prefix = "spring.mapping.source.code")
+@ConfigurationProperties(prefix = "spring.boost.mapping.source.code")
 public class MappingCodeSourceConfigurationProperties {}

@@ -20,7 +20,6 @@ import org.toolkit.spring.boot.mapping.source.code.annotation.EnumMapping;
 import org.toolkit.spring.boot.mapping.source.code.annotation.StaticGroup;
 
 @Slf4j
-@Component
 public class DataBeanProcessor extends ClassPathScanningCandidateComponentProvider {
     public DataBeanProcessor() {
         super(false);

@@ -4,8 +4,8 @@ package org.toolkit.spring.boot.authentication.event;
 import java.io.Serial;
 import lombok.Getter;
 import lombok.ToString;
+import org.spring.boost.common.struct.LoggingEvent;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.toolkit.spring.boot.utils.struct.LoggingEvent;
 
 @ToString
 @Getter

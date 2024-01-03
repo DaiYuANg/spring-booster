@@ -1,15 +1,11 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.authentication.configuration;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 import jakarta.annotation.security.PermitAll;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
@@ -28,26 +24,19 @@ import org.toolkit.spring.boot.authentication.constant.Method;
 @AutoConfiguration
 @Slf4j
 @AutoConfigureBefore(AuthenticationAutoConfiguration.class)
+@RequiredArgsConstructor
 public class PermitAutoConfiguration {
 
-	@Resource
-	private AuthenticationConfigurationProperties configurationProperties;
+	private final AuthenticationConfigurationProperties configurationProperties;
 
-	@Resource
-	private ApplicationContext context;
-
-	@PostConstruct
-	private void init() {
-		log.atInfo().log("permit config executing");
-	}
+	private final ApplicationContext context;
 
 	@Bean(name = "PermitAllRequestMather")
-	public List<AntPathRequestMatcher> webSecurityCustomizer() {
+	public Set<AntPathRequestMatcher> webSecurityCustomizer() {
 		val permitAllMatchers = Stream.concat(
 						Arrays.stream(buildAntPathRequestMatcherFromAnnotation()),
 						Arrays.stream(buildAntPathRequestMatcherFromConfig()))
-				.distinct()
-				.toList();
+				.collect(Collectors.toUnmodifiableSet());
 		log.atDebug().log(
 				"permit route:{}",
 				permitAllMatchers.stream().collect(Collectors.groupingBy(AntPathRequestMatcher::getPattern)));

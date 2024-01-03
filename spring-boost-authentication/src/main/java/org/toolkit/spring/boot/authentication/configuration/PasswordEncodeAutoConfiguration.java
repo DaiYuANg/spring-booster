@@ -1,7 +1,6 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.authentication.configuration;
 
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -15,11 +14,6 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 @AutoConfiguration
 @Slf4j
 public class PasswordEncodeAutoConfiguration {
-
-	@PostConstruct
-	private void init() {
-		log.atDebug().log("password encode auto config executing");
-	}
 
 	@Bean
 	@ConditionalOnMissingBean(PasswordEncoder.class)

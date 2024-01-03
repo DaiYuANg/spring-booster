@@ -3,9 +3,8 @@ import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import me.champeau.jmh.JMHPlugin
-//import name.remal.gradle_plugins.lombok.LombokPlugin
-//import net.ltgt.gradle.errorprone.ErrorPronePlugin
-//import net.ltgt.gradle.errorprone.errorprone
+import net.ltgt.gradle.errorprone.ErrorPronePlugin
+import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -18,11 +17,10 @@ plugins {
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.dependencycheck)
     alias(libs.plugins.jmh)
-//    alias(libs.plugins.lombok) apply false
     alias(libs.plugins.jreleaser)
     id("io.freefair.lombok") version "8.4"
     alias(libs.plugins.plantuml)
-//    alias(libs.plugins.errorprone)
+    alias(libs.plugins.errorprone)
     alias(libs.plugins.dokka)
     `maven-publish`
 }
@@ -41,7 +39,7 @@ allprojects {
 true.also { gradle.startParameter.isBuildCacheEnabled = it }
 
 val jdkVersion = libs.versions.jdkVersion.get()
-
+val plantUMLSuffix = "puml"
 subprojects {
     apply<LombokPlugin>()
     apply<JMHPlugin>()
@@ -52,6 +50,7 @@ subprojects {
     apply<FormatterPlugin>()
     apply<PlantUmlPlugin>()
     apply<MavenPublishPlugin>()
+    apply<ErrorPronePlugin>()
     apply<DokkaPlugin>()
 
     group = "org." + rootProject.name + "." + project.name
@@ -62,7 +61,10 @@ subprojects {
     dependencies {
         compileOnly(rootProject.libs.jetbrainsAnnotation)
         implementation(rootProject.libs.guava)
-//        errorprone(rootProject.libs.errorproneCore)
+        implementation("org.mapstruct:mapstruct:1.5.5.Final")
+        annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+        annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+        errorprone(rootProject.libs.errorproneCore)
         testImplementation(platform(rootProject.libs.junitBom))
         testImplementation(rootProject.libs.junitJuiter)
         testImplementation(rootProject.libs.junitApi)
@@ -73,6 +75,8 @@ subprojects {
         testImplementation(rootProject.libs.mockitoCore)
         testImplementation(rootProject.libs.mockitoJunit)
         testImplementation(rootProject.libs.dataFaker)
+        testImplementation("com.github.noconnor:junitperf:1.35.0")
+        testImplementation("com.github.noconnor:junitperf-junit5:1.35.0")
         implementation(rootProject.libs.slf4j)
     }
     tasks.withType<BootJar> { enabled = false }
@@ -83,7 +87,9 @@ subprojects {
             options.encoding = "UTF-8"
             options.compilerArgs.add("-Xlint:all")
             options.compilerArgs.add("-g")
-//            options.errorprone.isEnabled.set(true)
+            options.errorprone.isEnabled.set(true)
+            options.errorprone.disableWarningsInGeneratedCode.set(true)
+            dependsOn(project.tasks.processResources)
         }
         withType<Test>().configureEach {
             maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
@@ -99,14 +105,16 @@ subprojects {
             }
         }
 
-        withType<JavaCompile> {
-            dependsOn(project.tasks.processResources)
-        }
         java {
             sourceCompatibility = JavaVersion.toVersion(jdkVersion)
             targetCompatibility = JavaVersion.toVersion(jdkVersion)
             toolchain { languageVersion.set(JavaLanguageVersion.of(jdkVersion)) }
         }
+    }
+
+    java{
+        withSourcesJar()
+        withJavadocJar()
     }
 
     tasks.test {
@@ -123,9 +131,14 @@ subprojects {
 
     classDiagrams {
         @Suppress("UNCHECKED_CAST")
-        diagram("default", closureOf<ClassDiagramsExtension.ClassDiagram> {
-            include(packages().recursive())
-            writeTo(file(project.layout.buildDirectory.file("cli.puml")))
-        } as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>)
+        diagram(
+            "classes",
+            closureOf<ClassDiagramsExtension.ClassDiagram> {
+                include(packages().recursive())
+                writeTo(file(project.layout.projectDirectory.file("${project.name}.$plantUMLSuffix")))
+            }
+                    as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+        )
     }
+
 }

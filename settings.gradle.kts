@@ -25,7 +25,7 @@ rootProject.name = "spring-boost"
 
 include("spring-boost-persistence")
 
-include("spring-boost-utils")
+include("spring-boost-common")
 
 include("spring-boost-authentication")
 

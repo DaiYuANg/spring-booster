@@ -2,9 +2,8 @@
 package org.spring.boost.minio;
 
 import jakarta.annotation.PostConstruct;
-import org.spring.boost.minio.hook.MinioHook;
 
-public class TestHook implements MinioHook {
+public class TestHook {
 
 	@PostConstruct
 	public void init() {

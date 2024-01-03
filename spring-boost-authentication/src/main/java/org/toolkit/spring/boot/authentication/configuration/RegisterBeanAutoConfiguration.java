@@ -1,7 +1,7 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.authentication.configuration;
 
-import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -19,16 +19,14 @@ import org.toolkit.spring.boot.authentication.service.impl.JwtServiceImpl;
 
 @AutoConfiguration
 @Slf4j
+@RequiredArgsConstructor
 public class RegisterBeanAutoConfiguration {
 
-	@Resource
-	private JwtConfigProperties jwtConfigProperties;
+	private final JwtConfigProperties jwtConfigProperties;
 
-	@Resource
-	private UserDetailsService userDetailsService;
+	private final UserDetailsService userDetailsService;
 
-	@Resource
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 
 	@Bean
 	public AuthenticationManager authenticationManager(@NotNull AuthenticationConfiguration config) throws Exception {

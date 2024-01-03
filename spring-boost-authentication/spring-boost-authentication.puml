@@ -1,0 +1,996 @@
+@startuml
+!pragma useIntermediatePackages false
+
+annotation "PostConstruct" as jakarta.annotation.PostConstruct {
+}
+interface "Filter" as jakarta.servlet.Filter {
+  +void init(FilterConfig)
+  + {abstract}void doFilter(ServletRequest, ServletResponse, FilterChain)
+  +void destroy()
+}
+abstract class "GenericServlet" as jakarta.servlet.GenericServlet {
+  +void destroy()
+  +String getInitParameter(String)
+  +Enumeration<String> getInitParameterNames()
+  +ServletConfig getServletConfig()
+  +ServletContext getServletContext()
+  +String getServletInfo()
+  +void init(ServletConfig)
+  +void init()
+  +void log(String)
+  +void log(String, Throwable)
+  + {abstract}void service(ServletRequest, ServletResponse)
+  +String getServletName()
+}
+interface "Servlet" as jakarta.servlet.Servlet {
+  + {abstract}void init(ServletConfig)
+  + {abstract}ServletConfig getServletConfig()
+  + {abstract}void service(ServletRequest, ServletResponse)
+  + {abstract}String getServletInfo()
+  + {abstract}void destroy()
+}
+interface "ServletConfig" as jakarta.servlet.ServletConfig {
+  + {abstract}String getServletName()
+  + {abstract}ServletContext getServletContext()
+  + {abstract}String getInitParameter(String)
+  + {abstract}Enumeration<String> getInitParameterNames()
+}
+class "ServletException" as jakarta.servlet.ServletException {
+  +Throwable getRootCause()
+}
+interface "ServletRequest" as jakarta.servlet.ServletRequest {
+  + {abstract}Object getAttribute(String)
+  + {abstract}Enumeration<String> getAttributeNames()
+  + {abstract}String getCharacterEncoding()
+  + {abstract}void setCharacterEncoding(String)
+  + {abstract}int getContentLength()
+  + {abstract}long getContentLengthLong()
+  + {abstract}String getContentType()
+  + {abstract}ServletInputStream getInputStream()
+  + {abstract}String getParameter(String)
+  + {abstract}Enumeration<String> getParameterNames()
+  + {abstract}String[] getParameterValues(String)
+  + {abstract}Map<String, String[]> getParameterMap()
+  + {abstract}String getProtocol()
+  + {abstract}String getScheme()
+  + {abstract}String getServerName()
+  + {abstract}int getServerPort()
+  + {abstract}BufferedReader getReader()
+  + {abstract}String getRemoteAddr()
+  + {abstract}String getRemoteHost()
+  + {abstract}void setAttribute(String, Object)
+  + {abstract}void removeAttribute(String)
+  + {abstract}Locale getLocale()
+  + {abstract}Enumeration<Locale> getLocales()
+  + {abstract}boolean isSecure()
+  + {abstract}RequestDispatcher getRequestDispatcher(String)
+  + {abstract}int getRemotePort()
+  + {abstract}String getLocalName()
+  + {abstract}String getLocalAddr()
+  + {abstract}int getLocalPort()
+  + {abstract}ServletContext getServletContext()
+  + {abstract}AsyncContext startAsync()
+  + {abstract}AsyncContext startAsync(ServletRequest, ServletResponse)
+  + {abstract}boolean isAsyncStarted()
+  + {abstract}boolean isAsyncSupported()
+  + {abstract}AsyncContext getAsyncContext()
+  + {abstract}DispatcherType getDispatcherType()
+  + {abstract}String getRequestId()
+  + {abstract}String getProtocolRequestId()
+  + {abstract}ServletConnection getServletConnection()
+}
+abstract class "HttpServlet" as jakarta.servlet.http.HttpServlet {
+  + {static}String LEGACY_DO_HEAD
+  __
+  +void init(ServletConfig)
+  +void service(ServletRequest, ServletResponse)
+}
+interface "Validator" as jakarta.validation.Validator {
+  + {abstract}Set<ConstraintViolation<T>> validate(T, Class<?>[])
+  + {abstract}Set<ConstraintViolation<T>> validateProperty(T, String, Class<?>[])
+  + {abstract}Set<ConstraintViolation<T>> validateValue(Class<T>, String, Object, Class<?>[])
+  + {abstract}BeanDescriptor getConstraintsForClass(Class<?>)
+  + {abstract}T unwrap(Class<T>)
+  + {abstract}ExecutableValidator forExecutables()
+}
+interface "ExecutableValidator" as jakarta.validation.executable.ExecutableValidator {
+  + {abstract}Set<ConstraintViolation<T>> validateParameters(T, Method, Object[], Class<?>[])
+  + {abstract}Set<ConstraintViolation<T>> validateReturnValue(T, Method, Object, Class<?>[])
+  + {abstract}Set<ConstraintViolation<T>> validateConstructorParameters(Constructor<? extends T>, Object[], Class<?>[])
+  + {abstract}Set<ConstraintViolation<T>> validateConstructorReturnValue(Constructor<? extends T>, T, Class<?>[])
+}
+annotation "Nonnull" as javax.annotation.Nonnull {
+  + {abstract}When when()
+}
+annotation "TypeQualifier" as javax.annotation.meta.TypeQualifier {
+  + {abstract}Class<?> applicableTo()
+}
+annotation "TypeQualifierNickname" as javax.annotation.meta.TypeQualifierNickname {
+}
+enum "When" as javax.annotation.meta.When {
+  ALWAYS
+  UNKNOWN
+  MAYBE
+  NEVER
+}
+class "LifecycleException" as org.apache.catalina.LifecycleException {
+}
+class "Tomcat" as org.apache.catalina.startup.Tomcat {
+  __
+  +void setBaseDir(String)
+  +void setPort(int)
+  +void setHostname(String)
+  +Context addWebapp(String, String)
+  +Context addWebapp(String, URL)
+  +Context addContext(String, String)
+  +Wrapper addServlet(String, String, String)
+  + {static}Wrapper addServlet(Context, String, String)
+  +Wrapper addServlet(String, String, Servlet)
+  + {static}Wrapper addServlet(Context, String, Servlet)
+  +void init(ConfigurationSource)
+  +void init(ConfigurationSource, String[])
+  +void init()
+  +void start()
+  +void stop()
+  +void destroy()
+  +void addUser(String, String)
+  +void addRole(String, String)
+  +Connector getConnector()
+  +void setConnector(Connector)
+  +Service getService()
+  +void setHost(Host)
+  +Host getHost()
+  +Engine getEngine()
+  +Server getServer()
+  +Context addContext(Host, String, String)
+  +Context addContext(Host, String, String, String)
+  +Context addWebapp(Host, String, String)
+  +Context addWebapp(Host, String, String, LifecycleListener)
+  +LifecycleListener getDefaultWebXmlListener()
+  +String noDefaultWebXmlPath()
+  +void setSilent(boolean)
+  +void setAddDefaultWebXmlToWebapp(boolean)
+  +void enableNaming()
+  +void initWebappDefaults(String)
+  + {static}void initWebappDefaults(Context)
+  + {static}void addDefaultMimeTypeMappings(Context)
+  + {static}void main(String[])
+}
+interface "UpgradeProtocol" as org.apache.coyote.UpgradeProtocol {
+  + {abstract}String getHttpUpgradeName(boolean)
+  + {abstract}byte[] getAlpnIdentifier()
+  + {abstract}String getAlpnName()
+  + {abstract}Processor getProcessor(SocketWrapperBase<?>, Adapter)
+  + {abstract}InternalHttpUpgradeHandler getInternalUpgradeHandler(SocketWrapperBase<?>, Adapter, Request)
+  + {abstract}boolean accept(Request)
+  +void setHttp11Protocol(AbstractHttp11Protocol<?>)
+}
+annotation "NotNull" as org.jetbrains.annotations.NotNull {
+  + {abstract}String value()
+  + {abstract}Class<? extends Exception> exception()
+}
+abstract class "LoggingEvent" as org.spring.boost.common.struct.LoggingEvent {
+}
+abstract class "BeansException" as org.springframework.beans.BeansException {
+}
+interface "Aware" as org.springframework.beans.factory.Aware {
+}
+interface "BeanClassLoaderAware" as org.springframework.beans.factory.BeanClassLoaderAware {
+  + {abstract}void setBeanClassLoader(ClassLoader)
+}
+interface "BeanFactoryAware" as org.springframework.beans.factory.BeanFactoryAware {
+  + {abstract}void setBeanFactory(BeanFactory)
+}
+interface "BeanNameAware" as org.springframework.beans.factory.BeanNameAware {
+  + {abstract}void setBeanName(String)
+}
+interface "DisposableBean" as org.springframework.beans.factory.DisposableBean {
+  + {abstract}void destroy()
+}
+interface "InitializingBean" as org.springframework.beans.factory.InitializingBean {
+  + {abstract}void afterPropertiesSet()
+}
+annotation "Autowired" as org.springframework.beans.factory.annotation.Autowired {
+  + {abstract}boolean required()
+}
+interface "BeanNameGenerator" as org.springframework.beans.factory.support.BeanNameGenerator {
+  + {abstract}String generateBeanName(BeanDefinition, BeanDefinitionRegistry)
+}
+annotation "AutoConfiguration" as org.springframework.boot.autoconfigure.AutoConfiguration {
+  + {abstract}String value()
+  + {abstract}Class<?>[] before()
+  + {abstract}String[] beforeName()
+  + {abstract}Class<?>[] after()
+  + {abstract}String[] afterName()
+}
+interface "AutoConfigurationImportFilter" as org.springframework.boot.autoconfigure.AutoConfigurationImportFilter {
+  + {abstract}boolean[] match(String[], AutoConfigurationMetadata)
+}
+annotation "AutoConfigureAfter" as org.springframework.boot.autoconfigure.AutoConfigureAfter {
+  + {abstract}Class<?>[] value()
+  + {abstract}String[] name()
+}
+annotation "AutoConfigureBefore" as org.springframework.boot.autoconfigure.AutoConfigureBefore {
+  + {abstract}Class<?>[] value()
+  + {abstract}String[] name()
+}
+annotation "AutoConfigureOrder" as org.springframework.boot.autoconfigure.AutoConfigureOrder {
+  ..
+  + {static}int DEFAULT_ORDER
+  __
+  + {abstract}int value()
+}
+annotation "ConditionalOnClass" as org.springframework.boot.autoconfigure.condition.ConditionalOnClass {
+  + {abstract}Class<?>[] value()
+  + {abstract}String[] name()
+}
+annotation "ConditionalOnMissingBean" as org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean {
+  + {abstract}Class<?>[] value()
+  + {abstract}String[] type()
+  + {abstract}Class<?>[] ignored()
+  + {abstract}String[] ignoredType()
+  + {abstract}Class<? extends Annotation>[] annotation()
+  + {abstract}String[] name()
+  + {abstract}SearchStrategy search()
+  + {abstract}Class<?>[] parameterizedContainer()
+}
+annotation "ConditionalOnResource" as org.springframework.boot.autoconfigure.condition.ConditionalOnResource {
+  + {abstract}String[] resources()
+}
+annotation "ConditionalOnThreading" as org.springframework.boot.autoconfigure.condition.ConditionalOnThreading {
+  + {abstract}Threading value()
+}
+annotation "ConditionalOnWebApplication" as org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication {
+  + {abstract}Type type()
+}
+enum "ConditionalOnWebApplication$Type" as org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication$Type {
+  ANY
+  SERVLET
+  REACTIVE
+}
+abstract class "FilteringSpringBootCondition" as org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition {
+  __
+  +boolean[] match(String[], AutoConfigurationMetadata)
+  +void setBeanFactory(BeanFactory)
+  +void setBeanClassLoader(ClassLoader)
+}
+class "OnBeanCondition" as org.springframework.boot.autoconfigure.condition.OnBeanCondition {
+  +ConfigurationPhase getConfigurationPhase()
+  +ConditionOutcome getMatchOutcome(ConditionContext, AnnotatedTypeMetadata)
+}
+class "OnClassCondition" as org.springframework.boot.autoconfigure.condition.OnClassCondition {
+  +ConditionOutcome getMatchOutcome(ConditionContext, AnnotatedTypeMetadata)
+}
+class "OnResourceCondition" as org.springframework.boot.autoconfigure.condition.OnResourceCondition {
+  +ConditionOutcome getMatchOutcome(ConditionContext, AnnotatedTypeMetadata)
+}
+class "OnThreadingCondition" as org.springframework.boot.autoconfigure.condition.OnThreadingCondition {
+  +ConditionOutcome getMatchOutcome(ConditionContext, AnnotatedTypeMetadata)
+}
+class "OnWebApplicationCondition" as org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition {
+  +ConditionOutcome getMatchOutcome(ConditionContext, AnnotatedTypeMetadata)
+}
+enum "SearchStrategy" as org.springframework.boot.autoconfigure.condition.SearchStrategy {
+  CURRENT
+  ANCESTORS
+  ALL
+}
+abstract class "SpringBootCondition" as org.springframework.boot.autoconfigure.condition.SpringBootCondition {
+  __
+  +boolean matches(ConditionContext, AnnotatedTypeMetadata)
+  + {abstract}ConditionOutcome getMatchOutcome(ConditionContext, AnnotatedTypeMetadata)
+}
+class "SslAutoConfiguration" as org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration {
+}
+class "SslProperties" as org.springframework.boot.autoconfigure.ssl.SslProperties {
+  +Bundles getBundle()
+}
+class "TaskExecutionAutoConfiguration" as org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration {
+  ..
+  + {static}String APPLICATION_TASK_EXECUTOR_BEAN_NAME
+}
+class "TaskExecutionProperties" as org.springframework.boot.autoconfigure.task.TaskExecutionProperties {
+  __
+  +Simple getSimple()
+  +Pool getPool()
+  +Shutdown getShutdown()
+  +String getThreadNamePrefix()
+  +void setThreadNamePrefix(String)
+}
+class "TaskExecutorConfigurations" as org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations {
+}
+class "TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration" as org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration {
+}
+class "TaskExecutorConfigurations$TaskExecutorBuilderConfiguration" as org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorBuilderConfiguration {
+}
+class "TaskExecutorConfigurations$TaskExecutorConfiguration" as org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorConfiguration {
+}
+class "TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration" as org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration {
+}
+enum "Threading" as org.springframework.boot.autoconfigure.thread.Threading {
+  PLATFORM
+  VIRTUAL
+  __
+  + {abstract}boolean isActive(Environment)
+}
+class "PrimaryDefaultValidatorPostProcessor" as org.springframework.boot.autoconfigure.validation.PrimaryDefaultValidatorPostProcessor {
+  +void setBeanFactory(BeanFactory)
+  +void registerBeanDefinitions(AnnotationMetadata, BeanDefinitionRegistry)
+}
+class "ValidationAutoConfiguration" as org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration {
+  + {static}LocalValidatorFactoryBean defaultValidator(ApplicationContext, ObjectProvider<ValidationConfigurationCustomizer>)
+  + {static}MethodValidationPostProcessor methodValidationPostProcessor(Environment, ObjectProvider<Validator>, ObjectProvider<MethodValidationExcludeFilter>)
+}
+class "ServerProperties" as org.springframework.boot.autoconfigure.web.ServerProperties {
+  +Integer getPort()
+  +void setPort(Integer)
+  +InetAddress getAddress()
+  +void setAddress(InetAddress)
+  +String getServerHeader()
+  +void setServerHeader(String)
+  +DataSize getMaxHttpRequestHeaderSize()
+  +void setMaxHttpRequestHeaderSize(DataSize)
+  +Shutdown getShutdown()
+  +void setShutdown(Shutdown)
+  +ErrorProperties getError()
+  +Ssl getSsl()
+  +void setSsl(Ssl)
+  +Compression getCompression()
+  +Http2 getHttp2()
+  +Servlet getServlet()
+  +Reactive getReactive()
+  +Tomcat getTomcat()
+  +Jetty getJetty()
+  +Netty getNetty()
+  +Undertow getUndertow()
+  +ForwardHeadersStrategy getForwardHeadersStrategy()
+  +void setForwardHeadersStrategy(ForwardHeadersStrategy)
+}
+class "DispatcherServletAutoConfiguration" as org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration {
+  ..
+  + {static}String DEFAULT_DISPATCHER_SERVLET_BEAN_NAME
+  + {static}String DEFAULT_DISPATCHER_SERVLET_REGISTRATION_BEAN_NAME
+}
+class "ServletWebServerFactoryAutoConfiguration" as org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration {
+  __
+  +ServletWebServerFactoryCustomizer servletWebServerFactoryCustomizer(ServerProperties, ObjectProvider<WebListenerRegistrar>, ObjectProvider<CookieSameSiteSupplier>, ObjectProvider<SslBundles>)
+  +TomcatServletWebServerFactoryCustomizer tomcatServletWebServerFactoryCustomizer(ServerProperties)
+}
+class "ServletWebServerFactoryAutoConfiguration$BeanPostProcessorsRegistrar" as org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$BeanPostProcessorsRegistrar {
+  +void setBeanFactory(BeanFactory)
+  +void registerBeanDefinitions(AnnotationMetadata, BeanDefinitionRegistry)
+}
+class "ServletWebServerFactoryConfiguration" as org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration {
+}
+class "ServletWebServerFactoryConfiguration$EmbeddedJetty" as org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedJetty {
+}
+class "ServletWebServerFactoryConfiguration$EmbeddedTomcat" as org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedTomcat {
+}
+class "ServletWebServerFactoryConfiguration$EmbeddedUndertow" as org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedUndertow {
+}
+annotation "ConfigurationProperties" as org.springframework.boot.context.properties.ConfigurationProperties {
+  + {abstract}String value()
+  + {abstract}String prefix()
+  + {abstract}boolean ignoreInvalidFields()
+  + {abstract}boolean ignoreUnknownFields()
+}
+annotation "EnableConfigurationProperties" as org.springframework.boot.context.properties.EnableConfigurationProperties {
+  + {static}String VALIDATOR_BEAN_NAME
+  __
+  + {abstract}Class<?>[] value()
+}
+class "EnableConfigurationPropertiesRegistrar" as org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar {
+  +void registerBeanDefinitions(AnnotationMetadata, BeanDefinitionRegistry)
+}
+annotation "NestedConfigurationProperty" as org.springframework.boot.context.properties.NestedConfigurationProperty {
+}
+annotation "Nested" as org.springframework.boot.context.properties.bind.Nested {
+}
+class "NoSuchSslBundleException" as org.springframework.boot.ssl.NoSuchSslBundleException {
+  +String getBundleName()
+}
+interface "SslBundleRegistry" as org.springframework.boot.ssl.SslBundleRegistry {
+  + {abstract}void registerBundle(String, SslBundle)
+  + {abstract}void updateBundle(String, SslBundle)
+}
+interface "SslBundles" as org.springframework.boot.ssl.SslBundles {
+  + {abstract}SslBundle getBundle(String)
+  + {abstract}void addBundleUpdateHandler(String, Consumer<SslBundle>)
+}
+class "TaskExecutorBuilder" as org.springframework.boot.task.TaskExecutorBuilder {
+  +TaskExecutorBuilder queueCapacity(int)
+  +TaskExecutorBuilder corePoolSize(int)
+  +TaskExecutorBuilder maxPoolSize(int)
+  +TaskExecutorBuilder allowCoreThreadTimeOut(boolean)
+  +TaskExecutorBuilder keepAlive(Duration)
+  +TaskExecutorBuilder awaitTermination(boolean)
+  +TaskExecutorBuilder awaitTerminationPeriod(Duration)
+  +TaskExecutorBuilder threadNamePrefix(String)
+  +TaskExecutorBuilder taskDecorator(TaskDecorator)
+  +TaskExecutorBuilder customizers(TaskExecutorCustomizer[])
+  +TaskExecutorBuilder customizers(Iterable<TaskExecutorCustomizer>)
+  +TaskExecutorBuilder additionalCustomizers(TaskExecutorCustomizer[])
+  +TaskExecutorBuilder additionalCustomizers(Iterable<TaskExecutorCustomizer>)
+  +ThreadPoolTaskExecutor build()
+  +T build(Class<T>)
+  +T configure(T)
+}
+class "ThreadPoolTaskExecutorBuilder" as org.springframework.boot.task.ThreadPoolTaskExecutorBuilder {
+  +ThreadPoolTaskExecutorBuilder queueCapacity(int)
+  +ThreadPoolTaskExecutorBuilder corePoolSize(int)
+  +ThreadPoolTaskExecutorBuilder maxPoolSize(int)
+  +ThreadPoolTaskExecutorBuilder allowCoreThreadTimeOut(boolean)
+  +ThreadPoolTaskExecutorBuilder keepAlive(Duration)
+  +ThreadPoolTaskExecutorBuilder awaitTermination(boolean)
+  +ThreadPoolTaskExecutorBuilder awaitTerminationPeriod(Duration)
+  +ThreadPoolTaskExecutorBuilder threadNamePrefix(String)
+  +ThreadPoolTaskExecutorBuilder taskDecorator(TaskDecorator)
+  +ThreadPoolTaskExecutorBuilder customizers(ThreadPoolTaskExecutorCustomizer[])
+  +ThreadPoolTaskExecutorBuilder customizers(Iterable<? extends ThreadPoolTaskExecutorCustomizer>)
+  +ThreadPoolTaskExecutorBuilder additionalCustomizers(ThreadPoolTaskExecutorCustomizer[])
+  +ThreadPoolTaskExecutorBuilder additionalCustomizers(Iterable<? extends ThreadPoolTaskExecutorCustomizer>)
+  +ThreadPoolTaskExecutor build()
+  +T build(Class<T>)
+  +T configure(T)
+}
+interface "WebServerFactory" as org.springframework.boot.web.server.WebServerFactory {
+}
+interface "ServletWebServerFactory" as org.springframework.boot.web.servlet.server.ServletWebServerFactory {
+  + {abstract}WebServer getWebServer(ServletContextInitializer[])
+}
+interface "ApplicationContextAware" as org.springframework.context.ApplicationContextAware {
+  + {abstract}void setApplicationContext(ApplicationContext)
+}
+abstract class "ApplicationEvent" as org.springframework.context.ApplicationEvent {
+  +long getTimestamp()
+}
+interface "ApplicationListener" as org.springframework.context.ApplicationListener<E extends ApplicationEvent> {
+  + {abstract}void onApplicationEvent(E)
+  +boolean supportsAsyncExecution()
+  + {static}ApplicationListener<PayloadApplicationEvent<T>> forPayload(Consumer<T>)
+}
+interface "EnvironmentAware" as org.springframework.context.EnvironmentAware {
+  + {abstract}void setEnvironment(Environment)
+}
+interface "Lifecycle" as org.springframework.context.Lifecycle {
+  + {abstract}void start()
+  + {abstract}void stop()
+  + {abstract}boolean isRunning()
+}
+interface "Phased" as org.springframework.context.Phased {
+  + {abstract}int getPhase()
+}
+interface "SmartLifecycle" as org.springframework.context.SmartLifecycle {
+  + {static}int DEFAULT_PHASE
+  __
+  +boolean isAutoStartup()
+  +void stop(Runnable)
+  +int getPhase()
+}
+class "AnnotationScopeMetadataResolver" as org.springframework.context.annotation.AnnotationScopeMetadataResolver {
+  +void setScopeAnnotationType(Class<? extends Annotation>)
+  +ScopeMetadata resolveScopeMetadata(BeanDefinition)
+}
+annotation "Bean" as org.springframework.context.annotation.Bean {
+  + {abstract}String[] value()
+  + {abstract}String[] name()
+  + {abstract}boolean autowireCandidate()
+  + {abstract}String initMethod()
+  + {abstract}String destroyMethod()
+}
+annotation "ComponentScan" as org.springframework.context.annotation.ComponentScan {
+  + {abstract}String[] value()
+  + {abstract}String[] basePackages()
+  + {abstract}Class<?>[] basePackageClasses()
+  + {abstract}Class<? extends BeanNameGenerator> nameGenerator()
+  + {abstract}Class<? extends ScopeMetadataResolver> scopeResolver()
+  + {abstract}ScopedProxyMode scopedProxy()
+  + {abstract}String resourcePattern()
+  + {abstract}boolean useDefaultFilters()
+  + {abstract}Filter[] includeFilters()
+  + {abstract}Filter[] excludeFilters()
+  + {abstract}boolean lazyInit()
+}
+annotation "ComponentScans" as org.springframework.context.annotation.ComponentScans {
+  + {abstract}ComponentScan[] value()
+}
+interface "Condition" as org.springframework.context.annotation.Condition {
+  + {abstract}boolean matches(ConditionContext, AnnotatedTypeMetadata)
+}
+annotation "Conditional" as org.springframework.context.annotation.Conditional {
+  + {abstract}Class<? extends Condition>[] value()
+}
+annotation "Configuration" as org.springframework.context.annotation.Configuration {
+  + {abstract}String value()
+  + {abstract}boolean proxyBeanMethods()
+  + {abstract}boolean enforceUniqueMethods()
+}
+interface "ConfigurationCondition" as org.springframework.context.annotation.ConfigurationCondition {
+  + {abstract}ConfigurationPhase getConfigurationPhase()
+}
+annotation "DependsOn" as org.springframework.context.annotation.DependsOn {
+  + {abstract}String[] value()
+}
+annotation "Import" as org.springframework.context.annotation.Import {
+  + {abstract}Class<?>[] value()
+}
+interface "ImportAware" as org.springframework.context.annotation.ImportAware {
+  + {abstract}void setImportMetadata(AnnotationMetadata)
+}
+interface "ImportBeanDefinitionRegistrar" as org.springframework.context.annotation.ImportBeanDefinitionRegistrar {
+  +void registerBeanDefinitions(AnnotationMetadata, BeanDefinitionRegistry, BeanNameGenerator)
+  +void registerBeanDefinitions(AnnotationMetadata, BeanDefinitionRegistry)
+}
+interface "ImportSelector" as org.springframework.context.annotation.ImportSelector {
+  + {abstract}String[] selectImports(AnnotationMetadata)
+  +Predicate<String> getExclusionFilter()
+}
+annotation "Lazy" as org.springframework.context.annotation.Lazy {
+  + {abstract}boolean value()
+}
+annotation "Role" as org.springframework.context.annotation.Role {
+  + {abstract}int value()
+}
+annotation "Scope" as org.springframework.context.annotation.Scope {
+  + {abstract}String value()
+  + {abstract}String scopeName()
+  + {abstract}ScopedProxyMode proxyMode()
+}
+interface "ScopeMetadataResolver" as org.springframework.context.annotation.ScopeMetadataResolver {
+  + {abstract}ScopeMetadata resolveScopeMetadata(BeanDefinition)
+}
+enum "ScopedProxyMode" as org.springframework.context.annotation.ScopedProxyMode {
+  DEFAULT
+  NO
+  INTERFACES
+  TARGET_CLASS
+}
+abstract class "NestedRuntimeException" as org.springframework.core.NestedRuntimeException {
+  __
+  +Throwable getRootCause()
+  +Throwable getMostSpecificCause()
+  +boolean contains(Class<?>)
+}
+annotation "AliasFor" as org.springframework.core.annotation.AliasFor {
+  + {abstract}String value()
+  + {abstract}String attribute()
+  + {abstract}Class<? extends Annotation> annotation()
+}
+annotation "Order" as org.springframework.core.annotation.Order {
+  + {abstract}int value()
+}
+interface "EnvironmentCapable" as org.springframework.core.env.EnvironmentCapable {
+  + {abstract}Environment getEnvironment()
+}
+interface "AsyncListenableTaskExecutor" as org.springframework.core.task.AsyncListenableTaskExecutor {
+  + {abstract}ListenableFuture<?> submitListenable(Runnable)
+  + {abstract}ListenableFuture<T> submitListenable(Callable<T>)
+}
+interface "AsyncTaskExecutor" as org.springframework.core.task.AsyncTaskExecutor {
+  ..
+  + {static}long TIMEOUT_IMMEDIATE
+  + {static}long TIMEOUT_INDEFINITE
+  __
+  +void execute(Runnable, long)
+  +Future<?> submit(Runnable)
+  +Future<T> submit(Callable<T>)
+  +CompletableFuture<Void> submitCompletable(Runnable)
+  +CompletableFuture<T> submitCompletable(Callable<T>)
+}
+interface "TaskExecutor" as org.springframework.core.task.TaskExecutor {
+  + {abstract}void execute(Runnable)
+}
+annotation "Nullable" as org.springframework.lang.Nullable {
+}
+interface "SchedulingTaskExecutor" as org.springframework.scheduling.SchedulingTaskExecutor {
+  +boolean prefersShortLivedTasks()
+}
+class "CustomizableThreadFactory" as org.springframework.scheduling.concurrent.CustomizableThreadFactory {
+  +Thread newThread(Runnable)
+}
+abstract class "ExecutorConfigurationSupport" as org.springframework.scheduling.concurrent.ExecutorConfigurationSupport {
+  +void setThreadFactory(ThreadFactory)
+  +void setThreadNamePrefix(String)
+  +void setRejectedExecutionHandler(RejectedExecutionHandler)
+  +void setAcceptTasksAfterContextClose(boolean)
+  +void setWaitForTasksToCompleteOnShutdown(boolean)
+  +void setAwaitTerminationSeconds(int)
+  +void setAwaitTerminationMillis(long)
+  +void setPhase(int)
+  +int getPhase()
+  +void setBeanName(String)
+  +void setApplicationContext(ApplicationContext)
+  +void afterPropertiesSet()
+  +void initialize()
+  +void destroy()
+  +void initiateShutdown()
+  +void shutdown()
+  +void start()
+  +void stop()
+  +void stop(Runnable)
+  +boolean isRunning()
+  +void onApplicationEvent(ContextClosedEvent)
+}
+class "ThreadPoolTaskExecutor" as org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor {
+  +void setCorePoolSize(int)
+  +int getCorePoolSize()
+  +void setMaxPoolSize(int)
+  +int getMaxPoolSize()
+  +void setKeepAliveSeconds(int)
+  +int getKeepAliveSeconds()
+  +void setQueueCapacity(int)
+  +int getQueueCapacity()
+  +void setAllowCoreThreadTimeOut(boolean)
+  +void setPrestartAllCoreThreads(boolean)
+  +void setTaskDecorator(TaskDecorator)
+  +ThreadPoolExecutor getThreadPoolExecutor()
+  +int getPoolSize()
+  +int getQueueSize()
+  +int getActiveCount()
+  +void execute(Runnable)
+  +Future<?> submit(Runnable)
+  +Future<T> submit(Callable<T>)
+  +ListenableFuture<?> submitListenable(Runnable)
+  +ListenableFuture<T> submitListenable(Callable<T>)
+}
+class "AuthenticationConfiguration" as org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration {
+  +AuthenticationManagerBuilder authenticationManagerBuilder(ObjectPostProcessor<Object>, ApplicationContext)
+  + {static}GlobalAuthenticationConfigurerAdapter enableGlobalAuthenticationAutowiredConfigurer(ApplicationContext)
+  + {static}InitializeUserDetailsBeanManagerConfigurer initializeUserDetailsBeanManagerConfigurer(ApplicationContext)
+  + {static}InitializeAuthenticationProviderBeanManagerConfigurer initializeAuthenticationProviderBeanManagerConfigurer(ApplicationContext)
+  +AuthenticationManager getAuthenticationManager()
+  +void setGlobalAuthenticationConfigurers(List<GlobalAuthenticationConfigurerAdapter>)
+  +void setApplicationContext(ApplicationContext)
+  +void setObjectPostProcessor(ObjectPostProcessor<Object>)
+}
+annotation "EnableGlobalAuthentication" as org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication {
+}
+class "ObjectPostProcessorConfiguration" as org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration {
+  +ObjectPostProcessor<Object> objectPostProcessor(AutowireCapableBeanFactory)
+}
+annotation "EnableWebSecurity" as org.springframework.security.config.annotation.web.configuration.EnableWebSecurity {
+  + {abstract}boolean debug()
+}
+class "HttpSecurityConfiguration" as org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration {
+}
+class "OAuth2ImportSelector" as org.springframework.security.config.annotation.web.configuration.OAuth2ImportSelector {
+  +String[] selectImports(AnnotationMetadata)
+}
+class "SpringWebMvcImportSelector" as org.springframework.security.config.annotation.web.configuration.SpringWebMvcImportSelector {
+  +String[] selectImports(AnnotationMetadata)
+}
+class "WebSecurityConfiguration" as org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration {
+  + {static}DelegatingApplicationListener delegatingApplicationListener()
+  +SecurityExpressionHandler<FilterInvocation> webSecurityExpressionHandler()
+  +Filter springSecurityFilterChain()
+  +WebInvocationPrivilegeEvaluator privilegeEvaluator()
+  +void setFilterChainProxySecurityConfigurer(ObjectPostProcessor<Object>, ConfigurableListableBeanFactory)
+  + {static}BeanFactoryPostProcessor conversionServicePostProcessor()
+  +void setImportMetadata(AnnotationMetadata)
+  +void setBeanClassLoader(ClassLoader)
+}
+interface "WebSecurityCustomizer" as org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer {
+  + {abstract}void customize(WebSecurity)
+}
+interface "PasswordEncoder" as org.springframework.security.crypto.password.PasswordEncoder {
+  + {abstract}String encode(CharSequence)
+  + {abstract}boolean matches(CharSequence, String)
+  +boolean upgradeEncoding(String)
+}
+annotation "Component" as org.springframework.stereotype.Component {
+  + {abstract}String value()
+}
+annotation "Indexed" as org.springframework.stereotype.Indexed {
+}
+class "CustomizableThreadCreator" as org.springframework.util.CustomizableThreadCreator {
+  +void setThreadNamePrefix(String)
+  +String getThreadNamePrefix()
+  +void setThreadPriority(int)
+  +int getThreadPriority()
+  +void setDaemon(boolean)
+  +boolean isDaemon()
+  +void setThreadGroupName(String)
+  +void setThreadGroup(ThreadGroup)
+  +ThreadGroup getThreadGroup()
+  +Thread createThread(Runnable)
+}
+enum "RequestMethod" as org.springframework.web.bind.annotation.RequestMethod {
+  GET
+  HEAD
+  POST
+  PUT
+  PATCH
+  DELETE
+  OPTIONS
+  TRACE
+  __
+  + {static}RequestMethod resolve(String)
+  + {static}RequestMethod resolve(HttpMethod)
+  +HttpMethod asHttpMethod()
+}
+interface "ServletContextAware" as org.springframework.web.context.ServletContextAware {
+  + {abstract}void setServletContext(ServletContext)
+}
+abstract class "GenericFilterBean" as org.springframework.web.filter.GenericFilterBean {
+  +void setBeanName(String)
+  +void setEnvironment(Environment)
+  +Environment getEnvironment()
+  +void setServletContext(ServletContext)
+  +void afterPropertiesSet()
+  +void destroy()
+  +void init(FilterConfig)
+  +FilterConfig getFilterConfig()
+}
+abstract class "OncePerRequestFilter" as org.springframework.web.filter.OncePerRequestFilter {
+  ..
+  + {static}String ALREADY_FILTERED_SUFFIX
+  __
+  +void doFilter(ServletRequest, ServletResponse, FilterChain)
+}
+class "MultipartException" as org.springframework.web.multipart.MultipartException {
+}
+class "DispatcherServlet" as org.springframework.web.servlet.DispatcherServlet {
+  + {static}String MULTIPART_RESOLVER_BEAN_NAME
+  + {static}String LOCALE_RESOLVER_BEAN_NAME
+  + {static}String THEME_RESOLVER_BEAN_NAME
+  + {static}String HANDLER_MAPPING_BEAN_NAME
+  + {static}String HANDLER_ADAPTER_BEAN_NAME
+  + {static}String HANDLER_EXCEPTION_RESOLVER_BEAN_NAME
+  + {static}String REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME
+  + {static}String VIEW_RESOLVER_BEAN_NAME
+  + {static}String FLASH_MAP_MANAGER_BEAN_NAME
+  + {static}String WEB_APPLICATION_CONTEXT_ATTRIBUTE
+  + {static}String LOCALE_RESOLVER_ATTRIBUTE
+  + {static}String THEME_RESOLVER_ATTRIBUTE
+  + {static}String THEME_SOURCE_ATTRIBUTE
+  + {static}String INPUT_FLASH_MAP_ATTRIBUTE
+  + {static}String OUTPUT_FLASH_MAP_ATTRIBUTE
+  + {static}String FLASH_MAP_MANAGER_ATTRIBUTE
+  + {static}String EXCEPTION_ATTRIBUTE
+  + {static}String PAGE_NOT_FOUND_LOG_CATEGORY
+  __
+  +void setDetectAllHandlerMappings(boolean)
+  +void setDetectAllHandlerAdapters(boolean)
+  +void setDetectAllHandlerExceptionResolvers(boolean)
+  +void setDetectAllViewResolvers(boolean)
+  +void setThrowExceptionIfNoHandlerFound(boolean)
+  +void setCleanupAfterInclude(boolean)
+  +ThemeSource getThemeSource()
+  +MultipartResolver getMultipartResolver()
+  +List<HandlerMapping> getHandlerMappings()
+}
+abstract class "FrameworkServlet" as org.springframework.web.servlet.FrameworkServlet {
+  + {static}String DEFAULT_NAMESPACE_SUFFIX
+  + {static}Class<?> DEFAULT_CONTEXT_CLASS
+  + {static}String SERVLET_CONTEXT_PREFIX
+  __
+  +void setContextAttribute(String)
+  +String getContextAttribute()
+  +void setContextClass(Class<?>)
+  +Class<?> getContextClass()
+  +void setContextId(String)
+  +String getContextId()
+  +void setNamespace(String)
+  +String getNamespace()
+  +void setContextConfigLocation(String)
+  +String getContextConfigLocation()
+  +void setContextInitializers(ApplicationContextInitializer<?>[])
+  +void setContextInitializerClasses(String)
+  +void setPublishContext(boolean)
+  +void setPublishEvents(boolean)
+  +void setThreadContextInheritable(boolean)
+  +void setDispatchOptionsRequest(boolean)
+  +void setDispatchTraceRequest(boolean)
+  +void setEnableLoggingRequestDetails(boolean)
+  +boolean isEnableLoggingRequestDetails()
+  +void setApplicationContext(ApplicationContext)
+  +String getServletContextAttributeName()
+  +WebApplicationContext getWebApplicationContext()
+  +void refresh()
+  +void onApplicationEvent(ContextRefreshedEvent)
+  +void destroy()
+}
+abstract class "HttpServletBean" as org.springframework.web.servlet.HttpServletBean {
+  +void setEnvironment(Environment)
+  +ConfigurableEnvironment getEnvironment()
+  +void init()
+  +String getServletName()
+}
+annotation "AuthenticationAfterFilter" as org.toolkit.spring.boot.authentication.annotation.AuthenticationAfterFilter {
+  + {abstract}Class<? extends Filter> value()
+}
+annotation "AuthenticationAtFilter" as org.toolkit.spring.boot.authentication.annotation.AuthenticationAtFilter {
+  + {abstract}Class<? extends Filter> value()
+}
+annotation "AuthenticationBeforeFilter" as org.toolkit.spring.boot.authentication.annotation.AuthenticationBeforeFilter {
+  + {abstract}Class<? extends Filter> value()
+}
+annotation "AuthenticationFilter" as org.toolkit.spring.boot.authentication.annotation.AuthenticationFilter {
+}
+annotation "HasRole" as org.toolkit.spring.boot.authentication.annotation.HasRole {
+}
+annotation "IgnoreAuthentication" as org.toolkit.spring.boot.authentication.annotation.IgnoreAuthentication {
+  + {abstract}RequestMethod[] ignoreOnMethod()
+}
+class "AuthenticationAutoConfiguration" as org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfiguration {
+  +SecurityFilterChain securityFilterChain(HttpSecurity, AuthenticationManager)
+  +void customize(WebSecurity)
+}
+class "JwtAuthenticationAutoConfiguration" as org.toolkit.spring.boot.authentication.configuration.JwtAuthenticationAutoConfiguration {
+  +JwtAuthenticationFilter jwtAuthenticationFilter(IJwtService, ApplicationEventPublisher, UserDetailsService)
+}
+class "PasswordEncodeAutoConfiguration" as org.toolkit.spring.boot.authentication.configuration.PasswordEncodeAutoConfiguration {
+  +BCryptPasswordEncoder bCryptPasswordEncoder()
+  +Argon2PasswordEncoder argon2PasswordEncoder()
+  +Pbkdf2PasswordEncoder pbkdf2PasswordEncoder()
+  +SCryptPasswordEncoder sCryptPasswordEncoder()
+}
+class "PermitAutoConfiguration" as org.toolkit.spring.boot.authentication.configuration.PermitAutoConfiguration {
+  +Set<AntPathRequestMatcher> webSecurityCustomizer()
+}
+class "RegisterBeanAutoConfiguration" as org.toolkit.spring.boot.authentication.configuration.RegisterBeanAutoConfiguration {
+  +AuthenticationManager authenticationManager(AuthenticationConfiguration)
+  +IJwtService jwtService()
+  +AuthenticationProvider authenticationProvider()
+}
+class "AuthenticationConfigurationProperties" as org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties {
+  +void setDebug(Boolean)
+  +void setPermit(Set<PermitConfigProperties>)
+  +Boolean getDebug()
+  +Set<PermitConfigProperties> getPermit()
+}
+class "JwtConfigProperties" as org.toolkit.spring.boot.authentication.configuration.properties.JwtConfigProperties {
+  +String getSecretKey()
+  +long getExpiration()
+  +long getRefreshTokenExpiration()
+  +String getEncryptArithmetic()
+  +void setSecretKey(String)
+  +void setExpiration(long)
+  +void setRefreshTokenExpiration(long)
+  +void setEncryptArithmetic(String)
+}
+class "PermitConfigProperties" as org.toolkit.spring.boot.authentication.configuration.properties.PermitConfigProperties {
+  +String getPattern()
+  +Set<RequestMethod> getMethod()
+  +void setPattern(String)
+  +void setMethod(Set<RequestMethod>)
+}
+enum "AuthenticationMethod" as org.toolkit.spring.boot.authentication.constant.AuthenticationMethod {
+  JWT
+  JWT_AND_SESSION
+  BASIC
+}
+class "Method" as org.toolkit.spring.boot.authentication.constant.Method {
+  ..
+  + {static}RequestMethod[] ALL_METHOD
+}
+class "AuthenticationEvent" as org.toolkit.spring.boot.authentication.event.AuthenticationEvent {
+  __
+  +String getToken()
+  +UserDetails getUserDetails()
+}
+class "JwtAuthenticationFilter" as org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter {
+  +void doFilterInternal(HttpServletRequest, HttpServletResponse, FilterChain)
+  + {static}JwtAuthenticationFilterBuilder builder()
+}
+class "JwtAuthenticationFilter$JwtAuthenticationFilterBuilder" as org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter$JwtAuthenticationFilterBuilder {
+  +JwtAuthenticationFilterBuilder jwtService(IJwtService)
+  +JwtAuthenticationFilterBuilder userDetailsService(UserDetailsService)
+  +JwtAuthenticationFilterBuilder eventPublisher(ApplicationEventPublisher)
+  +JwtAuthenticationFilter build()
+}
+interface "IJwtService" as org.toolkit.spring.boot.authentication.service.IJwtService {
+  + {abstract}String generateToken(Map<String, Object>, UserDetails)
+  + {abstract}Claims extractAllClaims(String)
+  + {abstract}String extractUsername(String)
+  + {abstract}String generateToken(UserDetails)
+}
+class "JwtServiceImpl" as org.toolkit.spring.boot.authentication.service.impl.JwtServiceImpl {
+  +String generateToken(Map<String, Object>, UserDetails)
+  +T extractClaim(String, Function<Claims, T>)
+  +Claims extractAllClaims(String)
+  +String extractUsername(String)
+  +String generateToken(UserDetails)
+}
+jakarta.servlet.GenericServlet .u.|> jakarta.servlet.Servlet
+jakarta.servlet.GenericServlet .u.|> jakarta.servlet.ServletConfig
+jakarta.servlet.GenericServlet --> jakarta.servlet.ServletConfig
+jakarta.servlet.http.HttpServlet -u-|> jakarta.servlet.GenericServlet
+org.spring.boost.common.struct.LoggingEvent -u-|> org.springframework.context.ApplicationEvent
+org.springframework.beans.BeansException -u-|> org.springframework.core.NestedRuntimeException
+org.springframework.beans.factory.BeanClassLoaderAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.beans.factory.BeanFactoryAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.beans.factory.BeanNameAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition -u-|> org.springframework.boot.autoconfigure.condition.SpringBootCondition
+org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition .u.|> org.springframework.boot.autoconfigure.AutoConfigurationImportFilter
+org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition .u.|> org.springframework.beans.factory.BeanFactoryAware
+org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition .u.|> org.springframework.beans.factory.BeanClassLoaderAware
+org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition .u.|> org.springframework.beans.factory.Aware
+org.springframework.boot.autoconfigure.condition.OnBeanCondition -u-|> org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition
+org.springframework.boot.autoconfigure.condition.OnBeanCondition .u.|> org.springframework.context.annotation.ConfigurationCondition
+org.springframework.boot.autoconfigure.condition.OnClassCondition -u-|> org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition
+org.springframework.boot.autoconfigure.condition.OnResourceCondition -u-|> org.springframework.boot.autoconfigure.condition.SpringBootCondition
+org.springframework.boot.autoconfigure.condition.OnThreadingCondition -u-|> org.springframework.boot.autoconfigure.condition.SpringBootCondition
+org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition -u-|> org.springframework.boot.autoconfigure.condition.FilteringSpringBootCondition
+org.springframework.boot.autoconfigure.condition.SpringBootCondition .u.|> org.springframework.context.annotation.Condition
+org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration --> org.springframework.boot.autoconfigure.ssl.SslProperties
+org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration --> org.springframework.boot.autoconfigure.task.TaskExecutionProperties
+org.springframework.boot.autoconfigure.validation.PrimaryDefaultValidatorPostProcessor .u.|> org.springframework.context.annotation.ImportBeanDefinitionRegistrar
+org.springframework.boot.autoconfigure.validation.PrimaryDefaultValidatorPostProcessor .u.|> org.springframework.beans.factory.BeanFactoryAware
+org.springframework.boot.autoconfigure.validation.PrimaryDefaultValidatorPostProcessor .u.|> org.springframework.beans.factory.Aware
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$BeanPostProcessorsRegistrar .u.|> org.springframework.context.annotation.ImportBeanDefinitionRegistrar
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$BeanPostProcessorsRegistrar .u.|> org.springframework.beans.factory.BeanFactoryAware
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration$BeanPostProcessorsRegistrar .u.|> org.springframework.beans.factory.Aware
+org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar .u.|> org.springframework.context.annotation.ImportBeanDefinitionRegistrar
+org.springframework.boot.web.servlet.server.ServletWebServerFactory .u.|> org.springframework.boot.web.server.WebServerFactory
+org.springframework.context.ApplicationContextAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.context.EnvironmentAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.context.SmartLifecycle .u.|> org.springframework.context.Lifecycle
+org.springframework.context.SmartLifecycle .u.|> org.springframework.context.Phased
+org.springframework.context.annotation.AnnotationScopeMetadataResolver .u.|> org.springframework.context.annotation.ScopeMetadataResolver
+org.springframework.context.annotation.AnnotationScopeMetadataResolver --> org.springframework.context.annotation.ScopedProxyMode
+org.springframework.context.annotation.ConfigurationCondition .u.|> org.springframework.context.annotation.Condition
+org.springframework.context.annotation.ImportAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.core.task.AsyncListenableTaskExecutor .u.|> org.springframework.core.task.AsyncTaskExecutor
+org.springframework.core.task.AsyncListenableTaskExecutor .u.|> org.springframework.core.task.TaskExecutor
+org.springframework.core.task.AsyncTaskExecutor .u.|> org.springframework.core.task.TaskExecutor
+org.springframework.scheduling.SchedulingTaskExecutor .u.|> org.springframework.core.task.AsyncTaskExecutor
+org.springframework.scheduling.SchedulingTaskExecutor .u.|> org.springframework.core.task.TaskExecutor
+org.springframework.scheduling.concurrent.CustomizableThreadFactory -u-|> org.springframework.util.CustomizableThreadCreator
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport -u-|> org.springframework.scheduling.concurrent.CustomizableThreadFactory
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.beans.factory.BeanNameAware
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.context.ApplicationContextAware
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.beans.factory.InitializingBean
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.beans.factory.DisposableBean
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.context.SmartLifecycle
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.context.ApplicationListener
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.beans.factory.Aware
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.context.Lifecycle
+org.springframework.scheduling.concurrent.ExecutorConfigurationSupport .u.|> org.springframework.context.Phased
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor -u-|> org.springframework.scheduling.concurrent.ExecutorConfigurationSupport
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor .u.|> org.springframework.core.task.AsyncListenableTaskExecutor
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor .u.|> org.springframework.scheduling.SchedulingTaskExecutor
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor .u.|> org.springframework.core.task.AsyncTaskExecutor
+org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor .u.|> org.springframework.core.task.TaskExecutor
+org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration --> org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
+org.springframework.security.config.annotation.web.configuration.OAuth2ImportSelector .u.|> org.springframework.context.annotation.ImportSelector
+org.springframework.security.config.annotation.web.configuration.SpringWebMvcImportSelector .u.|> org.springframework.context.annotation.ImportSelector
+org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration .u.|> org.springframework.context.annotation.ImportAware
+org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration .u.|> org.springframework.beans.factory.BeanClassLoaderAware
+org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration .u.|> org.springframework.beans.factory.Aware
+org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration --> org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
+org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration --> jakarta.servlet.Filter
+org.springframework.web.context.ServletContextAware .u.|> org.springframework.beans.factory.Aware
+org.springframework.web.filter.GenericFilterBean .u.|> jakarta.servlet.Filter
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.beans.factory.BeanNameAware
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.context.EnvironmentAware
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.core.env.EnvironmentCapable
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.web.context.ServletContextAware
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.beans.factory.InitializingBean
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.beans.factory.DisposableBean
+org.springframework.web.filter.GenericFilterBean .u.|> org.springframework.beans.factory.Aware
+org.springframework.web.filter.OncePerRequestFilter -u-|> org.springframework.web.filter.GenericFilterBean
+org.springframework.web.multipart.MultipartException -u-|> org.springframework.core.NestedRuntimeException
+org.springframework.web.servlet.DispatcherServlet -u-|> org.springframework.web.servlet.FrameworkServlet
+org.springframework.web.servlet.FrameworkServlet -u-|> org.springframework.web.servlet.HttpServletBean
+org.springframework.web.servlet.FrameworkServlet .u.|> org.springframework.context.ApplicationContextAware
+org.springframework.web.servlet.HttpServletBean -u-|> jakarta.servlet.http.HttpServlet
+org.springframework.web.servlet.HttpServletBean .u.|> org.springframework.core.env.EnvironmentCapable
+org.springframework.web.servlet.HttpServletBean .u.|> org.springframework.context.EnvironmentAware
+org.springframework.web.servlet.HttpServletBean .u.|> org.springframework.beans.factory.Aware
+org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfiguration .u.|> org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
+org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfiguration --> org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties
+org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfiguration --> org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter
+org.toolkit.spring.boot.authentication.configuration.PermitAutoConfiguration --> org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties
+org.toolkit.spring.boot.authentication.configuration.RegisterBeanAutoConfiguration --> org.springframework.security.crypto.password.PasswordEncoder
+org.toolkit.spring.boot.authentication.configuration.RegisterBeanAutoConfiguration --> org.toolkit.spring.boot.authentication.configuration.properties.JwtConfigProperties
+org.toolkit.spring.boot.authentication.configuration.properties.AuthenticationConfigurationProperties --> org.toolkit.spring.boot.authentication.configuration.properties.PermitConfigProperties
+org.toolkit.spring.boot.authentication.configuration.properties.PermitConfigProperties --> org.springframework.web.bind.annotation.RequestMethod
+org.toolkit.spring.boot.authentication.constant.Method --> org.springframework.web.bind.annotation.RequestMethod
+org.toolkit.spring.boot.authentication.event.AuthenticationEvent -u-|> org.spring.boost.common.struct.LoggingEvent
+org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter -u-|> org.springframework.web.filter.OncePerRequestFilter
+org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter --> org.toolkit.spring.boot.authentication.service.IJwtService
+org.toolkit.spring.boot.authentication.filter.JwtAuthenticationFilter$JwtAuthenticationFilterBuilder --> org.toolkit.spring.boot.authentication.service.IJwtService
+org.toolkit.spring.boot.authentication.service.impl.JwtServiceImpl .u.|> org.toolkit.spring.boot.authentication.service.IJwtService
+org.toolkit.spring.boot.authentication.service.impl.JwtServiceImpl --> org.toolkit.spring.boot.authentication.configuration.properties.JwtConfigProperties
+@enduml

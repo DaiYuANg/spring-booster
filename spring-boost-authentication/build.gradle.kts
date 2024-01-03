@@ -6,7 +6,7 @@ dependencies {
   api(libs.jsonwebtokenJackson)
   api("org.springframework.security:spring-security-data")
   api("org.springframework.boot:spring-boot-starter-oauth2-authorization-server")
-//  api(projects.framework.springBoot.springBootUtils)
+  api(projects.springBoostCommon)
   testImplementation("org.springframework.boot:spring-boot-starter-web")
   testImplementation("org.springframework.security:spring-security-test")
 }

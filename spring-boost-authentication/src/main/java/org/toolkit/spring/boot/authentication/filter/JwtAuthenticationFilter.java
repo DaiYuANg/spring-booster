@@ -1,12 +1,12 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.authentication.filter;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -16,20 +16,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.toolkit.spring.boot.authentication.event.AuthenticationEvent;
 import org.toolkit.spring.boot.authentication.service.IJwtService;
 
 @Slf4j
 @RequiredArgsConstructor
-@Component
+@Builder
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
-	@PostConstruct
-	void init() {
-		log.atInfo().log("jwt filter init");
-	}
 
 	private final IJwtService jwtService;
 

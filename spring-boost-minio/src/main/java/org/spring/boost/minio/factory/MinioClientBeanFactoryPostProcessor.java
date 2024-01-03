@@ -5,6 +5,7 @@ import io.minio.MinioClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.BeansException;
@@ -17,11 +18,14 @@ public class MinioClientBeanFactoryPostProcessor implements BeanFactoryPostProce
 
 	private final MinioConfigurationProperties properties;
 
+	private final OkHttpClient okHttpClient;
+
 	@Override
 	public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		properties.getClients().forEach((key, value) -> {
 			val client = MinioClient.builder()
 					.endpoint(value.getEndpoint())
+					.httpClient(okHttpClient)
 					.credentials(value.getAccessKey(), value.getSecretKey())
 					.build();
 			log.atTrace().log("Register Minio Client:{}:{}", key, client);
