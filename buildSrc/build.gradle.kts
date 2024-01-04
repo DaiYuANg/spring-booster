@@ -14,16 +14,13 @@ repositories {
 }
 
 dependencies {
-    val springBootVersion:String by project
-    val kotlinVersion : String by project
-    val springDependencyManagementVersion:String by project
-    implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    implementation("io.spring.gradle:dependency-management-plugin:$springDependencyManagementVersion")
+    implementation("org.springframework.boot:spring-boot-gradle-plugin:${libs.versions.springBoot.get()}")
+    implementation("io.spring.gradle:dependency-management-plugin:${libs.versions.springDependencyManagement.get()}")
     implementation("com.diffplug.spotless:spotless-plugin-gradle:6.23.3")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-lombok:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
+    implementation("org.jetbrains.kotlin:kotlin-lombok:${libs.versions.kotlin.get()}")
+    implementation("org.jetbrains.kotlin:kotlin-serialization:${libs.versions.kotlin.get()}")
+    implementation("org.jetbrains.kotlin:kotlin-noarg:${libs.versions.kotlin.get()}")
+    implementation("org.jetbrains.kotlin:kotlin-allopen:${libs.versions.kotlin.get()}")
     implementation("com.github.spotbugs.snom:spotbugs-gradle-plugin:6.0.2")
 }

@@ -1,3 +1,5 @@
+plugins { `spring-boot-project` }
+
 dependencies {
   api(libs.jakartaPersistence)
   api("org.springframework.boot:spring-boot-starter-data-jpa")

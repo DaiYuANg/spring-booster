@@ -1,9 +1,12 @@
 package org.spring.boost.minio
 
 import io.minio.GetObjectResponse
+import org.spring.boost.minio.api.MinioGet
 import java.util.Optional
 
-class MinioGetTemplate : MinioGet {
+class MinioGetTemplate(
+    templateArg: MinioTemplateArgument,
+) : MinioGet, BaseTemplate(templateArg) {
     override fun getObject(`object`: String?): GetObjectResponse {
         TODO("Not yet implemented")
     }

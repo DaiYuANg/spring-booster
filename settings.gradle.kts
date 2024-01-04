@@ -10,6 +10,7 @@ pluginManagement {
 }
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.17"
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -19,6 +20,23 @@ buildCache {
         isEnabled = true
         directory = File(rootProject.projectDir, ".gradle/build-cache")
     }
+}
+
+gitHooks {
+//    preCommit {
+//        from { "file://./git-hook/format.sh" }
+//        appendScript {
+//            """
+//               echo test
+//            """.trimIndent()
+//        }
+//    }
+//    commitMsg {
+////        conventionalCommits {
+////            defaultTypes()
+////        }
+//    }
+    createHooks() // actual hooks creation
 }
 
 rootProject.name = "spring-boost"
@@ -62,3 +80,5 @@ include("spring-boost-cache")
 include("spring-boost-web-version")
 
 include("spring-boost-cli")
+
+include("website")

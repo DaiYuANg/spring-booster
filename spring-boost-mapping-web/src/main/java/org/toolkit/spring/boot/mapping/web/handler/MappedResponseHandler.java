@@ -20,8 +20,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.toolkit.spring.boot.mapping.base.annotation.MappingTarget;
-import org.toolkit.spring.boot.mapping.core.service.impl.IMappingService;
 
 @ControllerAdvice
 @Order
@@ -32,8 +30,8 @@ public class MappedResponseHandler {
 	@Resource
 	private ByteBuddy byteBuddy;
 
-	@Resource
-	private IMappingService mappingService;
+//	@Resource
+//	private IMappingService mappingService;
 
 	private static final ConcurrentMap<String, Thread> async = new ConcurrentHashMap<>();
 
@@ -42,17 +40,17 @@ public class MappedResponseHandler {
 
 	@Before("annotationPoint()")
 	public void before(@NotNull JoinPoint joinPoint) {
-		val signature = (MethodSignature) joinPoint.getSignature();
-		val method = signature.getMethod();
-		val mappingTargetAnnotation = method.getAnnotation(MappingTarget.class);
-		val pretreatment = mappingTargetAnnotation.pretreatment();
-		if (pretreatment.equals(MappingTarget.class)) return;
-
-		Arrays.stream(pretreatment.getDeclaredFields()).forEach(field -> {
-			field.setAccessible(true);
-			System.err.println(field);
-		});
-		System.err.println(Arrays.stream(pretreatment.getNestMembers()).toList());
+//		val signature = (MethodSignature) joinPoint.getSignature();
+//		val method = signature.getMethod();
+//		val mappingTargetAnnotation = method.getAnnotation(MappingTarget.class);
+//		val pretreatment = mappingTargetAnnotation.pretreatment();
+//		if (pretreatment.equals(MappingTarget.class)) return;
+//
+//		Arrays.stream(pretreatment.getDeclaredFields()).forEach(field -> {
+//			field.setAccessible(true);
+//			System.err.println(field);
+//		});
+//		System.err.println(Arrays.stream(pretreatment.getNestMembers()).toList());
 		//        val returnClass = method.getReturnType();
 		//        val typeToken = new TypeToken<>(returnClass){};
 	}

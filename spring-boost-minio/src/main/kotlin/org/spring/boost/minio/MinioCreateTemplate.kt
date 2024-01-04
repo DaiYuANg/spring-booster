@@ -2,11 +2,15 @@ package org.spring.boost.minio
 
 import io.minio.ObjectWriteResponse
 import io.minio.messages.Tags
+import org.spring.boost.minio.api.MinioCreate
 import org.springframework.web.multipart.MultipartFile
 import java.io.File
 import java.io.InputStream
 
-class MinioCreateTemplate : MinioCreate {
+class MinioCreateTemplate(
+    templateArg: MinioTemplateArgument,
+) : MinioCreate, BaseTemplate(templateArg) {
+
     override fun createObject(
         inputStream: InputStream,
         bucket: String,

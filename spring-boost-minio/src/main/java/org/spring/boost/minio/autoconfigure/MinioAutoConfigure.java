@@ -1,6 +1,7 @@
 /* (C)2024*/
 package org.spring.boost.minio.autoconfigure;
 
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
@@ -18,8 +19,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
-
-import java.util.Objects;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MinioConfigurationProperties.class)

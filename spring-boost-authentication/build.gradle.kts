@@ -1,12 +1,14 @@
+plugins { `spring-boot-project` }
+
 dependencies {
-  api("org.springframework.boot:spring-boot-starter-security")
-  compileOnly("org.springframework.boot:spring-boot-starter-web")
+  api(libs.springBootSecurity)
+  compileOnly(libs.springBootWeb)
   api(libs.jsonwebtokenApi)
   api(libs.jsonwebtokenImpl)
   api(libs.jsonwebtokenJackson)
-  api("org.springframework.security:spring-security-data")
-  api("org.springframework.boot:spring-boot-starter-oauth2-authorization-server")
+  api(libs.springSecurityData)
+  api(libs.springBootOAuth2AuthorizationServer)
   api(projects.springBoostCommon)
-  testImplementation("org.springframework.boot:spring-boot-starter-web")
-  testImplementation("org.springframework.security:spring-security-test")
+  testImplementation(libs.springBootWeb)
+  testImplementation(libs.springSecurityTest)
 }

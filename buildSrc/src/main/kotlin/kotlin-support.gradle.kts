@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
     kotlin("plugin.lombok")
+    kotlin("plugin.allopen")
     kotlin("kapt")
 }
 

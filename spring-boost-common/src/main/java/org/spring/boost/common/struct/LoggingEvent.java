@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationEvent;
 
 @Slf4j
 @ToString
+@SuppressWarnings("this-escape")
 public abstract class LoggingEvent extends ApplicationEvent {
 	@Serial
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,4 @@
-group = "org.toolkit.spring.boot.mapping.source.enum"
-
-version = "1.0-SNAPSHOT"
+plugins { `spring-boot-project` }
 
 dependencies {
   implementation(projects.springBoostMappingCore)

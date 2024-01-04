@@ -1,6 +1,4 @@
-group = "org.toolkit.spring.boot.cache"
-
-version = "1.0-SNAPSHOT"
+plugins { `spring-boot-project` }
 
 dependencies {
   //    implementation(projects.kits.cache.springBootToolkitCacheAnnotation)

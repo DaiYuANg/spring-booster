@@ -1,3 +1,3 @@
-dependencies {
+plugins { `spring-boot-project` }
 
-}
+dependencies {}

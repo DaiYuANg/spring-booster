@@ -1,4 +1,4 @@
-org.toolkit.spring.boot.authentication.configuration.AuthenticationAutoConfiguration
-org.toolkit.spring.boot.authentication.configuration.PermitAutoConfiguration
-org.toolkit.spring.boot.authentication.configuration.PasswordEncodeAutoConfiguration
-org.toolkit.spring.boot.authentication.configuration.RegisterBeanAutoConfiguration
+org.spring.boost.authentication.configuration.AuthenticationAutoConfiguration
+org.spring.boost.authentication.configuration.PermitAutoConfiguration
+org.spring.boost.authentication.configuration.PasswordEncodeAutoConfiguration
+org.spring.boost.authentication.configuration.RegisterBeanAutoConfiguration

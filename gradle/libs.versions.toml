@@ -1,6 +1,6 @@
 [versions]
 jdkVersion = "21"
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 classGraph = "4.8.165"
@@ -41,6 +41,16 @@ datafaker = "2.0.2"
 commonIO = "2.15.1"
 guava = "33.0.0-jre"
 hutool = "5.8.24"
+springBoot = "3.2.1"
+springDependencyManagement = "1.1.4"
+javapoet = "1.13.0"
+commonsDBUtil = "1.8.1"
+jansi = "2.4.1"
+jline = "3.25.0"
+springShell = "3.2.0-RC1"
+graalvmNative = "0.9.28"
+apacheCommonCodeC="1.16.0"
+okHttp = "5.0.0-alpha.12"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -55,6 +65,7 @@ dependencycheck = { id = "org.owasp.dependencycheck", version.ref = "dependencyc
 jmh = { id = "me.champeau.jmh", version.ref = "jmh" }
 jreleaser = { id = "org.jreleaser", version.ref = "jreleaser" }
 preCommit = { id = "org.danilopianini.gradle-pre-commit-git-hooks", version.ref = "preCommit" }
+graalvmNative = { id = "org.graalvm.buildtools.native", version.ref = "graalvmNative" }
 
 [libraries]
 junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
@@ -102,3 +113,19 @@ dataFaker = { group = "net.datafaker", name = "datafaker", version.ref = "datafa
 apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "commonIO" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
+mysql = { group = "com.mysql", name = "mysql-connector-j" }
+javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
+springBootSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "springBoot" }
+springBootJdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc", version.ref = "springBoot" }
+springBootJPA = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "springBoot" }
+springSecurityTest = { group = "org.springframework.security", name = "spring-security-test" }
+springSecurityData = { group = "org.springframework.security", name = "spring-security-data" }
+springBootWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBoot" }
+commonsDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version.ref = "commonsDBUtil" }
+jansi = { group = "org.fusesource.jansi", name = "jansi", version.ref = "jansi" }
+jlineNative = { group = "org.jline", name = "jline-native", version.ref = "jline" }
+springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
+springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter" }
+springBootOAuth2AuthorizationServer = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-authorization-server" }
+apacheCommonCodeC = {group="commons-codec",name="commons-codec",version.ref="apacheCommonCodeC"}
+okHttp = {group="com.squareup.okhttp3",name="okhttp"}
