@@ -1,6 +1,6 @@
 [versions]
 jdkVersion = "21"
-kotlin = "1.9.22"
+kotlin = "2.0.0-Beta2"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 classGraph = "4.8.165"
@@ -9,7 +9,7 @@ errorproneCore = "2.23.0"
 junit = "5.10.1"
 testcontainers = "1.19.3"
 mockito = "5.8.0"
-lombok = "2.2.4"
+lombok = "8.4"
 plantuml = "2.1.3"
 errorpronePlugin = "3.1.0"
 dokka = "1.9.10"
@@ -49,14 +49,15 @@ jansi = "2.4.1"
 jline = "3.25.0"
 springShell = "3.2.0-RC1"
 graalvmNative = "0.9.28"
-apacheCommonCodeC="1.16.0"
+apacheCommonCodeC = "1.16.0"
 okHttp = "5.0.0-alpha.12"
+spotless = "6.23.3"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
 versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionCheck" }
-lombok = { id = "name.remal.lombok", version.ref = "lombok" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
 plantuml = { id = "io.gitlab.plunts.plantuml", version.ref = "plantuml" }
 errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
@@ -127,5 +128,15 @@ jlineNative = { group = "org.jline", name = "jline-native", version.ref = "jline
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
 springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter" }
 springBootOAuth2AuthorizationServer = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-authorization-server" }
-apacheCommonCodeC = {group="commons-codec",name="commons-codec",version.ref="apacheCommonCodeC"}
-okHttp = {group="com.squareup.okhttp3",name="okhttp"}
+apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version.ref = "apacheCommonCodeC" }
+okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
+spotbugs = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.2" }
+springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
+springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }
+spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
+kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
+kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
+kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
+kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }

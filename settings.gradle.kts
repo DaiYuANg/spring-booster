@@ -11,6 +11,7 @@ pluginManagement {
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
     id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.17"
+    id("com.gradle.enterprise") version "3.16.1"
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -23,20 +24,19 @@ buildCache {
 }
 
 gitHooks {
-//    preCommit {
-//        from { "file://./git-hook/format.sh" }
-//        appendScript {
-//            """
-//               echo test
-//            """.trimIndent()
-//        }
-//    }
-//    commitMsg {
-////        conventionalCommits {
-////            defaultTypes()
-////        }
-//    }
+    commitMsg {
+        conventionalCommits {
+            defaultTypes()
+        }
+    }
     createHooks() // actual hooks creation
+}
+
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
 }
 
 rootProject.name = "spring-boost"

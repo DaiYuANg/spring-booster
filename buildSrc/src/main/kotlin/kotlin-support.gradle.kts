@@ -8,7 +8,7 @@ plugins {
     kotlin("kapt")
 }
 
-dependencies{
+dependencies {
     implementation(kotlin("stdlib"))
     testImplementation(kotlin("test"))
 }
@@ -20,7 +20,7 @@ kotlin {
     }
 }
 
-kapt{
+kapt {
     keepJavacAnnotationProcessors = true
 }
 

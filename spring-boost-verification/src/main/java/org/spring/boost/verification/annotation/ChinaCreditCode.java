@@ -5,7 +5,6 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import jakarta.validation.constraints.NotBlank;
 import java.lang.annotation.*;
-
 import org.spring.boost.verification.validator.ChinaCreditCodeValidator;
 
 @Documented

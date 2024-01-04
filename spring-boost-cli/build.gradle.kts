@@ -4,9 +4,7 @@ plugins {
   `spring-boot-project`
 }
 
-dependencyManagement {
-  imports { mavenBom("${libs.springShellBom.get()}") }
-}
+dependencyManagement { imports { mavenBom("${libs.springShellBom.get()}") } }
 
 repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases") } }
 
@@ -23,9 +21,7 @@ dependencies {
   implementation(libs.springBootJdbc)
 }
 
-application {
-  mainClass = mainClassPath
-}
+application { mainClass = mainClassPath }
 
 graalvmNative {
   metadataRepository { enabled = true }

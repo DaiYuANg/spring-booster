@@ -1,5 +1,5 @@
 /* (C)2023*/
-package org.spring.boost.common.struct;
+package org.spring.boost.common.event;
 
 import java.io.Serial;
 import java.text.DateFormat;

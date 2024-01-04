@@ -14,13 +14,14 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-gradle-plugin:${libs.versions.springBoot.get()}")
-    implementation("io.spring.gradle:dependency-management-plugin:${libs.versions.springDependencyManagement.get()}")
-    implementation("com.diffplug.spotless:spotless-plugin-gradle:6.23.3")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
-    implementation("org.jetbrains.kotlin:kotlin-lombok:${libs.versions.kotlin.get()}")
-    implementation("org.jetbrains.kotlin:kotlin-serialization:${libs.versions.kotlin.get()}")
-    implementation("org.jetbrains.kotlin:kotlin-noarg:${libs.versions.kotlin.get()}")
-    implementation("org.jetbrains.kotlin:kotlin-allopen:${libs.versions.kotlin.get()}")
-    implementation("com.github.spotbugs.snom:spotbugs-gradle-plugin:6.0.2")
+    implementation(libs.springBootGradlePlugin)
+    implementation(libs.springBootDependencyManagementPlugin)
+    implementation(libs.spotlessPlugin)
+    implementation(libs.kotlinGradlePlugin)
+    implementation(libs.kotlinGradleLombokPlugin)
+    implementation(libs.kotlinGradleSerializationPlugin)
+    implementation(libs.kotlinGradleNoArgPlugin)
+    implementation(libs.kotlinGradleAllOpenPlugin)
+    implementation(libs.kotlinGradleSpringPlugin)
+    implementation(libs.spotbugs)
 }

@@ -4,7 +4,6 @@ package org.spring.boost.verification.annotation;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.*;
-
 import org.spring.boost.verification.validator.ChineseValidator;
 
 @Documented

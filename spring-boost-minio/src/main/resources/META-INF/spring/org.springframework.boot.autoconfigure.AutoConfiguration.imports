@@ -1,1 +1,3 @@
 org.spring.boost.minio.autoconfigure.MinioAutoConfigure
+org.spring.boost.minio.autoconfigure.MinioBeanFactoryAutoConfigure
+org.spring.boost.minio.autoconfigure.MinioActuatorAutoConfigure

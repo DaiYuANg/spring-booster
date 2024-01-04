@@ -6,12 +6,12 @@ import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.spring.boost.web.annotation.Version;
 import org.spring.boost.web.core.conditions.VersioningCondition;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
-import org.spring.boost.web.annotation.Version;
 
 @Slf4j
 public class VersionMappingHandler extends RequestMappingInfoHandlerMapping {

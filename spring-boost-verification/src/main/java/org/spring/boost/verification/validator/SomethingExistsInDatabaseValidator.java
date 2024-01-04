@@ -8,8 +8,8 @@ import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.spring.boost.verification.annotation.SomethingExistsInDatabase;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Slf4j
 public class SomethingExistsInDatabaseValidator implements ConstraintValidator<SomethingExistsInDatabase, String> {

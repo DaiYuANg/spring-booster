@@ -29,8 +29,12 @@ class FormatterPlugin : Plugin<Project> {
                 importOrder()
                 palantirJavaFormat()
                 indentWithTabs()
-                removeUnusedImports()
+                removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
                 formatAnnotations()
+                    .addTypeAnnotation("Empty")
+                    .addTypeAnnotation("NonEmpty")
+                    .removeTypeAnnotation("Localized")
+                cleanthat()
                 licenseHeader("/* (C)\$YEAR*/")
             }
 
@@ -39,14 +43,8 @@ class FormatterPlugin : Plugin<Project> {
                 ktfmt() // or ktfmt() or prettier()
             }
             kotlin {
-                // by default the target is every '.kt' and '.kts` file in the java sourcesets
-                ktfmt()    // has its own section below
-                ktlint()   // has its own section below
-//        diktat()   // has its own section below
-//        prettier() // has its own section below
-
-//        licenseHeader("/* (C)$YEAR */")
-//        licenseHeader.set("/* (C)$YEAR */") // or licenseHeaderFile
+                ktfmt()
+                ktlint()
             }
         }
 

@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.common.api.BeanRegistry;
+import org.spring.boost.web.annotation.Interceptor;
+import org.spring.boost.web.core.resolver.UserAgentResolver;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +21,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.spring.boost.web.annotation.Interceptor;
-import org.spring.boost.web.core.resolver.UserAgentResolver;
 
 @AutoConfiguration
 @Slf4j

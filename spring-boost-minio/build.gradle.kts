@@ -14,5 +14,3 @@ dependencies {
   api(projects.springBoostCommon)
   testImplementation(libs.testcontainersMinio)
 }
-
-tasks.bootJar { enabled = false }

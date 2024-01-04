@@ -4,8 +4,8 @@ package org.spring.boost.web.version.autoconfigure;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.spring.boost.web.version.base.VersionDetectType;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "spring.web.version")
 @Getter

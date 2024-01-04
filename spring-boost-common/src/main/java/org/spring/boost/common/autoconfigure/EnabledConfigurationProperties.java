@@ -1,5 +1,5 @@
 /* (C)2023*/
-package org.spring.boost.common.struct;
+package org.spring.boost.common.autoconfigure;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -8,6 +8,7 @@ import net.ltgt.gradle.errorprone.ErrorPronePlugin
 import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
+import java.nio.charset.StandardCharsets
 
 
 plugins {
@@ -16,15 +17,16 @@ plugins {
     idea
     alias(libs.plugins.versionCheck)
     alias(libs.plugins.gitVersion)
-    alias(libs.plugins.dependencycheck)
-    alias(libs.plugins.jmh)
-    alias(libs.plugins.jreleaser)
-    id("io.freefair.lombok") version "8.4"
+    alias(libs.plugins.dependencycheck) apply false
+    alias(libs.plugins.jmh) apply false
+    alias(libs.plugins.jreleaser) apply false
+    alias(libs.plugins.lombok) apply false
     alias(libs.plugins.plantuml)
     alias(libs.plugins.errorprone)
     alias(libs.plugins.dokka)
     `maven-publish`
 }
+
 
 allprojects {
     repositories {
@@ -53,8 +55,9 @@ subprojects {
             apply<PlantUmlPlugin>()
             apply<MavenPublishPlugin>()
             apply<ErrorPronePlugin>()
-            apply<DokkaPlugin>()
             apply<PmdPlugin>()
+            apply<IdeaPlugin>()
+            apply<DokkaPlugin>()
 
             group = "org." + rootProject.name + "." + project.name
             val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
@@ -90,22 +93,19 @@ subprojects {
             tasks {
                 withType<JavaCompile> {
                     options.isIncremental = true
-                    options.encoding = "UTF-8"
+                    options.encoding = StandardCharsets.UTF_8.name()
                     options.compilerArgs.add("-Xlint:all")
                     options.compilerArgs.add("-g")
                     options.errorprone.isEnabled.set(true)
                     options.errorprone.disableWarningsInGeneratedCode.set(true)
                     dependsOn(project.tasks.processResources)
-                    if (!name.toLowerCase().contains("test")) {
+                    if (!name.lowercase().contains("test")) {
                         options.errorprone {
                             check("NullAway", CheckSeverity.ERROR)
                             option("NullAway:AnnotatedPackages", "com.uber")
                         }
                     }
-                }
-
-                withType<Test>().configureEach {
-                    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+                    options.isFork = true
                 }
 
                 withType<Jar> {
@@ -133,12 +133,12 @@ subprojects {
             tasks.test {
                 useJUnitPlatform()
                 minHeapSize = "4g"
-                maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
                 maxHeapSize = "8g"
                 systemProperties["junit.jupiter.execution.parallel.enabled"] = true
                 systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
                 jvmArgs("-XX:+EnableDynamicAgentLoading")
-                maxParallelForks = Runtime.getRuntime().availableProcessors() * 2
+                maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+                forkEvery = 100
             }
 
 

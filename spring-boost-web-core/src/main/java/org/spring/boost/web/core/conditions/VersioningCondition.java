@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.spring.boost.web.annotation.Version;
+import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
 @Slf4j
 @Getter

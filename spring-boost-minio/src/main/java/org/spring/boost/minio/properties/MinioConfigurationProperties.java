@@ -18,5 +18,7 @@ public class MinioConfigurationProperties {
 
 	private Map<String, MinioClientConfig> clients = new HashMap<>();
 
+	private MinioClientConfig client;
+
 	private boolean checkDuplicate = false;
 }
