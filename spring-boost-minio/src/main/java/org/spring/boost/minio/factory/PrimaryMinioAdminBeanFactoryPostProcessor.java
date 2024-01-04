@@ -1,6 +1,7 @@
 /* (C)2024*/
 package org.spring.boost.minio.factory;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -11,8 +12,6 @@ import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-
-import java.util.Optional;
 
 /**
  * Primary minio admin client factory

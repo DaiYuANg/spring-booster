@@ -14,16 +14,16 @@ import org.springframework.core.env.Environment;
 @AutoConfiguration
 @Slf4j
 public class SpringBootUtilAutoConfiguration {
-	@Bean
-	public BeanRegistry beanRegistry(ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
-		return BeanRegistryImpl.builder()
-				.context(context)
-				.beanFactory(listableBeanFactory)
-				.build();
-	}
+    @Bean
+    public BeanRegistry beanRegistry(ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
+        return BeanRegistryImpl.builder()
+                .context(context)
+                .beanFactory(listableBeanFactory)
+                .build();
+    }
 
-	@Bean
-	public StartUpListener startUpListener(Environment environment) {
-		return new StartUpListener(environment);
-	}
+    @Bean
+    public StartUpListener startUpListener(Environment environment) {
+        return new StartUpListener(environment);
+    }
 }

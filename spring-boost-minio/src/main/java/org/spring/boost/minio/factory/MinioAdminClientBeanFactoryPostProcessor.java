@@ -1,7 +1,6 @@
 /* (C)2024*/
 package org.spring.boost.minio.factory;
 
-import io.minio.admin.MinioAdminClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -21,9 +20,9 @@ public class MinioAdminClientBeanFactoryPostProcessor extends AdminClientFactory
     private final OkHttpClient okHttpClient;
 
     /**
-     * Register minio admin client instance into spring ioc
-     * And naming is @see{@link org.spring.boost.minio.properties.MinioConfigurationProperties} clients key
-     * + @see{@link BeanNaming} ADMIN
+     * Register minio admin client instance into spring ioc And naming is @see{@link
+     * org.spring.boost.minio.properties.MinioConfigurationProperties} clients key + @see{@link
+     * BeanNaming} ADMIN
      */
     @Override
     public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {

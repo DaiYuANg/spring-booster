@@ -32,7 +32,7 @@ open class BaseTemplate(
 
     fun ping(): Boolean {
         val url = "${config.endpoint.removeSuffix("/")}$healthPath"
-        val req = Request.Builder().get().url(url).build();
+        val req = Request.Builder().get().url(url).build()
         return httpClient.newCall(req).execute().code == 200
     }
 }

@@ -12,13 +12,13 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 @EnableConfigurationProperties(CachedConfigurationProperties.class)
 @Slf4j
 public class CacheConfiguration {
-	//	@Bean
-	//	public MultiLevelCacheManager multiLevelCacheManager() {
-	//		return new MultiLevelCacheManager();
-	//	}
+    //	@Bean
+    //	public MultiLevelCacheManager multiLevelCacheManager() {
+    //		return new MultiLevelCacheManager();
+    //	}
 
-	@Bean
-	public SpelExpressionParser spelExpressionParser() {
-		return new SpelExpressionParser();
-	}
+    @Bean
+    public SpelExpressionParser spelExpressionParser() {
+        return new SpelExpressionParser();
+    }
 }

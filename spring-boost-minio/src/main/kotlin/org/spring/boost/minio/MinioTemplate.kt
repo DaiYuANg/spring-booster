@@ -16,7 +16,6 @@ class MinioTemplate private constructor(
     MinioDelete by deleteTemplate,
     MinioAdmin by adminTemplate,
     BaseTemplate(templateArg) {
-
     companion object {
         @JvmStatic
         @JvmOverloads

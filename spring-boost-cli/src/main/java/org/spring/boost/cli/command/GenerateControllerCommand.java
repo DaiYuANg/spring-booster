@@ -5,6 +5,6 @@ package org.spring.boost.cli.command;
 
 // @CommandLine.Command(name = "generate-controller", aliases = "gc", mixinStandardHelpOptions = true)
 public class GenerateControllerCommand implements Runnable {
-	@Override
-	public void run() {}
+    @Override
+    public void run() {}
 }

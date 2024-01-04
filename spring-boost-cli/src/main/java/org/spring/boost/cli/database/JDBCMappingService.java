@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.spring.boost.cli.dto.MysqlTableColumn;
 
 public interface JDBCMappingService {
-	List<String> getTableNamesFromSchmea();
+    List<String> getTableNamesFromSchmea();
 
-	List<MysqlTableColumn> queryTableColumns(String tableNames);
+    List<MysqlTableColumn> queryTableColumns(String tableNames);
 
-	Optional<String> connectionDatabase();
+    Optional<String> connectionDatabase();
 }

@@ -19,29 +19,29 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("org.toolkit.spring.boot.mapping.database.source.**.*")
 public class MappingDatabaseSourceAutoConfiguration {
 
-	private static final int cpuCore = Runtime.getRuntime().availableProcessors();
+    private static final int cpuCore = Runtime.getRuntime().availableProcessors();
 
-	@Resource
-	private MappingDatabaseSourceProperties mappingDatabaseSourceProperties;
+    @Resource
+    private MappingDatabaseSourceProperties mappingDatabaseSourceProperties;
 
-	@Resource
-	private ApplicationContext context;
+    @Resource
+    private ApplicationContext context;
 
-	@PostConstruct
-	public void init() {
-		log.atInfo().log("mapping datasource source auto config executing");
-	}
+    @PostConstruct
+    public void init() {
+        log.atInfo().log("mapping datasource source auto config executing");
+    }
 
-	//    @Bean(name = "DataSourceMapOfMappingDatabaseSource")
-	//    public ConcurrentMap<String, DataSource> dataSourceMap() {
-	//        Map<String, DataSourceProperties> dataSourcePropertiesMap =
-	// context.getBeansOfType(DataSourceProperties.class);
-	//        return dataSourcePropertiesMap.keySet().stream()
-	//                .map(dataSourceBeanName -> {
-	//                    val dataSource = context.getBean(dataSourceBeanName, DataSource.class);
-	//                    return Map.entry(dataSourceBeanName, dataSource);
-	//                })
-	//                .distinct()
-	//                .collect(Collectors.toConcurrentMap(Map.Entry::getKey, Map.Entry::getValue));
-	//    }
+    //    @Bean(name = "DataSourceMapOfMappingDatabaseSource")
+    //    public ConcurrentMap<String, DataSource> dataSourceMap() {
+    //        Map<String, DataSourceProperties> dataSourcePropertiesMap =
+    // context.getBeansOfType(DataSourceProperties.class);
+    //        return dataSourcePropertiesMap.keySet().stream()
+    //                .map(dataSourceBeanName -> {
+    //                    val dataSource = context.getBean(dataSourceBeanName, DataSource.class);
+    //                    return Map.entry(dataSourceBeanName, dataSource);
+    //                })
+    //                .distinct()
+    //                .collect(Collectors.toConcurrentMap(Map.Entry::getKey, Map.Entry::getValue));
+    //    }
 }

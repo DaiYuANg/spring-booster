@@ -10,9 +10,9 @@ import org.toolkit.spring.boot.persistence.base.BaseEntity;
 @Getter
 public class MappingItemEntity extends BaseEntity {
 
-	@Column
-	private String value;
+    @Column
+    private String value;
 
-	@Column
-	private String text;
+    @Column
+    private String text;
 }

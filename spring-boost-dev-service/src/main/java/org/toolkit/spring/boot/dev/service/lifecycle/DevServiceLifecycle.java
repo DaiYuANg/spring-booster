@@ -21,76 +21,76 @@ import org.toolkit.spring.boot.dev.service.core.DevServiceReadyEvent;
 @Slf4j
 public class DevServiceLifecycle {
 
-	private final ApplicationContext context;
+    private final ApplicationContext context;
 
-	private final Binder binder;
+    private final Binder binder;
 
-	private final DevServiceConfigurationProperties devServiceConfigurationProperties;
+    private final DevServiceConfigurationProperties devServiceConfigurationProperties;
 
-	private final ClassLoader classLoader;
+    private final ClassLoader classLoader;
 
-	private final Set<ApplicationListener<?>> eventListeners;
+    private final Set<ApplicationListener<?>> eventListeners;
 
-	private final Set<ContainerService> availableService;
+    private final Set<ContainerService> availableService;
 
-	//	private final Observable<ContainerService> observable;
+    //	private final Observable<ContainerService> observable;
 
-	public DevServiceLifecycle(
-			@NotNull ApplicationContext context,
-			@NotNull Binder binder,
-			@NotNull Set<ApplicationListener<?>> eventListeners) {
-		this.context = context;
-		this.binder = binder;
-		this.devServiceConfigurationProperties = DevServiceConfigurationProperties.get(binder);
-		this.classLoader = context.getClassLoader();
-		this.eventListeners = eventListeners;
-		this.availableService = Arrays.stream(SupportServiceStore.values())
-				.filter(this::checkIsAvailable)
-				.map(SupportServiceStore::getContainerService)
-				.collect(Collectors.toUnmodifiableSet());
-		System.err.println(availableService);
-	}
+    public DevServiceLifecycle(
+            @NotNull ApplicationContext context,
+            @NotNull Binder binder,
+            @NotNull Set<ApplicationListener<?>> eventListeners) {
+        this.context = context;
+        this.binder = binder;
+        this.devServiceConfigurationProperties = DevServiceConfigurationProperties.get(binder);
+        this.classLoader = context.getClassLoader();
+        this.eventListeners = eventListeners;
+        this.availableService = Arrays.stream(SupportServiceStore.values())
+                .filter(this::checkIsAvailable)
+                .map(SupportServiceStore::getContainerService)
+                .collect(Collectors.toUnmodifiableSet());
+        System.err.println(availableService);
+    }
 
-	private boolean checkIsAvailable(@NotNull SupportServiceStore supportService) {
-		val isAvailable =
-				supportService.getClazz().stream().allMatch(clazz -> ClassUtils.isPresent(clazz, classLoader));
-		System.err.println(isAvailable);
-		log.atInfo().log("Support service :{}", supportService.getClazz());
-		return isAvailable;
-	}
+    private boolean checkIsAvailable(@NotNull SupportServiceStore supportService) {
+        val isAvailable =
+                supportService.getClazz().stream().allMatch(clazz -> ClassUtils.isPresent(clazz, classLoader));
+        System.err.println(isAvailable);
+        log.atInfo().log("Support service :{}", supportService.getClazz());
+        return isAvailable;
+    }
 
-	void start() {
-		if (Boolean.getBoolean("spring.aot.processing") || AotDetector.useGeneratedArtifacts()) {
-			log.trace("Dev service support disabled with AOT and native images");
-			return;
-		}
-		if (devServiceConfigurationProperties.getEnable().equals(Boolean.FALSE)) {
-			log.trace("Dev service is not enable");
-			return;
-		}
-		if (DevServiceSkipCheck.shouldSkip(this.classLoader)) {
-			log.trace("Dev service skipped");
-			return;
-		}
-		if (availableService.isEmpty()) {
-			log.trace("Available service is empty");
-			return;
-		}
-		//		val serviceContainerIds = observable
-		//				.flatMap(service -> Observable.just(service)
-		//						.subscribeOn(Schedulers.from(executor))
-		//						.map(ContainerService::createService))
-		//				.toList(availableService.size())
-		//				.blockingGet();
-	}
+    void start() {
+        if (Boolean.getBoolean("spring.aot.processing") || AotDetector.useGeneratedArtifacts()) {
+            log.trace("Dev service support disabled with AOT and native images");
+            return;
+        }
+        if (devServiceConfigurationProperties.getEnable().equals(Boolean.FALSE)) {
+            log.trace("Dev service is not enable");
+            return;
+        }
+        if (DevServiceSkipCheck.shouldSkip(this.classLoader)) {
+            log.trace("Dev service skipped");
+            return;
+        }
+        if (availableService.isEmpty()) {
+            log.trace("Available service is empty");
+            return;
+        }
+        //		val serviceContainerIds = observable
+        //				.flatMap(service -> Observable.just(service)
+        //						.subscribeOn(Schedulers.from(executor))
+        //						.map(ContainerService::createService))
+        //				.toList(availableService.size())
+        //				.blockingGet();
+    }
 
-	void stop() {
-		//     todo  check need stop container
-	}
+    void stop() {
+        //     todo  check need stop container
+    }
 
-	private void publishEvent(DevServiceReadyEvent event) {
-		val multicaster = new SimpleApplicationEventMulticaster();
-		eventListeners.forEach(multicaster::addApplicationListener);
-		multicaster.multicastEvent(event);
-	}
+    private void publishEvent(DevServiceReadyEvent event) {
+        val multicaster = new SimpleApplicationEventMulticaster();
+        eventListeners.forEach(multicaster::addApplicationListener);
+        multicaster.multicastEvent(event);
+    }
 }

@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class CachedProcessor {
-	@Resource
-	private SpelExpressionParser parser;
+    @Resource
+    private SpelExpressionParser parser;
 
-	//	@SneakyThrows
-	//	@Around("@annotation(org.toolkit.spring.boot.cache.annotation.Cached)")
-	//	public Object process(@NotNull ProceedingJoinPoint pjp) {
-	//		val method = (MethodSignature) pjp.getSignature();
-	//		val annotation = method.getMethod().getAnnotation(Cached.class);
-	//		val result = pjp.proceed();
-	//		parser.parseExpression(annotation.key()).getValue();
-	//		return result;
-	//	}
+    //	@SneakyThrows
+    //	@Around("@annotation(org.toolkit.spring.boot.cache.annotation.Cached)")
+    //	public Object process(@NotNull ProceedingJoinPoint pjp) {
+    //		val method = (MethodSignature) pjp.getSignature();
+    //		val annotation = method.getMethod().getAnnotation(Cached.class);
+    //		val result = pjp.proceed();
+    //		parser.parseExpression(annotation.key()).getValue();
+    //		return result;
+    //	}
 }

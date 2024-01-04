@@ -11,7 +11,7 @@ import org.toolkit.spring.boot.mapping.database.source.entity.MappingEntity;
 
 @Repository
 public interface MappingEntityRepository
-		extends JpaRepository<MappingEntity, String>, JpaSpecificationExecutor<MappingEntity> {
-	@Query("select m from MappingEntity m where m.naming = ?1")
-	Optional<MappingEntity> findByNaming(@NonNull String naming);
+        extends JpaRepository<MappingEntity, String>, JpaSpecificationExecutor<MappingEntity> {
+    @Query("select m from MappingEntity m where m.naming = ?1")
+    Optional<MappingEntity> findByNaming(@NonNull String naming);
 }

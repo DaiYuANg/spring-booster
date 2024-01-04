@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Interceptor {
-	String[] value() default "";
+    String[] value() default "";
 
-	String[] excludePath() default "";
+    String[] excludePath() default "";
 
-	int order() default 0;
+    int order() default 0;
 }

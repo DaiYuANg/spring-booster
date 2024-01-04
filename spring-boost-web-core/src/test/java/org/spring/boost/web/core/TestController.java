@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class TestController {
 
-	@GetMapping("/")
-	public String test(@Valid @RequestParam(required = false) String test) {
-		log.info(test);
-		return "test controller";
-	}
+    @GetMapping("/")
+    public String test(@Valid @RequestParam(required = false) String test) {
+        log.info(test);
+        return "test controller";
+    }
 }

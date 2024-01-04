@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 @Getter
 @Setter
 public class WebCoreConfigurationProperties {
-	/**
-	 * Global return value struct
-	 */
-	private Class<?> returnResult = ResponseEntity.class;
+    /**
+     * Global return value struct
+     */
+    private Class<?> returnResult = ResponseEntity.class;
 }

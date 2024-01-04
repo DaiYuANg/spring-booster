@@ -17,15 +17,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @AutoConfigureBefore({HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class})
 public class PersistenceAutoConfiguration {
 
-	@PostConstruct
-	public void init() {
-		log.info("Persistence auto config executing");
-	}
+    @PostConstruct
+    public void init() {
+        log.info("Persistence auto config executing");
+    }
 
-	//	@Primary
-	//	@Bean
-	//	@ConfigurationProperties(prefix = "spring.datasource")
-	//	public DataSource userDataSource() {
-	//		return DataSourceBuilder.create().build();
-	//	}
+    //	@Primary
+    //	@Bean
+    //	@ConfigurationProperties(prefix = "spring.datasource")
+    //	public DataSource userDataSource() {
+    //		return DataSourceBuilder.create().build();
+    //	}
 }

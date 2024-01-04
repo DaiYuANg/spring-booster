@@ -11,16 +11,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 public class AuthenticationEvent extends LoggingEvent {
 
-	@Serial
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	private final String token;
+    private final String token;
 
-	private final UserDetails userDetails;
+    private final UserDetails userDetails;
 
-	public AuthenticationEvent(Object source, String token, UserDetails userDetails) {
-		super(source);
-		this.token = token;
-		this.userDetails = userDetails;
-	}
+    public AuthenticationEvent(Object source, String token, UserDetails userDetails) {
+        super(source);
+        this.token = token;
+        this.userDetails = userDetails;
+    }
 }

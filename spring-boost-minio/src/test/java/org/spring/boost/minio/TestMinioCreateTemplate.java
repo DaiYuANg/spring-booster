@@ -29,37 +29,37 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public class TestMinioCreateTemplate {
 
-	@Container
-	private final MinIOContainer container = new MinIOContainer("minio/minio:RELEASE.2023-09-04T19-57-37Z");
+    @Container
+    private final MinIOContainer container = new MinIOContainer("minio/minio:RELEASE.2023-09-04T19-57-37Z");
 
-	@Rule
-	public TemporaryFolder folderWithSingleFile = new TemporaryFolder() {
-		@Override
-		public void create() throws IOException {
-			super.create();
-			val tempFile = this.newFile("tempFile.txt");
-			FileUtils.writeStringToFile(tempFile, "hello world", StandardCharsets.UTF_8);
-		}
-	};
+    @Rule
+    public TemporaryFolder folderWithSingleFile = new TemporaryFolder() {
+        @Override
+        public void create() throws IOException {
+            super.create();
+            val tempFile = this.newFile("tempFile.txt");
+            FileUtils.writeStringToFile(tempFile, "hello world", StandardCharsets.UTF_8);
+        }
+    };
 
-	private MinioClient minioClient;
+    private MinioClient minioClient;
 
-	@Resource
-	private ApplicationEventPublisher eventPublisher;
+    @Resource
+    private ApplicationEventPublisher eventPublisher;
 
-	@SneakyThrows
-	@BeforeEach
-	public void setupClient() {
-		minioClient = MinioClient.builder()
-				.endpoint(container.getS3URL())
-				.credentials(container.getUserName(), container.getPassword())
-				.build();
-	}
+    @SneakyThrows
+    @BeforeEach
+    public void setupClient() {
+        minioClient = MinioClient.builder()
+                .endpoint(container.getS3URL())
+                .credentials(container.getUserName(), container.getPassword())
+                .build();
+    }
 
-	@Test
-	public void testTemplateUpload() {
-		val template = MinioCreateTemplate.builder().bucket("test").client(minioClient);
+    @Test
+    public void testTemplateUpload() {
+        val template = MinioCreateTemplate.builder().bucket("test").client(minioClient);
 
-		System.err.println(template);
-	}
+        System.err.println(template);
+    }
 }

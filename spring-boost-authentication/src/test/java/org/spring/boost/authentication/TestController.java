@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-	@GetMapping("/")
-	@RequestMapping
-	public void test() {}
+    @GetMapping("/")
+    @RequestMapping
+    public void test() {}
 
-	@GetMapping("/test")
-	@IgnoreAuthentication
-	@PermitAll
-	public String testUn() {
-		return "";
-	}
+    @GetMapping("/test")
+    @IgnoreAuthentication
+    @PermitAll
+    public String testUn() {
+        return "";
+    }
 }

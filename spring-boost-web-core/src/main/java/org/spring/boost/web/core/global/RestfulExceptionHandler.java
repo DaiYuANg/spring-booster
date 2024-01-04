@@ -17,30 +17,30 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @IgnoreResponseAdvice
 public class RestfulExceptionHandler {
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public Response<?> r(@NotNull Exception e) {
-		log.error(e.getMessage(), e.fillInStackTrace());
-		return Response.error(e.getLocalizedMessage());
-	}
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Response<?> r(@NotNull Exception e) {
+        log.error(e.getMessage(), e.fillInStackTrace());
+        return Response.error(e.getLocalizedMessage());
+    }
 
-	@ExceptionHandler(RestfulException.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public Response<?> restfulExceptionHandler(@NotNull RestfulException restfulException) {
-		log.error(restfulException.getMessage());
-		return Response.error(restfulException.getMessage());
-	}
+    @ExceptionHandler(RestfulException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Response<?> restfulExceptionHandler(@NotNull RestfulException restfulException) {
+        log.error(restfulException.getMessage());
+        return Response.error(restfulException.getMessage());
+    }
 
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Response<?> handleValidationExceptions(@NotNull MethodArgumentNotValidException ex) {
-		return Response.error(ex.getMessage());
-	}
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Response<?> handleValidationExceptions(@NotNull MethodArgumentNotValidException ex) {
+        return Response.error(ex.getMessage());
+    }
 
-	@ExceptionHandler(MissingServletRequestParameterException.class)
-	@ResponseStatus(HttpStatus.CONFLICT)
-	public Response<?> hissingServletRequestParameterExceptionHandler(
-			@NotNull MissingServletRequestParameterException exception) {
-		return Response.error(exception.getParameterName());
-	}
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Response<?> hissingServletRequestParameterExceptionHandler(
+            @NotNull MissingServletRequestParameterException exception) {
+        return Response.error(exception.getParameterName());
+    }
 }

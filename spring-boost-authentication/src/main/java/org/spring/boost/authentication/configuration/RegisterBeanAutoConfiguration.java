@@ -22,28 +22,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class RegisterBeanAutoConfiguration {
 
-	private final JwtConfigProperties jwtConfigProperties;
+    private final JwtConfigProperties jwtConfigProperties;
 
-	private final UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-	private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-	@Bean
-	public AuthenticationManager authenticationManager(@NotNull AuthenticationConfiguration config) throws Exception {
-		return config.getAuthenticationManager();
-	}
+    @Bean
+    public AuthenticationManager authenticationManager(@NotNull AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
 
-	@Bean
-	@ConditionalOnMissingBean(IJwtService.class)
-	public IJwtService jwtService() {
-		return new JwtServiceImpl(jwtConfigProperties);
-	}
+    @Bean
+    @ConditionalOnMissingBean(IJwtService.class)
+    public IJwtService jwtService() {
+        return new JwtServiceImpl(jwtConfigProperties);
+    }
 
-	@Bean
-	public AuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(userDetailsService);
-		authProvider.setPasswordEncoder(passwordEncoder);
-		return authProvider;
-	}
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
+    }
 }

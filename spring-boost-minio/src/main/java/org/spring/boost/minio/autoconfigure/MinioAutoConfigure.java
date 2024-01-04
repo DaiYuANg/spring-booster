@@ -1,6 +1,8 @@
 /* (C)2024*/
 package org.spring.boost.minio.autoconfigure;
 
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import org.apache.tika.Tika;
@@ -15,9 +17,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Spring boot auto configure

@@ -16,26 +16,26 @@ import org.springframework.boot.context.properties.bind.Binder;
 @ConfigurationProperties(CONFIGURATION_NAME)
 public class MysqlDevServiceConfigurationProperties extends DevServiceCommonConfigurationProperties {
 
-	public static final String CONFIGURATION_NAME = "spring.dev.service.mysql";
+    public static final String CONFIGURATION_NAME = "spring.dev.service.mysql";
 
-	private String mysqlRootPassword;
+    private String mysqlRootPassword;
 
-	private String mysqlDatabase;
+    private String mysqlDatabase;
 
-	private String mysqlUser;
+    private String mysqlUser;
 
-	private String mysqlPassword;
+    private String mysqlPassword;
 
-	private String mysqlAllowEmptyPassword;
+    private String mysqlAllowEmptyPassword;
 
-	private String mysqlRandomRootPassword;
+    private String mysqlRandomRootPassword;
 
-	private String mysqlOnetimePassword;
+    private String mysqlOnetimePassword;
 
-	private String mysqlInitDBSkipTzInfo;
+    private String mysqlInitDBSkipTzInfo;
 
-	public static MysqlDevServiceConfigurationProperties get(@NotNull Binder binder) {
-		return binder.bind(CONFIGURATION_NAME, MysqlDevServiceConfigurationProperties.class)
-				.orElseGet(MysqlDevServiceConfigurationProperties::new);
-	}
+    public static MysqlDevServiceConfigurationProperties get(@NotNull Binder binder) {
+        return binder.bind(CONFIGURATION_NAME, MysqlDevServiceConfigurationProperties.class)
+                .orElseGet(MysqlDevServiceConfigurationProperties::new);
+    }
 }

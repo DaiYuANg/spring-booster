@@ -15,22 +15,22 @@ import org.toolkit.spring.boot.persistence.base.BaseEntity;
 @Accessors(chain = true)
 public class MappingEntity extends BaseEntity {
 
-	@Column
-	private String naming;
+    @Column
+    private String naming;
 
-	@Column
-	private String code;
+    @Column
+    private String code;
 
-	@Column
-	private String description;
+    @Column
+    private String description;
 
-	@Column
-	private Boolean isDelete;
+    @Column
+    private Boolean isDelete;
 
-	@Column
-	private String type;
+    @Column
+    private String type;
 
-	@JoinColumn(name = "id")
-	@OneToMany
-	private Set<MappingItemEntity> items;
+    @JoinColumn(name = "id")
+    @OneToMany
+    private Set<MappingItemEntity> items;
 }

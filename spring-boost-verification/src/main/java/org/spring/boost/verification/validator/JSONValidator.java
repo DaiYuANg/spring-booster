@@ -9,8 +9,8 @@ import org.spring.boost.verification.annotation.JSON;
 
 @Slf4j
 public class JSONValidator implements ConstraintValidator<JSON, String> {
-	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return JSONUtil.isTypeJSON(value);
-	}
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        return JSONUtil.isTypeJSON(value);
+    }
 }

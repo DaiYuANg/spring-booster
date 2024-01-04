@@ -8,9 +8,9 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Repeatable(MappingProperty.class)
 public @interface Mapping {
-	String key();
+    String key();
 
-	String field() default "";
+    String field() default "";
 
-	boolean immutable() default true;
+    boolean immutable() default true;
 }

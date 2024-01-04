@@ -9,8 +9,8 @@ import org.spring.boost.verification.annotation.NotChinese;
 
 @Slf4j
 public class NotChineseValidator implements ConstraintValidator<NotChinese, String> {
-	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return !Validator.isChinese(value);
-	}
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        return !Validator.isChinese(value);
+    }
 }

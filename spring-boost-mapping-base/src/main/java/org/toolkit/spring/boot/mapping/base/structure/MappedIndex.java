@@ -10,10 +10,10 @@ import lombok.ToString;
 @ToString
 public class MappedIndex implements Serializable {
 
-	@Serial
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	private String packageName;
+    private String packageName;
 
-	private String className;
+    private String className;
 }

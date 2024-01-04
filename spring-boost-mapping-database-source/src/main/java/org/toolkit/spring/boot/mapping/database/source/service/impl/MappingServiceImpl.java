@@ -13,11 +13,11 @@ import org.toolkit.spring.boot.mapping.database.source.service.MappingService;
 @Slf4j
 public class MappingServiceImpl implements MappingService {
 
-	@Resource
-	private MappingEntityRepository mappingEntityRepository;
+    @Resource
+    private MappingEntityRepository mappingEntityRepository;
 
-	@Override
-	public Optional<MappingEntity> search(String naming) {
-		return mappingEntityRepository.findByNaming(naming);
-	}
+    @Override
+    public Optional<MappingEntity> search(String naming) {
+        return mappingEntityRepository.findByNaming(naming);
+    }
 }

@@ -12,24 +12,24 @@ import org.springframework.context.ApplicationEvent;
 @ToString
 @SuppressWarnings("this-escape")
 public abstract class LoggingEvent extends ApplicationEvent {
-	@Serial
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	public LoggingEvent(Object source) {
-		super(source);
-		log.atTrace()
-				.log(
-						"event source:{} at:{}",
-						super.getSource(),
-						DateFormat.getDateTimeInstance().format(getTimestamp()));
-	}
+    public LoggingEvent(Object source) {
+        super(source);
+        log.atTrace()
+                .log(
+                        "event source:{} at:{}",
+                        super.getSource(),
+                        DateFormat.getDateTimeInstance().format(getTimestamp()));
+    }
 
-	public LoggingEvent(Object source, Clock clock) {
-		super(source, clock);
-		log.atTrace()
-				.log(
-						"event source:{} at:{}",
-						super.getSource(),
-						DateFormat.getDateTimeInstance().format(getTimestamp()));
-	}
+    public LoggingEvent(Object source, Clock clock) {
+        super(source, clock);
+        log.atTrace()
+                .log(
+                        "event source:{} at:{}",
+                        super.getSource(),
+                        DateFormat.getDateTimeInstance().format(getTimestamp()));
+    }
 }

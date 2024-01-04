@@ -14,20 +14,20 @@ import org.springframework.web.servlet.mvc.condition.RequestCondition;
 @RequiredArgsConstructor
 public class VersioningCondition implements RequestCondition<VersioningCondition> {
 
-	private final Version version;
+    private final Version version;
 
-	@Override
-	public @NotNull VersioningCondition combine(@NotNull VersioningCondition other) {
-		return new VersioningCondition(other.version);
-	}
+    @Override
+    public @NotNull VersioningCondition combine(@NotNull VersioningCondition other) {
+        return new VersioningCondition(other.version);
+    }
 
-	@Override
-	public VersioningCondition getMatchingCondition(@NotNull HttpServletRequest request) {
-		return null;
-	}
+    @Override
+    public VersioningCondition getMatchingCondition(@NotNull HttpServletRequest request) {
+        return null;
+    }
 
-	@Override
-	public int compareTo(@NotNull VersioningCondition other, @NotNull HttpServletRequest request) {
-		return 0;
-	}
+    @Override
+    public int compareTo(@NotNull VersioningCondition other, @NotNull HttpServletRequest request) {
+        return 0;
+    }
 }

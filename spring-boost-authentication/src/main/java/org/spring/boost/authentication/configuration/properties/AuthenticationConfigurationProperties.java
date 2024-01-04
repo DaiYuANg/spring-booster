@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 public class AuthenticationConfigurationProperties {
 
-	private Boolean debug = false;
+    private Boolean debug = false;
 
-	private Set<PermitConfigProperties> permit = new HashSet<>();
+    private Set<PermitConfigProperties> permit = new HashSet<>();
 }

@@ -11,9 +11,9 @@ import org.spring.boost.verification.validator.ChineseValidator;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotChinese {
-	String message() default "{jakarta.validation.constraints.NotBlank.message}";
+    String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

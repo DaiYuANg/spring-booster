@@ -12,5 +12,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class MappingDatabaseSourceProperties {
 
-	private String threadPoolPrefix = "MappingDatabaseSource";
+    private String threadPoolPrefix = "MappingDatabaseSource";
 }

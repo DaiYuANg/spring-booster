@@ -21,15 +21,15 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 public class TestRequest {
 
-	@Resource
-	private MockMvc mockMvc;
+    @Resource
+    private MockMvc mockMvc;
 
-	@SneakyThrows
-	@Test
-	public void testRoot() {
-		mockMvc.perform(get("/"))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
-	}
+    @SneakyThrows
+    @Test
+    public void testRoot() {
+        mockMvc.perform(get("/"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
+    }
 }

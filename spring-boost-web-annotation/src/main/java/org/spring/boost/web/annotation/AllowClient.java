@@ -8,5 +8,5 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface AllowClient {
-	ClientDevice device() default ClientDevice.ALL;
+    ClientDevice device() default ClientDevice.ALL;
 }

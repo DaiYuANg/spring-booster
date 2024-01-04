@@ -15,11 +15,11 @@ import org.toolkit.spring.boot.scanner.base.ScannerResultProcessor;
 @Slf4j
 public class ScanObjectMetaData implements ScannerResultProcessor {
 
-	@Override
-	public void process(@NotNull ScanResult result, ConfigurableApplicationContext context) {
-		log.atInfo().log("mapping scan meta data");
-		val index = result.getClassesWithAnnotation(MappedObject.class).stream()
-				.collect(Collectors.toMap(classInfo -> classInfo.getPackageName() + "." + classInfo.getName(), c -> c));
-		//		log.atDebug().log("At index:{}", index);
-	}
+    @Override
+    public void process(@NotNull ScanResult result, ConfigurableApplicationContext context) {
+        log.atInfo().log("mapping scan meta data");
+        val index = result.getClassesWithAnnotation(MappedObject.class).stream()
+                .collect(Collectors.toMap(classInfo -> classInfo.getPackageName() + "." + classInfo.getName(), c -> c));
+        //		log.atDebug().log("At index:{}", index);
+    }
 }

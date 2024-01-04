@@ -9,9 +9,9 @@ import org.toolkit.spring.boot.mapping.base.structure.MappingItem;
 @Builder
 public class SourceCodeMappingItem implements MappingItem<String> {
 
-	private String value;
+    private String value;
 
-	private String text;
+    private String text;
 
-	private int sort;
+    private int sort;
 }

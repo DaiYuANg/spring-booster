@@ -19,15 +19,15 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class StartUpListener {
 
-	private final Environment env;
+    private final Environment env;
 
-	@EventListener(ApplicationStartedEvent.class)
-	@SneakyThrows
-	public void listen(@NotNull ApplicationStartedEvent event) {
-		val ip = InetAddress.getLocalHost().getHostAddress();
-		val port = env.getProperty("server.port");
-		val contextPath = requireNonNullElse(env.getProperty("server.servlet.context-path"), "/");
-		log.atInfo().log("Server startup http://{}:{}{}", ip, port, contextPath);
-		log.atInfo().log("time {} second", event.getTimeTaken().getSeconds());
-	}
+    @EventListener(ApplicationStartedEvent.class)
+    @SneakyThrows
+    public void listen(@NotNull ApplicationStartedEvent event) {
+        val ip = InetAddress.getLocalHost().getHostAddress();
+        val port = env.getProperty("server.port");
+        val contextPath = requireNonNullElse(env.getProperty("server.servlet.context-path"), "/");
+        log.atInfo().log("Server startup http://{}:{}{}", ip, port, contextPath);
+        log.atInfo().log("time {} second", event.getTimeTaken().getSeconds());
+    }
 }

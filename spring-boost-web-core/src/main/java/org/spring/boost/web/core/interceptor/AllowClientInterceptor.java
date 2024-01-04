@@ -17,25 +17,25 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Slf4j
 @Interceptor
 public class AllowClientInterceptor implements HandlerInterceptor {
-	@Override
-	public boolean preHandle(
-			@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
-		if (!(handler instanceof HandlerMethod handlerMethod)) {
-			return true;
-		}
-		val method = handlerMethod.getMethod();
-		val ann = method.getAnnotation(AllowClient.class);
+    @Override
+    public boolean preHandle(
+            @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
+        if (!(handler instanceof HandlerMethod handlerMethod)) {
+            return true;
+        }
+        val method = handlerMethod.getMethod();
+        val ann = method.getAnnotation(AllowClient.class);
 
-		if (Objects.isNull(ann) || ann.device() == ClientDevice.ALL) {
-			return true;
-		}
+        if (Objects.isNull(ann) || ann.device() == ClientDevice.ALL) {
+            return true;
+        }
 
-		val isMobile = UserAgentParser.parse(request.getHeader("user-agent")).isMobile();
-		if (isMobile && ann.device() == ClientDevice.MOBILE) {
-			return true;
-		}
+        val isMobile = UserAgentParser.parse(request.getHeader("user-agent")).isMobile();
+        if (isMobile && ann.device() == ClientDevice.MOBILE) {
+            return true;
+        }
 
-		response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-		return false;
-	}
+        response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+        return false;
+    }
 }

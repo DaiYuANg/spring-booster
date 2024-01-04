@@ -15,16 +15,16 @@ import org.toolkit.spring.boot.recorder.annotation.EnableRecording;
 @EntityScan({"org.kop.framework.spring.boot.stater.recording.entities"})
 public class RecordingAutoConfiguration {
 
-	//	@Resource
-	//	private LoggerConfiguration loggerConfiguration;
+    //	@Resource
+    //	private LoggerConfiguration loggerConfiguration;
 
-	@Resource
-	private RecordingConfigurationProperties recordingConfigurationProperties;
+    @Resource
+    private RecordingConfigurationProperties recordingConfigurationProperties;
 
-	@PostConstruct
-	public void init() {
-		Class<EnableRecording> annotatedClass = EnableRecording.class;
-		//		val r = annotatedClass.getAnnotation(EnableRecording.class);
-		//		System.err.println(r.packages());
-	}
+    @PostConstruct
+    public void init() {
+        Class<EnableRecording> annotatedClass = EnableRecording.class;
+        //		val r = annotatedClass.getAnnotation(EnableRecording.class);
+        //		System.err.println(r.packages());
+    }
 }

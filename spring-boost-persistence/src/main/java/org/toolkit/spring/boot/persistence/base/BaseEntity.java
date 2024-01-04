@@ -23,36 +23,36 @@ import org.toolkit.spring.boot.persistence.listeners.BaseEntityListener;
 @ToString
 @EntityListeners({AuditingEntityListener.class, BaseEntityListener.class})
 public class BaseEntity implements Serializable {
-	@Serial
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)
-	@GeneratedValue(generator = "SnowflakeGenerator")
-	@Column(updatable = false, nullable = false)
-	private String id;
+    @Id
+    @GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)
+    @GeneratedValue(generator = "SnowflakeGenerator")
+    @Column(updatable = false, nullable = false)
+    private String id;
 
-	@Column(nullable = false)
-	@CreatedDate
-	private Date createAt;
+    @Column(nullable = false)
+    @CreatedDate
+    private Date createAt;
 
-	@Column
-	private String createBy;
+    @Column
+    private String createBy;
 
-	@Column
-	@LastModifiedDate
-	private String updateBy;
+    @Column
+    @LastModifiedDate
+    private String updateBy;
 
-	@Column
-	private Date updateAt;
+    @Column
+    private Date updateAt;
 
-	@Column
-	@Version
-	private Integer version;
+    @Column
+    @Version
+    private Integer version;
 
-	@Column
-	private String sort;
+    @Column
+    private String sort;
 
-	@Column
-	String ext;
+    @Column
+    String ext;
 }

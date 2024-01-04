@@ -20,34 +20,34 @@ import org.springframework.util.ClassUtils;
 @Slf4j
 class DevServiceSkipCheck {
 
-	private static final Set<String> REQUIRED_CLASSES = Set.of("org.junit.jupiter.api.Test", "org.junit.Test");
+    private static final Set<String> REQUIRED_CLASSES = Set.of("org.junit.jupiter.api.Test", "org.junit.Test");
 
-	private static final Set<String> SKIPPED_STACK_ELEMENTS;
+    private static final Set<String> SKIPPED_STACK_ELEMENTS;
 
-	static {
-		val skipped = new LinkedHashSet<>(ImmutableSet.of(
-				"org.junit.runners.",
-				"org.junit.platform.",
-				"org.springframework.boot.test.",
-				SpringApplicationAotProcessor.class.getName(),
-				"cucumber.runtime."));
-		SKIPPED_STACK_ELEMENTS = unmodifiableSet(skipped);
-	}
+    static {
+        val skipped = new LinkedHashSet<>(ImmutableSet.of(
+                "org.junit.runners.",
+                "org.junit.platform.",
+                "org.springframework.boot.test.",
+                SpringApplicationAotProcessor.class.getName(),
+                "cucumber.runtime."));
+        SKIPPED_STACK_ELEMENTS = unmodifiableSet(skipped);
+    }
 
-	public static boolean shouldSkip(ClassLoader classLoader) {
-		if (!hasAtLeastOneRequiredClass(classLoader)) {
-			return false;
-		}
-		Thread thread = Thread.currentThread();
-		return Arrays.stream(thread.getStackTrace()).anyMatch(DevServiceSkipCheck::isSkippedStackElement);
-	}
+    public static boolean shouldSkip(ClassLoader classLoader) {
+        if (!hasAtLeastOneRequiredClass(classLoader)) {
+            return false;
+        }
+        Thread thread = Thread.currentThread();
+        return Arrays.stream(thread.getStackTrace()).anyMatch(DevServiceSkipCheck::isSkippedStackElement);
+    }
 
-	private static boolean hasAtLeastOneRequiredClass(ClassLoader classLoader) {
-		return REQUIRED_CLASSES.stream().anyMatch(requiredClass -> ClassUtils.isPresent(requiredClass, classLoader));
-	}
+    private static boolean hasAtLeastOneRequiredClass(ClassLoader classLoader) {
+        return REQUIRED_CLASSES.stream().anyMatch(requiredClass -> ClassUtils.isPresent(requiredClass, classLoader));
+    }
 
-	private static boolean isSkippedStackElement(StackTraceElement element) {
-		return SKIPPED_STACK_ELEMENTS.stream()
-				.anyMatch(skipped -> element.getClassName().startsWith(skipped));
-	}
+    private static boolean isSkippedStackElement(StackTraceElement element) {
+        return SKIPPED_STACK_ELEMENTS.stream()
+                .anyMatch(skipped -> element.getClassName().startsWith(skipped));
+    }
 }

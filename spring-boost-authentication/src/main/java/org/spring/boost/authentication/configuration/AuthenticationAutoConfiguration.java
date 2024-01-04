@@ -39,9 +39,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @AutoConfiguration
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @AutoConfigureAfter({
-	DispatcherServletAutoConfiguration.class,
-	TaskExecutionAutoConfiguration.class,
-	ValidationAutoConfiguration.class
+    DispatcherServletAutoConfiguration.class,
+    TaskExecutionAutoConfiguration.class,
+    ValidationAutoConfiguration.class
 })
 @EnableWebSecurity
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class, JwtConfigProperties.class})
@@ -50,49 +50,49 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @RequiredArgsConstructor
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 
-	private final AuthenticationConfigurationProperties authenticationConfigurationProperties;
+    private final AuthenticationConfigurationProperties authenticationConfigurationProperties;
 
-	private final AuthenticationProvider authenticationProvider;
+    private final AuthenticationProvider authenticationProvider;
 
-	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-	private final Set<AntPathRequestMatcher> PermitAllRequestMather;
+    private final Set<AntPathRequestMatcher> PermitAllRequestMather;
 
-	private final BeanRegistry beanRegistry;
+    private final BeanRegistry beanRegistry;
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(
-			@NotNull HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
-		beanRegistry
-				.getBeanWithAnnotationMap(AuthenticationAfterFilter.class, Filter.class)
-				.forEach((a, f) -> http.addFilterAfter(f, a.value()));
-		beanRegistry
-				.getBeanWithAnnotationMap(AuthenticationBeforeFilter.class, Filter.class)
-				.forEach((a, f) -> http.addFilterBefore(f, a.value()));
-		beanRegistry
-				.getBeanWithAnnotationMap(AuthenticationFilter.class, Filter.class)
-				.forEach((a, f) -> http.addFilter(f));
-		beanRegistry
-				.getBeanWithAnnotationMap(AuthenticationAtFilter.class, Filter.class)
-				.forEach((a, f) -> http.addFilterAt(f, a.value()));
-		http.cors(AbstractHttpConfigurer::disable);
-		http.csrf(AbstractHttpConfigurer::disable);
-		http.authorizeHttpRequests(req -> {
-			PermitAllRequestMather.stream()
-					.map(req::requestMatchers)
-					.forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
-			req.anyRequest().authenticated();
-		});
-		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		http.authenticationManager(authenticationManager);
-		http.authenticationProvider(authenticationProvider);
-		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-		log.info("build SecurityFilterChain");
-		return http.build();
-	}
+    @Bean
+    public SecurityFilterChain securityFilterChain(
+            @NotNull HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
+        beanRegistry
+                .getBeanWithAnnotationMap(AuthenticationAfterFilter.class, Filter.class)
+                .forEach((a, f) -> http.addFilterAfter(f, a.value()));
+        beanRegistry
+                .getBeanWithAnnotationMap(AuthenticationBeforeFilter.class, Filter.class)
+                .forEach((a, f) -> http.addFilterBefore(f, a.value()));
+        beanRegistry
+                .getBeanWithAnnotationMap(AuthenticationFilter.class, Filter.class)
+                .forEach((a, f) -> http.addFilter(f));
+        beanRegistry
+                .getBeanWithAnnotationMap(AuthenticationAtFilter.class, Filter.class)
+                .forEach((a, f) -> http.addFilterAt(f, a.value()));
+        http.cors(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.authorizeHttpRequests(req -> {
+            PermitAllRequestMather.stream()
+                    .map(req::requestMatchers)
+                    .forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
+            req.anyRequest().authenticated();
+        });
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.authenticationManager(authenticationManager);
+        http.authenticationProvider(authenticationProvider);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        log.info("build SecurityFilterChain");
+        return http.build();
+    }
 
-	@Override
-	public void customize(@NotNull WebSecurity web) {
-		web.debug(authenticationConfigurationProperties.getDebug());
-	}
+    @Override
+    public void customize(@NotNull WebSecurity web) {
+        web.debug(authenticationConfigurationProperties.getDebug());
+    }
 }

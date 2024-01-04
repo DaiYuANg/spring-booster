@@ -12,13 +12,13 @@ import org.toolkit.spring.boot.mapping.base.annotation.MappingProperty;
 
 @UtilityClass
 public class MappedUtil {
-	public boolean isMappedTarget(@NotNull Class<?> clazz) {
-		val isPresentMapped = clazz.isAnnotationPresent(MappingProperty.class);
-		val fields = Arrays.stream(clazz.getDeclaredFields())
-				.peek(field -> field.setAccessible(true))
-				.filter(field -> field.isAnnotationPresent(Mapping.class))
-				.toList();
-		//		return CollUtil.isNotEmpty(fields) && isPresentMapped;
-		return isPresentMapped;
-	}
+    public boolean isMappedTarget(@NotNull Class<?> clazz) {
+        val isPresentMapped = clazz.isAnnotationPresent(MappingProperty.class);
+        val fields = Arrays.stream(clazz.getDeclaredFields())
+                .peek(field -> field.setAccessible(true))
+                .filter(field -> field.isAnnotationPresent(Mapping.class))
+                .toList();
+        //		return CollUtil.isNotEmpty(fields) && isPresentMapped;
+        return isPresentMapped;
+    }
 }

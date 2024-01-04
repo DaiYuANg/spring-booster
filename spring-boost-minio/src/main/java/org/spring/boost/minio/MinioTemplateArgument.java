@@ -25,26 +25,18 @@ public class MinioTemplateArgument {
 
     private final MinioAdminClient adminClient;
 
-    /**
-     * The default bucket in template where no bucket argument method
-     */
+    /** The default bucket in template where no bucket argument method */
     private final String bucket;
 
-    /**
-     * If you do not hava a tika instance just create a not configured
-     */
+    /** If you do not hava a tika instance just create a not configured */
     @Builder.Default
     private final Tika tika = new Tika();
 
-    /**
-     * Minio hooks of method life cycle
-     */
+    /** Minio hooks of method life cycle */
     @Singular
     private final ImmutableSet<MinioHook> hooks;
 
-    /**
-     * Is check duplicate flag
-     */
+    /** Is check duplicate flag */
     @Builder.Default
     private final boolean checkDuplicate = false;
 

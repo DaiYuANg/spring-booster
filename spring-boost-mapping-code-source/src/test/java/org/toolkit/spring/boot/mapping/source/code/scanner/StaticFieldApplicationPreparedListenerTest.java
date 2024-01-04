@@ -6,16 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StaticFieldApplicationPreparedListenerTest {
-	private ClassGraph classGraph;
+    private ClassGraph classGraph;
 
-	@BeforeEach
-	public void setup() {
-		classGraph = new ClassGraph()
-				.verbose(false)
-				.enableAllInfo()
-				.acceptPackages("org.toolkit.spring.boot.mapping.source.code");
-	}
+    @BeforeEach
+    public void setup() {
+        classGraph = new ClassGraph()
+                .verbose(false)
+                .enableAllInfo()
+                .acceptPackages("org.toolkit.spring.boot.mapping.source.code");
+    }
 
-	@Test
-	public void testScanner() {}
+    @Test
+    public void testScanner() {}
 }

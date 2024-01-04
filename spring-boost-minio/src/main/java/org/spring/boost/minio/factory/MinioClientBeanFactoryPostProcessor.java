@@ -20,8 +20,8 @@ public class MinioClientBeanFactoryPostProcessor extends ClientFactory implement
     private final OkHttpClient okHttpClient;
 
     /**
-     * Register minio client instance into spring ioc
-     * And naming is @see{@link org.spring.boost.minio.properties.MinioConfigurationProperties} clients key
+     * Register minio client instance into spring ioc And naming is @see{@link
+     * org.spring.boost.minio.properties.MinioConfigurationProperties} clients key
      */
     @Override
     public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {

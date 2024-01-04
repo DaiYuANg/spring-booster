@@ -25,7 +25,8 @@ public class MinioBeanFactoryAutoConfigure {
     private MinioConfigurationProperties minioConfigurationProperties;
 
     /**
-     * Register bean factory post processor is executed before register bean done so need manual binder environment to make properties
+     * Register bean factory post processor is executed before register bean done so need manual
+     * binder environment to make properties
      *
      * @param environment basic environment
      * @return @see{@link MinioConfigurationProperties}
@@ -42,7 +43,7 @@ public class MinioBeanFactoryAutoConfigure {
     /**
      * Minio client bean factory
      *
-     * @param environment  read configuration properties
+     * @param environment read configuration properties
      * @param okHttpClient custom okHttpClient
      */
     @Bean
@@ -75,11 +76,7 @@ public class MinioBeanFactoryAutoConfigure {
     @Bean
     @DependsOn({"primaryMinioClientBeanFactoryPostProcessor", "primaryMinioAdminBeanFactoryPostProcessor"})
     PrimaryTemplateBeanFactoryPostProcessor primaryTemplateBeanFactoryPostProcessor(
-            @Name("TikaForMinio") Tika tika,
-            Environment environment,
-            Set<MinioHook> hooks,
-            OkHttpClient okHttpClient
-    ) {
+            @Name("TikaForMinio") Tika tika, Environment environment, Set<MinioHook> hooks, OkHttpClient okHttpClient) {
         return PrimaryTemplateBeanFactoryPostProcessor.builder()
                 .properties(bindMinioConfigurationProperties(environment))
                 .tika(tika)
@@ -91,11 +88,7 @@ public class MinioBeanFactoryAutoConfigure {
     @Bean
     @DependsOn({"minioClientBeanFactoryPostProcessor", "minioAdminClientBeanFactoryPostProcessor"})
     MinioTemplateBeanFactoryPostProcessor minioTemplateBeanFactoryPostProcessor(
-            @Name("TikaForMinio") Tika tika,
-            Environment environment,
-            Set<MinioHook> hooks,
-            OkHttpClient okHttpClient
-    ) {
+            @Name("TikaForMinio") Tika tika, Environment environment, Set<MinioHook> hooks, OkHttpClient okHttpClient) {
         return MinioTemplateBeanFactoryPostProcessor.builder()
                 .properties(bindMinioConfigurationProperties(environment))
                 .tika(tika)

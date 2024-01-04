@@ -11,14 +11,14 @@ import org.toolkit.spring.boot.mapping.source.code.annotation.StaticGroup;
 
 @Slf4j
 public class DataBeanProcessor extends ClassPathScanningCandidateComponentProvider {
-	public DataBeanProcessor() {
-		super(false);
-		addIncludeFilter(new AnnotationTypeFilter(StaticGroup.class));
-		addIncludeFilter(new AnnotationTypeFilter(EnumMapping.class));
-	}
+    public DataBeanProcessor() {
+        super(false);
+        addIncludeFilter(new AnnotationTypeFilter(StaticGroup.class));
+        addIncludeFilter(new AnnotationTypeFilter(EnumMapping.class));
+    }
 
-	@Override
-	protected boolean isCandidateComponent(@NotNull AnnotatedBeanDefinition beanDefinition) {
-		return true;
-	}
+    @Override
+    protected boolean isCandidateComponent(@NotNull AnnotatedBeanDefinition beanDefinition) {
+        return true;
+    }
 }

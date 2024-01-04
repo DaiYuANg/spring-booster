@@ -31,38 +31,38 @@ import org.toolkit.spring.boot.mapping.database.source.repository.MappingEntityR
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @EnableJpaAuditing
 public class TestMappingRepository {
-	@Container
-	private static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:latest"))
-			.withUsername("root")
-			.withPassword("root")
-			.withDatabaseName("mapping");
+    @Container
+    private static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:latest"))
+            .withUsername("root")
+            .withPassword("root")
+            .withDatabaseName("mapping");
 
-	@DynamicPropertySource
-	static void configureTestProperties(@NotNull DynamicPropertyRegistry registry) {
-		registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
-		registry.add("spring.datasource.username", mySQLContainer::getUsername);
-		registry.add("spring.datasource.password", mySQLContainer::getPassword);
-		registry.add("spring.jpa.hibernate.ddl-auto", () -> "create");
-		registry.add("spring.jpa.properties.hibernate.format_sql", () -> true);
-		registry.add("logging.level.org.hibernate.type.descriptor.sql", () -> "trace");
-		registry.add("logging.level.org.hibernate.SQL", () -> "debug");
-	}
+    @DynamicPropertySource
+    static void configureTestProperties(@NotNull DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", mySQLContainer::getUsername);
+        registry.add("spring.datasource.password", mySQLContainer::getPassword);
+        registry.add("spring.jpa.hibernate.ddl-auto", () -> "create");
+        registry.add("spring.jpa.properties.hibernate.format_sql", () -> true);
+        registry.add("logging.level.org.hibernate.type.descriptor.sql", () -> "trace");
+        registry.add("logging.level.org.hibernate.SQL", () -> "debug");
+    }
 
-	@Resource
-	private MappingEntityRepository repository;
+    @Resource
+    private MappingEntityRepository repository;
 
-	//	@Test
-	public void testRepo() {
-		val f = new Faker();
-		val fakeData = range(0, 1000)
-				.mapToObj(i -> new MappingEntity()
-						.setIsDelete(false)
-						.setNaming(f.name().name())
-						.setDescription(f.random().hex())
-						.setCode(f.code().asin())
-						.setType(f.computer().type()))
-				.toList();
-		repository.saveAllAndFlush(fakeData);
-		assertEquals(1000, repository.count());
-	}
+    //	@Test
+    public void testRepo() {
+        val f = new Faker();
+        val fakeData = range(0, 1000)
+                .mapToObj(i -> new MappingEntity()
+                        .setIsDelete(false)
+                        .setNaming(f.name().name())
+                        .setDescription(f.random().hex())
+                        .setCode(f.code().asin())
+                        .setType(f.computer().type()))
+                .toList();
+        repository.saveAllAndFlush(fakeData);
+        assertEquals(1000, repository.count());
+    }
 }

@@ -2,11 +2,10 @@
 package org.spring.boost.minio.properties;
 
 import io.minio.admin.QuotaUnit;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.Objects;
 
 @Getter
 @Setter

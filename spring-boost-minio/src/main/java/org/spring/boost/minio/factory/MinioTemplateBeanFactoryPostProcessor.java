@@ -18,8 +18,9 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 public class MinioTemplateBeanFactoryPostProcessor extends TemplateFactory implements BeanFactoryPostProcessor {
 
     /**
-     * Register @see{@link org.spring.boost.minio.MinioTemplate} MinioTemplate
-     * Key of spring ioc is And naming is @see{@link org.spring.boost.minio.properties.MinioConfigurationProperties} clients key + @see{@link BeanNaming} TEMPLATE
+     * Register @see{@link org.spring.boost.minio.MinioTemplate} MinioTemplate Key of spring ioc is
+     * And naming is @see{@link org.spring.boost.minio.properties.MinioConfigurationProperties}
+     * clients key + @see{@link BeanNaming} TEMPLATE
      *
      * @param beanFactory Spring Listable Bean Factory
      * @throws BeansException Not throws

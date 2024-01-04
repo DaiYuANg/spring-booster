@@ -9,8 +9,8 @@ import org.spring.boost.verification.annotation.ChinaCreditCode;
 
 @Slf4j
 public class ChinaCreditCodeValidator implements ConstraintValidator<ChinaCreditCode, String> {
-	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return Validator.isCreditCode(value);
-	}
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        return Validator.isCreditCode(value);
+    }
 }

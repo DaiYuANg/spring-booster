@@ -15,23 +15,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @TestPropertySource(locations = "classpath:application-test.yaml")
 public class TestDotenvBoot {
-	@Autowired
-	private ConfigurableEnvironment environment;
+    @Autowired
+    private ConfigurableEnvironment environment;
 
-	@Test
-	void testBoot() {
-		Map<String, Object> properties = environment.getSystemProperties();
-		for (PropertySource<?> propertySource : environment.getPropertySources()) {
-			if (propertySource.getSource() instanceof Map) {
-				@SuppressWarnings("unchecked")
-				Map<String, Object> map = (Map<String, Object>) propertySource.getSource();
-				properties.putAll(map);
-			}
-		}
-		properties.forEach((k, v) -> {
-			System.err.println(k);
-			System.err.println(v);
-		});
-		System.err.println(environment.getProperty("spring.application.name"));
-	}
+    @Test
+    void testBoot() {
+        Map<String, Object> properties = environment.getSystemProperties();
+        for (PropertySource<?> propertySource : environment.getPropertySources()) {
+            if (propertySource.getSource() instanceof Map) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> map = (Map<String, Object>) propertySource.getSource();
+                properties.putAll(map);
+            }
+        }
+        properties.forEach((k, v) -> {
+            System.err.println(k);
+            System.err.println(v);
+        });
+        System.err.println(environment.getProperty("spring.application.name"));
+    }
 }

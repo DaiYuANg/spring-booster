@@ -9,19 +9,19 @@ import org.toolkit.spring.boot.mapping.core.base.MappingSource;
 @Component
 @Slf4j
 public class DatabaseMappingSource implements MappingSource {
-	@Override
-	public Optional<Object> getLabel(String key, String value) {
-		return Optional.empty();
-	}
+    @Override
+    public Optional<Object> getLabel(String key, String value) {
+        return Optional.empty();
+    }
 
-	//	@Resource(name = "DataSourceMapOfMappingDatabaseSource")
-	//	private ConcurrentMap<String, DataSource> dataSourceMap;
+    //	@Resource(name = "DataSourceMapOfMappingDatabaseSource")
+    //	private ConcurrentMap<String, DataSource> dataSourceMap;
 
-	//	@SneakyThrows
-	//	@PostConstruct
-	//	public void init() {
-	//		for (DataSource value : dataSourceMap.values()) {
-	//			val metadata = value.getConnection().getMetaData();
-	//		}
-	//	}
+    //	@SneakyThrows
+    //	@PostConstruct
+    //	public void init() {
+    //		for (DataSource value : dataSourceMap.values()) {
+    //			val metadata = value.getConnection().getMetaData();
+    //		}
+    //	}
 }

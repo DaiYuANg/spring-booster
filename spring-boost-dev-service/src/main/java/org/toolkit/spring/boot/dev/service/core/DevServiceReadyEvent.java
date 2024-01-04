@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationEvent;
 @Getter
 @ToString
 public class DevServiceReadyEvent extends ApplicationEvent {
-	public DevServiceReadyEvent(Object source) {
-		super(source);
-	}
+    public DevServiceReadyEvent(Object source) {
+        super(source);
+    }
 }

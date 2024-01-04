@@ -9,5 +9,5 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ToolkitConfigurationProperties {
-	private String packageName;
+    private String packageName;
 }

@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull;
 
 public interface MappingItem<T> {
 
-	@NotNull T getValue();
+    @NotNull T getValue();
 
-	@NotNull String getText();
+    @NotNull String getText();
 
-	int getSort();
+    int getSort();
 }

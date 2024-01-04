@@ -13,9 +13,9 @@ import org.spring.boost.verification.validator.ChinaCreditCodeValidator;
 @Retention(RetentionPolicy.RUNTIME)
 @NotBlank
 public @interface ChinaCreditCode {
-	String message() default "{jakarta.validation.constraints.NotBlank.message}";
+    String message() default "{jakarta.validation.constraints.NotBlank.message}";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

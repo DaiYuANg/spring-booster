@@ -21,14 +21,14 @@ class FormatterPlugin : Plugin<Project> {
         project.extensions.configure(SpotlessExtension::class.java) {
             format("misc") {
                 target("*.md", ".gitignore", "**/*.java")
-                indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+                indentWithSpaces(2)
                 endWithNewline()
             }
             java {
                 target("**/*.java")
                 importOrder()
                 palantirJavaFormat()
-                indentWithTabs()
+                indentWithSpaces(2)
                 removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
                 formatAnnotations()
                     .addTypeAnnotation("Empty")
@@ -41,10 +41,12 @@ class FormatterPlugin : Plugin<Project> {
             kotlinGradle {
                 target("**/*.gradle.kts") // default target for kotlinGradle
                 ktfmt() // or ktfmt() or prettier()
+                indentWithSpaces(2)
             }
             kotlin {
                 ktfmt()
                 ktlint()
+                indentWithSpaces(2)
             }
         }
 

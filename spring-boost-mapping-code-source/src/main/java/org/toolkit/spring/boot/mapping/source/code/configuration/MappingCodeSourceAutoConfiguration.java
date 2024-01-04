@@ -13,8 +13,8 @@ import org.toolkit.spring.boot.mapping.source.code.processor.DataBeanProcessor;
 @EnableConfigurationProperties(MappingCodeSourceConfigurationProperties.class)
 @ComponentScan("org.toolkit.spring.boot.mapping.source.code.**.*")
 public class MappingCodeSourceAutoConfiguration {
-	@Bean
-	public DataBeanProcessor beanProcessor() {
-		return new DataBeanProcessor();
-	}
+    @Bean
+    public DataBeanProcessor beanProcessor() {
+        return new DataBeanProcessor();
+    }
 }

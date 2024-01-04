@@ -17,16 +17,16 @@ import org.springframework.boot.actuate.endpoint.annotation.Selector;
 @Builder
 public class MinioEndpoint {
 
-	@Singular
-	private final ImmutableMap<String, MinioTemplate> templates;
+    @Singular
+    private final ImmutableMap<String, MinioTemplate> templates;
 
-	@ReadOperation
-	public String read() {
-		return null;
-	}
+    @ReadOperation
+    public String read() {
+        return null;
+    }
 
-	@ReadOperation
-	public String read(@Selector String key) {
-		return null;
-	}
+    @ReadOperation
+    public String read(@Selector String key) {
+        return null;
+    }
 }

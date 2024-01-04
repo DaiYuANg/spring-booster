@@ -14,11 +14,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class MinioConfigurationProperties {
 
-	public static final String prefix = "spring.boost.minio";
+    public static final String prefix = "spring.boost.minio";
 
-	private Map<String, MinioClientConfig> clients = new HashMap<>();
+    private Map<String, MinioClientConfig> clients = new HashMap<>();
 
-	private MinioClientConfig client;
+    private MinioClientConfig client;
 
-	private boolean checkDuplicate = false;
+    private boolean checkDuplicate = false;
 }

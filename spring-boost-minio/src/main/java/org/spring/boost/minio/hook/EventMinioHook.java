@@ -10,10 +10,10 @@ import org.springframework.context.ApplicationEventPublisher;
 @RequiredArgsConstructor
 @Slf4j
 public class EventMinioHook implements MinioHook {
-	private final ApplicationEventPublisher eventPublisher;
+    private final ApplicationEventPublisher eventPublisher;
 
-	@Override
-	public void afterCreateSuccess(ObjectWriteResponse response) {
-		eventPublisher.publishEvent(new ObjectCreateEvent(this, response));
-	}
+    @Override
+    public void afterCreateSuccess(ObjectWriteResponse response) {
+        eventPublisher.publishEvent(new ObjectCreateEvent(this, response));
+    }
 }

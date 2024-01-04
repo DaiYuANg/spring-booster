@@ -10,11 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBoostCLI {
 
-	static {
-		AnsiConsole.systemInstall();
-	}
+    static {
+        AnsiConsole.systemInstall();
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBoostCLI.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBoostCLI.class, args);
+    }
 }

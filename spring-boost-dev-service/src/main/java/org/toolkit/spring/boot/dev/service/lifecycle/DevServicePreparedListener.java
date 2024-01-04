@@ -17,21 +17,21 @@ import org.toolkit.spring.boot.dev.service.config.DevServiceConfigurationPropert
 @EnableConfigurationProperties(DevServiceConfigurationProperties.class)
 public class DevServicePreparedListener implements ApplicationListener<ApplicationPreparedEvent> {
 
-	private final SpringApplicationShutdownHandlers shutdownHandlers;
+    private final SpringApplicationShutdownHandlers shutdownHandlers;
 
-	DevServicePreparedListener(SpringApplicationShutdownHandlers shutdownHandlers) {
-		this.shutdownHandlers = shutdownHandlers;
-	}
+    DevServicePreparedListener(SpringApplicationShutdownHandlers shutdownHandlers) {
+        this.shutdownHandlers = shutdownHandlers;
+    }
 
-	@Override
-	public void onApplicationEvent(@NotNull ApplicationPreparedEvent event) {
-		log.atInfo().log("Dev service active");
-		ConfigurableApplicationContext applicationContext = event.getApplicationContext();
-		Binder binder = Binder.get(applicationContext.getEnvironment());
+    @Override
+    public void onApplicationEvent(@NotNull ApplicationPreparedEvent event) {
+        log.atInfo().log("Dev service active");
+        ConfigurableApplicationContext applicationContext = event.getApplicationContext();
+        Binder binder = Binder.get(applicationContext.getEnvironment());
 
-		Set<ApplicationListener<?>> eventListeners =
-				event.getSpringApplication().getListeners();
-		val lifecycle = new DevServiceLifecycle(applicationContext, binder, eventListeners);
-		lifecycle.start();
-	}
+        Set<ApplicationListener<?>> eventListeners =
+                event.getSpringApplication().getListeners();
+        val lifecycle = new DevServiceLifecycle(applicationContext, binder, eventListeners);
+        lifecycle.start();
+    }
 }

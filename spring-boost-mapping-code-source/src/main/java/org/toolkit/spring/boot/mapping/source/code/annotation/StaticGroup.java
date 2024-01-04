@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 public @interface StaticGroup {
 
-	String description() default "";
+    String description() default "";
 }

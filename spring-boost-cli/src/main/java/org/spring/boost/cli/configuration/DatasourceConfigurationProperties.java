@@ -9,11 +9,11 @@ import lombok.ToString;
 @Getter
 @ToString
 public class DatasourceConfigurationProperties {
-	private String url;
+    private String url;
 
-	private String username;
+    private String username;
 
-	private String password;
+    private String password;
 
-	private String driverClassName;
+    private String driverClassName;
 }

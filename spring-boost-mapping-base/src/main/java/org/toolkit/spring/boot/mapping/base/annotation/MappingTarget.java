@@ -7,9 +7,9 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 @Documented
 public @interface MappingTarget {
-	/**
-	 *
-	 * @return a class type for pretreatment
-	 */
-	Class<?> pretreatment() default MappingTarget.class;
+    /**
+     *
+     * @return a class type for pretreatment
+     */
+    Class<?> pretreatment() default MappingTarget.class;
 }

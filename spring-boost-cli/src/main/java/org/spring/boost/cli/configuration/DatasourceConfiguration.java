@@ -15,17 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class DatasourceConfiguration {
 
-	@Resource
-	private DatasourceConfigurationProperties datasourceConfigurationProperties;
+    @Resource
+    private DatasourceConfigurationProperties datasourceConfigurationProperties;
 
-	@Bean
-	@ConditionalOnProperty(name = "spring.boost.datasource.url")
-	public DataSource getDataSource() {
-		DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-		dataSourceBuilder.driverClassName(datasourceConfigurationProperties.getDriverClassName());
-		dataSourceBuilder.url(datasourceConfigurationProperties.getUrl());
-		dataSourceBuilder.username(datasourceConfigurationProperties.getUsername());
-		dataSourceBuilder.password(datasourceConfigurationProperties.getPassword());
-		return dataSourceBuilder.build();
-	}
+    @Bean
+    @ConditionalOnProperty(name = "spring.boost.datasource.url")
+    public DataSource getDataSource() {
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName(datasourceConfigurationProperties.getDriverClassName());
+        dataSourceBuilder.url(datasourceConfigurationProperties.getUrl());
+        dataSourceBuilder.username(datasourceConfigurationProperties.getUsername());
+        dataSourceBuilder.password(datasourceConfigurationProperties.getPassword());
+        return dataSourceBuilder.build();
+    }
 }

@@ -11,12 +11,12 @@ import org.springframework.context.ApplicationContext;
 @Slf4j
 public class AdapterAutoConfiguration {
 
-	@Resource
-	private ApplicationContext context;
-	//
-	//	@Bean
-	//	public ConcurrentMap<String, Cache<?, ?>> cachedAdapterConcurrentMap() {
-	//		return context.getBeansOfType(Cache.class).entrySet().stream()
-	//				.collect(Collectors.toConcurrentMap(Map.Entry::getKey, entry -> (Cache<?, ?>) entry.getValue()));
-	//	}
+    @Resource
+    private ApplicationContext context;
+    //
+    //	@Bean
+    //	public ConcurrentMap<String, Cache<?, ?>> cachedAdapterConcurrentMap() {
+    //		return context.getBeansOfType(Cache.class).entrySet().stream()
+    //				.collect(Collectors.toConcurrentMap(Map.Entry::getKey, entry -> (Cache<?, ?>) entry.getValue()));
+    //	}
 }

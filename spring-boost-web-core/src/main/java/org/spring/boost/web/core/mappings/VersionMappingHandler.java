@@ -15,20 +15,20 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
 
 @Slf4j
 public class VersionMappingHandler extends RequestMappingInfoHandlerMapping {
-	@Override
-	protected boolean isHandler(@NotNull Class<?> beanType) {
-		val version = AnnotationUtils.findAnnotation(beanType, Version.class);
-		return Objects.nonNull(version);
-	}
+    @Override
+    protected boolean isHandler(@NotNull Class<?> beanType) {
+        val version = AnnotationUtils.findAnnotation(beanType, Version.class);
+        return Objects.nonNull(version);
+    }
 
-	@Override
-	protected RequestMappingInfo getMappingForMethod(@NotNull Method method, @NotNull Class<?> handlerType) {
-		//        val version = AnnotationUtils.findAnnotation(method, Version.class);
-		//        return createCondition(version);
-		return null;
-	}
+    @Override
+    protected RequestMappingInfo getMappingForMethod(@NotNull Method method, @NotNull Class<?> handlerType) {
+        //        val version = AnnotationUtils.findAnnotation(method, Version.class);
+        //        return createCondition(version);
+        return null;
+    }
 
-	private RequestCondition<VersioningCondition> createCondition(Version version) {
-		return version == null ? null : new VersioningCondition(version);
-	}
+    private RequestCondition<VersioningCondition> createCondition(Version version) {
+        return version == null ? null : new VersioningCondition(version);
+    }
 }

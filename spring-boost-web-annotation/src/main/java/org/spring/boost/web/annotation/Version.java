@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.Mapping;
 @Documented
 @Mapping
 public @interface Version {
-	@AliasFor(value = "value")
-	String version() default "";
+    @AliasFor(value = "value")
+    String version() default "";
 
-	@AliasFor(value = "desc")
-	String description() default "";
+    @AliasFor(value = "desc")
+    String description() default "";
 
-	ClientDevice device() default ClientDevice.ALL;
+    ClientDevice device() default ClientDevice.ALL;
 }

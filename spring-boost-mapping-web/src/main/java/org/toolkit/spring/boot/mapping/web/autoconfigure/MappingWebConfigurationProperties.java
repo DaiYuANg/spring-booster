@@ -9,5 +9,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 public class MappingWebConfigurationProperties {
-	private int nestingObjectDeep = 3;
+    private int nestingObjectDeep = 3;
 }

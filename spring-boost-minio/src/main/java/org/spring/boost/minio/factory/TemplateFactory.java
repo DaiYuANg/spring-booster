@@ -3,6 +3,7 @@ package org.spring.boost.minio.factory;
 
 import io.minio.MinioClient;
 import io.minio.admin.MinioAdminClient;
+import java.util.Set;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -15,11 +16,9 @@ import org.spring.boost.minio.properties.MinioClientConfig;
 import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
-import java.util.Set;
-
 /**
- * Common {@link MinioTemplate} factory
- * TODO MinioTemplateArgument and MinioTemplate Builder pattern maybe is bad design??
+ * Common {@link MinioTemplate} factory TODO MinioTemplateArgument and MinioTemplate Builder pattern
+ * maybe is bad design??
  *
  * @author daiyuang
  */
@@ -34,7 +33,8 @@ public abstract class TemplateFactory {
 
     protected final OkHttpClient httpClient;
 
-    protected void registerTemplates(@NotNull String prefixKey, @NotNull ConfigurableListableBeanFactory beanFactory, MinioClientConfig config) {
+    protected void registerTemplates(
+            @NotNull String prefixKey, @NotNull ConfigurableListableBeanFactory beanFactory, MinioClientConfig config) {
         val client = beanFactory.getBean(BeanNaming.buildAdminName(BeanNaming.CLIENT), MinioClient.class);
         val adminClient = beanFactory.getBean(BeanNaming.buildAdminName(BeanNaming.ADMIN), MinioAdminClient.class);
         val arg = MinioTemplateArgument.builder()
@@ -43,6 +43,7 @@ public abstract class TemplateFactory {
                 .tika(tika)
                 .hooks(hooks)
                 .okHttpClient(httpClient)
+                .config(config)
                 .checkDuplicate(properties.isCheckDuplicate())
                 .build();
         val createTemplate = new MinioCreateTemplate(arg);

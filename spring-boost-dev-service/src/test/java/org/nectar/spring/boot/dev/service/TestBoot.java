@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = TestApplication.class)
 public class TestBoot {
 
-	@Test
-	void testBoot() {
-		System.err.println("123");
-	}
+    @Test
+    void testBoot() {
+        System.err.println("123");
+    }
 }

@@ -16,11 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @TestPropertySource("classpath:application.yaml")
 public class TestBeanRegister {
-	@Resource
-	@Qualifier("client1") private MinioClient client;
+    @Resource
+    @Qualifier("client1") private MinioClient client;
 
-	@Test
-	void testBeanInjection() {
-		Assertions.assertNotNull(client);
-	}
+    @Test
+    void testBeanInjection() {
+        Assertions.assertNotNull(client);
+    }
 }

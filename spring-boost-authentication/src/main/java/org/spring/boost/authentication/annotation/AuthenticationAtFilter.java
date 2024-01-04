@@ -11,5 +11,5 @@ import org.springframework.stereotype.Component;
 @Component
 public @interface AuthenticationAtFilter {
 
-	Class<? extends Filter> value();
+    Class<? extends Filter> value();
 }

@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Setter
 @ToString
 public class PermitConfigProperties {
-	private String pattern;
-	private Set<RequestMethod> method;
+    private String pattern;
+    private Set<RequestMethod> method;
 }

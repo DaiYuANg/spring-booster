@@ -15,18 +15,18 @@ import org.springframework.core.env.MapPropertySource;
 @Slf4j
 public class DotenvInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-	@Override
-	public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
-		val env = applicationContext.getEnvironment();
-		val dotenv = Dotenv.configure().ignoreIfMissing().load();
-		Map<String, Object> propertyMap = dotenv.entries().stream()
-				.collect(Collectors.toConcurrentMap(
-						entry -> entry.getKey().replace('_', '.').toLowerCase(),
-						DotenvEntry::getValue,
-						(existing, replacement) -> replacement // 覆盖重复的键
-						));
-		if (propertyMap.entrySet().stream().anyMatch(entry -> !env.containsProperty(entry.getKey()))) {
-			env.getPropertySources().addLast(new MapPropertySource("dotenv", propertyMap));
-		}
-	}
+    @Override
+    public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
+        val env = applicationContext.getEnvironment();
+        val dotenv = Dotenv.configure().ignoreIfMissing().load();
+        Map<String, Object> propertyMap = dotenv.entries().stream()
+                .collect(Collectors.toConcurrentMap(
+                        entry -> entry.getKey().replace('_', '.').toLowerCase(),
+                        DotenvEntry::getValue,
+                        (existing, replacement) -> replacement // 覆盖重复的键
+                        ));
+        if (propertyMap.entrySet().stream().anyMatch(entry -> !env.containsProperty(entry.getKey()))) {
+            env.getPropertySources().addLast(new MapPropertySource("dotenv", propertyMap));
+        }
+    }
 }

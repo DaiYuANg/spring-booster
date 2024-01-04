@@ -11,20 +11,20 @@ import lombok.val;
 
 @Getter
 public enum DockerContainer {
-	INSTANCE;
+    INSTANCE;
 
-	private final DockerClient client;
+    private final DockerClient client;
 
-	{
-		val config = DefaultDockerClientConfig.createDefaultConfigBuilder().build();
-		val httpClient = new ApacheDockerHttpClient.Builder()
-				.dockerHost(config.getDockerHost())
-				.sslConfig(config.getSSLConfig())
-				.maxConnections(100)
-				.connectionTimeout(Duration.ofSeconds(30))
-				.responseTimeout(Duration.ofSeconds(45))
-				.build();
-		this.client = DockerClientImpl.getInstance(config, httpClient);
-		client.pingCmd().exec();
-	}
+    {
+        val config = DefaultDockerClientConfig.createDefaultConfigBuilder().build();
+        val httpClient = new ApacheDockerHttpClient.Builder()
+                .dockerHost(config.getDockerHost())
+                .sslConfig(config.getSSLConfig())
+                .maxConnections(100)
+                .connectionTimeout(Duration.ofSeconds(30))
+                .responseTimeout(Duration.ofSeconds(45))
+                .build();
+        this.client = DockerClientImpl.getInstance(config, httpClient);
+        client.pingCmd().exec();
+    }
 }

@@ -13,9 +13,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class WebVersionConfigurationProperties {
 
-	private VersionDetectType detectType = VersionDetectType.HEADER;
+    private VersionDetectType detectType = VersionDetectType.HEADER;
 
-	private String headerField = "Version";
+    private String headerField = "Version";
 
-	private String pathPrefix = "v";
+    private String pathPrefix = "v";
 }

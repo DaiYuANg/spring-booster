@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DevServiceCommonConfigurationProperties {
-	private String command;
+    private String command;
 
-	private List<Map<String, String>> environment;
+    private List<Map<String, String>> environment;
 }

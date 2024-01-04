@@ -11,20 +11,20 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest(
-		classes = {
-			TestController.class,
-			AuthenticationAutoConfiguration.class,
-			TestApplication.class,
-			ServletWebServerFactory.class
-		},
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+        classes = {
+            TestController.class,
+            AuthenticationAutoConfiguration.class,
+            TestApplication.class,
+            ServletWebServerFactory.class
+        },
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 public class TestPermit {
 
-	@Resource
-	private TestController testController;
+    @Resource
+    private TestController testController;
 
-	@Test
-	public void test() {}
+    @Test
+    public void test() {}
 }

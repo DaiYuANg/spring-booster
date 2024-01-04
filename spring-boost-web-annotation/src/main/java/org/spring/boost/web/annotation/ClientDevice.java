@@ -2,7 +2,7 @@
 package org.spring.boost.web.annotation;
 
 public enum ClientDevice {
-	MOBILE,
-	PC,
-	ALL
+    MOBILE,
+    PC,
+    ALL
 }

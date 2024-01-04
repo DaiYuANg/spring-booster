@@ -12,16 +12,16 @@ import org.toolkit.spring.boot.dev.service.core.DockerContainer;
 @Getter
 @AllArgsConstructor
 public enum SupportServiceStore {
-	MYSQL(
-			ImmutableSet.of("com.mysql.cj.jdbc.Driver", "com.mysql.jdbc.Driver"),
-			new MysqlContainerContainerService(DockerContainer.INSTANCE.getClient()));
-	//    H2("org.h2.Driver"),
-	//
-	//    SQLITE("org.sqlite.JDBC"),
-	//
-	//    POSTGRESQL("org.postgresql.Driver");
+    MYSQL(
+            ImmutableSet.of("com.mysql.cj.jdbc.Driver", "com.mysql.jdbc.Driver"),
+            new MysqlContainerContainerService(DockerContainer.INSTANCE.getClient()));
+    //    H2("org.h2.Driver"),
+    //
+    //    SQLITE("org.sqlite.JDBC"),
+    //
+    //    POSTGRESQL("org.postgresql.Driver");
 
-	private final Set<String> clazz;
+    private final Set<String> clazz;
 
-	private final ContainerService containerService;
+    private final ContainerService containerService;
 }

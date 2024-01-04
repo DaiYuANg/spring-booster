@@ -10,13 +10,13 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 @Slf4j
 public class VersionRequestMapping extends RequestMappingHandlerMapping {
-	@Override
-	protected RequestCondition<?> getCustomMethodCondition(@NonNull @NotNull Method method) {
-		return super.getCustomMethodCondition(method);
-	}
+    @Override
+    protected RequestCondition<?> getCustomMethodCondition(@NonNull @NotNull Method method) {
+        return super.getCustomMethodCondition(method);
+    }
 
-	@Override
-	protected RequestCondition<?> getCustomTypeCondition(@NonNull @NotNull Class<?> handlerType) {
-		return super.getCustomTypeCondition(handlerType);
-	}
+    @Override
+    protected RequestCondition<?> getCustomTypeCondition(@NonNull @NotNull Class<?> handlerType) {
+        return super.getCustomTypeCondition(handlerType);
+    }
 }

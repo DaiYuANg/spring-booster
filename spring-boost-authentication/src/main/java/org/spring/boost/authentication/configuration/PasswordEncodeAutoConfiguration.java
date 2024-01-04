@@ -15,27 +15,27 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 @Slf4j
 public class PasswordEncodeAutoConfiguration {
 
-	@Bean
-	@ConditionalOnMissingBean(PasswordEncoder.class)
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    @ConditionalOnMissingBean(PasswordEncoder.class)
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	@ConditionalOnMissingBean(PasswordEncoder.class)
-	public Argon2PasswordEncoder argon2PasswordEncoder() {
-		return Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
-	}
+    @Bean
+    @ConditionalOnMissingBean(PasswordEncoder.class)
+    public Argon2PasswordEncoder argon2PasswordEncoder() {
+        return Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+    }
 
-	@Bean
-	@ConditionalOnMissingBean(PasswordEncoder.class)
-	public Pbkdf2PasswordEncoder pbkdf2PasswordEncoder() {
-		return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
-	}
+    @Bean
+    @ConditionalOnMissingBean(PasswordEncoder.class)
+    public Pbkdf2PasswordEncoder pbkdf2PasswordEncoder() {
+        return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+    }
 
-	@Bean
-	@ConditionalOnMissingBean(PasswordEncoder.class)
-	public SCryptPasswordEncoder sCryptPasswordEncoder() {
-		return SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
-	}
+    @Bean
+    @ConditionalOnMissingBean(PasswordEncoder.class)
+    public SCryptPasswordEncoder sCryptPasswordEncoder() {
+        return SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
+    }
 }

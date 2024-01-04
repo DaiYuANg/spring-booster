@@ -15,10 +15,10 @@ import org.springframework.boot.context.properties.bind.Binder;
 @ToString
 @EqualsAndHashCode
 public class DotenvConfigurationProperties {
-	public static final String CONFIGURATION_NAME = "spring.dotenv";
+    public static final String CONFIGURATION_NAME = "spring.dotenv";
 
-	public static DotenvConfigurationProperties get(@NotNull Binder binder) {
-		return binder.bind(CONFIGURATION_NAME, DotenvConfigurationProperties.class)
-				.orElseGet(DotenvConfigurationProperties::new);
-	}
+    public static DotenvConfigurationProperties get(@NotNull Binder binder) {
+        return binder.bind(CONFIGURATION_NAME, DotenvConfigurationProperties.class)
+                .orElseGet(DotenvConfigurationProperties::new);
+    }
 }

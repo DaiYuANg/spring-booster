@@ -2,7 +2,7 @@
 package org.spring.boost.web.version.base;
 
 public enum VersionDetectType {
-	HEADER,
+    HEADER,
 
-	PATH
+    PATH
 }

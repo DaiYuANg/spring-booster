@@ -13,13 +13,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Slf4j
 public class JwtAuthenticationAutoConfiguration {
 
-	@Bean
-	public JwtAuthenticationFilter jwtAuthenticationFilter(
-			IJwtService jwtService, ApplicationEventPublisher eventPublisher, UserDetailsService userDetailsService) {
-		return JwtAuthenticationFilter.builder()
-				.jwtService(jwtService)
-				.eventPublisher(eventPublisher)
-				.userDetailsService(userDetailsService)
-				.build();
-	}
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(
+            IJwtService jwtService, ApplicationEventPublisher eventPublisher, UserDetailsService userDetailsService) {
+        return JwtAuthenticationFilter.builder()
+                .jwtService(jwtService)
+                .eventPublisher(eventPublisher)
+                .userDetailsService(userDetailsService)
+                .build();
+    }
 }

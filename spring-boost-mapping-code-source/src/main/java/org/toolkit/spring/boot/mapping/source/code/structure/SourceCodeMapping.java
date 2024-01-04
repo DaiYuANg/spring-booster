@@ -12,15 +12,15 @@ import org.toolkit.spring.boot.mapping.base.structure.Mapping;
 @Builder
 public class SourceCodeMapping implements Mapping<String, SourceCodeMappingItem> {
 
-	private String naming;
+    private String naming;
 
-	private String code;
+    private String code;
 
-	private String description;
+    private String description;
 
-	private Boolean enable;
+    private Boolean enable;
 
-	private String type;
+    private String type;
 
-	private Set<SourceCodeMappingItem> items;
+    private Set<SourceCodeMappingItem> items;
 }

@@ -25,57 +25,57 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 @Slf4j
 public class MappedResponseHandler {
 
-	@Resource
-	private ByteBuddy byteBuddy;
+    @Resource
+    private ByteBuddy byteBuddy;
 
-	//	@Resource
-	//	private IMappingService mappingService;
+    //	@Resource
+    //	private IMappingService mappingService;
 
-	private static final ConcurrentMap<String, Thread> async = new ConcurrentHashMap<>();
+    private static final ConcurrentMap<String, Thread> async = new ConcurrentHashMap<>();
 
-	@Pointcut("@annotation(org.toolkit.spring.boot.mapping.base.annotation.MappingTarget)")
-	public void annotationPoint() {}
+    @Pointcut("@annotation(org.toolkit.spring.boot.mapping.base.annotation.MappingTarget)")
+    public void annotationPoint() {}
 
-	@Before("annotationPoint()")
-	public void before(@NotNull JoinPoint joinPoint) {
-		//		val signature = (MethodSignature) joinPoint.getSignature();
-		//		val method = signature.getMethod();
-		//		val mappingTargetAnnotation = method.getAnnotation(MappingTarget.class);
-		//		val pretreatment = mappingTargetAnnotation.pretreatment();
-		//		if (pretreatment.equals(MappingTarget.class)) return;
-		//
-		//		Arrays.stream(pretreatment.getDeclaredFields()).forEach(field -> {
-		//			field.setAccessible(true);
-		//			System.err.println(field);
-		//		});
-		//		System.err.println(Arrays.stream(pretreatment.getNestMembers()).toList());
-		//        val returnClass = method.getReturnType();
-		//        val typeToken = new TypeToken<>(returnClass){};
-	}
+    @Before("annotationPoint()")
+    public void before(@NotNull JoinPoint joinPoint) {
+        //		val signature = (MethodSignature) joinPoint.getSignature();
+        //		val method = signature.getMethod();
+        //		val mappingTargetAnnotation = method.getAnnotation(MappingTarget.class);
+        //		val pretreatment = mappingTargetAnnotation.pretreatment();
+        //		if (pretreatment.equals(MappingTarget.class)) return;
+        //
+        //		Arrays.stream(pretreatment.getDeclaredFields()).forEach(field -> {
+        //			field.setAccessible(true);
+        //			System.err.println(field);
+        //		});
+        //		System.err.println(Arrays.stream(pretreatment.getNestMembers()).toList());
+        //        val returnClass = method.getReturnType();
+        //        val typeToken = new TypeToken<>(returnClass){};
+    }
 
-	@SneakyThrows
-	@Around("annotationPoint()")
-	public Object around(@NotNull ProceedingJoinPoint joinPoint) {
-		val returnValue = joinPoint.proceed();
-		//        processNestedType(returnValue);
-		return returnValue;
-	}
+    @SneakyThrows
+    @Around("annotationPoint()")
+    public Object around(@NotNull ProceedingJoinPoint joinPoint) {
+        val returnValue = joinPoint.proceed();
+        //        processNestedType(returnValue);
+        return returnValue;
+    }
 
-	@Contract(pure = true)
-	private void processNestedType(@NotNull Object returnValue) {
+    @Contract(pure = true)
+    private void processNestedType(@NotNull Object returnValue) {
 
-		//        returnValue.getClass().getNestMembers();
-		//        val clazz = returnValue.getClass();
-		//        if (returnValue instanceof Page<?> v) {
-		//            v.getContent().forEach(item -> ObjectUtil.walkObject(item, 10));
-		//        }
-		//        try (DynamicType.Unloaded<?> dynamicType = byteBuddy
-		//                .subclass(Object.class)
-		//                .method(ElementMatchers.named("toString"))
-		//                .intercept(FixedValue.value("Hello World!"))
-		//                .make()) {
-		//            val newClazz = dynamicType.load(getClass().getClassLoader()).getLoaded();
-		//            val newObject = newClazz.getDeclaredConstructor().newInstance();
-		//        }
-	}
+        //        returnValue.getClass().getNestMembers();
+        //        val clazz = returnValue.getClass();
+        //        if (returnValue instanceof Page<?> v) {
+        //            v.getContent().forEach(item -> ObjectUtil.walkObject(item, 10));
+        //        }
+        //        try (DynamicType.Unloaded<?> dynamicType = byteBuddy
+        //                .subclass(Object.class)
+        //                .method(ElementMatchers.named("toString"))
+        //                .intercept(FixedValue.value("Hello World!"))
+        //                .make()) {
+        //            val newClazz = dynamicType.load(getClass().getClassLoader()).getLoaded();
+        //            val newObject = newClazz.getDeclaredConstructor().newInstance();
+        //        }
+    }
 }

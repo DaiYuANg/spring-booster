@@ -7,12 +7,12 @@ import org.springframework.core.env.PropertySource;
 
 public class DotenvPropertySource extends PropertySource<Dotenv> {
 
-	public DotenvPropertySource(String name, Dotenv source) {
-		super(name, source);
-	}
+    public DotenvPropertySource(String name, Dotenv source) {
+        super(name, source);
+    }
 
-	@Override
-	public Object getProperty(@NotNull String name) {
-		return this.source.get(name);
-	}
+    @Override
+    public Object getProperty(@NotNull String name) {
+        return this.source.get(name);
+    }
 }

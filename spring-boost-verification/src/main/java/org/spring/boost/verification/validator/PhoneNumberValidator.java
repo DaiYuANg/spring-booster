@@ -9,10 +9,10 @@ import org.spring.boost.verification.annotation.PhoneNumber;
 
 @Slf4j
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
-	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
 
-		log.debug("phone validator validating:{}", value);
-		return PhoneUtil.isPhone(value);
-	}
+        log.debug("phone validator validating:{}", value);
+        return PhoneUtil.isPhone(value);
+    }
 }

@@ -143,14 +143,26 @@ subprojects {
 
 
             classDiagrams {
+                val glob = "org.${rootProject.name.replace("-", ".")}.**"
+                val internal = "internal_class_diagram"
+                val full = "full_class_diagram"
                 @Suppress("UNCHECKED_CAST")
                 diagram(
-                    "classes",
+                    internal,
                     closureOf<ClassDiagramsExtension.ClassDiagram> {
-                        include(packages().withName("org.${rootProject.name.replace("-", ".")}"))
+                        include(packages().withNameLike(glob))
+                        writeTo(file(project.layout.buildDirectory.file("$internal.${project.name}.$plantUMLSuffix")))
+                    }
+                            as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
+                )
+
+                @Suppress("UNCHECKED_CAST")
+                diagram(
+                    full,
+                    closureOf<ClassDiagramsExtension.ClassDiagram> {
+                        include(packages().withNameLike(glob))
                         include(packages().recursive())
-                        referencedClasses()
-                        writeTo(file(project.layout.buildDirectory.file("${project.name}.$plantUMLSuffix")))
+                        writeTo(file(project.layout.buildDirectory.file("$full.${project.name}.$plantUMLSuffix")))
                     }
                             as groovy.lang.Closure<ClassDiagramsExtension.ClassDiagram>,
                 )

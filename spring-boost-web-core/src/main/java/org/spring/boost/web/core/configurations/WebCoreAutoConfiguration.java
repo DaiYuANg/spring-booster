@@ -29,40 +29,40 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan("org.toolkit.spring.boot.web.core.**.*")
 public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
-	private final BeanRegistry beanRegistry;
+    private final BeanRegistry beanRegistry;
 
-	@Override
-	public void extendMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
-		converters.removeIf(httpMessageConverter -> httpMessageConverter instanceof StringHttpMessageConverter);
-	}
+    @Override
+    public void extendMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
+        converters.removeIf(httpMessageConverter -> httpMessageConverter instanceof StringHttpMessageConverter);
+    }
 
-	@Override
-	public void addInterceptors(@NotNull InterceptorRegistry registry) {
-		beanRegistry
-				.getBeanWithAnnotationMap(Interceptor.class, HandlerInterceptor.class)
-				.forEach((a, i) -> {
-					val path = Arrays.stream(a.value()).toList();
-					val order = a.order();
-					val exclude = Arrays.stream(a.excludePath()).toList();
-					registry.addInterceptor(i)
-							.order(order)
-							.addPathPatterns(path)
-							.excludePathPatterns(exclude);
-				});
-	}
+    @Override
+    public void addInterceptors(@NotNull InterceptorRegistry registry) {
+        beanRegistry
+                .getBeanWithAnnotationMap(Interceptor.class, HandlerInterceptor.class)
+                .forEach((a, i) -> {
+                    val path = Arrays.stream(a.value()).toList();
+                    val order = a.order();
+                    val exclude = Arrays.stream(a.excludePath()).toList();
+                    registry.addInterceptor(i)
+                            .order(order)
+                            .addPathPatterns(path)
+                            .excludePathPatterns(exclude);
+                });
+    }
 
-	@Override
-	public void addArgumentResolvers(@NotNull List<HandlerMethodArgumentResolver> resolvers) {
-		resolvers.add(new UserAgentResolver());
-	}
+    @Override
+    public void addArgumentResolvers(@NotNull List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new UserAgentResolver());
+    }
 
-	@Bean
-	public CommonsRequestLoggingFilter requestLoggingFilter() {
-		val loggingFilter = new CommonsRequestLoggingFilter();
-		loggingFilter.setIncludeClientInfo(true);
-		loggingFilter.setIncludeQueryString(true);
-		loggingFilter.setIncludePayload(true);
-		loggingFilter.setIncludeHeaders(true);
-		return loggingFilter;
-	}
+    @Bean
+    public CommonsRequestLoggingFilter requestLoggingFilter() {
+        val loggingFilter = new CommonsRequestLoggingFilter();
+        loggingFilter.setIncludeClientInfo(true);
+        loggingFilter.setIncludeQueryString(true);
+        loggingFilter.setIncludePayload(true);
+        loggingFilter.setIncludeHeaders(true);
+        return loggingFilter;
+    }
 }

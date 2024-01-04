@@ -2,9 +2,9 @@
 package org.spring.boost.authentication.constant;
 
 public enum AuthenticationMethod {
-	JWT,
+    JWT,
 
-	JWT_AND_SESSION,
+    JWT_AND_SESSION,
 
-	BASIC
+    BASIC
 }

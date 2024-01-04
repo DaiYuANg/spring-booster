@@ -11,5 +11,5 @@ import org.toolkit.spring.boot.recorder.configuration.RecordingAutoConfiguration
 @Documented
 public @interface EnableRecording {
 
-	String packages() default "";
+    String packages() default "";
 }

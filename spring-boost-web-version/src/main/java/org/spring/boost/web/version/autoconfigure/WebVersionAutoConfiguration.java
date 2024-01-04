@@ -13,8 +13,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 @Slf4j
 @EnableConfigurationProperties(WebVersionConfigurationProperties.class)
 public class WebVersionAutoConfiguration extends WebMvcConfigurationSupport {
-	@Override
-	public @NotNull RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-		return new VersionRequestMapping();
-	}
+    @Override
+    public @NotNull RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
+        return new VersionRequestMapping();
+    }
 }

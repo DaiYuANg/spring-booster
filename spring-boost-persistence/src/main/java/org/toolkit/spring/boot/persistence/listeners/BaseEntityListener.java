@@ -10,9 +10,9 @@ import org.toolkit.spring.boot.persistence.base.BaseEntity;
 @Slf4j
 public class BaseEntityListener {
 
-	@PrePersist
-	public void prePersist(@NotNull BaseEntity baseEntity) {}
+    @PrePersist
+    public void prePersist(@NotNull BaseEntity baseEntity) {}
 
-	@PreUpdate
-	public void preUpdate(@NotNull BaseEntity baseEntity) {}
+    @PreUpdate
+    public void preUpdate(@NotNull BaseEntity baseEntity) {}
 }

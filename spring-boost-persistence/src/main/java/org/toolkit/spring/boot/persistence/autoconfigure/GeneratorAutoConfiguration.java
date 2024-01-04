@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @AutoConfigureBefore({HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class})
 public class GeneratorAutoConfiguration {
-	@PostConstruct
-	public void init() {
-		log.info("Persistence Generator Auto config executing");
-	}
+    @PostConstruct
+    public void init() {
+        log.info("Persistence Generator Auto config executing");
+    }
 }

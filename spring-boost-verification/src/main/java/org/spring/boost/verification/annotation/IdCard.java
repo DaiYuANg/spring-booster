@@ -11,9 +11,9 @@ import org.spring.boost.verification.validator.IdCardValidator;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IdCard {
-	String message() default "Invalid value";
+    String message() default "Invalid value";
 
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

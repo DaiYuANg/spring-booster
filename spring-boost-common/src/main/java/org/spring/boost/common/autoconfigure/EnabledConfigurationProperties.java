@@ -9,5 +9,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class EnabledConfigurationProperties {
-	private boolean enabled;
+    private boolean enabled;
 }

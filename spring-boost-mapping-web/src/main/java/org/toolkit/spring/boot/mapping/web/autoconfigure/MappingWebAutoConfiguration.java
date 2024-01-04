@@ -14,8 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("org.toolkit.spring.boot.mapping.web.**.*")
 public class MappingWebAutoConfiguration {
 
-	@Bean
-	public ByteBuddy byteBuddy() {
-		return new ByteBuddy();
-	}
+    @Bean
+    public ByteBuddy byteBuddy() {
+        return new ByteBuddy();
+    }
 }

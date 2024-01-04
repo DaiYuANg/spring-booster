@@ -14,22 +14,22 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Slf4j
 public class SomethingExistsInDatabaseValidator implements ConstraintValidator<SomethingExistsInDatabase, String> {
 
-	private final JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
+    private final JdbcTemplate jdbcTemplate = SpringUtil.getBean(JdbcTemplate.class);
 
-	private String table;
+    private String table;
 
-	private String whereCondition;
+    private String whereCondition;
 
-	@Override
-	public void initialize(@NotNull SomethingExistsInDatabase constraintAnnotation) {
-		this.whereCondition = constraintAnnotation.whereCondition();
-		this.table = constraintAnnotation.table();
-	}
+    @Override
+    public void initialize(@NotNull SomethingExistsInDatabase constraintAnnotation) {
+        this.whereCondition = constraintAnnotation.whereCondition();
+        this.table = constraintAnnotation.table();
+    }
 
-	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		val sql = "select count(*) ? where ?=?";
-		val query = jdbcTemplate.queryForObject(sql, Integer.class, table, whereCondition, value);
-		return Objects.isNull(query) || query > 0;
-	}
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        val sql = "select count(*) ? where ?=?";
+        val query = jdbcTemplate.queryForObject(sql, Integer.class, table, whereCondition, value);
+        return Objects.isNull(query) || query > 0;
+    }
 }

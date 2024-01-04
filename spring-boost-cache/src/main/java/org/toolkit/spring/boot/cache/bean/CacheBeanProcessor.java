@@ -10,10 +10,10 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 @Slf4j
 public class CacheBeanProcessor implements InstantiationAwareBeanPostProcessor {
 
-	@Override
-	public PropertyValues postProcessProperties(
-			@NotNull PropertyValues pvs, @NotNull Object bean, @NotNull String beanName) throws BeansException {
-		pvs.forEach(r -> {});
-		return InstantiationAwareBeanPostProcessor.super.postProcessProperties(pvs, bean, beanName);
-	}
+    @Override
+    public PropertyValues postProcessProperties(
+            @NotNull PropertyValues pvs, @NotNull Object bean, @NotNull String beanName) throws BeansException {
+        pvs.forEach(r -> {});
+        return InstantiationAwareBeanPostProcessor.super.postProcessProperties(pvs, bean, beanName);
+    }
 }

@@ -7,9 +7,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface StaticField {
-	String key();
+    String key();
 
-	String text() default "";
+    String text() default "";
 
-	String description() default "";
+    String description() default "";
 }
