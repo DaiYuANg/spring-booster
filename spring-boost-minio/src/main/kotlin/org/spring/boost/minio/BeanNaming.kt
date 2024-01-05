@@ -21,9 +21,9 @@ enum class BeanNaming(
     ;
 
     companion object {
-        private const val MIDDLE_NAMING = "minio"
+        private const val MIDDLE_NAMING = "Minio"
 
-        private const val PRIMARY = "primary"
+        private const val PRIMARY = "Primary"
 
         @JvmStatic
         fun buildAdminName(
@@ -31,12 +31,8 @@ enum class BeanNaming(
             isPrimary: Boolean,
             vararg naming: BeanNaming,
         ): String {
-            return """
-                $keyName
-                ${if (isPrimary) PRIMARY else ""}
-                $MIDDLE_NAMING
-                ${naming.joinToString { it.naming }}
-                """.trimIndent()
+            return "$keyName${if (isPrimary) PRIMARY else ""}$MIDDLE_NAMING${naming.joinToString { it.naming }}".trimIndent()
+                .trim()
         }
 
         @JvmStatic

@@ -2,6 +2,7 @@
 package org.spring.boost.minio.factory;
 
 import io.minio.admin.MinioAdminClient;
+import java.util.Objects;
 import lombok.SneakyThrows;
 import lombok.val;
 import okhttp3.OkHttpClient;
@@ -19,7 +20,8 @@ public abstract class AdminClientFactory {
                 .build();
         client.setTimeout(config.getConnectTimeout(), config.getWriteTimeout(), config.getReadTimeout());
         if (config.isValidQuotaSetting()) {
-            client.setBucketQuota(config.getBucket(), config.getBucketSize(), config.getBucketQuotaUnit());
+            client.setBucketQuota(
+                    config.getBucket(), config.getBucketSize(), Objects.requireNonNull(config.getBucketQuotaUnit()));
         }
         return client;
     }

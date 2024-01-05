@@ -35,7 +35,7 @@ public abstract class TemplateFactory {
 
     protected void registerTemplates(
             @NotNull String prefixKey, @NotNull ConfigurableListableBeanFactory beanFactory, MinioClientConfig config) {
-        val client = beanFactory.getBean(BeanNaming.buildAdminName(BeanNaming.CLIENT), MinioClient.class);
+        val client = beanFactory.getBean(BeanNaming.buildAdminName(prefixKey, BeanNaming.CLIENT), MinioClient.class);
         val adminClient = beanFactory.getBean(BeanNaming.buildAdminName(BeanNaming.ADMIN), MinioAdminClient.class);
         val arg = MinioTemplateArgument.builder()
                 .client(client)

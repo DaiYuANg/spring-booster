@@ -12,7 +12,6 @@ import org.spring.boost.minio.hook.MinioHook;
 import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +35,6 @@ public class MinioAutoConfigure {
      * @return @see{@link okhttp3.OkHttpClient}
      */
     @Bean
-    @ConditionalOnMissingBean
     OkHttpClient.Builder okHttpClientBuilder() {
         return new OkHttpClient.Builder();
     }

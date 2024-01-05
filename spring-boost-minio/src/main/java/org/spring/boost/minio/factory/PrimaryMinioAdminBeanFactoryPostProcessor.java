@@ -12,6 +12,7 @@ import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.core.annotation.Order;
 
 /**
  * Primary minio admin client factory
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  */
 @Slf4j
 @RequiredArgsConstructor
+@Order(2)
 public class PrimaryMinioAdminBeanFactoryPostProcessor extends AdminClientFactory implements BeanFactoryPostProcessor {
     private final MinioConfigurationProperties minioConfigurationProperties;
 

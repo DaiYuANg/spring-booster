@@ -12,6 +12,5 @@ public class TestBoot {
 
     @Test
     void testBoot() {
-        System.err.println("123");
     }
 }

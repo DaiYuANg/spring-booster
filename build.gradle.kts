@@ -99,12 +99,12 @@ subprojects {
                     options.errorprone.isEnabled.set(true)
                     options.errorprone.disableWarningsInGeneratedCode.set(true)
                     dependsOn(project.tasks.processResources)
-                    if (!name.lowercase().contains("test")) {
+//                    if (!name.lowercase().contains("test")) {
                         options.errorprone {
                             check("NullAway", CheckSeverity.ERROR)
                             option("NullAway:AnnotatedPackages", "com.uber")
                         }
-                    }
+//                    }
                     options.isFork = true
                 }
 

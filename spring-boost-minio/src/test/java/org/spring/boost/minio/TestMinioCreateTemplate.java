@@ -3,9 +3,12 @@ package org.spring.boost.minio;
 
 import io.minio.MinioClient;
 import jakarta.annotation.Resource;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
@@ -14,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.spring.boost.minio.autoconfigure.MinioAutoConfigure;
-import org.spring.boost.minio.template.MinioCreateTemplate;
+import org.spring.boost.minio.properties.MinioClientConfig;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.test.context.TestPropertySource;
@@ -27,6 +30,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @RunWith(SpringRunner.class)
 @TestPropertySource("classpath:application.yaml")
 @Testcontainers
+@Slf4j
 public class TestMinioCreateTemplate {
 
     @Container
@@ -54,12 +58,12 @@ public class TestMinioCreateTemplate {
                 .endpoint(container.getS3URL())
                 .credentials(container.getUserName(), container.getPassword())
                 .build();
+        val config =
+                new MinioClientConfig(container.getS3URL(), container.getUserName(), container.getPassword(), "test");
+        log.atInfo().log("test containers config:{}", config);
     }
 
     @Test
     public void testTemplateUpload() {
-        val template = MinioCreateTemplate.builder().bucket("test").client(minioClient);
-
-        System.err.println(template);
     }
 }

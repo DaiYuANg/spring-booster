@@ -12,9 +12,11 @@ import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.core.annotation.Order;
 
 @Slf4j
 @RequiredArgsConstructor
+@Order(1)
 public class PrimaryMinioClientBeanFactoryPostProcessor extends ClientFactory implements BeanFactoryPostProcessor {
     private final MinioConfigurationProperties properties;
 

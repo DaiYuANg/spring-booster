@@ -17,4 +17,4 @@ spring:
       enabled: true
 logging:
   level:
-    root: debug
+    root: trace

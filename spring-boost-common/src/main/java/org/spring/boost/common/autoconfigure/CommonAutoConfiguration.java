@@ -13,7 +13,7 @@ import org.springframework.core.env.Environment;
 
 @AutoConfiguration
 @Slf4j
-public class SpringBootUtilAutoConfiguration {
+public class CommonAutoConfiguration {
     @Bean
     public BeanRegistry beanRegistry(ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
         return BeanRegistryImpl.builder()

@@ -3,13 +3,13 @@ package org.spring.boost.minio.properties;
 
 import io.minio.admin.QuotaUnit;
 import java.util.Objects;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class MinioClientConfig {
     private String endpoint;
 
@@ -19,9 +19,9 @@ public class MinioClientConfig {
 
     private String bucket;
 
-    private long bucketSize;
+    private long bucketSize = 0L;
 
-    private QuotaUnit bucketQuotaUnit;
+    private QuotaUnit bucketQuotaUnit = QuotaUnit.MB;
 
     private String region;
 
@@ -44,6 +44,13 @@ public class MinioClientConfig {
     private long writeTimeout = 30000;
 
     private long readTimeout = 30000;
+
+    public MinioClientConfig(String endpoint, String accessKey, String secretKey, String bucket) {
+        this.endpoint = endpoint;
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
+        this.bucket = bucket;
+    }
 
     public boolean isValidQuotaSetting() {
         return this.bucketSize != 0 && Objects.nonNull(bucketQuotaUnit);

@@ -17,7 +17,7 @@ public class MinioActuatorAutoConfigure {
 
     @Bean
     ImmutableMap<String, MinioTemplate> templateMap(@NotNull BeanRegistry beanRegistry) {
-		return beanRegistry.getBeanOfTypeImmutable(MinioTemplate.class);
+        return beanRegistry.getBeanOfTypeImmutable(MinioTemplate.class);
     }
 
     @Bean
