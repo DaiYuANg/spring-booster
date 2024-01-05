@@ -3,7 +3,6 @@ jdkVersion = "21"
 kotlin = "2.0.0-Beta2"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
-classGraph = "4.8.165"
 jerbrainsAnnotation = "24.0.1"
 errorproneCore = "2.23.0"
 junit = "5.10.1"
@@ -91,7 +90,6 @@ vertxCore = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
 vertxWeb = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
 vertxWebClient = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
 vertxHazelcast = { group = "io.vertx", name = "vertx-hazelcast", version.ref = "vertx" }
-classGraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
 minioAdmin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
 tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }

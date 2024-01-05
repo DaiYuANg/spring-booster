@@ -47,13 +47,13 @@ include("spring-boost-common")
 
 include("spring-boost-authentication")
 
+include("spring-boost-authentication-jwt")
+
 include("spring-boost-web-core")
 
 include("spring-boost-verification")
 
 include("spring-boost-office")
-
-include("spring-boost-recorder")
 
 include("spring-boost-mapping-core")
 
@@ -73,8 +73,6 @@ include("spring-boost-dev-service")
 
 include("spring-boost-dotenv")
 
-include("spring-boost-scanner")
-
 include("spring-boost-cache")
 
 include("spring-boost-web-version")
@@ -82,3 +80,4 @@ include("spring-boost-web-version")
 include("spring-boost-cli")
 
 include("website")
+

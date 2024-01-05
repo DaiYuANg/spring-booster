@@ -1,2 +1,0 @@
-org.springframework.context.ApplicationListener=\
-  org.toolkit.spring.boot.scanner.lifecycle.ApplicationPreparedListener

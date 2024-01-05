@@ -2,11 +2,13 @@
 package org.spring.boost.common.api;
 
 import com.google.common.collect.ImmutableMap;
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.annotation.Annotation;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
 
 public interface BeanRegistry {
 
@@ -23,6 +25,8 @@ public interface BeanRegistry {
     <T> Collection<T> getBeanWithAnnotation(Class<? extends Annotation> annotation, Class<T> beanType);
 
     <T> Collection<T> getBeanWithAnnotationImmutable(Class<? extends Annotation> annotation, Class<T> beanType);
+
+    <T> Set<T> getBeanDistinct(Class<T> beanTypeClass);
 
     <T> ImmutableMap<String, T> getBeanOfTypeImmutable(Class<T> beanType);
 
