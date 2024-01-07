@@ -51,6 +51,8 @@ graalvmNative = "0.9.28"
 apacheCommonCodeC = "1.16.0"
 okHttp = "5.0.0-alpha.12"
 spotless = "6.23.3"
+apachePoi = "5.2.5"
+fastexcel = "0.16.5"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -141,4 +143,8 @@ kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-all
 kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc" }
 postgresqlDriver = { group = "org.postgresql", name = "postgresql" }
-h2Driver = {group="com.h2database",name="h2"}
+h2Driver = { group = "com.h2database", name = "h2" }
+apachePoi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
+apachePoiOOxmlFull = { group = "org.apache.poi", name = "poi-ooxml-full", version.ref = "apachePoi" }
+apachePoiOOxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
+fastExcel = { group = "org.dhatim", name = "fastexcel", version.ref = "fastexcel" }

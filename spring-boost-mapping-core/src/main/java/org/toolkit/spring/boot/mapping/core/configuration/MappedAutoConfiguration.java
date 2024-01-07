@@ -7,5 +7,4 @@ import org.springframework.context.annotation.ComponentScan;
 
 @AutoConfiguration
 @EnableConfigurationProperties(MappedConfigurationProperties.class)
-@ComponentScan("org.toolkit.spring.boot.mapping.core.**.*")
 public class MappedAutoConfiguration {}

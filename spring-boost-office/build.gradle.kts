@@ -1,6 +1,8 @@
 plugins { `spring-boot-project` }
 
 dependencies {
-  implementation("com.alibaba:easyexcel:3.3.3")
-  //    api(projects.modules.components.springBootStarterMapped)
+  compileOnly(libs.springBootWeb)
+  api(libs.apachePoi)
+  api(libs.apachePoiOOxmlFull)
+  api(libs.apachePoiOOxml)
 }

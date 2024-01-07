@@ -41,7 +41,7 @@ gradleEnterprise {
 
 rootProject.name = "spring-boost"
 
-include("spring-boost-persistence")
+include("spring-boost-jpa")
 
 include("spring-boost-core")
 
@@ -68,8 +68,6 @@ include("spring-boost-mapping-web")
 include("spring-boost-dev-service")
 
 include("spring-boost-dotenv")
-
-include("spring-boost-cache")
 
 include("spring-boost-web-version")
 
