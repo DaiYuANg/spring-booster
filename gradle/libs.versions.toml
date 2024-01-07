@@ -117,6 +117,7 @@ javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet"
 springBootSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "springBoot" }
 springBootJdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc", version.ref = "springBoot" }
 springBootJPA = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "springBoot" }
+springBootValidation = { group = "org.springframework.boot", name = "spring-boot-starter-validation", version.ref = "springBoot" }
 springSecurityTest = { group = "org.springframework.security", name = "spring-security-test" }
 springSecurityData = { group = "org.springframework.security", name = "spring-security-data" }
 springBootWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBoot" }
@@ -138,3 +139,6 @@ kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotl
 kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
 kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
 kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
+sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc" }
+postgresqlDriver = { group = "org.postgresql", name = "postgresql" }
+h2Driver = {group="com.h2database",name="h2"}

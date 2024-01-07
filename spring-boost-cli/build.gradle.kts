@@ -19,6 +19,9 @@ dependencies {
   implementation(libs.jlineNative)
   implementation(libs.springShellStarter)
   implementation(libs.springBootJdbc)
+  implementation(libs.sqliteDriver)
+  implementation(libs.postgresqlDriver)
+  implementation(libs.h2Driver)
 }
 
 application { mainClass = mainClassPath }

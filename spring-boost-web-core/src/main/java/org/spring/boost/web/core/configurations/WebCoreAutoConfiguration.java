@@ -1,68 +1,56 @@
 /* (C)2023*/
 package org.spring.boost.web.core.configurations;
 
-import java.util.Arrays;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.common.api.BeanRegistry;
-import org.spring.boost.web.annotation.Interceptor;
+import org.spring.boost.web.core.feature.InterceptorsFeatureInstaller;
+import org.spring.boost.web.core.resolver.IndexHtmlResolver;
 import org.spring.boost.web.core.resolver.UserAgentResolver;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @AutoConfiguration
 @Slf4j
 @EnableConfigurationProperties(WebCoreConfigurationProperties.class)
 @RequiredArgsConstructor
-@ComponentScan("org.toolkit.spring.boot.web.core.**.*")
 public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
-    private final BeanRegistry beanRegistry;
+    private final InterceptorsFeatureInstaller interceptorsFeatureInstaller;
 
-    @Override
-    public void extendMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
-        converters.removeIf(httpMessageConverter -> httpMessageConverter instanceof StringHttpMessageConverter);
-    }
+    private final IndexHtmlResolver indexHtmlResolver;
+
+    private final UserAgentResolver userAgentResolver;
+
+    private final ObjectMapper objectMapper;
 
     @Override
     public void addInterceptors(@NotNull InterceptorRegistry registry) {
-        beanRegistry
-                .getBeanWithAnnotationMap(Interceptor.class, HandlerInterceptor.class)
-                .forEach((a, i) -> {
-                    val path = Arrays.stream(a.value()).toList();
-                    val order = a.order();
-                    val exclude = Arrays.stream(a.excludePath()).toList();
-                    registry.addInterceptor(i)
-                            .order(order)
-                            .addPathPatterns(path)
-                            .excludePathPatterns(exclude);
-                });
+        interceptorsFeatureInstaller.install(registry);
     }
 
     @Override
     public void addArgumentResolvers(@NotNull List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new UserAgentResolver());
+        resolvers.add(userAgentResolver);
     }
 
-    @Bean
-    public CommonsRequestLoggingFilter requestLoggingFilter() {
-        val loggingFilter = new CommonsRequestLoggingFilter();
-        loggingFilter.setIncludeClientInfo(true);
-        loggingFilter.setIncludeQueryString(true);
-        loggingFilter.setIncludePayload(true);
-        loggingFilter.setIncludeHeaders(true);
-        return loggingFilter;
+    @Override
+    public void configureMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
+        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(objectMapper);
+        converters.add(jackson2HttpMessageConverter);
+    }
+
+    @Override
+    public void addResourceHandlers(@NotNull ResourceHandlerRegistry registry) {
+        registry.addResourceHandler().resourceChain(true).addResolver(indexHtmlResolver);
     }
 }

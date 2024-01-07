@@ -3,7 +3,6 @@ package org.spring.boost.authentication.constant;
 
 public enum AuthenticationMethod {
 
-
     /**
      * Only Jwt Verify
      */

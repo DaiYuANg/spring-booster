@@ -6,7 +6,7 @@ import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.spring.boost.common.autoconfigure.CommonAutoConfiguration;
+import org.spring.boost.core.autoconfigure.CoreAutoConfiguration;
 import org.spring.boost.minio.autoconfigure.MinioAutoConfigure;
 import org.spring.boost.minio.autoconfigure.MinioBeanFactoryAutoConfigure;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
             MinioAutoConfigure.class,
             MinioBeanFactoryAutoConfigure.class,
             TestHookConfiguration.class,
-            CommonAutoConfiguration.class
+            CoreAutoConfiguration.class
         })
 @RunWith(SpringRunner.class)
 @TestPropertySource("classpath:application.yaml")

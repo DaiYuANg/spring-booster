@@ -3,7 +3,7 @@ package org.spring.boost.minio.autoconfigure;
 
 import com.google.common.collect.ImmutableMap;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.common.api.BeanRegistry;
+import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.minio.MinioTemplate;
 import org.spring.boost.minio.actuator.MinioEndpoint;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

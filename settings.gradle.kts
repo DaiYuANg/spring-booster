@@ -43,7 +43,7 @@ rootProject.name = "spring-boost"
 
 include("spring-boost-persistence")
 
-include("spring-boost-common")
+include("spring-boost-core")
 
 include("spring-boost-authentication")
 
@@ -56,10 +56,6 @@ include("spring-boost-verification")
 include("spring-boost-office")
 
 include("spring-boost-mapping-core")
-
-include("spring-boost-mapping-base")
-
-include("spring-boost-web-annotation")
 
 include("spring-boost-minio")
 

@@ -11,6 +11,6 @@ dependencies {
   api(libs.apacheCommonIO)
   api(libs.apacheCommonCodeC)
   api(libs.okHttp)
-  api(projects.springBoostCommon)
+  api(projects.springBoostCore)
   testImplementation(libs.testcontainersMinio)
 }

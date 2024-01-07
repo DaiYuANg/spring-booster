@@ -5,7 +5,7 @@ import io.minio.ObjectWriteResponse;
 import java.io.Serial;
 import lombok.Getter;
 import lombok.ToString;
-import org.spring.boost.common.event.LoggingEvent;
+import org.spring.boost.core.event.LoggingEvent;
 
 @ToString
 @Getter

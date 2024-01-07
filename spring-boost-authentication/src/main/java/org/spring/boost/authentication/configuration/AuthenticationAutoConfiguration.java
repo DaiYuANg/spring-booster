@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.authentication.feature.FeatureInstaller;
+import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.authentication.properties.AuthenticationConfigurationProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -20,6 +20,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,29 +34,27 @@ import java.util.Set;
 @AutoConfiguration
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @AutoConfigureAfter({
-        DispatcherServletAutoConfiguration.class,
-        TaskExecutionAutoConfiguration.class,
-        ValidationAutoConfiguration.class
+    DispatcherServletAutoConfiguration.class,
+    TaskExecutionAutoConfiguration.class,
+    ValidationAutoConfiguration.class
 })
 @EnableWebSecurity
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class})
 @Slf4j
 @RequiredArgsConstructor
+@EnableMethodSecurity
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 
     private final AuthenticationConfigurationProperties authenticationConfigurationProperties;
 
     @Bean
-    public AuthenticationManager authenticationManager(
-            @NotNull AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(@NotNull AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider(
-            PasswordEncoder passwordEncoder,
-            UserDetailsService userDetailsService
-    ) {
+            PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         val authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder);
@@ -66,10 +65,10 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
     public SecurityFilterChain securityFilterChain(
             @NotNull HttpSecurity http,
             AuthenticationManager authenticationManager,
-            @NotNull Set<FeatureInstaller> featureInstallers,
-            AuthenticationProvider authenticationProvider
-    ) throws Exception {
-        featureInstallers.parallelStream().forEachOrdered(it -> {
+            @NotNull Set<SecurityFeatureInstaller> securityFeatureInstallers,
+            AuthenticationProvider authenticationProvider)
+            throws Exception {
+        securityFeatureInstallers.parallelStream().forEachOrdered(it -> {
             it.install(http);
             log.atTrace().log("Install feature:{}", it);
         });
