@@ -74,4 +74,4 @@ include("spring-boost-web-version")
 include("spring-boost-cli")
 
 include("website")
-
+include("spring-boost-application-example")

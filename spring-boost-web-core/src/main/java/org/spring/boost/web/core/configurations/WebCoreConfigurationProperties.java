@@ -15,5 +15,5 @@ public class WebCoreConfigurationProperties {
      */
     private Class<?> returnResult = ResponseEntity.class;
 
-    private boolean enableReusableRequest = false;
+    private Boolean enableReusableRequest = false;
 }

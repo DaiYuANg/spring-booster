@@ -4,6 +4,12 @@ package org.spring.boost.authentication.jwt.service.impl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.PostConstruct;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -11,13 +17,6 @@ import org.jetbrains.annotations.NotNull;
 import org.spring.boost.authentication.jwt.autoconfigure.JwtConfigProperties;
 import org.spring.boost.authentication.jwt.service.IJwtService;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.crypto.SecretKey;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 @Slf4j
 @RequiredArgsConstructor

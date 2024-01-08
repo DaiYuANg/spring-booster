@@ -8,7 +8,7 @@ dependencyManagement { imports { mavenBom("${libs.springShellBom.get()}") } }
 
 repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases") } }
 
-val mainClassPath = "org.spring.boost.SpringBoostCLI"
+val mainClassPath = "org.spring.boost.cli.SpringBoostCLI"
 
 dependencies {
   implementation(libs.mysql)
@@ -21,7 +21,12 @@ dependencies {
   implementation(libs.springBootJdbc)
   implementation(libs.sqliteDriver)
   implementation(libs.postgresqlDriver)
+  implementation(libs.mavenModel)
   implementation(libs.h2Driver)
+  implementation(libs.springBootFreemarker)
+  implementation(libs.gradleToolingAPI)
+  developmentOnly(libs.springBootDevtools)
+  developmentOnly(libs.springBootDockerCompose)
 }
 
 application { mainClass = mainClassPath }
@@ -30,7 +35,7 @@ graalvmNative {
   metadataRepository { enabled = true }
   binaries {
     named("main") {
-      mainClass.set(mainClass)
+      mainClass.set(mainClassPath)
       sharedLibrary.set(false)
     }
   }

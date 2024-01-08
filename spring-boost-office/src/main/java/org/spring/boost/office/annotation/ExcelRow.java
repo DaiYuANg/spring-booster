@@ -2,7 +2,6 @@
 package org.spring.boost.office.annotation;
 
 import java.lang.annotation.*;
-
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xwpf.usermodel.Borders;
 

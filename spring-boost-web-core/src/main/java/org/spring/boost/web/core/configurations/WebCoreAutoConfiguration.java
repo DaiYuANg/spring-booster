@@ -2,6 +2,7 @@
 package org.spring.boost.web.core.configurations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -16,8 +17,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.List;
 
 @AutoConfiguration
 @Slf4j
@@ -45,12 +44,13 @@ public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
     @Override
     public void configureMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
-        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(objectMapper);
+        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter =
+                new MappingJackson2HttpMessageConverter(objectMapper);
         converters.add(jackson2HttpMessageConverter);
     }
 
     @Override
     public void addResourceHandlers(@NotNull ResourceHandlerRegistry registry) {
-        registry.addResourceHandler().resourceChain(true).addResolver(indexHtmlResolver);
+        registry.addResourceHandler("/*").resourceChain(true).addResolver(indexHtmlResolver);
     }
 }

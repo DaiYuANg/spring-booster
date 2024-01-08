@@ -8,9 +8,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration(proxyBeanMethods = false)
+// @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(DatasourceConfigurationProperties.class)
 @Slf4j
 public class DatasourceConfiguration {

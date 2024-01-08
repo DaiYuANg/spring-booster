@@ -2,14 +2,21 @@
 package org.spring.boost.cli.service;
 
 import com.squareup.javapoet.*;
+import freemarker.template.Configuration;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import javax.lang.model.element.Modifier;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.springframework.stereotype.Component;
 
 @Slf4j
+@RequiredArgsConstructor
+@Component
 public class CodeGenerateService {
+
+    private final Configuration configuration;
 
     public void entityGenerate() {
         val anno = AnnotationSpec.builder(Table.class)

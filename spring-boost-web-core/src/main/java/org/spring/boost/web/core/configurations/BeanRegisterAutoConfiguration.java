@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.spring.boost.web.core.configurations;
 
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import org.spring.boost.web.core.feature.InterceptorsFeatureInstaller;
 import org.spring.boost.web.core.filter.ReusableRequestFilter;
 import org.spring.boost.web.core.resolver.IndexHtmlResolver;
 import org.spring.boost.web.core.resolver.UserAgentResolver;
-import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -48,8 +48,8 @@ public class BeanRegisterAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "spring.boost.web.enable-reusable-request",havingValue = "true")
-    FilterRegistrationBean<ReusableRequestFilter> filterRegistrationBean(){
+    @ConditionalOnProperty(name = "enable-reusable-request", prefix = "spring.boost.web", havingValue = "true")
+    FilterRegistrationBean<ReusableRequestFilter> filterRegistrationBean() {
         FilterRegistrationBean<ReusableRequestFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new ReusableRequestFilter());
         registration.addUrlPatterns("/*");

@@ -3,9 +3,6 @@ import io.freefair.gradle.plugins.lombok.LombokPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
 import io.gitlab.plunts.gradle.plantuml.plugin.PlantUmlPlugin
 import me.champeau.jmh.JMHPlugin
-import net.ltgt.gradle.errorprone.CheckSeverity
-import net.ltgt.gradle.errorprone.ErrorPronePlugin
-import net.ltgt.gradle.errorprone.errorprone
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 import java.nio.charset.StandardCharsets
@@ -22,11 +19,13 @@ plugins {
     alias(libs.plugins.jreleaser) apply false
     alias(libs.plugins.lombok) apply false
     alias(libs.plugins.plantuml)
-    alias(libs.plugins.errorprone)
     alias(libs.plugins.dokka)
     `maven-publish`
 }
 
+idea{
+
+}
 
 allprojects {
     repositories {
@@ -54,9 +53,7 @@ subprojects {
             apply<FormatterPlugin>()
             apply<PlantUmlPlugin>()
             apply<MavenPublishPlugin>()
-            apply<ErrorPronePlugin>()
             apply<PmdPlugin>()
-            apply<IdeaPlugin>()
             apply<DokkaPlugin>()
 
             group = "org." + rootProject.name + "." + project.name
@@ -70,10 +67,6 @@ subprojects {
                 implementation(rootProject.libs.mapstruct)
                 annotationProcessor(rootProject.libs.mapstructAnnotationProcessor)
                 annotationProcessor(rootProject.libs.lombokMapstructBinding)
-                errorprone(rootProject.libs.nullaway)
-                errorprone(rootProject.libs.errorproneContrib)
-                errorprone(rootProject.libs.refasterRunner)
-                errorprone(rootProject.libs.errorproneCore)
                 testImplementation(platform(rootProject.libs.junitBom))
                 testImplementation(rootProject.libs.junitJuiter)
                 testImplementation(rootProject.libs.junitApi)
@@ -97,13 +90,7 @@ subprojects {
                     options.encoding = StandardCharsets.UTF_8.name()
                     options.compilerArgs.add("-Xlint:all")
                     options.compilerArgs.add("-g")
-                    options.errorprone.isEnabled.set(true)
-                    options.errorprone.disableWarningsInGeneratedCode.set(true)
                     dependsOn(project.tasks.processResources)
-                    options.errorprone {
-                        check("NullAway", CheckSeverity.ERROR)
-                        option("NullAway:AnnotatedPackages", "com.uber")
-                    }
                     options.isFork = true
                 }
 
@@ -139,7 +126,6 @@ subprojects {
                 maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
                 forkEvery = 100
             }
-
 
             classDiagrams {
                 val glob = "org.${rootProject.name.replace("-", ".")}.**"

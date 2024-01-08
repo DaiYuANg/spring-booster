@@ -23,9 +23,7 @@ public class JwtAuthenticationAutoConfiguration {
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter(
-            IJwtService jwtService,
-            ApplicationEventPublisher eventPublisher,
-            UserDetailsService userDetailsService) {
+            IJwtService jwtService, ApplicationEventPublisher eventPublisher, UserDetailsService userDetailsService) {
         return JwtAuthenticationFilter.builder()
                 .jwtService(jwtService)
                 .eventPublisher(eventPublisher)

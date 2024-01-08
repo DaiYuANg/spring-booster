@@ -1,1 +1,1 @@
-<#t >
+package ${package};

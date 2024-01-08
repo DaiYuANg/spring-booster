@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationListener=\
-org.toolkit.spring.boot.dev.service.lifecycle.DevServicePreparedListener
+org.spring.boost.dev.service.lifecycle.DevServicePreparedListener

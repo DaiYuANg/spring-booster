@@ -2,12 +2,12 @@
 package org.spring.boost.mapping.database.source.repository;
 
 import java.util.Optional;
+import org.spring.boost.mapping.database.source.entity.MappingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
-import org.spring.boost.mapping.database.source.entity.MappingEntity;
 
 @Repository
 public interface MappingEntityRepository

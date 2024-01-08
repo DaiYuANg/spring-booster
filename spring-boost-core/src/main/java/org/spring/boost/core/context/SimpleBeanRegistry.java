@@ -4,18 +4,17 @@ package org.spring.boost.core.context;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.lang.annotation.Annotation;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.core.api.BeanRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
 
@@ -72,5 +71,16 @@ public class SimpleBeanRegistry implements BeanRegistry {
     @Override
     public <T> void registerAll(@NotNull Map<String, T> beans) {
         beans.forEach(beanFactory::registerSingleton);
+    }
+
+    @Override
+    public Set<String> possibleClasspath() {
+        val app = context.getBeansWithAnnotation(SpringBootApplication.class);
+        return app.values().stream()
+                .flatMap(main -> {
+                    val ann = main.getClass().getAnnotation(SpringBootApplication.class);
+                    return Arrays.stream(ann.scanBasePackages());
+                })
+                .collect(Collectors.toSet());
     }
 }

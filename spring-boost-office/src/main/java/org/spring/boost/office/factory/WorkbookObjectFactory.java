@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.spring.boost.office.factory;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,9 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class WorkbookObjectFactory<T extends Workbook> implements PooledObjectFactory<T> {
 
     @Override
-    public void activateObject(PooledObject<T> pooledObject) throws Exception {
-
-    }
+    public void activateObject(PooledObject<T> pooledObject) throws Exception {}
 
     @Override
     public void destroyObject(@NotNull PooledObject<T> pooledObject) throws Exception {

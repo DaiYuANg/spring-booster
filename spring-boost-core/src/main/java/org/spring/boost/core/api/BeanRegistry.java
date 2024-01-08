@@ -34,4 +34,6 @@ public interface BeanRegistry {
     <T> void register(String name, T bean);
 
     <T> void registerAll(@NotNull Map<String, T> beans);
+
+    Set<String> possibleClasspath();
 }

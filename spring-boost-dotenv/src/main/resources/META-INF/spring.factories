@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationContextInitializer=\
-  org.toolkit.spring.boot.dotenv.autoconfigure.DotenvInitializer
+  org.spring.boost.dotenv.autoconfigure.DotenvInitializer

@@ -6,4 +6,6 @@ dependencies {
   api(libs.springBootJdbc)
   api(projects.springBoostCore)
   api(libs.hutoolCore)
+  api(libs.hutoolExtra)
+  api(libs.hutoolJSON)
 }

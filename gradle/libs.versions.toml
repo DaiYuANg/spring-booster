@@ -58,8 +58,12 @@ nullaway = "0.10.19"
 mapstruct = "1.5.5.Final"
 lombokMapstructBinding = "0.2.0"
 errorProneSupport = "0.14.0"
-junitPlatformSuite="1.10.1"
+junitPlatformSuite = "1.10.1"
 apacheCommonPool = "2.12.0"
+classGraph = "4.8.165"
+freemarker = "2.3.28"
+maven = "4.0.0-alpha-10"
+gradle = "8.5"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -81,7 +85,7 @@ junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
-junitPlatformSuite = {group="org.junit.platform",name="junit-platform-suite",version.ref="junitPlatformSuite"}
+junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version.ref = "junitPlatformSuite" }
 testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
 testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
@@ -123,12 +127,17 @@ apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "com
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
 hutoolHttp = { group = "cn.hutool", name = "hutool-http", version.ref = "hutool" }
+hutoolJSON = { group = "cn.hutool", name = "hutool-json", version.ref = "hutool" }
+hutoolExtra = { group = "cn.hutool", name = "hutool-extra", version.ref = "hutool" }
 mysql = { group = "com.mysql", name = "mysql-connector-j" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 springBootSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "springBoot" }
 springBootJdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc", version.ref = "springBoot" }
 springBootJPA = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "springBoot" }
+springBootFreemarker = { group = "org.springframework.boot", name = "spring-boot-starter-freemarker", version.ref = "springBoot" }
 springBootValidation = { group = "org.springframework.boot", name = "spring-boot-starter-validation", version.ref = "springBoot" }
+springBootDockerCompose = { group = "org.springframework.boot", name = "spring-boot-docker-compose", version.ref = "springBoot" }
+springBootDevtools = { group = "org.springframework.boot", name = "spring-boot-devtools", version.ref = "springBoot" }
 springSecurityTest = { group = "org.springframework.security", name = "spring-security-test" }
 springSecurityData = { group = "org.springframework.security", name = "spring-security-data" }
 springBootWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBoot" }
@@ -165,4 +174,9 @@ mapstructAnnotationProcessor = { group = "org.mapstruct", name = "mapstruct-proc
 lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version.ref = "lombokMapstructBinding" }
 errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-prone-contrib", version.ref = "errorProneSupport" }
 refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
-apacheCommonPool = {group="org.apache.commons",name="commons-pool2",version.ref="apacheCommonPool"}
+apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version.ref = "apacheCommonPool" }
+classGraph = { group = "io.github.classgraph", name = "classgraph", version.ref = "classGraph" }
+freemarker = { group = "org.freemarker", name = "freemarker", version.ref = "freemarker" }
+mavenEmbeder={group="org.apache.maven",name="maven-embedder",version.ref="maven"}
+mavenModel={group="org.apache.maven",name="maven-model",version.ref="maven"}
+gradleToolingAPI = {group="org.gradle",name="gradle-tooling-api",version.ref="gradle"}

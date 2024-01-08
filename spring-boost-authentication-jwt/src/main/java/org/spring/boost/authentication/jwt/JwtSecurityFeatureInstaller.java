@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.spring.boost.authentication.jwt;
 
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class JwtSecurityFeatureInstaller implements SecurityFeatureInstaller {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
     @Override
     public void install(@NotNull HttpSecurity http) {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

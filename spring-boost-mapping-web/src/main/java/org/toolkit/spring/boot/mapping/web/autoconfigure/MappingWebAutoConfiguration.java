@@ -12,7 +12,7 @@ import org.toolkit.spring.boot.mapping.web.aop.MappedResponseHandler;
 
 @AutoConfiguration
 @Slf4j
-@Configuration(proxyBeanMethods=false)
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(MappingWebConfigurationProperties.class)
 @RequiredArgsConstructor
 public class MappingWebAutoConfiguration {

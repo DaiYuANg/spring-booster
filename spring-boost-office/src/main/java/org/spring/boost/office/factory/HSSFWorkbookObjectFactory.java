@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.spring.boost.office.factory;
 
 import lombok.extern.slf4j.Slf4j;

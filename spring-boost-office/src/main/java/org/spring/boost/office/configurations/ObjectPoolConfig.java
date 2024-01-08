@@ -1,3 +1,4 @@
+/* (C)2024*/
 package org.spring.boost.office.configurations;
 
 import lombok.Getter;

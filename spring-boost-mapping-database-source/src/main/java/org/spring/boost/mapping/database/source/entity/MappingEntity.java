@@ -2,19 +2,18 @@
 package org.spring.boost.mapping.database.source.entity;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.spring.boost.persistence.base.BaseEntity;
-
-import java.util.Set;
 
 @Entity
 @Table
 @Getter
 @Setter
 @Accessors(chain = true)
-public class MappingEntity  extends BaseEntity {
+public class MappingEntity extends BaseEntity {
 
     @Column
     private String naming;

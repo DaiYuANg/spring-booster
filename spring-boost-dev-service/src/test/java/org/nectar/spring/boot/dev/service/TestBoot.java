@@ -11,6 +11,5 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TestBoot {
 
     @Test
-    void testBoot() {
-    }
+    void testBoot() {}
 }

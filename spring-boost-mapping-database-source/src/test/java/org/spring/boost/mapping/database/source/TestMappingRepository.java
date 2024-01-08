@@ -10,6 +10,8 @@ import net.datafaker.Faker;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.spring.boost.mapping.database.source.entity.MappingEntity;
+import org.spring.boost.mapping.database.source.repository.MappingEntityRepository;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -21,8 +23,6 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
-import org.spring.boost.mapping.database.source.entity.MappingEntity;
-import org.spring.boost.mapping.database.source.repository.MappingEntityRepository;
 
 @RunWith(SpringRunner.class)
 @Testcontainers

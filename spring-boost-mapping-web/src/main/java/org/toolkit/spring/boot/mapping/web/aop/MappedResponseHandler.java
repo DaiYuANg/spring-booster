@@ -1,6 +1,8 @@
 /* (C)2023*/
 package org.toolkit.spring.boot.mapping.web.aop;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +18,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.annotation.Order;
-
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 @Order
 @Aspect

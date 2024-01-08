@@ -2,8 +2,9 @@
 package org.spring.boost.cli.command;
 
 import jakarta.annotation.Resource;
-import lombok.*;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.cli.adapter.MysqlJDBCMappingService;
 import org.springframework.shell.command.CommandHandlingResult;
@@ -13,7 +14,6 @@ import org.springframework.shell.component.MultiItemSelector;
 import org.springframework.shell.component.support.Itemable;
 import org.springframework.shell.component.support.SelectorItem;
 import org.springframework.shell.standard.AbstractShellComponent;
-import org.springframework.shell.standard.ShellMethod;
 
 @Slf4j
 @Command
@@ -23,7 +23,7 @@ public class GenerateCommand extends AbstractShellComponent {
     private MysqlJDBCMappingService mysqlJDBCMappingService;
 
     @SneakyThrows
-    @ShellMethod(key = "dg", value = "Database Generator", group = "Generator")
+    @Command(command = "dg", alias = "Database Generator", group = "Generator")
     public String helloWorld(boolean mask) {
         val tableNames = mysqlJDBCMappingService.getTableNamesFromSchmea().stream()
                 .map(tableName -> SelectorItem.of(tableName, tableName))
