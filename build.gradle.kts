@@ -67,25 +67,26 @@ subprojects {
             dependencies {
                 compileOnly(rootProject.libs.jetbrainsAnnotation)
                 implementation(rootProject.libs.guava)
-                implementation("org.mapstruct:mapstruct:1.5.5.Final")
-                annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
-                annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
-                errorprone("com.uber.nullaway:nullaway:0.10.19")
-                errorprone("tech.picnic.error-prone-support:error-prone-contrib:0.14.0")
-                errorprone("tech.picnic.error-prone-support:refaster-runner:0.14.0")
+                implementation(rootProject.libs.mapstruct)
+                annotationProcessor(rootProject.libs.mapstructAnnotationProcessor)
+                annotationProcessor(rootProject.libs.lombokMapstructBinding)
+                errorprone(rootProject.libs.nullaway)
+                errorprone(rootProject.libs.errorproneContrib)
+                errorprone(rootProject.libs.refasterRunner)
                 errorprone(rootProject.libs.errorproneCore)
                 testImplementation(platform(rootProject.libs.junitBom))
                 testImplementation(rootProject.libs.junitJuiter)
                 testImplementation(rootProject.libs.junitApi)
-                testRuntimeOnly(rootProject.libs.junitEngine)
+                testImplementation(rootProject.libs.junitEngine)
+                testImplementation(rootProject.libs.junitPlatformSuite)
                 testImplementation(platform(rootProject.libs.testcontainersBom))
                 testImplementation(rootProject.libs.testcontainers)
                 testImplementation(rootProject.libs.testcontainersJunit)
                 testImplementation(rootProject.libs.mockitoCore)
                 testImplementation(rootProject.libs.mockitoJunit)
                 testImplementation(rootProject.libs.dataFaker)
-                testImplementation("com.github.noconnor:junitperf:1.35.0")
-                testImplementation("com.github.noconnor:junitperf-junit5:1.35.0")
+                testImplementation(rootProject.libs.junitperf)
+                testImplementation(rootProject.libs.junitperfJunit5)
                 implementation(rootProject.libs.slf4j)
             }
             tasks.withType<BootJar> { enabled = false }
@@ -99,12 +100,10 @@ subprojects {
                     options.errorprone.isEnabled.set(true)
                     options.errorprone.disableWarningsInGeneratedCode.set(true)
                     dependsOn(project.tasks.processResources)
-//                    if (!name.lowercase().contains("test")) {
-                        options.errorprone {
-                            check("NullAway", CheckSeverity.ERROR)
-                            option("NullAway:AnnotatedPackages", "com.uber")
-                        }
-//                    }
+                    options.errorprone {
+                        check("NullAway", CheckSeverity.ERROR)
+                        option("NullAway:AnnotatedPackages", "com.uber")
+                    }
                     options.isFork = true
                 }
 

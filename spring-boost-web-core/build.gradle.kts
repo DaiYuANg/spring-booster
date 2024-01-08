@@ -6,7 +6,8 @@ dependencies {
     api(libs.aspectjRt)
     api(projects.springBoostCore)
     compileOnly(libs.springBootWeb)
-    implementation("com.github.ua-parser:uap-java:1.6.1")
     api("org.springframework.hateoas:spring-hateoas")
+    api(libs.apacheCommonIO)
+    api("cn.hutool:hutool-http:5.8.24")
     testImplementation(libs.springBootWeb)
 }

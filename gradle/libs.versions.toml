@@ -53,6 +53,13 @@ okHttp = "5.0.0-alpha.12"
 spotless = "6.23.3"
 apachePoi = "5.2.5"
 fastexcel = "0.16.5"
+junitperf = "1.35.0"
+nullaway = "0.10.19"
+mapstruct = "1.5.5.Final"
+lombokMapstructBinding = "0.2.0"
+errorProneSupport = "0.14.0"
+junitPlatformSuite="1.10.1"
+apacheCommonPool = "2.12.0"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -74,6 +81,7 @@ junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junitPlatformSuite = {group="org.junit.platform",name="junit-platform-suite",version.ref="junitPlatformSuite"}
 testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
 testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
@@ -114,6 +122,7 @@ dataFaker = { group = "net.datafaker", name = "datafaker", version.ref = "datafa
 apacheCommonIO = { group = "commons-io", name = "commons-io", version.ref = "commonIO" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
+hutoolHttp = { group = "cn.hutool", name = "hutool-http", version.ref = "hutool" }
 mysql = { group = "com.mysql", name = "mysql-connector-j" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 springBootSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "springBoot" }
@@ -148,3 +157,12 @@ apachePoi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" 
 apachePoiOOxmlFull = { group = "org.apache.poi", name = "poi-ooxml-full", version.ref = "apachePoi" }
 apachePoiOOxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
 fastExcel = { group = "org.dhatim", name = "fastexcel", version.ref = "fastexcel" }
+junitperf = { group = "com.github.noconnor", name = "junitperf", version.ref = "junitperf" }
+junitperfJunit5 = { group = "com.github.noconnor", name = "junitperf-junit5", version.ref = "junitperf" }
+nullaway = { group = "com.uber.nullaway", name = "nullaway", version.ref = "nullaway" }
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstructAnnotationProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version.ref = "lombokMapstructBinding" }
+errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-prone-contrib", version.ref = "errorProneSupport" }
+refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
+apacheCommonPool = {group="org.apache.commons",name="commons-pool2",version.ref="apacheCommonPool"}

@@ -1,4 +1,4 @@
-package org.spring.boost.minio.stream
+package org.spring.boost.core.stream
 
 import java.io.BufferedInputStream
 import java.io.InputStream
@@ -10,7 +10,7 @@ import java.io.OutputStream
  * This class implements the [InputStream] interface to provide a reusable stream.
  * If the stream from the constructor is not markable, it will be cached.
  */
-class ReusableStream
+class ReusableInputStream
     @JvmOverloads
     constructor(
         stream: InputStream = nullInputStream(),

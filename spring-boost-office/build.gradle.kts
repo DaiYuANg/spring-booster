@@ -1,8 +1,12 @@
-plugins { `spring-boot-project` }
+plugins {
+    `spring-boot-project`
+}
 
 dependencies {
-  compileOnly(libs.springBootWeb)
-  api(libs.apachePoi)
-  api(libs.apachePoiOOxmlFull)
-  api(libs.apachePoiOOxml)
+    compileOnly(libs.springBootWeb)
+    api(libs.apachePoi)
+    api(libs.apachePoiOOxmlFull)
+    api(libs.apachePoiOOxml)
+    testImplementation(libs.springBootWeb)
+    api(libs.apacheCommonPool)
 }

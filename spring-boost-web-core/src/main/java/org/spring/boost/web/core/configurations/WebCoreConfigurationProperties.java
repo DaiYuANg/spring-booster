@@ -14,4 +14,6 @@ public class WebCoreConfigurationProperties {
      * Global return value struct
      */
     private Class<?> returnResult = ResponseEntity.class;
+
+    private boolean enableReusableRequest = false;
 }

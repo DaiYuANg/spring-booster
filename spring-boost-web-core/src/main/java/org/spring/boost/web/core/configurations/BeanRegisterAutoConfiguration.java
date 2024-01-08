@@ -5,13 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.web.core.feature.InterceptorsFeatureInstaller;
+import org.spring.boost.web.core.filter.ReusableRequestFilter;
 import org.spring.boost.web.core.resolver.IndexHtmlResolver;
 import org.spring.boost.web.core.resolver.UserAgentResolver;
 import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-import ua_parser.Parser;
 
 @AutoConfiguration
 @Slf4j
@@ -26,13 +28,8 @@ public class BeanRegisterAutoConfiguration {
     }
 
     @Bean
-    Parser parser() {
-        return new Parser(Parser.getDefaultLoaderOptions());
-    }
-
-    @Bean
-    UserAgentResolver userAgentResolver(Parser parser) {
-        return new UserAgentResolver(parser);
+    UserAgentResolver userAgentResolver() {
+        return new UserAgentResolver();
     }
 
     @Bean
@@ -48,5 +45,16 @@ public class BeanRegisterAutoConfiguration {
         loggingFilter.setIncludePayload(true);
         loggingFilter.setIncludeHeaders(true);
         return loggingFilter;
+    }
+
+    @Bean
+    @ConditionalOnProperty(prefix = "spring.boost.web.enable-reusable-request",havingValue = "true")
+    FilterRegistrationBean<ReusableRequestFilter> filterRegistrationBean(){
+        FilterRegistrationBean<ReusableRequestFilter> registration = new FilterRegistrationBean<>();
+        registration.setFilter(new ReusableRequestFilter());
+        registration.addUrlPatterns("/*");
+        registration.setName("repeatableFilter");
+        registration.setOrder(FilterRegistrationBean.LOWEST_PRECEDENCE);
+        return registration;
     }
 }

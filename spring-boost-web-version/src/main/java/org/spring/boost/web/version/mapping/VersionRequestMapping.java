@@ -2,6 +2,8 @@
 package org.spring.boost.web.version.mapping;
 
 import java.lang.reflect.Method;
+
+import com.fasterxml.jackson.core.Version;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
