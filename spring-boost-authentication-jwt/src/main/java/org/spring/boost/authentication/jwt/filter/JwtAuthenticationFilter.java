@@ -5,13 +5,14 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.authentication.feature.bundle.authenticated.AuthenticatedEvent;
 import org.spring.boost.authentication.jwt.service.IJwtService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -46,12 +47,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         val jwt = authHeader.substring(7);
         val username = jwtService.extractUsername(jwt);
         val authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.isAuthenticated()) filterChain.doFilter(request, response);
         val userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken authToken =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authToken);
-        eventPublisher.publishEvent(new AuthenticatedEvent(this, jwt, userDetails));
         filterChain.doFilter(request, response);
     }
 }
