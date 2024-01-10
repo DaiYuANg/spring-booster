@@ -2,6 +2,7 @@ plugins {
   application
   alias(libs.plugins.graalvmNative)
   `spring-boot-project`
+  `kotlin-support`
 }
 
 dependencyManagement { imports { mavenBom("${libs.springShellBom.get()}") } }
@@ -22,10 +23,12 @@ dependencies {
   implementation(libs.sqliteDriver)
   implementation(libs.postgresqlDriver)
   implementation(libs.mavenModel)
-  implementation(libs.h2Driver)
   implementation(libs.springBootFreemarker)
   implementation(libs.gradleToolingAPI)
+  testImplementation(libs.springBootJdbc)
+  testImplementation(libs.mysql)
   developmentOnly(libs.springBootDevtools)
+  testImplementation(libs.testcontainersMysql)
   developmentOnly(libs.springBootDockerCompose)
 }
 

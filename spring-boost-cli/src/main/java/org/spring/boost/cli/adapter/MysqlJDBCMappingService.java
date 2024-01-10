@@ -3,13 +3,15 @@ package org.spring.boost.cli.adapter;
 
 import java.net.URI;
 import java.sql.Connection;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.cli.database.JDBCMappingService;
-import org.spring.boost.cli.dto.MysqlTableColumn;
+import org.spring.boost.cli.dto.DatabaseTableColumn;
 
 @Slf4j
 public class MysqlJDBCMappingService implements JDBCMappingService {
@@ -34,24 +36,24 @@ public class MysqlJDBCMappingService implements JDBCMappingService {
 
     @SneakyThrows
     @Override
-    public List<MysqlTableColumn> queryTableColumns(@NotNull String tableName) {
+    public List<DatabaseTableColumn> queryTableColumns(@NotNull String tableName) {
         log.atInfo().log("get table column:{}", tableName);
         val result = connection.getMetaData().getColumns(null, null, tableName, null);
-        val columns = new ArrayList<MysqlTableColumn>();
+        val columns = new ArrayList<DatabaseTableColumn>();
         while (result.next()) {
             String columnName = result.getString("COLUMN_NAME");
             String dataType = result.getString("TYPE_NAME");
             int columnSize = result.getInt("COLUMN_SIZE");
             int nullable = result.getInt("NULLABLE");
-            val column = new MysqlTableColumn() {
-                {
-                    setCOLUMN_NAME(columnName);
-                    setCOLUMN_SIZE(columnSize);
-                    setNULLABLE(nullable);
-                    setTYPE_NAME(dataType);
-                }
-            };
-            columns.add(column);
+            //            val column = new DatabaseTableColumn() {
+            //                {
+            ////                    setCOLUMN_NAME(columnName);
+            ////                    setCOLUMN_SIZE(columnSize);
+            ////                    setNULLABLE(nullable);
+            ////                    setTYPE_NAME(dataType);
+            //                }
+            //            };
+            //            columns.add(column);
         }
         return columns;
     }
