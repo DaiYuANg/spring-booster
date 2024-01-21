@@ -3,14 +3,15 @@ package org.spring.boost.cli.configuration;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import javax.sql.DataSource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.spring.boost.cli.factory.YamlPropertySourceFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-@Configuration
+import javax.sql.DataSource;
+
+@Configuration(proxyBeanMethods = false)
 @Slf4j
 @PropertySource(
         value = "file:${PWD}/spring.boost.yaml",

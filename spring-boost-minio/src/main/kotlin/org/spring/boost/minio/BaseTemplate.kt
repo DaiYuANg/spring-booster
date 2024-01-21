@@ -11,7 +11,7 @@ import org.spring.boost.minio.properties.MinioClientConfig
 
 open class BaseTemplate(
     templateArg: MinioTemplateArgument,
-) {
+){
     val client: MinioClient by lazy { templateArg.client }
 
     val adminClient: MinioAdminClient by lazy { templateArg.adminClient }

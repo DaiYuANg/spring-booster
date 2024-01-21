@@ -14,6 +14,7 @@ repositories {
 }
 
 dependencies {
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(libs.springBootGradlePlugin)
     implementation(libs.springBootDependencyManagementPlugin)
     implementation(libs.spotlessPlugin)

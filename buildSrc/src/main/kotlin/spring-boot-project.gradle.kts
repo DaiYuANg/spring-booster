@@ -1,10 +1,12 @@
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
+import org.springframework.boot.gradle.plugin.SpringBootAotPlugin
 
 plugins{
     id("org.springframework.boot")
     id("io.spring.dependency-management")
     `java-library`
 }
+apply<SpringBootAotPlugin>()
 the<DependencyManagementExtension>().apply {
     imports { mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) }
 }

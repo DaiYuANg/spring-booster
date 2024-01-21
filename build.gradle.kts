@@ -50,7 +50,7 @@ subprojects {
             apply<JavaLibraryPlugin>()
             apply<LombokPlugin>()
             apply<GitVersionPlugin>()
-            apply<FormatterPlugin>()
+//            apply<FormatterPlugin>()
             apply<PlantUmlPlugin>()
             apply<MavenPublishPlugin>()
             apply<PmdPlugin>()

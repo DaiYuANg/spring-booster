@@ -1,5 +1,6 @@
 package org.spring.boost.minio
 
+import io.minio.MinioClient
 import org.spring.boost.minio.api.MinioAdmin
 import org.spring.boost.minio.api.MinioCreate
 import org.spring.boost.minio.api.MinioDelete
@@ -15,7 +16,8 @@ class MinioTemplate private constructor(
     MinioCreate by createTemplate,
     MinioDelete by deleteTemplate,
     MinioAdmin by adminTemplate,
-    BaseTemplate(templateArg) {
+    BaseTemplate(templateArg)
+{
     companion object {
         @JvmStatic
         @JvmOverloads
