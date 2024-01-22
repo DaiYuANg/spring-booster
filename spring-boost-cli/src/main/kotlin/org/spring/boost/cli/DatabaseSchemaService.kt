@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service
 import java.util.concurrent.StructuredTaskScope
 import javax.sql.DataSource
 
-
 @Service
 class DatabaseSchemaService(
     private val dataSource: DataSource,
