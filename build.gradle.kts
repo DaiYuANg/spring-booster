@@ -23,7 +23,7 @@ plugins {
     `maven-publish`
 }
 
-idea{
+idea {
 
 }
 
@@ -80,7 +80,7 @@ subprojects {
                 testImplementation(rootProject.libs.dataFaker)
                 testImplementation(rootProject.libs.junitperf)
                 testImplementation(rootProject.libs.junitperfJunit5)
-                testImplementation ("io.rest-assured:rest-assured")
+                testImplementation("io.rest-assured:rest-assured")
                 implementation(rootProject.libs.slf4j)
             }
             tasks.withType<BootJar> { enabled = false }
