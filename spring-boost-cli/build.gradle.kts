@@ -16,7 +16,7 @@ version = "1.0"
 val mainClassPath = "org.spring.boost.cli.SpringBoostCLI"
 
 dependencies {
-    implementation(libs.mysql)
+    implementation(libs.mysqlDriver)
     implementation(libs.javapoet)
     implementation(libs.jakartaPersistence)
     implementation(libs.commonsDBUtil)
@@ -30,7 +30,6 @@ dependencies {
     implementation(libs.springBootFreemarker)
     implementation(libs.gradleToolingAPI)
     testImplementation(libs.springBootJdbc)
-    testImplementation(libs.mysql)
     developmentOnly(libs.springBootDevtools)
     testImplementation(libs.testcontainersMysql)
     developmentOnly(libs.springBootDockerCompose)

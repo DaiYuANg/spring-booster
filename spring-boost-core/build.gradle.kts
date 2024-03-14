@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-  api(libs.apacheCommonLang3)
-  api(libs.classGraph)
+  implementation(libs.apacheCommonLang3)
+  implementation(libs.classGraph)
 }

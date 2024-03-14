@@ -1,3 +1,3 @@
 plugins { `spring-boot-project` }
 
-dependencies { api(libs.dotenvJava) }
+dependencies { implementation(libs.dotenvJava) }

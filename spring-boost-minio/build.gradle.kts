@@ -6,11 +6,11 @@ plugins {
 dependencies {
   api(libs.minio)
   api(libs.minioAdmin)
-  api(libs.tikaCore)
-  api(libs.tikaParsers)
-  api(libs.apacheCommonIO)
-  api(libs.apacheCommonCodeC)
-  api(libs.okHttp)
-  api(projects.springBoostCore)
+  implementation(libs.tikaCore)
+  implementation(libs.tikaParsers)
+  implementation(libs.apacheCommonIO)
+  implementation(libs.apacheCommonCodeC)
+  implementation(libs.okHttp)
+  implementation(projects.springBoostCore)
   testImplementation(libs.testcontainersMinio)
 }

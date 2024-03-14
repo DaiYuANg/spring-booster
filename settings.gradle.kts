@@ -1,45 +1,45 @@
 pluginManagement {
-    repositories {
-        maven { setUrl("https://repo.spring.io/snapshot") }
-        maven { setUrl("https://repo.spring.io/milestone") }
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-        google()
-    }
+  repositories {
+    maven { setUrl("https://repo.spring.io/snapshot") }
+    maven { setUrl("https://repo.spring.io/milestone") }
+    mavenLocal()
+    mavenCentral()
+    gradlePluginPortal()
+    google()
+  }
 }
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
-    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.17"
-    id("com.gradle.enterprise") version "3.16.1"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+  id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.2"
+  id("com.gradle.enterprise") version "3.13.4"
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 buildCache {
-    local {
-        isEnabled = true
-        directory = File(rootProject.projectDir, ".gradle/build-cache")
-    }
+  local {
+    isEnabled = true
+    directory = File(rootProject.projectDir, ".gradle/build-cache")
+  }
 }
 
 gitHooks {
-    commitMsg {
-        conventionalCommits {
-            defaultTypes()
-        }
+  commitMsg {
+    conventionalCommits {
+      defaultTypes()
     }
-    createHooks(true) // actual hooks creation
+  }
+  createHooks(true) // actual hooks creation
 }
 
 gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+  }
 }
 
-rootProject.name = "spring-boost"
+rootProject.name = "spring-booster"
 
 include("spring-boost-jpa")
 
@@ -74,3 +74,5 @@ include("spring-boost-web-version")
 include("spring-boost-cli")
 
 include("spring-boost-application-example")
+
+include("website")

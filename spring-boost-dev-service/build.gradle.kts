@@ -5,5 +5,5 @@ dependencies {
   implementation(libs.javaDockerClientCore)
   implementation(libs.javaDockerClientHttpClient)
   implementation(libs.apacheHttpClient)
-  testImplementation(libs.mysql)
+  testImplementation(libs.mysqlDriver)
 }

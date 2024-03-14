@@ -29,8 +29,8 @@ idea {
 
 allprojects {
     repositories {
-        maven { setUrl("https://repo.spring.io/snapshot") }
-        maven { setUrl("https://repo.spring.io/milestone") }
+//        maven { setUrl("https://repo.spring.io/snapshot") }
+//        maven { setUrl("https://repo.spring.io/milestone") }
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()

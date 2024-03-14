@@ -1,11 +1,11 @@
 plugins { `spring-boot-project` }
 
 dependencies {
-  api(libs.springBootSecurity)
+  compileOnly(libs.springBootSecurity)
   compileOnly(libs.springBootWeb)
-  api(libs.springSecurityData)
-  api(libs.springBootOAuth2AuthorizationServer)
-  api(projects.springBoostCore)
+  compileOnly(libs.springSecurityData)
+  compileOnly(libs.springBootOAuth2AuthorizationServer)
+  compileOnly(projects.springBoostCore)
   testImplementation(libs.springBootWeb)
   testImplementation(libs.springSecurityTest)
 }
