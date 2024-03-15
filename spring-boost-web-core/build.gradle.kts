@@ -1,4 +1,4 @@
-plugins { `spring-boot-project` }
+//plugins { `spring-boot-project` }
 
 val aspectjVersion: String by project
 

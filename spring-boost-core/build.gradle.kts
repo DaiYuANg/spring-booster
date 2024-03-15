@@ -1,5 +1,5 @@
 plugins {
-  `spring-boot-project`
+//  `spring-boot-project`
   `kotlin-support`
 }
 

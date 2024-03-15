@@ -3,7 +3,7 @@ import org.springframework.boot.gradle.plugin.SpringBootAotPlugin
 plugins {
     application
     alias(libs.plugins.graalvmNative)
-    `spring-boot-project`
+//    `spring-boot-project`
     `kotlin-support`
 }
 
@@ -30,9 +30,9 @@ dependencies {
     implementation(libs.springBootFreemarker)
     implementation(libs.gradleToolingAPI)
     testImplementation(libs.springBootJdbc)
-    developmentOnly(libs.springBootDevtools)
+//    developmentOnly(libs.springBootDevtools)
     testImplementation(libs.testcontainersMysql)
-    developmentOnly(libs.springBootDockerCompose)
+//    developmentOnly(libs.springBootDockerCompose)
 }
 
 application {

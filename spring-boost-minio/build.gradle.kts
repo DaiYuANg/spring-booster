@@ -1,6 +1,6 @@
 plugins {
   `kotlin-support`
-  `spring-boot-project`
+//  `spring-boot-project`
 }
 
 dependencies {

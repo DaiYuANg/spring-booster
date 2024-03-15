@@ -1,4 +1,4 @@
-plugins { `spring-boot-project` }
+//plugins { `spring-boot-project` }
 
 dependencies {
   //  implementation(projects.kits.core.springBootToolkitUtils)

@@ -1,5 +1,5 @@
 plugins {
-  `spring-boot-project`
+//  `spring-boot-project`
   java
   application
 }
@@ -11,5 +11,5 @@ dependencies {
   implementation(projects.springBoostWebCore)
   implementation(libs.springBootJPA)
   implementation(libs.h2Driver)
-  developmentOnly(libs.springBootDevtools)
+//  developmentOnly(libs.springBootDevtools)
 }
