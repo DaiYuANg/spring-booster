@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "spring.return-result",
-      "type": "java.lang.Class",
-      "description": "Global Web return structure."
-    }
-  ]
-}

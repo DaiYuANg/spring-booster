@@ -1,7 +1,5 @@
 plugins {
   `kotlin-dsl`
-  `kotlin-dsl-precompiled-script-plugins`
-  `embedded-kotlin`
 }
 
 repositories {
@@ -23,5 +21,13 @@ dependencies {
   implementation(libs.kotlinGradleAllOpenPlugin)
   implementation(libs.kotlinGradleSpringPlugin)
   implementation(libs.manifestPlugin)
+  implementation(libs.jmhPlugin)
+  implementation(libs.plantumlPlugin)
+  implementation(libs.dependencycheckPlugin)
+  implementation(libs.semverPlugin)
+  implementation(libs.spotbugsPlugin)
+  implementation(libs.lombokPlugin)
+  implementation(libs.dokkaPlugin)
   implementation(libs.spotbugs)
+  implementation(libs.jreleaserPlugin)
 }

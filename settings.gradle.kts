@@ -1,7 +1,5 @@
 pluginManagement {
   repositories {
-    maven { setUrl("https://repo.spring.io/snapshot") }
-    maven { setUrl("https://repo.spring.io/milestone") }
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
@@ -41,38 +39,38 @@ gradleEnterprise {
 
 rootProject.name = "spring-booster"
 
-include("spring-boost-jpa")
+include("booster:spring-boost-jpa")
 
-include("spring-boost-core")
+include("booster:spring-boost-core")
 
-include("spring-boost-authentication")
+include("booster:spring-boost-authentication")
 
-include("spring-boost-authentication-jwt")
+include("booster:spring-boost-authentication-jwt")
 
-include("spring-boost-web-core")
+include("booster:spring-boost-web-core")
 
-include("spring-boost-verification")
+include("booster:spring-boost-verification")
 
-include("spring-boost-office")
+include("booster:spring-boost-office")
 
-include("spring-boost-mapping-core")
+include("booster:spring-boost-mapping-core")
 
-include("spring-boost-minio")
+include("booster:spring-boost-minio")
 
-include("spring-boost-mapping-code-source")
+include("booster:spring-boost-mapping-code-source")
 
-include("spring-boost-mapping-database-source")
+include("booster:spring-boost-mapping-web")
 
-include("spring-boost-mapping-web")
+include("booster:spring-boost-dev-service")
 
-include("spring-boost-dev-service")
+include("booster:spring-boost-dotenv")
 
-include("spring-boost-dotenv")
+include("booster:spring-boost-web-version")
 
-include("spring-boost-web-version")
+include("booster:spring-boost-captcha")
 
-include("spring-boost-cli")
+include("apps:spring-boost-cli")
 
-include("spring-boost-application-example")
+include("apps:spring-boost-application-example")
 
 include("website")

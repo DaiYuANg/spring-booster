@@ -1,3 +1,0 @@
-org.spring.boost.authentication.configuration.AuthenticationAutoConfiguration
-org.spring.boost.authentication.configuration.PasswordEncodeAutoConfiguration
-org.spring.boost.authentication.configuration.BundleFeatureAutoConfiguration

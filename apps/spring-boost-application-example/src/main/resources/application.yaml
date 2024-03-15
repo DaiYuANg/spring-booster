@@ -1,0 +1,4 @@
+spring:
+  boost:
+    class-scanner:
+      enable-class-graph-log: false

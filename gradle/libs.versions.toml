@@ -4,10 +4,9 @@ kotlin = "2.0.0-Beta4"
 pluginPublish = "1.2.1"
 versionCheck = "0.50.0"
 errorproneCore = "2.23.0"
-junit = "5.10.1"
+junit = "5.10.2"
 testcontainers = "1.19.7"
 mockito = "5.11.0"
-lombok = "8.6"
 errorpronePlugin = "3.1.0"
 aspectjRt = "1.9.21.2"
 minio = "8.5.9"
@@ -27,19 +26,14 @@ maven = "4.0.0-alpha-10"
 gradle = "8.5"
 asciidoctor = "4.0.2"
 eclipseCollections = "12.0.0.M3"
+springShell = "3.2.2"
 
 [plugins]
-kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
 versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionCheck" }
-lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
-plantuml = { id = "io.gitlab.plunts.plantuml", version = "2.1.7" }
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
 errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
-dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
-gitVersion = { id = "com.palantir.git-version", version = "3.0.0" }
-dependencycheck = { id = "org.owasp.dependencycheck", version = "9.0.9" }
-jmh = { id = "me.champeau.jmh", version = "0.7.2" }
-jreleaser = { id = "org.jreleaser", version = "1.11.0" }
+dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 graalvmNative = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
@@ -64,6 +58,7 @@ junitperf = { group = "com.github.noconnor", name = "junitperf", version.ref = "
 junitperfJunit5 = { group = "com.github.noconnor", name = "junitperf-junit5", version.ref = "junitperf" }
 mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+restAssured = { group = "io.rest-assured", name = "rest-assured", version = "5.4.0" }
 
 #Lint
 errorproneCore = { group = "com.google.errorprone", name = "error_prone_core", version.ref = "errorproneCore" }
@@ -75,7 +70,7 @@ refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-r
 
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version = "2.1.0-alpha1" }
-jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M1" }
+jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
 aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
 jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0-M1" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
@@ -95,11 +90,11 @@ javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-
 apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
 dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3.0.0" }
 apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
-bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.10" }
-dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.0.2" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
+dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.1.0" }
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.15.1" }
 guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
-
+micaAuto={group="net.dreamlu",name="mica-auto",version="3.1.3"}
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 
 commonsDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
@@ -136,20 +131,20 @@ apachePoiOOxmlFull = { group = "org.apache.poi", name = "poi-ooxml-full", versio
 apachePoiOOxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
 fastExcel = { group = "org.dhatim", name = "fastexcel", version = "0.16.5" }
 
-
 #Hutool
 hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
 hutoolHttp = { group = "cn.hutool", name = "hutool-http", version.ref = "hutool" }
 hutoolJSON = { group = "cn.hutool", name = "hutool-json", version.ref = "hutool" }
 hutoolExtra = { group = "cn.hutool", name = "hutool-extra", version.ref = "hutool" }
+hutoolCaptcha = { group = "cn.hutool", name = "hutool-captcha", version.ref = "hutool" }
 
 #Spring
-springBootStarter = { group = "org.springframework.boot", name = "spring-boot-starter" }
-springBootActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
-springBootJSON = { group = "org.springframework.boot", name = "spring-boot-starter-json" }
-springBootAop = { group = "org.springframework.boot", name = "spring-boot-starter-aop" }
-springBootConfigurationProcessor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor" }
-springBootTest = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+springBootStarter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "springBoot" }
+springBootActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "springBoot" }
+springBootJSON = { group = "org.springframework.boot", name = "spring-boot-starter-json", version.ref = "springBoot" }
+springBootAop = { group = "org.springframework.boot", name = "spring-boot-starter-aop", version.ref = "springBoot" }
+springBootConfigurationProcessor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor", version.ref = "springBoot" }
+springBootTest = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "springBoot" }
 springBootSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "springBoot" }
 springBootJdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc", version.ref = "springBoot" }
 springBootJPA = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "springBoot" }
@@ -160,22 +155,34 @@ springBootDevtools = { group = "org.springframework.boot", name = "spring-boot-d
 springSecurityTest = { group = "org.springframework.security", name = "spring-security-test" }
 springSecurityData = { group = "org.springframework.security", name = "spring-security-data" }
 springBootWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBoot" }
-springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version = "3.2.2" }
-springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter" }
 springBootOAuth2AuthorizationServer = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-authorization-server" }
 springBootDataEnvers = { group = "org.springframework.data", name = "spring-data-envers" }
 springBootHateoas = { group = "org.springframework.hateoas", name = "spring-hateoas" }
+springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starter", version = "4.7.5" }
+
+#Spring Shell
+springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
+springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
+
+#Kotlin
+kotlinxCoroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.8.1-Beta" }
 
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
 springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.23.3" }
-manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }
-
-#Kotlin Plugin
 kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
 kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
 kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
 kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
+semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }
+dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.9" }
+jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }
+jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
+spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
+lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.4" }
+plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
+dokkaPlugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version = "1.9.20" }
+manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }

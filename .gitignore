@@ -401,3 +401,4 @@ website/static
 .env.**
 *.png
 .kotlin
+gradle.properties
