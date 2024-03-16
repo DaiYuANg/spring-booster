@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.captcha.constant.ConfigConstant;
+import org.spring.boost.captcha.service.CaptchaService;
+import org.spring.boost.captcha.service.CaptchaServiceImpl;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -20,18 +23,16 @@ import java.awt.Font;
 @EnableConfigurationProperties(CaptchaProperties.class)
 @RequiredArgsConstructor
 public class CaptchaAutoConfigure {
-
-
   @Bean
   @ConditionalOnProperty(prefix = ConfigConstant.prefix + "code.type", value = "MATH")
-  public CodeGenerator mathCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
+  CodeGenerator mathCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
     val codeLength = captchaProperties.getCode().getLength();
     return new MathGenerator(codeLength);
   }
 
   @Bean
   @ConditionalOnProperty(prefix = ConfigConstant.prefix + "code.type", value = "RANDOM")
-  public CodeGenerator randomCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
+  CodeGenerator randomCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
     val codeLength = captchaProperties.getCode().getLength();
     return new RandomGenerator(codeLength);
   }
@@ -40,8 +41,8 @@ public class CaptchaAutoConfigure {
    * 验证码字体
    */
   @Bean
-  @ConditionalOnProperty(prefix = ConfigConstant.prefix+"enabled",value = "true")
-  public Font captchaFont(@NotNull CaptchaProperties captchaProperties) {
+  @ConditionalOnProperty(prefix = ConfigConstant.prefix + "enabled", value = "true")
+  Font captchaFont(@NotNull CaptchaProperties captchaProperties) {
     String fontName = captchaProperties.getFont().getName();
     int fontSize = captchaProperties.getFont().getSize();
     int fontWeight = captchaProperties.getFont().getWeight();
@@ -55,5 +56,15 @@ public class CaptchaAutoConfigure {
 
     return Font.getFont(fontName)
       .deriveFont(awtFontStyle, fontSize);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  CaptchaService captchaService(
+    CodeGenerator codeGenerator,
+    CaptchaProperties captchaProperties,
+    Font font
+  ) {
+    return new CaptchaServiceImpl(codeGenerator, captchaProperties, font);
   }
 }

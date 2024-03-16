@@ -1,5 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 dependencies {
   implementation(libs.jsonwebtokenApi)
   implementation(libs.jsonwebtokenImpl)

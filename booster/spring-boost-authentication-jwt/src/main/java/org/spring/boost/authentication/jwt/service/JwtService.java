@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author daiyuang
  * IJwtService jwt service behaviour rule
  */
-public interface IJwtService {
+public interface JwtService {
     String generateToken(Map<String, Object> extraClaims, @NotNull UserDetails userDetails);
 
     Claims extractAllClaims(String token);

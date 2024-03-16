@@ -12,6 +12,7 @@ import org.spring.boost.authentication.properties.AuthenticationConfigurationPro
 import org.spring.boost.authentication.properties.CORSConfigurationProperties;
 import org.spring.boost.core.api.BeanRegistry;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 

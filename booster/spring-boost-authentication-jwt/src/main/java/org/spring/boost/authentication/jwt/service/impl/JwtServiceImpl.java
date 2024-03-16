@@ -15,12 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.authentication.jwt.autoconfigure.JwtConfigProperties;
-import org.spring.boost.authentication.jwt.service.IJwtService;
+import org.spring.boost.authentication.jwt.service.JwtService;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Slf4j
 @RequiredArgsConstructor
-public class JwtServiceImpl implements IJwtService {
+public class JwtServiceImpl implements JwtService {
     private final JwtConfigProperties jwtConfigProperties;
 
     private String secretKey;
