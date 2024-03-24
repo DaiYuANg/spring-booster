@@ -1,13 +1,12 @@
 [versions]
 jdkVersion = "21"
-kotlin = "2.0.0-Beta4"
 pluginPublish = "1.2.1"
 errorproneCore = "2.23.0"
 junit = "5.10.2"
 testcontainers = "1.19.7"
 mockito = "5.11.0"
 errorpronePlugin = "3.1.0"
-aspectjRt = "1.9.21.2"
+aspectjRt = "1.9.21.22"
 minio = "8.5.9"
 tika = "3.0.0-BETA"
 autoFactory = "1.1.0"
@@ -15,7 +14,7 @@ lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.5"
 javaDockerClientCore = "3.3.6"
 hutool = "5.8.26"
-springBoot = "3.2.3"
+springBoot = "3.2.4"
 springDependencyManagement = "1.1.4"
 apachePoi = "5.2.5"
 junitperf = "1.35.0"
@@ -25,7 +24,7 @@ maven = "4.0.0-alpha-13"
 gradle = "8.6"
 asciidoctor = "4.0.2"
 eclipseCollections = "12.0.0.M3"
-springShell = "3.2.2"
+springShell = "3.2.3"
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
@@ -71,7 +70,7 @@ caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version 
 slf4j = { group = "org.slf4j", name = "slf4j-api", version = "2.1.0-alpha1" }
 jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
 aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
-jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0-M1" }
+jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0-M2" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
 minioAdmin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
 tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
@@ -83,7 +82,7 @@ lettuceCore = { group = "io.lettuce", name = "lettuce-core", version.ref = "lett
 jsonwebtokenApi = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jsonwebtoken" }
 jsonwebtokenImpl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jsonwebtoken" }
 jsonwebtokenJackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jsonwebtoken" }
-progressbar = { group = "me.tongfei", name = "progressbar", version = "0.10.0" }
+progressbar = { group = "me.tongfei", name = "progressbar", version = "0.10.1" }
 javaDockerClientCore = { group = "com.github.docker-java", name = "docker-java", version.ref = "javaDockerClientCore" }
 javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-java-transport-httpclient5", version.ref = "javaDockerClientCore" }
 apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
@@ -105,7 +104,7 @@ apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version =
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 
 sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.2.0" }
-postgresqlDriver = { group = "org.postgresql", name = "postgresql", version = "42.7.2" }
+postgresqlDriver = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
 h2Driver = { group = "com.h2database", name = "h2" }
 mysqlDriver = { group = "com.mysql", name = "mysql-connector-j" }
 
@@ -124,6 +123,10 @@ eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collec
 eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
 eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
+
+schemacrawler = { group = "us.fatehi", name = "schemacrawler", version = "16.21.2" }
+
+useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.26.0" }
 
 #Office
 apachePoi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
@@ -164,19 +167,10 @@ springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starte
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
 springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
 
-#Kotlin
-kotlinxCoroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.8.1-Beta" }
-
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
 springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.23.3" }
-kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinGradleLombokPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-lombok", version.ref = "kotlin" }
-kotlinGradleSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
-kotlinGradleNoArgPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-noarg", version.ref = "kotlin" }
-kotlinGradleAllOpenPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-allopen", version.ref = "kotlin" }
-kotlinGradleSpringPlugin = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }
 dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.9" }
 jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }

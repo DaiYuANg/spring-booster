@@ -3,8 +3,6 @@ plugins {
   alias(libs.plugins.graalvmNative)
 }
 
-apply<KotlinProject>()
-
 dependencyManagement { imports { mavenBom("${libs.springShellBom.get()}") } }
 
 repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases") } }
@@ -26,9 +24,10 @@ dependencies {
   implementation(libs.springBootFreemarker)
   implementation(libs.gradleToolingAPI)
   testImplementation(libs.springBootJdbc)
-    developmentOnly(libs.springBootDevtools)
+  developmentOnly(libs.springBootDevtools)
   testImplementation(libs.testcontainersMysql)
-    developmentOnly(libs.springBootDockerCompose)
+  developmentOnly(libs.springBootDockerCompose)
+  implementation(libs.schemacrawler)
 }
 
 application {

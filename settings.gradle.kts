@@ -61,6 +61,8 @@ include("booster:spring-boost-mapping-code-source")
 
 include("booster:spring-boost-mapping-web")
 
+include("booster:spring-boost-mapping-database")
+
 include("booster:spring-boost-dev-service")
 
 include("booster:spring-boost-dotenv")

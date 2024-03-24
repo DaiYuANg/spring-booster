@@ -1,7 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
-apply<KotlinProject>()
-
 dependencies {
   implementation(libs.minio)
   implementation(libs.minioAdmin)

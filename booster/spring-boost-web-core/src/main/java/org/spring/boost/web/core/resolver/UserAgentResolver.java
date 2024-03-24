@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import nl.basjes.parse.useragent.UserAgentAnalyzer;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
@@ -19,19 +20,21 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @RequiredArgsConstructor
 public class UserAgentResolver implements HandlerMethodArgumentResolver {
 
-    @Override
-    public boolean supportsParameter(@NotNull MethodParameter parameter) {
-        return UserAgent.class.isAssignableFrom(parameter.getParameterType());
-    }
+  private final UserAgentAnalyzer userAgentAnalyzer;
 
-    @Override
-    public Object resolveArgument(
-            @NotNull MethodParameter parameter,
-            ModelAndViewContainer mavContainer,
-            @NotNull NativeWebRequest webRequest,
-            WebDataBinderFactory binderFactory) {
-        val request = (HttpServletRequest) webRequest.getNativeRequest();
-        val userAgentString = request.getHeader(HttpHeaders.USER_AGENT);
-        return UserAgentParser.parse(userAgentString);
-    }
+  @Override
+  public boolean supportsParameter(@NotNull MethodParameter parameter) {
+    return UserAgent.class.isAssignableFrom(parameter.getParameterType());
+  }
+
+  @Override
+  public Object resolveArgument(
+      @NotNull MethodParameter parameter,
+      ModelAndViewContainer mavContainer,
+      @NotNull NativeWebRequest webRequest,
+      WebDataBinderFactory binderFactory) {
+    val request = (HttpServletRequest) webRequest.getNativeRequest();
+    val userAgentString = request.getHeader(HttpHeaders.USER_AGENT);
+    return userAgentAnalyzer.parse(userAgentString);
+  }
 }

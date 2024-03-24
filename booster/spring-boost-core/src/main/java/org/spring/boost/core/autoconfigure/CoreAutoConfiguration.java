@@ -25,34 +25,28 @@ import org.springframework.core.env.Environment;
 @RequiredArgsConstructor
 public class CoreAutoConfiguration {
 
-    @Bean
-    @ConditionalOnProperty(prefix = ConfigConstant.PREFIX,name = ConfigConstant.ENABLED)
-    BeanRegistry beanRegistry(ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
-        return SimpleBeanRegistry.builder()
-                .context(context)
-                .beanFactory(listableBeanFactory)
-                .build();
-    }
+  @Bean
+  BeanRegistry beanRegistry(
+      ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
+    return SimpleBeanRegistry.builder().context(context).beanFactory(listableBeanFactory).build();
+  }
 
-    @Bean
-    @ConditionalOnProperty(prefix = ConfigConstant.PREFIX,name = ConfigConstant.ENABLED)
-    ClassGraph classGraph(@NotNull CoreConfigurationProperties properties) {
-        val config = properties.getClassScanner();
-        val cg = new ClassGraph();
-        if (config.getEnableClassGraphLog()) cg.enableRealtimeLogging();
-        cg.verbose(config.getVerbose());
-        return cg;
-    }
+  @Bean
+  ClassGraph classGraph(@NotNull CoreConfigurationProperties properties) {
+    val config = properties.getClassScanner();
+    val cg = new ClassGraph();
+    if (config.getEnableClassGraphLog()) cg.enableRealtimeLogging();
+    cg.verbose(config.getVerbose());
+    return cg;
+  }
 
-    @Bean
-    @ConditionalOnProperty(prefix = ConfigConstant.PREFIX,name = ConfigConstant.ENABLED)
-    StartUpListener startUpListener(Environment environment) {
-        return new StartUpListener(environment);
-    }
+  @Bean
+  StartUpListener startUpListener(Environment environment) {
+    return new StartUpListener(environment);
+  }
 
-    @Bean
-    @ConditionalOnProperty(prefix = ConfigConstant.PREFIX,name = ConfigConstant.ENABLED)
-    ContextRefreshListener contextReadyListener(BeanRegistry beanRegistry, ClassGraph classGraph) {
-        return new ContextRefreshListener(classGraph, beanRegistry);
-    }
+  @Bean
+  ContextRefreshListener contextReadyListener(BeanRegistry beanRegistry, ClassGraph classGraph) {
+    return new ContextRefreshListener(classGraph, beanRegistry);
+  }
 }

@@ -1,5 +1,3 @@
-val aspectjVersion: String by project
-
 dependencies {
   implementation(libs.aspectjRt)
   compileOnly(projects.booster.springBoostCore)
@@ -7,5 +5,6 @@ dependencies {
   compileOnly(libs.springBootHateoas)
   implementation(libs.apacheCommonIO)
   implementation(libs.hutoolHttp)
+  implementation(libs.useragent)
   testImplementation(libs.springBootWeb)
 }

@@ -1,3 +1,4 @@
 dependencies {
-  compileOnly(libs.springBootWeb)
+  implementation(libs.springBootJSON)
+  implementation(libs.fastutil)
 }
