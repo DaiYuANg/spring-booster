@@ -21,7 +21,6 @@ dependencies {
   implementation(libs.semverPlugin)
   implementation(libs.spotbugsPlugin)
   implementation(libs.lombokPlugin)
-  implementation(libs.dokkaPlugin)
   implementation(libs.spotbugs)
   implementation(libs.jreleaserPlugin)
 }

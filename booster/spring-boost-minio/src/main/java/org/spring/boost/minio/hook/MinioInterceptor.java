@@ -5,7 +5,7 @@ import io.minio.ObjectWriteResponse;
 import io.minio.PutObjectArgs;
 import java.util.Map;
 
-public interface MinioHook {
+public interface MinioInterceptor {
 
     default void beforeCreate(
             PutObjectArgs args, String bucket, String objectName, String contentType, Map<String, String> tags) {}

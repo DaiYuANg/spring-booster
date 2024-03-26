@@ -15,7 +15,6 @@ dependencies {
   implementation(projects.booster.springBoostVerification)
   implementation(projects.booster.springBoostAuthentication)
   implementation(projects.booster.springBoostAuthenticationJwt)
-  implementation(projects.booster.springBoostMappingWeb)
   implementation(projects.booster.springBoostMappingCodeSource)
 }
 

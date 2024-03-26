@@ -6,7 +6,7 @@ junit = "5.10.2"
 testcontainers = "1.19.7"
 mockito = "5.11.0"
 errorpronePlugin = "3.1.0"
-aspectjRt = "1.9.21.22"
+aspectjRt = "1.9.22"
 minio = "8.5.9"
 tika = "3.0.0-BETA"
 autoFactory = "1.1.0"
@@ -25,6 +25,8 @@ gradle = "8.6"
 asciidoctor = "4.0.2"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.2.3"
+queryDsl = "5.1.0"
+
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
@@ -91,7 +93,7 @@ apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", vers
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
 dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.1.0" }
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.15.1" }
-guava = { group = "com.google.guava", name = "guava", version = "33.0.0-jre" }
+guava = { group = "com.google.guava", name = "guava", version = "33.1.0-jre" }
 micaAuto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.3" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 snowflake4j = { group = "com.github.philippheuer.snowflake4j", name = "snowflake4j", version = "1.0.1" }
@@ -141,6 +143,16 @@ hutoolJSON = { group = "cn.hutool", name = "hutool-json", version.ref = "hutool"
 hutoolExtra = { group = "cn.hutool", name = "hutool-extra", version.ref = "hutool" }
 hutoolCaptcha = { group = "cn.hutool", name = "hutool-captcha", version.ref = "hutool" }
 
+#QueryDSL
+queryDslJPA = { group = "com.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
+queryDslApt = { group = "com.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
+queryDslSpatial = { group = "com.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
+queryDslGuava = { group = "com.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
+queryDslCollection = { group = "com.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
+queryDslCore = { group = "com.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
+queryDslSql = { group = "com.querydsl", name = "querydsl-sql", version.ref = "queryDsl" }
+queryDslSqlCodeGen = { group = "com.querydsl", name = "querydsl-codegen", version.ref = "queryDsl" }
+
 #Spring
 springBootStarter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "springBoot" }
 springBootActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "springBoot" }
@@ -167,6 +179,7 @@ springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starte
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
 springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
 
+
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
 springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }
@@ -178,5 +191,4 @@ jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
 lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.4" }
 plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
-dokkaPlugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version = "1.9.20" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }

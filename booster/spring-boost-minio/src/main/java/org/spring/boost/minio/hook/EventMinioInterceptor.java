@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationEventPublisher;
 
 @RequiredArgsConstructor
 @Slf4j
-public class EventMinioHook implements MinioHook {
+public class EventMinioInterceptor implements MinioInterceptor {
     private final ApplicationEventPublisher eventPublisher;
 
     @Override

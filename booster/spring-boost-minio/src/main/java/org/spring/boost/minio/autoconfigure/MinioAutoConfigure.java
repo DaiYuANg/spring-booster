@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import org.apache.tika.Tika;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.minio.hook.EventMinioHook;
-import org.spring.boost.minio.hook.MinioHook;
+import org.spring.boost.minio.hook.EventMinioInterceptor;
+import org.spring.boost.minio.hook.MinioInterceptor;
 import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -53,16 +53,16 @@ public class MinioAutoConfigure {
      * Bundled event hook for minio hooks
      *
      * @param applicationEventPublisher spring event publisher
-     * @return @see{@link EventMinioHook}
+     * @return @see{@link EventMinioInterceptor}
      */
     @Bean
-    EventMinioHook eventMinioHook(ApplicationEventPublisher applicationEventPublisher) {
-        return new EventMinioHook(applicationEventPublisher);
+    EventMinioInterceptor eventMinioHook(ApplicationEventPublisher applicationEventPublisher) {
+        return new EventMinioInterceptor(applicationEventPublisher);
     }
 
     @Bean
-    Set<MinioHook> hooks(@NotNull ConfigurableListableBeanFactory beanFactory) {
-        return beanFactory.getBeansOfType(MinioHook.class).values().stream().collect(Collectors.toUnmodifiableSet());
+    Set<MinioInterceptor> hooks(@NotNull ConfigurableListableBeanFactory beanFactory) {
+        return beanFactory.getBeansOfType(MinioInterceptor.class).values().stream().collect(Collectors.toUnmodifiableSet());
     }
 
     @Bean

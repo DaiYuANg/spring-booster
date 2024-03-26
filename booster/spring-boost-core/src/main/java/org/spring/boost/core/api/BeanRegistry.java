@@ -36,4 +36,6 @@ public interface BeanRegistry {
     <T> void registerAll(@NotNull Map<String, T> beans);
 
     Set<String> possibleClasspath();
+
+  <T> T get(Class<T> clazz);
 }

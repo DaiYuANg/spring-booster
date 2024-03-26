@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Singular;
 import okhttp3.OkHttpClient;
 import org.apache.tika.Tika;
-import org.spring.boost.minio.hook.MinioHook;
+import org.spring.boost.minio.hook.MinioInterceptor;
 import org.spring.boost.minio.properties.MinioClientConfig;
 
 /**
@@ -34,7 +34,7 @@ public class MinioTemplateArgument {
 
     /** Minio hooks of method life cycle */
     @Singular
-    private final ImmutableSet<MinioHook> hooks;
+    private final ImmutableSet<MinioInterceptor> hooks;
 
     /** Is check duplicate flag */
     @Builder.Default

@@ -21,7 +21,6 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.closureOf
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.dokka.gradle.DokkaPlugin
 import java.nio.charset.StandardCharsets
 
 class RootProjectSetting : Plugin<Project> {
@@ -46,7 +45,6 @@ class RootProjectSetting : Plugin<Project> {
         apply<JMHPlugin>()
         apply<LombokPlugin>()
         apply<PlantUmlPlugin>()
-        apply<DokkaPlugin>()
         apply<ManifestPlugin>()
 
         group = "org." + rootProject.name + "." + project.name
