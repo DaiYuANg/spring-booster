@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 @Configuration(proxyBeanMethods = false)
 @Slf4j
 @PropertySource(
-        value = "file:${PWD}/spring.boost.yaml",
+        value = "file:./spring.boost.yaml",
         factory = YamlPropertySourceFactory.class,
         encoding = "UTF-8",
         ignoreResourceNotFound = true)

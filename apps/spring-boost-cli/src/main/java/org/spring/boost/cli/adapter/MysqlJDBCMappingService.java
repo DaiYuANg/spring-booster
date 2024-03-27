@@ -6,68 +6,94 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import jakarta.annotation.PostConstruct;
+import lombok.Cleanup;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.cli.database.JDBCMappingService;
-import org.spring.boost.cli.dto.DatabaseTableColumn;
+import org.springframework.stereotype.Component;
+import schemacrawler.schema.Column;
+import schemacrawler.schema.Schema;
+import schemacrawler.schema.Table;
+import schemacrawler.schema.View;
+import schemacrawler.schemacrawler.*;
+import schemacrawler.tools.utility.SchemaCrawlerUtility;
+import us.fatehi.utility.datasource.DatabaseConnectionSources;
+
+import javax.sql.DataSource;
 
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class MysqlJDBCMappingService implements JDBCMappingService {
-    private Connection connection;
 
-    public void init() {}
+  private final DataSource dataSource;
 
-    @SneakyThrows
-    @Override
-    public List<String> getTableNamesFromSchmea() {
-        val name = connectionDatabase().orElseThrow();
-        val tables = connection.getMetaData().getTables(name, null, "%", new String[] {"TABLE"});
-        val tableNames = new ArrayList<String>();
-        while (tables.next()) {
-            String tableName = tables.getString("TABLE_NAME");
-            tableNames.add(tableName);
-            log.atDebug().log("Table Name: " + tableName);
+  @PostConstruct
+  public void init() {
+    final LimitOptionsBuilder limitOptionsBuilder =
+      LimitOptionsBuilder.builder()
+        .includeTables(tableFullName -> !tableFullName.contains("_PK"));
+    final LoadOptionsBuilder loadOptionsBuilder =
+      LoadOptionsBuilder.builder()
+        // Set what details are required in the schema - this affects the
+        // time taken to crawl the schema
+        .withSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
+    final SchemaCrawlerOptions options =
+      SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions()
+        .withLimitOptions(limitOptionsBuilder.toOptions())
+        .withLoadOptions(loadOptionsBuilder.toOptions());
+    val s = DatabaseConnectionSources.fromDataSource(dataSource);
+    val c = SchemaCrawlerUtility.getCatalog(s, options);
+
+    for (final Schema schema : c.getSchemas()) {
+      System.out.println(schema);
+      for (final Table table : c.getTables(schema)) {
+        System.out.print("o--> " + table);
+        if (table instanceof View) {
+          System.out.println(" (VIEW)");
+        } else {
+          System.out.println();
         }
-        log.atDebug().log("tableNames:{}", tableNames);
-        return tableNames;
-    }
 
-    @SneakyThrows
-    @Override
-    public List<DatabaseTableColumn> queryTableColumns(@NotNull String tableName) {
-        log.atInfo().log("get table column:{}", tableName);
-        val result = connection.getMetaData().getColumns(null, null, tableName, null);
-        val columns = new ArrayList<DatabaseTableColumn>();
-        while (result.next()) {
-            String columnName = result.getString("COLUMN_NAME");
-            String dataType = result.getString("TYPE_NAME");
-            int columnSize = result.getInt("COLUMN_SIZE");
-            int nullable = result.getInt("NULLABLE");
-            //            val column = new DatabaseTableColumn() {
-            //                {
-            ////                    setCOLUMN_NAME(columnName);
-            ////                    setCOLUMN_SIZE(columnSize);
-            ////                    setNULLABLE(nullable);
-            ////                    setTYPE_NAME(dataType);
-            //                }
-            //            };
-            //            columns.add(column);
+        for (final Column column : table.getColumns()) {
+          System.out.printf("     o--> %s (%s)%n", column, column.getType());
         }
-        return columns;
+      }
     }
+  }
 
-    @SneakyThrows
-    @Override
-    public Optional<String> connectionDatabase() {
-        val metaData = connection.getMetaData();
-        val url = metaData.getURL();
-        val uri = new URI(url.replace("jdbc:", ""));
-        val scheme = uri.getScheme();
-        if ("mysql".equals(scheme)) {
-            return Optional.of(uri.getPath().substring(1)); // 获取路径部分，即数据库名
-        }
-        return Optional.empty();
-    }
+  @SneakyThrows
+  @Override
+  public List<String> getTableNamesFromSchema() {
+//        val name = connectionDatabase().orElseThrow();
+//        val tables = connection.getMetaData().getTables(name, null, "%", new String[] {"TABLE"});
+//        val tableNames = new ArrayList<String>();
+//        while (tables.next()) {
+//            String tableName = tables.getString("TABLE_NAME");
+//            tableNames.add(tableName);
+//            log.atDebug().log("Table Name: " + tableName);
+//        }
+//        log.atDebug().log("tableNames:{}", tableNames);
+//        return tableNames;
+    return List.of();
+  }
+
+
+  @SneakyThrows
+  @Override
+  public Optional<String> connectionDatabase() {
+//        val metaData = connection.getMetaData();
+//        val url = metaData.getURL();
+//        val uri = new URI(url.replace("jdbc:", ""));
+//        val scheme = uri.getScheme();
+//        if ("mysql".equals(scheme)) {
+//            return Optional.of(uri.getPath().substring(1)); // 获取路径部分，即数据库名
+//        }
+    return Optional.empty();
+  }
 }

@@ -26,7 +26,7 @@ asciidoctor = "4.0.2"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.2.3"
 queryDsl = "5.1.0"
-
+schemacrawler = "16.21.2"
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
@@ -126,7 +126,11 @@ eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclips
 eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
 
-schemacrawler = { group = "us.fatehi", name = "schemacrawler", version = "16.21.2" }
+schemacrawler = { group = "us.fatehi", name = "schemacrawler", version.ref = "schemacrawler" }
+schemacrawlerMySQL = { group = "us.fatehi", name = "schemacrawler-mysql", version.ref = "schemacrawler" }
+schemacrawlerSqlite = { group = "us.fatehi", name = "schemacrawler-sqlite", version.ref = "schemacrawler" }
+schemacrawlerPostgreSQL = { group = "us.fatehi", name = "schemacrawler-postgresql", version.ref = "schemacrawler" }
+schemacrawlerSqlServer = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
 useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.26.0" }
 
@@ -174,6 +178,7 @@ springBootOAuth2AuthorizationServer = { group = "org.springframework.boot", name
 springBootDataEnvers = { group = "org.springframework.data", name = "spring-data-envers" }
 springBootHateoas = { group = "org.springframework.hateoas", name = "spring-hateoas" }
 springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starter", version = "4.7.5" }
+springBootLogging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "springBoot" }
 
 #Spring Shell
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }

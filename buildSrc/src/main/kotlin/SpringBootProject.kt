@@ -6,6 +6,7 @@ import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.*
+import org.springframework.boot.gradle.plugin.SpringBootAotPlugin
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -34,6 +35,7 @@ class SpringBootProject : Plugin<Project> {
   private fun applyPlugins(target: Project) {
     target.apply<SpringBootPlugin>()
     target.apply<DependencyManagementPlugin>()
+    target.apply<SpringBootAotPlugin>()
   }
 
   private fun applyDependencies(target: Project, libs: LibrariesForLibs) {

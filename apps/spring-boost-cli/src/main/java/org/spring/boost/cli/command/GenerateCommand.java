@@ -14,9 +14,10 @@ import org.springframework.shell.component.MultiItemSelector;
 import org.springframework.shell.component.support.Itemable;
 import org.springframework.shell.component.support.SelectorItem;
 import org.springframework.shell.standard.AbstractShellComponent;
+import org.springframework.shell.standard.ShellComponent;
 
 @Slf4j
-@Command
+@ShellComponent
 public class GenerateCommand extends AbstractShellComponent {
 
     @Resource
@@ -25,7 +26,7 @@ public class GenerateCommand extends AbstractShellComponent {
     @SneakyThrows
     @Command(command = "dg", alias = "Database Generator", group = "Generator")
     public String helloWorld(boolean mask) {
-        val tableNames = mysqlJDBCMappingService.getTableNamesFromSchmea().stream()
+        val tableNames = mysqlJDBCMappingService.getTableNamesFromSchema().stream()
                 .map(tableName -> SelectorItem.of(tableName, tableName))
                 .distinct()
                 .toList();
@@ -33,12 +34,12 @@ public class GenerateCommand extends AbstractShellComponent {
         mis.setResourceLoader(getResourceLoader());
         mis.setTemplateExecutor(getTemplateExecutor());
         val context = mis.run(MultiItemSelector.MultiItemSelectorContext.empty());
-        val selected = context.getResultItems().stream()
-                .map(Itemable::getItem)
-                .flatMap((String tableName) -> mysqlJDBCMappingService.queryTableColumns(tableName).stream())
-                .toList();
-        log.atDebug().log("columns:{}", selected);
-        log.atDebug().log("selected:{}", selected);
+//        val selected = context.getResultItems().stream()
+//                .map(Itemable::getItem)
+//                .flatMap((String tableName) -> mysqlJDBCMappingService.queryTableColumns(tableName).stream())
+//                .toList();
+//        log.atDebug().log("columns:{}", selected);
+//        log.atDebug().log("selected:{}", selected);
         return "Hello world ";
     }
 

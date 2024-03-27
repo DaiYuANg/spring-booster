@@ -25,9 +25,14 @@ dependencies {
   implementation(libs.gradleToolingAPI)
   testImplementation(libs.springBootJdbc)
   developmentOnly(libs.springBootDevtools)
+  implementation(libs.springBootLogging)
   testImplementation(libs.testcontainersMysql)
   developmentOnly(libs.springBootDockerCompose)
   implementation(libs.schemacrawler)
+  implementation(libs.schemacrawlerMySQL)
+  implementation(libs.schemacrawlerSqlite)
+  implementation(libs.schemacrawlerSqlServer)
+  implementation(libs.schemacrawlerPostgreSQL)
 }
 
 application {
