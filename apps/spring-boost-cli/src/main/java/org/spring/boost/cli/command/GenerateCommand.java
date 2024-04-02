@@ -2,6 +2,7 @@
 package org.spring.boost.cli.command;
 
 import jakarta.annotation.Resource;
+import java.util.stream.Stream;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -14,38 +15,42 @@ import org.springframework.shell.component.MultiItemSelector;
 import org.springframework.shell.component.support.Itemable;
 import org.springframework.shell.component.support.SelectorItem;
 import org.springframework.shell.standard.AbstractShellComponent;
-import org.springframework.shell.standard.ShellComponent;
 
 @Slf4j
-@ShellComponent
+@Command
 public class GenerateCommand extends AbstractShellComponent {
 
-    @Resource
-    private MysqlJDBCMappingService mysqlJDBCMappingService;
+  @Resource private MysqlJDBCMappingService mysqlJDBCMappingService;
 
-    @SneakyThrows
-    @Command(command = "dg", alias = "Database Generator", group = "Generator")
-    public String helloWorld(boolean mask) {
-        val tableNames = mysqlJDBCMappingService.getTableNamesFromSchema().stream()
-                .map(tableName -> SelectorItem.of(tableName, tableName))
-                .distinct()
-                .toList();
-        val mis = new MultiItemSelector<>(getTerminal(), tableNames, "tableNames", null);
-        mis.setResourceLoader(getResourceLoader());
-        mis.setTemplateExecutor(getTemplateExecutor());
-        val context = mis.run(MultiItemSelector.MultiItemSelectorContext.empty());
-//        val selected = context.getResultItems().stream()
-//                .map(Itemable::getItem)
-//                .flatMap((String tableName) -> mysqlJDBCMappingService.queryTableColumns(tableName).stream())
-//                .toList();
-//        log.atDebug().log("columns:{}", selected);
-//        log.atDebug().log("selected:{}", selected);
-        return "Hello world ";
-    }
+  static {
+    System.setProperty("org.jline.terminal.dumb", "true");
+  }
 
-    @ExceptionResolver({RuntimeException.class})
-    private @NotNull CommandHandlingResult errorHandler(@NotNull Exception e) {
-        log.error(e.getMessage());
-        return CommandHandlingResult.of(e.getMessage(), 42);
-    }
+  @SneakyThrows
+  @Command(command = "dg", alias = "Database Generator", group = "Generator")
+  public String helloWorld(boolean mask) {
+    val tableNames =
+        mysqlJDBCMappingService.getTableNamesFromSchema().stream()
+            .map(tableName -> SelectorItem.of(tableName, tableName))
+            .distinct()
+            .toList();
+    val mis = new MultiItemSelector<>(getTerminal(), tableNames, "tableNames", null);
+    mis.setResourceLoader(getResourceLoader());
+    mis.setTemplateExecutor(getTemplateExecutor());
+    val context = mis.run(MultiItemSelector.MultiItemSelectorContext.empty());
+    val selected =
+        context.getResultItems().stream()
+            .map(Itemable::getItem)
+            .flatMap((String tableName) -> Stream.of("test", "test1"))
+            .toList();
+    log.atDebug().log("columns:{}", selected);
+    log.atDebug().log("selected:{}", selected);
+    return "Hello world ";
+  }
+
+  @ExceptionResolver({RuntimeException.class})
+  private @NotNull CommandHandlingResult errorHandler(@NotNull Exception e) {
+    log.error(e.getMessage());
+    return CommandHandlingResult.of(e.getMessage(), 42);
+  }
 }

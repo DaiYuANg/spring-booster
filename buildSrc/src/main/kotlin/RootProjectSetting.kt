@@ -64,8 +64,8 @@ class RootProjectSetting : Plugin<Project> {
           add(TEST_IMPLEMENTATION, rootLib.mockitoCore)
           add(TEST_IMPLEMENTATION, rootLib.mockitoJunit)
           add(TEST_IMPLEMENTATION, rootLib.dataFaker)
-          add(TEST_IMPLEMENTATION, rootLib.junitperf)
-          add(TEST_IMPLEMENTATION, rootLib.junitperfJunit5)
+//          add(TEST_IMPLEMENTATION, rootLib.junitperf)
+//          add(TEST_IMPLEMENTATION, rootLib.junitperfJunit5)
         }
 
         tasks.withType(JavaCompile::class.java) {
@@ -91,6 +91,10 @@ class RootProjectSetting : Plugin<Project> {
           toolchain { languageVersion.set(JavaLanguageVersion.of(jdkVersion.get())) }
           withJavadocJar()
           withSourcesJar()
+        }
+
+        tasks.withType(Javadoc::class.java) {
+          isFailOnError = false
         }
 
         tasks.withType(Test::class.java) {

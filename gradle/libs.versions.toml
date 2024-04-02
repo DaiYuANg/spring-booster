@@ -9,11 +9,10 @@ errorpronePlugin = "3.1.0"
 aspectjRt = "1.9.22"
 minio = "8.5.9"
 tika = "3.0.0-BETA"
-autoFactory = "1.1.0"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.5"
 javaDockerClientCore = "3.3.6"
-hutool = "5.8.26"
+hutool = "5.8.27"
 springBoot = "3.2.4"
 springDependencyManagement = "1.1.4"
 apachePoi = "5.2.5"
@@ -21,12 +20,14 @@ junitperf = "1.35.0"
 mapstruct = "1.6.0.Beta1"
 errorProneSupport = "0.14.0"
 maven = "4.0.0-alpha-13"
-gradle = "8.6"
 asciidoctor = "4.0.2"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.2.3"
 queryDsl = "5.1.0"
 schemacrawler = "16.21.2"
+logback = "1.5.3"
+slf4j = "2.1.0-alpha1"
+autoService = "1.1.1"
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
@@ -69,7 +70,8 @@ errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-p
 refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
 
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
-slf4j = { group = "org.slf4j", name = "slf4j-api", version = "2.1.0-alpha1" }
+slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+slf4jJulBridge = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
 jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
 aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
 jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0-M2" }
@@ -79,7 +81,9 @@ tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika"
 tikaParsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
 semver4j = { group = "org.semver4j", name = "semver4j", version = "5.2.2" }
 hazelcast = { group = "com.hazelcast", name = "hazelcast", version = "5.3.6" }
-autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version.ref = "autoFactory" }
+autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
+autoService = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
+autoServiceAnnotations = { group = "com.google.auto.service", name = "auto-service-annotations", version.ref = "autoService" }
 lettuceCore = { group = "io.lettuce", name = "lettuce-core", version.ref = "lettuce" }
 jsonwebtokenApi = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jsonwebtoken" }
 jsonwebtokenImpl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jsonwebtoken" }
@@ -90,7 +94,7 @@ javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-
 apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
 dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3.0.0" }
 apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
-bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.12" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.13" }
 dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.1.0" }
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.15.1" }
 guava = { group = "com.google.guava", name = "guava", version = "33.1.0-jre" }
@@ -118,7 +122,7 @@ classGraph = { group = "io.github.classgraph", name = "classgraph", version = "4
 freemarker = { group = "org.freemarker", name = "freemarker", version = "2.3.28" }
 mavenEmbeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
 mavenModel = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
-gradleToolingAPI = { group = "org.gradle", name = "gradle-tooling-api", version.ref = "gradle" }
+gradleToolingAPI = { group = "org.gradle", name = "gradle-tooling-api", version = "8.7" }
 
 eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
 eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
@@ -184,6 +188,9 @@ springBootLogging = { group = "org.springframework.boot", name = "spring-boot-st
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
 springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
 
+logbackClassic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+logbackCore = { group = "ch.qos.logback", name = "logback-core", version.ref = "logback" }
+rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.8" }
 
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
@@ -194,6 +201,6 @@ dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle",
 jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }
 jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
-lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.4" }
+lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.5" }
 plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }

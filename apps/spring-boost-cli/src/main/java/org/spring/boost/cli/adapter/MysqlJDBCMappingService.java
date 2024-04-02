@@ -1,30 +1,15 @@
 /* (C)2023*/
 package org.spring.boost.cli.adapter;
 
-import java.net.URI;
-import java.sql.Connection;
-import java.util.ArrayList;
+import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
-
-import jakarta.annotation.PostConstruct;
-import lombok.Cleanup;
+import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.jetbrains.annotations.NotNull;
 import org.spring.boost.cli.database.JDBCMappingService;
 import org.springframework.stereotype.Component;
-import schemacrawler.schema.Column;
-import schemacrawler.schema.Schema;
-import schemacrawler.schema.Table;
-import schemacrawler.schema.View;
-import schemacrawler.schemacrawler.*;
-import schemacrawler.tools.utility.SchemaCrawlerUtility;
-import us.fatehi.utility.datasource.DatabaseConnectionSources;
-
-import javax.sql.DataSource;
 
 @Slf4j
 @Component
@@ -35,36 +20,36 @@ public class MysqlJDBCMappingService implements JDBCMappingService {
 
   @PostConstruct
   public void init() {
-    final LimitOptionsBuilder limitOptionsBuilder =
-      LimitOptionsBuilder.builder()
-        .includeTables(tableFullName -> !tableFullName.contains("_PK"));
-    final LoadOptionsBuilder loadOptionsBuilder =
-      LoadOptionsBuilder.builder()
-        // Set what details are required in the schema - this affects the
-        // time taken to crawl the schema
-        .withSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-    final SchemaCrawlerOptions options =
-      SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions()
-        .withLimitOptions(limitOptionsBuilder.toOptions())
-        .withLoadOptions(loadOptionsBuilder.toOptions());
-    val s = DatabaseConnectionSources.fromDataSource(dataSource);
-    val c = SchemaCrawlerUtility.getCatalog(s, options);
-
-    for (final Schema schema : c.getSchemas()) {
-      System.out.println(schema);
-      for (final Table table : c.getTables(schema)) {
-        System.out.print("o--> " + table);
-        if (table instanceof View) {
-          System.out.println(" (VIEW)");
-        } else {
-          System.out.println();
-        }
-
-        for (final Column column : table.getColumns()) {
-          System.out.printf("     o--> %s (%s)%n", column, column.getType());
-        }
-      }
-    }
+//    final LimitOptionsBuilder limitOptionsBuilder =
+//      LimitOptionsBuilder.builder()
+//        .includeTables(tableFullName -> !tableFullName.contains("_PK"));
+//    final LoadOptionsBuilder loadOptionsBuilder =
+//      LoadOptionsBuilder.builder()
+//        // Set what details are required in the schema - this affects the
+//        // time taken to crawl the schema
+//        .withSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
+//    final SchemaCrawlerOptions options =
+//      SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions()
+//        .withLimitOptions(limitOptionsBuilder.toOptions())
+//        .withLoadOptions(loadOptionsBuilder.toOptions());
+//    val s = DatabaseConnectionSources.fromDataSource(dataSource);
+//    val c = SchemaCrawlerUtility.getCatalog(s, options);
+//
+//    for (final Schema schema : c.getSchemas()) {
+//      System.out.println(schema);
+//      for (final Table table : c.getTables(schema)) {
+//        System.out.print("o--> " + table);
+//        if (table instanceof View) {
+//          System.out.println(" (VIEW)");
+//        } else {
+//          System.out.println();
+//        }
+//
+//        for (final Column column : table.getColumns()) {
+//          System.out.printf("     o--> %s (%s)%n", column, column.getType());
+//        }
+//      }
+//    }
   }
 
   @SneakyThrows

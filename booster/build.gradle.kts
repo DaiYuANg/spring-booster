@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-  implementation(projects.booster.springBoostMappingCore)
+  implementation(projects.booster.springBoostMapping)
   implementation(projects.booster.springBoostJpa)
   implementation(projects.booster.springBoostCore)
   implementation(projects.booster.springBoostMinio)
@@ -15,7 +15,6 @@ dependencies {
   implementation(projects.booster.springBoostVerification)
   implementation(projects.booster.springBoostAuthentication)
   implementation(projects.booster.springBoostAuthenticationJwt)
-  implementation(projects.booster.springBoostMappingCodeSource)
 }
 
 allprojects {
@@ -24,13 +23,18 @@ allprojects {
 
   bootJar.enabled = false
   jar.enabled = true
+
+  tasks.processAot {
+    enabled = false
+  }
 }
 
 subprojects {
   apply<MavenPublishPlugin>()
   apply<JReleaserPlugin>()
 
-  dependencies{
+  dependencies {
+    compileOnly(rootProject.libs.micaAuto)
     annotationProcessor(rootProject.libs.micaAuto)
   }
 

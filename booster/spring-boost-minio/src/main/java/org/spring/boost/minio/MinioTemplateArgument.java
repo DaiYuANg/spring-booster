@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Singular;
 import okhttp3.OkHttpClient;
 import org.apache.tika.Tika;
-import org.spring.boost.minio.hook.MinioInterceptor;
+import org.spring.boost.minio.interceptor.MinioInterceptor;
 import org.spring.boost.minio.properties.MinioClientConfig;
 
 /**

@@ -33,6 +33,9 @@ dependencies {
   implementation(libs.schemacrawlerSqlite)
   implementation(libs.schemacrawlerSqlServer)
   implementation(libs.schemacrawlerPostgreSQL)
+  implementation(libs.logbackCore)
+  implementation(libs.logbackClassic)
+  implementation(libs.rxjava)
 }
 
 application {

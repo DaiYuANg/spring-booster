@@ -1,15 +1,19 @@
 package org.spring.boost.example.dto;
 
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
+import org.spring.boost.mapping.core.annotation.Mapping;
+import org.spring.boost.mapping.core.annotation.MappingConfig;
+import org.spring.boost.mapping.core.annotation.TableMapping;
 
 @Data
-public class UserDetail implements UserDetails {
+public class UserDetail {
 
+  @Mapping(
+    tableMappings = {
+      @TableMapping(table = "user", field = "nickname", condition = "password",
+        config = @MappingConfig(fieldName = "nicknameCustom"))
+    }
+  )
   private String password;
 
   private String username;
@@ -22,8 +26,4 @@ public class UserDetail implements UserDetails {
 
   private boolean enabled;
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of();
-  }
 }

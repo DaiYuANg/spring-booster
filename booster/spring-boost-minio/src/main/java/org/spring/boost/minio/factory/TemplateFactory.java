@@ -11,7 +11,7 @@ import okhttp3.OkHttpClient;
 import org.apache.tika.Tika;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.minio.*;
-import org.spring.boost.minio.hook.MinioInterceptor;
+import org.spring.boost.minio.interceptor.MinioInterceptor;
 import org.spring.boost.minio.properties.MinioClientConfig;
 import org.spring.boost.minio.properties.MinioConfigurationProperties;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

@@ -7,13 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.core.api.BeanRegistry;
-import org.spring.boost.core.constant.ConfigConstant;
 import org.spring.boost.core.context.SimpleBeanRegistry;
-import org.spring.boost.core.listener.ContextRefreshListener;
 import org.spring.boost.core.listener.StartUpListener;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -43,10 +40,5 @@ public class CoreAutoConfiguration {
   @Bean
   StartUpListener startUpListener(Environment environment) {
     return new StartUpListener(environment);
-  }
-
-  @Bean
-  ContextRefreshListener contextReadyListener(BeanRegistry beanRegistry, ClassGraph classGraph) {
-    return new ContextRefreshListener(classGraph, beanRegistry);
   }
 }

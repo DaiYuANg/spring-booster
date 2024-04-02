@@ -1,61 +1,75 @@
 /* (C)2024*/
 package org.spring.boost.core.listener;
 
-import static java.lang.Thread.ofVirtual;
-import static java.util.concurrent.CompletableFuture.allOf;
-import static java.util.concurrent.CompletableFuture.runAsync;
-import static java.util.concurrent.Executors.newThreadPerTaskExecutor;
-
 import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ScanResult;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.function.Function;
-
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.Cleanup;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import net.dreamlu.mica.auto.annotation.AutoListener;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.core.api.ClassPathScannerFeatureInstaller;
+import org.spring.boost.core.autoconfigure.CoreConfigurationProperties;
+import org.springframework.boot.context.event.ApplicationPreparedEvent;
+import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
+
+import java.util.ServiceLoader;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 @Slf4j
-@RequiredArgsConstructor
-public class ContextRefreshListener implements ApplicationListener<ContextRefreshedEvent> {
+@AutoListener
+@SuppressWarnings("unused")
+public class ContextRefreshListener implements ApplicationListener<ApplicationPreparedEvent> {
+  private final ClassGraph classGraph = new ClassGraph();
 
-  private final ClassGraph classGraph;
+  {
+    classGraph.enableAllInfo();
+  }
 
-  private final BeanRegistry beanRegistry;
+  private final ThreadFactory threadFactory = Thread.ofPlatform()
+    .name(this.getClass().getName() + "-", 0)
+    .factory();
+
+  private final int parallel = Runtime.getRuntime().availableProcessors() * 2;
+
+  private final ServiceLoader<ClassPathScannerFeatureInstaller> scannerResultHandles;
+
+  public ContextRefreshListener() {
+    this.scannerResultHandles = ServiceLoader.load(ClassPathScannerFeatureInstaller.class);
+  }
 
   @Override
   @SuppressWarnings({"StaticImport", "ImmutableListBuilder"})
-  public void onApplicationEvent(@NotNull ContextRefreshedEvent event) {
-    classGraph.acceptPackages(beanRegistry.possibleClasspath().toArray(String[]::new));
-    val tFactory = ofVirtual().name("cps-", 0).factory();
-    val parallel = Runtime.getRuntime().availableProcessors() + 1;
-    @Cleanup val executor = newThreadPerTaskExecutor(tFactory);
+  public void onApplicationEvent(@NotNull ApplicationPreparedEvent event) {
+    val mainClass = event.getSpringApplication().getMainApplicationClass();
+    val context = event.getApplicationContext();
+    val binder = Binder.get(context.getEnvironment());
+    val config = CoreConfigurationProperties.get(binder);
+    @Cleanup val executor = Executors.newThreadPerTaskExecutor(threadFactory);
+    log.atTrace().log("Boost Core Listener Active");
+    log.atTrace().log("Core config:{}", config);
+
+    classGraph.verbose(config.getClassScanner().getVerbose());
+
+    if (config.getClassScanner().getEnableClassGraphLog()) {
+      classGraph.enableRealtimeLogging();
+    }
+    classGraph.acceptPackages(mainClass.getPackageName());
+    classGraph.rejectPackages("org.spring.springframework");
+
     @Cleanup val result = classGraph.scan(executor, parallel);
-    val scanFuture = beanRegistry.getBeanDistinct(ClassPathScannerFeatureInstaller.class)
-      .stream()
-      .map(getCompletableFutureFunction(result, executor))
-      .toArray(CompletableFuture[]::new);
-    allOf(scanFuture).join();
-    executor.shutdown();
+
+    Observable.fromIterable(scannerResultHandles)
+      .flatMap(handle -> Observable.fromRunnable(() -> {
+        handle.install(context, result);
+      }).subscribeOn(Schedulers.from(executor))).blockingSubscribe();
   }
 
   @Override
   public boolean supportsAsyncExecution() {
     return true;
-  }
-
-  @NotNull
-  private Function<ClassPathScannerFeatureInstaller, CompletableFuture<Void>> getCompletableFutureFunction(
-    ScanResult result, ExecutorService executor) {
-    return classPathScannerFeatureInstaller ->
-      runAsync(() -> classPathScannerFeatureInstaller.install(result), executor);
   }
 }
