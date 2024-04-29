@@ -3,6 +3,11 @@ spring:
     class-scanner:
       enable-class-graph-log: false
       verbose: false
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
 logging:
   group:
     boost: org.spring.boost

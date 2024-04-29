@@ -7,13 +7,14 @@ testcontainers = "1.19.7"
 mockito = "5.11.0"
 errorpronePlugin = "3.1.0"
 aspectjRt = "1.9.22"
-minio = "8.5.9"
+minio = "8.5.10"
 tika = "3.0.0-BETA"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.5"
 javaDockerClientCore = "3.3.6"
 hutool = "5.8.27"
-springBoot = "3.2.4"
+springBoot = "3.2.5"
+springBootAdmin = "3.2.3"
 springDependencyManagement = "1.1.4"
 apachePoi = "5.2.5"
 junitperf = "1.35.0"
@@ -22,10 +23,10 @@ errorProneSupport = "0.14.0"
 maven = "4.0.0-alpha-13"
 asciidoctor = "4.0.2"
 eclipseCollections = "12.0.0.M3"
-springShell = "3.2.3"
+springShell = "3.2.4"
 queryDsl = "5.1.0"
 schemacrawler = "16.21.2"
-logback = "1.5.3"
+logback = "1.5.6"
 slf4j = "2.1.0-alpha1"
 autoService = "1.1.1"
 
@@ -79,7 +80,7 @@ minio = { group = "io.minio", name = "minio", version.ref = "minio" }
 minioAdmin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
 tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
 tikaParsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
-semver4j = { group = "org.semver4j", name = "semver4j", version = "5.2.2" }
+semver4j = { group = "org.semver4j", name = "semver4j", version = "5.3.0" }
 hazelcast = { group = "com.hazelcast", name = "hazelcast", version = "5.3.6" }
 autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
 autoService = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
@@ -94,8 +95,8 @@ javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-
 apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
 dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3.0.0" }
 apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
-bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.13" }
-dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.1.0" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.14" }
+dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.2.2" }
 apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.15.1" }
 guava = { group = "com.google.guava", name = "guava", version = "33.1.0-jre" }
 micaAuto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.3" }
@@ -104,12 +105,12 @@ snowflake4j = { group = "com.github.philippheuer.snowflake4j", name = "snowflake
 
 commonsDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version = "2.4.1" }
-jlineNative = { group = "org.jline", name = "jline-native", version = "3.25.1" }
+jlineNative = { group = "org.jline", name = "jline-native", version = "3.26.1" }
 
 apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version = "1.16.0" }
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 
-sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.2.0" }
+sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.3.0" }
 postgresqlDriver = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
 h2Driver = { group = "com.h2database", name = "h2" }
 mysqlDriver = { group = "com.mysql", name = "mysql-connector-j" }
@@ -118,7 +119,7 @@ mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstr
 mapstructAnnotationProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
 apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
-classGraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.168" }
+classGraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.172" }
 freemarker = { group = "org.freemarker", name = "freemarker", version = "2.3.28" }
 mavenEmbeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
 mavenModel = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
@@ -136,7 +137,7 @@ schemacrawlerSqlite = { group = "us.fatehi", name = "schemacrawler-sqlite", vers
 schemacrawlerPostgreSQL = { group = "us.fatehi", name = "schemacrawler-postgresql", version.ref = "schemacrawler" }
 schemacrawlerSqlServer = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
-useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.26.0" }
+useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.26.1" }
 
 #Office
 apachePoi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
@@ -183,6 +184,8 @@ springBootDataEnvers = { group = "org.springframework.data", name = "spring-data
 springBootHateoas = { group = "org.springframework.hateoas", name = "spring-hateoas" }
 springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starter", version = "4.7.5" }
 springBootLogging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "springBoot" }
+springBootAdminServer = { group = "de.codecentri", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
+springBootAdminClient = { group = "de.codecentri", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
 
 #Spring Shell
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }

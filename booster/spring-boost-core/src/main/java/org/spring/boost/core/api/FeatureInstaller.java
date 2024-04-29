@@ -10,5 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 public interface FeatureInstaller<T> {
 
-  void install(ConfigurableApplicationContext context, T t);
+  default void install(ConfigurableApplicationContext context, T t){};
+
+  default void install(T t){};
 }

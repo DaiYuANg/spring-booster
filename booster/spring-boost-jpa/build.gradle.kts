@@ -4,4 +4,5 @@ dependencies {
   compileOnly(libs.jakartaPersistence)
   compileOnly(libs.springBootJdbc)
   compileOnly(libs.springBootDataEnvers)
+  compileOnly(libs.springBootJPA)
 }
