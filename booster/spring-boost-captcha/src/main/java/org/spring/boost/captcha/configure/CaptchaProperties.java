@@ -3,10 +3,12 @@ package org.spring.boost.captcha.configure;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.spring.boost.captcha.constant.CaptchaCharType;
 import org.spring.boost.captcha.constant.CaptchaType;
 import org.spring.boost.captcha.constant.ConfigConstant;
 import org.spring.boost.core.autoconfigure.EnabledConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 @ConfigurationProperties(prefix = ConfigConstant.prefix)
 @Getter
@@ -22,16 +24,16 @@ public class CaptchaProperties extends EnabledConfigurationProperties {
   /**
    * 验证码图片宽度
    */
-  private int width;
+  private Integer width;
   /**
    * 验证码图片高度
    */
-  private int height;
+  private Integer height;
 
   /**
    * 干扰线数量
    */
-  private int interfereCount;
+  private Integer interfereCount;
 
   /**
    * 文本透明度
@@ -46,6 +48,7 @@ public class CaptchaProperties extends EnabledConfigurationProperties {
   /**
    * 验证码字符配置
    */
+  @NestedConfigurationProperty
   private CodeProperties code;
 
   /**

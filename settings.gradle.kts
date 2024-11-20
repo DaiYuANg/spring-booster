@@ -53,13 +53,7 @@ include("booster:spring-boost-verification")
 
 include("booster:spring-boost-office")
 
-include("booster:spring-boost-mapping")
-
 include("booster:spring-boost-minio")
-
-include("booster:spring-boost-dev-service")
-
-include("booster:spring-boost-dotenv")
 
 include("booster:spring-boost-web-version")
 
@@ -68,5 +62,7 @@ include("booster:spring-boost-captcha")
 include("apps:spring-boost-cli")
 
 include("apps:spring-boost-application-example")
+
+include("booster:spring-boost-rbac")
 
 include("website")

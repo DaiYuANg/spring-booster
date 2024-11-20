@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.spring.boost.captcha.constant.CaptchaCharType;
 import org.spring.boost.captcha.constant.ConfigConstant;
 import org.spring.boost.captcha.service.CaptchaService;
 import org.spring.boost.captcha.service.CaptchaServiceImpl;

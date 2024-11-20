@@ -1,7 +1,6 @@
 /* (C)2023*/
 package org.spring.boost.core.autoconfigure;
 
-import io.github.classgraph.ClassGraph;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -14,27 +13,20 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
 @AutoConfiguration
 @Slf4j
 @EnableConfigurationProperties(CoreConfigurationProperties.class)
 @RequiredArgsConstructor
+@Import(cn.hutool.extra.spring.SpringUtil.class)
 public class CoreAutoConfiguration {
 
-  @Bean
+  @Bean()
   BeanRegistry beanRegistry(
       ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
     return SimpleBeanRegistry.builder().context(context).beanFactory(listableBeanFactory).build();
-  }
-
-  @Bean
-  ClassGraph classGraph(@NotNull CoreConfigurationProperties properties) {
-    val config = properties.getClassScanner();
-    val cg = new ClassGraph();
-    if (config.getEnableClassGraphLog()) cg.enableRealtimeLogging();
-    cg.verbose(config.getVerbose());
-    return cg;
   }
 
   @Bean

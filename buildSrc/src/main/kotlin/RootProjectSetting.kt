@@ -1,5 +1,3 @@
-import com.coditory.gradle.manifest.ManifestPlugin
-import com.coditory.gradle.manifest.ManifestPluginExtension
 import com.xenoterracide.gradle.semver.SemverExtension
 import com.xenoterracide.gradle.semver.SemverPlugin
 import io.gitlab.plunts.gradle.plantuml.plugin.ClassDiagramsExtension
@@ -45,7 +43,7 @@ class RootProjectSetting : Plugin<Project> {
         apply<JMHPlugin>()
         apply<LombokPlugin>()
         apply<PlantUmlPlugin>()
-        apply<ManifestPlugin>()
+//        apply<ManifestPlugin>()
 
         group = "org." + rootProject.name + "." + project.name
 
@@ -131,11 +129,11 @@ class RootProjectSetting : Plugin<Project> {
           )
         }
 
-        project.configure<ManifestPluginExtension> {
-          buildAttributes = true
-          implementationAttributes = true
-          scmAttributes = true
-        }
+//        project.configure<ManifestPluginExtension> {
+//          buildAttributes = true
+//          implementationAttributes = true
+//          scmAttributes = true
+//        }
       }
     }
   }

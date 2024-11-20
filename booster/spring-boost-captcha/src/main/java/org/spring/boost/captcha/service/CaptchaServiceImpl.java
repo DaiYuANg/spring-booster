@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.spring.boost.captcha.configure.CaptchaProperties;
 import org.spring.boost.captcha.model.CaptchaResult;
+import org.spring.boost.captcha.model.CaptchaResultBuilder;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
 
-@Service
 @Slf4j
 @RequiredArgsConstructor
 public class CaptchaServiceImpl implements CaptchaService {
@@ -44,7 +44,7 @@ public class CaptchaServiceImpl implements CaptchaService {
     captcha.setTextAlpha(captchaProperties.getTextAlpha());
     captcha.setFont(captchaFont);
 
-    return CaptchaResult.builder()
+    return CaptchaResultBuilder.builder()
       .key(IdUtil.fastUUID())
       .code(captcha.getCode())
       .base64Image(captcha.getImageBase64Data())

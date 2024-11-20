@@ -3,14 +3,14 @@ plugins {
   alias(libs.plugins.asciidoctorJvm)
   alias(libs.plugins.asciidoctorEpub)
   alias(libs.plugins.asciidoctorEditconfig)
-  alias(libs.plugins.asciidoctorGem)
+//  alias(libs.plugins.asciidoctorGem)
   idea
 }
 
 repositories {
-  ruby {
-    gems()
-  }
+//  ruby {
+////    gems()
+//  }
 }
 
 asciidoctorj {

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @UtilityClass
 public class Method {
-    public static final RequestMethod[] ALL_METHOD = {
+    public final RequestMethod[] ALL_METHOD = {
         RequestMethod.PATCH,
         RequestMethod.GET,
         RequestMethod.HEAD,

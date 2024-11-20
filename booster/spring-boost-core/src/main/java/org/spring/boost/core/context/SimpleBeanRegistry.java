@@ -3,11 +3,13 @@ package org.spring.boost.core.context;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -17,6 +19,11 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
+
+import static java.util.Objects.requireNonNull;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toUnmodifiableMap;
+import static java.util.stream.Collectors.toUnmodifiableSet;
 
 @Builder
 @Slf4j
@@ -28,32 +35,35 @@ public class SimpleBeanRegistry implements BeanRegistry {
 
   @Override
   public <A extends Annotation, T> Map<A, T> getBeanWithAnnotationMap(
-      Class<A> annotation, Class<T> beanType) {
+    Class<A> annotation, Class<T> beanType) {
     return findByAnnotation(annotation, beanType)
-        .collect(
-            Collectors.toUnmodifiableMap(
-                entry ->
-                    Objects.requireNonNull(
-                        AnnotationUtils.findAnnotation(entry.getClass(), annotation)),
-                Function.identity()));
+      .collect(
+        toUnmodifiableMap(
+          entry ->
+            requireNonNull(
+              AnnotationUtils.findAnnotation(entry.getClass(), annotation)),
+          identity()
+        )
+      );
   }
 
   @Override
   public <T> Collection<T> getBeanWithAnnotation(
-      Class<? extends Annotation> annotation, Class<T> beanType) {
-    return findByAnnotation(annotation, beanType).collect(Collectors.toUnmodifiableSet());
+    Class<? extends Annotation> annotation, Class<T> beanType
+  ) {
+    return findByAnnotation(annotation, beanType).collect(toUnmodifiableSet());
   }
 
   @Override
   public <T> Collection<T> getBeanWithAnnotationImmutable(
-      Class<? extends Annotation> annotation, Class<T> beanType) {
+    Class<? extends Annotation> annotation, Class<T> beanType) {
     return ImmutableList.<T>builder().addAll(getBeanWithAnnotation(annotation, beanType)).build();
   }
 
   @Override
   public <T> Set<T> getBeanDistinct(Class<T> beanTypeClass) {
     return getBeanOfTypeImmutable(beanTypeClass).values().stream()
-        .collect(Collectors.toUnmodifiableSet());
+      .collect(toUnmodifiableSet());
   }
 
   @Override
@@ -65,8 +75,8 @@ public class SimpleBeanRegistry implements BeanRegistry {
   @SuppressWarnings("IsNotNull")
   public <T> Stream<T> findByAnnotation(Class<? extends Annotation> annotation, Class<T> beanType) {
     return context.getBeansOfType(beanType).values().stream()
-        .filter(
-            bean -> Objects.nonNull(AnnotationUtils.findAnnotation(bean.getClass(), annotation)));
+      .filter(
+        bean -> Objects.nonNull(AnnotationUtils.findAnnotation(bean.getClass(), annotation)));
   }
 
   @Override
@@ -83,12 +93,12 @@ public class SimpleBeanRegistry implements BeanRegistry {
   public Set<String> possibleClasspath() {
     val app = context.getBeansWithAnnotation(SpringBootApplication.class);
     return app.values().stream()
-        .flatMap(
-            main -> {
-              val ann = main.getClass().getAnnotation(SpringBootApplication.class);
-              return Arrays.stream(ann.scanBasePackages());
-            })
-        .collect(Collectors.toSet());
+      .flatMap(
+        main -> {
+          val ann = main.getClass().getAnnotation(SpringBootApplication.class);
+          return Arrays.stream(ann.scanBasePackages());
+        })
+      .collect(Collectors.toSet());
   }
 
   @Override

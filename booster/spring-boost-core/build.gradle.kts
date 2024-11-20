@@ -1,8 +1,8 @@
 dependencies {
-  implementation(libs.apacheCommonLang3)
-  api(libs.classGraph)
-  implementation(libs.guava)
-  implementation(libs.fastutil)
+  api(libs.apacheCommonLang3)
+  api(libs.guava)
   implementation(libs.slf4jJulBridge)
-  api(libs.rxjava)
+  api(libs.vavr)
+  api(libs.hutoolExtra)
+  api(libs.mutiny)
 }

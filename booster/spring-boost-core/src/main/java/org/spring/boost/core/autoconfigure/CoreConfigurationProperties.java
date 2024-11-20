@@ -18,9 +18,6 @@ import java.util.Set;
 @ToString(callSuper = true)
 public class CoreConfigurationProperties extends EnabledConfigurationProperties {
 
-  @NestedConfigurationProperty
-  private ClassScannerConfig classScanner = new ClassScannerConfig();
-
   private Set<String> scanPackages = Set.of();
 
   public static CoreConfigurationProperties get(@NotNull Binder binder) {

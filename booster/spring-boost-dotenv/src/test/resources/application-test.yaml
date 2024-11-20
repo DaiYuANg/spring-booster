@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: dotenv application
-  main:
-    allow-bean-definition-overriding: true

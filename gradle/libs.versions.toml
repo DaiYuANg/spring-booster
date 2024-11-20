@@ -3,32 +3,34 @@ jdkVersion = "21"
 pluginPublish = "1.2.1"
 errorproneCore = "2.23.0"
 junit = "5.10.2"
-testcontainers = "1.19.7"
-mockito = "5.11.0"
+testcontainers = "1.20.3"
+mockito = "5.14.2"
 errorpronePlugin = "3.1.0"
-aspectjRt = "1.9.22"
-minio = "8.5.10"
-tika = "3.0.0-BETA"
+aspectjRt = "1.9.22.1"
+minio = "8.5.13"
+tika = "3.0.0"
 lettuce = "6.3.1.RELEASE"
-jsonwebtoken = "0.12.5"
-javaDockerClientCore = "3.3.6"
-hutool = "5.8.27"
-springBoot = "3.2.5"
-springBootAdmin = "3.2.3"
+jsonwebtoken = "0.12.6"
+javaDockerClientCore = "3.4.0"
+hutool = "5.8.33"
+springBoot = "3.3.5"
+springBootAdmin = "3.3.6"
 springDependencyManagement = "1.1.4"
-apachePoi = "5.2.5"
+apachePoi = "5.3.0"
 junitperf = "1.35.0"
-mapstruct = "1.6.0.Beta1"
+mapstruct = "1.6.3"
 errorProneSupport = "0.14.0"
 maven = "4.0.0-alpha-13"
-asciidoctor = "4.0.2"
+asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
-springShell = "3.2.4"
-queryDsl = "5.1.0"
-schemacrawler = "16.21.2"
-logback = "1.5.6"
+springShell = "3.3.3"
+queryDsl = "6.8"
+schemacrawler = "16.22.3"
+logback = "1.5.12"
 slf4j = "2.1.0-alpha1"
 autoService = "1.1.1"
+vavr = "0.10.5"
+recordBuilder = "43"
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
@@ -65,7 +67,7 @@ restAssured = { group = "io.rest-assured", name = "rest-assured", version = "5.4
 #Lint
 errorproneCore = { group = "com.google.errorprone", name = "error_prone_core", version.ref = "errorproneCore" }
 nullaway = { group = "com.uber.nullaway", name = "nullaway", version = "0.10.19" }
-jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "24.1.0" }
+jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
 spotbugs = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.2" }
 errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-prone-contrib", version.ref = "errorProneSupport" }
 refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
@@ -73,14 +75,14 @@ refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-r
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4jJulBridge = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
-jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0-M2" }
+jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0" }
 aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
-jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0-M2" }
+jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
 minioAdmin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
 tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
 tikaParsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
-semver4j = { group = "org.semver4j", name = "semver4j", version = "5.3.0" }
+semver4j = { group = "org.semver4j", name = "semver4j", version = "5.4.1" }
 hazelcast = { group = "com.hazelcast", name = "hazelcast", version = "5.3.6" }
 autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
 autoService = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
@@ -94,23 +96,24 @@ javaDockerClientCore = { group = "com.github.docker-java", name = "docker-java",
 javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-java-transport-httpclient5", version.ref = "javaDockerClientCore" }
 apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
 dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3.0.0" }
-apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.14.0" }
-bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.14.14" }
-dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.2.2" }
-apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.15.1" }
-guava = { group = "com.google.guava", name = "guava", version = "33.1.0-jre" }
-micaAuto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.3" }
+apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.15.7" }
+dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
+apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.17.0" }
+guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
+micaAuto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 snowflake4j = { group = "com.github.philippheuer.snowflake4j", name = "snowflake4j", version = "1.0.1" }
+agrona = { group = "org.agrona", name = "agrona", version = "1.23.1" }
 
 commonsDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version = "2.4.1" }
-jlineNative = { group = "org.jline", name = "jline-native", version = "3.26.1" }
+jlineNative = { group = "org.jline", name = "jline-native", version = "3.27.1" }
 
-apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version = "1.16.0" }
+apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version = "1.17.1" }
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 
-sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc", version = "3.45.3.0" }
+sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.0.0" }
 postgresqlDriver = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
 h2Driver = { group = "com.h2database", name = "h2" }
 mysqlDriver = { group = "com.mysql", name = "mysql-connector-j" }
@@ -119,7 +122,7 @@ mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstr
 mapstructAnnotationProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
 apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
-classGraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.172" }
+classGraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.179" }
 freemarker = { group = "org.freemarker", name = "freemarker", version = "2.3.28" }
 mavenEmbeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
 mavenModel = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
@@ -129,7 +132,7 @@ eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-col
 eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
 eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
 eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
-fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.13" }
+fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.15" }
 
 schemacrawler = { group = "us.fatehi", name = "schemacrawler", version.ref = "schemacrawler" }
 schemacrawlerMySQL = { group = "us.fatehi", name = "schemacrawler-mysql", version.ref = "schemacrawler" }
@@ -137,13 +140,17 @@ schemacrawlerSqlite = { group = "us.fatehi", name = "schemacrawler-sqlite", vers
 schemacrawlerPostgreSQL = { group = "us.fatehi", name = "schemacrawler-postgresql", version.ref = "schemacrawler" }
 schemacrawlerSqlServer = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
-useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.26.1" }
+vavr = { group = "io.vavr", name = "vavr", version.ref = "vavr" }
+useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.29.0" }
 
 #Office
 apachePoi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
 apachePoiOOxmlFull = { group = "org.apache.poi", name = "poi-ooxml-full", version.ref = "apachePoi" }
 apachePoiOOxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
 fastExcel = { group = "org.dhatim", name = "fastexcel", version = "0.16.5" }
+
+hibernatejpaModelGen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.6.2" }
 
 #Hutool
 hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
@@ -153,14 +160,12 @@ hutoolExtra = { group = "cn.hutool", name = "hutool-extra", version.ref = "hutoo
 hutoolCaptcha = { group = "cn.hutool", name = "hutool-captcha", version.ref = "hutool" }
 
 #QueryDSL
-queryDslJPA = { group = "com.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
-queryDslApt = { group = "com.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
-queryDslSpatial = { group = "com.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
-queryDslGuava = { group = "com.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
-queryDslCollection = { group = "com.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
-queryDslCore = { group = "com.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
-queryDslSql = { group = "com.querydsl", name = "querydsl-sql", version.ref = "queryDsl" }
-queryDslSqlCodeGen = { group = "com.querydsl", name = "querydsl-codegen", version.ref = "queryDsl" }
+queryDslJPA = { group = "io.github.openfeign.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
+queryDslApt = { group = "io.github.openfeign.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
+queryDslSpatial = { group = "io.github.openfeign.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
+queryDslGuava = { group = "io.github.openfeign.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
+queryDslCollection = { group = "io.github.openfeign.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
+queryDslCore = { group = "io.github.openfeign.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
 
 #Spring
 springBootStarter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "springBoot" }
@@ -184,8 +189,9 @@ springBootDataEnvers = { group = "org.springframework.data", name = "spring-data
 springBootHateoas = { group = "org.springframework.hateoas", name = "spring-hateoas" }
 springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starter", version = "4.7.5" }
 springBootLogging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "springBoot" }
-springBootAdminServer = { group = "de.codecentri", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
-springBootAdminClient = { group = "de.codecentri", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
+springBootAdminServer = { group = "de.codecentric", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
+springBootAdminClient = { group = "de.codecentric", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
+springBootSwaggerUI = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.6.0" }
 
 #Spring Shell
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
@@ -193,7 +199,9 @@ springShellStarter = { group = "org.springframework.shell", name = "spring-shell
 
 logbackClassic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 logbackCore = { group = "ch.qos.logback", name = "logback-core", version.ref = "logback" }
-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.8" }
+rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.9" }
+recordBuilderProcessor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
+recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
 
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
@@ -201,9 +209,9 @@ springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dep
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.23.3" }
 semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }
 dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.9" }
-jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.1.0" }
+jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.15.0" }
 jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
-lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.5" }
+lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.10" }
 plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }

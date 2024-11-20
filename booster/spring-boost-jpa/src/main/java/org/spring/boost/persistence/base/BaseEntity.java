@@ -2,16 +2,16 @@
 package org.spring.boost.persistence.base;
 
 import jakarta.persistence.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.GenericGenerator;
-import org.spring.boost.persistence.generators.SnowflakeGenerator;
-import org.spring.boost.persistence.listeners.BaseEntityListener;
+import org.spring.boost.persistence.annotation.SnowflakeGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,38 +21,38 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @Accessors(chain = true)
 @ToString
-@EntityListeners({AuditingEntityListener.class, BaseEntityListener.class})
+@EntityListeners({AuditingEntityListener.class})
 public class BaseEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+  @Serial
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GenericGenerator(name = "SnowflakeGenerator", type = SnowflakeGenerator.class)
-    @GeneratedValue(generator = "SnowflakeGenerator")
-    @Column(updatable = false, nullable = false)
-    private String id;
+  @Id
+  @GeneratedValue(generator = "SnowflakeGenerator")
+  @SnowflakeGenerator
+  @Column(updatable = false, nullable = false)
+  private Long id;
 
-    @Column(nullable = false)
-    @CreatedDate
-    private Date createAt;
+  @Column(nullable = false)
+  @CreatedDate
+  private Date createAt;
 
-    @Column
-    private String createBy;
+  @Column
+  private String createBy;
 
-    @Column
-    @LastModifiedDate
-    private String updateBy;
+  @Column
+  @LastModifiedDate
+  private String updateBy;
 
-    @Column
-    private Date updateAt;
+  @Column
+  private Date updateAt;
 
-    @Column
-    @Version
-    private Integer version;
+  @Column
+  @Version
+  private Integer version;
 
-    @Column
-    private String sort;
+  @Column
+  private String sort;
 
-    @Column
-    String ext;
+  @Column
+  String ext;
 }

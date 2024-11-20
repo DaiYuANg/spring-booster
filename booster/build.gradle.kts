@@ -6,11 +6,9 @@ plugins {
 }
 
 dependencies {
-  implementation(projects.booster.springBoostMapping)
   implementation(projects.booster.springBoostJpa)
   implementation(projects.booster.springBoostCore)
   implementation(projects.booster.springBoostMinio)
-  implementation(projects.booster.springBoostDotenv)
   implementation(projects.booster.springBoostOffice)
   implementation(projects.booster.springBoostVerification)
   implementation(projects.booster.springBoostAuthentication)
@@ -34,6 +32,10 @@ subprojects {
   apply<JReleaserPlugin>()
 
   dependencies {
+    implementation(rootProject.libs.recordBuilderCore)
+    annotationProcessor(rootProject.libs.recordBuilderProcessor)
+    implementation(rootProject.libs.mapstruct)
+    annotationProcessor(rootProject.libs.mapstructAnnotationProcessor)
     compileOnly(rootProject.libs.micaAuto)
     annotationProcessor(rootProject.libs.micaAuto)
   }

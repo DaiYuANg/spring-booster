@@ -1,15 +1,29 @@
 spring:
-  boost:
-    class-scanner:
-      enable-class-graph-log: false
-      verbose: false
   jpa:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
+    properties:
+      hibernate:
+        format_sql: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
 logging:
   group:
     boost: org.spring.boost
   level:
     boost: TRACE
+    org.hibernate.sql: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+

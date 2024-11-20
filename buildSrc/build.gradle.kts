@@ -14,7 +14,7 @@ dependencies {
   implementation(libs.springBootGradlePlugin)
   implementation(libs.springBootDependencyManagementPlugin)
   implementation(libs.spotlessPlugin)
-  implementation(libs.manifestPlugin)
+//  implementation(libs.manifestPlugin)
   implementation(libs.jmhPlugin)
   implementation(libs.plantumlPlugin)
   implementation(libs.dependencycheckPlugin)
