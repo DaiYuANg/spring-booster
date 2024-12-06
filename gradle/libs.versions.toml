@@ -3,18 +3,18 @@ jdkVersion = "21"
 pluginPublish = "1.2.1"
 errorproneCore = "2.23.0"
 junit = "5.10.2"
-testcontainers = "1.20.3"
+testcontainers = "1.20.4"
 mockito = "5.14.2"
 errorpronePlugin = "3.1.0"
 aspectjRt = "1.9.22.1"
-minio = "8.5.13"
+minio = "8.5.14"
 tika = "3.0.0"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
-hutool = "5.8.33"
-springBoot = "3.3.5"
-springBootAdmin = "3.3.6"
+hutool = "5.8.34"
+springBoot = "3.4.0"
+springBootAdmin = "3.4.0"
 springDependencyManagement = "1.1.4"
 apachePoi = "5.3.0"
 junitperf = "1.35.0"
@@ -24,8 +24,8 @@ maven = "4.0.0-alpha-13"
 asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.3.3"
-queryDsl = "6.8"
-schemacrawler = "16.22.3"
+queryDsl = "6.9"
+schemacrawler = "16.23.2"
 logback = "1.5.12"
 slf4j = "2.1.0-alpha1"
 autoService = "1.1.1"
@@ -38,7 +38,7 @@ versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
 springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
 errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
-graalvmNative = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
+graalvmNative = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
 asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctorEpub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
@@ -99,7 +99,7 @@ dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3
 apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.15.7" }
 dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
-apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.17.0" }
+apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.18.0" }
 guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
 micaAuto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
@@ -150,7 +150,7 @@ apachePoiOOxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "
 fastExcel = { group = "org.dhatim", name = "fastexcel", version = "0.16.5" }
 
 hibernatejpaModelGen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
-mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.6.2" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.7.0" }
 
 #Hutool
 hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
@@ -191,7 +191,7 @@ springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starte
 springBootLogging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "springBoot" }
 springBootAdminServer = { group = "de.codecentric", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
 springBootAdminClient = { group = "de.codecentric", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
-springBootSwaggerUI = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.6.0" }
+springBootSwaggerUI = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.7.0" }
 
 #Spring Shell
 springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
@@ -199,7 +199,6 @@ springShellStarter = { group = "org.springframework.shell", name = "spring-shell
 
 logbackClassic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 logbackCore = { group = "ch.qos.logback", name = "logback-core", version.ref = "logback" }
-rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.9" }
 recordBuilderProcessor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
 recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
 

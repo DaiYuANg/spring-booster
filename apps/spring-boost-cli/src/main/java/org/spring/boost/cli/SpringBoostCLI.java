@@ -12,11 +12,12 @@ import org.springframework.shell.command.annotation.CommandScan;
 @CommandScan
 public class SpringBoostCLI {
 
-    static {
-        AnsiConsole.systemInstall();
-    }
+  static {
+    AnsiConsole.systemInstall();
+    System.setProperty("org.jline.terminal.dumb", "true");
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBoostCLI.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(SpringBoostCLI.class, args);
+  }
 }

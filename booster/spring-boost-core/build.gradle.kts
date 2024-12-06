@@ -5,4 +5,5 @@ dependencies {
   api(libs.vavr)
   api(libs.hutoolExtra)
   api(libs.mutiny)
+  api(libs.classGraph)
 }

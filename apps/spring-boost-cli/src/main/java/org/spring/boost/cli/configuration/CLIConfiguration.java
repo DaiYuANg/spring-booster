@@ -10,22 +10,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Configuration(proxyBeanMethods = false)
 @Slf4j
 @PropertySource(
-        value = "file:./spring.boost.yaml",
-        factory = YamlPropertySourceFactory.class,
-        encoding = "UTF-8",
-        ignoreResourceNotFound = true)
+  value = "file:spring.boost.yaml",
+  factory = YamlPropertySourceFactory.class,
+  encoding = "UTF-8",
+  ignoreResourceNotFound = true)
 public class CLIConfiguration {
 
-    @Resource
-    private DataSource dataSource;
+  @Resource
+  private DataSource dataSource;
 
-    @SneakyThrows
-    @PostConstruct
-    public void init() {
-        System.err.println(dataSource.getConnection());
-    }
+  @SneakyThrows
+  @PostConstruct
+  public void init() {
+    log.atInfo().log("Runtime Path:{}", Path.of("").toAbsolutePath().toString());
+  }
 }

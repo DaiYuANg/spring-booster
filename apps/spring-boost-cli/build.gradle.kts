@@ -10,6 +10,7 @@ repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases")
 val mainClassPath = "org.spring.boost.cli.SpringBoostCLI"
 
 dependencies {
+  implementation(projects.booster.springBoostMutiny)
   implementation(libs.mysqlDriver)
   implementation(libs.javapoet)
   implementation(libs.jakartaPersistence)
@@ -35,7 +36,7 @@ dependencies {
   implementation(libs.schemacrawlerPostgreSQL)
   implementation(libs.logbackCore)
   implementation(libs.logbackClassic)
-  implementation(libs.rxjava)
+  implementation(libs.mutiny)
 }
 
 application {

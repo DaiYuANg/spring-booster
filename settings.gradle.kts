@@ -66,3 +66,4 @@ include("apps:spring-boost-application-example")
 include("booster:spring-boost-rbac")
 
 include("website")
+include("booster:spring-boost-mutiny")

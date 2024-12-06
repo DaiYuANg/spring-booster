@@ -6,6 +6,8 @@ plugins {
 val mainClassPath = "org.spring.boost.example.ExampleApplication"
 
 dependencies {
+  implementation(projects.booster.springBoostMutiny)
+
 //  implementation(projects.booster.springBoostCaptcha)
   implementation(projects.booster.springBoostCore)
   implementation(libs.springBootLogging)
