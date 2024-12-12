@@ -15,6 +15,7 @@ dependencies {
   implementation(libs.javapoet)
   implementation(libs.jakartaPersistence)
   implementation(libs.commonsDBUtil)
+  implementation(libs.apacheCommonIO)
   implementation(libs.jansi)
   implementation(libs.jlineNative)
   implementation(libs.springShellStarter)
@@ -37,6 +38,9 @@ dependencies {
   implementation(libs.logbackCore)
   implementation(libs.logbackClassic)
   implementation(libs.mutiny)
+  implementation(libs.javaparser.core)
+  compileOnly(libs.immutables.value)
+  annotationProcessor(libs.immutables.value)
 }
 
 application {
@@ -54,14 +58,8 @@ graalvmNative {
     named("main") {
       mainClass.set(mainClassPath)
       sharedLibrary.set(false)
-      quickBuild.set(true)
+      quickBuild.set(false)
       buildArgs.add("-H:+UnlockExperimentalVMOptions")
     }
   }
 }
-
-task("copyDependencies", Copy::class) {
-  from(configurations.runtimeClasspath).into("${layout.buildDirectory}/jars")
-}
-
-task("copyJar", Copy::class) { from(tasks.jar).into("${layout.buildDirectory}/jars") }

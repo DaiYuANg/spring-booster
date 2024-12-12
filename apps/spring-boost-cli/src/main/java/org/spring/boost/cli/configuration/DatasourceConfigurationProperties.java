@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @Getter
 @ToString
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "spring.boost.datasource")
 public class DatasourceConfigurationProperties {
   private String url;
 

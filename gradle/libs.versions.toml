@@ -14,7 +14,7 @@ jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
 hutool = "5.8.34"
 springBoot = "3.4.0"
-springBootAdmin = "3.4.0"
+springBootAdmin = "3.4.1"
 springDependencyManagement = "1.1.4"
 apachePoi = "5.3.0"
 junitperf = "1.35.0"
@@ -23,14 +23,16 @@ errorProneSupport = "0.14.0"
 maven = "4.0.0-alpha-13"
 asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
-springShell = "3.3.3"
+springShell = "3.4.0"
 queryDsl = "6.9"
 schemacrawler = "16.23.2"
 logback = "1.5.12"
 slf4j = "2.1.0-alpha1"
 autoService = "1.1.1"
 vavr = "0.10.5"
-recordBuilder = "43"
+recordBuilder = "44"
+immutables = "2.10.1"
+javaparser = "3.26.2"
 
 [plugins]
 pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
@@ -52,7 +54,7 @@ junitBom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
-junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.10.2" }
+junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.11.3" }
 testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
 testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
@@ -108,7 +110,7 @@ agrona = { group = "org.agrona", name = "agrona", version = "1.23.1" }
 
 commonsDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 jansi = { group = "org.fusesource.jansi", name = "jansi", version = "2.4.1" }
-jlineNative = { group = "org.jline", name = "jline-native", version = "3.27.1" }
+jlineNative = { group = "org.jline", name = "jline-native", version = "3.28.0" }
 
 apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version = "1.17.1" }
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
@@ -127,6 +129,8 @@ freemarker = { group = "org.freemarker", name = "freemarker", version = "2.3.28"
 mavenEmbeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
 mavenModel = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
 gradleToolingAPI = { group = "org.gradle", name = "gradle-tooling-api", version = "8.7" }
+
+javaparser-core = {group="com.github.javaparser",name="javaparser-core",version.ref="javaparser"}
 
 eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
 eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
@@ -202,6 +206,7 @@ logbackCore = { group = "ch.qos.logback", name = "logback-core", version.ref = "
 recordBuilderProcessor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
 recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
 
+immutables-value = { group = "org.immutables", name = "value", version.ref = "immutables" }
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
 springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }

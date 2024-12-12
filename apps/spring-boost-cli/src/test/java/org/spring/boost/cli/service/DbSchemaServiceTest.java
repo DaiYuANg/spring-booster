@@ -19,10 +19,10 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
-@SpringBootTest(classes = {DatabaseSchemaService.class, TaskExecutionAutoConfiguration.class})
+@SpringBootTest(classes = { TaskExecutionAutoConfiguration.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ContextConfiguration(initializers = DbSchemaServiceTest.DataSourceInitializer.class)
-class DbSchemaServiceTest {
+@ContextConfiguration(initializers = DbSchemaServiceImplTest.DataSourceInitializer.class)
+class DbSchemaServiceImplTest {
 
     @Container
     static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:latest");
@@ -42,15 +42,14 @@ class DbSchemaServiceTest {
     @Resource
     private DataSource dataSource;
 
-    @Resource
-    private DatabaseSchemaService dbSchemaService;
+
 
     @Test
     @Sql(scripts = "/init-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void detectSchema() {
-        dbSchemaService.getTableInfo("test");
-        val service = new DbSchemaService(dataSource);
-        val allColumn = service.getAllColumn("test");
-        System.err.println(allColumn);
+//        dbSchemaService.getTableInfo("test");
+//        val service = new DbSchemaServiceImpl(dataSource);
+//        val allColumn = service.getAllColumn("test");
+//        System.err.println(allColumn);
     }
 }

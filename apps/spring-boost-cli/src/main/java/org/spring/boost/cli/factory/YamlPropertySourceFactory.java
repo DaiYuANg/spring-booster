@@ -1,7 +1,6 @@
 /* (C)2024*/
 package org.spring.boost.cli.factory;
 
-import java.io.IOException;
 import java.util.Objects;
 
 import lombok.val;

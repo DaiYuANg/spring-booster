@@ -1,19 +1,11 @@
-/* (C)2024*/
 package org.spring.boost.cli.service;
 
-import java.util.ArrayList;
-import javax.sql.DataSource;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.springframework.stereotype.Service;
+import schemacrawler.schema.Catalog;
+import schemacrawler.schema.Schema;
 
-@RequiredArgsConstructor
-@Service
-@Slf4j
-public class DbSchemaService {
+import java.util.stream.Stream;
 
-    private final DataSource dataSource;
+public interface DbSchemaService {
+  Catalog catalog();
 
 }
