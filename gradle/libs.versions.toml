@@ -1,11 +1,7 @@
 [versions]
 jdkVersion = "21"
-pluginPublish = "1.2.1"
-errorproneCore = "2.23.0"
 junit = "5.10.2"
 testcontainers = "1.20.4"
-mockito = "5.14.2"
-errorpronePlugin = "3.1.0"
 aspectjRt = "1.9.22.1"
 minio = "8.5.14"
 tika = "3.0.0"
@@ -13,21 +9,19 @@ lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
 hutool = "5.8.34"
-springBoot = "3.4.0"
+spring-boot = "3.4.0"
 springBootAdmin = "3.4.1"
-springDependencyManagement = "1.1.4"
+springDependencyManagement = "1.1.6"
 apachePoi = "5.3.0"
 junitperf = "1.35.0"
 mapstruct = "1.6.3"
 errorProneSupport = "0.14.0"
-maven = "4.0.0-alpha-13"
+maven = "4.0.0-rc-1"
 asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.4.0"
 queryDsl = "6.9"
 schemacrawler = "16.23.2"
-logback = "1.5.12"
-slf4j = "2.1.0-alpha1"
 autoService = "1.1.1"
 vavr = "0.10.5"
 recordBuilder = "44"
@@ -35,18 +29,19 @@ immutables = "2.10.1"
 javaparser = "3.26.2"
 
 [plugins]
-pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }
-versionCheck = { id = "com.github.ben-manes.versions", version = "0.51.0" }
-springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
-errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
+version-check = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+spring-boot = { id = "org.springframework.boot", version = "spring-boot" }
+dependency-management = { id = "io.spring.dependency-management", version = "1.1.6" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
-graalvmNative = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
-asciidoctorJvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
-asciidoctorGem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
-asciidoctorEpub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
-asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
-asciidoctorRevealjs = { id = "org.asciidoctor.jvm.revealjs", version = "4.0.0-alpha.1" }
-asciidoctorEditconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
+semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
+graalvm-native = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
+asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+asciidoctor-gem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
+asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
+asciidoctor-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
+asciidoctor-tevealjs = { id = "org.asciidoctor.jvm.revealjs", version = "4.0.0-alpha.1" }
+asciidoctor-editconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
 
 [libraries]
 #Test
@@ -55,160 +50,177 @@ junitJuiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref
 junitApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junitEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
 junitPlatformSuite = { group = "org.junit.platform", name = "junit-platform-suite", version = "1.11.3" }
-testcontainersBom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
-testcontainersJunit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
-testcontainersMinio = { group = "org.testcontainers", name = "minio", version.ref = "testcontainers" }
-testcontainersMysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
+testcontainers-junit = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+testcontainers-minio = { group = "org.testcontainers", name = "minio", version.ref = "testcontainers" }
+testcontainers-mysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
 junitperf = { group = "com.github.noconnor", name = "junitperf", version.ref = "junitperf" }
 junitperfJunit5 = { group = "com.github.noconnor", name = "junitperf-junit5", version.ref = "junitperf" }
-mockitoCore = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockitoJunit = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
-restAssured = { group = "io.rest-assured", name = "rest-assured", version = "5.4.0" }
+mockito-core = { group = "org.mockito", name = "mockito-core" }
+mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter" }
+rest-assured = { group = "io.rest-assured", name = "rest-assured", version = "5.4.0" }
 
 #Lint
-errorproneCore = { group = "com.google.errorprone", name = "error_prone_core", version.ref = "errorproneCore" }
 nullaway = { group = "com.uber.nullaway", name = "nullaway", version = "0.10.19" }
-jetbrainsAnnotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
+jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
 spotbugs = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.2" }
 errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-prone-contrib", version.ref = "errorProneSupport" }
 refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
 
 caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
-slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
-slf4jJulBridge = { group = "org.slf4j", name = "jul-to-slf4j", version.ref = "slf4j" }
-jakartaPersistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0" }
+slf4j = { group = "org.slf4j", name = "slf4j-api" }
+slf4jJulBridge = { group = "org.slf4j", name = "jul-to-slf4j" }
+jakarta-persistence = { group = "jakarta.persistence", name = "jakarta.persistence-api" }
 aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
-jakartaValidation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.0" }
+jakarta-validation = { group = "jakarta.validation", name = "jakarta.validation-api" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
-minioAdmin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
-tikaCore = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
-tikaParsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
+minio-admin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
+
 semver4j = { group = "org.semver4j", name = "semver4j", version = "5.4.1" }
-hazelcast = { group = "com.hazelcast", name = "hazelcast", version = "5.3.6" }
-autoFactory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
-autoService = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
-autoServiceAnnotations = { group = "com.google.auto.service", name = "auto-service-annotations", version.ref = "autoService" }
+auto-factory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
+auto-service = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
+auto-service-annotations = { group = "com.google.auto.service", name = "auto-service-annotations", version.ref = "autoService" }
 lettuceCore = { group = "io.lettuce", name = "lettuce-core", version.ref = "lettuce" }
-jsonwebtokenApi = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jsonwebtoken" }
-jsonwebtokenImpl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jsonwebtoken" }
-jsonwebtokenJackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jsonwebtoken" }
+jsonwebtoken-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jsonwebtoken" }
+jsonwebtoken-impl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jsonwebtoken" }
+jsonwebtoken-jackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jsonwebtoken" }
 progressbar = { group = "me.tongfei", name = "progressbar", version = "0.10.1" }
 javaDockerClientCore = { group = "com.github.docker-java", name = "docker-java", version.ref = "javaDockerClientCore" }
 javaDockerClientHttpClient = { group = "com.github.docker-java", name = "docker-java-transport-httpclient5", version.ref = "javaDockerClientCore" }
-apacheHttpClient = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
 dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3.0.0" }
-apacheCommonLang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
-bytebuddy = { group = "net.bytebuddy", name = "byte-buddy", version = "1.15.7" }
-dataFaker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
-apacheCommonIO = { group = "commons-io", name = "commons-io", version = "2.18.0" }
+
+bytebuddy = { group = "net.bytebuddy", name = "byte-buddy" }
+data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
-micaAuto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
+mica-auto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
-snowflake4j = { group = "com.github.philippheuer.snowflake4j", name = "snowflake4j", version = "1.0.1" }
 agrona = { group = "org.agrona", name = "agrona", version = "1.23.1" }
 
-commonsDBUtil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
-jansi = { group = "org.fusesource.jansi", name = "jansi", version = "2.4.1" }
-jlineNative = { group = "org.jline", name = "jline-native", version = "3.28.0" }
+#jansi = { group = "org.fusesource.jansi", name = "jansi", version = "2.4.1" }
+#jline-native = { group = "org.jline", name = "jline-native", version = "3.28.0" }
 
-apacheCommonCodeC = { group = "commons-codec", name = "commons-codec", version = "1.17.1" }
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 
-sqliteDriver = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.0.0" }
-postgresqlDriver = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
-h2Driver = { group = "com.h2database", name = "h2" }
-mysqlDriver = { group = "com.mysql", name = "mysql-connector-j" }
+sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.0.0" }
+postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.3" }
+h2 = { group = "com.h2database", name = "h2" }
+mysql = { group = "com.mysql", name = "mysql-connector-j" }
 
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
-mapstructAnnotationProcessor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
-lombokMapstructBinding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
-apacheCommonPool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
-classGraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.179" }
+mapstruct-annotation-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+lombok-mapstruct-binding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
+classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.179" }
 freemarker = { group = "org.freemarker", name = "freemarker", version = "2.3.28" }
-mavenEmbeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
-mavenModel = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
-gradleToolingAPI = { group = "org.gradle", name = "gradle-tooling-api", version = "8.7" }
 
-javaparser-core = {group="com.github.javaparser",name="javaparser-core",version.ref="javaparser"}
+javaparser-core = { group = "com.github.javaparser", name = "javaparser-core", version.ref = "javaparser" }
 
-eclipseCollectionsAPI = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
-eclipseCollections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
-eclipseCollectionsForkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
-eclipseCollectionsTestUtil = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
+eclipse-collections-api = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipseCollections" }
+eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipseCollections" }
+eclipse-collections-forkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipseCollections" }
+eclipse-collections-test-util = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipseCollections" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.15" }
 
 schemacrawler = { group = "us.fatehi", name = "schemacrawler", version.ref = "schemacrawler" }
-schemacrawlerMySQL = { group = "us.fatehi", name = "schemacrawler-mysql", version.ref = "schemacrawler" }
-schemacrawlerSqlite = { group = "us.fatehi", name = "schemacrawler-sqlite", version.ref = "schemacrawler" }
-schemacrawlerPostgreSQL = { group = "us.fatehi", name = "schemacrawler-postgresql", version.ref = "schemacrawler" }
-schemacrawlerSqlServer = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
+schemacrawler-mysql = { group = "us.fatehi", name = "schemacrawler-mysql", version.ref = "schemacrawler" }
+schemacrawler-sqlite = { group = "us.fatehi", name = "schemacrawler-sqlite", version.ref = "schemacrawler" }
+schemacrawler-postgres = { group = "us.fatehi", name = "schemacrawler-postgresql", version.ref = "schemacrawler" }
+schemacrawler-sqlserver = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
 vavr = { group = "io.vavr", name = "vavr", version.ref = "vavr" }
 useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.29.0" }
 
 #Office
-apachePoi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
-apachePoiOOxmlFull = { group = "org.apache.poi", name = "poi-ooxml-full", version.ref = "apachePoi" }
-apachePoiOOxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
+poi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
+poi-ooxml-full = { group = "org.apache.poi", name = "poi-ooxml-full", version.ref = "apachePoi" }
+poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
 fastExcel = { group = "org.dhatim", name = "fastexcel", version = "0.16.5" }
 
-hibernatejpaModelGen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
-mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.7.0" }
+mutiny-bom = { group = "io.smallrye.reactive", name = "mutiny-bom", version = "2.7.0" }
+mutiny = { group = "io.smallrye.reactive", name = "mutiny" }
+
+#tika
+tika-core = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
+tika-parsers = { group = "org.apache.tika", name = "tika-parsers", version.ref = "tika" }
+
+#utils
+apache-http-client = { group = "org.apache.httpcomponents.client5", name = "httpclient5", version = "5.2.1" }
+apache-common-io = { group = "commons-io", name = "commons-io", version = "2.18.0" }
+apache-common-codec = { group = "commons-codec", name = "commons-codec", version = "1.17.1" }
+apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3" }
+apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+apache-common-dbutil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 
 #Hutool
-hutoolCore = { group = "cn.hutool", name = "hutool-core", version.ref = "hutool" }
-hutoolHttp = { group = "cn.hutool", name = "hutool-http", version.ref = "hutool" }
-hutoolJSON = { group = "cn.hutool", name = "hutool-json", version.ref = "hutool" }
-hutoolExtra = { group = "cn.hutool", name = "hutool-extra", version.ref = "hutool" }
-hutoolCaptcha = { group = "cn.hutool", name = "hutool-captcha", version.ref = "hutool" }
+hutool-bom = { group = "cn.hutool", name = "hutool-bom", version.ref = "hutool" }
+hutool-core = { group = "cn.hutool", name = "hutool-core" }
+hutool-http = { group = "cn.hutool", name = "hutool-http" }
+hutool-json = { group = "cn.hutool", name = "hutool-json" }
+hutool-extra = { group = "cn.hutool", name = "hutool-extra" }
+hutool-captcha = { group = "cn.hutool", name = "hutool-captcha" }
 
 #QueryDSL
-queryDslJPA = { group = "io.github.openfeign.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
-queryDslApt = { group = "io.github.openfeign.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
-queryDslSpatial = { group = "io.github.openfeign.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
-queryDslGuava = { group = "io.github.openfeign.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
-queryDslCollection = { group = "io.github.openfeign.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
-queryDslCore = { group = "io.github.openfeign.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
+querydsl-jpa = { group = "io.github.openfeign.querydsl", name = "querydsl-jpa", version.ref = "queryDsl" }
+querydsl-apt = { group = "io.github.openfeign.querydsl", name = "querydsl-apt", version.ref = "queryDsl" }
+querydsl-spatial = { group = "io.github.openfeign.querydsl", name = "querydsl-spatial", version.ref = "queryDsl" }
+querydsl-guava = { group = "io.github.openfeign.querydsl", name = "querydsl-guava", version.ref = "queryDsl" }
+querydsl-collection = { group = "io.github.openfeign.querydsl", name = "querydsl-collections", version.ref = "queryDsl" }
+querydsl-core = { group = "io.github.openfeign.querydsl", name = "querydsl-core", version.ref = "queryDsl" }
+
+hibernate-jpamodelgen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
+
+
+prisms = { group = "io.avaje", name = "avaje-prisms", version = "1.36" }
 
 #Spring
-springBootStarter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "springBoot" }
-springBootActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "springBoot" }
-springBootJSON = { group = "org.springframework.boot", name = "spring-boot-starter-json", version.ref = "springBoot" }
-springBootAop = { group = "org.springframework.boot", name = "spring-boot-starter-aop", version.ref = "springBoot" }
-springBootConfigurationProcessor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor", version.ref = "springBoot" }
-springBootTest = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "springBoot" }
-springBootSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "springBoot" }
-springBootJdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc", version.ref = "springBoot" }
-springBootJPA = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "springBoot" }
-springBootFreemarker = { group = "org.springframework.boot", name = "spring-boot-starter-freemarker", version.ref = "springBoot" }
-springBootValidation = { group = "org.springframework.boot", name = "spring-boot-starter-validation", version.ref = "springBoot" }
-springBootDockerCompose = { group = "org.springframework.boot", name = "spring-boot-docker-compose", version.ref = "springBoot" }
-springBootDevtools = { group = "org.springframework.boot", name = "spring-boot-devtools", version.ref = "springBoot" }
-springSecurityTest = { group = "org.springframework.security", name = "spring-security-test" }
-springSecurityData = { group = "org.springframework.security", name = "spring-security-data" }
-springBootWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBoot" }
-springBootOAuth2AuthorizationServer = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-authorization-server" }
-springBootDataEnvers = { group = "org.springframework.data", name = "spring-data-envers" }
-springBootHateoas = { group = "org.springframework.hateoas", name = "spring-hateoas" }
-springBootPicocli = { group = "info.picocli", name = "picocli-spring-boot-starter", version = "4.7.5" }
-springBootLogging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "springBoot" }
-springBootAdminServer = { group = "de.codecentric", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
-springBootAdminClient = { group = "de.codecentric", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
-springBootSwaggerUI = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.7.0" }
+spring-boot-dependencies = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
+spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+spring-boot-starter-json = { group = "org.springframework.boot", name = "spring-boot-starter-json" }
+spring-boot-starter-aop = { group = "org.springframework.boot", name = "spring-boot-starter-aop" }
+spring-boot-configuration-processor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-boot-starter-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+spring-boot-starter-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc" }
+spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-boot-starter-freemarker = { group = "org.springframework.boot", name = "spring-boot-starter-freemarker" }
+spring-boot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+spring-security-test = { group = "org.springframework.security", name = "spring-security-test" }
+spring-security-data = { group = "org.springframework.security", name = "spring-security-data" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-oauth2-authorization-server = { group = "org.springframework.boot", name = "spring-boot-starter-oauth2-authorization-server" }
+spring-data-envers = { group = "org.springframework.data", name = "spring-data-envers" }
+spring-hateoas = { group = "org.springframework.hateoas", name = "spring-hateoas" }
+spring-boot-starter-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging" }
+spring-boot-admin-starter-server = { group = "de.codecentric", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
+spring-boot-admin-starter-client = { group = "de.codecentric", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.7.0" }
 
 #Spring Shell
-springShellBom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
-springShellStarter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
+spring-shell-bom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
+spring-shell-starter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
+spring-shell-starter-jansi = { group = "org.springframework.shell", name = "spring-shell-starter-jansi" }
+spring-shell-starter-jna = { group = "org.springframework.shell", name = "spring-shell-starter-jna" }
+spring-shell-test = { group = "org.springframework.shell", name = "spring-shell-test" }
 
-logbackClassic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
-logbackCore = { group = "ch.qos.logback", name = "logback-core", version.ref = "logback" }
-recordBuilderProcessor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
-recordBuilderCore = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
+logback-classic = { group = "ch.qos.logback", name = "logback-classic" }
+logback-core = { group = "ch.qos.logback", name = "logback-core" }
+record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
+record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
 
 immutables-value = { group = "org.immutables", name = "value", version.ref = "immutables" }
+
+#Build Tools
+maven-embeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
+maven-model = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
+maven-plugin-api = { group = "org.apache.maven", name = "maven-plugin-api", version.ref = "maven" }
+maven-plugin-annotations = { group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "4.0.0-beta-1" }
+maven-core = { group = "org.apache.maven", name = "maven-core", version.ref = "maven" }
+gradle-tooling-api = { group = "org.gradle", name = "gradle-tooling-api", version = "8.11.1" }
+
 #Plugin
-springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "springBoot" }
+springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
 springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }
 spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.23.3" }
 semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }

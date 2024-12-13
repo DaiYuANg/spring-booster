@@ -39,31 +39,44 @@ gradleEnterprise {
 
 rootProject.name = "spring-booster"
 
-include("booster:spring-boost-jpa")
+include("libs:spring-boost-jpa")
 
-include("booster:spring-boost-core")
+include("libs:spring-boost-rbac")
 
-include("booster:spring-boost-authentication")
+include("libs:spring-boost-core")
 
-include("booster:spring-boost-authentication-jwt")
+include("libs:spring-boost-authentication")
 
-include("booster:spring-boost-web-core")
+include("libs:spring-boost-authentication-jwt")
 
-include("booster:spring-boost-verification")
+include("libs:spring-boost-web")
 
-include("booster:spring-boost-office")
+include("libs:spring-boost-verification")
 
-include("booster:spring-boost-minio")
+include("libs:spring-boost-office")
 
-include("booster:spring-boost-web-version")
+include("libs:spring-boost-minio")
 
-include("booster:spring-boost-captcha")
+include("libs:spring-boost-web-version")
 
-include("apps:spring-boost-cli")
+include("libs:spring-boost-captcha")
 
-include("apps:spring-boost-application-example")
+include("tools:spring-boost-cli")
 
-include("booster:spring-boost-rbac")
+include("examples:spring-boost-application")
 
-include("website")
-include("booster:spring-boost-mutiny")
+include("libs:spring-boost-mutiny")
+
+include("document")
+
+include("bom:spring-boost-bom")
+
+include("tools:spring-boost-annotation-codegen")
+include("tools:spring-boost-annotation")
+findProject(":tools:spring-boost-annotation")?.name = "spring-boost-annotation"
+include("tools:spring-boost-asm-codegen")
+findProject(":tools:spring-boost-asm-codegen")?.name = "spring-boost-asm-codegen"
+include("tools:spring-boost-gradle-plugin")
+findProject(":tools:spring-boost-gradle-plugin")?.name = "spring-boost-gradle-plugin"
+include("tools:spring-boost-maven-plugin")
+findProject(":tools:spring-boost-maven-plugin")?.name = "spring-boost-maven-plugin"
