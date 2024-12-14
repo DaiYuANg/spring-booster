@@ -73,10 +73,5 @@ include("bom:spring-boost-bom")
 
 include("tools:spring-boost-annotation-codegen")
 include("tools:spring-boost-annotation")
-findProject(":tools:spring-boost-annotation")?.name = "spring-boost-annotation"
-include("tools:spring-boost-asm-codegen")
-findProject(":tools:spring-boost-asm-codegen")?.name = "spring-boost-asm-codegen"
 include("tools:spring-boost-gradle-plugin")
-findProject(":tools:spring-boost-gradle-plugin")?.name = "spring-boost-gradle-plugin"
 include("tools:spring-boost-maven-plugin")
-findProject(":tools:spring-boost-maven-plugin")?.name = "spring-boost-maven-plugin"
