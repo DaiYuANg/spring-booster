@@ -20,18 +20,17 @@ maven = "4.0.0-rc-1"
 asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.4.0"
-queryDsl = "6.10"
-schemacrawler = "16.23.2"
+queryDsl = "6.10.1"
+schemacrawler = "16.24.1"
 autoService = "1.1.1"
 vavr = "0.10.5"
 recordBuilder = "44"
 immutables = "2.10.1"
-javaparser = "3.26.2"
+javaparser = "3.26.3"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.51.0" }
-spring-boot = { id = "org.springframework.boot", version = "spring-boot" }
-dependency-management = { id = "io.spring.dependency-management", version = "1.1.6" }
+dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
 semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
@@ -40,7 +39,6 @@ asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoct
 asciidoctor-gem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
 asciidoctor-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
-asciidoctor-tevealjs = { id = "org.asciidoctor.jvm.revealjs", version = "4.0.0-alpha.1" }
 asciidoctor-editconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
 
 [libraries]
@@ -91,13 +89,10 @@ dotenvJava = { group = "io.github.cdimascio", name = "dotenv-java", version = "3
 
 bytebuddy = { group = "net.bytebuddy", name = "byte-buddy" }
 data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
-guava = { group = "com.google.guava", name = "guava", version = "33.3.1-jre" }
+guava = { group = "com.google.guava", name = "guava", version = "33.4.0-jre" }
 mica-auto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
-agrona = { group = "org.agrona", name = "agrona", version = "1.23.1" }
-
-#jansi = { group = "org.fusesource.jansi", name = "jansi", version = "2.4.1" }
-#jline-native = { group = "org.jline", name = "jline-native", version = "3.28.0" }
+agrona = { group = "org.agrona", name = "agrona", version = "2.0.0" }
 
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 
@@ -168,7 +163,6 @@ querydsl-core = { group = "io.github.openfeign.querydsl", name = "querydsl-core"
 
 hibernate-jpamodelgen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
 
-
 prisms = { group = "io.avaje", name = "avaje-prisms", version = "1.36" }
 
 #Spring
@@ -228,6 +222,6 @@ dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle",
 jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.15.0" }
 jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
 spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
-lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.10" }
+lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.14" }
 plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }

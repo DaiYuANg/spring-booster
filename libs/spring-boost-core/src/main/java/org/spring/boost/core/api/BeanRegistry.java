@@ -16,8 +16,8 @@ public interface BeanRegistry {
      * @param annotation Annotation The annotation class to search for.
      * @param beanType beanType The type of the beans to search for.
      * @return A map with keys as annotation instances and values as corresponding beans.
-     * @param <A> <A> The type of the annotation.
-     * @param <T> <T> The type of the beans.
+     * @param <A> The type of the annotation.
+     * @param <T> The type of the beans.
      */
     <A extends Annotation, T> Map<A, T> getBeanWithAnnotationMap(Class<A> annotation, Class<T> beanType);
 

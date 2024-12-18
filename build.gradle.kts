@@ -1,4 +1,5 @@
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
+import org.jetbrains.dokka.gradle.DokkaPlugin
 
 plugins {
   idea
@@ -6,6 +7,7 @@ plugins {
   alias(libs.plugins.dotenv)
   alias(libs.plugins.spotless)
   alias(libs.plugins.semver)
+  alias(libs.plugins.dokka)
 }
 
 idea {
@@ -14,6 +16,10 @@ idea {
     languageLevel = IdeaLanguageLevel(libs.versions.jdkVersion.get())
     vcs = "Git"
   }
+}
+
+subprojects {
+  apply<DokkaPlugin>()
 }
 
 allprojects {
@@ -27,7 +33,7 @@ allprojects {
 
 true.also { gradle.startParameter.isBuildCacheEnabled = it }
 
-spotless{
+spotless {
   format("misc") {
     target("*.md", ".gitignore", "**/*.java")
     indentWithSpaces(2)

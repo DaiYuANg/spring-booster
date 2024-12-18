@@ -8,7 +8,7 @@ plugins {
 dependencies {
   api(projects.libs.springBoostJpa)
   api(projects.libs.springBoostCore)
-  api(projects.libs.springBoostMinio)
+//  api(projects.libs.springBoostMinio)
   api(projects.libs.springBoostOffice)
   api(projects.libs.springBoostVerification)
   api(projects.libs.springBoostAuthentication)

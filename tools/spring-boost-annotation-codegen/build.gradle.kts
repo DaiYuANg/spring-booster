@@ -11,8 +11,6 @@ dependencies {
   implementation(libs.javaparser.core)
   compileOnly(libs.prisms)
   annotationProcessor(libs.prisms)
-//  compileOnly(libs.auto.service.annotations)
-//  annotationProcessor(libs.auto.service)
 }
 
 tasks.test {
