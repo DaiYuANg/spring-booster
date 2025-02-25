@@ -8,11 +8,11 @@ tika = "3.0.0"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
-hutool = "5.8.34"
-spring-boot = "3.4.0"
-springBootAdmin = "3.4.1"
+hutool = "5.8.36"
+spring-boot = "3.4.3"
+springBootAdmin = "3.4.4"
 springDependencyManagement = "1.1.6"
-apachePoi = "5.3.0"
+apachePoi = "5.4.0"
 junitperf = "1.35.0"
 mapstruct = "1.6.3"
 errorProneSupport = "0.14.0"
@@ -21,7 +21,7 @@ asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.4.0"
 queryDsl = "6.10.1"
-schemacrawler = "16.24.1"
+schemacrawler = "16.25.2"
 autoService = "1.1.1"
 vavr = "0.10.5"
 recordBuilder = "44"
@@ -29,12 +29,12 @@ immutables = "2.10.1"
 javaparser = "3.26.3"
 
 [plugins]
-version-check = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.0.BETA4" }
-semver = { id = "com.xenoterracide.gradle.semver", version = "0.11.5" }
-graalvm-native = { id = "org.graalvm.buildtools.native", version = "0.10.4" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.2" }
+semver = { id = "com.xenoterracide.gradle.semver", version = "0.12.1" }
+graalvm-native = { id = "org.graalvm.buildtools.native", version = "0.10.5" }
 asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctor-gem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
@@ -60,7 +60,7 @@ rest-assured = { group = "io.rest-assured", name = "rest-assured", version = "5.
 
 #Lint
 nullaway = { group = "com.uber.nullaway", name = "nullaway", version = "0.10.19" }
-jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.1" }
+jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.2" }
 spotbugs = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.2" }
 errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-prone-contrib", version.ref = "errorProneSupport" }
 refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
@@ -74,7 +74,7 @@ jakarta-validation = { group = "jakarta.validation", name = "jakarta.validation-
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
 minio-admin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
 
-semver4j = { group = "org.semver4j", name = "semver4j", version = "5.4.1" }
+semver4j = { group = "org.semver4j", name = "semver4j", version = "5.6.0" }
 auto-factory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
 auto-service = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
 auto-service-annotations = { group = "com.google.auto.service", name = "auto-service-annotations", version.ref = "autoService" }
@@ -92,7 +92,7 @@ data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 guava = { group = "com.google.guava", name = "guava", version = "33.4.0-jre" }
 mica-auto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
-agrona = { group = "org.agrona", name = "agrona", version = "2.0.0" }
+agrona = { group = "org.agrona", name = "agrona", version = "2.0.1" }
 
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 
@@ -122,7 +122,7 @@ schemacrawler-postgres = { group = "us.fatehi", name = "schemacrawler-postgresql
 schemacrawler-sqlserver = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
 vavr = { group = "io.vavr", name = "vavr", version.ref = "vavr" }
-useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.29.0" }
+useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.30.0" }
 
 #Office
 poi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
@@ -130,7 +130,7 @@ poi-ooxml-full = { group = "org.apache.poi", name = "poi-ooxml-full", version.re
 poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
 fastExcel = { group = "org.dhatim", name = "fastexcel", version = "0.16.5" }
 
-mutiny-bom = { group = "io.smallrye.reactive", name = "mutiny-bom", version = "2.7.0" }
+mutiny-bom = { group = "io.smallrye.reactive", name = "mutiny-bom", version = "2.8.0" }
 mutiny = { group = "io.smallrye.reactive", name = "mutiny" }
 
 #tika
@@ -142,7 +142,7 @@ apache-http-client = { group = "org.apache.httpcomponents.client5", name = "http
 apache-common-io = { group = "commons-io", name = "commons-io", version = "2.18.0" }
 apache-common-codec = { group = "commons-codec", name = "commons-codec", version = "1.17.1" }
 apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3" }
-apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.0" }
+apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.1" }
 apache-common-dbutil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
 
 #Hutool
@@ -163,7 +163,7 @@ querydsl-core = { group = "io.github.openfeign.querydsl", name = "querydsl-core"
 
 hibernate-jpamodelgen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
 
-prisms = { group = "io.avaje", name = "avaje-prisms", version = "1.36" }
+prisms = { group = "io.avaje", name = "avaje-prisms", version = "1.39" }
 
 #Spring
 spring-boot-dependencies = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "spring-boot" }
@@ -189,7 +189,7 @@ spring-hateoas = { group = "org.springframework.hateoas", name = "spring-hateoas
 spring-boot-starter-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging" }
 spring-boot-admin-starter-server = { group = "de.codecentric", name = "spring-boot-admin-starter-server", version.ref = "springBootAdmin" }
 spring-boot-admin-starter-client = { group = "de.codecentric", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
-springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.7.0" }
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.8.5" }
 
 #Spring Shell
 spring-shell-bom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }

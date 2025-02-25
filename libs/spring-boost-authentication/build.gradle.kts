@@ -5,3 +5,4 @@ dependencies {
   compileOnly(projects.libs.springBoostCore)
   testImplementation(libs.spring.security.test)
 }
+

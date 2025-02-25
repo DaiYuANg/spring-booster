@@ -1,4 +1,6 @@
 spring:
+  aot:
+    enabled: true
   shell:
     interactive:
       enabled: true
