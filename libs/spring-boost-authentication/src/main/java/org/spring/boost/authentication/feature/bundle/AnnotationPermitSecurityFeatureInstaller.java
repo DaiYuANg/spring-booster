@@ -2,11 +2,13 @@
 package org.spring.boost.authentication.feature.bundle;
 
 import jakarta.annotation.security.PermitAll;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -27,51 +29,58 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 @Slf4j
 @Order(0)
 public class AnnotationPermitSecurityFeatureInstaller implements SecurityFeatureInstaller {
-    private final BeanRegistry beanRegistry;
+  private final BeanRegistry beanRegistry;
 
-    @SneakyThrows
-    @Override
-    public void install(@NotNull HttpSecurity http) {
-        val fromAnnotation = buildAntPathRequestMatcherFromAnnotation();
-        http.authorizeHttpRequests(req -> {
-            fromAnnotation.stream()
-                    .map(req::requestMatchers)
-                    .forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
-            req.anyRequest().authenticated();
-        });
-    }
+  @SneakyThrows
+  @Override
+  public void install(@NotNull HttpSecurity http) {
+    val fromAnnotation = buildAntPathRequestMatcherFromAnnotation();
+    http.authorizeHttpRequests(req -> {
+      fromAnnotation.stream()
+        .map(req::requestMatchers)
+        .forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
+      req.anyRequest().authenticated();
+    });
+  }
 
-    private @NotNull List<AntPathRequestMatcher> buildAntPathRequestMatcherFromAnnotation() {
-        return beanRegistry.getBeanDistinct(RequestMappingHandlerMapping.class).stream()
-                .map(RequestMappingHandlerMapping::getHandlerMethods)
-                .flatMap(method -> method.entrySet().stream())
-                .filter(this::checkHasAnnotation)
-                .flatMap(this::internalBuild)
-                .toList();
-    }
+  private @NotNull List<AntPathRequestMatcher> buildAntPathRequestMatcherFromAnnotation() {
+    return beanRegistry.getBeanDistinct(RequestMappingHandlerMapping.class).stream()
+      .map(RequestMappingHandlerMapping::getHandlerMethods)
+      .flatMap(method -> method.entrySet().stream())
+      .filter(this::checkHasAnnotation)
+      .flatMap(this::internalBuild)
+      .toList();
+  }
 
-    private boolean checkHasAnnotation(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> method) {
-        return method.getValue().hasMethodAnnotation(IgnoreAuthentication.class)
-                || method.getValue().hasMethodAnnotation(PermitAll.class);
-    }
+  private boolean checkHasAnnotation(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> method) {
+    return method.getValue().hasMethodAnnotation(IgnoreAuthentication.class)
+      || method.getValue().hasMethodAnnotation(PermitAll.class);
+  }
 
-    @NotNull private Stream<AntPathRequestMatcher> internalBuild(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry) {
-        return entry.getKey().getDirectPaths().stream()
-                .filter(path -> !path.isBlank())
-                .flatMap(path -> buildAntPathByAnnotation(entry, path));
-    }
+  @NotNull
+  private Stream<AntPathRequestMatcher> internalBuild(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry) {
+    return entry.getKey().getDirectPaths().stream()
+      .filter(path -> !path.isBlank())
+      .flatMap(path -> buildAntPathByAnnotation(entry, path));
+  }
 
-    @NotNull private Stream<AntPathRequestMatcher> buildAntPathByAnnotation(
-            Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry, String path) {
-        val ann = entry.getValue().getMethodAnnotation(IgnoreAuthentication.class);
-        return Optional.ofNullable(ann)
-                .map(ignore -> Arrays.stream(ignore.ignoreOnMethod())
-                        .distinct()
-                        .map(a ->
-                                new AntPathRequestMatcher(path, a.asHttpMethod().name())))
-                .orElseGet(() -> entry.getValue().hasMethodAnnotation(PermitAll.class)
-                        ? Arrays.stream(new AntPathRequestMatcher[] {new AntPathRequestMatcher(path)})
-                                .distinct()
-                        : Arrays.stream(new AntPathRequestMatcher[0]).distinct());
-    }
+  @NotNull
+  private Stream<AntPathRequestMatcher> buildAntPathByAnnotation(
+    Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry, String path) {
+    val ann = entry.getValue().getMethodAnnotation(IgnoreAuthentication.class);
+    return Optional.ofNullable(ann)
+      .map(ignore -> Arrays.stream(ignore.ignoreOnMethod())
+        .distinct()
+        .map(a ->
+          new AntPathRequestMatcher(path, a.asHttpMethod().name()))
+      )
+      .orElseGet(() -> getAntPathRequestMatcherStream(entry, path));
+  }
+
+  private static @NotNull Stream<AntPathRequestMatcher> getAntPathRequestMatcherStream(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry, String path) {
+    return entry.getValue().hasMethodAnnotation(PermitAll.class)
+      ? Arrays.stream(new AntPathRequestMatcher[]{new AntPathRequestMatcher(path)})
+      .distinct()
+      : Stream.empty();
+  }
 }

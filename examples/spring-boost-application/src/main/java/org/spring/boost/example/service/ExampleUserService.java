@@ -18,14 +18,15 @@ import org.springframework.stereotype.Service;
 public class ExampleUserService {
   private final UserRepository userRepository;
 
-  private final UserConverter converter;
+//  private final UserConverter converter;
 
   public void add(UserForm userForm) {
-    val entity = converter.form2entity(userForm);
-    userRepository.save(entity);
+//    val entity = converter.form2entity(userForm);
+//    userRepository.save(entity);
   }
 
   public Page<ExampleUser> page(@NotNull UserQuery userQuery) {
-    return userRepository.findAll(userQuery.pageable());
+//    return userRepository.findAll(userQuery.pageable());
+    return null;
   }
 }

@@ -2,6 +2,7 @@ package org.spring.boost.rbac.autoconfigure;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.spring.boost.rbac.converter.SysUserConverter;
 import org.spring.boost.rbac.entity.SysUser;
 import org.spring.boost.rbac.repository.SysUserRepository;
 import org.spring.boost.rbac.service.SysUserService;
@@ -18,8 +19,11 @@ public class SysUserAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean(SysUserService.class)
-  SysUserService sysUserService(JpaRepositoryFactory jpaRepositoryFactory) {
+  SysUserService sysUserService(
+    JpaRepositoryFactory jpaRepositoryFactory,
+    SysUserConverter sysUserConverter
+  ) {
     val sysUserRepository = jpaRepositoryFactory.getRepository(SysUserRepository.class);
-    return new SysUserServiceImpl<SysUser>(sysUserRepository);
+    return new SysUserServiceImpl<SysUser>(sysUserRepository, sysUserConverter);
   }
 }

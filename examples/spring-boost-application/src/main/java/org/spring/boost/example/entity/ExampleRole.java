@@ -1,8 +1,8 @@
 package org.spring.boost.example.entity;
 
 import jakarta.persistence.Entity;
-import org.spring.boost.rbac.entity.SysRole;
+import org.spring.boost.persistence.base.BaseEntity;
 
 @Entity
-public class ExampleRole extends SysRole<ExamplePermissionGroup> {
+public class ExampleRole extends BaseEntity {
 }

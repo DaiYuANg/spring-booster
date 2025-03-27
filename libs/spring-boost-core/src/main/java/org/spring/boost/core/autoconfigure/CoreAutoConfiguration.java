@@ -1,13 +1,13 @@
 /* (C)2023*/
 package org.spring.boost.core.autoconfigure;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import org.jetbrains.annotations.NotNull;
 import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.core.context.SimpleBeanRegistry;
-import org.spring.boost.core.listener.StartUpListener;
+import org.spring.boost.core.listener.EnvironmentPrinter;
+import org.spring.boost.core.model.PrintContext;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -20,17 +20,30 @@ import org.springframework.core.env.Environment;
 @Slf4j
 @EnableConfigurationProperties(CoreConfigurationProperties.class)
 @RequiredArgsConstructor
-@Import(cn.hutool.extra.spring.SpringUtil.class)
+//@Import(cn.hutool.extra.spring.SpringUtil.class)
 public class CoreAutoConfiguration {
+
+  @PostConstruct
+  void initialize() {
+    log.atInfo().log("Initializing CoreAutoConfiguration");
+  }
 
   @Bean()
   BeanRegistry beanRegistry(
-      ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
-    return SimpleBeanRegistry.builder().context(context).beanFactory(listableBeanFactory).build();
+    ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
+    return SimpleBeanRegistry.builder()
+      .context(context)
+      .beanFactory(listableBeanFactory)
+      .build();
   }
 
   @Bean
-  StartUpListener startUpListener(Environment environment) {
-    return new StartUpListener(environment);
+  PrintContext.PrintContextBuilder printContext() {
+    return PrintContext.builder();
   }
+//
+//  @Bean
+//  EnvironmentPrinter startUpListener(Environment environment) {
+//    return new EnvironmentPrinter(environment);
+//  }
 }

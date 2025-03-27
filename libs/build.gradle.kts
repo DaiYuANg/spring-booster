@@ -24,6 +24,8 @@ subprojects {
     compileOnly(platform(rootProject.projects.bom.springBoostBom))
     annotationProcessor(platform(rootProject.projects.bom.springBoostBom))
     compileOnly(rootProject.libs.mica.auto)
+    implementation(rootProject.libs.mapstruct)
+    annotationProcessor(rootProject.libs.mapstruct.annotation.processor)
     annotationProcessor(rootProject.libs.mica.auto)
     compileOnly(rootProject.libs.record.builder.core)
     annotationProcessor(rootProject.libs.record.builder.processor)

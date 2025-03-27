@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.spring.boost.persistence.base.BaseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,4 +21,5 @@ public abstract class SysUser extends BaseEntity {
   private String username;
 
   private String password;
+
 }

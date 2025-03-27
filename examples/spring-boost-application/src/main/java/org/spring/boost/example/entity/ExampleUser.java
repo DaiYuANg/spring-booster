@@ -6,11 +6,12 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.spring.boost.rbac.entity.SysUser;
+import org.spring.boost.persistence.base.BaseEntity;
+//import org.spring.boost.rbac.entity.SysUser;
 
 @Getter
 @Setter
 @Entity
-public class ExampleUser extends SysUser {
+public class ExampleUser extends BaseEntity {
   private String email;
 }

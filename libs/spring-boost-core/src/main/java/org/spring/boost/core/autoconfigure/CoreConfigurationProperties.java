@@ -18,6 +18,8 @@ import java.util.Set;
 @ToString(callSuper = true)
 public class CoreConfigurationProperties extends EnabledConfigurationProperties {
 
+  private boolean enablePrinter = true;
+
   private Set<String> scanPackages = Set.of();
 
   public static CoreConfigurationProperties get(@NotNull Binder binder) {

@@ -1,4 +1,6 @@
 package org.spring.boost.rbac.service;
 
-public interface SysUserService {
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface SysUserService extends UserDetailsService {
 }

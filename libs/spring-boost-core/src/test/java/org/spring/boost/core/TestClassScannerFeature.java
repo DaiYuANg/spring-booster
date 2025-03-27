@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @Slf4j
 public class TestClassScannerFeature implements FeatureInstaller<ScanResult> {
   @Override
-  public void install(ConfigurableApplicationContext context, ScanResult scanResult) {
-
+  public void install(ConfigurableApplicationContext context, ScanResult t) {
+    FeatureInstaller.super.install(context, t);
   }
 }

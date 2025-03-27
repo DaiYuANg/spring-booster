@@ -15,6 +15,7 @@ dependencies {
   api(platform(libs.mutiny.bom))
   api(platform(libs.spring.shell.bom))
   constraints {
+    api("org.apache.httpcomponents.client5:httpclient5:5.4.2")
 //    utils
     api(libs.apache.common.io)
     api(libs.apache.common.codec)
