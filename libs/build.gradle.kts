@@ -14,6 +14,7 @@ dependencies {
   api(projects.libs.springBoostAuthentication)
   api(projects.libs.springBoostAuthenticationJwt)
 }
+
 subprojects {
   apply<JavaLibraryPlugin>()
   apply<SpringBootProject>()
