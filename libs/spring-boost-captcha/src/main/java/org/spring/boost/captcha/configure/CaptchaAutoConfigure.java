@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.captcha.constant.CaptchaCharType;
 import org.spring.boost.captcha.constant.ConfigConstant;
 import org.spring.boost.captcha.service.CaptchaService;
 import org.spring.boost.captcha.service.CaptchaServiceImpl;
@@ -18,6 +17,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 import java.awt.Font;
+import java.util.Optional;
 
 @AutoConfiguration
 @Slf4j
@@ -25,38 +25,31 @@ import java.awt.Font;
 @RequiredArgsConstructor
 public class CaptchaAutoConfigure {
   @Bean
-  @ConditionalOnProperty(prefix = ConfigConstant.prefix + "code.type", value = "MATH")
-  CodeGenerator mathCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
+  CodeGenerator captchaCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
     val codeLength = captchaProperties.getCode().getLength();
-    return new MathGenerator(codeLength);
-  }
-
-  @Bean
-  @ConditionalOnProperty(prefix = ConfigConstant.prefix + "code.type", value = "RANDOM")
-  CodeGenerator randomCodeGenerator(@NotNull CaptchaProperties captchaProperties) {
-    val codeLength = captchaProperties.getCode().getLength();
-    return new RandomGenerator(codeLength);
+    return switch (captchaProperties.getCode().getType()) {
+      case MATH -> new MathGenerator(codeLength);
+      case RANDOM -> new RandomGenerator(codeLength);
+    };
   }
 
   /**
    * 验证码字体
    */
   @Bean
-  @ConditionalOnProperty(prefix = ConfigConstant.prefix + "enabled", value = "true")
   Font captchaFont(@NotNull CaptchaProperties captchaProperties) {
-    String fontName = captchaProperties.getFont().getName();
-    int fontSize = captchaProperties.getFont().getSize();
-    int fontWeight = captchaProperties.getFont().getWeight();
+    val fontName = captchaProperties.getFont().getName();
+    val fontSize = captchaProperties.getFont().getSize();
+    val fontWeight = captchaProperties.getFont().getWeight();
 
-    int awtFontStyle = switch (fontWeight) {
-      case 1 -> Font.PLAIN;
-      case 2 -> Font.BOLD;
-      case 3 -> Font.ITALIC;
+    val awtFontStyle = switch (fontWeight) {
+      case 0 -> Font.PLAIN;
+      case 1 -> Font.BOLD;
+      case 2 -> Font.ITALIC;
       default -> throw new IllegalArgumentException("Invalid font weight: " + fontWeight);
     };
 
-    return Font.getFont(fontName)
-      .deriveFont(awtFontStyle, fontSize);
+    return new Font(fontName, awtFontStyle, fontSize);
   }
 
   @Bean

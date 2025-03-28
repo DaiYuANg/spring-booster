@@ -11,6 +11,7 @@ import org.spring.boost.authentication.properties.AuthenticationConfigurationPro
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration;
 import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
@@ -52,6 +53,7 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
     }
 
     @Bean
+    @ConditionalOnBean(UserDetailsService.class)
     public AuthenticationProvider authenticationProvider(
             PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         val authProvider = new DaoAuthenticationProvider();
@@ -61,6 +63,7 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
     }
 
     @Bean
+    @ConditionalOnBean(UserDetailsService.class)
     public SecurityFilterChain securityFilterChain(
             @NotNull HttpSecurity http,
             AuthenticationManager authenticationManager,

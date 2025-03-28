@@ -41,9 +41,4 @@ public class CoreAutoConfiguration {
   PrintContext.PrintContextBuilder printContext() {
     return PrintContext.builder();
   }
-//
-//  @Bean
-//  EnvironmentPrinter startUpListener(Environment environment) {
-//    return new EnvironmentPrinter(environment);
-//  }
 }
