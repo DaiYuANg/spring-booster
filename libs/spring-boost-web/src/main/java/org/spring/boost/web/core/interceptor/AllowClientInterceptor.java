@@ -18,27 +18,27 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @RequiredArgsConstructor
 public class AllowClientInterceptor implements HandlerInterceptor {
 
-    @Override
-    public boolean preHandle(
-            @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
-        if (!(handler instanceof HandlerMethod handlerMethod)) {
-            return true;
-        }
-        val method = handlerMethod.getMethod();
-        val agent = request.getHeader(HttpHeaders.USER_AGENT);
-        UserAgentParser.parse(agent).isMobile();
-        //        val ann = method.getAnnotation(AllowClient.class);
-        //
-        //        if (Objects.isNull(ann) || ann.device() == ClientDevice.ALL) {
-        //            return true;
-        //        }
-        //
-        //        val isMobile = UserAgentParser.parse(request.getHeader("user-agent")).isMobile();
-        //        if (isMobile && ann.device() == ClientDevice.MOBILE) {
-        //            return true;
-        //        }
-        //
-        //        response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-        return false;
+  @Override
+  public boolean preHandle(
+    @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
+    if (!(handler instanceof HandlerMethod handlerMethod)) {
+      return true;
     }
+    val method = handlerMethod.getMethod();
+    val agent = request.getHeader(HttpHeaders.USER_AGENT);
+    UserAgentParser.parse(agent).isMobile();
+    //        val ann = method.getAnnotation(AllowClient.class);
+    //
+    //        if (Objects.isNull(ann) || ann.device() == ClientDevice.ALL) {
+    //            return true;
+    //        }
+    //
+    //        val isMobile = UserAgentParser.parse(request.getHeader("user-agent")).isMobile();
+    //        if (isMobile && ann.device() == ClientDevice.MOBILE) {
+    //            return true;
+    //        }
+    //
+    //        response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+    return false;
+  }
 }

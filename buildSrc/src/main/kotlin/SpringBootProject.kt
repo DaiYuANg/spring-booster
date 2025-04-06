@@ -5,10 +5,11 @@ import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
-import org.gradle.api.plugins.JavaLibraryPlugin
-import org.gradle.api.plugins.JavaPlugin
 import org.gradle.jvm.tasks.Jar
-import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.provideDelegate
 import org.springframework.boot.gradle.plugin.SpringBootAotPlugin
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar

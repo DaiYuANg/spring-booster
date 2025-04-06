@@ -94,10 +94,11 @@ public class SimpleBeanRegistry implements BeanRegistry {
     val app = context.getBeansWithAnnotation(SpringBootApplication.class);
     return app.values().stream()
       .flatMap(
-        main -> {
-          val ann = main.getClass().getAnnotation(SpringBootApplication.class);
-          return Arrays.stream(ann.scanBasePackages());
-        })
+        main -> Optional.ofNullable(main.getClass().getAnnotation(SpringBootApplication.class))
+        .stream()
+        .flatMap(
+                annotation -> Arrays.stream(annotation.scanBasePackages()))
+    )
       .collect(Collectors.toSet());
   }
 

@@ -2,6 +2,7 @@
 package org.spring.boost.web.core.feature;
 
 import java.util.Arrays;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -15,21 +16,21 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 @Slf4j
 public class InterceptorsFeatureInstaller implements FeatureInstaller<InterceptorRegistry> {
 
-    private final BeanRegistry beanRegistry;
+  private final BeanRegistry beanRegistry;
 
-    @Override
-    public void install(InterceptorRegistry interceptorRegistry) {
-        beanRegistry
-                .getBeanWithAnnotationMap(Interceptor.class, HandlerInterceptor.class)
-                .forEach((a, i) -> {
-                    val path = Arrays.stream(a.value()).toList();
-                    val order = a.order();
-                    val exclude = Arrays.stream(a.excludePath()).toList();
-                    interceptorRegistry
-                            .addInterceptor(i)
-                            .order(order)
-                            .addPathPatterns(path)
-                            .excludePathPatterns(exclude);
-                });
-    }
+  @Override
+  public void install(InterceptorRegistry interceptorRegistry) {
+    beanRegistry
+      .getBeanWithAnnotationMap(Interceptor.class, HandlerInterceptor.class)
+      .forEach((a, i) -> {
+        val path = Arrays.stream(a.value()).toList();
+        val order = a.order();
+        val exclude = Arrays.stream(a.excludePath()).toList();
+        interceptorRegistry
+          .addInterceptor(i)
+          .order(order)
+          .addPathPatterns(path)
+          .excludePathPatterns(exclude);
+      });
+  }
 }

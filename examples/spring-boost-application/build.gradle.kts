@@ -10,16 +10,17 @@ apply<SpringBootProject>()
 dependencies {
   implementation(enforcedPlatform(projects.bom.springBoostBom))
   implementation(projects.libs.springBoostMutiny)
-
-  implementation(projects.libs.springBoostCaptcha)
-  implementation(projects.libs.springBoostCore)
-  implementation(libs.spring.boot.starter.logging)
-  implementation(libs.springdoc.openapi.starter.webmvc.ui)
   implementation(projects.libs.springBoostAuthentication)
   implementation(projects.libs.springBoostWeb)
+  implementation(projects.libs.springBoostCaptcha)
+  implementation(projects.libs.springBoostCore)
+  implementation(projects.libs.springBoostJpa)
+
+  implementation(libs.spring.boot.starter.logging)
+  implementation(libs.springdoc.openapi.starter.webmvc.ui)
+
 //  implementation(projects.libs.springBoostAuthenticationJwt)
 //  implementation(projects.libs.springBoostRbac)
-  implementation(projects.libs.springBoostJpa)
   implementation(libs.h2)
   compileOnly(libs.spring.boot.devtools)
   implementation(libs.spring.boot.starter.web)

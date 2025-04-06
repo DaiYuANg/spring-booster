@@ -11,23 +11,23 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 @Slf4j
 public class LimitSubmissionInterceptor implements HandlerInterceptor {
-    @Resource
-    private WebCoreConfigurationProperties webCoreConfigurationProperties;
+  @Resource
+  private WebCoreConfigurationProperties webCoreConfigurationProperties;
 
-    @Override
-    public boolean preHandle(
-            @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler)
-            throws Exception {
-        return HandlerInterceptor.super.preHandle(request, response, handler);
-    }
+  @Override
+  public boolean preHandle(
+    @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler)
+    throws Exception {
+    return HandlerInterceptor.super.preHandle(request, response, handler);
+  }
 
-    @Override
-    public void afterCompletion(
-            @NotNull HttpServletRequest request,
-            @NotNull HttpServletResponse response,
-            @NotNull Object handler,
-            Exception ex)
-            throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
-    }
+  @Override
+  public void afterCompletion(
+    @NotNull HttpServletRequest request,
+    @NotNull HttpServletResponse response,
+    @NotNull Object handler,
+    Exception ex)
+    throws Exception {
+    HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+  }
 }

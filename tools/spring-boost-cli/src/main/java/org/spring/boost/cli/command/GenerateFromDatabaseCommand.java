@@ -29,6 +29,7 @@ import schemacrawler.schema.Table;
 @Slf4j
 @Command
 @RequiredArgsConstructor
+@SuppressWarnings("unused")
 public class GenerateFromDatabaseCommand extends AbstractShellComponent {
 
   private final DbSchemaService schemaService;
@@ -113,6 +114,9 @@ public class GenerateFromDatabaseCommand extends AbstractShellComponent {
     val tableList = tables.stream()
       .map(table -> SelectorItem.of(table.getFullName(), table))
       .toList();
+    if (tableList.isEmpty()){
+      throw new RuntimeException("Please create table");
+    }
     val selector = new MultiItemSelector<>(getTerminal(),
       tableList, "Choose Table", null);
     selector.setResourceLoader(getResourceLoader());

@@ -10,7 +10,7 @@ import java.util.function.BiConsumer;
 public class CollectionProcessor implements FieldProcessor {
   @Override
   public void process(Field field, Object value, BiConsumer<Field, Object> consumer) {
-    if (Boolean.FALSE.equals(value instanceof Collection<?>)) {
+    if (!(value instanceof Collection<?>)) {
       return;
     }
     for (Object element : (Collection<?>) value) {

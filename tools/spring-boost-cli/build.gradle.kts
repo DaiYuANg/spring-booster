@@ -5,7 +5,6 @@ plugins {
 
 apply<SpringBootProject>()
 
-
 repositories { maven { url = uri("https://repo.gradle.org/gradle/libs-releases") } }
 
 val mainClassPath = "org.spring.boost.cli.SpringBoostCLI"
@@ -39,6 +38,7 @@ dependencies {
   implementation(projects.libs.springBoostMutiny)
   implementation(libs.mutiny)
   implementation(libs.javaparser.core)
+  implementation(libs.vavr)
 
   implementation(libs.record.builder.core)
   annotationProcessor(libs.record.builder.processor)
