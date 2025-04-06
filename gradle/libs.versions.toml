@@ -8,11 +8,11 @@ tika = "3.0.0"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
-hutool = "5.8.36"
+hutool = "5.8.37"
 spring-boot = "3.4.4"
 springBootAdmin = "3.4.5"
 springDependencyManagement = "1.1.6"
-apachePoi = "5.4.0"
+apachePoi = "5.4.1"
 junitperf = "1.35.0"
 mapstruct = "1.6.3"
 errorProneSupport = "0.14.0"
@@ -20,13 +20,13 @@ maven = "4.0.0-rc-1"
 asciidoctor = "4.0.3"
 eclipseCollections = "12.0.0.M3"
 springShell = "3.4.0"
-queryDsl = "6.10.1"
+queryDsl = "6.11"
 schemacrawler = "16.25.3"
 autoService = "1.1.1"
-vavr = "0.10.5"
+vavr = "0.10.6"
 recordBuilder = "44"
 immutables = "2.10.1"
-javaparser = "3.26.3"
+javaparser = "3.26.4"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
@@ -144,6 +144,7 @@ apache-common-codec = { group = "commons-codec", name = "commons-codec", version
 apache-common-lang3 = { group = "org.apache.commons", name = "commons-lang3" }
 apache-common-pool = { group = "org.apache.commons", name = "commons-pool2", version = "2.12.1" }
 apache-common-dbutil = { group = "commons-dbutils", name = "commons-dbutils", version = "1.8.1" }
+apache-common-text = { group = "org.apache.commons", name = "commons-text", version = "1.13.0" }
 
 #Hutool
 hutool-bom = { group = "cn.hutool", name = "hutool-bom", version.ref = "hutool" }
@@ -163,7 +164,7 @@ querydsl-core = { group = "io.github.openfeign.querydsl", name = "querydsl-core"
 
 hibernate-jpamodelgen = { group = "org.hibernate.orm", name = "hibernate-jpamodelgen" }
 
-prisms = { group = "io.avaje", name = "avaje-prisms", version = "1.41" }
+prisms = { group = "io.avaje", name = "avaje-prisms", version = "1.42" }
 
 #Spring
 spring-boot-dependencies = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "spring-boot" }

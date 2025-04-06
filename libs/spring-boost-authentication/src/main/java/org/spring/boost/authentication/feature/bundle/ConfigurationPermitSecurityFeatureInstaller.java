@@ -1,23 +1,24 @@
 /* (C)2024*/
 package org.spring.boost.authentication.feature.bundle;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.authentication.constant.Method;
 import org.spring.boost.authentication.SecurityFeatureInstaller;
+import org.spring.boost.authentication.constant.Method;
 import org.spring.boost.authentication.properties.PermitConfigurationProperties;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -33,7 +34,7 @@ public class ConfigurationPermitSecurityFeatureInstaller implements SecurityFeat
             fromConfiguration.stream()
                     .map(req::requestMatchers)
                     .forEach(AuthorizeHttpRequestsConfigurer.AuthorizedUrl::permitAll);
-            req.anyRequest().authenticated();
+//            req.anyRequest().authenticated();
         });
     }
 

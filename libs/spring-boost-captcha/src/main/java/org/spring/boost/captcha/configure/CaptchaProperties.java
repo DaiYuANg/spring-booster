@@ -3,10 +3,8 @@ package org.spring.boost.captcha.configure;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.spring.boost.captcha.constant.CaptchaCharType;
 import org.spring.boost.captcha.constant.CaptchaType;
 import org.spring.boost.captcha.constant.ConfigConstant;
-import org.spring.boost.core.autoconfigure.EnabledConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 

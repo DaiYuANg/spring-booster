@@ -5,11 +5,12 @@ plugins {
 dependencies {
   api(libs.apache.common.lang3)
   api(libs.guava)
-//  implementation(libs.slf4jJulBridge)
+  api(libs.apache.common.text)
   api(libs.vavr)
   api(libs.hutool.extra)
   api(libs.mutiny)
-  api(libs.classgraph)
+  api(libs.eclipse.collections.api)
+  api(libs.eclipse.collections)
 
   annotationProcessor(libs.spring.boot.configuration.processor)
 }

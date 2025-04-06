@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      password: 123456
+      name: user
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -11,6 +15,9 @@ spring:
     admin:
       client:
         url: http://localhost:8080
+  boost:
+    authentication:
+      debug: true
 logging:
   group:
     boost: org.spring.boost

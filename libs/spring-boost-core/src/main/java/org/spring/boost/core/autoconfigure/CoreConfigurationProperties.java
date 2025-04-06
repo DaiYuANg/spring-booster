@@ -7,7 +7,6 @@ import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.core.constant.ConfigConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.context.properties.bind.Binder;
 
 import java.util.Set;
@@ -16,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class CoreConfigurationProperties extends EnabledConfigurationProperties {
+public class CoreConfigurationProperties {
 
   private boolean enablePrinter = true;
 

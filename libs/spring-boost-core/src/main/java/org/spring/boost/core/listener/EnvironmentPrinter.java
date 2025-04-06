@@ -1,10 +1,6 @@
 /* (C)2023*/
 package org.spring.boost.core.listener;
 
-import static java.util.Objects.requireNonNullElse;
-
-import java.net.InetAddress;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -14,10 +10,12 @@ import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.core.api.FeatureInstaller;
 import org.spring.boost.core.model.PrintContext;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
-import org.springframework.core.env.Environment;
+
+import java.net.InetAddress;
+
+import static java.util.Objects.requireNonNullElse;
 
 /**
  * start up info printer
@@ -37,12 +35,14 @@ public class EnvironmentPrinter implements ApplicationListener<ApplicationReadyE
     log.atInfo().log("Installed features ---------------");
 
     boosterFeatures.forEach(featureInstaller -> {
-      log.atInfo().log("Feature:{}",featureInstaller);
+      log.atInfo().log("Feature:{}", featureInstaller);
     });
     log.atInfo().log("time {} second", event.getTimeTaken().getSeconds());
+
+    printServerEnvironment(context);
   }
 
-  private void printServerEnvironment(ApplicationContext context) {
+  private void printServerEnvironment(@NotNull ApplicationContext context) {
     val env = context.getEnvironment();
     val ip = InetAddress.getLoopbackAddress().getHostAddress();
     val port = env.getProperty("server.port", "8080");

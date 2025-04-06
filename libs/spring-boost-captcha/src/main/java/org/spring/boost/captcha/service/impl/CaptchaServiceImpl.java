@@ -1,4 +1,4 @@
-package org.spring.boost.captcha.service;
+package org.spring.boost.captcha.service.impl;
 
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
@@ -10,7 +10,7 @@ import lombok.val;
 import org.spring.boost.captcha.configure.CaptchaProperties;
 import org.spring.boost.captcha.model.CaptchaResult;
 import org.spring.boost.captcha.model.CaptchaResultBuilder;
-import org.springframework.stereotype.Service;
+import org.spring.boost.captcha.service.CaptchaService;
 
 import java.awt.*;
 

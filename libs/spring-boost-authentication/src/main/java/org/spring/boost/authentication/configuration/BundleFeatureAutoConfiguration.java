@@ -1,6 +1,7 @@
 /* (C)2023*/
 package org.spring.boost.authentication.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,6 @@ import org.springdoc.core.properties.SwaggerUiConfigProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
@@ -54,9 +54,9 @@ public class BundleFeatureAutoConfiguration {
   }
 
   @ConditionalOnClass(SwaggerUiConfigProperties.class)
-  @ConditionalOnBean(SwaggerUiConfigProperties.class)
   @Bean
-  SwaggerUISupportFeatureInstaller swaggerUISupportFeatureInstaller(SwaggerUiConfigProperties swaggerUiConfigProperties){
-    return new SwaggerUISupportFeatureInstaller(swaggerUiConfigProperties);
+  SwaggerUISupportFeatureInstaller swaggerUISupportFeatureInstaller(
+    SwaggerUiConfigProperties swaggerUiConfigProperties, ObjectMapper objectMapper) {
+    return new SwaggerUISupportFeatureInstaller(swaggerUiConfigProperties, objectMapper);
   }
 }

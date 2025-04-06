@@ -4,9 +4,9 @@ package org.spring.boost.core.autoconfigure;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.spring.boost.core.aop.TimedAop;
 import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.core.context.SimpleBeanRegistry;
-import org.spring.boost.core.listener.EnvironmentPrinter;
 import org.spring.boost.core.model.PrintContext;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -14,13 +14,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-import org.springframework.core.env.Environment;
 
 @AutoConfiguration
 @Slf4j
 @EnableConfigurationProperties(CoreConfigurationProperties.class)
 @RequiredArgsConstructor
-//@Import(cn.hutool.extra.spring.SpringUtil.class)
+@Import(cn.hutool.extra.spring.SpringUtil.class)
 public class CoreAutoConfiguration {
 
   @PostConstruct
@@ -40,5 +39,10 @@ public class CoreAutoConfiguration {
   @Bean
   PrintContext.PrintContextBuilder printContext() {
     return PrintContext.builder();
+  }
+
+  @Bean
+  TimedAop timedAop() {
+    return new TimedAop();
   }
 }
