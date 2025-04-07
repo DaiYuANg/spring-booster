@@ -12,11 +12,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "toolkit.auth.jwt")
 public class JwtConfigProperties {
 
-    private String secretKey;
+  private String secretKey;
 
-    private long expiration = 1000 * 60 * 24;
+  private long expiration = 1000 * 60 * 24;
 
-    private long refreshTokenExpiration;
+  private long refreshTokenExpiration;
 
-    private String encryptArithmetic;
+  private String encryptArithmetic;
 }

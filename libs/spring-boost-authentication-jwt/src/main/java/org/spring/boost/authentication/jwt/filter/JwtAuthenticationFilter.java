@@ -50,7 +50,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     val authentication = SecurityContextHolder.getContext().getAuthentication();
     if (authentication.isAuthenticated()) filterChain.doFilter(request, response);
     val userDetails = userDetailsService.loadUserByUsername(username);
-    UsernamePasswordAuthenticationToken authToken =
+    val authToken =
       new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
     SecurityContextHolder.getContext().setAuthentication(authToken);

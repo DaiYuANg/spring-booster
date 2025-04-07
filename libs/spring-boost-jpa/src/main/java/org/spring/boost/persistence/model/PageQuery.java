@@ -13,7 +13,7 @@ import static java.util.Optional.ofNullable;
 
 @Slf4j
 @Data
-public class PageQuery {
+public abstract class PageQuery {
   private final String pageNumPlaceholder = "pageNum";
 
   private final String pageSizePlaceholder = "pageSize";

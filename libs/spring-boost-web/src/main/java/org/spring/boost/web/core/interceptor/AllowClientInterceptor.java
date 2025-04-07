@@ -9,9 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.web.core.annotation.Interceptor;
+import org.spring.boost.web.core.annotation.OnlyDesktop;
+import org.spring.boost.web.core.annotation.OnlyMobile;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Interceptor
@@ -26,19 +31,18 @@ public class AllowClientInterceptor implements HandlerInterceptor {
     }
     val method = handlerMethod.getMethod();
     val agent = request.getHeader(HttpHeaders.USER_AGENT);
-    UserAgentParser.parse(agent).isMobile();
-    //        val ann = method.getAnnotation(AllowClient.class);
-    //
-    //        if (Objects.isNull(ann) || ann.device() == ClientDevice.ALL) {
-    //            return true;
-    //        }
-    //
-    //        val isMobile = UserAgentParser.parse(request.getHeader("user-agent")).isMobile();
-    //        if (isMobile && ann.device() == ClientDevice.MOBILE) {
-    //            return true;
-    //        }
-    //
-    //        response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+    val isMobile = UserAgentParser.parse(agent).isMobile();
+    val onlyDesktop = Optional.ofNullable(method.getAnnotation(OnlyDesktop.class));
+    val onlyMobile = Optional.ofNullable(method.getAnnotation(OnlyMobile.class));
+
+    if (onlyMobile.isPresent() && isMobile) {
+      return true;
+    }
+
+    if (onlyDesktop.isPresent() && isMobile) {
+      response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+      return false;
+    }
     return false;
   }
 }

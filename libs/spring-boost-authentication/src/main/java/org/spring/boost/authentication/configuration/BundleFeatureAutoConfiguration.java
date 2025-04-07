@@ -45,7 +45,6 @@ public class BundleFeatureAutoConfiguration {
     return new CORSConfigureSecurityFeatureInstaller(configurationProperties);
   }
 
-  @ConditionalOnClass(AdminServerProperties.class)
   @ConditionalOnBean(AdminServerProperties.class)
   @Bean
   SpringBootAdminSupportFeatureInstaller springBootAdminSupportFeatureInstaller(AdminServerProperties adminServerProperties) {

@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @AutoConfiguration
@@ -45,9 +46,9 @@ public class BeanRegisterAutoConfiguration {
 
   @Bean
   @ConditionalOnProperty(
-      name = "enable-reusable-request",
-      prefix = "spring.boost.web",
-      havingValue = "true")
+    name = "enable-reusable-request",
+    prefix = "spring.boost.web",
+    havingValue = "true")
   FilterRegistrationBean<ReusableRequestFilter> filterRegistrationBean() {
     FilterRegistrationBean<ReusableRequestFilter> registration = new FilterRegistrationBean<>();
     registration.setFilter(new ReusableRequestFilter());

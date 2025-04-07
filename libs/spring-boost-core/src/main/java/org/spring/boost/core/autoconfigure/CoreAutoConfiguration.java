@@ -27,7 +27,7 @@ public class CoreAutoConfiguration {
     log.atInfo().log("Initializing CoreAutoConfiguration");
   }
 
-  @Bean()
+  @Bean(bootstrap = Bean.Bootstrap.BACKGROUND)
   BeanRegistry beanRegistry(
     ApplicationContext context, DefaultListableBeanFactory listableBeanFactory) {
     return SimpleBeanRegistry.builder()
@@ -41,7 +41,7 @@ public class CoreAutoConfiguration {
     return PrintContext.builder();
   }
 
-  @Bean
+  @Bean(bootstrap = Bean.Bootstrap.BACKGROUND)
   TimedAop timedAop() {
     return new TimedAop();
   }

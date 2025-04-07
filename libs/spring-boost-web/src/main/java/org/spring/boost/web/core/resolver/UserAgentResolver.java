@@ -1,12 +1,11 @@
 /* (C)2023*/
 package org.spring.boost.web.core.resolver;
 
-import cn.hutool.http.useragent.UserAgent;
-import cn.hutool.http.useragent.UserAgentParser;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import nl.basjes.parse.useragent.UserAgent;
 import nl.basjes.parse.useragent.UserAgentAnalyzer;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;

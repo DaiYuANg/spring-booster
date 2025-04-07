@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @AutoConfiguration
 @Slf4j
@@ -18,7 +20,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 public class SysUserAutoConfiguration {
 
   @Bean
-  @ConditionalOnMissingBean(SysUserService.class)
+  @ConditionalOnMissingBean(UserDetailsService.class)
   SysUserService sysUserService(
     JpaRepositoryFactory jpaRepositoryFactory,
     SysUserConverter sysUserConverter

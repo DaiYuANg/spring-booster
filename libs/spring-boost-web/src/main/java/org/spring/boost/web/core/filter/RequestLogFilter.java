@@ -20,7 +20,6 @@ public class RequestLogFilter extends CommonsRequestLoggingFilter {
 
   @Override
   protected boolean shouldLog(@NotNull HttpServletRequest request) {
-    // 设置日志输出级别，默认debug
     return this.logger.isInfoEnabled();
   }
 

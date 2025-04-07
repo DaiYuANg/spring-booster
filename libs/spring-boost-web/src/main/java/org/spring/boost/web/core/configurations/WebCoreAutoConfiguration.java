@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
+import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.web.core.feature.InterceptorsFeatureInstaller;
 import org.spring.boost.web.core.resolver.IndexHtmlResolver;
 import org.spring.boost.web.core.resolver.UserAgentResolver;
@@ -37,6 +38,8 @@ public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
   private final ObjectMapper objectMapper;
 
+  private final BeanRegistry beanRegistry;
+
   @Override
   public void addInterceptors(@NotNull InterceptorRegistry registry) {
     interceptorsFeatureInstaller.install(registry);
@@ -44,7 +47,7 @@ public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
   @Override
   public void addArgumentResolvers(@NotNull List<HandlerMethodArgumentResolver> resolvers) {
-    resolvers.add(userAgentResolver);
+//    resolvers.add(userAgentResolver);
   }
 
   @Override
