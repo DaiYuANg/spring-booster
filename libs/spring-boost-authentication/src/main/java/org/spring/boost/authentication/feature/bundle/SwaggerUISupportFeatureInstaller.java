@@ -21,8 +21,11 @@ public class SwaggerUISupportFeatureInstaller implements AuthorizeHttpRequestFea
 
   @Override
   public void install(AuthorizeHttpRequestsConfigurer<HttpSecurity>.@NotNull AuthorizationManagerRequestMatcherRegistry authorizationManagerRequestMatcherRegistry) {
+    log.atTrace().log("Configured Swagger UI paths to be permitted");
     authorizationManagerRequestMatcherRegistry
       .requestMatchers("/swagger-ui/**")
+      .permitAll()
+      .requestMatchers("/swagger-ui.html")
       .permitAll()
       .requestMatchers("/v3/api-docs*/**")
       .permitAll();

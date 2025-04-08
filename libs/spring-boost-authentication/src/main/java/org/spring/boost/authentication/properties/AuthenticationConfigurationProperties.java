@@ -3,6 +3,7 @@ package org.spring.boost.authentication.properties;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,9 +13,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 public class AuthenticationConfigurationProperties {
 
-    private Boolean debug = false;
+  private Boolean debug = false;
 
-    private String authenticateAt = "/**";
+  private String authenticateAt = "/**";
 
-    private Set<PermitConfigurationProperties> permit = new HashSet<>();
+  private Set<PermitConfigurationProperties> permit = new HashSet<>();
 }

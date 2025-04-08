@@ -9,6 +9,7 @@ import org.spring.boost.authentication.feature.AuthorizeHttpRequestFeatureInstal
 import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.authentication.properties.AuthenticationConfigurationProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -36,12 +37,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Set;
 
 @AutoConfiguration
-//@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
-//@AutoConfigureAfter({
-//  DispatcherServletAutoConfiguration.class,
-//  TaskExecutionAutoConfiguration.class,
-//  ValidationAutoConfiguration.class
-//})
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@AutoConfigureAfter({
+  DispatcherServletAutoConfiguration.class,
+  TaskExecutionAutoConfiguration.class,
+  ValidationAutoConfiguration.class
+})
+@AutoConfigurationPackage
 @EnableWebSecurity
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class})
 @Slf4j
@@ -50,6 +52,14 @@ import java.util.Set;
 public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
 
   private final AuthenticationConfigurationProperties authenticationConfigurationProperties;
+
+  @Bean
+  public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+    DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+    daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+    daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+    return daoAuthenticationProvider;
+  }
 
   @Bean
   public AuthenticationManager authenticationManager(@NotNull AuthenticationConfiguration config) throws Exception {
@@ -77,18 +87,23 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
     Set<AuthorizeHttpRequestFeatureInstaller> authorizeHttpRequestFeatureInstallers
   )
     throws Exception {
-//    securityFeatureInstallers
-//      .stream()
-//      .peek(installer -> log.atDebug().log("Install feature:{}", installer))
-//      .forEach(it -> it.install(http));
+    securityFeatureInstallers
+      .stream()
+      .peek(installer -> log.atDebug().log("Install feature:{}", installer))
+      .forEach(it -> it.install(http));
     http.formLogin(AbstractHttpConfigurer::disable);
     http.securityMatcher(authenticationConfigurationProperties.getAuthenticateAt());
     http.authenticationManager(authenticationManager);
     http.authenticationProvider(authenticationProvider);
     http.authorizeHttpRequests(req -> {
+      log.atInfo().log("Authorizing requests");
       authorizeHttpRequestFeatureInstallers
         .forEach(installer -> installer.install(req));
-//      req.anyRequest().authenticated();
+//      req.requestMatchers("/swagger-ui/**", "/v3/api-docs*/**", "/swagger-ui.html")
+//        .permitAll()
+//        .anyRequest()
+//        .authenticated();
+      req.anyRequest().authenticated();
     });
     return http.build();
   }

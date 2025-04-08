@@ -1,14 +1,13 @@
 /* (C)2023*/
 package org.spring.boost.authentication.configuration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.authentication.feature.bundle.*;
 import org.spring.boost.authentication.properties.AuthenticationConfigurationProperties;
 import org.spring.boost.authentication.properties.CORSConfigurationProperties;
+import org.spring.boost.authentication.properties.CSRFConfigurationProperties;
 import org.spring.boost.core.api.BeanRegistry;
 import org.springdoc.core.properties.SwaggerUiConfigProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -20,7 +19,7 @@ import org.springframework.context.annotation.Bean;
 @AutoConfiguration
 @Slf4j
 @RequiredArgsConstructor
-@EnableConfigurationProperties(CORSConfigurationProperties.class)
+@EnableConfigurationProperties({CORSConfigurationProperties.class, CSRFConfigurationProperties.class})
 public class BundleFeatureAutoConfiguration {
   private final BeanRegistry beanRegistry;
 
@@ -45,17 +44,16 @@ public class BundleFeatureAutoConfiguration {
     return new CORSConfigureSecurityFeatureInstaller(configurationProperties);
   }
 
-  @ConditionalOnBean(AdminServerProperties.class)
-  @Bean
-  SpringBootAdminSupportFeatureInstaller springBootAdminSupportFeatureInstaller(AdminServerProperties adminServerProperties) {
-    log.atInfo().log("Detect Spring boot admin exists, add Spring boot admin security support");
-    return new SpringBootAdminSupportFeatureInstaller(adminServerProperties);
-  }
-
   @ConditionalOnClass(SwaggerUiConfigProperties.class)
   @Bean
   SwaggerUISupportFeatureInstaller swaggerUISupportFeatureInstaller(
-    SwaggerUiConfigProperties swaggerUiConfigProperties) {
+    SwaggerUiConfigProperties swaggerUiConfigProperties
+  ) {
     return new SwaggerUISupportFeatureInstaller(swaggerUiConfigProperties);
+  }
+
+  @Bean
+  CSRFConfigureSecurityFeatureInstaller csrfConfigureSecurityFeatureInstaller(CSRFConfigurationProperties csrfConfigurationProperties) {
+    return new CSRFConfigureSecurityFeatureInstaller(csrfConfigurationProperties);
   }
 }

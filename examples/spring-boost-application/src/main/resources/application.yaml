@@ -11,13 +11,22 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  boot:
-    admin:
-      client:
-        url: http://localhost:8080
   boost:
     authentication:
       debug: true
+      permit:
+        - pattern: /auth/register
+          method:
+            - GET
+    fs:
+      local:
+        configs:
+          - qualifier: 'default'
+            path: /Users/daiyuang/
+            type: LOCAL
+          - qualifier: 'memory'
+            path: 'file:///Users/daiyuang/Documents'
+            type: MEMORY
 logging:
   group:
     boost: org.spring.boost
@@ -25,6 +34,7 @@ logging:
     boost: TRACE
     org.hibernate.sql: DEBUG
     org.hibernate.orm.jdbc.bind: TRACE
+    org.springframework.security: TRACE
 management:
   endpoints:
     web:

@@ -1,11 +1,26 @@
 package org.spring.boost.local.fs.service;
 
-import org.spring.boost.fs.FileSystemService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.tika.Tika;
+import org.spring.boost.fs.api.FileSystemService;
+import org.spring.boost.fs.api.FileUploadHooks;
+import org.spring.boost.fs.model.FileMetadata;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileSystem;
 
+@RequiredArgsConstructor
+@Slf4j
 public class LocalFileSystemService implements FileSystemService {
+
+//  private final FileSystem fileSystem;
+
+  private final Tika tika;
+
+//  private final FileUploadHooks hooks;
+
   @Override
   public void uploadFile(String path, InputStream inputStream) throws IOException {
 
@@ -24,5 +39,10 @@ public class LocalFileSystemService implements FileSystemService {
   @Override
   public boolean isFileExists(String hash) throws IOException {
     return false;
+  }
+
+  @Override
+  public FileMetadata getFileMetadata(String path) throws IOException {
+    return null;
   }
 }

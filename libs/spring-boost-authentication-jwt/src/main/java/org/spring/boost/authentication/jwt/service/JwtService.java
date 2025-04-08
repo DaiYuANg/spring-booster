@@ -4,6 +4,7 @@ package org.spring.boost.authentication.jwt.service;
 import io.jsonwebtoken.Claims;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -18,4 +19,6 @@ public interface JwtService {
     String extractUsername(String token);
 
     String generateToken(UserDetails userDetails);
+
+  String generateToken(Authentication authentication);
 }

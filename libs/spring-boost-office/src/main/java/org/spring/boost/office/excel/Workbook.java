@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.zip.Zip64Mode;
@@ -22,54 +23,54 @@ import org.springframework.util.ReflectionUtils;
 @ToString
 @Getter
 public class Workbook<T> {
-    private final String title;
+  private final String title;
 
-    @Builder.Default
-    private final SXSSFWorkbook workbook = new SXSSFWorkbook(-1);
+  @Builder.Default
+  private final SXSSFWorkbook workbook = new SXSSFWorkbook(-1);
 
-    private final Class<T> entityClass;
+  private final Class<T> entityClass;
 
-    private final Collection<T> entityData;
+  private final Collection<T> entityData;
 
-    @Builder.Default
-    private final ReflectionUtils.FieldFilter fieldFilter = r -> r.isAnnotationPresent(ExcelRow.class);
+  @Builder.Default
+  private final ReflectionUtils.FieldFilter fieldFilter = r -> r.isAnnotationPresent(ExcelRow.class);
 
-    @SneakyThrows
-    public OutputStream generateExcel() {
-        val output = new BufferedOutputStream(new ByteArrayOutputStream());
-        @Cleanup val workbook = new SXSSFWorkbook(-1);
-        val sheet = workbook.createSheet("Sheet1");
-        workbook.setCompressTempFiles(true);
-        workbook.setZip64Mode(Zip64Mode.AsNeeded);
-        val headers = new ArrayList<String>();
-        ReflectionUtils.doWithFields(
-                entityClass,
-                field -> {
-                    val row = field.getAnnotation(ExcelRow.class);
-                    headers.add(row.title());
-                },
-                fieldFilter);
-        val headerExcelRow = sheet.createRow(0);
-        headers.forEach(headerText -> createCell(headerExcelRow, headers.indexOf(headerText), headerText));
-        entityData.forEach(dataEntity -> {
-            val dataRow = sheet.createRow(sheet.getPhysicalNumberOfRows());
-            val cellIndex = new AtomicInteger(); // 假设单元格索引从0开始
-            val dataCell = dataRow.createCell(cellIndex.getAndIncrement());
-            ReflectionUtils.doWithFields(
-                    dataEntity.getClass(),
-                    field -> {
-                        field.setAccessible(true);
-                        val a = field.get(dataEntity).toString();
-                        dataCell.setCellValue(a);
-                    },
-                    fieldFilter);
-        });
-        workbook.write(output);
-        return output;
-    }
+  @SneakyThrows
+  public OutputStream generateExcel() {
+    val output = new BufferedOutputStream(new ByteArrayOutputStream());
+    @Cleanup val workbook = new SXSSFWorkbook(-1);
+    val sheet = workbook.createSheet("Sheet1");
+    workbook.setCompressTempFiles(true);
+    workbook.setZip64Mode(Zip64Mode.AsNeeded);
+    val headers = new ArrayList<String>();
+    ReflectionUtils.doWithFields(
+      entityClass,
+      field -> {
+        val row = field.getAnnotation(ExcelRow.class);
+        headers.add(row.title());
+      },
+      fieldFilter);
+    val headerExcelRow = sheet.createRow(0);
+    headers.forEach(headerText -> createCell(headerExcelRow, headers.indexOf(headerText), headerText));
+    entityData.forEach(dataEntity -> {
+      val dataRow = sheet.createRow(sheet.getPhysicalNumberOfRows());
+      val cellIndex = new AtomicInteger(); // 假设单元格索引从0开始
+      val dataCell = dataRow.createCell(cellIndex.getAndIncrement());
+      ReflectionUtils.doWithFields(
+        dataEntity.getClass(),
+        field -> {
+          field.setAccessible(true);
+          val a = field.get(dataEntity).toString();
+          dataCell.setCellValue(a);
+        },
+        fieldFilter);
+    });
+    workbook.write(output);
+    return output;
+  }
 
-    private void createCell(@NotNull Row row, int cellIndex, String value) {
-        Cell cell = row.createCell(cellIndex);
-        cell.setCellValue(value);
-    }
+  private void createCell(@NotNull Row row, int cellIndex, String value) {
+    Cell cell = row.createCell(cellIndex);
+    cell.setCellValue(value);
+  }
 }

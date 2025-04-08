@@ -3,13 +3,11 @@ package org.spring.boost.authentication.feature.bundle;
 
 import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.authentication.annotation.IgnoreAuthentication;
 import org.spring.boost.authentication.feature.AuthorizeHttpRequestFeatureInstaller;
-import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.core.api.BeanRegistry;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +18,6 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -37,27 +34,20 @@ public class AnnotationPermitSecurityFeatureInstaller implements AuthorizeHttpRe
     val fromAnnotation = buildAntPathRequestMatcherFromAnnotation();
 
     // Logging the paths that are configured to allow access without authentication
-    log.atTrace().log("Configured paths to be permitted: {}", fromAnnotation);
+    log.atTrace().log("Configured paths to be permitted: {}", Arrays.toString(fromAnnotation));
 
-    fromAnnotation.forEach(antPathRequestMatcher -> {
-      authorizationManagerRequestMatcherRegistry.requestMatchers(antPathRequestMatcher).permitAll();
-    });
-//    fromAnnotation.stream()
-//      .map(authorizationManagerRequestMatcherRegistry::requestMatchers)
-//      .forEach(authorizedUrl -> {
-//        authorizedUrl.permitAll();
-//      });
+    authorizationManagerRequestMatcherRegistry.requestMatchers(fromAnnotation).permitAll();
   }
 
   // Build a list of AntPathRequestMatchers from the annotations on handler methods
-  private @NotNull List<AntPathRequestMatcher> buildAntPathRequestMatcherFromAnnotation() {
+  private @NotNull AntPathRequestMatcher @NotNull [] buildAntPathRequestMatcherFromAnnotation() {
     // Getting handler methods from RequestMappingHandlerMapping
     return beanRegistry.getBeanDistinct(RequestMappingHandlerMapping.class).stream()
       .map(RequestMappingHandlerMapping::getHandlerMethods)
       .flatMap(method -> method.entrySet().stream())
       .filter(this::checkHasAnnotation) // Filter methods that have the relevant annotations
       .flatMap(this::buildAntPathForHandlerMethod) // Build the AntPathRequestMatchers
-      .toList();
+      .toArray(AntPathRequestMatcher[]::new);
   }
 
   // Check if the method has the relevant annotations (PermitAll or IgnoreAuthentication)
@@ -95,7 +85,7 @@ public class AnnotationPermitSecurityFeatureInstaller implements AuthorizeHttpRe
   // If the method has PermitAll annotation, permit all requests for that path
   private static @NotNull Stream<AntPathRequestMatcher> getAntPathRequestMatcherStream(Map.@NotNull Entry<RequestMappingInfo, HandlerMethod> entry, String path) {
     if (entry.getValue().hasMethodAnnotation(PermitAll.class)) {
-      log.info("Method {} is annotated with PermitAll. Permitting all for path: {}", entry.getValue().getMethod().getName(), path);
+      log.atTrace().log("Method {} is annotated with PermitAll. Permitting all for path: {}", entry.getValue().getMethod().getName(), path);
       return Arrays.stream(new AntPathRequestMatcher[]{new AntPathRequestMatcher(path)})
         .distinct();
     }

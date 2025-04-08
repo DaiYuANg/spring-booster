@@ -55,7 +55,6 @@ include("libs:spring-boost-verification")
 
 include("libs:spring-boost-office")
 
-//include("libs:spring-boost-minio")
 
 include("libs:spring-boost-web-version")
 
@@ -67,7 +66,7 @@ include("examples:spring-boost-application")
 
 include("libs:spring-boost-mutiny")
 
-//include("document")
+include("document")
 
 include("bom:spring-boost-bom")
 
@@ -77,3 +76,5 @@ include("tools:spring-boost-gradle-plugin")
 include("tools:spring-boost-maven-plugin")
 include("libs:spring-boost-fs")
 include("libs:spring-boost-fs-local")
+include("libs:spring-boost-fs-minio")
+

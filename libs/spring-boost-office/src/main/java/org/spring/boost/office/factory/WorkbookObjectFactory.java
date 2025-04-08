@@ -10,23 +10,24 @@ import org.jetbrains.annotations.NotNull;
 @Slf4j
 public abstract class WorkbookObjectFactory<T extends Workbook> implements PooledObjectFactory<T> {
 
-    @Override
-    public void activateObject(PooledObject<T> pooledObject) throws Exception {}
+  @Override
+  public void activateObject(PooledObject<T> pooledObject) throws Exception {
+  }
 
-    @Override
-    public void destroyObject(@NotNull PooledObject<T> pooledObject) throws Exception {
-        pooledObject.getObject().close();
-    }
+  @Override
+  public void destroyObject(@NotNull PooledObject<T> pooledObject) throws Exception {
+    pooledObject.getObject().close();
+  }
 
-    @Override
-    public void passivateObject(@NotNull PooledObject<T> pooledObject) {
-        for (int i = 0; i < pooledObject.getObject().getNumberOfSheets(); i++) {
-            pooledObject.getObject().removeSheetAt(i);
-        }
+  @Override
+  public void passivateObject(@NotNull PooledObject<T> pooledObject) {
+    for (int i = 0; i < pooledObject.getObject().getNumberOfSheets(); i++) {
+      pooledObject.getObject().removeSheetAt(i);
     }
+  }
 
-    @Override
-    public boolean validateObject(@NotNull PooledObject<T> pooledObject) {
-        return pooledObject.getObject().getNumberOfSheets() == 0;
-    }
+  @Override
+  public boolean validateObject(@NotNull PooledObject<T> pooledObject) {
+    return pooledObject.getObject().getNumberOfSheets() == 0;
+  }
 }

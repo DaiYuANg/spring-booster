@@ -1,4 +1,4 @@
-package org.spring.boost.fs;
+package org.spring.boost.fs.api;
 
 import java.io.IOException;
 

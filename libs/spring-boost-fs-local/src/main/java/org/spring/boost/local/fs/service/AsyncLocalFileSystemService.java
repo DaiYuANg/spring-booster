@@ -1,7 +1,6 @@
 package org.spring.boost.local.fs.service;
 
-import org.spring.boost.fs.AsyncFileSystemService;
-import org.spring.boost.fs.FileSystemService;
+import org.spring.boost.fs.api.AsyncFileSystemService;
 
 import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;

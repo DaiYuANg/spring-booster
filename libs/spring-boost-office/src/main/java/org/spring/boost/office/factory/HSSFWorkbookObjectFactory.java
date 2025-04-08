@@ -9,8 +9,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 @Slf4j
 public class HSSFWorkbookObjectFactory extends WorkbookObjectFactory<HSSFWorkbook> {
 
-    @Override
-    public PooledObject<HSSFWorkbook> makeObject() {
-        return new DefaultPooledObject<>(new HSSFWorkbook());
-    }
+  @Override
+  public PooledObject<HSSFWorkbook> makeObject() {
+    return new DefaultPooledObject<>(new HSSFWorkbook());
+  }
 }

@@ -1,6 +1,5 @@
 package org.spring.boost.local.fs.autoconfigure;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +11,9 @@ import java.nio.file.Path;
 @Setter
 @ToString
 public class FileSystemConfig {
-  private Path path;
+  private String qualifier;
+
+  private String path;
 
   private FileSystemType type;
 }

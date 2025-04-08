@@ -17,6 +17,8 @@ dependencies {
   implementation(projects.libs.springBoostCore)
   implementation(projects.libs.springBoostJpa)
   implementation(projects.libs.springBoostRbac)
+  implementation(projects.libs.springBoostFs)
+  implementation(projects.libs.springBoostFsLocal)
 
   implementation(libs.spring.boot.starter.logging)
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
@@ -24,8 +26,8 @@ dependencies {
   implementation(libs.h2)
   compileOnly(libs.spring.boot.devtools)
   implementation(libs.spring.boot.starter.web)
-  implementation(libs.spring.boot.admin.starter.server)
-  implementation(libs.spring.boot.admin.starter.client)
+//  implementation(libs.spring.boot.admin.starter.server)
+//  implementation(libs.spring.boot.admin.starter.client)
 
   implementation(libs.mapstruct)
   annotationProcessor(libs.mapstruct.annotation.processor)

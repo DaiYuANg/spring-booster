@@ -1,4 +1,6 @@
-package org.spring.boost.fs;
+package org.spring.boost.fs.api;
+
+import org.spring.boost.fs.model.FileMetadata;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,4 +14,6 @@ public interface FileSystemService {
 
   // 新增的去重检查方法
   boolean isFileExists(String hash) throws IOException;
+
+  FileMetadata getFileMetadata(String path) throws IOException;
 }

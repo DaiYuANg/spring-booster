@@ -17,16 +17,16 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 @Slf4j
 public class MinioTemplateBeanFactoryPostProcessor extends TemplateFactory implements BeanFactoryPostProcessor {
 
-    /**
-     * Register @see{@link org.spring.boost.minio.MinioTemplate} MinioTemplate Key of spring ioc is
-     * And naming is @see{@link org.spring.boost.minio.properties.MinioConfigurationProperties}
-     * clients key + @see{@link BeanNaming} TEMPLATE
-     *
-     * @param beanFactory Spring Listable Bean Factory
-     * @throws BeansException Not throws
-     */
-    @Override
-    public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        properties.getClients().forEach((k, v) -> registerTemplates(k, beanFactory, v));
-    }
+  /**
+   * Register @see{@link org.spring.boost.minio.MinioTemplate} MinioTemplate Key of spring ioc is
+   * And naming is @see{@link org.spring.boost.minio.properties.MinioConfigurationProperties}
+   * clients key + @see{@link BeanNaming} TEMPLATE
+   *
+   * @param beanFactory Spring Listable Bean Factory
+   * @throws BeansException Not throws
+   */
+  @Override
+  public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    properties.getClients().forEach((k, v) -> registerTemplates(k, beanFactory, v));
+  }
 }

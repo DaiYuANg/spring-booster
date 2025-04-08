@@ -1,7 +1,6 @@
 /* (C)2024*/
 package org.spring.boost.example;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +11,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 //@EnableJpaRepositories("org.spring.boost.example.repository")
 //@EnableJpaAuditing
 @EntityScan
-@EnableAdminServer
+//@EnableAdminServer
 @OpenAPIDefinition(
   info = @Info(
     title = "My API",

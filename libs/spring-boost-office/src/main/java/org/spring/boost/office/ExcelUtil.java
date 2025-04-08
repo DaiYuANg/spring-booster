@@ -7,7 +7,8 @@ import org.springframework.util.ReflectionUtils;
 
 @UtilityClass
 public class ExcelUtil {
-    public static void extractHeader(Class<?> entityClass) {
-        ReflectionUtils.doWithFields(entityClass, field -> {}, field -> field.isAnnotationPresent(ExcelObject.class));
-    }
+  public static void extractHeader(Class<?> entityClass) {
+    ReflectionUtils.doWithFields(entityClass, field -> {
+    }, field -> field.isAnnotationPresent(ExcelObject.class));
+  }
 }

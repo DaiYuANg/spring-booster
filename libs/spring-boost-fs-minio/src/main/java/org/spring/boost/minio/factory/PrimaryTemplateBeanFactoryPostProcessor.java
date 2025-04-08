@@ -2,6 +2,7 @@
 package org.spring.boost.minio.factory;
 
 import java.util.Optional;
+
 import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
@@ -14,13 +15,13 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 @SuperBuilder
 @Slf4j
 public class PrimaryTemplateBeanFactoryPostProcessor extends TemplateFactory implements BeanFactoryPostProcessor {
-    private final MinioConfigurationProperties properties;
+  private final MinioConfigurationProperties properties;
 
-    private final Tika tika;
+  private final Tika tika;
 
-    @Override
-    public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        Optional.ofNullable(properties.getClient())
-                .ifPresent(minioClientConfig -> registerTemplates("", beanFactory, minioClientConfig));
-    }
+  @Override
+  public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    Optional.ofNullable(properties.getClient())
+      .ifPresent(minioClientConfig -> registerTemplates("", beanFactory, minioClientConfig));
+  }
 }

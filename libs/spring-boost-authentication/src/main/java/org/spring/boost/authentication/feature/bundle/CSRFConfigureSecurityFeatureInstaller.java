@@ -16,7 +16,6 @@ public class CSRFConfigureSecurityFeatureInstaller implements SecurityFeatureIns
   @SneakyThrows
   @Override
   public void install(@NotNull HttpSecurity http) {
-//    TODO 封装 csrf 相关
     http.csrf(AbstractHttpConfigurer::disable);
   }
 }

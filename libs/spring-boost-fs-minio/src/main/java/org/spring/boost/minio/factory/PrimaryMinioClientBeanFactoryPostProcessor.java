@@ -2,6 +2,7 @@
 package org.spring.boost.minio.factory;
 
 import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -18,18 +19,18 @@ import org.springframework.core.annotation.Order;
 @RequiredArgsConstructor
 @Order(1)
 public class PrimaryMinioClientBeanFactoryPostProcessor extends ClientFactory implements BeanFactoryPostProcessor {
-    private final MinioConfigurationProperties properties;
+  private final MinioConfigurationProperties properties;
 
-    private final OkHttpClient okHttpClient;
+  private final OkHttpClient okHttpClient;
 
-    @Override
-    public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        Optional.ofNullable(properties.getClient()).ifPresent(primaryClient -> {
-            val minioPrimaryClient = createClient(primaryClient, okHttpClient);
-            val key = BeanNaming.buildAdminName(BeanNaming.CLIENT);
-            beanFactory.registerSingleton(key, minioPrimaryClient);
-            beanFactory.getBeanDefinition(key).setPrimary(true);
-            log.atTrace().log("Register Minio Client:{}:{}", key, minioPrimaryClient);
-        });
-    }
+  @Override
+  public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    Optional.ofNullable(properties.getClient()).ifPresent(primaryClient -> {
+      val minioPrimaryClient = createClient(primaryClient, okHttpClient);
+      val key = BeanNaming.buildAdminName(BeanNaming.CLIENT);
+      beanFactory.registerSingleton(key, minioPrimaryClient);
+      beanFactory.getBeanDefinition(key).setPrimary(true);
+      log.atTrace().log("Register Minio Client:{}:{}", key, minioPrimaryClient);
+    });
+  }
 }
