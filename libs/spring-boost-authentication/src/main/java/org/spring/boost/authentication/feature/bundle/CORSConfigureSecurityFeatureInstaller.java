@@ -4,7 +4,7 @@ package org.spring.boost.authentication.feature.bundle;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
-import org.spring.boost.authentication.SecurityFeatureInstaller;
+import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.authentication.properties.CORSConfigurationProperties;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -27,7 +27,7 @@ public class CORSConfigureSecurityFeatureInstaller implements SecurityFeatureIns
     val configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(configurationProperties.getAllowedOrigins());
     configuration.setAllowedMethods(configurationProperties.getAllowedMethods());
-    configuration.setAllowedHeaders(configurationProperties.getAllowedHeaders()); // 如果需要的话，设置允许的头部信息
+    configuration.setAllowedHeaders(configurationProperties.getAllowedHeaders());
 
     // 配置 CORS 的 URL 映射
     val source = new UrlBasedCorsConfigurationSource();

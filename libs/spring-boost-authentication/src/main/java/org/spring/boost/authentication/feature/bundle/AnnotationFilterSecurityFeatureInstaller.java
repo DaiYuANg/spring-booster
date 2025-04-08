@@ -4,11 +4,11 @@ package org.spring.boost.authentication.feature.bundle;
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.spring.boost.authentication.SecurityFeatureInstaller;
 import org.spring.boost.authentication.annotation.AuthenticationAfterFilter;
 import org.spring.boost.authentication.annotation.AuthenticationAtFilter;
 import org.spring.boost.authentication.annotation.AuthenticationBeforeFilter;
 import org.spring.boost.authentication.annotation.AuthenticationFilter;
+import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.core.api.BeanRegistry;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 

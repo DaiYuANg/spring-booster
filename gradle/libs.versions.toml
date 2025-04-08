@@ -32,7 +32,7 @@ javaparser = "3.26.4"
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.2" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.3" }
 semver = { id = "com.xenoterracide.gradle.semver", version = "0.12.1" }
 graalvm-native = { id = "org.graalvm.buildtools.native", version = "0.10.6" }
 asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }

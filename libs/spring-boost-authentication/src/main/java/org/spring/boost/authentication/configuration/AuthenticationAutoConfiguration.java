@@ -5,7 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.authentication.SecurityFeatureInstaller;
+import org.spring.boost.authentication.feature.AuthorizeHttpRequestFeatureInstaller;
+import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.authentication.properties.AuthenticationConfigurationProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -27,6 +28,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -34,12 +36,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Set;
 
 @AutoConfiguration
-@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
-@AutoConfigureAfter({
-  DispatcherServletAutoConfiguration.class,
-  TaskExecutionAutoConfiguration.class,
-  ValidationAutoConfiguration.class
-})
+//@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+//@AutoConfigureAfter({
+//  DispatcherServletAutoConfiguration.class,
+//  TaskExecutionAutoConfiguration.class,
+//  ValidationAutoConfiguration.class
+//})
 @EnableWebSecurity
 @EnableConfigurationProperties({AuthenticationConfigurationProperties.class})
 @Slf4j
@@ -71,19 +73,22 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
     @NotNull HttpSecurity http,
     AuthenticationManager authenticationManager,
     @NotNull Set<SecurityFeatureInstaller> securityFeatureInstallers,
-    AuthenticationProvider authenticationProvider
+    AuthenticationProvider authenticationProvider,
+    Set<AuthorizeHttpRequestFeatureInstaller> authorizeHttpRequestFeatureInstallers
   )
     throws Exception {
-    securityFeatureInstallers
-      .stream()
-      .peek(installer -> log.atDebug().log("Install feature:{}", installer))
-      .forEach(it -> it.install(http));
+//    securityFeatureInstallers
+//      .stream()
+//      .peek(installer -> log.atDebug().log("Install feature:{}", installer))
+//      .forEach(it -> it.install(http));
     http.formLogin(AbstractHttpConfigurer::disable);
     http.securityMatcher(authenticationConfigurationProperties.getAuthenticateAt());
     http.authenticationManager(authenticationManager);
     http.authenticationProvider(authenticationProvider);
     http.authorizeHttpRequests(req -> {
-      req.anyRequest().authenticated();
+      authorizeHttpRequestFeatureInstallers
+        .forEach(installer -> installer.install(req));
+//      req.anyRequest().authenticated();
     });
     return http.build();
   }

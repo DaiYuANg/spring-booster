@@ -4,7 +4,7 @@ package org.spring.boost.authentication.feature.bundle;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.authentication.SecurityFeatureInstaller;
+import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.authentication.properties.CSRFConfigurationProperties;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;

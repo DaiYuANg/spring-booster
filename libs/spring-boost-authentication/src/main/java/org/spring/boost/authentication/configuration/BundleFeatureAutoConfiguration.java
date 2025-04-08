@@ -55,7 +55,7 @@ public class BundleFeatureAutoConfiguration {
   @ConditionalOnClass(SwaggerUiConfigProperties.class)
   @Bean
   SwaggerUISupportFeatureInstaller swaggerUISupportFeatureInstaller(
-    SwaggerUiConfigProperties swaggerUiConfigProperties, ObjectMapper objectMapper) {
-    return new SwaggerUISupportFeatureInstaller(swaggerUiConfigProperties, objectMapper);
+    SwaggerUiConfigProperties swaggerUiConfigProperties) {
+    return new SwaggerUISupportFeatureInstaller(swaggerUiConfigProperties);
   }
 }

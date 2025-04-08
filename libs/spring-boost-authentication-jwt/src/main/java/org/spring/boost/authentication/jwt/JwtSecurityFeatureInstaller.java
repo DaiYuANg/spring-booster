@@ -3,9 +3,8 @@ package org.spring.boost.authentication.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.authentication.SecurityFeatureInstaller;
+import org.spring.boost.authentication.feature.SecurityFeatureInstaller;
 import org.spring.boost.authentication.jwt.filter.JwtAuthenticationFilter;
-import org.spring.boost.core.api.BeanRegistry;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 

@@ -1,10 +1,14 @@
 package org.spring.boost.example.controller;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.spring.boost.authentication.annotation.IgnoreAuthentication;
 import org.spring.boost.captcha.model.CaptchaResult;
+import org.spring.boost.example.model.UserForm;
 import org.spring.boost.example.service.AuthService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +23,12 @@ public class AuthController {
   @GetMapping("/captcha")
   public CaptchaResult captcha() {
     return authService.captcha();
+  }
+
+  @PostMapping("/register")
+  @IgnoreAuthentication
+  public String register(@RequestBody UserForm userForm) {
+    authService.register(userForm);
+    return "ok";
   }
 }
