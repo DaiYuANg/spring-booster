@@ -35,4 +35,8 @@ subprojects {
 
   bootJar.enabled = false
   jar.enabled = true
+
+  tasks.test {
+    useJUnitPlatform()
+  }
 }

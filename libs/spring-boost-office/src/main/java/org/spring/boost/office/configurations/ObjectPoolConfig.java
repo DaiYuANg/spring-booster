@@ -11,17 +11,17 @@ import lombok.experimental.Accessors;
 @ToString
 @Accessors(chain = true)
 public class ObjectPoolConfig {
-    private boolean lifo = false;
+  private boolean lifo = false;
 
-    private int maxIdle = 10;
+  private int maxIdle = 10;
 
-    private int minIdle = 10;
+  private int minIdle = 10;
 
-    private boolean testOnBorrow = true;
+  private boolean testOnBorrow = true;
 
-    private boolean testOnCreate = false;
+  private boolean testOnCreate = false;
 
-    private boolean testOnReturn = true;
+  private boolean testOnReturn = true;
 
-    private boolean testWhileIdle = false;
+  private boolean testWhileIdle = false;
 }

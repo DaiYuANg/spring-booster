@@ -1,7 +1,7 @@
 /* (C)2023*/
-package org.spring.boost.cli.service;
+package org.spring.boost.cli.service.impl;
 
-import com.squareup.javapoet.*;
+import com.palantir.javapoet.*;
 import freemarker.template.Configuration;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class CodeGenerateService {
+public class PoetGenerateService {
 
   private final Configuration configuration;
 

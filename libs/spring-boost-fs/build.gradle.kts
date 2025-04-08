@@ -5,5 +5,6 @@ dependencies {
   api(libs.apache.common.codec)
   api(libs.tika.core)
   api(libs.tika.parsers)
+  implementation(libs.vavr)
 }
 

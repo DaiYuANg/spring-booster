@@ -43,6 +43,7 @@ dependencies {
   implementation(libs.record.builder.core)
   annotationProcessor(libs.record.builder.processor)
 
+  implementation(gradleApi())
   implementation(libs.maven.model)
   implementation(libs.maven.embeder)
   implementation(libs.gradle.tooling.api)

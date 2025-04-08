@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.spring.boost.cli.service;
+package org.spring.boost.cli.service.impl;
 
 import java.io.FileReader;
 import java.nio.file.Path;

@@ -1,4 +1,3 @@
-
 dependencies {
   implementation(libs.minio)
   implementation(libs.minio.admin)
@@ -9,6 +8,7 @@ dependencies {
   implementation(libs.okHttp)
   implementation(projects.libs.springBoostCore)
   implementation(libs.fastutil)
+  compileOnly(projects.libs.springBoostFs)
   testImplementation(libs.testcontainers.minio)
 }
 

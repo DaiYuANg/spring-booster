@@ -15,14 +15,14 @@ import org.springframework.context.annotation.DependsOn;
 @AutoConfigureAfter(MinioBeanFactoryAutoConfigure.class)
 public class MinioActuatorAutoConfigure {
 
-    @Bean
-    ImmutableMap<String, MinioTemplate> templateMap(@NotNull BeanRegistry beanRegistry) {
-        return beanRegistry.getBeanOfTypeImmutable(MinioTemplate.class);
-    }
+  @Bean
+  ImmutableMap<String, MinioTemplate> templateMap(@NotNull BeanRegistry beanRegistry) {
+    return beanRegistry.getBeanOfTypeImmutable(MinioTemplate.class);
+  }
 
-    @Bean
-    @DependsOn("minioTemplateBeanFactoryPostProcessor")
-    MinioEndpoint minioEndpoint(ImmutableMap<String, MinioTemplate> templates) {
-        return MinioEndpoint.builder().templates(templates).build();
-    }
+  @Bean
+  @DependsOn("minioTemplateBeanFactoryPostProcessor")
+  MinioEndpoint minioEndpoint(ImmutableMap<String, MinioTemplate> templates) {
+    return MinioEndpoint.builder().templates(templates).build();
+  }
 }

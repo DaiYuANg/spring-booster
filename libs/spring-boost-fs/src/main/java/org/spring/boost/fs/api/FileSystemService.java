@@ -12,7 +12,6 @@ public interface FileSystemService {
 
   void deleteFile(String path) throws IOException;
 
-  // 新增的去重检查方法
   boolean isFileExists(String hash) throws IOException;
 
   FileMetadata getFileMetadata(String path) throws IOException;

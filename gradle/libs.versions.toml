@@ -93,7 +93,7 @@ bytebuddy = { group = "net.bytebuddy", name = "byte-buddy" }
 data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 guava = { group = "com.google.guava", name = "guava", version = "33.4.6-jre" }
 mica-auto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
-javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
+javapoet = { group = "com.palantir.javapoet", name = "javapoet", version = "0.6.0" }
 agrona = { group = "org.agrona", name = "agrona", version = "2.1.0" }
 
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }

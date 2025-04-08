@@ -1,5 +1,5 @@
 /* (C)2024*/
-package org.spring.boost.cli.service;
+package org.spring.boost.cli.service.impl;
 
 import java.util.logging.Level;
 import java.util.stream.Stream;
@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.cli.configuration.DatasourceConfigurationProperties;
+import org.spring.boost.cli.service.DbSchemaService;
 import org.springframework.stereotype.Service;
 import schemacrawler.schema.Catalog;
 import schemacrawler.schema.Schema;

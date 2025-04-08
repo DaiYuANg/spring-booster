@@ -62,7 +62,7 @@ include("libs:spring-boost-captcha")
 
 include("tools:spring-boost-cli")
 
-include("examples:spring-boost-application")
+include("samples:spring-boost-application")
 
 include("libs:spring-boost-mutiny")
 
@@ -77,4 +77,5 @@ include("tools:spring-boost-maven-plugin")
 include("libs:spring-boost-fs")
 include("libs:spring-boost-fs-local")
 include("libs:spring-boost-fs-minio")
-
+include("samples:spring-boost-sample-fs")
+findProject(":samples:spring-boost-sample-fs")?.name = "spring-boost-sample-fs"
