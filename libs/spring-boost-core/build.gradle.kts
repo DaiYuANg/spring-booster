@@ -1,7 +1,3 @@
-plugins {
-  `java-library`
-}
-
 dependencies {
   api(libs.apache.common.lang3)
   api(libs.guava)

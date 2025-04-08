@@ -47,14 +47,12 @@ true.also { gradle.startParameter.isBuildCacheEnabled = it }
 spotless {
   format("misc") {
     target("*.md", ".gitignore", "**/*.java")
-    indentWithSpaces(2)
     endWithNewline()
   }
   java {
     target("**/*.java")
     importOrder()
     googleJavaFormat()
-    indentWithSpaces(2)
     removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
     formatAnnotations()
       .addTypeAnnotation("Empty")
@@ -65,12 +63,10 @@ spotless {
   kotlinGradle {
     target("**/*.gradle.kts") // default target for kotlinGradle
     ktfmt() // or ktfmt() or prettier()
-    indentWithSpaces(2)
   }
   kotlin {
     target("**/*.kt")
     ktfmt()
     ktlint()
-    indentWithSpaces(2)
   }
 }
