@@ -46,7 +46,7 @@ public class InputStreamWrapper extends InputStream {
   }
 
   @Override
-  public int read(byte[] b, int off, int len) throws IOException {
+  public int read(byte @NotNull [] b, int off, int len) throws IOException {
     return readBytes(len);
   }
 

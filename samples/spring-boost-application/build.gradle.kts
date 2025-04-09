@@ -1,6 +1,7 @@
 plugins {
   java
   application
+  alias(libs.plugins.frontend)
 }
 
 val mainClassPath = "org.spring.boost.example.ExampleApplication"
@@ -33,4 +34,10 @@ dependencies {
 
   compileOnly(libs.record.builder.core)
   annotationProcessor(libs.record.builder.processor)
+}
+
+frontend{
+  System.err.println(project.layout.projectDirectory.dir("src/main/webui").asFile.absoluteFile)
+  nodeVersion.set("22.14.0")
+//  packageJsonDirectory.set()
 }

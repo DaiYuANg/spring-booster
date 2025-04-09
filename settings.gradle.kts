@@ -79,3 +79,5 @@ include("libs:spring-boost-fs-local")
 include("libs:spring-boost-fs-minio")
 include("samples:spring-boost-sample-fs")
 findProject(":samples:spring-boost-sample-fs")?.name = "spring-boost-sample-fs"
+include("samples:spring-boost-sample-rbac")
+findProject(":samples:spring-boost-sample-rbac")?.name = "spring-boost-sample-rbac"
