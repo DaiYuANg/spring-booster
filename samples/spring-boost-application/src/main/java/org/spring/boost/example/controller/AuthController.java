@@ -31,4 +31,11 @@ public class AuthController {
     authService.register(userForm);
     return "ok";
   }
+
+  @PostMapping("/login")
+  @IgnoreAuthentication
+  public String login(@RequestBody UserForm userForm) {
+    log.atInfo().log("login:{}", userForm);
+    return authService.login(userForm);
+  }
 }

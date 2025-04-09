@@ -1,11 +1,13 @@
-import type { AuthProvider } from "@refinedev/core";
+import {AuthProvider, useLogin} from "@refinedev/core";
+import {axiosInstance} from "@refinedev/simple-rest";
 
 export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthProvider = {
-  login: async ({ username, email, password }) => {
+  login: async ({username, email, password}) => {
     if ((username || email) && password) {
-      localStorage.setItem(TOKEN_KEY, username);
+      let r = await axiosInstance.post("/api/auth/login", {username, email, password})
+      localStorage.setItem(TOKEN_KEY, r.data);
       return {
         success: true,
         redirectTo: "/",
@@ -54,6 +56,6 @@ export const authProvider: AuthProvider = {
   },
   onError: async (error) => {
     console.error(error);
-    return { error };
+    return {error};
   },
 };

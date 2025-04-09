@@ -52,7 +52,7 @@ public class JwtServiceImpl implements JwtService {
   }
 
   public <T> T extractClaim(String token, @NotNull Function<Claims, T> claimsResolver) {
-    final Claims claims = extractAllClaims(token);
+    val claims = extractAllClaims(token);
     return claimsResolver.apply(claims);
   }
 
@@ -73,7 +73,6 @@ public class JwtServiceImpl implements JwtService {
 
   @Override
   public String generateToken(Authentication authentication) {
-
 //    return generateToken(new HashMap<>(), userDetails);
     return "null";
   }

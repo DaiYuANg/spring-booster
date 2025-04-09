@@ -1,6 +1,6 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import {Authenticated, GitHubBanner, Refine} from "@refinedev/core";
+import {DevtoolsPanel, DevtoolsProvider} from "@refinedev/devtools";
+import {RefineKbar, RefineKbarProvider} from "@refinedev/kbar";
 
 import {
   ErrorComponent,
@@ -17,71 +17,83 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import { authProvider } from "./authProvider";
-import { AppIcon } from "./components/app-icon";
-import { Header } from "./components/header";
-import { ColorModeContextProvider } from "./contexts/color-mode";
-import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "./pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
+import {BrowserRouter, Outlet, Route, Routes} from "react-router";
+import {authProvider} from "./authProvider";
+import {AppIcon} from "./components/app-icon";
+import {Header} from "./components";
+import {ColorModeContextProvider} from "./contexts/color-mode";
+import {ForgotPassword} from "./pages/forgotPassword";
+import {Login} from "./pages/login";
+import {Register} from "./pages/register";
+import {UsersCreate, UsersEdit, UsersList, UsersShow} from "./pages/users";
+import {dataProvider} from "./rest-data-provider";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      <GitHubBanner/>
       <RefineKbarProvider>
         <ColorModeContextProvider>
-          <CssBaseline />
-          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <CssBaseline/>
+          <GlobalStyles styles={{html: {WebkitFontSmoothing: "auto"}}}/>
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider("/api")}
                 notificationProvider={useNotificationProvider}
                 authProvider={authProvider}
                 routerProvider={routerBindings}
                 resources={[
+                  // {
+                  //   name: "blog_posts",
+                  //   list: "/blog-posts",
+                  //   create: "/blog-posts/create",
+                  //   edit: "/blog-posts/edit/:id",
+                  //   show: "/blog-posts/show/:id",
+                  //   meta: {
+                  //     canDelete: true,
+                  //   },
+                  // }, {
+                  //   name: "categories",
+                  //   list: "/categories",
+                  //   create: "/categories/create",
+                  //   edit: "/categories/edit/:id",
+                  //   show: "/categories/show/:id",
+                  //   meta: {
+                  //     canDelete: true,
+                  //   },
+                  // },
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                  {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                ]}
+                    name: "permission",
+                    list: "/permission",
+                    create: "/permission/create",
+                    edit: "/permission/edit/:id",
+                    show: "/permission/show/:id"
+                  }, {
+                    name: "permission-group",
+                    list: "/permission-group",
+                    create: "/permission-group/create",
+                    edit: "/permission-group/edit/:id",
+                    show: "/permission-group/show/:id"
+                  }, {
+                    name: "roles",
+                    list: "/roles",
+                    create: "/roles/create",
+                    edit: "/roles/edit/:id",
+                    show: "/roles/show/:id"
+                  }, {
+                    name: "users",
+                    list: "/users",
+                    create: "/users/create",
+                    edit: "/users/edit/:id",
+                    show: "/users/show/:id"
+                  }]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                   useNewQueryKeys: true,
                   projectId: "zBetKf-vifhRn-nKz14O",
-                  title: { text: "Refine Project", icon: <AppIcon /> },
+                  title: {text: "Refine Project", icon: <AppIcon/>},
                 }}
               >
                 <Routes>
@@ -89,56 +101,62 @@ function App() {
                     element={
                       <Authenticated
                         key="authenticated-inner"
-                        fallback={<CatchAllNavigate to="/login" />}
+                        fallback={<CatchAllNavigate to="/login"/>}
                       >
                         <ThemedLayoutV2 Header={Header}>
-                          <Outlet />
+                          <Outlet/>
                         </ThemedLayoutV2>
                       </Authenticated>
                     }
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="blog_posts" />}
+                      element={<NavigateToResource resource="users"/>}
                     />
-                    <Route path="/blog-posts">
-                      <Route index element={<BlogPostList />} />
-                      <Route path="create" element={<BlogPostCreate />} />
-                      <Route path="edit/:id" element={<BlogPostEdit />} />
-                      <Route path="show/:id" element={<BlogPostShow />} />
+                    {/*<Route path="/blog-posts">*/}
+                    {/*  <Route index element={<BlogPostList/>}/>*/}
+                    {/*  <Route path="create" element={<BlogPostCreate/>}/>*/}
+                    {/*  <Route path="edit/:id" element={<BlogPostEdit/>}/>*/}
+                    {/*  <Route path="show/:id" element={<BlogPostShow/>}/>*/}
+                    {/*</Route>*/}
+                    {/*<Route path="/categories">*/}
+                    {/*  <Route index element={<CategoryList/>}/>*/}
+                    {/*  <Route path="create" element={<CategoryCreate/>}/>*/}
+                    {/*  <Route path="edit/:id" element={<CategoryEdit/>}/>*/}
+                    {/*  <Route path="show/:id" element={<CategoryShow/>}/>*/}
+                    {/*</Route>*/}
+                    <Route path="/users">
+                      <Route index element={<UsersList/>}/>
+                      <Route path="create" element={<UsersCreate/>}/>
+                      <Route path="edit/:id" element={<UsersEdit/>}/>
+                      <Route path="show/:id" element={<UsersShow/>}/>
                     </Route>
-                    <Route path="/categories">
-                      <Route index element={<CategoryList />} />
-                      <Route path="create" element={<CategoryCreate />} />
-                      <Route path="edit/:id" element={<CategoryEdit />} />
-                      <Route path="show/:id" element={<CategoryShow />} />
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
+                    <Route path="*" element={<ErrorComponent/>}/>
                   </Route>
                   <Route
                     element={
                       <Authenticated
                         key="authenticated-outer"
-                        fallback={<Outlet />}
+                        fallback={<Outlet/>}
                       >
-                        <NavigateToResource />
+                        <NavigateToResource/>
                       </Authenticated>
                     }
                   >
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<Register/>}/>
                     <Route
                       path="/forgot-password"
-                      element={<ForgotPassword />}
+                      element={<ForgotPassword/>}
                     />
                   </Route>
                 </Routes>
 
-                <RefineKbar />
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
+                <RefineKbar/>
+                <UnsavedChangesNotifier/>
+                <DocumentTitleHandler/>
               </Refine>
-              <DevtoolsPanel />
+              <DevtoolsPanel/>
             </DevtoolsProvider>
           </RefineSnackbarProvider>
         </ColorModeContextProvider>

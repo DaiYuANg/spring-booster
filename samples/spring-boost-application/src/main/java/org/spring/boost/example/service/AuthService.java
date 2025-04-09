@@ -7,4 +7,6 @@ public interface AuthService {
   CaptchaResult captcha();
 
   void register(UserForm userForm);
+
+  String login(UserForm userForm);
 }

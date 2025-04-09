@@ -1,12 +1,14 @@
 /* (C)2023*/
 package org.spring.boost.authentication.jwt.filter;
 
+import io.vavr.control.Try;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
@@ -47,13 +49,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     log.atTrace().log("auth header:{}", authHeader);
     val jwt = authHeader.substring(7);
     val username = jwtService.extractUsername(jwt);
-    val authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication.isAuthenticated()) filterChain.doFilter(request, response);
-    val userDetails = userDetailsService.loadUserByUsername(username);
-    val authToken =
-      new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-    SecurityContextHolder.getContext().setAuthentication(authToken);
+    Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+      .ifPresentOrElse(authentication -> {
+        log.atTrace().log("authenticated user:{}", username);
+      }, () -> {
+        val userDetails = userDetailsService.loadUserByUsername(username);
+        log.atTrace().log("user details:{}", userDetails);
+        val authToken =
+          new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authToken);
+      });
+//    val authentication = Optional.ofNullable()SecurityContextHolder.getContext().getAuthentication();
+//    if (authentication.isAuthenticated()) filterChain.doFilter(request, response);
+//    val userDetails = userDetailsService.loadUserByUsername(username);
+//    log.atTrace().log("user details:{}", userDetails);
+//    val authToken =
+//      new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+//    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//    SecurityContextHolder.getContext().setAuthentication(authToken);
     filterChain.doFilter(request, response);
   }
 }

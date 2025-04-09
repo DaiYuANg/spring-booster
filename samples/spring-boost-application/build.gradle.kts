@@ -37,7 +37,6 @@ dependencies {
 }
 
 frontend{
-  System.err.println(project.layout.projectDirectory.dir("src/main/webui").asFile.absoluteFile)
   nodeVersion.set("22.14.0")
-//  packageJsonDirectory.set()
+  packageJsonDirectory.set(project.layout.projectDirectory.dir("src/main/webui"))
 }
