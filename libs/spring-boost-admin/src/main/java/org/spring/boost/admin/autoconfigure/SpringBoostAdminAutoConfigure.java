@@ -1,5 +1,6 @@
 package org.spring.boost.admin.autoconfigure;
 
+import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.mutiny.core.Vertx;
 import io.vertx.mutiny.core.http.HttpServer;
 import io.vertx.mutiny.ext.web.Router;
@@ -13,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @AutoConfiguration
 @Slf4j
@@ -31,7 +34,12 @@ public class SpringBoostAdminAutoConfigure {
 
   @Bean
   TemplateEngine thymeleafTemplateEngine(Vertx vertx) {
-    return ThymeleafTemplateEngine.create(vertx);
+    val engine = ThymeleafTemplateEngine.create(vertx);
+    val templateEngine = (org.thymeleaf.TemplateEngine) engine.unwrap();
+    val res = new ClassLoaderTemplateResolver();
+    res.setTemplateMode(TemplateMode.HTML);
+    templateEngine.setTemplateResolver(res);
+    return engine;
   }
 
   @Bean
@@ -43,7 +51,7 @@ public class SpringBoostAdminAutoConfigure {
   Router router(Vertx vertx, TemplateHandler templateHandler) {
     val router = Router.router(vertx);
     router.route().handler(BodyHandler.create());
-    router.get("/ui/*").handler(templateHandler);
+    router.get("/*").handler(templateHandler);
     return router;
   }
 
@@ -51,5 +59,4 @@ public class SpringBoostAdminAutoConfigure {
   WebClient webClient(Vertx vertx) {
     return WebClient.create(vertx);
   }
-
 }

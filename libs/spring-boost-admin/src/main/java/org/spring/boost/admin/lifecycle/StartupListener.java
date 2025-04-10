@@ -20,8 +20,8 @@ public class StartupListener implements ApplicationListener<ApplicationStartedEv
     val ctx = event.getApplicationContext();
     val server = ctx.getBean(HttpServer.class);
     val router = ctx.getBean(Router.class);
-    server.requestHandler(router).listen(10000).subscribe().with(t->{
-      log.atInfo().log("Admin server started on port 10000");
+    server.requestHandler(router).listen(10000).subscribe().with(t -> {
+      log.atInfo().log("Admin server started on port 10000:{}", "http://localhost:10000");
     });
   }
 }

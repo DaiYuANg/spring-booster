@@ -20,6 +20,9 @@ spring:
         - pattern: /auth/register
           method:
             - GET
+        - pattern: /actuator/**
+          method:
+            - GET
     fs:
       local:
         configs:
