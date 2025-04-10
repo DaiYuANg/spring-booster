@@ -99,10 +99,6 @@ public class AuthenticationAutoConfiguration implements WebSecurityCustomizer {
       log.atInfo().log("Authorizing requests");
       authorizeHttpRequestFeatureInstallers
         .forEach(installer -> installer.install(req));
-//      req.requestMatchers("/swagger-ui/**", "/v3/api-docs*/**", "/swagger-ui.html")
-//        .permitAll()
-//        .anyRequest()
-//        .authenticated();
       req.anyRequest().authenticated();
     });
     return http.build();

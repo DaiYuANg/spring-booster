@@ -60,7 +60,9 @@ public class BeanRegisterAutoConfiguration {
 
   @Bean
   UserAgentAnalyzer userAgentAnalyzer() {
-    val builder = UserAgentAnalyzer.newBuilder().hideMatcherLoadStats().withCache(10000);
+    val builder = UserAgentAnalyzer.newBuilder().hideMatcherLoadStats().withCache(10000)
+      .delayInitialization()
+      ;
     return builder.build();
   }
 

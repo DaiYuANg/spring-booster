@@ -70,6 +70,9 @@ include("document")
 
 include("bom:spring-boost-bom")
 
+include("samples:spring-boost-sample-fs")
+include("samples:spring-boost-sample-rbac")
+
 include("tools:spring-boost-annotation-codegen")
 include("tools:spring-boost-annotation")
 include("tools:spring-boost-gradle-plugin")
@@ -77,7 +80,4 @@ include("tools:spring-boost-maven-plugin")
 include("libs:spring-boost-fs")
 include("libs:spring-boost-fs-local")
 include("libs:spring-boost-fs-minio")
-include("samples:spring-boost-sample-fs")
-findProject(":samples:spring-boost-sample-fs")?.name = "spring-boost-sample-fs"
-include("samples:spring-boost-sample-rbac")
-findProject(":samples:spring-boost-sample-rbac")?.name = "spring-boost-sample-rbac"
+include("libs:spring-boost-admin")

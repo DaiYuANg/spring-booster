@@ -18,8 +18,7 @@ dependencies {
   implementation(projects.libs.springBoostCore)
   implementation(projects.libs.springBoostJpa)
   implementation(projects.libs.springBoostRbac)
-
-
+  implementation(projects.libs.springBoostAdmin)
   implementation(libs.spring.boot.starter.logging)
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
 

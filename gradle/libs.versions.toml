@@ -27,6 +27,8 @@ vavr = "0.10.6"
 recordBuilder = "44"
 immutables = "2.10.1"
 javaparser = "3.26.4"
+vertx = "4.5.14"
+mutinyVertx = "3.18.1"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
@@ -229,3 +231,13 @@ spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-p
 lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.14" }
 plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }
+
+vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
+vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
+vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
+vertx-web-templ-thymeleaf = { group = "io.vertx", name = "vertx-web-templ-thymeleaf", version.ref = "vertx" }
+vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
+mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version.ref = "mutinyVertx" }
+mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
+mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
+mutiny-vertx-web-templ-thymeleaf = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-templ-thymeleaf", version.ref = "mutinyVertx" }
