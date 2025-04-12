@@ -17,7 +17,7 @@ import org.spring.boost.persistence.base.BaseEntity;
 @Setter
 @Entity
 @ToString(callSuper = true)
-public abstract class SysPermission extends BaseEntity {
+public abstract class RBACPermission extends BaseEntity {
   @Column(length = 200, nullable = false)
   @Comment("资源名称")
   private String name;

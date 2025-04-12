@@ -8,6 +8,16 @@ val mainClassPath = "org.spring.boost.example.ExampleApplication"
 
 apply<SpringBootProject>()
 
+configurations.all {
+  resolutionStrategy {
+    eachDependency {
+      if (requested.group == "org.eclipse.jetty") {
+        useVersion("11.0.24")
+      }
+    }
+  }
+}
+
 dependencies {
   implementation(enforcedPlatform(projects.bom.springBoostBom))
   implementation(projects.libs.springBoostMutiny)
@@ -24,9 +34,10 @@ dependencies {
 
   implementation(libs.h2)
   compileOnly(libs.spring.boot.devtools)
-  implementation(libs.spring.boot.starter.web)
-//  implementation(libs.spring.boot.admin.starter.server)
-//  implementation(libs.spring.boot.admin.starter.client)
+  implementation(libs.spring.boot.starter.web){
+    exclude(group = "org.eclipse.jetty")
+    exclude(group = "org.eclipse.jetty.websocket")
+  }
 
   implementation(libs.mapstruct)
   annotationProcessor(libs.mapstruct.annotation.processor)
@@ -35,7 +46,7 @@ dependencies {
   annotationProcessor(libs.record.builder.processor)
 }
 
-frontend{
+frontend {
   nodeVersion.set("22.14.0")
   packageJsonDirectory.set(project.layout.projectDirectory.dir("src/main/webui"))
 }

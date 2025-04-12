@@ -52,7 +52,7 @@ public class SysRole<P extends SysPermissionGroup> extends BaseEntity {
   @ToString.Exclude
   private Set<P> permissionGroups;
 
-  public Set<SysPermission> getPermissions() {
+  public Set<RBACPermission> getPermissions() {
     return getPermissionGroups().stream()
       .map(SysPermissionGroup::getPermissions)
       .flatMap(Set::stream)

@@ -7,12 +7,8 @@ import lombok.ToString;
 import org.hibernate.annotations.Comment;
 import org.hibernate.envers.NotAudited;
 import org.spring.boost.persistence.base.BaseEntity;
-import org.spring.boost.rbac.constant.TableNaming;
 
 import java.util.Set;
-
-import static org.spring.boost.rbac.constant.FieldNaming.PERMISSION_GROUP_ID;
-import static org.spring.boost.rbac.constant.FieldNaming.PERMISSION_ID;
 
 @ToString
 @Getter
@@ -46,5 +42,5 @@ public abstract class SysPermissionGroup extends BaseEntity {
 //    inverseForeignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
   @ToString.Exclude
   @NotAudited
-  private Set<SysPermission> permissions;
+  private Set<RBACPermission> permissions;
 }

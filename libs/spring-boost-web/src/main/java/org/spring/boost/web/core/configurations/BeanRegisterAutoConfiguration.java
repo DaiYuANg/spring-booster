@@ -14,7 +14,6 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @AutoConfiguration
@@ -60,9 +59,11 @@ public class BeanRegisterAutoConfiguration {
 
   @Bean
   UserAgentAnalyzer userAgentAnalyzer() {
-    val builder = UserAgentAnalyzer.newBuilder().hideMatcherLoadStats().withCache(10000)
-      .delayInitialization()
-      ;
+    val builder = UserAgentAnalyzer.newBuilder()
+      .hideMatcherLoadStats()
+      .showMinimalVersion()
+      .withCache(10000)
+      .delayInitialization();
     return builder.build();
   }
 

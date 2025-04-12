@@ -9,9 +9,7 @@ import org.spring.boost.authentication.properties.AuthenticationConfigurationPro
 import org.spring.boost.authentication.properties.CORSConfigurationProperties;
 import org.spring.boost.authentication.properties.CSRFConfigurationProperties;
 import org.spring.boost.core.api.BeanRegistry;
-import org.springdoc.core.properties.SwaggerUiConfigProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -44,12 +42,12 @@ public class BundleFeatureAutoConfiguration {
     return new CORSConfigureSecurityFeatureInstaller(configurationProperties);
   }
 
-  @ConditionalOnClass(SwaggerUiConfigProperties.class)
+  @ConditionalOnClass(name = "org.springdoc.core.properties.SwaggerUiConfigProperties")
   @Bean
   SwaggerUISupportFeatureInstaller swaggerUISupportFeatureInstaller(
-    SwaggerUiConfigProperties swaggerUiConfigProperties
+    BeanRegistry beanRegistry
   ) {
-    return new SwaggerUISupportFeatureInstaller(swaggerUiConfigProperties);
+    return new SwaggerUISupportFeatureInstaller(beanRegistry);
   }
 
   @Bean

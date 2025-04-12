@@ -66,7 +66,7 @@ include("samples:spring-boost-application")
 
 include("libs:spring-boost-mutiny")
 
-include("document")
+//include("document")
 
 include("bom:spring-boost-bom")
 

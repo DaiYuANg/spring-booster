@@ -6,6 +6,6 @@ dependencies {
   api(libs.apache.common.io)
   api(libs.hutool.http)
   api(libs.useragent)
-  implementation(libs.springdoc.openapi.starter.webmvc.ui)
+//  implementation(libs.springdoc.openapi.starter.webmvc.ui)
   testImplementation(libs.spring.boot.starter.web)
 }

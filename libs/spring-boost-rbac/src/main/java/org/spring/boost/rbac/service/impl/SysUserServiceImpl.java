@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.persistence.model.PageQuery;
 import org.spring.boost.rbac.converter.SysUserConverter;
-import org.spring.boost.rbac.entity.SysUser;
+import org.spring.boost.rbac.entity.RBACUser;
 import org.spring.boost.rbac.repository.SysUserRepository;
 import org.spring.boost.rbac.service.SysUserService;
 import org.springframework.data.domain.Page;
@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @RequiredArgsConstructor
 @Slf4j
-public class SysUserServiceImpl<T extends SysUser> implements SysUserService {
+public class SysUserServiceImpl<T extends RBACUser> implements SysUserService {
 
   private final SysUserRepository<T> sysUserRepository;
 
