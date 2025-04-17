@@ -5,8 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import net.dreamlu.mica.auto.annotation.AutoListener;
 import org.jetbrains.annotations.NotNull;
-import org.spring.boost.admin.controller.CPUUsageHandler;
-import org.spring.boost.admin.controller.SystemUsageWebsocket;
+import org.spring.boost.admin.api.RouteBinder;
 import org.spring.boost.core.api.BeanRegistry;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -27,7 +26,7 @@ public class StartupListener implements ApplicationListener<ContextRefreshedEven
   }
 
   private void bindRoute(@NotNull Javalin app, @NotNull BeanRegistry beanRegistry) {
-    app.get("/api/cpu/usage", beanRegistry.get(CPUUsageHandler.class));
-    app.ws("/system/usage", beanRegistry.get(SystemUsageWebsocket.class));
+    val controllers = beanRegistry.getBeanDistinct(RouteBinder.class);
+    controllers.forEach(controller-> controller.binding(app));
   }
 }

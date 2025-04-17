@@ -58,6 +58,9 @@ importers:
       react-router:
         specifier: ^7.0.2
         version: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-use-websocket:
+        specifier: ^4.13.0
+        version: 4.13.0
       recharts:
         specifier: '2'
         version: 2.15.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -3690,6 +3693,9 @@ packages:
     peerDependencies:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
+
+  react-use-websocket@4.13.0:
+    resolution: {integrity: sha512-anMuVoV//g2N76Wxqvqjjo1X48r9Np3y1/gMl7arX84tAPXdy5R7sB5lO5hvCzQRYjqXwV8XMAiEBOUbyrZFrw==}
 
   react-virtual@2.10.4:
     resolution: {integrity: sha512-Ir6+oPQZTVHfa6+JL9M7cvMILstFZH/H3jqeYeKI4MSUX+rIruVwFC6nGVXw9wqAw8L0Kg2KvfXxI85OvYQdpQ==}
@@ -8096,6 +8102,8 @@ snapshots:
       prop-types: 15.8.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
+
+  react-use-websocket@4.13.0: {}
 
   react-virtual@2.10.4(react@18.3.1):
     dependencies:

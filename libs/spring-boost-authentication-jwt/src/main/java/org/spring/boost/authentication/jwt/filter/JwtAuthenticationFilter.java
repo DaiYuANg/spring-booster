@@ -50,16 +50,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     val jwt = authHeader.substring(7);
     val username = jwtService.extractUsername(jwt);
     Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
-      .ifPresentOrElse(authentication -> {
-        log.atTrace().log("authenticated user:{}", username);
-      }, () -> {
-        val userDetails = userDetailsService.loadUserByUsername(username);
-        log.atTrace().log("user details:{}", userDetails);
-        val authToken =
-          new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authToken);
-      });
+      .ifPresentOrElse(authentication ->
+          log.atTrace().log("authenticated user:{}", username),
+        () -> {
+          val userDetails = userDetailsService.loadUserByUsername(username);
+          log.atTrace().log("user details:{}", userDetails);
+          val authToken =
+            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+          authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+          SecurityContextHolder.getContext().setAuthentication(authToken);
+        });
 //    val authentication = Optional.ofNullable()SecurityContextHolder.getContext().getAuthentication();
 //    if (authentication.isAuthenticated()) filterChain.doFilter(request, response);
 //    val userDetails = userDetailsService.loadUserByUsername(username);
