@@ -2,20 +2,12 @@ plugins {
   alias(libs.plugins.frontend)
 }
 
-group = "org.spring.boost.admin"
-
-
+group = "io.github.daiyuang.spring.boost.admin"
+version = "0.1"
 
 dependencies {
   implementation(projects.libs.springBoostMutiny)
-//  implementation(libs.vertx.core)
   implementation(projects.libs.springBoostCore)
-//  testImplementation(libs.vertx.junit5)
-//  implementation(libs.vertx.web)
-//  implementation(libs.vertx.web.client)
-//  implementation(libs.mutiny.vertx)
-//  implementation(libs.mutiny.vertx.web.client)
-//  implementation(libs.mutiny.vertx.web)
   implementation(libs.javalin)
   implementation("org.eclipse.jetty:jetty-server:11.0.24")
   implementation("org.eclipse.jetty:jetty-servlet:11.0.24")

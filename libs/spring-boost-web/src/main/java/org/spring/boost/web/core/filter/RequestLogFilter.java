@@ -1,10 +1,11 @@
 package org.spring.boost.web.core.filter;
 
-import cn.hutool.extra.servlet.ServletUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+import org.spring.boost.web.core.configurations.WebConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
@@ -16,11 +17,14 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
  */
 @Configuration
 @Slf4j
+@RequiredArgsConstructor
 public class RequestLogFilter extends CommonsRequestLoggingFilter {
+
+  private final WebConfigurationProperties webConfigurationProperties;
 
   @Override
   protected boolean shouldLog(@NotNull HttpServletRequest request) {
-    return this.logger.isInfoEnabled();
+    return this.logger.isInfoEnabled() && webConfigurationProperties.getEnabledRequestLog();
   }
 
   @Override

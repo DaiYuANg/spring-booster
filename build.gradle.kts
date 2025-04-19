@@ -1,6 +1,7 @@
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jreleaser.gradle.plugin.JReleaserPlugin
 
 plugins {
   idea
@@ -9,6 +10,7 @@ plugins {
   alias(libs.plugins.spotless)
   alias(libs.plugins.semver)
   alias(libs.plugins.dokka)
+  alias(libs.plugins.jrelease)
 }
 
 idea {
@@ -24,7 +26,6 @@ subprojects {
   tasks.dokkaHtml {
     outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
   }
-
   // configure all format tasks at once
   tasks.withType<DokkaTaskPartial>().configureEach {
     dokkaSourceSets.configureEach {

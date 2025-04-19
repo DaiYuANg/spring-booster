@@ -14,7 +14,7 @@ import org.springframework.web.servlet.resource.ResourceResolverChain;
 
 public class IndexHtmlResolver extends PathResourceResolver {
 
-  private final String index = "index.html";
+  private static final String index = "index.html";
 
   @Override
   protected Resource resolveResourceInternal(

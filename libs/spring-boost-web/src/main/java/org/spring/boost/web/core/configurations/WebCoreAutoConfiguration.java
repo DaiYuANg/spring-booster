@@ -7,6 +7,7 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.web.core.feature.InterceptorsFeatureInstaller;
@@ -16,17 +17,14 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @AutoConfiguration
 @Slf4j
-@EnableConfigurationProperties(WebCoreConfigurationProperties.class)
+@EnableConfigurationProperties(WebConfigurationProperties.class)
 @RequiredArgsConstructor
 public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
@@ -52,7 +50,7 @@ public class WebCoreAutoConfiguration implements WebMvcConfigurer {
 
   @Override
   public void configureMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
-    MappingJackson2HttpMessageConverter jackson2HttpMessageConverter =
+    val jackson2HttpMessageConverter =
       new MappingJackson2HttpMessageConverter(objectMapper);
     converters.add(jackson2HttpMessageConverter);
   }

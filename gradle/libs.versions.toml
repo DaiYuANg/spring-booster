@@ -38,6 +38,7 @@ spotless = { id = "com.diffplug.spotless", version = "7.0.3" }
 semver = { id = "com.xenoterracide.gradle.semver", version = "0.12.1" }
 graalvm-native = { id = "org.graalvm.buildtools.native", version = "0.10.6" }
 frontend = { id = "org.siouan.frontend-jdk21", version = "10.0.0" }
+jrelease = { id = "org.jreleaser", version = "1.17.0" }
 asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctor-gem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
@@ -221,15 +222,7 @@ gradle-tooling-api = { group = "org.gradle", name = "gradle-tooling-api", versio
 
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
-springBootDependencyManagementPlugin = { group = "io.spring.gradle", name = "dependency-management-plugin", version.ref = "springDependencyManagement" }
-spotlessPlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version = "6.23.3" }
-semverPlugin = { group = "com.xenoterracide", name = "gradle-semver", version = "0.9.7" }
-dependencycheckPlugin = { group = "org.owasp", name = "dependency-check-gradle", version = "9.0.9" }
-jreleaserPlugin = { group = "org.jreleaser", name = "jreleaser-gradle-plugin", version = "1.15.0" }
-jmhPlugin = { group = "me.champeau.jmh", name = "jmh-gradle-plugin", version = "0.7.2" }
-spotbugsPlugin = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.8" }
 lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.14" }
-plantumlPlugin = { group = "io.gitlab.plunts", name = "plantuml-gradle-plugin", version = "2.1.6" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }
 
 vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }

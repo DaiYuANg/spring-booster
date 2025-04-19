@@ -60,14 +60,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
           authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
           SecurityContextHolder.getContext().setAuthentication(authToken);
         });
-//    val authentication = Optional.ofNullable()SecurityContextHolder.getContext().getAuthentication();
-//    if (authentication.isAuthenticated()) filterChain.doFilter(request, response);
-//    val userDetails = userDetailsService.loadUserByUsername(username);
-//    log.atTrace().log("user details:{}", userDetails);
-//    val authToken =
-//      new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//    SecurityContextHolder.getContext().setAuthentication(authToken);
     filterChain.doFilter(request, response);
   }
 }

@@ -9,11 +9,13 @@ import org.springframework.http.ResponseEntity;
 @ConfigurationProperties(prefix = "spring")
 @Getter
 @Setter
-public class WebCoreConfigurationProperties {
-    /**
-     * Global return value struct
-     */
-    private Class<?> returnResult = ResponseEntity.class;
+public class WebConfigurationProperties {
+  /**
+   * Global return value struct
+   */
+  private Class<?> returnResult = ResponseEntity.class;
 
-    private Boolean enableReusableRequest = false;
+  private Boolean enableReusableRequest = false;
+
+  private Boolean enabledRequestLog;
 }

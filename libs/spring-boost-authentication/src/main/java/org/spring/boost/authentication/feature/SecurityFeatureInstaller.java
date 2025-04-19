@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 /**
  * @author daiyuang
- * @date 2024-12-24
  */
 public interface SecurityFeatureInstaller extends FeatureInstaller<HttpSecurity> {
 

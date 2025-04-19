@@ -30,11 +30,6 @@ public class HibernateSnowflakeIdGenerator implements IdentifierGenerator {
   }
 
   @Override
-  public void initialize(SqlStringGenerationContext context) {
-//    setInstance(generator);
-  }
-
-  @Override
   public Object generate(SharedSessionContractImplementor session, Object object) {
     return generator.nextId();
   }
