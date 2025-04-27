@@ -16,5 +16,4 @@ public abstract class RBACUser extends BaseEntity {
   private String username;
 
   private String password;
-
 }

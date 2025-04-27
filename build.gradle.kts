@@ -19,8 +19,7 @@ idea {
 }
 
 subprojects {
-
-  version = "0.1.1"
+  version = "0.1.2"
   apply(plugin = "org.jetbrains.dokka")
   tasks.dokkaHtml {
     outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
@@ -61,8 +60,8 @@ spotless {
     licenseHeader("/* (C)\$YEAR*/")
   }
   kotlinGradle {
-    target("**/*.gradle.kts") // default target for kotlinGradle
-    ktfmt() // or ktfmt() or prettier()
+    target("**/*.gradle.kts")
+    ktfmt()
   }
   kotlin {
     target("**/*.kt")
