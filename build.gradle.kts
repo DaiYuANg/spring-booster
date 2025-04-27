@@ -1,7 +1,5 @@
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
-import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import org.jreleaser.gradle.plugin.JReleaserPlugin
 
 plugins {
   idea
@@ -10,7 +8,7 @@ plugins {
   alias(libs.plugins.spotless)
   alias(libs.plugins.semver)
   alias(libs.plugins.dokka)
-  alias(libs.plugins.jrelease)
+//  alias(libs.plugins.jrelease)
 }
 
 idea {

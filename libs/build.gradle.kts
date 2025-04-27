@@ -1,4 +1,3 @@
-import org.jreleaser.gradle.plugin.JReleaserPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
@@ -20,7 +19,7 @@ subprojects {
   apply<JavaLibraryPlugin>()
   apply<SpringBootProject>()
   apply<MavenPublishPlugin>()
-  apply<JReleaserPlugin>()
+//  apply<JReleaserPlugin>()
   dependencies {
     implementation(platform(rootProject.projects.bom.springBoostBom))
     api(platform(rootProject.projects.bom.springBoostBom))
@@ -39,10 +38,6 @@ subprojects {
   bootJar.enabled = false
   jar.enabled = true
 
-  java {
-    withSourcesJar()
-    withJavadocJar()
-  }
   tasks.test {
     useJUnitPlatform()
   }

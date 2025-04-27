@@ -1,9 +1,16 @@
+import com.vanniktech.maven.publish.SonatypeHost
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
+import java.util.Date
 
 plugins {
   `java-platform`
-  `maven-publish`
+  alias(libs.plugins.maven.publish)
+  signing
 }
+
+group = "org.spring.boost.bom"
+version = "0.1"
+val projectName = "spring-boost-bom"
 
 javaPlatform {
   allowDependencies()
@@ -79,10 +86,33 @@ dependencies {
   }
 }
 
-publishing {
-  publications {
-    create<MavenPublication>("boostPlatform") {
-      from(components["javaPlatform"])
+mavenPublishing {
+  publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+  signAllPublications()
+
+  coordinates("io.github.daiyuang", "spring-boost-bom", version.toString())
+  pom {
+    name.set(projectName)
+    description.set(projectName)
+    inceptionYear.set(year(Date()).toString())
+    url.set("https://github.com/DaiYuANg/spring-booster")
+    licenses {
+      license {
+        name.set("MIT License")
+      }
+    }
+    developers {
+      developer {
+        id.set("daiyuang")
+        name.set("daiyuang")
+        url.set("https://github.com/DaiYuANg")
+      }
+    }
+    scm {
+      url.set("https://github.com/DaiYuANg/spring-booster")
+      connection.set("scm:git:git://github.com//DaiYuANg/spring-booster.git")
+      developerConnection.set("scm:git:ssh://git@github.com//DaiYuANg/spring-booster.git")
     }
   }
 }

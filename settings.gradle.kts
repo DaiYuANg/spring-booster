@@ -62,16 +62,11 @@ include("libs:spring-boost-captcha")
 
 include("tools:spring-boost-cli")
 
-include("samples:spring-boost-application")
-
 include("libs:spring-boost-mutiny")
 
-//include("document")
+include("document")
 
 include("bom:spring-boost-bom")
-
-include("samples:spring-boost-sample-fs")
-include("samples:spring-boost-sample-rbac")
 
 include("tools:spring-boost-annotation-codegen")
 include("tools:spring-boost-annotation")

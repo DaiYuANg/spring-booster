@@ -1,5 +1,9 @@
-import org.jreleaser.model.Active
+import com.vanniktech.maven.publish.SonatypeHost
 
+plugins {
+  alias(libs.plugins.maven.publish)
+  signing
+}
 version = "0.1"
 
 dependencies {
@@ -10,54 +14,35 @@ dependencies {
   testImplementation(libs.spring.security.test)
 }
 
-publishing {
-  publications {
-    create<MavenPublication>("maven") {
-      groupId = project.group.toString()
-      artifactId = project.name
-      version = project.version.toString()
-      from(components["java"])
-      pom {
-        name.set(project.name)
-        description.set(project.description)
-        url.set("https://github.com/ministryofjustice/spring-boot-boost")
-        licenses {
-          license {
-            name.set("MIT License")
-          }
-        }
-        developers {
-          developer {
-            id.set("ministryofjustice")
-            name.set("Ministryofjustice")
-          }
-        }
-        scm { url.set("https://github.com/ministryofjustice/spring-boot-boost") }
-      }
-    }
-  }
-  repositories {
-    maven {
-      name = "LocalRepo"
-      url = uri(layout.buildDirectory.dir("staging-deploy"))
-    }
-  }
-}
+mavenPublishing {
+  publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-jreleaser {
-  signing {
-    active.set(Active.ALWAYS)
-    armored.set(true)
-  }
-  deploy {
-    maven {
-      mavenCentral {
-        create("sonatype") {
-          active.set(Active.ALWAYS)
-          url.set("https://central.sonatype.com/api/v1/publisher")
-          stagingRepository(layout.buildDirectory.dir("staging-deploy").get().asFile.absolutePath)
-        }
+  signAllPublications()
+
+  coordinates("io.github.daiyuang", "spring-boost-authentication", version.toString())
+  pom {
+    name.set("spring-boost-authentication")
+    description.set("spring-boost-authentication")
+    inceptionYear.set("2025")
+    url.set("https://github.com/DaiYuANg/spring-booster")
+    licenses {
+      license {
+        name.set("The Apache License, Version 2.0")
+        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+        distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
       }
+    }
+    developers {
+      developer {
+        id.set("daiyuang")
+        name.set("daiyuang")
+        url.set("https://github.com/DaiYuANg")
+      }
+    }
+    scm {
+      url.set("https://github.com/DaiYuANg/spring-booster")
+      connection.set("scm:git:git://github.com//DaiYuANg/spring-booster.git")
+      developerConnection.set("scm:git:ssh://git@github.com//DaiYuANg/spring-booster.git")
     }
   }
 }

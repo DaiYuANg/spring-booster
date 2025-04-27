@@ -14,9 +14,10 @@ import org.springframework.context.event.ContextClosedEvent;
 public class ShutdownListener implements ApplicationListener<ContextClosedEvent> {
   @Override
   public void onApplicationEvent(@NotNull ContextClosedEvent event) {
-    ContextUtil.getBeanFromEvent(event, Javalin.class).ifPresent(javalin -> {
-      log.atTrace().log("Shutting down Javalin");
-      javalin.stop();
-    });
+    ContextUtil.getBeanFromEvent(event, Javalin.class)
+      .ifPresent(javalin -> {
+        log.atTrace().log("Shutting down Javalin");
+        javalin.stop();
+      });
   }
 }
