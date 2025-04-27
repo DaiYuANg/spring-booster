@@ -100,7 +100,7 @@ mica-auto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.palantir.javapoet", name = "javapoet", version = "0.7.0" }
 agrona = { group = "org.agrona", name = "agrona", version = "2.1.0" }
 
-okHttp = { group = "com.squareup.okhttp3", name = "okhttp" }
+okHttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
 
 sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.0.0" }
 postgresql = { group = "org.postgresql", name = "postgresql" }
