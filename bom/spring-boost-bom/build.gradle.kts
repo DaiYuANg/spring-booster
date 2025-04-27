@@ -9,7 +9,6 @@ plugins {
 }
 
 group = "org.spring.boost.bom"
-version = "0.1"
 val projectName = "spring-boost-bom"
 
 javaPlatform {
@@ -83,6 +82,14 @@ dependencies {
 //    spring
     api(libs.spring.boot.admin.starter.client)
     api(libs.spring.boot.admin.starter.server)
+
+    rootProject.subprojects
+      .filter { subproject ->
+        subproject.path.startsWith(":libs:spring-boost-")
+      }
+      .forEach { subproject ->
+        api("${mavenNamespace}:${subproject.name}:${subproject.version}")
+      }
   }
 }
 
@@ -90,29 +97,28 @@ mavenPublishing {
   publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
   signAllPublications()
-
-  coordinates("io.github.daiyuang", "spring-boost-bom", version.toString())
+  coordinates(mavenNamespace, projectName, version.toString())
   pom {
     name.set(projectName)
     description.set(projectName)
     inceptionYear.set(year(Date()).toString())
-    url.set("https://github.com/DaiYuANg/spring-booster")
+    url.set(githubUrl)
     licenses {
       license {
-        name.set("MIT License")
+        name.set(license)
       }
     }
     developers {
       developer {
-        id.set("daiyuang")
-        name.set("daiyuang")
-        url.set("https://github.com/DaiYuANg")
+        id.set(author)
+        name.set(author)
+        url.set(developerGithub)
       }
     }
     scm {
-      url.set("https://github.com/DaiYuANg/spring-booster")
-      connection.set("scm:git:git://github.com//DaiYuANg/spring-booster.git")
-      developerConnection.set("scm:git:ssh://git@github.com//DaiYuANg/spring-booster.git")
+      url.set(scmUrl)
+      connection.set(scmConnectionUrl)
+      developerConnection.set(developConnectionUrl)
     }
   }
 }

@@ -6,9 +6,8 @@ plugins {
   alias(libs.plugins.version.check)
   alias(libs.plugins.dotenv)
   alias(libs.plugins.spotless)
-  alias(libs.plugins.semver)
+  alias(libs.plugins.git)
   alias(libs.plugins.dokka)
-//  alias(libs.plugins.jrelease)
 }
 
 idea {
@@ -20,6 +19,8 @@ idea {
 }
 
 subprojects {
+
+  version = "0.1.1"
   apply(plugin = "org.jetbrains.dokka")
   tasks.dokkaHtml {
     outputDirectory.set(layout.buildDirectory.dir("docs/partial"))

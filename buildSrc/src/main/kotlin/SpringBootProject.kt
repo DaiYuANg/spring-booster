@@ -45,10 +45,10 @@ class SpringBootProject : Plugin<Project> {
 
   private fun applyDependencies(target: Project, libs: LibrariesForLibs) {
     target.dependencies {
-      add(COMPILE_ONLY, libs.spring.boot.starter)
-      add(COMPILE_ONLY, libs.spring.boot.starter.aop)
-      add(COMPILE_ONLY, libs.spring.boot.starter.actuator)
-      add(COMPILE_ONLY, libs.spring.boot.starter.json)
+      add(IMPLEMENTATION, libs.spring.boot.starter)
+      add(IMPLEMENTATION, libs.spring.boot.starter.aop)
+      add(IMPLEMENTATION, libs.spring.boot.starter.actuator)
+      add(IMPLEMENTATION, libs.spring.boot.starter.json)
       add(COMPILE_ONLY, libs.jetbrains.annotation)
 //      add(ANNOTATION_PROCESSOR, libs.spring.boot.configuration.processor)
       add(TEST_IMPLEMENTATION, libs.spring.boot.starter.test)

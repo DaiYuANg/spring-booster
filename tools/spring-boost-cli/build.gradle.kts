@@ -11,7 +11,6 @@ val mainClassPath = "org.spring.boost.cli.SpringBoostCLI"
 
 dependencies {
   implementation(enforcedPlatform(projects.bom.springBoostBom))
-  implementation(projects.libs.springBoostMutiny)
   implementation(libs.mysql)
   implementation(libs.javapoet)
   implementation(libs.jakarta.persistence)
@@ -35,7 +34,6 @@ dependencies {
   implementation(libs.schemacrawler.postgres)
   implementation(libs.logback.core)
   implementation(libs.logback.classic)
-  implementation(projects.libs.springBoostMutiny)
   implementation(libs.mutiny)
   implementation(libs.javaparser.core)
   implementation(libs.vavr)

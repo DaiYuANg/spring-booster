@@ -55,14 +55,9 @@ include("libs:spring-boost-verification")
 
 include("libs:spring-boost-office")
 
-
-include("libs:spring-boost-web-version")
-
 include("libs:spring-boost-captcha")
 
 include("tools:spring-boost-cli")
-
-include("libs:spring-boost-mutiny")
 
 include("document")
 
@@ -75,4 +70,4 @@ include("tools:spring-boost-maven-plugin")
 include("libs:spring-boost-fs")
 include("libs:spring-boost-fs-local")
 include("libs:spring-boost-fs-minio")
-include("libs:spring-boost-admin")
+include("libs:spring-boost-authentication-token-redis")

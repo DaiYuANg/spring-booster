@@ -19,7 +19,7 @@ subprojects {
   apply<JavaLibraryPlugin>()
   apply<SpringBootProject>()
   apply<MavenPublishPlugin>()
-//  apply<JReleaserPlugin>()
+
   dependencies {
     implementation(platform(rootProject.projects.bom.springBoostBom))
     api(platform(rootProject.projects.bom.springBoostBom))
@@ -31,6 +31,12 @@ subprojects {
     annotationProcessor(rootProject.libs.mica.auto)
     compileOnly(rootProject.libs.record.builder.core)
     annotationProcessor(rootProject.libs.record.builder.processor)
+
+    testImplementation(enforcedPlatform(rootProject.libs.junitBom))
+    testImplementation(rootProject.libs.junitApi)
+    testImplementation(rootProject.libs.junitEngine)
+    testImplementation(rootProject.libs.junitJuiter)
+    testImplementation(rootProject.projects.libs.springBoostCore)
   }
   val jar: Jar by tasks
   val bootJar: BootJar by tasks

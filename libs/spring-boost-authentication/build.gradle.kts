@@ -1,10 +1,13 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import java.util.Date
 
 plugins {
   alias(libs.plugins.maven.publish)
   signing
 }
-version = "0.1"
+
+group = "org.spring.boost.authentication"
+val projectName = "spring-boost-authentication"
 
 dependencies {
   api(libs.spring.boot.starter.security)
@@ -14,35 +17,33 @@ dependencies {
   testImplementation(libs.spring.security.test)
 }
 
+
 mavenPublishing {
   publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
   signAllPublications()
-
-  coordinates("io.github.daiyuang", "spring-boost-authentication", version.toString())
+  coordinates(mavenNamespace, projectName, version.toString())
   pom {
-    name.set("spring-boost-authentication")
-    description.set("spring-boost-authentication")
-    inceptionYear.set("2025")
-    url.set("https://github.com/DaiYuANg/spring-booster")
+    name.set(projectName)
+    description.set(projectName)
+    inceptionYear.set(year(Date()).toString())
+    url.set(githubUrl)
     licenses {
       license {
-        name.set("The Apache License, Version 2.0")
-        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-        distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+        name.set(license)
       }
     }
     developers {
       developer {
-        id.set("daiyuang")
-        name.set("daiyuang")
-        url.set("https://github.com/DaiYuANg")
+        id.set(author)
+        name.set(author)
+        url.set(developerGithub)
       }
     }
     scm {
-      url.set("https://github.com/DaiYuANg/spring-booster")
-      connection.set("scm:git:git://github.com//DaiYuANg/spring-booster.git")
-      developerConnection.set("scm:git:ssh://git@github.com//DaiYuANg/spring-booster.git")
+      url.set(scmUrl)
+      connection.set(scmConnectionUrl)
+      developerConnection.set(developConnectionUrl)
     }
   }
 }

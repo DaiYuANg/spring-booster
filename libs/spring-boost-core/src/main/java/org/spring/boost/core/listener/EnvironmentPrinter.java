@@ -8,6 +8,7 @@ import net.dreamlu.mica.auto.annotation.AutoListener;
 import org.jetbrains.annotations.NotNull;
 import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.core.api.FeatureInstaller;
+import org.spring.boost.core.autoconfigure.CoreConfigurationProperties;
 import org.spring.boost.core.model.PrintContext;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
@@ -28,6 +29,8 @@ public class EnvironmentPrinter implements ApplicationListener<ApplicationReadyE
   @Override
   public void onApplicationEvent(@NotNull ApplicationReadyEvent event) {
     val context = event.getApplicationContext();
+    val config = context.getBean(CoreConfigurationProperties.class);
+    if (!config.isEnablePrinter()) return;
     val printContext = context.getBean(PrintContext.PrintContextBuilder.class).build();
     log.atInfo().log("Printing environment info:{}", printContext);
     val registry = context.getBean(BeanRegistry.class);

@@ -4,7 +4,6 @@ package org.spring.boost.core.autoconfigure;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.spring.boost.core.aop.TimedAop;
 import org.spring.boost.core.api.BeanRegistry;
 import org.spring.boost.core.context.SimpleBeanRegistry;
 import org.spring.boost.core.model.PrintContext;
@@ -39,10 +38,5 @@ public class CoreAutoConfiguration {
   @Bean
   PrintContext.PrintContextBuilder printContext() {
     return PrintContext.builder();
-  }
-
-  @Bean(bootstrap = Bean.Bootstrap.BACKGROUND)
-  TimedAop timedAop() {
-    return new TimedAop();
   }
 }

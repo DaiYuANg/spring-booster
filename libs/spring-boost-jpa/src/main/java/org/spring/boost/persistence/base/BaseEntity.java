@@ -22,16 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Accessors(chain = true)
 @ToString
 @EntityListeners({AuditingEntityListener.class})
-public class BaseEntity implements Serializable {
-  @Serial
-  private static final long serialVersionUID = 1L;
-
-  @Id
-  @GeneratedValue(generator = "SnowflakeGenerator")
-  @SnowflakeGenerator
-  @Column(updatable = false, nullable = false)
-  private Long id;
-
+public class BaseEntity extends SnowflakeBaseEntity implements Serializable {
   @Column(nullable = false)
   @CreatedDate
   private Date createAt;
