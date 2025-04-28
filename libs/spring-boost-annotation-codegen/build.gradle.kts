@@ -5,8 +5,8 @@ plugins {
 group = "org.spring.boost.codegen"
 
 dependencies {
-  implementation(platform(rootProject.projects.bom.springBoostBom))
-  implementation(projects.tools.springBoostAnnotation)
+  implementation(platform(projects.libs.springBoostBom))
+  implementation(projects.libs.springBoostAnnotation)
   implementation(libs.javapoet)
   implementation(libs.javaparser.core)
   compileOnly(libs.prisms)

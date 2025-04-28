@@ -11,7 +11,6 @@ javaDockerClientCore = "3.4.0"
 hutool = "5.8.37"
 spring-boot = "3.4.5"
 springBootAdmin = "3.4.5"
-springDependencyManagement = "1.1.6"
 apachePoi = "5.4.1"
 junitperf = "1.35.0"
 mapstruct = "1.6.3"
@@ -30,6 +29,10 @@ javaparser = "3.26.4"
 vertx = "4.5.14"
 mutinyVertx = "3.18.1"
 mutiny = "2.8.0"
+avajeInject = "11.4"
+picocli = "4.7.7"
+logback = "1.5.18"
+slf4j = "2.0.17"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
@@ -44,6 +47,7 @@ asciidoctor-gem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor"
 asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
 asciidoctor-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
 asciidoctor-editconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
+dependency-management = { id = "io.spring.dependency-management", version = "1.1.7" }
 
 [libraries]
 #Test
@@ -63,17 +67,9 @@ mockito-junit = { group = "org.mockito", name = "mockito-junit-jupiter" }
 rest-assured = { group = "io.rest-assured", name = "rest-assured", version = "5.4.0" }
 
 #Lint
-nullaway = { group = "com.uber.nullaway", name = "nullaway", version = "0.10.19" }
 jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.2" }
-spotbugs = { group = "com.github.spotbugs.snom", name = "spotbugs-gradle-plugin", version = "6.0.2" }
-errorproneContrib = { group = "tech.picnic.error-prone-support", name = "error-prone-contrib", version.ref = "errorProneSupport" }
-refasterRunner = { group = "tech.picnic.error-prone-support", name = "refaster-runner", version.ref = "errorProneSupport" }
 
-caffine = { group = "com.github.ben-manes.caffeine", name = "caffeine", version = "3.1.8" }
-slf4j = { group = "org.slf4j", name = "slf4j-api" }
-slf4jJulBridge = { group = "org.slf4j", name = "jul-to-slf4j" }
 jakarta-persistence = { group = "jakarta.persistence", name = "jakarta.persistence-api", version = "3.2.0" }
-aspectjRt = { group = "org.aspectj", name = "aspectjrt", version.ref = "aspectjRt" }
 jakarta-validation = { group = "jakarta.validation", name = "jakarta.validation-api", version = "3.1.1" }
 minio = { group = "io.minio", name = "minio", version.ref = "minio" }
 minio-admin = { group = "io.minio", name = "minio-admin", version.ref = "minio" }
@@ -103,15 +99,13 @@ agrona = { group = "org.agrona", name = "agrona", version = "2.1.0" }
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
 
 sqlite = { group = "org.xerial", name = "sqlite-jdbc", version = "3.47.0.0" }
-postgresql = { group = "org.postgresql", name = "postgresql" }
+postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.5" }
 h2 = { group = "com.h2database", name = "h2" }
-mysql = { group = "com.mysql", name = "mysql-connector-j" }
+mysql = { group = "com.mysql", name = "mysql-connector-j", version = "9.2.0" }
 
 mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
 mapstruct-annotation-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
 lombok-mapstruct-binding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version = "0.2.0" }
-classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.179" }
-freemarker = { group = "org.freemarker", name = "freemarker", version = "2.3.28" }
 
 javaparser-core = { group = "com.github.javaparser", name = "javaparser-core", version.ref = "javaparser" }
 
@@ -199,27 +193,10 @@ spring-boot-admin-starter-server = { group = "de.codecentric", name = "spring-bo
 spring-boot-admin-starter-client = { group = "de.codecentric", name = "spring-boot-admin-starter-client", version.ref = "springBootAdmin" }
 springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version = "2.8.6" }
 
-#Spring Shell
-spring-shell-bom = { group = "org.springframework.shell", name = "spring-shell-dependencies", version.ref = "springShell" }
-spring-shell-starter = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "springShell" }
-spring-shell-starter-jansi = { group = "org.springframework.shell", name = "spring-shell-starter-jansi" }
-spring-shell-starter-jna = { group = "org.springframework.shell", name = "spring-shell-starter-jna" }
-spring-shell-test = { group = "org.springframework.shell", name = "spring-shell-test" }
-
-logback-classic = { group = "ch.qos.logback", name = "logback-classic" }
-logback-core = { group = "ch.qos.logback", name = "logback-core" }
 record-builder-processor = { group = "io.soabase.record-builder", name = "record-builder-processor", version.ref = "recordBuilder" }
 record-builder-core = { group = "io.soabase.record-builder", name = "record-builder-core", version.ref = "recordBuilder" }
 
 immutables-value = { group = "org.immutables", name = "value", version.ref = "immutables" }
-
-#Build Tools
-maven-embeder = { group = "org.apache.maven", name = "maven-embedder", version.ref = "maven" }
-maven-model = { group = "org.apache.maven", name = "maven-model", version.ref = "maven" }
-maven-plugin-api = { group = "org.apache.maven", name = "maven-plugin-api", version.ref = "maven" }
-maven-plugin-annotations = { group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "4.0.0-beta-1" }
-maven-core = { group = "org.apache.maven", name = "maven-core", version.ref = "maven" }
-gradle-tooling-api = { group = "org.gradle", name = "gradle-tooling-api", version = "8.11.1" }
 
 #Plugin
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
@@ -235,12 +212,5 @@ mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-c
 mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
 mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
 mutiny-vertx-web-templ-thymeleaf = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-templ-thymeleaf", version.ref = "mutinyVertx" }
-
-oshi = { group = 'com.github.oshi', name = 'oshi-core-java11', version = '6.8.1' }
-
-javalin = { group = "io.javalin", name = "javalin", version = "6.6.0" }
-
-doma-spring-boot = { group = "org.seasar.doma.boot", name = "doma-spring-boot-starter", version = "2.3.0" }
-doma-processor = { group = "org.seasar.doma", name = "doma-processor", version = "3.6.0" }
 
 prometheus = { group = "io.micrometer", name = "micrometer-registry-prometheus", version = "1.14.6" }

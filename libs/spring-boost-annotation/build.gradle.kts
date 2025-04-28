@@ -6,7 +6,7 @@ group = "org.spring.boost.codegen"
 
 
 dependencies {
-  implementation(platform(rootProject.projects.bom.springBoostBom))
+  implementation(platform(rootProject.projects.libs.springBoostBom))
 }
 
 tasks.test {

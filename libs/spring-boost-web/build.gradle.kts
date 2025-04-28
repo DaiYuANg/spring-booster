@@ -5,6 +5,8 @@ plugins {
   alias(libs.plugins.maven.publish)
   signing
 }
+apply<SpringBootProject>()
+
 
 group = "org.spring.boost.web"
 val projectName = "spring-boost-web"

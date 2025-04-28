@@ -57,16 +57,14 @@ include("libs:spring-boost-office")
 
 include("libs:spring-boost-captcha")
 
-include("tools:spring-boost-cli")
 
 include("document")
 
-include("bom:spring-boost-bom")
+include("libs:spring-boost-bom")
 
-include("tools:spring-boost-annotation-codegen")
-include("tools:spring-boost-annotation")
-include("tools:spring-boost-gradle-plugin")
-include("tools:spring-boost-maven-plugin")
+include("libs:spring-boost-annotation-codegen")
+include("libs:spring-boost-annotation")
+
 include("libs:spring-boost-fs")
 include("libs:spring-boost-fs-local")
 include("libs:spring-boost-fs-minio")

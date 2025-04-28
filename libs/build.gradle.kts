@@ -16,35 +16,32 @@ dependencies {
 }
 
 subprojects {
-  apply<JavaLibraryPlugin>()
-  apply<SpringBootProject>()
   apply<MavenPublishPlugin>()
 
-  dependencies {
-    implementation(platform(rootProject.projects.bom.springBoostBom))
-    api(platform(rootProject.projects.bom.springBoostBom))
-    compileOnly(platform(rootProject.projects.bom.springBoostBom))
-    annotationProcessor(platform(rootProject.projects.bom.springBoostBom))
-    compileOnly(rootProject.libs.mica.auto)
-    implementation(rootProject.libs.mapstruct)
-    annotationProcessor(rootProject.libs.mapstruct.annotation.processor)
-    annotationProcessor(rootProject.libs.mica.auto)
-    compileOnly(rootProject.libs.record.builder.core)
-    annotationProcessor(rootProject.libs.record.builder.processor)
+  if (!project.name.contains("bom")){
+    apply<JavaLibraryPlugin>()
+    dependencies {
+      implementation(enforcedPlatform(rootProject.projects.libs.springBoostBom))
+      api(enforcedPlatform(rootProject.projects.libs.springBoostBom))
+      compileOnly(enforcedPlatform(rootProject.projects.libs.springBoostBom))
+      annotationProcessor(enforcedPlatform(rootProject.projects.libs.springBoostBom))
+      compileOnly(rootProject.libs.mica.auto)
+      implementation(rootProject.libs.mapstruct)
+      annotationProcessor(rootProject.libs.mapstruct.annotation.processor)
+      annotationProcessor(rootProject.libs.mica.auto)
+      compileOnly(rootProject.libs.record.builder.core)
+      annotationProcessor(rootProject.libs.record.builder.processor)
 
-    testImplementation(enforcedPlatform(rootProject.libs.junitBom))
-    testImplementation(rootProject.libs.junitApi)
-    testImplementation(rootProject.libs.junitEngine)
-    testImplementation(rootProject.libs.junitJuiter)
-    testImplementation(rootProject.projects.libs.springBoostCore)
+      testImplementation(enforcedPlatform(rootProject.libs.junitBom))
+      testImplementation(rootProject.libs.junitApi)
+      testImplementation(rootProject.libs.junitEngine)
+      testImplementation(rootProject.libs.junitJuiter)
+      testImplementation(rootProject.projects.libs.springBoostCore)
+    }
+
+    tasks.test {
+      useJUnitPlatform()
+    }
   }
-  val jar: Jar by tasks
-  val bootJar: BootJar by tasks
 
-  bootJar.enabled = false
-  jar.enabled = true
-
-  tasks.test {
-    useJUnitPlatform()
-  }
 }

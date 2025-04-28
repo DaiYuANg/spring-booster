@@ -1,4 +1,5 @@
 group = "org.spring.boost.authentication.token.redis"
+apply<SpringBootProject>()
 
 dependencies {
   implementation(libs.spring.boot.starter.redis)

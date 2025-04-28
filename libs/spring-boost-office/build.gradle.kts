@@ -5,6 +5,7 @@ plugins {
   alias(libs.plugins.maven.publish)
   signing
 }
+apply<SpringBootProject>()
 
 group = "org.spring.boost.office"
 val projectName = "spring-boost-office"

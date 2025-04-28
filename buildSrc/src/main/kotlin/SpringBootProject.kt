@@ -1,5 +1,3 @@
-//import io.spring.gradle.dependencymanagement.DependencyManagementPlugin
-//import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import name.remal.gradle_plugins.lombok.LombokPlugin
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Plugin
@@ -27,9 +25,6 @@ class SpringBootProject : Plugin<Project> {
   }
 
   private fun configure(target: Project) {
-//    target.the<DependencyManagementExtension>().apply {
-//      imports { mavenBom(SpringBootPlugin.BOM_COORDINATES) }
-//    }
     target.tasks.withType(Jar::class.java) {
       enabled = true
       duplicatesStrategy = DuplicatesStrategy.INCLUDE
@@ -39,7 +34,6 @@ class SpringBootProject : Plugin<Project> {
   private fun applyPlugins(target: Project) {
     target.apply<LombokPlugin>()
     target.apply<SpringBootPlugin>()
-//    target.apply<DependencyManagementPlugin>()
     target.apply<SpringBootAotPlugin>()
   }
 
@@ -50,7 +44,7 @@ class SpringBootProject : Plugin<Project> {
       add(IMPLEMENTATION, libs.spring.boot.starter.actuator)
       add(IMPLEMENTATION, libs.spring.boot.starter.json)
       add(COMPILE_ONLY, libs.jetbrains.annotation)
-//      add(ANNOTATION_PROCESSOR, libs.spring.boot.configuration.processor)
+      add(ANNOTATION_PROCESSOR, libs.spring.boot.configuration.processor)
       add(TEST_IMPLEMENTATION, libs.spring.boot.starter.test)
     }
   }
