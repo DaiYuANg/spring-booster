@@ -19,7 +19,6 @@ dependencies {
   api(platform(SpringBootPlugin.BOM_COORDINATES))
   api(platform(libs.hutool.bom))
   api(platform(libs.mutiny.bom))
-  api(platform(libs.spring.shell.bom))
   constraints {
     api(libs.springdoc.openapi.starter.webmvc.ui)
     api("org.apache.httpcomponents.client5:httpclient5:5.4.2")
