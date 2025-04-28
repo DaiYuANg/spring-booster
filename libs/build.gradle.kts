@@ -34,10 +34,10 @@ subprojects {
   if (!project.name.contains("bom")){
     apply<JavaLibraryPlugin>()
     dependencies {
-      implementation(enforcedPlatform(rootProject.projects.libs.springBoostBom))
-      api(enforcedPlatform(rootProject.projects.libs.springBoostBom))
-      compileOnly(enforcedPlatform(rootProject.projects.libs.springBoostBom))
-      annotationProcessor(enforcedPlatform(rootProject.projects.libs.springBoostBom))
+      implementation(platform(rootProject.projects.libs.springBoostBom))
+      api(platform(rootProject.projects.libs.springBoostBom))
+      compileOnly(platform(rootProject.projects.libs.springBoostBom))
+      annotationProcessor(platform(rootProject.projects.libs.springBoostBom))
       compileOnly(rootProject.libs.mica.auto)
       implementation(rootProject.libs.mapstruct)
       annotationProcessor(rootProject.libs.mapstruct.annotation.processor)
