@@ -1,8 +1,12 @@
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
   `maven-publish`
   `java-library`
+  alias(libs.plugins.dokka)
 }
 
 dependencies {
@@ -17,7 +21,16 @@ dependencies {
 
 subprojects {
   apply<MavenPublishPlugin>()
-
+  apply<DokkaPlugin>()
+  tasks.dokkaHtml {
+    outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
+  }
+  // configure all format tasks at once
+  tasks.withType<DokkaTaskPartial>().configureEach {
+    dokkaSourceSets.configureEach {
+      includes.from("README.md")
+    }
+  }
   if (!project.name.contains("bom")){
     apply<JavaLibraryPlugin>()
     dependencies {

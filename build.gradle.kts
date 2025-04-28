@@ -1,5 +1,4 @@
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 plugins {
   idea
@@ -7,7 +6,6 @@ plugins {
   alias(libs.plugins.dotenv)
   alias(libs.plugins.spotless)
   alias(libs.plugins.git)
-  alias(libs.plugins.dokka)
 }
 
 idea {
@@ -20,16 +18,6 @@ idea {
 
 subprojects {
   version = "0.1.3"
-  apply(plugin = "org.jetbrains.dokka")
-  tasks.dokkaHtml {
-    outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
-  }
-  // configure all format tasks at once
-  tasks.withType<DokkaTaskPartial>().configureEach {
-    dokkaSourceSets.configureEach {
-      includes.from("README.md")
-    }
-  }
 }
 
 allprojects {

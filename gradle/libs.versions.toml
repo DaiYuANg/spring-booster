@@ -2,7 +2,6 @@
 jdkVersion = "21"
 junit = "5.10.2"
 testcontainers = "1.21.0"
-aspectjRt = "1.9.22.1"
 minio = "8.5.17"
 tika = "3.1.0"
 lettuce = "6.3.1.RELEASE"
@@ -14,11 +13,8 @@ springBootAdmin = "3.4.5"
 apachePoi = "5.4.1"
 junitperf = "1.35.0"
 mapstruct = "1.6.3"
-errorProneSupport = "0.14.0"
-maven = "4.0.0-rc-1"
 asciidoctor = "4.0.4"
 eclipseCollections = "12.0.0.M3"
-springShell = "3.4.0"
 queryDsl = "6.11"
 schemacrawler = "16.25.3"
 autoService = "1.1.1"
@@ -29,10 +25,6 @@ javaparser = "3.26.4"
 vertx = "4.5.14"
 mutinyVertx = "3.18.1"
 mutiny = "2.8.0"
-avajeInject = "11.4"
-picocli = "4.7.7"
-logback = "1.5.18"
-slf4j = "2.0.17"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
@@ -40,14 +32,12 @@ dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
 spotless = { id = "com.diffplug.spotless", version = "7.0.3" }
 git = { id = "com.xenoterracide.gradle.git", version = "0.12.1" }
-graalvm-native = { id = "org.graalvm.buildtools.native", version = "0.10.6" }
+mkdocs = { id = "ru.vyarus.mkdocs", version = "4.0.1" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.31.0" }
 asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
-asciidoctor-gem = { id = "org.asciidoctor.jvm.gems", version.ref = "asciidoctor" }
 asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
 asciidoctor-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
 asciidoctor-editconfig = { id = "org.asciidoctor.editorconfig", version.ref = "asciidoctor" }
-dependency-management = { id = "io.spring.dependency-management", version = "1.1.7" }
 
 [libraries]
 #Test
