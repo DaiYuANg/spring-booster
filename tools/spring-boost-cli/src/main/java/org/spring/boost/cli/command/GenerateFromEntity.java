@@ -33,13 +33,13 @@ public class GenerateFromEntity extends AbstractShellComponent {
     val sourceTargetContext = component.run(PathSearch.PathSearchContext.empty());
     val entityPath = sourceTargetContext.getResultValue();
 
-    log.atInfo().log("Entity Path:{}", entityPath);
+    log.info("Entity Path:{}", entityPath);
     val javaFiles = FileUtils.listFiles(
       entityPath.toFile(),
       new SuffixFileFilter(".java"),
       null
     );
-    log.atInfo().log("Java Files:{}",javaFiles);
+    log.info("Java Files:{}",javaFiles);
     javaFiles.parallelStream().forEach(astService::parse);
     return "Finish!";
   }

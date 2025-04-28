@@ -45,7 +45,7 @@ public class GenerateFromDatabaseCommand extends AbstractShellComponent {
   )
   public String codeGenerator() {
     val catalog = schemaService.catalog();
-    log.atInfo().log("CataLog:{}", catalog);
+    log.info("CataLog:{}", catalog);
 
 //    Choose Schema
     val schemaSelector = buildSchemaSelector(catalog);
@@ -62,7 +62,7 @@ public class GenerateFromDatabaseCommand extends AbstractShellComponent {
     val selectTables = tableContext.getResultItems().stream()
       .map(Itemable::getItem)
       .toList();
-    log.atInfo().log("Tables:{}", selectTables);
+    log.info("Tables:{}", selectTables);
 
 //    Choose Code Style
     val codeStyleSelector = buildCodeStyleSelector();
@@ -71,7 +71,7 @@ public class GenerateFromDatabaseCommand extends AbstractShellComponent {
     val codeStyle = codeStyleContext.getResultItem()
       .flatMap(si -> Optional.ofNullable(si.getItem()))
       .orElseThrow(() -> new IllegalStateException("No Style selected"));
-    log.atInfo().log("CodeStyle:{}", codeStyle);
+    log.info("CodeStyle:{}", codeStyle);
 
 //    Set Generate Target
     val component = new PathSearch(getTerminal(), "Enter value", pathSearchConfig);
@@ -79,7 +79,7 @@ public class GenerateFromDatabaseCommand extends AbstractShellComponent {
     component.setTemplateExecutor(getTemplateExecutor());
     val sourceTargetContext = component.run(PathSearch.PathSearchContext.empty());
     val generateTarget = sourceTargetContext.getResultValue();
-    log.atInfo().log("Source:{}", generateTarget);
+    log.info("Source:{}", generateTarget);
 
     val generateParameter = ImmutableGenerateParameter.builder().schema(selectSchema)
       .codeStyle(codeStyle)
@@ -87,7 +87,7 @@ public class GenerateFromDatabaseCommand extends AbstractShellComponent {
       .addAllTables(selectTables)
       .build();
 
-    log.atInfo().log("Generate:{}", generateParameter);
+    log.info("Generate:{}", generateParameter);
     return "Finish!";
   }
 

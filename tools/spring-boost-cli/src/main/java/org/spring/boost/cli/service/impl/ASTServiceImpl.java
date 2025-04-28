@@ -24,17 +24,17 @@ public class ASTServiceImpl implements ASTService {
     val parseResult = javaParser.parse(input);
     if (parseResult.isSuccessful()) {
       val result = parseResult.getResult().orElseThrow(RuntimeException::new);
-      log.atInfo().log("Result: {}", result);
+      log.info("Result: {}", result);
       val type = result.getPrimaryType().orElseThrow();
-      log.atInfo().log("Type: {}", type);
+      log.info("Type: {}", type);
       val annotation = type.getAnnotations();
-      log.atInfo().log("Annotations: {}", annotation);
+      log.info("Annotations: {}", annotation);
     }else{
       val ps= parseResult.getProblems();
       val source = FileUtils.readFileToString(input, StandardCharsets.UTF_8);
-      log.atInfo().log("FileSource:\n{}",source);
+      log.info("FileSource:\n{}",source);
       ps.forEach(problem -> {
-        log.atError().log("file:{},error:{}",input.getName(),problem.getVerboseMessage());
+        log.error("file:{},error:{}",input.getName(),problem.getVerboseMessage());
       });
     }
   }

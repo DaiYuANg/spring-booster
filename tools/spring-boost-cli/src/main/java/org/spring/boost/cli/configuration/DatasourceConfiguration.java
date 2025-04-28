@@ -23,7 +23,7 @@ public class DatasourceConfiguration {
   @Bean
   @ConditionalOnProperty(name = "spring.boost.datasource.url")
   public DataSource getDataSource() {
-    log.atTrace().log("Datasource Config:{}", datasourceConfigurationProperties);
+    log.trace("Datasource Config:{}", datasourceConfigurationProperties);
     DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
     dataSourceBuilder.driverClassName(datasourceConfigurationProperties.getDriverClassName());
     dataSourceBuilder.url(datasourceConfigurationProperties.getUrl());

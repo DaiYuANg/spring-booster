@@ -20,7 +20,7 @@ public class ASTConfiguration {
 
   @Bean
   JavaParser javaParser() {
-    log.atInfo().log("LanguageLevel:{}", LanguageLevelUtil.getLanguageLevel(cliConfigurationProperties.getJdkVersion()));
+    log.info("LanguageLevel:{}", LanguageLevelUtil.getLanguageLevel(cliConfigurationProperties.getJdkVersion()));
     val config = new ParserConfiguration()
       .setLanguageLevel(LanguageLevelUtil.getLanguageLevel(cliConfigurationProperties.getJdkVersion()))
       .setAttributeComments(true)

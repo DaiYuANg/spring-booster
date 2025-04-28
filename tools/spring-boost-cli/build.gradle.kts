@@ -11,6 +11,7 @@ val mainClassPath = "org.spring.boost.cli.SpringBoostCLI"
 
 dependencies {
   implementation(enforcedPlatform(projects.bom.springBoostBom))
+  implementation(libs.slf4j)
   implementation(libs.mysql)
   implementation(libs.javapoet)
   implementation(libs.jakarta.persistence)
