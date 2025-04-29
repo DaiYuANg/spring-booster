@@ -38,9 +38,4 @@ public class ContextRefreshListener implements ApplicationListener<ApplicationPr
     log.atTrace().log("Boost Core Listener Active");
     log.atTrace().log("Core config:{}", config);
   }
-
-  @Override
-  public boolean supportsAsyncExecution() {
-    return true;
-  }
 }
