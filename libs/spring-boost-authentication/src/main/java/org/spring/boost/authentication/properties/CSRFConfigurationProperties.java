@@ -11,5 +11,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 @ConfigurationProperties(prefix = "spring.boost.authentication.csrf")
 public class CSRFConfigurationProperties {
-    private boolean enable;
+  private boolean enable;
 }

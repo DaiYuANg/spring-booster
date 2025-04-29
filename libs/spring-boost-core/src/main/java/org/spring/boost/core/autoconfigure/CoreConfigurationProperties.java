@@ -19,8 +19,6 @@ public class CoreConfigurationProperties {
 
   private boolean enablePrinter = true;
 
-  private Set<String> scanPackages = Set.of();
-
   public static CoreConfigurationProperties get(@NotNull Binder binder) {
     return binder.bind(ConfigConstant.PREFIX, CoreConfigurationProperties.class)
       .orElseGet(CoreConfigurationProperties::new);

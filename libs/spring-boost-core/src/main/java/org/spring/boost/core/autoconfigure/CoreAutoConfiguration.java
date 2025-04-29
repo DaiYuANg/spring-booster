@@ -13,12 +13,16 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @AutoConfiguration
 @Slf4j
 @EnableConfigurationProperties(CoreConfigurationProperties.class)
 @RequiredArgsConstructor
 @Import(cn.hutool.extra.spring.SpringUtil.class)
+@EnableAsync
+@EnableScheduling
 public class CoreAutoConfiguration {
 
   @PostConstruct
