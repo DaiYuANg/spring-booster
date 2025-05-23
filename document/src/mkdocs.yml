@@ -1,13 +1,12 @@
-site_name: document
-
 # Meta tags (placed in header)
-site_description: Spring booster
 #site_author: Your Name
 site_url: # https://you.github.io/document
-
+site_name: spring-booster
+site_description: Simple, rapid development, and enhanced developer experience.
+site_author: DaiYuANg
 # Repository (add link to repository on each page)
-#repo_name: document
-#repo_url: http://github.com/you/document
+repo_name: spring-booster
+repo_url: https://github.com/DaiYuANg/spring-booster
 #edit_uri: edit/master/src/docs/
 
 #Copyright (shown at the footer)
@@ -34,10 +33,10 @@ theme:
     - navigation.tracking
     - navigation.top
 
-#plugins:
-#  - search
+plugins:
+  - search
 #    Required for variables support (https://github.com/rosscdh/mkdocs-markdownextradata-plugin)
-#  - markdownextradata
+  - markdownextradata
 
 #extra:
 #  palette:
@@ -93,8 +92,19 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
-  - Home: index.md
-  - User guide:
-      - Installation: guide/installation.md
-  - About:
-      - Release notes: about/history.md
+  - 首页: index.md
+  - 快速开始: quickstart.md
+#  - 模块总览:
+#      - Authentication: modules/authentication.md
+#      - Core: modules/core.md
+#      - DAO: modules/dao.md
+#      - File Operation: modules/file_operation.md
+#      - Web: modules/web.md
+#      - Office: modules/office.md
+#      - Helper Library: modules/helper_library.md
+#      - Tools: modules/tools.md
+#  - 配置参考: configuration.md
+#  - CLI 工具: cli.md
+#  - 构建插件: plugins.md
+#  - 贡献指南: contributing.md
+#  - 许可协议: license.md

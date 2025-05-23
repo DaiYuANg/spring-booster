@@ -7,8 +7,8 @@ tika = "3.1.0"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
-hutool = "5.8.37"
-spring-boot = "3.4.5"
+hutool = "5.8.38"
+spring-boot = "3.5.0"
 springBootAdmin = "3.4.5"
 apachePoi = "5.4.1"
 junitperf = "1.35.0"
@@ -19,12 +19,12 @@ queryDsl = "6.11"
 schemacrawler = "16.25.3"
 autoService = "1.1.1"
 vavr = "0.10.6"
-recordBuilder = "45"
+recordBuilder = "47"
 immutables = "2.10.1"
 javaparser = "3.26.4"
 vertx = "4.5.14"
 mutinyVertx = "3.18.1"
-mutiny = "2.8.0"
+mutiny = "2.9.0"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
@@ -112,7 +112,7 @@ schemacrawler-postgres = { group = "us.fatehi", name = "schemacrawler-postgresql
 schemacrawler-sqlserver = { group = "us.fatehi", name = "schemacrawler-sqlserver", version.ref = "schemacrawler" }
 
 vavr = { group = "io.vavr", name = "vavr", version.ref = "vavr" }
-useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.30.0" }
+useragent = { group = "nl.basjes.parse.useragent", name = "yauaa", version = "7.31.0" }
 
 #Office
 poi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }

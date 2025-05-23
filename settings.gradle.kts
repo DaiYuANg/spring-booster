@@ -7,7 +7,7 @@ pluginManagement {
   }
 }
 plugins {
-  id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
   id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.2"
   id("com.gradle.enterprise") version "3.13.4"
 }
@@ -65,7 +65,7 @@ include("libs:spring-boost-bom")
 include("libs:spring-boost-annotation-codegen")
 include("libs:spring-boost-annotation")
 
-include("libs:spring-boost-fs")
-include("libs:spring-boost-fs-local")
-include("libs:spring-boost-fs-minio")
+include("libs:spring-boost-filesystem")
+include("libs:spring-boost-filesystem-sftp")
+include("libs:spring-boost-filesystem-minio")
 include("libs:spring-boost-authentication-token-redis")
