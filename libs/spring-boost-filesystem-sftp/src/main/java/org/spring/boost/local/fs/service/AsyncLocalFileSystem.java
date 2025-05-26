@@ -1,19 +1,11 @@
-package org.spring.boost.minio.service;
+package org.spring.boost.local.fs.service;
 
-import io.minio.MinioAsyncClient;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.spring.boost.filesystem.api.AsyncFileSystemService;
+import org.spring.boost.filesystem.api.AsyncFileSystem;
 
 import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;
 
-@RequiredArgsConstructor
-@Slf4j
-public class MinioAsyncFileSystemService implements AsyncFileSystemService {
-
-  private final MinioAsyncClient minioAsyncClient;
-
+public class AsyncLocalFileSystem implements AsyncFileSystem {
   @Override
   public CompletableFuture<Void> uploadFileAsync(String path, InputStream inputStream) {
     return null;

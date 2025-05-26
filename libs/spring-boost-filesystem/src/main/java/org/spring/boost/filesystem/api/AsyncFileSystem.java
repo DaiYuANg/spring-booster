@@ -3,7 +3,7 @@ package org.spring.boost.filesystem.api;
 import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;
 
-public interface AsyncFileSystemService {
+public interface AsyncFileSystem {
 
   CompletableFuture<Void> uploadFileAsync(String path, InputStream inputStream);
 

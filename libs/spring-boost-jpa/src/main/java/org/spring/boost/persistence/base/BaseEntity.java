@@ -23,6 +23,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @ToString
 @EntityListeners({AuditingEntityListener.class})
 public class BaseEntity extends SnowflakeBaseEntity implements Serializable {
+
   @Column(nullable = false)
   @CreatedDate
   private Date createAt;

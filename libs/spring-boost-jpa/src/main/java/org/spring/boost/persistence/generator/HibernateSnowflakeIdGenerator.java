@@ -5,6 +5,7 @@ import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.agrona.concurrent.SnowflakeIdGenerator;
+import org.agrona.concurrent.SystemEpochClock;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 import org.hibernate.service.ServiceRegistry;
@@ -18,6 +19,7 @@ import org.springframework.context.ApplicationContextException;
 import java.util.Optional;
 import java.util.Properties;
 
+import static java.util.Optional.ofNullable;
 import static org.spring.boost.persistence.constant.Key.SNOW_FLAKE_HIBERNATE_PROPERTIES_KEY;
 
 @Slf4j
@@ -29,14 +31,14 @@ public class HibernateSnowflakeIdGenerator implements IdentifierGenerator {
 
   @Override
   public void configure(Type type, @NotNull Properties params, ServiceRegistry serviceRegistry) {
-    long nodeId = Optional.ofNullable(params.getProperty(SNOW_FLAKE_HIBERNATE_PROPERTIES_KEY))
+    long nodeId = ofNullable(params.getProperty(SNOW_FLAKE_HIBERNATE_PROPERTIES_KEY))
       .map(this::parseNodeId)
       .orElse(DEFAULT_NODE_ID);
 
     // 初始化 Snowflake ID 生成器
     this.generator = new SnowflakeIdGenerator(nodeId);
 
-    log.info("Snowflake ID Generator initialized with node ID: {}", nodeId);
+    log.atInfo().log("Snowflake ID Generator initialized with node ID: {}", nodeId);
   }
 
   private long parseNodeId(String nodeIdString) {
@@ -47,9 +49,7 @@ public class HibernateSnowflakeIdGenerator implements IdentifierGenerator {
 
   @Override
   public Object generate(SharedSessionContractImplementor session, Object object) {
-    if (generator == null) {
-      throw new IllegalStateException("HibernateSnowflakeIdGenerator is not properly configured");
-    }
-    return generator.nextId();
+    return ofNullable(generator).map(SnowflakeIdGenerator::nextId)
+      .orElseThrow(() -> new IllegalStateException("HibernateSnowflakeIdGenerator is not properly configured"));
   }
 }

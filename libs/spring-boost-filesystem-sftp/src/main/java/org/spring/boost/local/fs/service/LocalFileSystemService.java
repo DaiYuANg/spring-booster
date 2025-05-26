@@ -3,8 +3,7 @@ package org.spring.boost.local.fs.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
-import org.spring.boost.filesystem.api.FileSystemService;
-import org.spring.boost.filesystem.api.FileUploadHooks;
+import org.spring.boost.filesystem.api.Filesystem;
 import org.spring.boost.filesystem.model.FileMetadata;
 
 import java.io.IOException;
@@ -12,7 +11,7 @@ import java.io.InputStream;
 
 @RequiredArgsConstructor
 @Slf4j
-public class LocalFileSystemService implements FileSystemService {
+public class LocalFileSystemService implements Filesystem {
 
 //  private final FileSystem fileSystem;
 

@@ -3,7 +3,7 @@ package org.spring.boost.minio.service;
 import io.minio.MinioClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.spring.boost.filesystem.api.FileSystemService;
+import org.spring.boost.filesystem.api.Filesystem;
 import org.spring.boost.filesystem.model.FileMetadata;
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 @Slf4j
 @RequiredArgsConstructor
-public class MinioFileSystemService implements FileSystemService {
+public class MinioFileSystemService implements Filesystem {
 
   private final MinioClient minioClient;
 

@@ -4,7 +4,7 @@ import org.spring.boost.filesystem.api.FileExistenceChecker;
 
 import java.io.IOException;
 
-public class SimpleFileExistenceCheckerChecker implements FileExistenceChecker {
+public class SimpleFileExistenceChecker implements FileExistenceChecker {
   @Override
   public boolean isFileExists(String identifier) throws IOException {
     return false;

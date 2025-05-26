@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 @Slf4j
 @Getter
+@SuppressWarnings("unused")
 public class InputStreamWrapper extends InputStream {
 
   private final InputStream originalStream;

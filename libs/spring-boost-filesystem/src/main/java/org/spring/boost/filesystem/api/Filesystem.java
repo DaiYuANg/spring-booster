@@ -5,7 +5,7 @@ import org.spring.boost.filesystem.model.FileMetadata;
 import java.io.IOException;
 import java.io.InputStream;
 
-public interface FileSystemService {
+public interface Filesystem {
   void uploadFile(String path, InputStream inputStream) throws IOException;
 
   InputStream downloadFile(String path) throws IOException;
