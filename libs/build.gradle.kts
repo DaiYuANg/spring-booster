@@ -12,7 +12,7 @@ plugins {
 dependencies {
   api(projects.libs.springBoostJpa)
   api(projects.libs.springBoostCore)
-//  api(projects.libs.springBoostMinio)
+  api(projects.libs.springBoostMinio)
   api(projects.libs.springBoostOffice)
   api(projects.libs.springBoostVerification)
   api(projects.libs.springBoostAuthentication)
@@ -31,7 +31,7 @@ subprojects {
       includes.from("README.md")
     }
   }
-  if (!project.name.contains("bom")){
+  if (!project.name.contains("bom")) {
     apply<JavaLibraryPlugin>()
     dependencies {
       implementation(platform(rootProject.projects.libs.springBoostBom))
@@ -50,6 +50,9 @@ subprojects {
       testImplementation(rootProject.libs.junitEngine)
       testImplementation(rootProject.libs.junitJuiter)
       testImplementation(rootProject.projects.libs.springBoostCore)
+
+      testImplementation(rootProject.libs.testcontainers)
+      testImplementation(rootProject.libs.testcontainers.junit)
     }
 
     tasks.test {

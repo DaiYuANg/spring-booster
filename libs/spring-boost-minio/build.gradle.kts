@@ -7,19 +7,20 @@ plugins {
 }
 apply<SpringBootProject>()
 
-group = "org.spring.boost.core"
-val projectName = "spring-boost-core"
+group = "org.spring.boost.filesystem.minio"
+val projectName = "spring-boost-filesystem-minio"
 
 dependencies {
-  api(libs.apache.common.lang3)
-  api(libs.guava)
-  api(libs.apache.common.text)
-  api(libs.vavr)
-  api(libs.hutool.extra)
-  api(libs.eclipse.collections.api)
-  api(libs.eclipse.collections)
-  api(libs.prometheus)
-  annotationProcessor(libs.spring.boot.configuration.processor)
+  implementation(libs.minio)
+  implementation(libs.minio.admin)
+  implementation(libs.tika.core)
+  implementation(libs.tika.parsers)
+  implementation(libs.apache.common.io)
+  implementation(libs.apache.common.codec)
+  implementation(libs.okHttp)
+  implementation(projects.libs.springBoostCore)
+  implementation(libs.fastutil)
+  testImplementation(libs.testcontainers.minio)
 }
 
 mavenPublishing {

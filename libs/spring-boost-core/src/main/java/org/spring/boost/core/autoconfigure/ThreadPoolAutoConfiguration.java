@@ -25,10 +25,4 @@ public class ThreadPoolAutoConfiguration {
     taskExecutor.initialize();
     return taskExecutor;
   }
-
-  @Bean("ioThreadPool")
-  public Executor ioThreadPool() {
-    val factory = Thread.ofVirtual().name("io-thread", 0).factory();
-    return Executors.newThreadPerTaskExecutor(factory);
-  }
 }

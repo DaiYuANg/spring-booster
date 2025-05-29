@@ -1,0 +1,14 @@
+spring:
+  boost:
+    minio:
+      primary:
+        endpoint: "your_endpoint2"
+        accessKey: "your_access_key2"
+        secretKey: "your_secret_key2"
+        bucket: "your_default_bucket2"
+  threads:
+    virtual:
+      enabled: true
+logging:
+  level:
+    root: trace

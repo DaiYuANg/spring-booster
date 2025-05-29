@@ -65,7 +65,5 @@ include("libs:spring-boost-bom")
 include("libs:spring-boost-annotation-codegen")
 include("libs:spring-boost-annotation")
 
-include("libs:spring-boost-filesystem")
-include("libs:spring-boost-filesystem-sftp")
-include("libs:spring-boost-filesystem-minio")
+include("libs:spring-boost-minio")
 include("libs:spring-boost-authentication-token-redis")

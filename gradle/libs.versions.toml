@@ -3,7 +3,7 @@ jdkVersion = "21"
 junit = "5.10.2"
 testcontainers = "1.21.0"
 minio = "8.5.17"
-tika = "3.1.0"
+tika = "3.2.0"
 lettuce = "6.3.1.RELEASE"
 jsonwebtoken = "0.12.6"
 javaDockerClientCore = "3.4.0"
@@ -22,18 +22,15 @@ vavr = "0.10.6"
 recordBuilder = "47"
 immutables = "2.10.1"
 javaparser = "3.26.4"
-vertx = "4.5.14"
-mutinyVertx = "3.18.1"
-mutiny = "2.9.0"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version = "4.0.0" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.3" }
+spotless = { id = "com.diffplug.spotless", version = "7.0.4" }
 git = { id = "com.xenoterracide.gradle.git", version = "0.12.1" }
 mkdocs = { id = "ru.vyarus.mkdocs", version = "4.0.1" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.31.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
 asciidoctor-jvm = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 asciidoctor-epub = { id = "org.asciidoctor.jvm.epub", version.ref = "asciidoctor" }
 asciidoctor-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
@@ -84,7 +81,7 @@ data-faker = { group = "net.datafaker", name = "datafaker", version = "2.4.2" }
 guava = { group = "com.google.guava", name = "guava", version = "33.4.8-jre" }
 mica-auto = { group = "net.dreamlu", name = "mica-auto", version = "3.1.4" }
 javapoet = { group = "com.palantir.javapoet", name = "javapoet", version = "0.7.0" }
-agrona = { group = "org.agrona", name = "agrona", version = "2.1.0" }
+agrona = { group = "org.agrona", name = "agrona", version = "2.2.0" }
 
 okHttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
 
@@ -119,9 +116,6 @@ poi = { group = "org.apache.poi", name = "poi", version.ref = "apachePoi" }
 poi-ooxml-full = { group = "org.apache.poi", name = "poi-ooxml-full", version.ref = "apachePoi" }
 poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "apachePoi" }
 fastExcel = { group = "org.dhatim", name = "fastexcel", version = "0.16.5" }
-
-mutiny-bom = { group = "io.smallrye.reactive", name = "mutiny-bom", version.ref = "mutiny" }
-mutiny = { group = "io.smallrye.reactive", name = "mutiny", version.ref = "mutiny" }
 
 #tika
 tika-core = { group = "org.apache.tika", name = "tika-core", version.ref = "tika" }
@@ -192,15 +186,5 @@ immutables-value = { group = "org.immutables", name = "value", version.ref = "im
 springBootGradlePlugin = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
 lombokPlugin = { group = "name.remal.gradle-plugins.lombok", name = "lombok", version = "2.2.14" }
 manifestPlugin = { group = "com.coditory.gradle", name = "manifest-plugin", version = "0.2.6" }
-
-vertx-core = { group = "io.vertx", name = "vertx-core", version.ref = "vertx" }
-vertx-junit5 = { group = "io.vertx", name = "vertx-junit5", version.ref = "vertx" }
-vertx-web = { group = "io.vertx", name = "vertx-web", version.ref = "vertx" }
-vertx-web-templ-thymeleaf = { group = "io.vertx", name = "vertx-web-templ-thymeleaf", version.ref = "vertx" }
-vertx-web-client = { group = "io.vertx", name = "vertx-web-client", version.ref = "vertx" }
-mutiny-vertx = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-core", version.ref = "mutinyVertx" }
-mutiny-vertx-web = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web", version.ref = "mutinyVertx" }
-mutiny-vertx-web-client = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-client", version.ref = "mutinyVertx" }
-mutiny-vertx-web-templ-thymeleaf = { group = "io.smallrye.reactive", name = "smallrye-mutiny-vertx-web-templ-thymeleaf", version.ref = "mutinyVertx" }
 
 prometheus = { group = "io.micrometer", name = "micrometer-registry-prometheus", version = "1.14.6" }
